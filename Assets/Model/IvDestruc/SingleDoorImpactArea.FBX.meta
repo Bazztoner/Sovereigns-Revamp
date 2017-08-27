@@ -1,0 +1,1125 @@
+fileFormatVersion: 2
+guid: a6409912f44d6b347a30310fbea4865c
+timeCreated: 1497333516
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: D_Side_DoorRight_frag_001
+    100002: D_Side_DoorRight_frag_002
+    100004: D_Side_DoorRight_frag_003
+    100006: D_Side_DoorRight_frag_004
+    100008: D_Side_DoorRight_frag_005
+    100010: D_Side_DoorRight_frag_006
+    100012: D_Side_DoorRight_frag_007
+    100014: D_Side_DoorRight_frag_008
+    100016: D_Side_DoorRight_frag_009
+    100018: D_Side_DoorRight_frag_010
+    100020: D_Side_DoorRight_frag_011
+    100022: D_Side_DoorRight_frag_012
+    100024: D_Side_DoorRight_frag_013
+    100026: D_Side_DoorRight_frag_014
+    100028: D_Side_DoorRight_frag_015
+    100030: D_Side_DoorRight_frag_016
+    100032: D_Side_DoorRight_frag_017
+    100034: D_Side_DoorRight_frag_018
+    100036: D_Side_DoorRight_frag_019
+    100038: D_Side_DoorRight_frag_020
+    100040: D_Side_DoorRight_frag_021
+    100042: D_Side_DoorRight_frag_022
+    100044: D_Side_DoorRight_frag_023
+    100046: D_Side_DoorRight_frag_024
+    100048: D_Side_DoorRight_frag_025
+    100050: D_Side_DoorRight_frag_026
+    100052: D_Side_DoorRight_frag_027
+    100054: D_Side_DoorRight_frag_028
+    100056: D_Side_DoorRight_frag_029
+    100058: D_Side_DoorRight_frag_030
+    100060: D_Side_DoorRight_frag_031
+    100062: D_Side_DoorRight_frag_032
+    100064: D_Side_DoorRight_frag_033
+    100066: D_Side_DoorRight_frag_034
+    100068: D_Side_DoorRight_frag_035
+    100070: D_Side_DoorRight_frag_036
+    100072: D_Side_DoorRight_frag_037
+    100074: D_Side_DoorRight_frag_038
+    100076: D_Side_DoorRight_frag_039
+    100078: D_Side_DoorRight_frag_040
+    100080: D_Side_DoorRight_frag_041
+    100082: D_Side_DoorRight_frag_042
+    100084: D_Side_DoorRight_frag_043
+    100086: D_Side_DoorRight_frag_044
+    100088: D_Side_DoorRight_frag_045
+    100090: D_Side_DoorRight_frag_046
+    100092: D_Side_DoorRight_frag_047
+    100094: D_Side_DoorRight_frag_048
+    100096: D_Side_DoorRight_frag_049
+    100098: D_Side_DoorRight_frag_050
+    100100: D_Side_DoorRight_frag_051
+    100102: D_Side_DoorRight_frag_052
+    100104: D_Side_DoorRight_frag_053
+    100106: D_Side_DoorRight_frag_054
+    100108: D_Side_DoorRight_frag_055
+    100110: D_Side_DoorRight_frag_056
+    100112: D_Side_DoorRight_frag_057
+    100114: D_Side_DoorRight_frag_058
+    100116: D_Side_DoorRight_frag_059
+    100118: D_Side_DoorRight_frag_060
+    100120: D_Side_DoorRight_frag_061
+    100122: D_Side_DoorRight_frag_062
+    100124: D_Side_DoorRight_frag_063
+    100126: D_Side_DoorRight_frag_064
+    100128: D_Side_DoorRight_frag_065
+    100130: D_Side_DoorRight_frag_066
+    100132: D_Side_DoorRight_frag_067
+    100134: D_Side_DoorRight_frag_068
+    100136: D_Side_DoorRight_frag_069
+    100138: D_Side_DoorRight_frag_070
+    100140: D_Side_DoorRight_frag_071
+    100142: D_Side_DoorRight_frag_072
+    100144: D_Side_DoorRight_frag_073
+    100146: D_Side_DoorRight_frag_074
+    100148: D_Side_DoorRight_frag_075
+    100150: D_Side_DoorRight_frag_076
+    100152: D_Side_DoorRight_frag_077
+    100154: D_Side_DoorRight_frag_078
+    100156: D_Side_DoorRight_frag_079
+    100158: D_Side_DoorRight_frag_080
+    100160: D_Side_DoorRight_frag_081
+    100162: D_Side_DoorRight_frag_082
+    100164: D_Side_DoorRight_frag_083
+    100166: D_Side_DoorRight_frag_084
+    100168: D_Side_DoorRight_frag_085
+    100170: D_Side_DoorRight_frag_086
+    100172: D_Side_DoorRight_frag_087
+    100174: D_Side_DoorRight_frag_088
+    100176: D_Side_DoorRight_frag_089
+    100178: D_Side_DoorRight_frag_090
+    100180: D_Side_DoorRight_frag_091
+    100182: D_Side_DoorRight_frag_092
+    100184: D_Side_DoorRight_frag_093
+    100186: D_Side_DoorRight_frag_094
+    100188: D_Side_DoorRight_frag_095
+    100190: D_Side_DoorRight_frag_096
+    100192: D_Side_DoorRight_frag_097
+    100194: D_Side_DoorRight_frag_098
+    100196: D_Side_DoorRight_frag_099
+    100198: D_Side_DoorRight_frag_100
+    100200: D_Side_DoorRight_frag_101
+    100202: D_Side_DoorRight_frag_102
+    100204: D_Side_DoorRight_frag_103
+    100206: D_Side_DoorRight_frag_104
+    100208: D_Side_DoorRight_frag_105
+    100210: D_Side_DoorRight_frag_106
+    100212: D_Side_DoorRight_frag_107
+    100214: D_Side_DoorRight_frag_108
+    100216: D_Side_DoorRight_frag_109
+    100218: D_Side_DoorRight_frag_110
+    100220: D_Side_DoorRight_frag_111
+    100222: D_Side_DoorRight_frag_112
+    100224: D_Side_DoorRight_frag_113
+    100226: D_Side_DoorRight_frag_114
+    100228: D_Side_DoorRight_frag_115
+    100230: D_Side_DoorRight_frag_116
+    100232: D_Side_DoorRight_frag_117
+    100234: D_Side_DoorRight_frag_118
+    100236: D_Side_DoorRight_frag_119
+    100238: D_Side_DoorRight_frag_120
+    100240: D_Side_DoorRight_frag_121
+    100242: D_Side_DoorRight_frag_122
+    100244: D_Side_DoorRight_frag_123
+    100246: D_Side_DoorRight_frag_124
+    100248: D_Side_DoorRight_frag_125
+    100250: D_Side_DoorRight_frag_126
+    100252: D_Side_DoorRight_frag_127
+    100254: D_Side_DoorRight_frag_128
+    100256: D_Side_DoorRight_frag_129
+    100258: D_Side_DoorRight_frag_130
+    100260: D_Side_DoorRight_frag_131
+    100262: D_Side_DoorRight_frag_132
+    100264: D_Side_DoorRight_frag_133
+    100266: D_Side_DoorRight_frag_134
+    100268: D_Side_DoorRight_frag_135
+    100270: D_Side_DoorRight_frag_136
+    100272: D_Side_DoorRight_frag_137
+    100274: D_Side_DoorRight_frag_138
+    100276: D_Side_DoorRight_frag_139
+    100278: D_Side_DoorRight_frag_140
+    100280: D_Side_DoorRight_frag_141
+    100282: D_Side_DoorRight_frag_142
+    100284: D_Side_DoorRight_frag_143
+    100286: D_Side_DoorRight_frag_144
+    100288: D_Side_DoorRight_frag_145
+    100290: //RootNode
+    400000: D_Side_DoorRight_frag_001
+    400002: D_Side_DoorRight_frag_002
+    400004: D_Side_DoorRight_frag_003
+    400006: D_Side_DoorRight_frag_004
+    400008: D_Side_DoorRight_frag_005
+    400010: D_Side_DoorRight_frag_006
+    400012: D_Side_DoorRight_frag_007
+    400014: D_Side_DoorRight_frag_008
+    400016: D_Side_DoorRight_frag_009
+    400018: D_Side_DoorRight_frag_010
+    400020: D_Side_DoorRight_frag_011
+    400022: D_Side_DoorRight_frag_012
+    400024: D_Side_DoorRight_frag_013
+    400026: D_Side_DoorRight_frag_014
+    400028: D_Side_DoorRight_frag_015
+    400030: D_Side_DoorRight_frag_016
+    400032: D_Side_DoorRight_frag_017
+    400034: D_Side_DoorRight_frag_018
+    400036: D_Side_DoorRight_frag_019
+    400038: D_Side_DoorRight_frag_020
+    400040: D_Side_DoorRight_frag_021
+    400042: D_Side_DoorRight_frag_022
+    400044: D_Side_DoorRight_frag_023
+    400046: D_Side_DoorRight_frag_024
+    400048: D_Side_DoorRight_frag_025
+    400050: D_Side_DoorRight_frag_026
+    400052: D_Side_DoorRight_frag_027
+    400054: D_Side_DoorRight_frag_028
+    400056: D_Side_DoorRight_frag_029
+    400058: D_Side_DoorRight_frag_030
+    400060: D_Side_DoorRight_frag_031
+    400062: D_Side_DoorRight_frag_032
+    400064: D_Side_DoorRight_frag_033
+    400066: D_Side_DoorRight_frag_034
+    400068: D_Side_DoorRight_frag_035
+    400070: D_Side_DoorRight_frag_036
+    400072: D_Side_DoorRight_frag_037
+    400074: D_Side_DoorRight_frag_038
+    400076: D_Side_DoorRight_frag_039
+    400078: D_Side_DoorRight_frag_040
+    400080: D_Side_DoorRight_frag_041
+    400082: D_Side_DoorRight_frag_042
+    400084: D_Side_DoorRight_frag_043
+    400086: D_Side_DoorRight_frag_044
+    400088: D_Side_DoorRight_frag_045
+    400090: D_Side_DoorRight_frag_046
+    400092: D_Side_DoorRight_frag_047
+    400094: D_Side_DoorRight_frag_048
+    400096: D_Side_DoorRight_frag_049
+    400098: D_Side_DoorRight_frag_050
+    400100: D_Side_DoorRight_frag_051
+    400102: D_Side_DoorRight_frag_052
+    400104: D_Side_DoorRight_frag_053
+    400106: D_Side_DoorRight_frag_054
+    400108: D_Side_DoorRight_frag_055
+    400110: D_Side_DoorRight_frag_056
+    400112: D_Side_DoorRight_frag_057
+    400114: D_Side_DoorRight_frag_058
+    400116: D_Side_DoorRight_frag_059
+    400118: D_Side_DoorRight_frag_060
+    400120: D_Side_DoorRight_frag_061
+    400122: D_Side_DoorRight_frag_062
+    400124: D_Side_DoorRight_frag_063
+    400126: D_Side_DoorRight_frag_064
+    400128: D_Side_DoorRight_frag_065
+    400130: D_Side_DoorRight_frag_066
+    400132: D_Side_DoorRight_frag_067
+    400134: D_Side_DoorRight_frag_068
+    400136: D_Side_DoorRight_frag_069
+    400138: D_Side_DoorRight_frag_070
+    400140: D_Side_DoorRight_frag_071
+    400142: D_Side_DoorRight_frag_072
+    400144: D_Side_DoorRight_frag_073
+    400146: D_Side_DoorRight_frag_074
+    400148: D_Side_DoorRight_frag_075
+    400150: D_Side_DoorRight_frag_076
+    400152: D_Side_DoorRight_frag_077
+    400154: D_Side_DoorRight_frag_078
+    400156: D_Side_DoorRight_frag_079
+    400158: D_Side_DoorRight_frag_080
+    400160: D_Side_DoorRight_frag_081
+    400162: D_Side_DoorRight_frag_082
+    400164: D_Side_DoorRight_frag_083
+    400166: D_Side_DoorRight_frag_084
+    400168: D_Side_DoorRight_frag_085
+    400170: D_Side_DoorRight_frag_086
+    400172: D_Side_DoorRight_frag_087
+    400174: D_Side_DoorRight_frag_088
+    400176: D_Side_DoorRight_frag_089
+    400178: D_Side_DoorRight_frag_090
+    400180: D_Side_DoorRight_frag_091
+    400182: D_Side_DoorRight_frag_092
+    400184: D_Side_DoorRight_frag_093
+    400186: D_Side_DoorRight_frag_094
+    400188: D_Side_DoorRight_frag_095
+    400190: D_Side_DoorRight_frag_096
+    400192: D_Side_DoorRight_frag_097
+    400194: D_Side_DoorRight_frag_098
+    400196: D_Side_DoorRight_frag_099
+    400198: D_Side_DoorRight_frag_100
+    400200: D_Side_DoorRight_frag_101
+    400202: D_Side_DoorRight_frag_102
+    400204: D_Side_DoorRight_frag_103
+    400206: D_Side_DoorRight_frag_104
+    400208: D_Side_DoorRight_frag_105
+    400210: D_Side_DoorRight_frag_106
+    400212: D_Side_DoorRight_frag_107
+    400214: D_Side_DoorRight_frag_108
+    400216: D_Side_DoorRight_frag_109
+    400218: D_Side_DoorRight_frag_110
+    400220: D_Side_DoorRight_frag_111
+    400222: D_Side_DoorRight_frag_112
+    400224: D_Side_DoorRight_frag_113
+    400226: D_Side_DoorRight_frag_114
+    400228: D_Side_DoorRight_frag_115
+    400230: D_Side_DoorRight_frag_116
+    400232: D_Side_DoorRight_frag_117
+    400234: D_Side_DoorRight_frag_118
+    400236: D_Side_DoorRight_frag_119
+    400238: D_Side_DoorRight_frag_120
+    400240: D_Side_DoorRight_frag_121
+    400242: D_Side_DoorRight_frag_122
+    400244: D_Side_DoorRight_frag_123
+    400246: D_Side_DoorRight_frag_124
+    400248: D_Side_DoorRight_frag_125
+    400250: D_Side_DoorRight_frag_126
+    400252: D_Side_DoorRight_frag_127
+    400254: D_Side_DoorRight_frag_128
+    400256: D_Side_DoorRight_frag_129
+    400258: D_Side_DoorRight_frag_130
+    400260: D_Side_DoorRight_frag_131
+    400262: D_Side_DoorRight_frag_132
+    400264: D_Side_DoorRight_frag_133
+    400266: D_Side_DoorRight_frag_134
+    400268: D_Side_DoorRight_frag_135
+    400270: D_Side_DoorRight_frag_136
+    400272: D_Side_DoorRight_frag_137
+    400274: D_Side_DoorRight_frag_138
+    400276: D_Side_DoorRight_frag_139
+    400278: D_Side_DoorRight_frag_140
+    400280: D_Side_DoorRight_frag_141
+    400282: D_Side_DoorRight_frag_142
+    400284: D_Side_DoorRight_frag_143
+    400286: D_Side_DoorRight_frag_144
+    400288: D_Side_DoorRight_frag_145
+    400290: //RootNode
+    2300000: D_Side_DoorRight_frag_001
+    2300002: D_Side_DoorRight_frag_002
+    2300004: D_Side_DoorRight_frag_003
+    2300006: D_Side_DoorRight_frag_004
+    2300008: D_Side_DoorRight_frag_005
+    2300010: D_Side_DoorRight_frag_006
+    2300012: D_Side_DoorRight_frag_007
+    2300014: D_Side_DoorRight_frag_008
+    2300016: D_Side_DoorRight_frag_009
+    2300018: D_Side_DoorRight_frag_010
+    2300020: D_Side_DoorRight_frag_011
+    2300022: D_Side_DoorRight_frag_012
+    2300024: D_Side_DoorRight_frag_013
+    2300026: D_Side_DoorRight_frag_014
+    2300028: D_Side_DoorRight_frag_015
+    2300030: D_Side_DoorRight_frag_016
+    2300032: D_Side_DoorRight_frag_017
+    2300034: D_Side_DoorRight_frag_018
+    2300036: D_Side_DoorRight_frag_019
+    2300038: D_Side_DoorRight_frag_020
+    2300040: D_Side_DoorRight_frag_021
+    2300042: D_Side_DoorRight_frag_022
+    2300044: D_Side_DoorRight_frag_023
+    2300046: D_Side_DoorRight_frag_024
+    2300048: D_Side_DoorRight_frag_025
+    2300050: D_Side_DoorRight_frag_026
+    2300052: D_Side_DoorRight_frag_027
+    2300054: D_Side_DoorRight_frag_028
+    2300056: D_Side_DoorRight_frag_029
+    2300058: D_Side_DoorRight_frag_030
+    2300060: D_Side_DoorRight_frag_031
+    2300062: D_Side_DoorRight_frag_032
+    2300064: D_Side_DoorRight_frag_033
+    2300066: D_Side_DoorRight_frag_034
+    2300068: D_Side_DoorRight_frag_035
+    2300070: D_Side_DoorRight_frag_036
+    2300072: D_Side_DoorRight_frag_037
+    2300074: D_Side_DoorRight_frag_038
+    2300076: D_Side_DoorRight_frag_039
+    2300078: D_Side_DoorRight_frag_040
+    2300080: D_Side_DoorRight_frag_041
+    2300082: D_Side_DoorRight_frag_042
+    2300084: D_Side_DoorRight_frag_043
+    2300086: D_Side_DoorRight_frag_044
+    2300088: D_Side_DoorRight_frag_045
+    2300090: D_Side_DoorRight_frag_046
+    2300092: D_Side_DoorRight_frag_047
+    2300094: D_Side_DoorRight_frag_048
+    2300096: D_Side_DoorRight_frag_049
+    2300098: D_Side_DoorRight_frag_050
+    2300100: D_Side_DoorRight_frag_051
+    2300102: D_Side_DoorRight_frag_052
+    2300104: D_Side_DoorRight_frag_053
+    2300106: D_Side_DoorRight_frag_054
+    2300108: D_Side_DoorRight_frag_055
+    2300110: D_Side_DoorRight_frag_056
+    2300112: D_Side_DoorRight_frag_057
+    2300114: D_Side_DoorRight_frag_058
+    2300116: D_Side_DoorRight_frag_059
+    2300118: D_Side_DoorRight_frag_060
+    2300120: D_Side_DoorRight_frag_061
+    2300122: D_Side_DoorRight_frag_062
+    2300124: D_Side_DoorRight_frag_063
+    2300126: D_Side_DoorRight_frag_064
+    2300128: D_Side_DoorRight_frag_065
+    2300130: D_Side_DoorRight_frag_066
+    2300132: D_Side_DoorRight_frag_067
+    2300134: D_Side_DoorRight_frag_068
+    2300136: D_Side_DoorRight_frag_069
+    2300138: D_Side_DoorRight_frag_070
+    2300140: D_Side_DoorRight_frag_071
+    2300142: D_Side_DoorRight_frag_072
+    2300144: D_Side_DoorRight_frag_073
+    2300146: D_Side_DoorRight_frag_074
+    2300148: D_Side_DoorRight_frag_075
+    2300150: D_Side_DoorRight_frag_076
+    2300152: D_Side_DoorRight_frag_077
+    2300154: D_Side_DoorRight_frag_078
+    2300156: D_Side_DoorRight_frag_079
+    2300158: D_Side_DoorRight_frag_080
+    2300160: D_Side_DoorRight_frag_081
+    2300162: D_Side_DoorRight_frag_082
+    2300164: D_Side_DoorRight_frag_083
+    2300166: D_Side_DoorRight_frag_084
+    2300168: D_Side_DoorRight_frag_085
+    2300170: D_Side_DoorRight_frag_086
+    2300172: D_Side_DoorRight_frag_087
+    2300174: D_Side_DoorRight_frag_088
+    2300176: D_Side_DoorRight_frag_089
+    2300178: D_Side_DoorRight_frag_090
+    2300180: D_Side_DoorRight_frag_091
+    2300182: D_Side_DoorRight_frag_092
+    2300184: D_Side_DoorRight_frag_093
+    2300186: D_Side_DoorRight_frag_094
+    2300188: D_Side_DoorRight_frag_095
+    2300190: D_Side_DoorRight_frag_096
+    2300192: D_Side_DoorRight_frag_097
+    2300194: D_Side_DoorRight_frag_098
+    2300196: D_Side_DoorRight_frag_099
+    2300198: D_Side_DoorRight_frag_100
+    2300200: D_Side_DoorRight_frag_101
+    2300202: D_Side_DoorRight_frag_102
+    2300204: D_Side_DoorRight_frag_103
+    2300206: D_Side_DoorRight_frag_104
+    2300208: D_Side_DoorRight_frag_105
+    2300210: D_Side_DoorRight_frag_106
+    2300212: D_Side_DoorRight_frag_107
+    2300214: D_Side_DoorRight_frag_108
+    2300216: D_Side_DoorRight_frag_109
+    2300218: D_Side_DoorRight_frag_110
+    2300220: D_Side_DoorRight_frag_111
+    2300222: D_Side_DoorRight_frag_112
+    2300224: D_Side_DoorRight_frag_113
+    2300226: D_Side_DoorRight_frag_114
+    2300228: D_Side_DoorRight_frag_115
+    2300230: D_Side_DoorRight_frag_116
+    2300232: D_Side_DoorRight_frag_117
+    2300234: D_Side_DoorRight_frag_118
+    2300236: D_Side_DoorRight_frag_119
+    2300238: D_Side_DoorRight_frag_120
+    2300240: D_Side_DoorRight_frag_121
+    2300242: D_Side_DoorRight_frag_122
+    2300244: D_Side_DoorRight_frag_123
+    2300246: D_Side_DoorRight_frag_124
+    2300248: D_Side_DoorRight_frag_125
+    2300250: D_Side_DoorRight_frag_126
+    2300252: D_Side_DoorRight_frag_127
+    2300254: D_Side_DoorRight_frag_128
+    2300256: D_Side_DoorRight_frag_129
+    2300258: D_Side_DoorRight_frag_130
+    2300260: D_Side_DoorRight_frag_131
+    2300262: D_Side_DoorRight_frag_132
+    2300264: D_Side_DoorRight_frag_133
+    2300266: D_Side_DoorRight_frag_134
+    2300268: D_Side_DoorRight_frag_135
+    2300270: D_Side_DoorRight_frag_136
+    2300272: D_Side_DoorRight_frag_137
+    2300274: D_Side_DoorRight_frag_138
+    2300276: D_Side_DoorRight_frag_139
+    2300278: D_Side_DoorRight_frag_140
+    2300280: D_Side_DoorRight_frag_141
+    2300282: D_Side_DoorRight_frag_142
+    2300284: D_Side_DoorRight_frag_143
+    2300286: D_Side_DoorRight_frag_144
+    2300288: D_Side_DoorRight_frag_145
+    3300000: D_Side_DoorRight_frag_001
+    3300002: D_Side_DoorRight_frag_002
+    3300004: D_Side_DoorRight_frag_003
+    3300006: D_Side_DoorRight_frag_004
+    3300008: D_Side_DoorRight_frag_005
+    3300010: D_Side_DoorRight_frag_006
+    3300012: D_Side_DoorRight_frag_007
+    3300014: D_Side_DoorRight_frag_008
+    3300016: D_Side_DoorRight_frag_009
+    3300018: D_Side_DoorRight_frag_010
+    3300020: D_Side_DoorRight_frag_011
+    3300022: D_Side_DoorRight_frag_012
+    3300024: D_Side_DoorRight_frag_013
+    3300026: D_Side_DoorRight_frag_014
+    3300028: D_Side_DoorRight_frag_015
+    3300030: D_Side_DoorRight_frag_016
+    3300032: D_Side_DoorRight_frag_017
+    3300034: D_Side_DoorRight_frag_018
+    3300036: D_Side_DoorRight_frag_019
+    3300038: D_Side_DoorRight_frag_020
+    3300040: D_Side_DoorRight_frag_021
+    3300042: D_Side_DoorRight_frag_022
+    3300044: D_Side_DoorRight_frag_023
+    3300046: D_Side_DoorRight_frag_024
+    3300048: D_Side_DoorRight_frag_025
+    3300050: D_Side_DoorRight_frag_026
+    3300052: D_Side_DoorRight_frag_027
+    3300054: D_Side_DoorRight_frag_028
+    3300056: D_Side_DoorRight_frag_029
+    3300058: D_Side_DoorRight_frag_030
+    3300060: D_Side_DoorRight_frag_031
+    3300062: D_Side_DoorRight_frag_032
+    3300064: D_Side_DoorRight_frag_033
+    3300066: D_Side_DoorRight_frag_034
+    3300068: D_Side_DoorRight_frag_035
+    3300070: D_Side_DoorRight_frag_036
+    3300072: D_Side_DoorRight_frag_037
+    3300074: D_Side_DoorRight_frag_038
+    3300076: D_Side_DoorRight_frag_039
+    3300078: D_Side_DoorRight_frag_040
+    3300080: D_Side_DoorRight_frag_041
+    3300082: D_Side_DoorRight_frag_042
+    3300084: D_Side_DoorRight_frag_043
+    3300086: D_Side_DoorRight_frag_044
+    3300088: D_Side_DoorRight_frag_045
+    3300090: D_Side_DoorRight_frag_046
+    3300092: D_Side_DoorRight_frag_047
+    3300094: D_Side_DoorRight_frag_048
+    3300096: D_Side_DoorRight_frag_049
+    3300098: D_Side_DoorRight_frag_050
+    3300100: D_Side_DoorRight_frag_051
+    3300102: D_Side_DoorRight_frag_052
+    3300104: D_Side_DoorRight_frag_053
+    3300106: D_Side_DoorRight_frag_054
+    3300108: D_Side_DoorRight_frag_055
+    3300110: D_Side_DoorRight_frag_056
+    3300112: D_Side_DoorRight_frag_057
+    3300114: D_Side_DoorRight_frag_058
+    3300116: D_Side_DoorRight_frag_059
+    3300118: D_Side_DoorRight_frag_060
+    3300120: D_Side_DoorRight_frag_061
+    3300122: D_Side_DoorRight_frag_062
+    3300124: D_Side_DoorRight_frag_063
+    3300126: D_Side_DoorRight_frag_064
+    3300128: D_Side_DoorRight_frag_065
+    3300130: D_Side_DoorRight_frag_066
+    3300132: D_Side_DoorRight_frag_067
+    3300134: D_Side_DoorRight_frag_068
+    3300136: D_Side_DoorRight_frag_069
+    3300138: D_Side_DoorRight_frag_070
+    3300140: D_Side_DoorRight_frag_071
+    3300142: D_Side_DoorRight_frag_072
+    3300144: D_Side_DoorRight_frag_073
+    3300146: D_Side_DoorRight_frag_074
+    3300148: D_Side_DoorRight_frag_075
+    3300150: D_Side_DoorRight_frag_076
+    3300152: D_Side_DoorRight_frag_077
+    3300154: D_Side_DoorRight_frag_078
+    3300156: D_Side_DoorRight_frag_079
+    3300158: D_Side_DoorRight_frag_080
+    3300160: D_Side_DoorRight_frag_081
+    3300162: D_Side_DoorRight_frag_082
+    3300164: D_Side_DoorRight_frag_083
+    3300166: D_Side_DoorRight_frag_084
+    3300168: D_Side_DoorRight_frag_085
+    3300170: D_Side_DoorRight_frag_086
+    3300172: D_Side_DoorRight_frag_087
+    3300174: D_Side_DoorRight_frag_088
+    3300176: D_Side_DoorRight_frag_089
+    3300178: D_Side_DoorRight_frag_090
+    3300180: D_Side_DoorRight_frag_091
+    3300182: D_Side_DoorRight_frag_092
+    3300184: D_Side_DoorRight_frag_093
+    3300186: D_Side_DoorRight_frag_094
+    3300188: D_Side_DoorRight_frag_095
+    3300190: D_Side_DoorRight_frag_096
+    3300192: D_Side_DoorRight_frag_097
+    3300194: D_Side_DoorRight_frag_098
+    3300196: D_Side_DoorRight_frag_099
+    3300198: D_Side_DoorRight_frag_100
+    3300200: D_Side_DoorRight_frag_101
+    3300202: D_Side_DoorRight_frag_102
+    3300204: D_Side_DoorRight_frag_103
+    3300206: D_Side_DoorRight_frag_104
+    3300208: D_Side_DoorRight_frag_105
+    3300210: D_Side_DoorRight_frag_106
+    3300212: D_Side_DoorRight_frag_107
+    3300214: D_Side_DoorRight_frag_108
+    3300216: D_Side_DoorRight_frag_109
+    3300218: D_Side_DoorRight_frag_110
+    3300220: D_Side_DoorRight_frag_111
+    3300222: D_Side_DoorRight_frag_112
+    3300224: D_Side_DoorRight_frag_113
+    3300226: D_Side_DoorRight_frag_114
+    3300228: D_Side_DoorRight_frag_115
+    3300230: D_Side_DoorRight_frag_116
+    3300232: D_Side_DoorRight_frag_117
+    3300234: D_Side_DoorRight_frag_118
+    3300236: D_Side_DoorRight_frag_119
+    3300238: D_Side_DoorRight_frag_120
+    3300240: D_Side_DoorRight_frag_121
+    3300242: D_Side_DoorRight_frag_122
+    3300244: D_Side_DoorRight_frag_123
+    3300246: D_Side_DoorRight_frag_124
+    3300248: D_Side_DoorRight_frag_125
+    3300250: D_Side_DoorRight_frag_126
+    3300252: D_Side_DoorRight_frag_127
+    3300254: D_Side_DoorRight_frag_128
+    3300256: D_Side_DoorRight_frag_129
+    3300258: D_Side_DoorRight_frag_130
+    3300260: D_Side_DoorRight_frag_131
+    3300262: D_Side_DoorRight_frag_132
+    3300264: D_Side_DoorRight_frag_133
+    3300266: D_Side_DoorRight_frag_134
+    3300268: D_Side_DoorRight_frag_135
+    3300270: D_Side_DoorRight_frag_136
+    3300272: D_Side_DoorRight_frag_137
+    3300274: D_Side_DoorRight_frag_138
+    3300276: D_Side_DoorRight_frag_139
+    3300278: D_Side_DoorRight_frag_140
+    3300280: D_Side_DoorRight_frag_141
+    3300282: D_Side_DoorRight_frag_142
+    3300284: D_Side_DoorRight_frag_143
+    3300286: D_Side_DoorRight_frag_144
+    3300288: D_Side_DoorRight_frag_145
+    4300000: D_Side_DoorRight_frag_001
+    4300002: D_Side_DoorRight_frag_002
+    4300004: D_Side_DoorRight_frag_003
+    4300006: D_Side_DoorRight_frag_004
+    4300008: D_Side_DoorRight_frag_005
+    4300010: D_Side_DoorRight_frag_006
+    4300012: D_Side_DoorRight_frag_007
+    4300014: D_Side_DoorRight_frag_008
+    4300016: D_Side_DoorRight_frag_009
+    4300018: D_Side_DoorRight_frag_010
+    4300020: D_Side_DoorRight_frag_011
+    4300022: D_Side_DoorRight_frag_012
+    4300024: D_Side_DoorRight_frag_013
+    4300026: D_Side_DoorRight_frag_014
+    4300028: D_Side_DoorRight_frag_015
+    4300030: D_Side_DoorRight_frag_016
+    4300032: D_Side_DoorRight_frag_017
+    4300034: D_Side_DoorRight_frag_018
+    4300036: D_Side_DoorRight_frag_019
+    4300038: D_Side_DoorRight_frag_020
+    4300040: D_Side_DoorRight_frag_021
+    4300042: D_Side_DoorRight_frag_022
+    4300044: D_Side_DoorRight_frag_023
+    4300046: D_Side_DoorRight_frag_024
+    4300048: D_Side_DoorRight_frag_025
+    4300050: D_Side_DoorRight_frag_026
+    4300052: D_Side_DoorRight_frag_027
+    4300054: D_Side_DoorRight_frag_028
+    4300056: D_Side_DoorRight_frag_029
+    4300058: D_Side_DoorRight_frag_030
+    4300060: D_Side_DoorRight_frag_031
+    4300062: D_Side_DoorRight_frag_032
+    4300064: D_Side_DoorRight_frag_033
+    4300066: D_Side_DoorRight_frag_034
+    4300068: D_Side_DoorRight_frag_035
+    4300070: D_Side_DoorRight_frag_036
+    4300072: D_Side_DoorRight_frag_037
+    4300074: D_Side_DoorRight_frag_038
+    4300076: D_Side_DoorRight_frag_039
+    4300078: D_Side_DoorRight_frag_040
+    4300080: D_Side_DoorRight_frag_041
+    4300082: D_Side_DoorRight_frag_042
+    4300084: D_Side_DoorRight_frag_043
+    4300086: D_Side_DoorRight_frag_044
+    4300088: D_Side_DoorRight_frag_045
+    4300090: D_Side_DoorRight_frag_046
+    4300092: D_Side_DoorRight_frag_047
+    4300094: D_Side_DoorRight_frag_048
+    4300096: D_Side_DoorRight_frag_049
+    4300098: D_Side_DoorRight_frag_050
+    4300100: D_Side_DoorRight_frag_051
+    4300102: D_Side_DoorRight_frag_052
+    4300104: D_Side_DoorRight_frag_053
+    4300106: D_Side_DoorRight_frag_054
+    4300108: D_Side_DoorRight_frag_055
+    4300110: D_Side_DoorRight_frag_056
+    4300112: D_Side_DoorRight_frag_057
+    4300114: D_Side_DoorRight_frag_058
+    4300116: D_Side_DoorRight_frag_059
+    4300118: D_Side_DoorRight_frag_060
+    4300120: D_Side_DoorRight_frag_061
+    4300122: D_Side_DoorRight_frag_062
+    4300124: D_Side_DoorRight_frag_063
+    4300126: D_Side_DoorRight_frag_064
+    4300128: D_Side_DoorRight_frag_065
+    4300130: D_Side_DoorRight_frag_066
+    4300132: D_Side_DoorRight_frag_067
+    4300134: D_Side_DoorRight_frag_068
+    4300136: D_Side_DoorRight_frag_069
+    4300138: D_Side_DoorRight_frag_070
+    4300140: D_Side_DoorRight_frag_071
+    4300142: D_Side_DoorRight_frag_072
+    4300144: D_Side_DoorRight_frag_073
+    4300146: D_Side_DoorRight_frag_074
+    4300148: D_Side_DoorRight_frag_075
+    4300150: D_Side_DoorRight_frag_076
+    4300152: D_Side_DoorRight_frag_077
+    4300154: D_Side_DoorRight_frag_078
+    4300156: D_Side_DoorRight_frag_079
+    4300158: D_Side_DoorRight_frag_080
+    4300160: D_Side_DoorRight_frag_081
+    4300162: D_Side_DoorRight_frag_082
+    4300164: D_Side_DoorRight_frag_083
+    4300166: D_Side_DoorRight_frag_084
+    4300168: D_Side_DoorRight_frag_085
+    4300170: D_Side_DoorRight_frag_086
+    4300172: D_Side_DoorRight_frag_087
+    4300174: D_Side_DoorRight_frag_088
+    4300176: D_Side_DoorRight_frag_089
+    4300178: D_Side_DoorRight_frag_090
+    4300180: D_Side_DoorRight_frag_091
+    4300182: D_Side_DoorRight_frag_092
+    4300184: D_Side_DoorRight_frag_093
+    4300186: D_Side_DoorRight_frag_094
+    4300188: D_Side_DoorRight_frag_095
+    4300190: D_Side_DoorRight_frag_096
+    4300192: D_Side_DoorRight_frag_097
+    4300194: D_Side_DoorRight_frag_098
+    4300196: D_Side_DoorRight_frag_099
+    4300198: D_Side_DoorRight_frag_100
+    4300200: D_Side_DoorRight_frag_101
+    4300202: D_Side_DoorRight_frag_102
+    4300204: D_Side_DoorRight_frag_103
+    4300206: D_Side_DoorRight_frag_104
+    4300208: D_Side_DoorRight_frag_105
+    4300210: D_Side_DoorRight_frag_106
+    4300212: D_Side_DoorRight_frag_107
+    4300214: D_Side_DoorRight_frag_108
+    4300216: D_Side_DoorRight_frag_109
+    4300218: D_Side_DoorRight_frag_110
+    4300220: D_Side_DoorRight_frag_111
+    4300222: D_Side_DoorRight_frag_112
+    4300224: D_Side_DoorRight_frag_113
+    4300226: D_Side_DoorRight_frag_114
+    4300228: D_Side_DoorRight_frag_115
+    4300230: D_Side_DoorRight_frag_116
+    4300232: D_Side_DoorRight_frag_117
+    4300234: D_Side_DoorRight_frag_118
+    4300236: D_Side_DoorRight_frag_119
+    4300238: D_Side_DoorRight_frag_120
+    4300240: D_Side_DoorRight_frag_121
+    4300242: D_Side_DoorRight_frag_122
+    4300244: D_Side_DoorRight_frag_123
+    4300246: D_Side_DoorRight_frag_124
+    4300248: D_Side_DoorRight_frag_125
+    4300250: D_Side_DoorRight_frag_126
+    4300252: D_Side_DoorRight_frag_127
+    4300254: D_Side_DoorRight_frag_128
+    4300256: D_Side_DoorRight_frag_129
+    4300258: D_Side_DoorRight_frag_130
+    4300260: D_Side_DoorRight_frag_131
+    4300262: D_Side_DoorRight_frag_132
+    4300264: D_Side_DoorRight_frag_133
+    4300266: D_Side_DoorRight_frag_134
+    4300268: D_Side_DoorRight_frag_135
+    4300270: D_Side_DoorRight_frag_136
+    4300272: D_Side_DoorRight_frag_137
+    4300274: D_Side_DoorRight_frag_138
+    4300276: D_Side_DoorRight_frag_139
+    4300278: D_Side_DoorRight_frag_140
+    4300280: D_Side_DoorRight_frag_141
+    4300282: D_Side_DoorRight_frag_142
+    4300284: D_Side_DoorRight_frag_143
+    4300286: D_Side_DoorRight_frag_144
+    4300288: D_Side_DoorRight_frag_145
+    7400000: SingleDoorImpactArea
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SingleDoorImpactArea
+      takeName: Take 001
+      firstFrame: 99
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: D_Side_DoorRight_frag_001
+        weight: 1
+      - path: D_Side_DoorRight_frag_002
+        weight: 1
+      - path: D_Side_DoorRight_frag_003
+        weight: 1
+      - path: D_Side_DoorRight_frag_004
+        weight: 1
+      - path: D_Side_DoorRight_frag_005
+        weight: 1
+      - path: D_Side_DoorRight_frag_006
+        weight: 1
+      - path: D_Side_DoorRight_frag_007
+        weight: 1
+      - path: D_Side_DoorRight_frag_008
+        weight: 1
+      - path: D_Side_DoorRight_frag_009
+        weight: 1
+      - path: D_Side_DoorRight_frag_010
+        weight: 1
+      - path: D_Side_DoorRight_frag_011
+        weight: 1
+      - path: D_Side_DoorRight_frag_012
+        weight: 1
+      - path: D_Side_DoorRight_frag_013
+        weight: 1
+      - path: D_Side_DoorRight_frag_014
+        weight: 1
+      - path: D_Side_DoorRight_frag_015
+        weight: 1
+      - path: D_Side_DoorRight_frag_016
+        weight: 1
+      - path: D_Side_DoorRight_frag_017
+        weight: 1
+      - path: D_Side_DoorRight_frag_018
+        weight: 1
+      - path: D_Side_DoorRight_frag_019
+        weight: 1
+      - path: D_Side_DoorRight_frag_020
+        weight: 1
+      - path: D_Side_DoorRight_frag_021
+        weight: 1
+      - path: D_Side_DoorRight_frag_022
+        weight: 1
+      - path: D_Side_DoorRight_frag_023
+        weight: 1
+      - path: D_Side_DoorRight_frag_024
+        weight: 1
+      - path: D_Side_DoorRight_frag_025
+        weight: 1
+      - path: D_Side_DoorRight_frag_026
+        weight: 1
+      - path: D_Side_DoorRight_frag_027
+        weight: 1
+      - path: D_Side_DoorRight_frag_028
+        weight: 1
+      - path: D_Side_DoorRight_frag_029
+        weight: 1
+      - path: D_Side_DoorRight_frag_030
+        weight: 1
+      - path: D_Side_DoorRight_frag_031
+        weight: 1
+      - path: D_Side_DoorRight_frag_032
+        weight: 1
+      - path: D_Side_DoorRight_frag_033
+        weight: 1
+      - path: D_Side_DoorRight_frag_034
+        weight: 1
+      - path: D_Side_DoorRight_frag_035
+        weight: 1
+      - path: D_Side_DoorRight_frag_036
+        weight: 1
+      - path: D_Side_DoorRight_frag_037
+        weight: 1
+      - path: D_Side_DoorRight_frag_038
+        weight: 1
+      - path: D_Side_DoorRight_frag_039
+        weight: 1
+      - path: D_Side_DoorRight_frag_040
+        weight: 1
+      - path: D_Side_DoorRight_frag_041
+        weight: 1
+      - path: D_Side_DoorRight_frag_042
+        weight: 1
+      - path: D_Side_DoorRight_frag_043
+        weight: 1
+      - path: D_Side_DoorRight_frag_044
+        weight: 1
+      - path: D_Side_DoorRight_frag_045
+        weight: 1
+      - path: D_Side_DoorRight_frag_046
+        weight: 1
+      - path: D_Side_DoorRight_frag_047
+        weight: 1
+      - path: D_Side_DoorRight_frag_048
+        weight: 1
+      - path: D_Side_DoorRight_frag_049
+        weight: 1
+      - path: D_Side_DoorRight_frag_050
+        weight: 1
+      - path: D_Side_DoorRight_frag_051
+        weight: 1
+      - path: D_Side_DoorRight_frag_052
+        weight: 1
+      - path: D_Side_DoorRight_frag_053
+        weight: 1
+      - path: D_Side_DoorRight_frag_054
+        weight: 1
+      - path: D_Side_DoorRight_frag_055
+        weight: 1
+      - path: D_Side_DoorRight_frag_056
+        weight: 1
+      - path: D_Side_DoorRight_frag_057
+        weight: 1
+      - path: D_Side_DoorRight_frag_058
+        weight: 1
+      - path: D_Side_DoorRight_frag_059
+        weight: 1
+      - path: D_Side_DoorRight_frag_060
+        weight: 1
+      - path: D_Side_DoorRight_frag_061
+        weight: 1
+      - path: D_Side_DoorRight_frag_062
+        weight: 1
+      - path: D_Side_DoorRight_frag_063
+        weight: 1
+      - path: D_Side_DoorRight_frag_064
+        weight: 1
+      - path: D_Side_DoorRight_frag_065
+        weight: 1
+      - path: D_Side_DoorRight_frag_066
+        weight: 1
+      - path: D_Side_DoorRight_frag_067
+        weight: 1
+      - path: D_Side_DoorRight_frag_068
+        weight: 1
+      - path: D_Side_DoorRight_frag_069
+        weight: 1
+      - path: D_Side_DoorRight_frag_070
+        weight: 1
+      - path: D_Side_DoorRight_frag_071
+        weight: 1
+      - path: D_Side_DoorRight_frag_072
+        weight: 1
+      - path: D_Side_DoorRight_frag_073
+        weight: 1
+      - path: D_Side_DoorRight_frag_074
+        weight: 1
+      - path: D_Side_DoorRight_frag_075
+        weight: 1
+      - path: D_Side_DoorRight_frag_076
+        weight: 1
+      - path: D_Side_DoorRight_frag_077
+        weight: 1
+      - path: D_Side_DoorRight_frag_078
+        weight: 1
+      - path: D_Side_DoorRight_frag_079
+        weight: 1
+      - path: D_Side_DoorRight_frag_080
+        weight: 1
+      - path: D_Side_DoorRight_frag_081
+        weight: 1
+      - path: D_Side_DoorRight_frag_082
+        weight: 1
+      - path: D_Side_DoorRight_frag_083
+        weight: 1
+      - path: D_Side_DoorRight_frag_084
+        weight: 1
+      - path: D_Side_DoorRight_frag_085
+        weight: 1
+      - path: D_Side_DoorRight_frag_086
+        weight: 1
+      - path: D_Side_DoorRight_frag_087
+        weight: 1
+      - path: D_Side_DoorRight_frag_088
+        weight: 1
+      - path: D_Side_DoorRight_frag_089
+        weight: 1
+      - path: D_Side_DoorRight_frag_090
+        weight: 1
+      - path: D_Side_DoorRight_frag_091
+        weight: 1
+      - path: D_Side_DoorRight_frag_092
+        weight: 1
+      - path: D_Side_DoorRight_frag_093
+        weight: 1
+      - path: D_Side_DoorRight_frag_094
+        weight: 1
+      - path: D_Side_DoorRight_frag_095
+        weight: 1
+      - path: D_Side_DoorRight_frag_096
+        weight: 1
+      - path: D_Side_DoorRight_frag_097
+        weight: 1
+      - path: D_Side_DoorRight_frag_098
+        weight: 1
+      - path: D_Side_DoorRight_frag_099
+        weight: 1
+      - path: D_Side_DoorRight_frag_100
+        weight: 1
+      - path: D_Side_DoorRight_frag_101
+        weight: 1
+      - path: D_Side_DoorRight_frag_102
+        weight: 1
+      - path: D_Side_DoorRight_frag_103
+        weight: 1
+      - path: D_Side_DoorRight_frag_104
+        weight: 1
+      - path: D_Side_DoorRight_frag_105
+        weight: 1
+      - path: D_Side_DoorRight_frag_106
+        weight: 1
+      - path: D_Side_DoorRight_frag_107
+        weight: 1
+      - path: D_Side_DoorRight_frag_108
+        weight: 1
+      - path: D_Side_DoorRight_frag_109
+        weight: 1
+      - path: D_Side_DoorRight_frag_110
+        weight: 1
+      - path: D_Side_DoorRight_frag_111
+        weight: 1
+      - path: D_Side_DoorRight_frag_112
+        weight: 1
+      - path: D_Side_DoorRight_frag_113
+        weight: 1
+      - path: D_Side_DoorRight_frag_114
+        weight: 1
+      - path: D_Side_DoorRight_frag_115
+        weight: 1
+      - path: D_Side_DoorRight_frag_116
+        weight: 1
+      - path: D_Side_DoorRight_frag_117
+        weight: 1
+      - path: D_Side_DoorRight_frag_118
+        weight: 1
+      - path: D_Side_DoorRight_frag_119
+        weight: 1
+      - path: D_Side_DoorRight_frag_120
+        weight: 1
+      - path: D_Side_DoorRight_frag_121
+        weight: 1
+      - path: D_Side_DoorRight_frag_122
+        weight: 1
+      - path: D_Side_DoorRight_frag_123
+        weight: 1
+      - path: D_Side_DoorRight_frag_124
+        weight: 1
+      - path: D_Side_DoorRight_frag_125
+        weight: 1
+      - path: D_Side_DoorRight_frag_126
+        weight: 1
+      - path: D_Side_DoorRight_frag_127
+        weight: 1
+      - path: D_Side_DoorRight_frag_128
+        weight: 1
+      - path: D_Side_DoorRight_frag_129
+        weight: 1
+      - path: D_Side_DoorRight_frag_130
+        weight: 1
+      - path: D_Side_DoorRight_frag_131
+        weight: 1
+      - path: D_Side_DoorRight_frag_132
+        weight: 1
+      - path: D_Side_DoorRight_frag_133
+        weight: 1
+      - path: D_Side_DoorRight_frag_134
+        weight: 1
+      - path: D_Side_DoorRight_frag_135
+        weight: 1
+      - path: D_Side_DoorRight_frag_136
+        weight: 1
+      - path: D_Side_DoorRight_frag_137
+        weight: 1
+      - path: D_Side_DoorRight_frag_138
+        weight: 1
+      - path: D_Side_DoorRight_frag_139
+        weight: 1
+      - path: D_Side_DoorRight_frag_140
+        weight: 1
+      - path: D_Side_DoorRight_frag_141
+        weight: 1
+      - path: D_Side_DoorRight_frag_142
+        weight: 1
+      - path: D_Side_DoorRight_frag_143
+        weight: 1
+      - path: D_Side_DoorRight_frag_144
+        weight: 1
+      - path: D_Side_DoorRight_frag_145
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

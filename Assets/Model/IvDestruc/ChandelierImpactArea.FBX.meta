@@ -1,0 +1,2168 @@
+fileFormatVersion: 2
+guid: 3d9ff35f4816d7a41867293b29e9aa0e
+timeCreated: 1496973943
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Chandellier_frag_001
+    100004: Chandellier_frag_002
+    100006: Chandellier_frag_003
+    100008: Chandellier_frag_004
+    100010: Chandellier_frag_005
+    100012: Chandellier_frag_006
+    100014: Chandellier_frag_007
+    100016: Chandellier_frag_008
+    100018: Chandellier_frag_009
+    100020: Chandellier_frag_010
+    100022: Chandellier_frag_011
+    100024: Chandellier_frag_012
+    100026: Chandellier_frag_013
+    100028: Chandellier_frag_014
+    100030: Chandellier_frag_015
+    100032: Chandellier_frag_016
+    100034: Chandellier_frag_017
+    100036: Chandellier_frag_018
+    100038: Chandellier_frag_019
+    100040: Chandellier_frag_020
+    100042: Chandellier_frag_021
+    100044: Chandellier_frag_022
+    100046: Chandellier_frag_023
+    100048: Chandellier_frag_024
+    100050: Object001_frag_001_frag_001
+    100052: Object001_frag_001_frag_002
+    100054: Object001_frag_001_frag_003
+    100056: Object001_frag_001_frag_004
+    100058: Object001_frag_001_frag_005
+    100060: Object001_frag_001_frag_006
+    100062: Object001_frag_001_frag_007
+    100064: Object001_frag_001_frag_008
+    100066: Object001_frag_001_frag_009
+    100068: Object001_frag_001_frag_010
+    100070: Object001_frag_001_frag_011
+    100072: Object001_frag_001_frag_012
+    100074: Object001_frag_001_frag_013
+    100076: Object001_frag_001_frag_014
+    100078: Object001_frag_001_frag_015
+    100080: Object001_frag_002_frag_001
+    100082: Object001_frag_002_frag_002
+    100084: Object001_frag_002_frag_003
+    100086: Object001_frag_002_frag_004
+    100088: Object001_frag_002_frag_005
+    100090: Object001_frag_002_frag_006
+    100092: Object001_frag_002_frag_007
+    100094: Object001_frag_002_frag_008
+    100096: Object001_frag_002_frag_009
+    100098: Object001_frag_002_frag_010
+    100100: Object001_frag_002_frag_011
+    100102: Object001_frag_002_frag_012
+    100104: Object001_frag_002_frag_013
+    100106: Object001_frag_002_frag_014
+    100108: Object001_frag_002_frag_015
+    100110: Object001_frag_003_frag_001
+    100112: Object001_frag_003_frag_002
+    100114: Object001_frag_003_frag_003
+    100116: Object001_frag_003_frag_004
+    100118: Object001_frag_003_frag_005
+    100120: Object001_frag_003_frag_006
+    100122: Object001_frag_003_frag_007
+    100124: Object001_frag_003_frag_008
+    100126: Object001_frag_003_frag_009
+    100128: Object001_frag_003_frag_010
+    100130: Object001_frag_003_frag_011
+    100132: Object001_frag_003_frag_012
+    100134: Object001_frag_003_frag_013
+    100136: Object001_frag_003_frag_014
+    100138: Object001_frag_003_frag_015
+    100140: Object001_frag_004_frag_001
+    100142: Object001_frag_004_frag_002
+    100144: Object001_frag_004_frag_003
+    100146: Object001_frag_004_frag_004
+    100148: Object001_frag_004_frag_005
+    100150: Object001_frag_004_frag_006
+    100152: Object001_frag_004_frag_007
+    100154: Object001_frag_004_frag_008
+    100156: Object001_frag_004_frag_009
+    100158: Object001_frag_004_frag_010
+    100160: Object001_frag_004_frag_011
+    100162: Object001_frag_004_frag_012
+    100164: Object001_frag_004_frag_013
+    100166: Object001_frag_004_frag_014
+    100168: Object001_frag_004_frag_015
+    100170: Object001_frag_005_frag_001
+    100172: Object001_frag_005_frag_002
+    100174: Object001_frag_005_frag_003
+    100176: Object001_frag_005_frag_004
+    100178: Object001_frag_005_frag_005
+    100180: Object001_frag_005_frag_006
+    100182: Object001_frag_005_frag_007
+    100184: Object001_frag_005_frag_008
+    100186: Object001_frag_005_frag_009
+    100188: Object001_frag_005_frag_010
+    100190: Object001_frag_005_frag_011
+    100192: Object001_frag_005_frag_012
+    100194: Object001_frag_005_frag_013
+    100196: Object001_frag_005_frag_014
+    100198: Object001_frag_005_frag_015
+    100200: Object001_frag_006_frag_001
+    100202: Object001_frag_006_frag_002
+    100204: Object001_frag_006_frag_003
+    100206: Object001_frag_006_frag_004
+    100208: Object001_frag_006_frag_005
+    100210: Object001_frag_006_frag_006
+    100212: Object001_frag_006_frag_007
+    100214: Object001_frag_006_frag_008
+    100216: Object001_frag_006_frag_009
+    100218: Object001_frag_006_frag_010
+    100220: Object001_frag_006_frag_011
+    100222: Object001_frag_006_frag_012
+    100224: Object001_frag_006_frag_013
+    100226: Object001_frag_006_frag_014
+    100228: Object001_frag_006_frag_015
+    100230: Object001_frag_007_frag_001
+    100232: Object001_frag_007_frag_002
+    100234: Object001_frag_007_frag_003
+    100236: Object001_frag_007_frag_004
+    100238: Object001_frag_007_frag_005
+    100240: Object001_frag_007_frag_006
+    100242: Object001_frag_007_frag_007
+    100244: Object001_frag_007_frag_008
+    100246: Object001_frag_007_frag_009
+    100248: Object001_frag_007_frag_010
+    100250: Object001_frag_007_frag_011
+    100252: Object001_frag_007_frag_012
+    100254: Object001_frag_007_frag_013
+    100256: Object001_frag_007_frag_014
+    100258: Object001_frag_007_frag_015
+    100260: Object001_frag_008_frag_001
+    100262: Object001_frag_008_frag_002
+    100264: Object001_frag_008_frag_003
+    100266: Object001_frag_008_frag_004
+    100268: Object001_frag_008_frag_005
+    100270: Object001_frag_008_frag_006
+    100272: Object001_frag_008_frag_007
+    100274: Object001_frag_008_frag_008
+    100276: Object001_frag_008_frag_009
+    100278: Object001_frag_008_frag_010
+    100280: Object001_frag_008_frag_011
+    100282: Object001_frag_008_frag_012
+    100284: Object001_frag_008_frag_013
+    100286: Object001_frag_008_frag_014
+    100288: Object001_frag_008_frag_015
+    100290: Object001_frag_009_frag_001
+    100292: Object001_frag_009_frag_002
+    100294: Object001_frag_009_frag_003
+    100296: Object001_frag_009_frag_004
+    100298: Object001_frag_009_frag_005
+    100300: Object001_frag_009_frag_006
+    100302: Object001_frag_009_frag_007
+    100304: Object001_frag_009_frag_008
+    100306: Object001_frag_009_frag_009
+    100308: Object001_frag_009_frag_010
+    100310: Object001_frag_009_frag_011
+    100312: Object001_frag_009_frag_012
+    100314: Object001_frag_009_frag_013
+    100316: Object001_frag_009_frag_014
+    100318: Object001_frag_009_frag_015
+    100320: Object001_frag_010_frag_001
+    100322: Object001_frag_010_frag_002
+    100324: Object001_frag_010_frag_003
+    100326: Object001_frag_010_frag_004
+    100328: Object001_frag_010_frag_005
+    100330: Object001_frag_010_frag_006
+    100332: Object001_frag_010_frag_007
+    100334: Object001_frag_010_frag_008
+    100336: Object001_frag_010_frag_009
+    100338: Object001_frag_010_frag_010
+    100340: Object001_frag_010_frag_011
+    100342: Object001_frag_010_frag_012
+    100344: Object001_frag_010_frag_013
+    100346: Object001_frag_010_frag_014
+    100348: Object001_frag_010_frag_015
+    100350: Object001_frag_011_frag_001
+    100352: Object001_frag_011_frag_002
+    100354: Object001_frag_011_frag_003
+    100356: Object001_frag_011_frag_004
+    100358: Object001_frag_011_frag_005
+    100360: Object001_frag_011_frag_006
+    100362: Object001_frag_011_frag_007
+    100364: Object001_frag_011_frag_008
+    100366: Object001_frag_011_frag_009
+    100368: Object001_frag_011_frag_010
+    100370: Object001_frag_011_frag_011
+    100372: Object001_frag_011_frag_012
+    100374: Object001_frag_011_frag_013
+    100376: Object001_frag_011_frag_014
+    100378: Object001_frag_011_frag_015
+    100380: Object001_frag_012_frag_001
+    100382: Object001_frag_012_frag_002
+    100384: Object001_frag_012_frag_003
+    100386: Object001_frag_012_frag_004
+    100388: Object001_frag_012_frag_005
+    100390: Object001_frag_012_frag_006
+    100392: Object001_frag_012_frag_007
+    100394: Object001_frag_012_frag_008
+    100396: Object001_frag_012_frag_009
+    100398: Object001_frag_012_frag_010
+    100400: Object001_frag_012_frag_011
+    100402: Object001_frag_012_frag_012
+    100404: Object001_frag_012_frag_013
+    100406: Object001_frag_012_frag_014
+    100408: Object001_frag_012_frag_015
+    100410: Object001_frag_013_frag_001
+    100412: Object001_frag_013_frag_002
+    100414: Object001_frag_013_frag_003
+    100416: Object001_frag_013_frag_004
+    100418: Object001_frag_013_frag_005
+    100420: Object001_frag_013_frag_006
+    100422: Object001_frag_013_frag_007
+    100424: Object001_frag_013_frag_008
+    100426: Object001_frag_013_frag_009
+    100428: Object001_frag_013_frag_010
+    100430: Object001_frag_013_frag_011
+    100432: Object001_frag_013_frag_012
+    100434: Object001_frag_013_frag_013
+    100436: Object001_frag_013_frag_014
+    100438: Object001_frag_013_frag_015
+    100440: Object001_frag_014_frag_001
+    100442: Object001_frag_014_frag_002
+    100444: Object001_frag_014_frag_003
+    100446: Object001_frag_014_frag_004
+    100448: Object001_frag_014_frag_005
+    100450: Object001_frag_014_frag_006
+    100452: Object001_frag_014_frag_007
+    100454: Object001_frag_014_frag_008
+    100456: Object001_frag_014_frag_009
+    100458: Object001_frag_014_frag_010
+    100460: Object001_frag_014_frag_011
+    100462: Object001_frag_014_frag_012
+    100464: Object001_frag_014_frag_013
+    100466: Object001_frag_014_frag_014
+    100468: Object001_frag_014_frag_015
+    100470: Object001_frag_015_frag_001
+    100472: Object001_frag_015_frag_002
+    100474: Object001_frag_015_frag_003
+    100476: Object001_frag_015_frag_004
+    100478: Object001_frag_015_frag_005
+    100480: Object001_frag_015_frag_006
+    100482: Object001_frag_015_frag_007
+    100484: Object001_frag_015_frag_008
+    100486: Object001_frag_015_frag_009
+    100488: Object001_frag_015_frag_010
+    100490: Object001_frag_015_frag_011
+    100492: Object001_frag_015_frag_012
+    100494: Object001_frag_015_frag_013
+    100496: Object001_frag_015_frag_014
+    100498: Object001_frag_015_frag_015
+    100500: Object001_frag_016_frag_001
+    100502: Object001_frag_016_frag_002
+    100504: Object001_frag_016_frag_003
+    100506: Object001_frag_016_frag_004
+    100508: Object001_frag_016_frag_005
+    100510: Object001_frag_016_frag_006
+    100512: Object001_frag_016_frag_007
+    100514: Object001_frag_016_frag_008
+    100516: Object001_frag_016_frag_009
+    100518: Object001_frag_016_frag_010
+    100520: Object001_frag_016_frag_011
+    100522: Object001_frag_016_frag_012
+    100524: Object001_frag_016_frag_013
+    100526: Object001_frag_016_frag_014
+    100528: Object001_frag_016_frag_015
+    100530: Object001_frag_017_frag_001
+    100532: Object001_frag_017_frag_002
+    100534: Object001_frag_017_frag_003
+    100536: Object001_frag_017_frag_004
+    100538: Object001_frag_017_frag_005
+    100540: Object001_frag_017_frag_006
+    100542: Object001_frag_017_frag_007
+    100544: Object001_frag_017_frag_008
+    100546: Object001_frag_017_frag_009
+    100548: Object001_frag_017_frag_010
+    100550: Object001_frag_017_frag_011
+    100552: Object001_frag_017_frag_012
+    100554: Object001_frag_017_frag_013
+    100556: Object001_frag_017_frag_014
+    100558: Object001_frag_017_frag_015
+    100560: Object001_frag_018_frag_001
+    100562: Object001_frag_018_frag_002
+    100564: Object001_frag_018_frag_003
+    100566: Object001_frag_018_frag_004
+    100568: Object001_frag_018_frag_005
+    100570: Object001_frag_018_frag_006
+    100572: Object001_frag_018_frag_007
+    100574: Object001_frag_018_frag_008
+    100576: Object001_frag_018_frag_009
+    100578: Object001_frag_018_frag_010
+    100580: Object001_frag_018_frag_011
+    100582: Object001_frag_018_frag_012
+    100584: Object001_frag_018_frag_013
+    100586: Object001_frag_018_frag_014
+    100588: Object001_frag_018_frag_015
+    400000: //RootNode
+    400002: Chandellier_frag_001
+    400004: Chandellier_frag_002
+    400006: Chandellier_frag_003
+    400008: Chandellier_frag_004
+    400010: Chandellier_frag_005
+    400012: Chandellier_frag_006
+    400014: Chandellier_frag_007
+    400016: Chandellier_frag_008
+    400018: Chandellier_frag_009
+    400020: Chandellier_frag_010
+    400022: Chandellier_frag_011
+    400024: Chandellier_frag_012
+    400026: Chandellier_frag_013
+    400028: Chandellier_frag_014
+    400030: Chandellier_frag_015
+    400032: Chandellier_frag_016
+    400034: Chandellier_frag_017
+    400036: Chandellier_frag_018
+    400038: Chandellier_frag_019
+    400040: Chandellier_frag_020
+    400042: Chandellier_frag_021
+    400044: Chandellier_frag_022
+    400046: Chandellier_frag_023
+    400048: Chandellier_frag_024
+    400050: Object001_frag_001_frag_001
+    400052: Object001_frag_001_frag_002
+    400054: Object001_frag_001_frag_003
+    400056: Object001_frag_001_frag_004
+    400058: Object001_frag_001_frag_005
+    400060: Object001_frag_001_frag_006
+    400062: Object001_frag_001_frag_007
+    400064: Object001_frag_001_frag_008
+    400066: Object001_frag_001_frag_009
+    400068: Object001_frag_001_frag_010
+    400070: Object001_frag_001_frag_011
+    400072: Object001_frag_001_frag_012
+    400074: Object001_frag_001_frag_013
+    400076: Object001_frag_001_frag_014
+    400078: Object001_frag_001_frag_015
+    400080: Object001_frag_002_frag_001
+    400082: Object001_frag_002_frag_002
+    400084: Object001_frag_002_frag_003
+    400086: Object001_frag_002_frag_004
+    400088: Object001_frag_002_frag_005
+    400090: Object001_frag_002_frag_006
+    400092: Object001_frag_002_frag_007
+    400094: Object001_frag_002_frag_008
+    400096: Object001_frag_002_frag_009
+    400098: Object001_frag_002_frag_010
+    400100: Object001_frag_002_frag_011
+    400102: Object001_frag_002_frag_012
+    400104: Object001_frag_002_frag_013
+    400106: Object001_frag_002_frag_014
+    400108: Object001_frag_002_frag_015
+    400110: Object001_frag_003_frag_001
+    400112: Object001_frag_003_frag_002
+    400114: Object001_frag_003_frag_003
+    400116: Object001_frag_003_frag_004
+    400118: Object001_frag_003_frag_005
+    400120: Object001_frag_003_frag_006
+    400122: Object001_frag_003_frag_007
+    400124: Object001_frag_003_frag_008
+    400126: Object001_frag_003_frag_009
+    400128: Object001_frag_003_frag_010
+    400130: Object001_frag_003_frag_011
+    400132: Object001_frag_003_frag_012
+    400134: Object001_frag_003_frag_013
+    400136: Object001_frag_003_frag_014
+    400138: Object001_frag_003_frag_015
+    400140: Object001_frag_004_frag_001
+    400142: Object001_frag_004_frag_002
+    400144: Object001_frag_004_frag_003
+    400146: Object001_frag_004_frag_004
+    400148: Object001_frag_004_frag_005
+    400150: Object001_frag_004_frag_006
+    400152: Object001_frag_004_frag_007
+    400154: Object001_frag_004_frag_008
+    400156: Object001_frag_004_frag_009
+    400158: Object001_frag_004_frag_010
+    400160: Object001_frag_004_frag_011
+    400162: Object001_frag_004_frag_012
+    400164: Object001_frag_004_frag_013
+    400166: Object001_frag_004_frag_014
+    400168: Object001_frag_004_frag_015
+    400170: Object001_frag_005_frag_001
+    400172: Object001_frag_005_frag_002
+    400174: Object001_frag_005_frag_003
+    400176: Object001_frag_005_frag_004
+    400178: Object001_frag_005_frag_005
+    400180: Object001_frag_005_frag_006
+    400182: Object001_frag_005_frag_007
+    400184: Object001_frag_005_frag_008
+    400186: Object001_frag_005_frag_009
+    400188: Object001_frag_005_frag_010
+    400190: Object001_frag_005_frag_011
+    400192: Object001_frag_005_frag_012
+    400194: Object001_frag_005_frag_013
+    400196: Object001_frag_005_frag_014
+    400198: Object001_frag_005_frag_015
+    400200: Object001_frag_006_frag_001
+    400202: Object001_frag_006_frag_002
+    400204: Object001_frag_006_frag_003
+    400206: Object001_frag_006_frag_004
+    400208: Object001_frag_006_frag_005
+    400210: Object001_frag_006_frag_006
+    400212: Object001_frag_006_frag_007
+    400214: Object001_frag_006_frag_008
+    400216: Object001_frag_006_frag_009
+    400218: Object001_frag_006_frag_010
+    400220: Object001_frag_006_frag_011
+    400222: Object001_frag_006_frag_012
+    400224: Object001_frag_006_frag_013
+    400226: Object001_frag_006_frag_014
+    400228: Object001_frag_006_frag_015
+    400230: Object001_frag_007_frag_001
+    400232: Object001_frag_007_frag_002
+    400234: Object001_frag_007_frag_003
+    400236: Object001_frag_007_frag_004
+    400238: Object001_frag_007_frag_005
+    400240: Object001_frag_007_frag_006
+    400242: Object001_frag_007_frag_007
+    400244: Object001_frag_007_frag_008
+    400246: Object001_frag_007_frag_009
+    400248: Object001_frag_007_frag_010
+    400250: Object001_frag_007_frag_011
+    400252: Object001_frag_007_frag_012
+    400254: Object001_frag_007_frag_013
+    400256: Object001_frag_007_frag_014
+    400258: Object001_frag_007_frag_015
+    400260: Object001_frag_008_frag_001
+    400262: Object001_frag_008_frag_002
+    400264: Object001_frag_008_frag_003
+    400266: Object001_frag_008_frag_004
+    400268: Object001_frag_008_frag_005
+    400270: Object001_frag_008_frag_006
+    400272: Object001_frag_008_frag_007
+    400274: Object001_frag_008_frag_008
+    400276: Object001_frag_008_frag_009
+    400278: Object001_frag_008_frag_010
+    400280: Object001_frag_008_frag_011
+    400282: Object001_frag_008_frag_012
+    400284: Object001_frag_008_frag_013
+    400286: Object001_frag_008_frag_014
+    400288: Object001_frag_008_frag_015
+    400290: Object001_frag_009_frag_001
+    400292: Object001_frag_009_frag_002
+    400294: Object001_frag_009_frag_003
+    400296: Object001_frag_009_frag_004
+    400298: Object001_frag_009_frag_005
+    400300: Object001_frag_009_frag_006
+    400302: Object001_frag_009_frag_007
+    400304: Object001_frag_009_frag_008
+    400306: Object001_frag_009_frag_009
+    400308: Object001_frag_009_frag_010
+    400310: Object001_frag_009_frag_011
+    400312: Object001_frag_009_frag_012
+    400314: Object001_frag_009_frag_013
+    400316: Object001_frag_009_frag_014
+    400318: Object001_frag_009_frag_015
+    400320: Object001_frag_010_frag_001
+    400322: Object001_frag_010_frag_002
+    400324: Object001_frag_010_frag_003
+    400326: Object001_frag_010_frag_004
+    400328: Object001_frag_010_frag_005
+    400330: Object001_frag_010_frag_006
+    400332: Object001_frag_010_frag_007
+    400334: Object001_frag_010_frag_008
+    400336: Object001_frag_010_frag_009
+    400338: Object001_frag_010_frag_010
+    400340: Object001_frag_010_frag_011
+    400342: Object001_frag_010_frag_012
+    400344: Object001_frag_010_frag_013
+    400346: Object001_frag_010_frag_014
+    400348: Object001_frag_010_frag_015
+    400350: Object001_frag_011_frag_001
+    400352: Object001_frag_011_frag_002
+    400354: Object001_frag_011_frag_003
+    400356: Object001_frag_011_frag_004
+    400358: Object001_frag_011_frag_005
+    400360: Object001_frag_011_frag_006
+    400362: Object001_frag_011_frag_007
+    400364: Object001_frag_011_frag_008
+    400366: Object001_frag_011_frag_009
+    400368: Object001_frag_011_frag_010
+    400370: Object001_frag_011_frag_011
+    400372: Object001_frag_011_frag_012
+    400374: Object001_frag_011_frag_013
+    400376: Object001_frag_011_frag_014
+    400378: Object001_frag_011_frag_015
+    400380: Object001_frag_012_frag_001
+    400382: Object001_frag_012_frag_002
+    400384: Object001_frag_012_frag_003
+    400386: Object001_frag_012_frag_004
+    400388: Object001_frag_012_frag_005
+    400390: Object001_frag_012_frag_006
+    400392: Object001_frag_012_frag_007
+    400394: Object001_frag_012_frag_008
+    400396: Object001_frag_012_frag_009
+    400398: Object001_frag_012_frag_010
+    400400: Object001_frag_012_frag_011
+    400402: Object001_frag_012_frag_012
+    400404: Object001_frag_012_frag_013
+    400406: Object001_frag_012_frag_014
+    400408: Object001_frag_012_frag_015
+    400410: Object001_frag_013_frag_001
+    400412: Object001_frag_013_frag_002
+    400414: Object001_frag_013_frag_003
+    400416: Object001_frag_013_frag_004
+    400418: Object001_frag_013_frag_005
+    400420: Object001_frag_013_frag_006
+    400422: Object001_frag_013_frag_007
+    400424: Object001_frag_013_frag_008
+    400426: Object001_frag_013_frag_009
+    400428: Object001_frag_013_frag_010
+    400430: Object001_frag_013_frag_011
+    400432: Object001_frag_013_frag_012
+    400434: Object001_frag_013_frag_013
+    400436: Object001_frag_013_frag_014
+    400438: Object001_frag_013_frag_015
+    400440: Object001_frag_014_frag_001
+    400442: Object001_frag_014_frag_002
+    400444: Object001_frag_014_frag_003
+    400446: Object001_frag_014_frag_004
+    400448: Object001_frag_014_frag_005
+    400450: Object001_frag_014_frag_006
+    400452: Object001_frag_014_frag_007
+    400454: Object001_frag_014_frag_008
+    400456: Object001_frag_014_frag_009
+    400458: Object001_frag_014_frag_010
+    400460: Object001_frag_014_frag_011
+    400462: Object001_frag_014_frag_012
+    400464: Object001_frag_014_frag_013
+    400466: Object001_frag_014_frag_014
+    400468: Object001_frag_014_frag_015
+    400470: Object001_frag_015_frag_001
+    400472: Object001_frag_015_frag_002
+    400474: Object001_frag_015_frag_003
+    400476: Object001_frag_015_frag_004
+    400478: Object001_frag_015_frag_005
+    400480: Object001_frag_015_frag_006
+    400482: Object001_frag_015_frag_007
+    400484: Object001_frag_015_frag_008
+    400486: Object001_frag_015_frag_009
+    400488: Object001_frag_015_frag_010
+    400490: Object001_frag_015_frag_011
+    400492: Object001_frag_015_frag_012
+    400494: Object001_frag_015_frag_013
+    400496: Object001_frag_015_frag_014
+    400498: Object001_frag_015_frag_015
+    400500: Object001_frag_016_frag_001
+    400502: Object001_frag_016_frag_002
+    400504: Object001_frag_016_frag_003
+    400506: Object001_frag_016_frag_004
+    400508: Object001_frag_016_frag_005
+    400510: Object001_frag_016_frag_006
+    400512: Object001_frag_016_frag_007
+    400514: Object001_frag_016_frag_008
+    400516: Object001_frag_016_frag_009
+    400518: Object001_frag_016_frag_010
+    400520: Object001_frag_016_frag_011
+    400522: Object001_frag_016_frag_012
+    400524: Object001_frag_016_frag_013
+    400526: Object001_frag_016_frag_014
+    400528: Object001_frag_016_frag_015
+    400530: Object001_frag_017_frag_001
+    400532: Object001_frag_017_frag_002
+    400534: Object001_frag_017_frag_003
+    400536: Object001_frag_017_frag_004
+    400538: Object001_frag_017_frag_005
+    400540: Object001_frag_017_frag_006
+    400542: Object001_frag_017_frag_007
+    400544: Object001_frag_017_frag_008
+    400546: Object001_frag_017_frag_009
+    400548: Object001_frag_017_frag_010
+    400550: Object001_frag_017_frag_011
+    400552: Object001_frag_017_frag_012
+    400554: Object001_frag_017_frag_013
+    400556: Object001_frag_017_frag_014
+    400558: Object001_frag_017_frag_015
+    400560: Object001_frag_018_frag_001
+    400562: Object001_frag_018_frag_002
+    400564: Object001_frag_018_frag_003
+    400566: Object001_frag_018_frag_004
+    400568: Object001_frag_018_frag_005
+    400570: Object001_frag_018_frag_006
+    400572: Object001_frag_018_frag_007
+    400574: Object001_frag_018_frag_008
+    400576: Object001_frag_018_frag_009
+    400578: Object001_frag_018_frag_010
+    400580: Object001_frag_018_frag_011
+    400582: Object001_frag_018_frag_012
+    400584: Object001_frag_018_frag_013
+    400586: Object001_frag_018_frag_014
+    400588: Object001_frag_018_frag_015
+    2300000: Chandellier_frag_001
+    2300002: Chandellier_frag_002
+    2300004: Chandellier_frag_003
+    2300006: Chandellier_frag_004
+    2300008: Chandellier_frag_005
+    2300010: Chandellier_frag_006
+    2300012: Chandellier_frag_007
+    2300014: Chandellier_frag_008
+    2300016: Chandellier_frag_009
+    2300018: Chandellier_frag_010
+    2300020: Chandellier_frag_011
+    2300022: Chandellier_frag_012
+    2300024: Chandellier_frag_013
+    2300026: Chandellier_frag_014
+    2300028: Chandellier_frag_015
+    2300030: Chandellier_frag_016
+    2300032: Chandellier_frag_017
+    2300034: Chandellier_frag_018
+    2300036: Chandellier_frag_019
+    2300038: Chandellier_frag_020
+    2300040: Chandellier_frag_021
+    2300042: Chandellier_frag_022
+    2300044: Chandellier_frag_023
+    2300046: Chandellier_frag_024
+    2300048: Object001_frag_001_frag_001
+    2300050: Object001_frag_001_frag_002
+    2300052: Object001_frag_001_frag_003
+    2300054: Object001_frag_001_frag_004
+    2300056: Object001_frag_001_frag_005
+    2300058: Object001_frag_001_frag_006
+    2300060: Object001_frag_001_frag_007
+    2300062: Object001_frag_001_frag_008
+    2300064: Object001_frag_001_frag_009
+    2300066: Object001_frag_001_frag_010
+    2300068: Object001_frag_001_frag_011
+    2300070: Object001_frag_001_frag_012
+    2300072: Object001_frag_001_frag_013
+    2300074: Object001_frag_001_frag_014
+    2300076: Object001_frag_001_frag_015
+    2300078: Object001_frag_002_frag_001
+    2300080: Object001_frag_002_frag_002
+    2300082: Object001_frag_002_frag_003
+    2300084: Object001_frag_002_frag_004
+    2300086: Object001_frag_002_frag_005
+    2300088: Object001_frag_002_frag_006
+    2300090: Object001_frag_002_frag_007
+    2300092: Object001_frag_002_frag_008
+    2300094: Object001_frag_002_frag_009
+    2300096: Object001_frag_002_frag_010
+    2300098: Object001_frag_002_frag_011
+    2300100: Object001_frag_002_frag_012
+    2300102: Object001_frag_002_frag_013
+    2300104: Object001_frag_002_frag_014
+    2300106: Object001_frag_002_frag_015
+    2300108: Object001_frag_003_frag_001
+    2300110: Object001_frag_003_frag_002
+    2300112: Object001_frag_003_frag_003
+    2300114: Object001_frag_003_frag_004
+    2300116: Object001_frag_003_frag_005
+    2300118: Object001_frag_003_frag_006
+    2300120: Object001_frag_003_frag_007
+    2300122: Object001_frag_003_frag_008
+    2300124: Object001_frag_003_frag_009
+    2300126: Object001_frag_003_frag_010
+    2300128: Object001_frag_003_frag_011
+    2300130: Object001_frag_003_frag_012
+    2300132: Object001_frag_003_frag_013
+    2300134: Object001_frag_003_frag_014
+    2300136: Object001_frag_003_frag_015
+    2300138: Object001_frag_004_frag_001
+    2300140: Object001_frag_004_frag_002
+    2300142: Object001_frag_004_frag_003
+    2300144: Object001_frag_004_frag_004
+    2300146: Object001_frag_004_frag_005
+    2300148: Object001_frag_004_frag_006
+    2300150: Object001_frag_004_frag_007
+    2300152: Object001_frag_004_frag_008
+    2300154: Object001_frag_004_frag_009
+    2300156: Object001_frag_004_frag_010
+    2300158: Object001_frag_004_frag_011
+    2300160: Object001_frag_004_frag_012
+    2300162: Object001_frag_004_frag_013
+    2300164: Object001_frag_004_frag_014
+    2300166: Object001_frag_004_frag_015
+    2300168: Object001_frag_005_frag_001
+    2300170: Object001_frag_005_frag_002
+    2300172: Object001_frag_005_frag_003
+    2300174: Object001_frag_005_frag_004
+    2300176: Object001_frag_005_frag_005
+    2300178: Object001_frag_005_frag_006
+    2300180: Object001_frag_005_frag_007
+    2300182: Object001_frag_005_frag_008
+    2300184: Object001_frag_005_frag_009
+    2300186: Object001_frag_005_frag_010
+    2300188: Object001_frag_005_frag_011
+    2300190: Object001_frag_005_frag_012
+    2300192: Object001_frag_005_frag_013
+    2300194: Object001_frag_005_frag_014
+    2300196: Object001_frag_005_frag_015
+    2300198: Object001_frag_006_frag_001
+    2300200: Object001_frag_006_frag_002
+    2300202: Object001_frag_006_frag_003
+    2300204: Object001_frag_006_frag_004
+    2300206: Object001_frag_006_frag_005
+    2300208: Object001_frag_006_frag_006
+    2300210: Object001_frag_006_frag_007
+    2300212: Object001_frag_006_frag_008
+    2300214: Object001_frag_006_frag_009
+    2300216: Object001_frag_006_frag_010
+    2300218: Object001_frag_006_frag_011
+    2300220: Object001_frag_006_frag_012
+    2300222: Object001_frag_006_frag_013
+    2300224: Object001_frag_006_frag_014
+    2300226: Object001_frag_006_frag_015
+    2300228: Object001_frag_007_frag_001
+    2300230: Object001_frag_007_frag_002
+    2300232: Object001_frag_007_frag_003
+    2300234: Object001_frag_007_frag_004
+    2300236: Object001_frag_007_frag_005
+    2300238: Object001_frag_007_frag_006
+    2300240: Object001_frag_007_frag_007
+    2300242: Object001_frag_007_frag_008
+    2300244: Object001_frag_007_frag_009
+    2300246: Object001_frag_007_frag_010
+    2300248: Object001_frag_007_frag_011
+    2300250: Object001_frag_007_frag_012
+    2300252: Object001_frag_007_frag_013
+    2300254: Object001_frag_007_frag_014
+    2300256: Object001_frag_007_frag_015
+    2300258: Object001_frag_008_frag_001
+    2300260: Object001_frag_008_frag_002
+    2300262: Object001_frag_008_frag_003
+    2300264: Object001_frag_008_frag_004
+    2300266: Object001_frag_008_frag_005
+    2300268: Object001_frag_008_frag_006
+    2300270: Object001_frag_008_frag_007
+    2300272: Object001_frag_008_frag_008
+    2300274: Object001_frag_008_frag_009
+    2300276: Object001_frag_008_frag_010
+    2300278: Object001_frag_008_frag_011
+    2300280: Object001_frag_008_frag_012
+    2300282: Object001_frag_008_frag_013
+    2300284: Object001_frag_008_frag_014
+    2300286: Object001_frag_008_frag_015
+    2300288: Object001_frag_009_frag_001
+    2300290: Object001_frag_009_frag_002
+    2300292: Object001_frag_009_frag_003
+    2300294: Object001_frag_009_frag_004
+    2300296: Object001_frag_009_frag_005
+    2300298: Object001_frag_009_frag_006
+    2300300: Object001_frag_009_frag_007
+    2300302: Object001_frag_009_frag_008
+    2300304: Object001_frag_009_frag_009
+    2300306: Object001_frag_009_frag_010
+    2300308: Object001_frag_009_frag_011
+    2300310: Object001_frag_009_frag_012
+    2300312: Object001_frag_009_frag_013
+    2300314: Object001_frag_009_frag_014
+    2300316: Object001_frag_009_frag_015
+    2300318: Object001_frag_010_frag_001
+    2300320: Object001_frag_010_frag_002
+    2300322: Object001_frag_010_frag_003
+    2300324: Object001_frag_010_frag_004
+    2300326: Object001_frag_010_frag_005
+    2300328: Object001_frag_010_frag_006
+    2300330: Object001_frag_010_frag_007
+    2300332: Object001_frag_010_frag_008
+    2300334: Object001_frag_010_frag_009
+    2300336: Object001_frag_010_frag_010
+    2300338: Object001_frag_010_frag_011
+    2300340: Object001_frag_010_frag_012
+    2300342: Object001_frag_010_frag_013
+    2300344: Object001_frag_010_frag_014
+    2300346: Object001_frag_010_frag_015
+    2300348: Object001_frag_011_frag_001
+    2300350: Object001_frag_011_frag_002
+    2300352: Object001_frag_011_frag_003
+    2300354: Object001_frag_011_frag_004
+    2300356: Object001_frag_011_frag_005
+    2300358: Object001_frag_011_frag_006
+    2300360: Object001_frag_011_frag_007
+    2300362: Object001_frag_011_frag_008
+    2300364: Object001_frag_011_frag_009
+    2300366: Object001_frag_011_frag_010
+    2300368: Object001_frag_011_frag_011
+    2300370: Object001_frag_011_frag_012
+    2300372: Object001_frag_011_frag_013
+    2300374: Object001_frag_011_frag_014
+    2300376: Object001_frag_011_frag_015
+    2300378: Object001_frag_012_frag_001
+    2300380: Object001_frag_012_frag_002
+    2300382: Object001_frag_012_frag_003
+    2300384: Object001_frag_012_frag_004
+    2300386: Object001_frag_012_frag_005
+    2300388: Object001_frag_012_frag_006
+    2300390: Object001_frag_012_frag_007
+    2300392: Object001_frag_012_frag_008
+    2300394: Object001_frag_012_frag_009
+    2300396: Object001_frag_012_frag_010
+    2300398: Object001_frag_012_frag_011
+    2300400: Object001_frag_012_frag_012
+    2300402: Object001_frag_012_frag_013
+    2300404: Object001_frag_012_frag_014
+    2300406: Object001_frag_012_frag_015
+    2300408: Object001_frag_013_frag_001
+    2300410: Object001_frag_013_frag_002
+    2300412: Object001_frag_013_frag_003
+    2300414: Object001_frag_013_frag_004
+    2300416: Object001_frag_013_frag_005
+    2300418: Object001_frag_013_frag_006
+    2300420: Object001_frag_013_frag_007
+    2300422: Object001_frag_013_frag_008
+    2300424: Object001_frag_013_frag_009
+    2300426: Object001_frag_013_frag_010
+    2300428: Object001_frag_013_frag_011
+    2300430: Object001_frag_013_frag_012
+    2300432: Object001_frag_013_frag_013
+    2300434: Object001_frag_013_frag_014
+    2300436: Object001_frag_013_frag_015
+    2300438: Object001_frag_014_frag_001
+    2300440: Object001_frag_014_frag_002
+    2300442: Object001_frag_014_frag_003
+    2300444: Object001_frag_014_frag_004
+    2300446: Object001_frag_014_frag_005
+    2300448: Object001_frag_014_frag_006
+    2300450: Object001_frag_014_frag_007
+    2300452: Object001_frag_014_frag_008
+    2300454: Object001_frag_014_frag_009
+    2300456: Object001_frag_014_frag_010
+    2300458: Object001_frag_014_frag_011
+    2300460: Object001_frag_014_frag_012
+    2300462: Object001_frag_014_frag_013
+    2300464: Object001_frag_014_frag_014
+    2300466: Object001_frag_014_frag_015
+    2300468: Object001_frag_015_frag_001
+    2300470: Object001_frag_015_frag_002
+    2300472: Object001_frag_015_frag_003
+    2300474: Object001_frag_015_frag_004
+    2300476: Object001_frag_015_frag_005
+    2300478: Object001_frag_015_frag_006
+    2300480: Object001_frag_015_frag_007
+    2300482: Object001_frag_015_frag_008
+    2300484: Object001_frag_015_frag_009
+    2300486: Object001_frag_015_frag_010
+    2300488: Object001_frag_015_frag_011
+    2300490: Object001_frag_015_frag_012
+    2300492: Object001_frag_015_frag_013
+    2300494: Object001_frag_015_frag_014
+    2300496: Object001_frag_015_frag_015
+    2300498: Object001_frag_016_frag_001
+    2300500: Object001_frag_016_frag_002
+    2300502: Object001_frag_016_frag_003
+    2300504: Object001_frag_016_frag_004
+    2300506: Object001_frag_016_frag_005
+    2300508: Object001_frag_016_frag_006
+    2300510: Object001_frag_016_frag_007
+    2300512: Object001_frag_016_frag_008
+    2300514: Object001_frag_016_frag_009
+    2300516: Object001_frag_016_frag_010
+    2300518: Object001_frag_016_frag_011
+    2300520: Object001_frag_016_frag_012
+    2300522: Object001_frag_016_frag_013
+    2300524: Object001_frag_016_frag_014
+    2300526: Object001_frag_016_frag_015
+    2300528: Object001_frag_017_frag_001
+    2300530: Object001_frag_017_frag_002
+    2300532: Object001_frag_017_frag_003
+    2300534: Object001_frag_017_frag_004
+    2300536: Object001_frag_017_frag_005
+    2300538: Object001_frag_017_frag_006
+    2300540: Object001_frag_017_frag_007
+    2300542: Object001_frag_017_frag_008
+    2300544: Object001_frag_017_frag_009
+    2300546: Object001_frag_017_frag_010
+    2300548: Object001_frag_017_frag_011
+    2300550: Object001_frag_017_frag_012
+    2300552: Object001_frag_017_frag_013
+    2300554: Object001_frag_017_frag_014
+    2300556: Object001_frag_017_frag_015
+    2300558: Object001_frag_018_frag_001
+    2300560: Object001_frag_018_frag_002
+    2300562: Object001_frag_018_frag_003
+    2300564: Object001_frag_018_frag_004
+    2300566: Object001_frag_018_frag_005
+    2300568: Object001_frag_018_frag_006
+    2300570: Object001_frag_018_frag_007
+    2300572: Object001_frag_018_frag_008
+    2300574: Object001_frag_018_frag_009
+    2300576: Object001_frag_018_frag_010
+    2300578: Object001_frag_018_frag_011
+    2300580: Object001_frag_018_frag_012
+    2300582: Object001_frag_018_frag_013
+    2300584: Object001_frag_018_frag_014
+    2300586: Object001_frag_018_frag_015
+    3300000: Chandellier_frag_001
+    3300002: Chandellier_frag_002
+    3300004: Chandellier_frag_003
+    3300006: Chandellier_frag_004
+    3300008: Chandellier_frag_005
+    3300010: Chandellier_frag_006
+    3300012: Chandellier_frag_007
+    3300014: Chandellier_frag_008
+    3300016: Chandellier_frag_009
+    3300018: Chandellier_frag_010
+    3300020: Chandellier_frag_011
+    3300022: Chandellier_frag_012
+    3300024: Chandellier_frag_013
+    3300026: Chandellier_frag_014
+    3300028: Chandellier_frag_015
+    3300030: Chandellier_frag_016
+    3300032: Chandellier_frag_017
+    3300034: Chandellier_frag_018
+    3300036: Chandellier_frag_019
+    3300038: Chandellier_frag_020
+    3300040: Chandellier_frag_021
+    3300042: Chandellier_frag_022
+    3300044: Chandellier_frag_023
+    3300046: Chandellier_frag_024
+    3300048: Object001_frag_001_frag_001
+    3300050: Object001_frag_001_frag_002
+    3300052: Object001_frag_001_frag_003
+    3300054: Object001_frag_001_frag_004
+    3300056: Object001_frag_001_frag_005
+    3300058: Object001_frag_001_frag_006
+    3300060: Object001_frag_001_frag_007
+    3300062: Object001_frag_001_frag_008
+    3300064: Object001_frag_001_frag_009
+    3300066: Object001_frag_001_frag_010
+    3300068: Object001_frag_001_frag_011
+    3300070: Object001_frag_001_frag_012
+    3300072: Object001_frag_001_frag_013
+    3300074: Object001_frag_001_frag_014
+    3300076: Object001_frag_001_frag_015
+    3300078: Object001_frag_002_frag_001
+    3300080: Object001_frag_002_frag_002
+    3300082: Object001_frag_002_frag_003
+    3300084: Object001_frag_002_frag_004
+    3300086: Object001_frag_002_frag_005
+    3300088: Object001_frag_002_frag_006
+    3300090: Object001_frag_002_frag_007
+    3300092: Object001_frag_002_frag_008
+    3300094: Object001_frag_002_frag_009
+    3300096: Object001_frag_002_frag_010
+    3300098: Object001_frag_002_frag_011
+    3300100: Object001_frag_002_frag_012
+    3300102: Object001_frag_002_frag_013
+    3300104: Object001_frag_002_frag_014
+    3300106: Object001_frag_002_frag_015
+    3300108: Object001_frag_003_frag_001
+    3300110: Object001_frag_003_frag_002
+    3300112: Object001_frag_003_frag_003
+    3300114: Object001_frag_003_frag_004
+    3300116: Object001_frag_003_frag_005
+    3300118: Object001_frag_003_frag_006
+    3300120: Object001_frag_003_frag_007
+    3300122: Object001_frag_003_frag_008
+    3300124: Object001_frag_003_frag_009
+    3300126: Object001_frag_003_frag_010
+    3300128: Object001_frag_003_frag_011
+    3300130: Object001_frag_003_frag_012
+    3300132: Object001_frag_003_frag_013
+    3300134: Object001_frag_003_frag_014
+    3300136: Object001_frag_003_frag_015
+    3300138: Object001_frag_004_frag_001
+    3300140: Object001_frag_004_frag_002
+    3300142: Object001_frag_004_frag_003
+    3300144: Object001_frag_004_frag_004
+    3300146: Object001_frag_004_frag_005
+    3300148: Object001_frag_004_frag_006
+    3300150: Object001_frag_004_frag_007
+    3300152: Object001_frag_004_frag_008
+    3300154: Object001_frag_004_frag_009
+    3300156: Object001_frag_004_frag_010
+    3300158: Object001_frag_004_frag_011
+    3300160: Object001_frag_004_frag_012
+    3300162: Object001_frag_004_frag_013
+    3300164: Object001_frag_004_frag_014
+    3300166: Object001_frag_004_frag_015
+    3300168: Object001_frag_005_frag_001
+    3300170: Object001_frag_005_frag_002
+    3300172: Object001_frag_005_frag_003
+    3300174: Object001_frag_005_frag_004
+    3300176: Object001_frag_005_frag_005
+    3300178: Object001_frag_005_frag_006
+    3300180: Object001_frag_005_frag_007
+    3300182: Object001_frag_005_frag_008
+    3300184: Object001_frag_005_frag_009
+    3300186: Object001_frag_005_frag_010
+    3300188: Object001_frag_005_frag_011
+    3300190: Object001_frag_005_frag_012
+    3300192: Object001_frag_005_frag_013
+    3300194: Object001_frag_005_frag_014
+    3300196: Object001_frag_005_frag_015
+    3300198: Object001_frag_006_frag_001
+    3300200: Object001_frag_006_frag_002
+    3300202: Object001_frag_006_frag_003
+    3300204: Object001_frag_006_frag_004
+    3300206: Object001_frag_006_frag_005
+    3300208: Object001_frag_006_frag_006
+    3300210: Object001_frag_006_frag_007
+    3300212: Object001_frag_006_frag_008
+    3300214: Object001_frag_006_frag_009
+    3300216: Object001_frag_006_frag_010
+    3300218: Object001_frag_006_frag_011
+    3300220: Object001_frag_006_frag_012
+    3300222: Object001_frag_006_frag_013
+    3300224: Object001_frag_006_frag_014
+    3300226: Object001_frag_006_frag_015
+    3300228: Object001_frag_007_frag_001
+    3300230: Object001_frag_007_frag_002
+    3300232: Object001_frag_007_frag_003
+    3300234: Object001_frag_007_frag_004
+    3300236: Object001_frag_007_frag_005
+    3300238: Object001_frag_007_frag_006
+    3300240: Object001_frag_007_frag_007
+    3300242: Object001_frag_007_frag_008
+    3300244: Object001_frag_007_frag_009
+    3300246: Object001_frag_007_frag_010
+    3300248: Object001_frag_007_frag_011
+    3300250: Object001_frag_007_frag_012
+    3300252: Object001_frag_007_frag_013
+    3300254: Object001_frag_007_frag_014
+    3300256: Object001_frag_007_frag_015
+    3300258: Object001_frag_008_frag_001
+    3300260: Object001_frag_008_frag_002
+    3300262: Object001_frag_008_frag_003
+    3300264: Object001_frag_008_frag_004
+    3300266: Object001_frag_008_frag_005
+    3300268: Object001_frag_008_frag_006
+    3300270: Object001_frag_008_frag_007
+    3300272: Object001_frag_008_frag_008
+    3300274: Object001_frag_008_frag_009
+    3300276: Object001_frag_008_frag_010
+    3300278: Object001_frag_008_frag_011
+    3300280: Object001_frag_008_frag_012
+    3300282: Object001_frag_008_frag_013
+    3300284: Object001_frag_008_frag_014
+    3300286: Object001_frag_008_frag_015
+    3300288: Object001_frag_009_frag_001
+    3300290: Object001_frag_009_frag_002
+    3300292: Object001_frag_009_frag_003
+    3300294: Object001_frag_009_frag_004
+    3300296: Object001_frag_009_frag_005
+    3300298: Object001_frag_009_frag_006
+    3300300: Object001_frag_009_frag_007
+    3300302: Object001_frag_009_frag_008
+    3300304: Object001_frag_009_frag_009
+    3300306: Object001_frag_009_frag_010
+    3300308: Object001_frag_009_frag_011
+    3300310: Object001_frag_009_frag_012
+    3300312: Object001_frag_009_frag_013
+    3300314: Object001_frag_009_frag_014
+    3300316: Object001_frag_009_frag_015
+    3300318: Object001_frag_010_frag_001
+    3300320: Object001_frag_010_frag_002
+    3300322: Object001_frag_010_frag_003
+    3300324: Object001_frag_010_frag_004
+    3300326: Object001_frag_010_frag_005
+    3300328: Object001_frag_010_frag_006
+    3300330: Object001_frag_010_frag_007
+    3300332: Object001_frag_010_frag_008
+    3300334: Object001_frag_010_frag_009
+    3300336: Object001_frag_010_frag_010
+    3300338: Object001_frag_010_frag_011
+    3300340: Object001_frag_010_frag_012
+    3300342: Object001_frag_010_frag_013
+    3300344: Object001_frag_010_frag_014
+    3300346: Object001_frag_010_frag_015
+    3300348: Object001_frag_011_frag_001
+    3300350: Object001_frag_011_frag_002
+    3300352: Object001_frag_011_frag_003
+    3300354: Object001_frag_011_frag_004
+    3300356: Object001_frag_011_frag_005
+    3300358: Object001_frag_011_frag_006
+    3300360: Object001_frag_011_frag_007
+    3300362: Object001_frag_011_frag_008
+    3300364: Object001_frag_011_frag_009
+    3300366: Object001_frag_011_frag_010
+    3300368: Object001_frag_011_frag_011
+    3300370: Object001_frag_011_frag_012
+    3300372: Object001_frag_011_frag_013
+    3300374: Object001_frag_011_frag_014
+    3300376: Object001_frag_011_frag_015
+    3300378: Object001_frag_012_frag_001
+    3300380: Object001_frag_012_frag_002
+    3300382: Object001_frag_012_frag_003
+    3300384: Object001_frag_012_frag_004
+    3300386: Object001_frag_012_frag_005
+    3300388: Object001_frag_012_frag_006
+    3300390: Object001_frag_012_frag_007
+    3300392: Object001_frag_012_frag_008
+    3300394: Object001_frag_012_frag_009
+    3300396: Object001_frag_012_frag_010
+    3300398: Object001_frag_012_frag_011
+    3300400: Object001_frag_012_frag_012
+    3300402: Object001_frag_012_frag_013
+    3300404: Object001_frag_012_frag_014
+    3300406: Object001_frag_012_frag_015
+    3300408: Object001_frag_013_frag_001
+    3300410: Object001_frag_013_frag_002
+    3300412: Object001_frag_013_frag_003
+    3300414: Object001_frag_013_frag_004
+    3300416: Object001_frag_013_frag_005
+    3300418: Object001_frag_013_frag_006
+    3300420: Object001_frag_013_frag_007
+    3300422: Object001_frag_013_frag_008
+    3300424: Object001_frag_013_frag_009
+    3300426: Object001_frag_013_frag_010
+    3300428: Object001_frag_013_frag_011
+    3300430: Object001_frag_013_frag_012
+    3300432: Object001_frag_013_frag_013
+    3300434: Object001_frag_013_frag_014
+    3300436: Object001_frag_013_frag_015
+    3300438: Object001_frag_014_frag_001
+    3300440: Object001_frag_014_frag_002
+    3300442: Object001_frag_014_frag_003
+    3300444: Object001_frag_014_frag_004
+    3300446: Object001_frag_014_frag_005
+    3300448: Object001_frag_014_frag_006
+    3300450: Object001_frag_014_frag_007
+    3300452: Object001_frag_014_frag_008
+    3300454: Object001_frag_014_frag_009
+    3300456: Object001_frag_014_frag_010
+    3300458: Object001_frag_014_frag_011
+    3300460: Object001_frag_014_frag_012
+    3300462: Object001_frag_014_frag_013
+    3300464: Object001_frag_014_frag_014
+    3300466: Object001_frag_014_frag_015
+    3300468: Object001_frag_015_frag_001
+    3300470: Object001_frag_015_frag_002
+    3300472: Object001_frag_015_frag_003
+    3300474: Object001_frag_015_frag_004
+    3300476: Object001_frag_015_frag_005
+    3300478: Object001_frag_015_frag_006
+    3300480: Object001_frag_015_frag_007
+    3300482: Object001_frag_015_frag_008
+    3300484: Object001_frag_015_frag_009
+    3300486: Object001_frag_015_frag_010
+    3300488: Object001_frag_015_frag_011
+    3300490: Object001_frag_015_frag_012
+    3300492: Object001_frag_015_frag_013
+    3300494: Object001_frag_015_frag_014
+    3300496: Object001_frag_015_frag_015
+    3300498: Object001_frag_016_frag_001
+    3300500: Object001_frag_016_frag_002
+    3300502: Object001_frag_016_frag_003
+    3300504: Object001_frag_016_frag_004
+    3300506: Object001_frag_016_frag_005
+    3300508: Object001_frag_016_frag_006
+    3300510: Object001_frag_016_frag_007
+    3300512: Object001_frag_016_frag_008
+    3300514: Object001_frag_016_frag_009
+    3300516: Object001_frag_016_frag_010
+    3300518: Object001_frag_016_frag_011
+    3300520: Object001_frag_016_frag_012
+    3300522: Object001_frag_016_frag_013
+    3300524: Object001_frag_016_frag_014
+    3300526: Object001_frag_016_frag_015
+    3300528: Object001_frag_017_frag_001
+    3300530: Object001_frag_017_frag_002
+    3300532: Object001_frag_017_frag_003
+    3300534: Object001_frag_017_frag_004
+    3300536: Object001_frag_017_frag_005
+    3300538: Object001_frag_017_frag_006
+    3300540: Object001_frag_017_frag_007
+    3300542: Object001_frag_017_frag_008
+    3300544: Object001_frag_017_frag_009
+    3300546: Object001_frag_017_frag_010
+    3300548: Object001_frag_017_frag_011
+    3300550: Object001_frag_017_frag_012
+    3300552: Object001_frag_017_frag_013
+    3300554: Object001_frag_017_frag_014
+    3300556: Object001_frag_017_frag_015
+    3300558: Object001_frag_018_frag_001
+    3300560: Object001_frag_018_frag_002
+    3300562: Object001_frag_018_frag_003
+    3300564: Object001_frag_018_frag_004
+    3300566: Object001_frag_018_frag_005
+    3300568: Object001_frag_018_frag_006
+    3300570: Object001_frag_018_frag_007
+    3300572: Object001_frag_018_frag_008
+    3300574: Object001_frag_018_frag_009
+    3300576: Object001_frag_018_frag_010
+    3300578: Object001_frag_018_frag_011
+    3300580: Object001_frag_018_frag_012
+    3300582: Object001_frag_018_frag_013
+    3300584: Object001_frag_018_frag_014
+    3300586: Object001_frag_018_frag_015
+    4300000: Object001_frag_001_frag_001
+    4300002: Object001_frag_001_frag_002
+    4300004: Object001_frag_001_frag_003
+    4300006: Object001_frag_001_frag_004
+    4300008: Object001_frag_001_frag_005
+    4300010: Object001_frag_001_frag_006
+    4300012: Object001_frag_001_frag_007
+    4300014: Object001_frag_001_frag_008
+    4300016: Object001_frag_001_frag_009
+    4300018: Object001_frag_001_frag_010
+    4300020: Object001_frag_001_frag_011
+    4300022: Object001_frag_001_frag_012
+    4300024: Object001_frag_001_frag_013
+    4300026: Object001_frag_001_frag_014
+    4300028: Object001_frag_001_frag_015
+    4300030: Object001_frag_002_frag_001
+    4300032: Object001_frag_002_frag_002
+    4300034: Object001_frag_002_frag_003
+    4300036: Object001_frag_002_frag_004
+    4300038: Object001_frag_002_frag_005
+    4300040: Object001_frag_002_frag_006
+    4300042: Object001_frag_002_frag_007
+    4300044: Object001_frag_002_frag_008
+    4300046: Object001_frag_002_frag_009
+    4300048: Object001_frag_002_frag_010
+    4300050: Object001_frag_002_frag_011
+    4300052: Object001_frag_002_frag_012
+    4300054: Object001_frag_002_frag_013
+    4300056: Object001_frag_002_frag_014
+    4300058: Object001_frag_002_frag_015
+    4300060: Object001_frag_003_frag_001
+    4300062: Object001_frag_003_frag_002
+    4300064: Object001_frag_003_frag_003
+    4300066: Object001_frag_003_frag_004
+    4300068: Object001_frag_003_frag_005
+    4300070: Object001_frag_003_frag_006
+    4300072: Object001_frag_003_frag_007
+    4300074: Object001_frag_003_frag_008
+    4300076: Object001_frag_003_frag_009
+    4300078: Object001_frag_003_frag_010
+    4300080: Object001_frag_003_frag_011
+    4300082: Object001_frag_003_frag_012
+    4300084: Object001_frag_003_frag_013
+    4300086: Object001_frag_003_frag_014
+    4300088: Object001_frag_003_frag_015
+    4300090: Object001_frag_004_frag_001
+    4300092: Object001_frag_004_frag_002
+    4300094: Object001_frag_004_frag_003
+    4300096: Object001_frag_004_frag_004
+    4300098: Object001_frag_004_frag_005
+    4300100: Object001_frag_004_frag_006
+    4300102: Object001_frag_004_frag_007
+    4300104: Object001_frag_004_frag_008
+    4300106: Object001_frag_004_frag_009
+    4300108: Object001_frag_004_frag_010
+    4300110: Object001_frag_004_frag_011
+    4300112: Object001_frag_004_frag_012
+    4300114: Object001_frag_004_frag_013
+    4300116: Object001_frag_004_frag_014
+    4300118: Object001_frag_004_frag_015
+    4300120: Object001_frag_005_frag_001
+    4300122: Object001_frag_005_frag_002
+    4300124: Object001_frag_005_frag_003
+    4300126: Object001_frag_005_frag_004
+    4300128: Object001_frag_005_frag_005
+    4300130: Object001_frag_005_frag_006
+    4300132: Object001_frag_005_frag_007
+    4300134: Object001_frag_005_frag_008
+    4300136: Object001_frag_005_frag_009
+    4300138: Object001_frag_005_frag_010
+    4300140: Object001_frag_005_frag_011
+    4300142: Object001_frag_005_frag_012
+    4300144: Object001_frag_005_frag_013
+    4300146: Object001_frag_005_frag_014
+    4300148: Object001_frag_005_frag_015
+    4300150: Object001_frag_006_frag_001
+    4300152: Object001_frag_006_frag_002
+    4300154: Object001_frag_006_frag_003
+    4300156: Object001_frag_006_frag_004
+    4300158: Object001_frag_006_frag_005
+    4300160: Object001_frag_006_frag_006
+    4300162: Object001_frag_006_frag_007
+    4300164: Object001_frag_006_frag_008
+    4300166: Object001_frag_006_frag_009
+    4300168: Object001_frag_006_frag_010
+    4300170: Object001_frag_006_frag_011
+    4300172: Object001_frag_006_frag_012
+    4300174: Object001_frag_006_frag_013
+    4300176: Object001_frag_006_frag_014
+    4300178: Object001_frag_006_frag_015
+    4300180: Object001_frag_007_frag_001
+    4300182: Object001_frag_007_frag_002
+    4300184: Object001_frag_007_frag_003
+    4300186: Object001_frag_007_frag_004
+    4300188: Object001_frag_007_frag_005
+    4300190: Object001_frag_007_frag_006
+    4300192: Object001_frag_007_frag_007
+    4300194: Object001_frag_007_frag_008
+    4300196: Object001_frag_007_frag_009
+    4300198: Object001_frag_007_frag_010
+    4300200: Object001_frag_007_frag_011
+    4300202: Object001_frag_007_frag_012
+    4300204: Object001_frag_007_frag_013
+    4300206: Object001_frag_007_frag_014
+    4300208: Object001_frag_007_frag_015
+    4300210: Object001_frag_008_frag_001
+    4300212: Object001_frag_008_frag_002
+    4300214: Object001_frag_008_frag_003
+    4300216: Object001_frag_008_frag_004
+    4300218: Object001_frag_008_frag_005
+    4300220: Object001_frag_008_frag_006
+    4300222: Object001_frag_008_frag_007
+    4300224: Object001_frag_008_frag_008
+    4300226: Object001_frag_008_frag_009
+    4300228: Object001_frag_008_frag_010
+    4300230: Object001_frag_008_frag_011
+    4300232: Object001_frag_008_frag_012
+    4300234: Object001_frag_008_frag_013
+    4300236: Object001_frag_008_frag_014
+    4300238: Object001_frag_008_frag_015
+    4300240: Object001_frag_009_frag_001
+    4300242: Object001_frag_009_frag_002
+    4300244: Object001_frag_009_frag_003
+    4300246: Object001_frag_009_frag_004
+    4300248: Object001_frag_009_frag_005
+    4300250: Object001_frag_009_frag_006
+    4300252: Object001_frag_009_frag_007
+    4300254: Object001_frag_009_frag_008
+    4300256: Object001_frag_009_frag_009
+    4300258: Object001_frag_009_frag_010
+    4300260: Object001_frag_009_frag_011
+    4300262: Object001_frag_009_frag_012
+    4300264: Object001_frag_009_frag_013
+    4300266: Object001_frag_009_frag_014
+    4300268: Object001_frag_009_frag_015
+    4300270: Object001_frag_010_frag_001
+    4300272: Object001_frag_010_frag_002
+    4300274: Object001_frag_010_frag_003
+    4300276: Object001_frag_010_frag_004
+    4300278: Object001_frag_010_frag_005
+    4300280: Object001_frag_010_frag_006
+    4300282: Object001_frag_010_frag_007
+    4300284: Object001_frag_010_frag_008
+    4300286: Object001_frag_010_frag_009
+    4300288: Object001_frag_010_frag_010
+    4300290: Object001_frag_010_frag_011
+    4300292: Object001_frag_010_frag_012
+    4300294: Object001_frag_010_frag_013
+    4300296: Object001_frag_010_frag_014
+    4300298: Object001_frag_010_frag_015
+    4300300: Object001_frag_011_frag_001
+    4300302: Object001_frag_011_frag_002
+    4300304: Object001_frag_011_frag_003
+    4300306: Object001_frag_011_frag_004
+    4300308: Object001_frag_011_frag_005
+    4300310: Object001_frag_011_frag_006
+    4300312: Object001_frag_011_frag_007
+    4300314: Object001_frag_011_frag_008
+    4300316: Object001_frag_011_frag_009
+    4300318: Object001_frag_011_frag_010
+    4300320: Object001_frag_011_frag_011
+    4300322: Object001_frag_011_frag_012
+    4300324: Object001_frag_011_frag_013
+    4300326: Object001_frag_011_frag_014
+    4300328: Object001_frag_011_frag_015
+    4300330: Object001_frag_012_frag_001
+    4300332: Object001_frag_012_frag_002
+    4300334: Object001_frag_012_frag_003
+    4300336: Object001_frag_012_frag_004
+    4300338: Object001_frag_012_frag_005
+    4300340: Object001_frag_012_frag_006
+    4300342: Object001_frag_012_frag_007
+    4300344: Object001_frag_012_frag_008
+    4300346: Object001_frag_012_frag_009
+    4300348: Object001_frag_012_frag_010
+    4300350: Object001_frag_012_frag_011
+    4300352: Object001_frag_012_frag_012
+    4300354: Object001_frag_012_frag_013
+    4300356: Object001_frag_012_frag_014
+    4300358: Object001_frag_012_frag_015
+    4300360: Object001_frag_013_frag_001
+    4300362: Object001_frag_013_frag_002
+    4300364: Object001_frag_013_frag_003
+    4300366: Object001_frag_013_frag_004
+    4300368: Object001_frag_013_frag_005
+    4300370: Object001_frag_013_frag_006
+    4300372: Object001_frag_013_frag_007
+    4300374: Object001_frag_013_frag_008
+    4300376: Object001_frag_013_frag_009
+    4300378: Object001_frag_013_frag_010
+    4300380: Object001_frag_013_frag_011
+    4300382: Object001_frag_013_frag_012
+    4300384: Object001_frag_013_frag_013
+    4300386: Object001_frag_013_frag_014
+    4300388: Object001_frag_013_frag_015
+    4300390: Object001_frag_014_frag_001
+    4300392: Object001_frag_014_frag_002
+    4300394: Object001_frag_014_frag_003
+    4300396: Object001_frag_014_frag_004
+    4300398: Object001_frag_014_frag_005
+    4300400: Object001_frag_014_frag_006
+    4300402: Object001_frag_014_frag_007
+    4300404: Object001_frag_014_frag_008
+    4300406: Object001_frag_014_frag_009
+    4300408: Object001_frag_014_frag_010
+    4300410: Object001_frag_014_frag_011
+    4300412: Object001_frag_014_frag_012
+    4300414: Object001_frag_014_frag_013
+    4300416: Object001_frag_014_frag_014
+    4300418: Object001_frag_014_frag_015
+    4300420: Object001_frag_015_frag_001
+    4300422: Object001_frag_015_frag_002
+    4300424: Object001_frag_015_frag_003
+    4300426: Object001_frag_015_frag_004
+    4300428: Object001_frag_015_frag_005
+    4300430: Object001_frag_015_frag_006
+    4300432: Object001_frag_015_frag_007
+    4300434: Object001_frag_015_frag_008
+    4300436: Object001_frag_015_frag_009
+    4300438: Object001_frag_015_frag_010
+    4300440: Object001_frag_015_frag_011
+    4300442: Object001_frag_015_frag_012
+    4300444: Object001_frag_015_frag_013
+    4300446: Object001_frag_015_frag_014
+    4300448: Object001_frag_015_frag_015
+    4300450: Object001_frag_016_frag_001
+    4300452: Object001_frag_016_frag_002
+    4300454: Object001_frag_016_frag_003
+    4300456: Object001_frag_016_frag_004
+    4300458: Object001_frag_016_frag_005
+    4300460: Object001_frag_016_frag_006
+    4300462: Object001_frag_016_frag_007
+    4300464: Object001_frag_016_frag_008
+    4300466: Object001_frag_016_frag_009
+    4300468: Object001_frag_016_frag_010
+    4300470: Object001_frag_016_frag_011
+    4300472: Object001_frag_016_frag_012
+    4300474: Object001_frag_016_frag_013
+    4300476: Object001_frag_016_frag_014
+    4300478: Object001_frag_016_frag_015
+    4300480: Object001_frag_017_frag_001
+    4300482: Object001_frag_017_frag_002
+    4300484: Object001_frag_017_frag_003
+    4300486: Object001_frag_017_frag_004
+    4300488: Object001_frag_017_frag_005
+    4300490: Object001_frag_017_frag_006
+    4300492: Object001_frag_017_frag_007
+    4300494: Object001_frag_017_frag_008
+    4300496: Object001_frag_017_frag_009
+    4300498: Object001_frag_017_frag_010
+    4300500: Object001_frag_017_frag_011
+    4300502: Object001_frag_017_frag_012
+    4300504: Object001_frag_017_frag_013
+    4300506: Object001_frag_017_frag_014
+    4300508: Object001_frag_017_frag_015
+    4300510: Object001_frag_018_frag_001
+    4300512: Object001_frag_018_frag_002
+    4300514: Object001_frag_018_frag_003
+    4300516: Object001_frag_018_frag_004
+    4300518: Object001_frag_018_frag_005
+    4300520: Object001_frag_018_frag_006
+    4300522: Object001_frag_018_frag_007
+    4300524: Object001_frag_018_frag_008
+    4300526: Object001_frag_018_frag_009
+    4300528: Object001_frag_018_frag_010
+    4300530: Object001_frag_018_frag_011
+    4300532: Object001_frag_018_frag_012
+    4300534: Object001_frag_018_frag_013
+    4300536: Object001_frag_018_frag_014
+    4300538: Object001_frag_018_frag_015
+    4300540: Chandellier_frag_001
+    4300542: Chandellier_frag_002
+    4300544: Chandellier_frag_003
+    4300546: Chandellier_frag_004
+    4300548: Chandellier_frag_005
+    4300550: Chandellier_frag_006
+    4300552: Chandellier_frag_007
+    4300554: Chandellier_frag_008
+    4300556: Chandellier_frag_009
+    4300558: Chandellier_frag_010
+    4300560: Chandellier_frag_011
+    4300562: Chandellier_frag_012
+    4300564: Chandellier_frag_013
+    4300566: Chandellier_frag_014
+    4300568: Chandellier_frag_015
+    4300570: Chandellier_frag_016
+    4300572: Chandellier_frag_017
+    4300574: Chandellier_frag_018
+    4300576: Chandellier_frag_019
+    4300578: Chandellier_frag_020
+    4300580: Chandellier_frag_021
+    4300582: Chandellier_frag_022
+    4300584: Chandellier_frag_023
+    4300586: Chandellier_frag_024
+    7400000: ChandelierImpactArea
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: ChandelierImpactArea
+      takeName: Take 001
+      firstFrame: 98
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Chandellier_frag_001
+        weight: 1
+      - path: Chandellier_frag_002
+        weight: 1
+      - path: Chandellier_frag_003
+        weight: 1
+      - path: Chandellier_frag_004
+        weight: 1
+      - path: Chandellier_frag_005
+        weight: 1
+      - path: Chandellier_frag_006
+        weight: 1
+      - path: Chandellier_frag_007
+        weight: 1
+      - path: Chandellier_frag_008
+        weight: 1
+      - path: Chandellier_frag_009
+        weight: 1
+      - path: Chandellier_frag_010
+        weight: 1
+      - path: Chandellier_frag_011
+        weight: 1
+      - path: Chandellier_frag_012
+        weight: 1
+      - path: Chandellier_frag_013
+        weight: 1
+      - path: Chandellier_frag_014
+        weight: 1
+      - path: Chandellier_frag_015
+        weight: 1
+      - path: Chandellier_frag_016
+        weight: 1
+      - path: Chandellier_frag_017
+        weight: 1
+      - path: Chandellier_frag_018
+        weight: 1
+      - path: Chandellier_frag_019
+        weight: 1
+      - path: Chandellier_frag_020
+        weight: 1
+      - path: Chandellier_frag_021
+        weight: 1
+      - path: Chandellier_frag_022
+        weight: 1
+      - path: Chandellier_frag_023
+        weight: 1
+      - path: Chandellier_frag_024
+        weight: 1
+      - path: Object001_frag_001_frag_001
+        weight: 1
+      - path: Object001_frag_001_frag_002
+        weight: 1
+      - path: Object001_frag_001_frag_003
+        weight: 1
+      - path: Object001_frag_001_frag_004
+        weight: 1
+      - path: Object001_frag_001_frag_005
+        weight: 1
+      - path: Object001_frag_001_frag_006
+        weight: 1
+      - path: Object001_frag_001_frag_007
+        weight: 1
+      - path: Object001_frag_001_frag_008
+        weight: 1
+      - path: Object001_frag_001_frag_009
+        weight: 1
+      - path: Object001_frag_001_frag_010
+        weight: 1
+      - path: Object001_frag_001_frag_011
+        weight: 1
+      - path: Object001_frag_001_frag_012
+        weight: 1
+      - path: Object001_frag_001_frag_013
+        weight: 1
+      - path: Object001_frag_001_frag_014
+        weight: 1
+      - path: Object001_frag_001_frag_015
+        weight: 1
+      - path: Object001_frag_002_frag_001
+        weight: 1
+      - path: Object001_frag_002_frag_002
+        weight: 1
+      - path: Object001_frag_002_frag_003
+        weight: 1
+      - path: Object001_frag_002_frag_004
+        weight: 1
+      - path: Object001_frag_002_frag_005
+        weight: 1
+      - path: Object001_frag_002_frag_006
+        weight: 1
+      - path: Object001_frag_002_frag_007
+        weight: 1
+      - path: Object001_frag_002_frag_008
+        weight: 1
+      - path: Object001_frag_002_frag_009
+        weight: 1
+      - path: Object001_frag_002_frag_010
+        weight: 1
+      - path: Object001_frag_002_frag_011
+        weight: 1
+      - path: Object001_frag_002_frag_012
+        weight: 1
+      - path: Object001_frag_002_frag_013
+        weight: 1
+      - path: Object001_frag_002_frag_014
+        weight: 1
+      - path: Object001_frag_002_frag_015
+        weight: 1
+      - path: Object001_frag_003_frag_001
+        weight: 1
+      - path: Object001_frag_003_frag_002
+        weight: 1
+      - path: Object001_frag_003_frag_003
+        weight: 1
+      - path: Object001_frag_003_frag_004
+        weight: 1
+      - path: Object001_frag_003_frag_005
+        weight: 1
+      - path: Object001_frag_003_frag_006
+        weight: 1
+      - path: Object001_frag_003_frag_007
+        weight: 1
+      - path: Object001_frag_003_frag_008
+        weight: 1
+      - path: Object001_frag_003_frag_009
+        weight: 1
+      - path: Object001_frag_003_frag_010
+        weight: 1
+      - path: Object001_frag_003_frag_011
+        weight: 1
+      - path: Object001_frag_003_frag_012
+        weight: 1
+      - path: Object001_frag_003_frag_013
+        weight: 1
+      - path: Object001_frag_003_frag_014
+        weight: 1
+      - path: Object001_frag_003_frag_015
+        weight: 1
+      - path: Object001_frag_004_frag_001
+        weight: 1
+      - path: Object001_frag_004_frag_002
+        weight: 1
+      - path: Object001_frag_004_frag_003
+        weight: 1
+      - path: Object001_frag_004_frag_004
+        weight: 1
+      - path: Object001_frag_004_frag_005
+        weight: 1
+      - path: Object001_frag_004_frag_006
+        weight: 1
+      - path: Object001_frag_004_frag_007
+        weight: 1
+      - path: Object001_frag_004_frag_008
+        weight: 1
+      - path: Object001_frag_004_frag_009
+        weight: 1
+      - path: Object001_frag_004_frag_010
+        weight: 1
+      - path: Object001_frag_004_frag_011
+        weight: 1
+      - path: Object001_frag_004_frag_012
+        weight: 1
+      - path: Object001_frag_004_frag_013
+        weight: 1
+      - path: Object001_frag_004_frag_014
+        weight: 1
+      - path: Object001_frag_004_frag_015
+        weight: 1
+      - path: Object001_frag_005_frag_001
+        weight: 1
+      - path: Object001_frag_005_frag_002
+        weight: 1
+      - path: Object001_frag_005_frag_003
+        weight: 1
+      - path: Object001_frag_005_frag_004
+        weight: 1
+      - path: Object001_frag_005_frag_005
+        weight: 1
+      - path: Object001_frag_005_frag_006
+        weight: 1
+      - path: Object001_frag_005_frag_007
+        weight: 1
+      - path: Object001_frag_005_frag_008
+        weight: 1
+      - path: Object001_frag_005_frag_009
+        weight: 1
+      - path: Object001_frag_005_frag_010
+        weight: 1
+      - path: Object001_frag_005_frag_011
+        weight: 1
+      - path: Object001_frag_005_frag_012
+        weight: 1
+      - path: Object001_frag_005_frag_013
+        weight: 1
+      - path: Object001_frag_005_frag_014
+        weight: 1
+      - path: Object001_frag_005_frag_015
+        weight: 1
+      - path: Object001_frag_006_frag_001
+        weight: 1
+      - path: Object001_frag_006_frag_002
+        weight: 1
+      - path: Object001_frag_006_frag_003
+        weight: 1
+      - path: Object001_frag_006_frag_004
+        weight: 1
+      - path: Object001_frag_006_frag_005
+        weight: 1
+      - path: Object001_frag_006_frag_006
+        weight: 1
+      - path: Object001_frag_006_frag_007
+        weight: 1
+      - path: Object001_frag_006_frag_008
+        weight: 1
+      - path: Object001_frag_006_frag_009
+        weight: 1
+      - path: Object001_frag_006_frag_010
+        weight: 1
+      - path: Object001_frag_006_frag_011
+        weight: 1
+      - path: Object001_frag_006_frag_012
+        weight: 1
+      - path: Object001_frag_006_frag_013
+        weight: 1
+      - path: Object001_frag_006_frag_014
+        weight: 1
+      - path: Object001_frag_006_frag_015
+        weight: 1
+      - path: Object001_frag_007_frag_001
+        weight: 1
+      - path: Object001_frag_007_frag_002
+        weight: 1
+      - path: Object001_frag_007_frag_003
+        weight: 1
+      - path: Object001_frag_007_frag_004
+        weight: 1
+      - path: Object001_frag_007_frag_005
+        weight: 1
+      - path: Object001_frag_007_frag_006
+        weight: 1
+      - path: Object001_frag_007_frag_007
+        weight: 1
+      - path: Object001_frag_007_frag_008
+        weight: 1
+      - path: Object001_frag_007_frag_009
+        weight: 1
+      - path: Object001_frag_007_frag_010
+        weight: 1
+      - path: Object001_frag_007_frag_011
+        weight: 1
+      - path: Object001_frag_007_frag_012
+        weight: 1
+      - path: Object001_frag_007_frag_013
+        weight: 1
+      - path: Object001_frag_007_frag_014
+        weight: 1
+      - path: Object001_frag_007_frag_015
+        weight: 1
+      - path: Object001_frag_008_frag_001
+        weight: 1
+      - path: Object001_frag_008_frag_002
+        weight: 1
+      - path: Object001_frag_008_frag_003
+        weight: 1
+      - path: Object001_frag_008_frag_004
+        weight: 1
+      - path: Object001_frag_008_frag_005
+        weight: 1
+      - path: Object001_frag_008_frag_006
+        weight: 1
+      - path: Object001_frag_008_frag_007
+        weight: 1
+      - path: Object001_frag_008_frag_008
+        weight: 1
+      - path: Object001_frag_008_frag_009
+        weight: 1
+      - path: Object001_frag_008_frag_010
+        weight: 1
+      - path: Object001_frag_008_frag_011
+        weight: 1
+      - path: Object001_frag_008_frag_012
+        weight: 1
+      - path: Object001_frag_008_frag_013
+        weight: 1
+      - path: Object001_frag_008_frag_014
+        weight: 1
+      - path: Object001_frag_008_frag_015
+        weight: 1
+      - path: Object001_frag_009_frag_001
+        weight: 1
+      - path: Object001_frag_009_frag_002
+        weight: 1
+      - path: Object001_frag_009_frag_003
+        weight: 1
+      - path: Object001_frag_009_frag_004
+        weight: 1
+      - path: Object001_frag_009_frag_005
+        weight: 1
+      - path: Object001_frag_009_frag_006
+        weight: 1
+      - path: Object001_frag_009_frag_007
+        weight: 1
+      - path: Object001_frag_009_frag_008
+        weight: 1
+      - path: Object001_frag_009_frag_009
+        weight: 1
+      - path: Object001_frag_009_frag_010
+        weight: 1
+      - path: Object001_frag_009_frag_011
+        weight: 1
+      - path: Object001_frag_009_frag_012
+        weight: 1
+      - path: Object001_frag_009_frag_013
+        weight: 1
+      - path: Object001_frag_009_frag_014
+        weight: 1
+      - path: Object001_frag_009_frag_015
+        weight: 1
+      - path: Object001_frag_010_frag_001
+        weight: 1
+      - path: Object001_frag_010_frag_002
+        weight: 1
+      - path: Object001_frag_010_frag_003
+        weight: 1
+      - path: Object001_frag_010_frag_004
+        weight: 1
+      - path: Object001_frag_010_frag_005
+        weight: 1
+      - path: Object001_frag_010_frag_006
+        weight: 1
+      - path: Object001_frag_010_frag_007
+        weight: 1
+      - path: Object001_frag_010_frag_008
+        weight: 1
+      - path: Object001_frag_010_frag_009
+        weight: 1
+      - path: Object001_frag_010_frag_010
+        weight: 1
+      - path: Object001_frag_010_frag_011
+        weight: 1
+      - path: Object001_frag_010_frag_012
+        weight: 1
+      - path: Object001_frag_010_frag_013
+        weight: 1
+      - path: Object001_frag_010_frag_014
+        weight: 1
+      - path: Object001_frag_010_frag_015
+        weight: 1
+      - path: Object001_frag_011_frag_001
+        weight: 1
+      - path: Object001_frag_011_frag_002
+        weight: 1
+      - path: Object001_frag_011_frag_003
+        weight: 1
+      - path: Object001_frag_011_frag_004
+        weight: 1
+      - path: Object001_frag_011_frag_005
+        weight: 1
+      - path: Object001_frag_011_frag_006
+        weight: 1
+      - path: Object001_frag_011_frag_007
+        weight: 1
+      - path: Object001_frag_011_frag_008
+        weight: 1
+      - path: Object001_frag_011_frag_009
+        weight: 1
+      - path: Object001_frag_011_frag_010
+        weight: 1
+      - path: Object001_frag_011_frag_011
+        weight: 1
+      - path: Object001_frag_011_frag_012
+        weight: 1
+      - path: Object001_frag_011_frag_013
+        weight: 1
+      - path: Object001_frag_011_frag_014
+        weight: 1
+      - path: Object001_frag_011_frag_015
+        weight: 1
+      - path: Object001_frag_012_frag_001
+        weight: 1
+      - path: Object001_frag_012_frag_002
+        weight: 1
+      - path: Object001_frag_012_frag_003
+        weight: 1
+      - path: Object001_frag_012_frag_004
+        weight: 1
+      - path: Object001_frag_012_frag_005
+        weight: 1
+      - path: Object001_frag_012_frag_006
+        weight: 1
+      - path: Object001_frag_012_frag_007
+        weight: 1
+      - path: Object001_frag_012_frag_008
+        weight: 1
+      - path: Object001_frag_012_frag_009
+        weight: 1
+      - path: Object001_frag_012_frag_010
+        weight: 1
+      - path: Object001_frag_012_frag_011
+        weight: 1
+      - path: Object001_frag_012_frag_012
+        weight: 1
+      - path: Object001_frag_012_frag_013
+        weight: 1
+      - path: Object001_frag_012_frag_014
+        weight: 1
+      - path: Object001_frag_012_frag_015
+        weight: 1
+      - path: Object001_frag_013_frag_001
+        weight: 1
+      - path: Object001_frag_013_frag_002
+        weight: 1
+      - path: Object001_frag_013_frag_003
+        weight: 1
+      - path: Object001_frag_013_frag_004
+        weight: 1
+      - path: Object001_frag_013_frag_005
+        weight: 1
+      - path: Object001_frag_013_frag_006
+        weight: 1
+      - path: Object001_frag_013_frag_007
+        weight: 1
+      - path: Object001_frag_013_frag_008
+        weight: 1
+      - path: Object001_frag_013_frag_009
+        weight: 1
+      - path: Object001_frag_013_frag_010
+        weight: 1
+      - path: Object001_frag_013_frag_011
+        weight: 1
+      - path: Object001_frag_013_frag_012
+        weight: 1
+      - path: Object001_frag_013_frag_013
+        weight: 1
+      - path: Object001_frag_013_frag_014
+        weight: 1
+      - path: Object001_frag_013_frag_015
+        weight: 1
+      - path: Object001_frag_014_frag_001
+        weight: 1
+      - path: Object001_frag_014_frag_002
+        weight: 1
+      - path: Object001_frag_014_frag_003
+        weight: 1
+      - path: Object001_frag_014_frag_004
+        weight: 1
+      - path: Object001_frag_014_frag_005
+        weight: 1
+      - path: Object001_frag_014_frag_006
+        weight: 1
+      - path: Object001_frag_014_frag_007
+        weight: 1
+      - path: Object001_frag_014_frag_008
+        weight: 1
+      - path: Object001_frag_014_frag_009
+        weight: 1
+      - path: Object001_frag_014_frag_010
+        weight: 1
+      - path: Object001_frag_014_frag_011
+        weight: 1
+      - path: Object001_frag_014_frag_012
+        weight: 1
+      - path: Object001_frag_014_frag_013
+        weight: 1
+      - path: Object001_frag_014_frag_014
+        weight: 1
+      - path: Object001_frag_014_frag_015
+        weight: 1
+      - path: Object001_frag_015_frag_001
+        weight: 1
+      - path: Object001_frag_015_frag_002
+        weight: 1
+      - path: Object001_frag_015_frag_003
+        weight: 1
+      - path: Object001_frag_015_frag_004
+        weight: 1
+      - path: Object001_frag_015_frag_005
+        weight: 1
+      - path: Object001_frag_015_frag_006
+        weight: 1
+      - path: Object001_frag_015_frag_007
+        weight: 1
+      - path: Object001_frag_015_frag_008
+        weight: 1
+      - path: Object001_frag_015_frag_009
+        weight: 1
+      - path: Object001_frag_015_frag_010
+        weight: 1
+      - path: Object001_frag_015_frag_011
+        weight: 1
+      - path: Object001_frag_015_frag_012
+        weight: 1
+      - path: Object001_frag_015_frag_013
+        weight: 1
+      - path: Object001_frag_015_frag_014
+        weight: 1
+      - path: Object001_frag_015_frag_015
+        weight: 1
+      - path: Object001_frag_016_frag_001
+        weight: 1
+      - path: Object001_frag_016_frag_002
+        weight: 1
+      - path: Object001_frag_016_frag_003
+        weight: 1
+      - path: Object001_frag_016_frag_004
+        weight: 1
+      - path: Object001_frag_016_frag_005
+        weight: 1
+      - path: Object001_frag_016_frag_006
+        weight: 1
+      - path: Object001_frag_016_frag_007
+        weight: 1
+      - path: Object001_frag_016_frag_008
+        weight: 1
+      - path: Object001_frag_016_frag_009
+        weight: 1
+      - path: Object001_frag_016_frag_010
+        weight: 1
+      - path: Object001_frag_016_frag_011
+        weight: 1
+      - path: Object001_frag_016_frag_012
+        weight: 1
+      - path: Object001_frag_016_frag_013
+        weight: 1
+      - path: Object001_frag_016_frag_014
+        weight: 1
+      - path: Object001_frag_016_frag_015
+        weight: 1
+      - path: Object001_frag_017_frag_001
+        weight: 1
+      - path: Object001_frag_017_frag_002
+        weight: 1
+      - path: Object001_frag_017_frag_003
+        weight: 1
+      - path: Object001_frag_017_frag_004
+        weight: 1
+      - path: Object001_frag_017_frag_005
+        weight: 1
+      - path: Object001_frag_017_frag_006
+        weight: 1
+      - path: Object001_frag_017_frag_007
+        weight: 1
+      - path: Object001_frag_017_frag_008
+        weight: 1
+      - path: Object001_frag_017_frag_009
+        weight: 1
+      - path: Object001_frag_017_frag_010
+        weight: 1
+      - path: Object001_frag_017_frag_011
+        weight: 1
+      - path: Object001_frag_017_frag_012
+        weight: 1
+      - path: Object001_frag_017_frag_013
+        weight: 1
+      - path: Object001_frag_017_frag_014
+        weight: 1
+      - path: Object001_frag_017_frag_015
+        weight: 1
+      - path: Object001_frag_018_frag_001
+        weight: 1
+      - path: Object001_frag_018_frag_002
+        weight: 1
+      - path: Object001_frag_018_frag_003
+        weight: 1
+      - path: Object001_frag_018_frag_004
+        weight: 1
+      - path: Object001_frag_018_frag_005
+        weight: 1
+      - path: Object001_frag_018_frag_006
+        weight: 1
+      - path: Object001_frag_018_frag_007
+        weight: 1
+      - path: Object001_frag_018_frag_008
+        weight: 1
+      - path: Object001_frag_018_frag_009
+        weight: 1
+      - path: Object001_frag_018_frag_010
+        weight: 1
+      - path: Object001_frag_018_frag_011
+        weight: 1
+      - path: Object001_frag_018_frag_012
+        weight: 1
+      - path: Object001_frag_018_frag_013
+        weight: 1
+      - path: Object001_frag_018_frag_014
+        weight: 1
+      - path: Object001_frag_018_frag_015
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

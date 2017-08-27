@@ -1,0 +1,1273 @@
+fileFormatVersion: 2
+guid: f354109365a309f40a50eb6d6a45bef2
+timeCreated: 1494985785
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Column004_frag_001
+    100002: Column004_frag_002
+    100004: Column004_frag_003
+    100006: Column004_frag_004
+    100008: Column004_frag_005
+    100010: Column004_frag_006
+    100012: Column004_frag_007
+    100014: Column004_frag_008
+    100016: Column004_frag_009
+    100018: Column004_frag_010
+    100020: Column004_frag_011
+    100022: Column004_frag_012
+    100024: Column004_frag_013
+    100026: Column004_frag_014
+    100028: Column004_frag_015
+    100030: Column004_frag_016
+    100032: Column004_frag_017
+    100034: Column004_frag_018
+    100036: Column004_frag_019
+    100038: Column004_frag_020
+    100040: Column004_frag_021
+    100042: Column004_frag_022
+    100044: Column004_frag_023
+    100046: Column004_frag_024
+    100048: Column004_frag_025
+    100050: Column004_frag_026
+    100052: Column004_frag_027
+    100054: Column004_frag_028
+    100056: Column004_frag_029
+    100058: Column004_frag_030
+    100060: Column004_frag_031
+    100062: Column004_frag_032
+    100064: Column004_frag_033
+    100066: Column004_frag_034
+    100068: Column004_frag_035
+    100070: Column004_frag_036
+    100072: Column004_frag_037
+    100074: Column004_frag_038
+    100076: Column004_frag_039
+    100078: Column004_frag_040
+    100080: Column004_frag_041
+    100082: Column004_frag_042
+    100084: Column004_frag_043
+    100086: Column004_frag_044
+    100088: Column004_frag_045
+    100090: Column004_frag_046
+    100092: Column004_frag_047
+    100094: Column004_frag_048
+    100096: Column004_frag_049
+    100098: Column004_frag_050
+    100100: Column004_frag_051
+    100102: Column004_frag_052
+    100104: Column004_frag_053
+    100106: Column004_frag_054
+    100108: Column004_frag_055
+    100110: Column004_frag_056
+    100112: Column004_frag_057
+    100114: Column004_frag_058
+    100116: Column004_frag_059
+    100118: Column004_frag_060
+    100120: Column004_frag_061
+    100122: Column004_frag_062
+    100124: Column004_frag_063
+    100126: Column004_frag_064
+    100128: Column004_frag_065
+    100130: Column004_frag_066
+    100132: Column004_frag_067
+    100134: Column004_frag_068
+    100136: Column004_frag_069
+    100138: Column004_frag_070
+    100140: Column004_frag_071
+    100142: Column004_frag_072
+    100144: Column004_frag_073
+    100146: Column004_frag_074
+    100148: Column004_frag_075
+    100150: Column004_frag_076
+    100152: Column004_frag_077
+    100154: Column004_frag_078
+    100156: Column004_frag_079
+    100158: Column004_frag_080
+    100160: Column004_frag_081
+    100162: Column004_frag_082
+    100164: Column004_frag_083
+    100166: Column004_frag_084
+    100168: Column004_frag_085
+    100170: Column004_frag_086
+    100172: Column004_frag_087
+    100174: Column004_frag_088
+    100176: Column004_frag_089
+    100178: Column004_frag_090
+    100180: Column004_frag_091
+    100182: Column004_frag_092
+    100184: Column004_frag_093
+    100186: Column004_frag_094
+    100188: Column004_frag_095
+    100190: Column004_frag_096
+    100192: Column004_frag_097
+    100194: Column004_frag_098
+    100196: Column004_frag_099
+    100198: Column004_frag_100
+    100200: Column004_frag_101
+    100202: Column004_frag_102
+    100204: Column004_frag_103
+    100206: Column004_frag_104
+    100208: Column004_frag_105
+    100210: Column004_frag_106
+    100212: Column004_frag_107
+    100214: Column004_frag_108
+    100216: Column004_frag_109
+    100218: Column004_frag_110
+    100220: Column004_frag_111
+    100222: Column004_frag_112
+    100224: Column004_frag_113
+    100226: Column004_frag_114
+    100228: Column004_frag_115
+    100230: Column004_frag_116
+    100232: Column004_frag_117
+    100234: Column004_frag_118
+    100236: Column004_frag_119
+    100238: Column004_frag_120
+    100240: Column004_frag_121
+    100242: Column004_frag_122
+    100244: Column004_frag_123
+    100246: Column004_frag_124
+    100248: Column004_frag_125
+    100250: //RootNode
+    400000: Column004_frag_001
+    400002: Column004_frag_002
+    400004: Column004_frag_003
+    400006: Column004_frag_004
+    400008: Column004_frag_005
+    400010: Column004_frag_006
+    400012: Column004_frag_007
+    400014: Column004_frag_008
+    400016: Column004_frag_009
+    400018: Column004_frag_010
+    400020: Column004_frag_011
+    400022: Column004_frag_012
+    400024: Column004_frag_013
+    400026: Column004_frag_014
+    400028: Column004_frag_015
+    400030: Column004_frag_016
+    400032: Column004_frag_017
+    400034: Column004_frag_018
+    400036: Column004_frag_019
+    400038: Column004_frag_020
+    400040: Column004_frag_021
+    400042: Column004_frag_022
+    400044: Column004_frag_023
+    400046: Column004_frag_024
+    400048: Column004_frag_025
+    400050: Column004_frag_026
+    400052: Column004_frag_027
+    400054: Column004_frag_028
+    400056: Column004_frag_029
+    400058: Column004_frag_030
+    400060: Column004_frag_031
+    400062: Column004_frag_032
+    400064: Column004_frag_033
+    400066: Column004_frag_034
+    400068: Column004_frag_035
+    400070: Column004_frag_036
+    400072: Column004_frag_037
+    400074: Column004_frag_038
+    400076: Column004_frag_039
+    400078: Column004_frag_040
+    400080: Column004_frag_041
+    400082: Column004_frag_042
+    400084: Column004_frag_043
+    400086: Column004_frag_044
+    400088: Column004_frag_045
+    400090: Column004_frag_046
+    400092: Column004_frag_047
+    400094: Column004_frag_048
+    400096: Column004_frag_049
+    400098: Column004_frag_050
+    400100: Column004_frag_051
+    400102: Column004_frag_052
+    400104: Column004_frag_053
+    400106: Column004_frag_054
+    400108: Column004_frag_055
+    400110: Column004_frag_056
+    400112: Column004_frag_057
+    400114: Column004_frag_058
+    400116: Column004_frag_059
+    400118: Column004_frag_060
+    400120: Column004_frag_061
+    400122: Column004_frag_062
+    400124: Column004_frag_063
+    400126: Column004_frag_064
+    400128: Column004_frag_065
+    400130: Column004_frag_066
+    400132: Column004_frag_067
+    400134: Column004_frag_068
+    400136: Column004_frag_069
+    400138: Column004_frag_070
+    400140: Column004_frag_071
+    400142: Column004_frag_072
+    400144: Column004_frag_073
+    400146: Column004_frag_074
+    400148: Column004_frag_075
+    400150: Column004_frag_076
+    400152: Column004_frag_077
+    400154: Column004_frag_078
+    400156: Column004_frag_079
+    400158: Column004_frag_080
+    400160: Column004_frag_081
+    400162: Column004_frag_082
+    400164: Column004_frag_083
+    400166: Column004_frag_084
+    400168: Column004_frag_085
+    400170: Column004_frag_086
+    400172: Column004_frag_087
+    400174: Column004_frag_088
+    400176: Column004_frag_089
+    400178: Column004_frag_090
+    400180: Column004_frag_091
+    400182: Column004_frag_092
+    400184: Column004_frag_093
+    400186: Column004_frag_094
+    400188: Column004_frag_095
+    400190: Column004_frag_096
+    400192: Column004_frag_097
+    400194: Column004_frag_098
+    400196: Column004_frag_099
+    400198: Column004_frag_100
+    400200: Column004_frag_101
+    400202: Column004_frag_102
+    400204: Column004_frag_103
+    400206: Column004_frag_104
+    400208: Column004_frag_105
+    400210: Column004_frag_106
+    400212: Column004_frag_107
+    400214: Column004_frag_108
+    400216: Column004_frag_109
+    400218: Column004_frag_110
+    400220: Column004_frag_111
+    400222: Column004_frag_112
+    400224: Column004_frag_113
+    400226: Column004_frag_114
+    400228: Column004_frag_115
+    400230: Column004_frag_116
+    400232: Column004_frag_117
+    400234: Column004_frag_118
+    400236: Column004_frag_119
+    400238: Column004_frag_120
+    400240: Column004_frag_121
+    400242: Column004_frag_122
+    400244: Column004_frag_123
+    400246: Column004_frag_124
+    400248: Column004_frag_125
+    400250: //RootNode
+    2300000: Column004_frag_001
+    2300002: Column004_frag_002
+    2300004: Column004_frag_003
+    2300006: Column004_frag_004
+    2300008: Column004_frag_005
+    2300010: Column004_frag_006
+    2300012: Column004_frag_007
+    2300014: Column004_frag_008
+    2300016: Column004_frag_009
+    2300018: Column004_frag_010
+    2300020: Column004_frag_011
+    2300022: Column004_frag_012
+    2300024: Column004_frag_013
+    2300026: Column004_frag_014
+    2300028: Column004_frag_015
+    2300030: Column004_frag_016
+    2300032: Column004_frag_017
+    2300034: Column004_frag_018
+    2300036: Column004_frag_019
+    2300038: Column004_frag_020
+    2300040: Column004_frag_021
+    2300042: Column004_frag_022
+    2300044: Column004_frag_023
+    2300046: Column004_frag_024
+    2300048: Column004_frag_025
+    2300050: Column004_frag_026
+    2300052: Column004_frag_027
+    2300054: Column004_frag_028
+    2300056: Column004_frag_029
+    2300058: Column004_frag_030
+    2300060: Column004_frag_031
+    2300062: Column004_frag_032
+    2300064: Column004_frag_033
+    2300066: Column004_frag_034
+    2300068: Column004_frag_035
+    2300070: Column004_frag_036
+    2300072: Column004_frag_037
+    2300074: Column004_frag_038
+    2300076: Column004_frag_039
+    2300078: Column004_frag_040
+    2300080: Column004_frag_041
+    2300082: Column004_frag_042
+    2300084: Column004_frag_043
+    2300086: Column004_frag_044
+    2300088: Column004_frag_045
+    2300090: Column004_frag_046
+    2300092: Column004_frag_047
+    2300094: Column004_frag_048
+    2300096: Column004_frag_049
+    2300098: Column004_frag_050
+    2300100: Column004_frag_051
+    2300102: Column004_frag_052
+    2300104: Column004_frag_053
+    2300106: Column004_frag_054
+    2300108: Column004_frag_055
+    2300110: Column004_frag_056
+    2300112: Column004_frag_057
+    2300114: Column004_frag_058
+    2300116: Column004_frag_059
+    2300118: Column004_frag_060
+    2300120: Column004_frag_061
+    2300122: Column004_frag_062
+    2300124: Column004_frag_063
+    2300126: Column004_frag_064
+    2300128: Column004_frag_065
+    2300130: Column004_frag_066
+    2300132: Column004_frag_067
+    2300134: Column004_frag_068
+    2300136: Column004_frag_069
+    2300138: Column004_frag_070
+    2300140: Column004_frag_071
+    2300142: Column004_frag_072
+    2300144: Column004_frag_073
+    2300146: Column004_frag_074
+    2300148: Column004_frag_075
+    2300150: Column004_frag_076
+    2300152: Column004_frag_077
+    2300154: Column004_frag_078
+    2300156: Column004_frag_079
+    2300158: Column004_frag_080
+    2300160: Column004_frag_081
+    2300162: Column004_frag_082
+    2300164: Column004_frag_083
+    2300166: Column004_frag_084
+    2300168: Column004_frag_085
+    2300170: Column004_frag_086
+    2300172: Column004_frag_087
+    2300174: Column004_frag_088
+    2300176: Column004_frag_089
+    2300178: Column004_frag_090
+    2300180: Column004_frag_091
+    2300182: Column004_frag_092
+    2300184: Column004_frag_093
+    2300186: Column004_frag_094
+    2300188: Column004_frag_095
+    2300190: Column004_frag_096
+    2300192: Column004_frag_097
+    2300194: Column004_frag_098
+    2300196: Column004_frag_099
+    2300198: Column004_frag_100
+    2300200: Column004_frag_101
+    2300202: Column004_frag_102
+    2300204: Column004_frag_103
+    2300206: Column004_frag_104
+    2300208: Column004_frag_105
+    2300210: Column004_frag_106
+    2300212: Column004_frag_107
+    2300214: Column004_frag_108
+    2300216: Column004_frag_109
+    2300218: Column004_frag_110
+    2300220: Column004_frag_111
+    2300222: Column004_frag_112
+    2300224: Column004_frag_113
+    2300226: Column004_frag_114
+    2300228: Column004_frag_115
+    2300230: Column004_frag_116
+    2300232: Column004_frag_117
+    2300234: Column004_frag_118
+    2300236: Column004_frag_119
+    2300238: Column004_frag_120
+    2300240: Column004_frag_121
+    2300242: Column004_frag_122
+    2300244: Column004_frag_123
+    2300246: Column004_frag_124
+    2300248: Column004_frag_125
+    3300000: Column004_frag_001
+    3300002: Column004_frag_002
+    3300004: Column004_frag_003
+    3300006: Column004_frag_004
+    3300008: Column004_frag_005
+    3300010: Column004_frag_006
+    3300012: Column004_frag_007
+    3300014: Column004_frag_008
+    3300016: Column004_frag_009
+    3300018: Column004_frag_010
+    3300020: Column004_frag_011
+    3300022: Column004_frag_012
+    3300024: Column004_frag_013
+    3300026: Column004_frag_014
+    3300028: Column004_frag_015
+    3300030: Column004_frag_016
+    3300032: Column004_frag_017
+    3300034: Column004_frag_018
+    3300036: Column004_frag_019
+    3300038: Column004_frag_020
+    3300040: Column004_frag_021
+    3300042: Column004_frag_022
+    3300044: Column004_frag_023
+    3300046: Column004_frag_024
+    3300048: Column004_frag_025
+    3300050: Column004_frag_026
+    3300052: Column004_frag_027
+    3300054: Column004_frag_028
+    3300056: Column004_frag_029
+    3300058: Column004_frag_030
+    3300060: Column004_frag_031
+    3300062: Column004_frag_032
+    3300064: Column004_frag_033
+    3300066: Column004_frag_034
+    3300068: Column004_frag_035
+    3300070: Column004_frag_036
+    3300072: Column004_frag_037
+    3300074: Column004_frag_038
+    3300076: Column004_frag_039
+    3300078: Column004_frag_040
+    3300080: Column004_frag_041
+    3300082: Column004_frag_042
+    3300084: Column004_frag_043
+    3300086: Column004_frag_044
+    3300088: Column004_frag_045
+    3300090: Column004_frag_046
+    3300092: Column004_frag_047
+    3300094: Column004_frag_048
+    3300096: Column004_frag_049
+    3300098: Column004_frag_050
+    3300100: Column004_frag_051
+    3300102: Column004_frag_052
+    3300104: Column004_frag_053
+    3300106: Column004_frag_054
+    3300108: Column004_frag_055
+    3300110: Column004_frag_056
+    3300112: Column004_frag_057
+    3300114: Column004_frag_058
+    3300116: Column004_frag_059
+    3300118: Column004_frag_060
+    3300120: Column004_frag_061
+    3300122: Column004_frag_062
+    3300124: Column004_frag_063
+    3300126: Column004_frag_064
+    3300128: Column004_frag_065
+    3300130: Column004_frag_066
+    3300132: Column004_frag_067
+    3300134: Column004_frag_068
+    3300136: Column004_frag_069
+    3300138: Column004_frag_070
+    3300140: Column004_frag_071
+    3300142: Column004_frag_072
+    3300144: Column004_frag_073
+    3300146: Column004_frag_074
+    3300148: Column004_frag_075
+    3300150: Column004_frag_076
+    3300152: Column004_frag_077
+    3300154: Column004_frag_078
+    3300156: Column004_frag_079
+    3300158: Column004_frag_080
+    3300160: Column004_frag_081
+    3300162: Column004_frag_082
+    3300164: Column004_frag_083
+    3300166: Column004_frag_084
+    3300168: Column004_frag_085
+    3300170: Column004_frag_086
+    3300172: Column004_frag_087
+    3300174: Column004_frag_088
+    3300176: Column004_frag_089
+    3300178: Column004_frag_090
+    3300180: Column004_frag_091
+    3300182: Column004_frag_092
+    3300184: Column004_frag_093
+    3300186: Column004_frag_094
+    3300188: Column004_frag_095
+    3300190: Column004_frag_096
+    3300192: Column004_frag_097
+    3300194: Column004_frag_098
+    3300196: Column004_frag_099
+    3300198: Column004_frag_100
+    3300200: Column004_frag_101
+    3300202: Column004_frag_102
+    3300204: Column004_frag_103
+    3300206: Column004_frag_104
+    3300208: Column004_frag_105
+    3300210: Column004_frag_106
+    3300212: Column004_frag_107
+    3300214: Column004_frag_108
+    3300216: Column004_frag_109
+    3300218: Column004_frag_110
+    3300220: Column004_frag_111
+    3300222: Column004_frag_112
+    3300224: Column004_frag_113
+    3300226: Column004_frag_114
+    3300228: Column004_frag_115
+    3300230: Column004_frag_116
+    3300232: Column004_frag_117
+    3300234: Column004_frag_118
+    3300236: Column004_frag_119
+    3300238: Column004_frag_120
+    3300240: Column004_frag_121
+    3300242: Column004_frag_122
+    3300244: Column004_frag_123
+    3300246: Column004_frag_124
+    3300248: Column004_frag_125
+    4300000: Column004_frag_001
+    4300002: Column004_frag_002
+    4300004: Column004_frag_003
+    4300006: Column004_frag_004
+    4300008: Column004_frag_005
+    4300010: Column004_frag_006
+    4300012: Column004_frag_007
+    4300014: Column004_frag_008
+    4300016: Column004_frag_009
+    4300018: Column004_frag_010
+    4300020: Column004_frag_011
+    4300022: Column004_frag_012
+    4300024: Column004_frag_013
+    4300026: Column004_frag_014
+    4300028: Column004_frag_015
+    4300030: Column004_frag_016
+    4300032: Column004_frag_017
+    4300034: Column004_frag_018
+    4300036: Column004_frag_019
+    4300038: Column004_frag_020
+    4300040: Column004_frag_021
+    4300042: Column004_frag_022
+    4300044: Column004_frag_023
+    4300046: Column004_frag_024
+    4300048: Column004_frag_025
+    4300050: Column004_frag_026
+    4300052: Column004_frag_027
+    4300054: Column004_frag_028
+    4300056: Column004_frag_029
+    4300058: Column004_frag_030
+    4300060: Column004_frag_031
+    4300062: Column004_frag_032
+    4300064: Column004_frag_033
+    4300066: Column004_frag_034
+    4300068: Column004_frag_035
+    4300070: Column004_frag_036
+    4300072: Column004_frag_037
+    4300074: Column004_frag_038
+    4300076: Column004_frag_039
+    4300078: Column004_frag_040
+    4300080: Column004_frag_041
+    4300082: Column004_frag_042
+    4300084: Column004_frag_043
+    4300086: Column004_frag_044
+    4300088: Column004_frag_045
+    4300090: Column004_frag_046
+    4300092: Column004_frag_047
+    4300094: Column004_frag_048
+    4300096: Column004_frag_049
+    4300098: Column004_frag_050
+    4300100: Column004_frag_051
+    4300102: Column004_frag_052
+    4300104: Column004_frag_053
+    4300106: Column004_frag_054
+    4300108: Column004_frag_055
+    4300110: Column004_frag_056
+    4300112: Column004_frag_057
+    4300114: Column004_frag_058
+    4300116: Column004_frag_059
+    4300118: Column004_frag_060
+    4300120: Column004_frag_061
+    4300122: Column004_frag_062
+    4300124: Column004_frag_063
+    4300126: Column004_frag_064
+    4300128: Column004_frag_065
+    4300130: Column004_frag_066
+    4300132: Column004_frag_067
+    4300134: Column004_frag_068
+    4300136: Column004_frag_069
+    4300138: Column004_frag_070
+    4300140: Column004_frag_071
+    4300142: Column004_frag_072
+    4300144: Column004_frag_073
+    4300146: Column004_frag_074
+    4300148: Column004_frag_075
+    4300150: Column004_frag_076
+    4300152: Column004_frag_077
+    4300154: Column004_frag_078
+    4300156: Column004_frag_079
+    4300158: Column004_frag_080
+    4300160: Column004_frag_081
+    4300162: Column004_frag_082
+    4300164: Column004_frag_083
+    4300166: Column004_frag_084
+    4300168: Column004_frag_085
+    4300170: Column004_frag_086
+    4300172: Column004_frag_087
+    4300174: Column004_frag_088
+    4300176: Column004_frag_089
+    4300178: Column004_frag_090
+    4300180: Column004_frag_091
+    4300182: Column004_frag_092
+    4300184: Column004_frag_093
+    4300186: Column004_frag_094
+    4300188: Column004_frag_095
+    4300190: Column004_frag_096
+    4300192: Column004_frag_097
+    4300194: Column004_frag_098
+    4300196: Column004_frag_099
+    4300198: Column004_frag_100
+    4300200: Column004_frag_101
+    4300202: Column004_frag_102
+    4300204: Column004_frag_103
+    4300206: Column004_frag_104
+    4300208: Column004_frag_105
+    4300210: Column004_frag_106
+    4300212: Column004_frag_107
+    4300214: Column004_frag_108
+    4300216: Column004_frag_109
+    4300218: Column004_frag_110
+    4300220: Column004_frag_111
+    4300222: Column004_frag_112
+    4300224: Column004_frag_113
+    4300226: Column004_frag_114
+    4300228: Column004_frag_115
+    4300230: Column004_frag_116
+    4300232: Column004_frag_117
+    4300234: Column004_frag_118
+    4300236: Column004_frag_119
+    4300238: Column004_frag_120
+    4300240: Column004_frag_121
+    4300242: Column004_frag_122
+    4300244: Column004_frag_123
+    4300246: Column004_frag_124
+    4300248: Column004_frag_125
+    7400000: Column4Frag
+    7400002: Column4Dst
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Column4Frag
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: OnDestructionEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Column004_frag_001
+        weight: 1
+      - path: Column004_frag_002
+        weight: 1
+      - path: Column004_frag_003
+        weight: 1
+      - path: Column004_frag_004
+        weight: 1
+      - path: Column004_frag_005
+        weight: 1
+      - path: Column004_frag_006
+        weight: 1
+      - path: Column004_frag_007
+        weight: 1
+      - path: Column004_frag_008
+        weight: 1
+      - path: Column004_frag_009
+        weight: 1
+      - path: Column004_frag_010
+        weight: 1
+      - path: Column004_frag_011
+        weight: 1
+      - path: Column004_frag_012
+        weight: 1
+      - path: Column004_frag_013
+        weight: 1
+      - path: Column004_frag_014
+        weight: 1
+      - path: Column004_frag_015
+        weight: 1
+      - path: Column004_frag_016
+        weight: 1
+      - path: Column004_frag_017
+        weight: 1
+      - path: Column004_frag_018
+        weight: 1
+      - path: Column004_frag_019
+        weight: 1
+      - path: Column004_frag_020
+        weight: 1
+      - path: Column004_frag_021
+        weight: 1
+      - path: Column004_frag_022
+        weight: 1
+      - path: Column004_frag_023
+        weight: 1
+      - path: Column004_frag_024
+        weight: 1
+      - path: Column004_frag_025
+        weight: 1
+      - path: Column004_frag_026
+        weight: 1
+      - path: Column004_frag_027
+        weight: 1
+      - path: Column004_frag_028
+        weight: 1
+      - path: Column004_frag_029
+        weight: 1
+      - path: Column004_frag_030
+        weight: 1
+      - path: Column004_frag_031
+        weight: 1
+      - path: Column004_frag_032
+        weight: 1
+      - path: Column004_frag_033
+        weight: 1
+      - path: Column004_frag_034
+        weight: 1
+      - path: Column004_frag_035
+        weight: 1
+      - path: Column004_frag_036
+        weight: 1
+      - path: Column004_frag_037
+        weight: 1
+      - path: Column004_frag_038
+        weight: 1
+      - path: Column004_frag_039
+        weight: 1
+      - path: Column004_frag_040
+        weight: 1
+      - path: Column004_frag_041
+        weight: 1
+      - path: Column004_frag_042
+        weight: 1
+      - path: Column004_frag_043
+        weight: 1
+      - path: Column004_frag_044
+        weight: 1
+      - path: Column004_frag_045
+        weight: 1
+      - path: Column004_frag_046
+        weight: 1
+      - path: Column004_frag_047
+        weight: 1
+      - path: Column004_frag_048
+        weight: 1
+      - path: Column004_frag_049
+        weight: 1
+      - path: Column004_frag_050
+        weight: 1
+      - path: Column004_frag_051
+        weight: 1
+      - path: Column004_frag_052
+        weight: 1
+      - path: Column004_frag_053
+        weight: 1
+      - path: Column004_frag_054
+        weight: 1
+      - path: Column004_frag_055
+        weight: 1
+      - path: Column004_frag_056
+        weight: 1
+      - path: Column004_frag_057
+        weight: 1
+      - path: Column004_frag_058
+        weight: 1
+      - path: Column004_frag_059
+        weight: 1
+      - path: Column004_frag_060
+        weight: 1
+      - path: Column004_frag_061
+        weight: 1
+      - path: Column004_frag_062
+        weight: 1
+      - path: Column004_frag_063
+        weight: 1
+      - path: Column004_frag_064
+        weight: 1
+      - path: Column004_frag_065
+        weight: 1
+      - path: Column004_frag_066
+        weight: 1
+      - path: Column004_frag_067
+        weight: 1
+      - path: Column004_frag_068
+        weight: 1
+      - path: Column004_frag_069
+        weight: 1
+      - path: Column004_frag_070
+        weight: 1
+      - path: Column004_frag_071
+        weight: 1
+      - path: Column004_frag_072
+        weight: 1
+      - path: Column004_frag_073
+        weight: 1
+      - path: Column004_frag_074
+        weight: 1
+      - path: Column004_frag_075
+        weight: 1
+      - path: Column004_frag_076
+        weight: 1
+      - path: Column004_frag_077
+        weight: 1
+      - path: Column004_frag_078
+        weight: 1
+      - path: Column004_frag_079
+        weight: 1
+      - path: Column004_frag_080
+        weight: 1
+      - path: Column004_frag_081
+        weight: 1
+      - path: Column004_frag_082
+        weight: 1
+      - path: Column004_frag_083
+        weight: 1
+      - path: Column004_frag_084
+        weight: 1
+      - path: Column004_frag_085
+        weight: 1
+      - path: Column004_frag_086
+        weight: 1
+      - path: Column004_frag_087
+        weight: 1
+      - path: Column004_frag_088
+        weight: 1
+      - path: Column004_frag_089
+        weight: 1
+      - path: Column004_frag_090
+        weight: 1
+      - path: Column004_frag_091
+        weight: 1
+      - path: Column004_frag_092
+        weight: 1
+      - path: Column004_frag_093
+        weight: 1
+      - path: Column004_frag_094
+        weight: 1
+      - path: Column004_frag_095
+        weight: 1
+      - path: Column004_frag_096
+        weight: 1
+      - path: Column004_frag_097
+        weight: 1
+      - path: Column004_frag_098
+        weight: 1
+      - path: Column004_frag_099
+        weight: 1
+      - path: Column004_frag_100
+        weight: 1
+      - path: Column004_frag_101
+        weight: 1
+      - path: Column004_frag_102
+        weight: 1
+      - path: Column004_frag_103
+        weight: 1
+      - path: Column004_frag_104
+        weight: 1
+      - path: Column004_frag_105
+        weight: 1
+      - path: Column004_frag_106
+        weight: 1
+      - path: Column004_frag_107
+        weight: 1
+      - path: Column004_frag_108
+        weight: 1
+      - path: Column004_frag_109
+        weight: 1
+      - path: Column004_frag_110
+        weight: 1
+      - path: Column004_frag_111
+        weight: 1
+      - path: Column004_frag_112
+        weight: 1
+      - path: Column004_frag_113
+        weight: 1
+      - path: Column004_frag_114
+        weight: 1
+      - path: Column004_frag_115
+        weight: 1
+      - path: Column004_frag_116
+        weight: 1
+      - path: Column004_frag_117
+        weight: 1
+      - path: Column004_frag_118
+        weight: 1
+      - path: Column004_frag_119
+        weight: 1
+      - path: Column004_frag_120
+        weight: 1
+      - path: Column004_frag_121
+        weight: 1
+      - path: Column004_frag_122
+        weight: 1
+      - path: Column004_frag_123
+        weight: 1
+      - path: Column004_frag_124
+        weight: 1
+      - path: Column004_frag_125
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Column4Dst
+      takeName: Take 001
+      firstFrame: 75
+      lastFrame: 75.00001
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Column004_frag_001
+        weight: 1
+      - path: Column004_frag_002
+        weight: 1
+      - path: Column004_frag_003
+        weight: 1
+      - path: Column004_frag_004
+        weight: 1
+      - path: Column004_frag_005
+        weight: 1
+      - path: Column004_frag_006
+        weight: 1
+      - path: Column004_frag_007
+        weight: 1
+      - path: Column004_frag_008
+        weight: 1
+      - path: Column004_frag_009
+        weight: 1
+      - path: Column004_frag_010
+        weight: 1
+      - path: Column004_frag_011
+        weight: 1
+      - path: Column004_frag_012
+        weight: 1
+      - path: Column004_frag_013
+        weight: 1
+      - path: Column004_frag_014
+        weight: 1
+      - path: Column004_frag_015
+        weight: 1
+      - path: Column004_frag_016
+        weight: 1
+      - path: Column004_frag_017
+        weight: 1
+      - path: Column004_frag_018
+        weight: 1
+      - path: Column004_frag_019
+        weight: 1
+      - path: Column004_frag_020
+        weight: 1
+      - path: Column004_frag_021
+        weight: 1
+      - path: Column004_frag_022
+        weight: 1
+      - path: Column004_frag_023
+        weight: 1
+      - path: Column004_frag_024
+        weight: 1
+      - path: Column004_frag_025
+        weight: 1
+      - path: Column004_frag_026
+        weight: 1
+      - path: Column004_frag_027
+        weight: 1
+      - path: Column004_frag_028
+        weight: 1
+      - path: Column004_frag_029
+        weight: 1
+      - path: Column004_frag_030
+        weight: 1
+      - path: Column004_frag_031
+        weight: 1
+      - path: Column004_frag_032
+        weight: 1
+      - path: Column004_frag_033
+        weight: 1
+      - path: Column004_frag_034
+        weight: 1
+      - path: Column004_frag_035
+        weight: 1
+      - path: Column004_frag_036
+        weight: 1
+      - path: Column004_frag_037
+        weight: 1
+      - path: Column004_frag_038
+        weight: 1
+      - path: Column004_frag_039
+        weight: 1
+      - path: Column004_frag_040
+        weight: 1
+      - path: Column004_frag_041
+        weight: 1
+      - path: Column004_frag_042
+        weight: 1
+      - path: Column004_frag_043
+        weight: 1
+      - path: Column004_frag_044
+        weight: 1
+      - path: Column004_frag_045
+        weight: 1
+      - path: Column004_frag_046
+        weight: 1
+      - path: Column004_frag_047
+        weight: 1
+      - path: Column004_frag_048
+        weight: 1
+      - path: Column004_frag_049
+        weight: 1
+      - path: Column004_frag_050
+        weight: 1
+      - path: Column004_frag_051
+        weight: 1
+      - path: Column004_frag_052
+        weight: 1
+      - path: Column004_frag_053
+        weight: 1
+      - path: Column004_frag_054
+        weight: 1
+      - path: Column004_frag_055
+        weight: 1
+      - path: Column004_frag_056
+        weight: 1
+      - path: Column004_frag_057
+        weight: 1
+      - path: Column004_frag_058
+        weight: 1
+      - path: Column004_frag_059
+        weight: 1
+      - path: Column004_frag_060
+        weight: 1
+      - path: Column004_frag_061
+        weight: 1
+      - path: Column004_frag_062
+        weight: 1
+      - path: Column004_frag_063
+        weight: 1
+      - path: Column004_frag_064
+        weight: 1
+      - path: Column004_frag_065
+        weight: 1
+      - path: Column004_frag_066
+        weight: 1
+      - path: Column004_frag_067
+        weight: 1
+      - path: Column004_frag_068
+        weight: 1
+      - path: Column004_frag_069
+        weight: 1
+      - path: Column004_frag_070
+        weight: 1
+      - path: Column004_frag_071
+        weight: 1
+      - path: Column004_frag_072
+        weight: 1
+      - path: Column004_frag_073
+        weight: 1
+      - path: Column004_frag_074
+        weight: 1
+      - path: Column004_frag_075
+        weight: 1
+      - path: Column004_frag_076
+        weight: 1
+      - path: Column004_frag_077
+        weight: 1
+      - path: Column004_frag_078
+        weight: 1
+      - path: Column004_frag_079
+        weight: 1
+      - path: Column004_frag_080
+        weight: 1
+      - path: Column004_frag_081
+        weight: 1
+      - path: Column004_frag_082
+        weight: 1
+      - path: Column004_frag_083
+        weight: 1
+      - path: Column004_frag_084
+        weight: 1
+      - path: Column004_frag_085
+        weight: 1
+      - path: Column004_frag_086
+        weight: 1
+      - path: Column004_frag_087
+        weight: 1
+      - path: Column004_frag_088
+        weight: 1
+      - path: Column004_frag_089
+        weight: 1
+      - path: Column004_frag_090
+        weight: 1
+      - path: Column004_frag_091
+        weight: 1
+      - path: Column004_frag_092
+        weight: 1
+      - path: Column004_frag_093
+        weight: 1
+      - path: Column004_frag_094
+        weight: 1
+      - path: Column004_frag_095
+        weight: 1
+      - path: Column004_frag_096
+        weight: 1
+      - path: Column004_frag_097
+        weight: 1
+      - path: Column004_frag_098
+        weight: 1
+      - path: Column004_frag_099
+        weight: 1
+      - path: Column004_frag_100
+        weight: 1
+      - path: Column004_frag_101
+        weight: 1
+      - path: Column004_frag_102
+        weight: 1
+      - path: Column004_frag_103
+        weight: 1
+      - path: Column004_frag_104
+        weight: 1
+      - path: Column004_frag_105
+        weight: 1
+      - path: Column004_frag_106
+        weight: 1
+      - path: Column004_frag_107
+        weight: 1
+      - path: Column004_frag_108
+        weight: 1
+      - path: Column004_frag_109
+        weight: 1
+      - path: Column004_frag_110
+        weight: 1
+      - path: Column004_frag_111
+        weight: 1
+      - path: Column004_frag_112
+        weight: 1
+      - path: Column004_frag_113
+        weight: 1
+      - path: Column004_frag_114
+        weight: 1
+      - path: Column004_frag_115
+        weight: 1
+      - path: Column004_frag_116
+        weight: 1
+      - path: Column004_frag_117
+        weight: 1
+      - path: Column004_frag_118
+        weight: 1
+      - path: Column004_frag_119
+        weight: 1
+      - path: Column004_frag_120
+        weight: 1
+      - path: Column004_frag_121
+        weight: 1
+      - path: Column004_frag_122
+        weight: 1
+      - path: Column004_frag_123
+        weight: 1
+      - path: Column004_frag_124
+        weight: 1
+      - path: Column004_frag_125
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
