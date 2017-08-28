@@ -50,6 +50,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     private void AddEvents()
     {
         EventManager.AddEventListener("Attack", OnAttack);
+        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
     }
     #endregion
 
@@ -143,6 +144,12 @@ public class PlayerMovement : Photon.MonoBehaviour {
         isRolling = false;
         EventManager.DispatchEvent("RollingAnimation", new object[] { this.gameObject.name, isRolling });
         if (!PhotonNetwork.offlineMode) photonView.RPC("SetRollingOff", PhotonTargets.All);
+    }
+
+    private void OnCharacterDamaged(params object[] paramsContainer)
+    {
+        if (this.gameObject.name == (string)paramsContainer[0])
+            isRunning = false;
     }
     #endregion
 

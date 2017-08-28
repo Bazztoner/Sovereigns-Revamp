@@ -92,7 +92,7 @@ public class Player1Input : MonoBehaviour {
         _canMove = !_pc.isAttacking && !_pm.isEvading && !_ps.isCastingSpell && _gameInCourse && !_pst.isDead;
 
         //Condition to attack
-        _canAttack = _pc.isAttackAvailable && !_pm.isEvading && !_ps.isCastingSpell && !_ps.gtHasObject && _gameInCourse;
+        _canAttack = !_pm.isEvading && !_ps.isCastingSpell && !_ps.gtHasObject && _gameInCourse;
 
         //Gets the movement direction
         _direction = readJoystick ? new Vector3(InputManager.instance.GetJoystickHorizontalMovement(), 0f, InputManager.instance.GetJoystickVerticalMovement()) 

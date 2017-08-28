@@ -492,14 +492,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.14572865
-        functionName: OnSyncTime
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
@@ -1915,15 +1908,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.16976748
-        functionName: OnSyncTime
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.8250733
-        functionName: OnIddleEnter
+      - time: 0.3289817
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -2281,15 +2267,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.05132651
-        functionName: OnSyncTime
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.87391645
-        functionName: OnIddleEnter
+      - time: 0.36292425
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -2647,8 +2626,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.87918335
-        functionName: OnIddleEnter
+      - time: 0.48825064
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -3006,15 +2985,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.30974686
-        functionName: OnSyncTime
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.9440808
-        functionName: OnIddleEnter
+      - time: 0.29765016
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -3372,15 +3344,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.25462177
-        functionName: OnSyncTime
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.67899144
-        functionName: OnIddleEnter
+      - time: 0.16971274
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -3738,8 +3703,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.94974875
-        functionName: OnIddleEnter
+      - time: 0.3211482
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -4097,15 +4062,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.23953474
-        functionName: OnSyncTime
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.97441816
-        functionName: OnIddleEnter
+      - time: 0.48041844
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -4684,8 +4642,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9357949
-        functionName: OnIddleEnter
+      - time: 0.22193135
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

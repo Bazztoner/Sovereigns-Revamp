@@ -7,34 +7,26 @@ public class PlayerCombat : Photon.MonoBehaviour {
     #region Variables
     public int lightAttackDamage = 6;
     public int heavyAttackDamage = 16;
-
-    [HideInInspector]
-    public bool isAttackAvailable = true;
+    
     [HideInInspector]
     public bool isAttacking = false;
     [HideInInspector]
     public bool isBlocking = false;
-    [HideInInspector]
-    public bool isLightAttack = false;
-    [HideInInspector]
-    public bool isHeavyAttack = false;
-    [HideInInspector]
-    public bool x = false;
-    [HideInInspector]
-    public bool y = false;
     #endregion
+
+    void Start()
+    {
+        EventManager.AddEventListener("IdleEnter", OnIdleEnter);
+        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
+    }
 
     #region Actions
     /// <summary>Makes a light attack</summary>
     public void DoLightAttack()
     {
-        isAttackAvailable = false;
         isAttacking = true;
-        isLightAttack = true;
-        x = true;
-
-        EventManager.DispatchEvent("AttackEnter", new object[] { this.gameObject.name, lightAttackDamage });
-        EventManager.DispatchEvent("X", new object[] { this.gameObject.name, x });
+        
+        EventManager.DispatchEvent("X", new object[] { this.gameObject.name, true });
 
         SetAttack();
 
@@ -44,13 +36,9 @@ public class PlayerCombat : Photon.MonoBehaviour {
     /// <summary>Makes a heavy attack</summary>
     public void DoHeavyAttack()
     {
-        isAttackAvailable = false;
         isAttacking = true;
-        isHeavyAttack = true;
-        y = true;
-
-        EventManager.DispatchEvent("AttackEnter", new object[] { this.gameObject.name, heavyAttackDamage });
-        EventManager.DispatchEvent("Y", new object[] { this.gameObject.name, y });
+        
+        EventManager.DispatchEvent("Y", new object[] { this.gameObject.name, true });
 
         SetAttack();
 
@@ -60,9 +48,8 @@ public class PlayerCombat : Photon.MonoBehaviour {
     /// <summary>Informs that an attack is being made to cancel other animations</summary>
     private void SetAttack()
     {
-        EventManager.DispatchEvent("Attacking");
-        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking });
         isBlocking = false;
+        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking });
     }
 
     /// <summary>Makes the character block</summary>
@@ -81,31 +68,23 @@ public class PlayerCombat : Photon.MonoBehaviour {
     #endregion
 
     #region Animation Events
-    private void OnIddleEnter()
+    private void OnIdleEnter(params object[] paramsContainer)
     {
-        x = false;
-        y = false;
-        isAttackAvailable = true;
-        isLightAttack = false;
-        isHeavyAttack = false;
         isAttacking = false;
-
-        EventManager.DispatchEvent("X", new object[] { this.gameObject.name, x });
-        EventManager.DispatchEvent("Y", new object[] { this.gameObject.name, y });
-
-        if (!PhotonNetwork.offlineMode) photonView.RPC("SetBothOff", PhotonTargets.All);
     }
 
-    private void OnSyncTime()
+    private void OnAttackExit()
     {
-        x = false;
-        y = false;
-        isAttackAvailable = true;
+        EventManager.DispatchEvent("AttackExit");
+    }
 
-        EventManager.DispatchEvent("X", new object[] { this.gameObject.name, x });
-        EventManager.DispatchEvent("Y", new object[] { this.gameObject.name, y });
-
-        if (!PhotonNetwork.offlineMode) photonView.RPC("SetBothOff", PhotonTargets.All);
+    private void OnCharacterDamaged(params object[] paramsContainer)
+    {
+        if (this.gameObject.name == (string)paramsContainer[0])
+        {
+            isAttacking = false;
+            isBlocking = false;
+        }
     }
     #endregion
 }

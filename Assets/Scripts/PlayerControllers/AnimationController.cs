@@ -22,6 +22,7 @@ public class AnimationController : MonoBehaviour {
         EventManager.AddEventListener("Y", OnY);
         EventManager.AddEventListener("IsDead", OnIsDead);
         EventManager.AddEventListener("IsDamaged", OnIsDamaged);
+        EventManager.AddEventListener("GameFinished", OnGameFinished);
     }
 
     /// <summary>Running animations</summary>
@@ -76,5 +77,23 @@ public class AnimationController : MonoBehaviour {
     {
         if(this.gameObject.name == (string)paramsContainer[0])
             _anim.SetBool("isDamaged", (bool)paramsContainer[1]);
+
+        //Esto en teoria no es realmente necesario, pero lo hago para estar seguro.
+        if ((bool)paramsContainer[1])
+        {
+            _anim.SetBool("runForward", false);
+            _anim.SetBool("runRight", false);
+            _anim.SetBool("runLeft", false);
+            _anim.SetBool("isRolling", false);
+            _anim.SetBool("isBlocking", false);
+        }
+    }
+
+    /// <summary>Makes the character stop running after the match finished</summary>
+    private void OnGameFinished(params object[] paramsContainer)
+    {
+        _anim.SetBool("runForward", false);
+        _anim.SetBool("runRight", false);
+        _anim.SetBool("runLeft", false);
     }
 }

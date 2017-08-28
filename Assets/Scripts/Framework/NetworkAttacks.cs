@@ -24,16 +24,6 @@ public class NetworkAttacks : Photon.MonoBehaviour {
     }
 
     [PunRPC]
-    public void SetBothOff()
-    {
-        if (_anim != null)
-        {
-            _anim.SetBool("X", false);
-            _anim.SetBool("Y", false);
-        }
-    }
-
-    [PunRPC]
     public void SetRollingOn()
     {
         if (_anim != null)

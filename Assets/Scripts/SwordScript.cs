@@ -12,6 +12,7 @@ public class SwordScript : MonoBehaviour {
     void Start()
     {
         EventManager.AddEventListener("AttackEnter", OnAttackEnter);
+        EventManager.AddEventListener("AttackExit", OnAttackExit);
     }
 
     private void OnAttackEnter(params object[] paramsContainer)
@@ -31,6 +32,12 @@ public class SwordScript : MonoBehaviour {
         }
     }
 
+    private void OnAttackExit(params object[] paramsContainer)
+    {
+        _isDetecting = false;
+        _appliedDamage = 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (_isDetecting && other.gameObject.layer == _hitBoxLayer)
@@ -40,7 +47,7 @@ public class SwordScript : MonoBehaviour {
             
             _isDetecting = false;
             _appliedDamage = 0;
-            //EventManager.DispatchEvent("DamageMade", new object[] { damage });
+            
             if (!PhotonNetwork.offlineMode) other.gameObject.GetComponentInParent<DataSync>().photonView.RPC("TakeDamage", PhotonTargets.All, damage, PhotonNetwork.player.NickName);
             else if (GameManager.screenDivided) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage);
             else if (other.gameObject.GetComponentInParent<Enemy>() != null) other.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);

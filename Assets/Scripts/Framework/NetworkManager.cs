@@ -90,7 +90,7 @@ public class NetworkManager : MonoBehaviour {
         //CAMBIO: ESTABA EN FALSE, LO PASAMOS A TRUE
         myCharacter.GetComponent<NetworkAttacks>().enabled = true;
         myCharacter.GetComponentInChildren<SwordScript>().enabled = true;
-        myCharacter.GetComponent<Rigidbody>().isKinematic = false;
+        myCharacter.GetComponent<Rigidbody>().isKinematic = true;
         myCharacter.GetComponent<PlayerStats>().Initialize();
         myCharacter.GetComponent<Animator>().applyRootMotion = true;
     }
