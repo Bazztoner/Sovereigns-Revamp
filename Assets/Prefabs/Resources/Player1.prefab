@@ -4069,7 +4069,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65009866070491358
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4367,6 +4367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09212ce3b0055754395d00b30be36ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readJoystick: 0
 --- !u!114 &114631459315196924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4890,7 +4891,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1321182252190106}
   serializedVersion: 5
   lengthInSec: 1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -7527,7 +7528,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1065473930620584}
   serializedVersion: 5
   lengthInSec: 0.5
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
