@@ -7815,7 +7815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00002007409, y: 0}
+  m_AnchoredPosition: {x: 0.00002007409, y: -30.93}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &122776158
@@ -49640,7 +49640,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!95 &780230189
 Animator:
   serializedVersion: 3
@@ -69439,6 +69439,10 @@ Prefab:
     - target: {fileID: 4263530868206446, guid: 0437a7b35645df444bd6ac00f88559d4, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013065946338316, guid: 0437a7b35645df444bd6ac00f88559d4, type: 2}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0437a7b35645df444bd6ac00f88559d4, type: 2}
@@ -94243,6 +94247,7 @@ MonoBehaviour:
   minimumY: -35
   maximumY: 10
   rotateSpeed: 1
+  smoothPercentage: 0.1
   lockOnDistance: 0
   destructibleDistance: 15
   sensivity: 1
@@ -99775,7 +99780,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!95 &1586890273
 Animator:
   serializedVersion: 3
@@ -105093,7 +105098,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1671446268}
   serializedVersion: 5
   lengthInSec: 10
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -125575,10 +125580,11 @@ MonoBehaviour:
   minimumY: -35
   maximumY: 10
   rotateSpeed: 1
+  smoothPercentage: 0.2
   lockOnDistance: 0
   destructibleDistance: 15
   sensivity: 1
-  showProjections: 0
+  showProjections: 1
   initialPosition: {x: -1.08, y: 1.92, z: -2.86}
   destructibleColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &1974147983
@@ -133885,10 +133891,11 @@ MonoBehaviour:
   minimumY: -35
   maximumY: 10
   rotateSpeed: 1
+  smoothPercentage: 0.2
   lockOnDistance: 0
   destructibleDistance: 15
   sensivity: 1
-  showProjections: 0
+  showProjections: 1
   initialPosition: {x: -1.08, y: 1.92, z: -2.86}
   destructibleColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &2125515577

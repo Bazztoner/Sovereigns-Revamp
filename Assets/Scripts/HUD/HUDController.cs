@@ -34,17 +34,17 @@ public class HUDController : Photon.MonoBehaviour
 
     public void OnOnlineMode()
     {
-        EventManager.DispatchEvent("DoConnect");
+        EventManager.DispatchEvent("DoConnect", new object[] { true });
     }
 
     public void OnOfflineMode()
     {
-        EventManager.DispatchEvent("DoNotConnect");
+        EventManager.DispatchEvent("DoNotConnect", new object[] { true });
     }
 
     public void OnDividedScree()
     {
-        EventManager.DispatchEvent("DividedScreen");
+        EventManager.DispatchEvent("DividedScreen", new object[] { false });
         GameManager.screenDivided = true;
     }
 
