@@ -67,16 +67,28 @@ public class Player1Input : MonoBehaviour {
 
     private void FindCamera()
     {
+        #region Cambios Iván 29/8
+        //Lo que cambié fue: Agregué cullLayer y agregué una sobrecarga en el init del CamRotationController para cullear la máscara
+        int cullLayer = default(int);
         if (GameManager.screenDivided)
         {
             if (this.gameObject.name == "Player1")
+            {
                 _cam = GameObject.Find("CameraPlayer1").transform;
+                cullLayer = Utilities.IntLayers.VISIBLETOP2;
+            }
             else if (this.gameObject.name == "Player2")
+            {
                 _cam = GameObject.Find("CameraPlayer2").transform;
+                cullLayer = Utilities.IntLayers.VISIBLETOP1;
+            }
         }
         else _cam = GameObject.Find("CameraContainer").transform;
 
-        _cam.GetComponent<CamRotationController>().Init(this.transform, readJoystick);
+        if (cullLayer != default(int)) _cam.GetComponent<CamRotationController>().Init(this.transform, readJoystick, cullLayer);
+        else _cam.GetComponent<CamRotationController>().Init(this.transform, readJoystick);
+
+        #endregion
     }
 
     private void LockCursor()
@@ -207,7 +219,7 @@ public class Player1Input : MonoBehaviour {
     #region Skills
     private void CheckSkills()
     {
-        if (_canMove && !GameManager.screenDivided)
+        if (_canMove /*&& !GameManager.screenDivided*/)
         {
             if (readJoystick)
             {

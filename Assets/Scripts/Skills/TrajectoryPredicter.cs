@@ -26,7 +26,7 @@ public class TrajectoryPredicter : MonoBehaviour
 
     public bool _trailActivated;
 
-    void Start()
+    public void Init(TelekineticObject tgt)
     {
         EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
         EventManager.AddEventListener("TelekinesisObjectLaunched", OnObjectLaunched);
@@ -35,25 +35,36 @@ public class TrajectoryPredicter : MonoBehaviour
 
         ln.enabled = false;
 
-        target = GetComponentInParent<TelekineticObject>();
-
+        target = tgt;
     }
 
     void OnObjectPulled(object[] paramsContainer)
     {
-        var target = (TelekineticObject)paramsContainer[2];
-        if (target.gameObject == gameObject)
+        var tgt = (TelekineticObject)paramsContainer[2];
+
+        int mask = default(int);
+        if (GameManager.screenDivided)
         {
-            _trailActivated = true;
+            var trn = (Transform)paramsContainer[0];
+            mask = trn.GetComponentInParent<Player1Input>().gameObject.name == "Player1" ?
+                       Utilities.IntLayers.VISIBLETOP1 : Utilities.IntLayers.VISIBLETOP2;
+        }
+
+       
+        if (tgt == target)
+        {
+            if (GameManager.screenDivided) gameObject.layer = mask;
+             _trailActivated = true;
             ActivateRendering(_trailActivated);
         }
     }
 
     void OnObjectLaunched(object[] paramsContainer)
     {
-        var target = (TelekineticObject)paramsContainer[2];
-        if (target.gameObject == gameObject)
+        var tgt = (TelekineticObject)paramsContainer[2];
+        if (tgt == target)
         {
+            if (GameManager.screenDivided) gameObject.layer = Utilities.IntLayers.VISIBLETOBOTH;
             _trailActivated = false;
             ActivateRendering(_trailActivated);
         }
@@ -66,7 +77,7 @@ public class TrajectoryPredicter : MonoBehaviour
 
     void FixedUpdate()
     {
-        SimulatePath();
+        if (ln.enabled) SimulatePath();
     }
 
     /// <summary>

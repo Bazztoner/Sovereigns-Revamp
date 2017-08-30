@@ -68,7 +68,7 @@ public class Blink : ISpell
         var maxDistance = float.MaxValue;
         Transform to = default(Transform);
 
-        foreach (var spot in _enemy.GetComponent<PlayerBlinkSpots>().blinkSpots)
+        foreach (var spot in _enemy.GetComponentInChildren<PlayerBlinkSpots>().blinkSpots)
         {
             var actualDistance = Vector3.Distance(_me.transform.position, spot.transform.position);
 

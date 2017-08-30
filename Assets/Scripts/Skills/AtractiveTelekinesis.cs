@@ -58,6 +58,84 @@ public class AtractiveTelekinesis : ISpell
 
     void GetObject(Transform me)
     {
+        var camContainter = me.GetComponentInParent<Player1Input>().GetCamera;
+        _target = camContainter.CurrentTarget;
+
+        if (_target == null) return;
+
+        if (_target.isAlive) PullObject(camContainter);
+       
+    }
+
+    void PullObject(CamRotationController cam)
+    {
+        if (PhotonNetwork.offlineMode) _target.DestroyObject(cam.transform.forward, cam.AngleVision);
+        else _target.photonView.RPC("RpcDestroy", PhotonTargets.All, cam.transform.forward, cam.AngleVision, PhotonNetwork.player.NickName);
+
+        _target = null;
+        _hasObject = false;
+
+        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
+    }
+
+    void PullObject()
+    {
+        var cam = GameObject.FindObjectOfType<CamRotationController>();
+        _target = cam.CurrentTarget;
+
+        if (PhotonNetwork.offlineMode) _target.DestroyObject(cam.transform.forward, cam.AngleVision);
+        else _target.photonView.RPC("RpcDestroy", PhotonTargets.All, cam.transform.forward, cam.AngleVision, PhotonNetwork.player.NickName);
+
+        _target = null;
+        _hasObject = false;
+
+        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
+    }
+
+    #region "Getters"
+    public float CastTime() 
+    {
+        return _castTime;
+    }
+
+    public int GetManaCost()
+    {
+        return manaCost;
+    }
+
+    public void EnterInCooldown()
+    {
+        _inSpellCooldown = true;
+    }
+    public void ExitFromCooldown()
+    {
+        _inSpellCooldown = false;
+    }
+    public bool IsInCooldown()
+    {
+        return _inSpellCooldown;
+    }
+
+    public float CooldownTime()
+    {
+        return _cooldown;
+    }
+
+    public CastType GetCastType()
+    {
+        return _castType;
+    }
+    #endregion
+
+    #region Deprecated Methods
+    [System.Obsolete]
+    public void Init(PlayerMovement character)
+    {
+        throw new System.Exception("Not used");
+    }
+
+    /*void GetObject(Transform me)
+    {
         var objs = new List<DestructibleObject>();
 
         foreach (var item in _destructObjs)
@@ -104,75 +182,6 @@ public class AtractiveTelekinesis : ISpell
         var camContainter = me.GetComponentInParent<Player1Input>().GetCamera;
 
         PullObject(camContainter);
-    }
-
-    void PullObject()
-    {
-        //TODO: Necesito la referencia a la cámara que usa el jugador, no buscarla.
-        //Posiblemente el cálculo de forward de GetObject se deba hacer teniendo en cuenta el forward de la cam
-        var cam = GameObject.FindObjectOfType<CamRotationController>();
-        _target = cam.CurrentTarget;
-
-        if (PhotonNetwork.offlineMode) _target.DestroyObject(cam.transform.forward, cam.AngleVision);
-        else _target.photonView.RPC("RpcDestroy", PhotonTargets.All, cam.transform.forward, cam.AngleVision, PhotonNetwork.player.NickName);
-
-        _target = null;
-        _hasObject = false;
-
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
-    }
-
-    void PullObject(CamRotationController cam)
-    {
-        if (PhotonNetwork.offlineMode) _target.DestroyObject(cam.transform.forward, cam.AngleVision);
-        else _target.photonView.RPC("RpcDestroy", PhotonTargets.All, cam.transform.forward, cam.AngleVision, PhotonNetwork.player.NickName);
-
-        _target = null;
-        _hasObject = false;
-
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
-    }
-
-    #region "Getters"
-    public float CastTime() //TODO: Lo mismo que en el de repulsive, usa GETTERS.
-    {
-        return _castTime;
-    }
-
-    public int GetManaCost()
-    {
-        return manaCost;
-    }
-
-    public void EnterInCooldown()
-    {
-        _inSpellCooldown = true;
-    }
-    public void ExitFromCooldown()
-    {
-        _inSpellCooldown = false;
-    }
-    public bool IsInCooldown()
-    {
-        return _inSpellCooldown;
-    }
-
-    public float CooldownTime()
-    {
-        return _cooldown;
-    }
-
-    public CastType GetCastType()
-    {
-        return _castType;
-    }
-    #endregion
-
-    #region Deprecated Methods
-    [System.Obsolete]
-    public void Init(PlayerMovement character)
-    {
-        throw new System.Exception("Not used");
-    }
+    }*/
     #endregion
 }

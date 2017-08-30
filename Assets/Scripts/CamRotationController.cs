@@ -10,7 +10,7 @@ public class CamRotationController : MonoBehaviour
     public float minimumY = -45f;
     public float maximumY = 15f;
     public float rotateSpeed = 0.9f;
-    public float smoothPercentage = 0.2f;
+    public float smoothPercentage = 0.6f;
     public float lockOnDistance;
     public float destructibleDistance = 15f;
     public float sensivity;
@@ -47,6 +47,11 @@ public class CamRotationController : MonoBehaviour
         get { return _currentTarget; }
     }
 
+	public Camera GetCamera
+    {
+        get { return _cam; }
+    }
+	
     public float AngleVision
     {
         get { return _angleVision; }
@@ -79,6 +84,19 @@ public class CamRotationController : MonoBehaviour
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
+    }
+
+    public void Init(Transform charac, bool readJoystick, int cullLayer)
+    {
+        _character = charac;
+        _readJoystick = readJoystick;
+        if (_readJoystick) sensivity *= 4;
+        else sensivity = 0.1f;
+        transform.position = _character.position;
+        transform.rotation = _character.rotation;
+        if (_cam == null) _cam = GetComponentInChildren<Camera>();
+        _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
+        _cam.cullingMask &= ~(1 << cullLayer);
     }
 
     private void AddEvents()
@@ -278,52 +296,6 @@ public class CamRotationController : MonoBehaviour
             else _keepReadjusting = false;   
         }
     }
-    #endregion
-
-    #region Comment
-    /*
-    /// <summary>
-    /// Test
-    /// </summary>
-    public DestructibleObject HighlightTarget()
-    {
-        List<DestructibleObject> inRangeObj = DestructibleObject.allObjs.Where(x => x.isAlive && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
-                                                                 && x.GetComponentInChildren<Renderer>().isVisible)
-                                                                 .ToList<DestructibleObject>();
-        DestructibleObject closest;
-        if (inRangeObj.Count() > 0)
-        {
-            closest = inRangeObj[0];
-            float angle = Vector3.Angle(transform.forward, (closest.transform.position - transform.position).normalized);
-            float tempAngle;
-
-            foreach (var dest in inRangeObj)
-            {
-                tempAngle = Vector3.Angle(transform.forward, (dest.transform.position - transform.position).normalized);
-
-                if (tempAngle < angle)
-                {
-                    closest = dest;
-                    angle = tempAngle;
-                }
-            }
-
-            if (_currentTarget == null)
-            {
-                _currentTarget = closest;
-                MakeVisible(_currentTarget, true);
-            }
-
-            if (closest != _currentTarget)
-            {
-                MakeVisible(_currentTarget, false);
-                _currentTarget = closest;
-                MakeVisible(_currentTarget, true);
-            }
-        }
-
-        return _currentTarget;
-    }*/
     #endregion
 
     #region Highlight

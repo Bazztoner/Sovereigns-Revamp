@@ -71,8 +71,29 @@ public class TelekineticObject : Photon.MonoBehaviour
 
     void Start()
     {
-        gameObject.AddComponent<TrajectoryPredicter>();
-        predicter = GetComponent<TrajectoryPredicter>();
+        EventManager.AddEventListener("DividedScreen", OnDividedScreen);
+
+        var tp = GameObject.Instantiate(Resources.Load("Spells/Dummies/TrayectoryDummy") as GameObject);
+        tp.transform.SetParent(transform);
+        tp.transform.localPosition = Vector3.zero;
+        predicter = tp.GetComponent<TrajectoryPredicter>();
+        predicter.Init(this);
+    }
+
+    void OnDividedScreen(object[] paramsContainer)
+    {
+        EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
+    }
+
+    void OnObjectPulled(object[] paramsContainer)
+    {
+        var tgt = (TelekineticObject)paramsContainer[2];
+        if (tgt.gameObject == gameObject)
+        {
+            var trn = (Transform)paramsContainer[0];
+            var cam = trn.GetComponentInParent<Player1Input>().GetCamera;
+            _cam = cam.GetCamera;
+        }
     }
 
     void TakeDamage()

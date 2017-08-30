@@ -143,7 +143,7 @@ public class GravitationalTelekinesis : ISpell
                                                               {
                                                                    skillPos,
                                                                    skillPos.GetComponentInParent<PlayerParticles>(),
-                                                                    _target
+                                                                   _target
                                                               }
                                   );
 

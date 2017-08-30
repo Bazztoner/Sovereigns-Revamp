@@ -23,11 +23,11 @@ public class HUDController : Photon.MonoBehaviour
     void Start()
     {
         GetEverything();
-        EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
+        /*EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
         EventManager.AddEventListener("ManaUpdate", ApplyManaChanges);
         EventManager.AddEventListener("SpellCooldown", OnSpellCooldown);
         EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
-        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
+        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);*/
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         //EventManager.AddEventListener("DamageMade", OnDamageMade);
     }
@@ -35,11 +35,23 @@ public class HUDController : Photon.MonoBehaviour
     public void OnOnlineMode()
     {
         EventManager.DispatchEvent("DoConnect", new object[] { true });
+		
+		EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
+        EventManager.AddEventListener("ManaUpdate", ApplyManaChanges);
+        EventManager.AddEventListener("SpellCooldown", OnSpellCooldown);
+        EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
+        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
     }
 
     public void OnOfflineMode()
     {
         EventManager.DispatchEvent("DoNotConnect", new object[] { true });
+		
+		EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
+        EventManager.AddEventListener("ManaUpdate", ApplyManaChanges);
+        EventManager.AddEventListener("SpellCooldown", OnSpellCooldown);
+        EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
+        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
     }
 
     public void OnDividedScree()

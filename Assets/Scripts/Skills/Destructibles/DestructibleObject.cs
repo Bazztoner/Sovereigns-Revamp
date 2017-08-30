@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -33,6 +35,27 @@ public class DestructibleObject : Photon.MonoBehaviour
         if (allObjs == null) allObjs = new List<DestructibleObject>();
         allObjs.Add(this);
         isAlive = true;
+
+        //EventManager.AddEventListener("DividedScreen", OnDividedScreen);
+    }
+
+    void OnDividedScreen(object[] paramsContainer)
+    {
+        var changeList = allObjs.Select(x => x.GetComponentInChildren<DestructibleImpactArea>());
+
+        var visited = new HashSet<GameObject>();
+
+        foreach (var d in changeList)
+        {
+            if (!visited.Contains(d.gameObject))
+            {
+                d.gameObject.layer = Utilities.IntLayers.VISIBLETOP1;
+                var newDestImpactArea = GameObject.Instantiate(d.gameObject, d.transform.parent);
+                newDestImpactArea.gameObject.layer = Utilities.IntLayers.VISIBLETOP2;
+                visited.Add(d.gameObject);
+            }
+        }
+
     }
 
     public void TakeDamage(int damage)
@@ -52,8 +75,11 @@ public class DestructibleObject : Photon.MonoBehaviour
         if (destructibleType == DestructibleType.DESTRUCTIBLE) GetComponentInChildren<Collider>().isTrigger = true;
 
         isAlive = false;
-        var wf = GetComponentInChildren<DestructibleImpactArea>();
-        if (wf != null) wf.SetVisible(false);
+        var wf = GetComponentsInChildren<DestructibleImpactArea>();
+        foreach (var item in wf)
+        {
+            if (item != null) item.SetVisible(false);
+        }
     }
 
     void CheckRotation(Vector3 rot, float angle)
@@ -113,7 +139,7 @@ public class DestructibleObject : Photon.MonoBehaviour
 
     void MARTINNOTEMEENOJES()
     {
-        var rnd = Random.Range(0, destructionAngles.Length);
+        var rnd = UnityEngine.Random.Range(0, destructionAngles.Length);
         transform.Rotate(new Vector3(0, destructionAngles[rnd]));
     }
 }

@@ -23,9 +23,9 @@ TagManager:
   - Player
   - DestructibleObject
   - Floor
-  - 
-  - 
-  - 
+  - VisibleToP1
+  - VisibleToP2
+  - VisibleBoth
   - 
   - 
   - 
