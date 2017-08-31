@@ -147,5 +147,7 @@ public class DestructibleObject : Photon.MonoBehaviour
 public enum DestructibleType
 {
     OBSTRUCTIBLE,
-    DESTRUCTIBLE
+    DESTRUCTIBLE,
+    TRANSITION,
+    Count
 }

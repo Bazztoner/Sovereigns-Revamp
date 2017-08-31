@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PhotonView))]
-public class GameManager : Photon.MonoBehaviour {
+public class GameManager : Photon.MonoBehaviour
+{
 
     private bool _isGameStarted = false;
 

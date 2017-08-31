@@ -28,6 +28,10 @@ public class PlayerMovement : Photon.MonoBehaviour {
     public bool isRolling;
     #endregion
 
+    #region Cambios Iván 31/8
+    public Transform Enemy { get { return _enemy; } }
+    #endregion
+
     #region Initialization
     private void InitializeVariables()
     {

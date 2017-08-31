@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +37,15 @@ public class Player1Input : MonoBehaviour {
         Initialize();
         LockCursor();
         EventManager.AddEventListener("GameFinished", OnGameFinished);
+
+        #region Cambios Iván 31/8
+        EventManager.AddEventListener("TransitionBlockInputs", OnTransition);
+        #endregion
+    }
+
+    void OnTransition(object[] paramsContainer)
+    {
+        _gameInCourse = (bool)paramsContainer[0];
     }
 
     void Update()
