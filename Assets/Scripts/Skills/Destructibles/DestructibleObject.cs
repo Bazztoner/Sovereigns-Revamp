@@ -96,7 +96,8 @@ public class DestructibleObject : Photon.MonoBehaviour
             }
         }
 
-        transform.rotation = Quaternion.Euler(vectorRot);
+        if((this.gameObject.name == "SingleDoor" || this.gameObject.name == "SingleDoor (1)") && Vector3.Angle(this.transform.forward, rot) >= 90) transform.forward *= -1;
+        else transform.rotation = Quaternion.Euler(vectorRot);
     }
 
     public void DestroyObject(Vector3 rot, float angle)

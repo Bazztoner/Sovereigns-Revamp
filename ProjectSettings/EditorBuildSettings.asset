@@ -7,10 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Scene/Game.unity
-    guid: 7911338233a61f642877127a76c12cad
   - enabled: 0
     path: Assets/Scene/Network.unity
-    guid: 00a9003472f23a744b1090a99d4f6971
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/NetworkTest.unity
-    guid: b30cd6f1968aaf44890afd27f17f3c9f
+  - enabled: 1
+    path: Assets/Scene/HeavenTempleTest.unity
