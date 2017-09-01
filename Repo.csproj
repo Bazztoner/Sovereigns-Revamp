@@ -248,6 +248,13 @@
     <Compile Include="Assets\Scripts\SwordScript.cs" />
     <Compile Include="Assets\Scripts\Temp\Debris.cs" />
     <Compile Include="Assets\Scripts\Temp\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Temp\LevelTransitions\LevelTransition.cs" />
+    <Compile Include="Assets\Scripts\Temp\LevelTransitions\TransitionManager.cs" />
+    <Compile Include="Assets\Scripts\Temp\LevelTransitions\Zone.cs" />
+    <Compile Include="Assets\Scripts\Utility\FList.cs" />
+    <Compile Include="Assets\Scripts\Utility\IntLayers.cs" />
+    <Compile Include="Assets\Scripts\Utility\Tuple.cs" />
+    <Compile Include="Assets\Scripts\Utility\Zip.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Photon Unity Networking\changelog.txt" />

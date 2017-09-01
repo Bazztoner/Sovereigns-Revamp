@@ -107,7 +107,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         {
             Hp += regained;
             float fill = Hp / maxHp;
-            EventManager.DispatchEvent("LifeUpdate", new object[] { Hp, fill });
+            EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, fill });
         }
     }
 

@@ -23,35 +23,27 @@ public class HUDController : Photon.MonoBehaviour
     void Start()
     {
         GetEverything();
-        /*EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
+        AddEvents();
+    }
+
+    private void AddEvents()
+    {
+        EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
         EventManager.AddEventListener("ManaUpdate", ApplyManaChanges);
         EventManager.AddEventListener("SpellCooldown", OnSpellCooldown);
         EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
-        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);*/
+        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
-        //EventManager.AddEventListener("DamageMade", OnDamageMade);
     }
 
     public void OnOnlineMode()
     {
         EventManager.DispatchEvent("DoConnect", new object[] { true });
-		
-		EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
-        EventManager.AddEventListener("ManaUpdate", ApplyManaChanges);
-        EventManager.AddEventListener("SpellCooldown", OnSpellCooldown);
-        EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
-        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
     }
 
     public void OnOfflineMode()
     {
         EventManager.DispatchEvent("DoNotConnect", new object[] { true });
-		
-		EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
-        EventManager.AddEventListener("ManaUpdate", ApplyManaChanges);
-        EventManager.AddEventListener("SpellCooldown", OnSpellCooldown);
-        EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
-        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
     }
 
     public void OnDividedScree()
@@ -164,13 +156,6 @@ public class HUDController : Photon.MonoBehaviour
         hudAnim.Play(0);
     }
 
-    private void OnDamageMade(params object[] paramsContainer)
-    {
-        var damage = (float)paramsContainer[0];
-        damageText.text += damage.ToString() + " Damage Made.\n";
-        StartCoroutine(CleanText());
-    }
-
     private void OnGameFinished(params object[] paramsContainer)
     {
         if ((string)paramsContainer[0] == "") damageText.text = "Time Out";
@@ -251,11 +236,4 @@ public class HUDController : Photon.MonoBehaviour
         }
     }
     #endregion
-
-    IEnumerator CleanText()
-    {
-        var w = new WaitForSeconds(1.5f);
-        yield return w;
-        damageText.text = "";
-    }
 }

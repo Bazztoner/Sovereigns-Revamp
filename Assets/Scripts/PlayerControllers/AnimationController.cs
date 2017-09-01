@@ -30,10 +30,16 @@ public class AnimationController : MonoBehaviour {
     {
         if ((string)paramsContainer[0] == this.gameObject.name)
         {
-            _anim.SetBool("runForward", (bool)paramsContainer[1]);
-            _anim.SetBool("runRight", (bool)paramsContainer[2]);
-            _anim.SetBool("runLeft", (bool)paramsContainer[3]);
-            _anim.SetFloat("speedMult", (float)paramsContainer[4]);
+            _anim.SetBool("walkForward", (bool)paramsContainer[1]);
+            _anim.SetBool("walkRight", (bool)paramsContainer[2]);
+            _anim.SetBool("walkLeft", (bool)paramsContainer[3]);
+            _anim.SetBool("runForward", (bool)paramsContainer[4]);
+            _anim.SetBool("runRight", (bool)paramsContainer[5]);
+            _anim.SetBool("runLeft", (bool)paramsContainer[6]);
+            _anim.SetBool("sprintForward", (bool)paramsContainer[7]);
+            _anim.SetBool("sprintRight", (bool)paramsContainer[8]);
+            _anim.SetBool("sprintLeft", (bool)paramsContainer[9]);
+            _anim.SetFloat("speedMult", (float)paramsContainer[10]);
         }
     }
 

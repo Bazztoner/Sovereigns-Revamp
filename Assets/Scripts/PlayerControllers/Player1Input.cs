@@ -148,7 +148,7 @@ public class Player1Input : MonoBehaviour {
                     _checkingRoll = true;
                     StartCoroutine(CheckEvade(_dodgeTime));
                 }
-                else if (_pm.isRunning && !InputManager.instance.GetJoystickRun())
+                else if (!_pm.sprintAvailable && !InputManager.instance.GetJoystickRun())
                     _pm.StopRun();
             }
             else
@@ -158,7 +158,7 @@ public class Player1Input : MonoBehaviour {
                     _checkingRoll = true;
                     StartCoroutine(CheckEvade(_dodgeTime));
                 }
-                else if (_pm.isRunning && !InputManager.instance.GetRun())
+                else if (!_pm.sprintAvailable && !InputManager.instance.GetRun())
                     _pm.StopRun();
             }
         }
@@ -174,14 +174,14 @@ public class Player1Input : MonoBehaviour {
         {
             if (!InputManager.instance.GetJoystickRun() && !_pm.isEvading && !_ps.gtHasObject)
                 _pm.Roll(_direction);
-            else if (!_pc.isBlocking)
+            else if (_pm.sprintAvailable && !_pc.isBlocking && _direction.z > 0)
                 _pm.Run();
         }
         else
         {
             if (!InputManager.instance.GetRun() && !_pm.isEvading && !_ps.gtHasObject)
                 _pm.Roll(_direction);
-            else if (!_pc.isBlocking)
+            else if (_pm.sprintAvailable && !_pc.isBlocking && _direction.z > 0)
                 _pm.Run();
         }
 
