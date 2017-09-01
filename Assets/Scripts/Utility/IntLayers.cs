@@ -13,8 +13,10 @@ namespace Utilities
         public const int CAMERA = 12;
         public const int PLAYER = 13;
         public const int DESTRUCTIBLEOBJECT = 14;
-        public const int VISIBLETOP1 = 15;
-        public const int VISIBLETOP2 = 16;
-        public const int VISIBLETOBOTH = 17;
+        public const int FLOOR = 15;
+        public const int VISIBLETOP1 = 16;
+        public const int VISIBLETOP2 = 17;
+        public const int VISIBLETOBOTH = 18;
+        public const int PLAYERCOLLIDER = 19;
     }
 }

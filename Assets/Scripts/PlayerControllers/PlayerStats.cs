@@ -84,14 +84,17 @@ public class PlayerStats : Photon.MonoBehaviour {
     {
         Mana -= cost;
         float fill = Mana / maxMana;
-        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill });
+        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
     }
 
     void RegainMana(float regained)
     {
-        Mana += regained;
-        float fill = Mana / maxMana;
-        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill });
+        if (_gameInCourse)
+        {
+            Mana += regained;
+            float fill = Mana / maxMana;
+            EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
+        }
     }
     void LoseHP(float damage)
     {

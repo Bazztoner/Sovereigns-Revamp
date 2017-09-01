@@ -33,7 +33,9 @@ public class GravitationalTelekinesis : ISpell
     {
         _castType = CastType.INSTANT;
 
-        _layerMask = 0 << LayerMask.NameToLayer("TelekinesisObject");
+        _layerMask = ~(1 << Utilities.IntLayers.TELEKINESISOBJECT
+                     | 1 << Utilities.IntLayers.PLAYER
+                     | 1 << Utilities.IntLayers.PLAYERCOLLIDER);
 
         _castTime = 0f;
         _cooldown = 1f;
@@ -98,7 +100,9 @@ public class GravitationalTelekinesis : ISpell
 
         foreach (var item in telekObjs)
         {
-            if (Vector3.Distance(skillPos.transform.position, item.transform.position) < _radialRange) objs.Add(item);
+            var inDistance = Vector3.Distance(skillPos.transform.position, item.transform.position) < _radialRange;
+
+            if (item.enabled && inDistance) objs.Add(item);
         }
 
         if (!objs.Any()) { return; }
@@ -107,19 +111,22 @@ public class GravitationalTelekinesis : ISpell
 
         foreach (var o in objs)
         {
-            var dst = Vector3.Distance(skillPos.transform.position, o.transform.position);
+            var fixedObjectPosition = o.transform.position + o.correctionVector;
+
+            var dst = Vector3.Distance(skillPos.transform.position, fixedObjectPosition);
 
             RaycastHit rch;
-            var inVisionRange = !Physics.Raycast(skillPos.position, o.transform.position - skillPos.position, out rch, 100, _layerMask);
+            var inVisionRange = Physics.Raycast(skillPos.position, fixedObjectPosition - skillPos.position, out rch, 100, _layerMask);
 
-            Debug.DrawRay(skillPos.position, o.transform.position - skillPos.position, Color.red, 1);
+            //var inVisionRange = !Physics.Raycast(skillPos.position, fixedObjectPosition - skillPos.position, 100, _layerMask, QueryTriggerInteraction.Ignore);
+            Debug.DrawRay(skillPos.position, fixedObjectPosition - skillPos.position, Color.red, 1);
 
-            if (!inVisionRange)
+            if (inVisionRange)
             {
                 Debug.Log("Collide with: " + rch.collider.name);
             }
 
-            if (dst < minDistance && inVisionRange)
+            if (dst < minDistance && !inVisionRange)
             {
                 minDistance = dst;
                 _target = o;

@@ -7,6 +7,7 @@ public class ConectionButton : MonoBehaviour {
 	void Start ()
     {
         EventManager.AddEventListener("DoConnect", Deactivate);
+        EventManager.AddEventListener("DoDummyTest", Deactivate);
         EventManager.AddEventListener("DoNotConnect", Deactivate);
         EventManager.AddEventListener("DividedScreen", Deactivate);
 	}

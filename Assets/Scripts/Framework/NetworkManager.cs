@@ -13,6 +13,7 @@ public class NetworkManager : MonoBehaviour {
         _spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
         EventManager.AddEventListener("DoConnect", OnDoConnect);
         EventManager.AddEventListener("DoNotConnect", OnDoNotConnect);
+        EventManager.AddEventListener("DoDummyTest", OnDoNotConnect);
         EventManager.AddEventListener("DividedScreen", OnDoNotConnect);
     }
 

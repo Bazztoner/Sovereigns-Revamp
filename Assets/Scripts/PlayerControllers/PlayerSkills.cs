@@ -90,7 +90,8 @@ public class PlayerSkills : Photon.MonoBehaviour
             if (canCast)
             {
                 spell.UseSpell(skillPos);
-                EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType });
+                //EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType });
+                EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }
@@ -120,7 +121,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         isCastingSpell = false;
 
 
-        EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType });
+        EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
         StartCoroutine(SpellCooldown(spell, pickType));
     }
 
@@ -156,13 +157,13 @@ public class PlayerSkills : Photon.MonoBehaviour
     #region Telekinetic Physics
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 11)
+        if (collision.gameObject.layer == Utilities.IntLayers.TELEKINESISOBJECT)
             collision.gameObject.GetComponent<TelekineticObject>().ChangeState(PhotonNetwork.player.NickName);
     }
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer == 11)
+        if (collision.gameObject.layer == Utilities.IntLayers.TELEKINESISOBJECT)
             collision.gameObject.GetComponent<TelekineticObject>().ChangeState(PhotonNetwork.player.NickName);
     }
 

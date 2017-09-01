@@ -18,6 +18,8 @@ public class CamRotationController : MonoBehaviour
     public Vector3 initialPosition;
     public Color destructibleColor;
 
+    int proyectionLayer;
+
     private Transform _character;
     private Transform _enemy;
     private float _rotationY = 0f;
@@ -68,7 +70,12 @@ public class CamRotationController : MonoBehaviour
     private void GetComponents()
     {
         _cam = GetComponentInChildren<Camera>();
-        _mask = ~(1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Enemy") | 1 << LayerMask.NameToLayer("Floor") | 1 << LayerMask.NameToLayer("HitBox"));
+        _mask = ~(1 << LayerMask.NameToLayer("Player") 
+                | 1 << LayerMask.NameToLayer("Enemy") 
+                | 1 << LayerMask.NameToLayer("Floor") 
+                | 1 << LayerMask.NameToLayer("HitBox")
+                | 1 << LayerMask.NameToLayer("PlayerCollider")
+                 );
         _enemyMask = PhotonNetwork.offlineMode ? 0 << LayerMask.NameToLayer("Enemy") : 0 << LayerMask.NameToLayer("Player");
         _correctionVector = new Vector3(0f, 1f, 0f);
         lockOnDistance = lockOnDistance == 0f ? 10f : lockOnDistance;
@@ -97,6 +104,7 @@ public class CamRotationController : MonoBehaviour
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
         _cam.cullingMask &= ~(1 << cullLayer);
+        proyectionLayer = cullLayer;
     }
 
     private void AddEvents()
@@ -104,6 +112,7 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("ChangeStateDestuctibleProjections", ActivateProjections);
         EventManager.AddEventListener("DoConnect", UseProjections);
         EventManager.AddEventListener("DoNotConnect", UseProjections);
+        EventManager.AddEventListener("DoDummyTest", UseProjections);
         EventManager.AddEventListener("DividedScreen", UseProjections);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
     }
@@ -112,7 +121,9 @@ public class CamRotationController : MonoBehaviour
     #region Events
     void UseProjections(object[] paramsContainer)
     {
-        showProjections = (bool)paramsContainer[0];
+        //showProjections = (bool)paramsContainer[0];
+        showProjections = true;
+        EventManager.DispatchEvent("ChangeStateDestuctibleProjections", new object[] { showProjections } );
     }
 
     void ActivateProjections(object[] paramsContainer)
@@ -128,7 +139,7 @@ public class CamRotationController : MonoBehaviour
 
     void Update()
     {
-        if(showProjections && !GameManager.screenDivided /*Cambio Iván*/) HighlightTarget();
+        if(showProjections) HighlightTarget();
     }
 
     void FixedUpdate()
@@ -301,9 +312,16 @@ public class CamRotationController : MonoBehaviour
     #region Highlight
     private void HighlightTarget()
     {
-        List<DestructibleObject> inRangeObj = DestructibleObject.allObjs.Where(x => x.isAlive && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
-                                                                 && x.GetComponentInChildren<Renderer>().isVisible)
-                                                                 .ToList<DestructibleObject>();
+        #region Cambios Iván 31/8
+        //Agrego que no sean del tipo Transition
+        //Agrego que depende el layer viste
+        List<DestructibleObject> inRangeObj = DestructibleObject.allObjs.Where(x => x.isAlive 
+                                                                               && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
+                                                                               && x.destructibleType != DestructibleType.TRANSITION
+                                                                               && x.GetComponentInChildren<Renderer>().isVisible
+                                                                               && x.GetComponentInChildren<DestructibleImpactArea>().gameObject.layer == proyectionLayer)
+                                                                        .ToList<DestructibleObject>();
+        #endregion
         DestructibleObject closest;
         if (inRangeObj.Count() > 0)
         {

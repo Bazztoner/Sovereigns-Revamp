@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     public float hpRegeneration;
     public float manaRegeneration;
 
+    Transform _enemy;
+
     public float Hp
     {
         get { return hp; }
@@ -35,6 +37,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        _enemy = GetEnemy();
         StartCoroutine(Regeneration());
     }
 
@@ -93,6 +96,7 @@ public class Enemy : MonoBehaviour
         if (PhotonNetwork.offlineMode)
         {
             EventManager.DispatchEvent("EnemyDamaged", new object[] { transform.position, this });
+            EventManager.DispatchEvent("DummyDamaged", new object[] { this.gameObject.name, transform.position });
         }
         else EventManager.DispatchEvent("CharacterDamaged", new object[] { transform.position, this });
     }
@@ -109,4 +113,34 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(tick);
         }
     }
+
+    #region Enemy Reference
+    public bool CheckEnemyDistance(Transform cam)
+    {
+        if (_enemy == null) _enemy = GetEnemy();
+
+        if (_enemy != null)
+        {
+            var dir = (_enemy.position - cam.position).normalized;
+            var ang = Vector3.Angle(cam.forward, dir);
+
+            return (Vector3.Distance(this.transform.position, _enemy.position) > 10f && ang <= 20) ? true : false;
+        }
+
+        return false;
+    }
+
+    public Transform GetEnemy()
+    {
+        var enems = GameObject.FindObjectsOfType<PlayerMovement>();
+
+        foreach (var enem in enems)
+        {
+            if (enem.transform != this.transform)
+                return enem.transform;
+        }
+
+        return null;
+    }
+    #endregion
 }

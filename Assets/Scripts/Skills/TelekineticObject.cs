@@ -31,6 +31,7 @@ public class TelekineticObject : Photon.MonoBehaviour
     LayerMask _mask;
 
     Camera _cam;
+    public Vector3 correctionVector;
 
     RaycastHit _hit;
 
@@ -66,7 +67,12 @@ public class TelekineticObject : Photon.MonoBehaviour
         _rigid.isKinematic = true;
 
         _mask = PhotonNetwork.offlineMode ? 1 << LayerMask.NameToLayer("Enemy") : 1 << LayerMask.NameToLayer("Player");
-        _cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+
+        if (!GameManager.screenDivided)
+        {
+            _cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        }
+       
     }
 
     void Start()
@@ -78,6 +84,8 @@ public class TelekineticObject : Photon.MonoBehaviour
         tp.transform.localPosition = Vector3.zero;
         predicter = tp.GetComponent<TrajectoryPredicter>();
         predicter.Init(this);
+
+        correctionVector = new Vector3(0f, .3f, 0f);
     }
 
     void OnDividedScreen(object[] paramsContainer)

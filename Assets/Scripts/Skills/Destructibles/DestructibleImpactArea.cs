@@ -7,18 +7,31 @@ public class DestructibleImpactArea : MonoBehaviour
 {
     MeshRenderer[] all;
     public Vector3[] rotAngles;
+    CamRotationController cam;
 
     void Start()
     {
         all = GetComponentsInChildren<MeshRenderer>().Where(x => x.gameObject != gameObject).ToArray();
         rotAngles = GetComponentInParent<DestructibleObject>().rotAngles;
+
+        if (GameManager.screenDivided)
+        {
+            if (gameObject.layer == Utilities.IntLayers.VISIBLETOP1)
+            {
+                cam = GameObject.Find("Player1").GetComponent<Player1Input>().GetCamera;
+            }
+            else if (gameObject.layer == Utilities.IntLayers.VISIBLETOP2)
+            {
+                cam = GameObject.Find("Player2").GetComponent<Player1Input>().GetCamera;
+            }
+        }
+        else cam = GameObject.FindObjectOfType<CamRotationController>();
     }
 
     void LateUpdate()
     {
         if (rotAngles.Length != 0)
         {
-            var cam = GameObject.FindObjectOfType<CamRotationController>();
             CheckRotation(cam.transform.forward, cam.AngleVision);
         }
     }

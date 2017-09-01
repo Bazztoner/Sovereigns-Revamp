@@ -36,26 +36,21 @@ public class DestructibleObject : Photon.MonoBehaviour
         allObjs.Add(this);
         isAlive = true;
 
-        //EventManager.AddEventListener("DividedScreen", OnDividedScreen);
+        EventManager.AddEventListener("DividedScreen", OnDividedScreen);
     }
 
     void OnDividedScreen(object[] paramsContainer)
     {
-        var changeList = allObjs.Select(x => x.GetComponentInChildren<DestructibleImpactArea>());
-
-        var visited = new HashSet<GameObject>();
+        var changeList = allObjs.Where(x => x.destructibleType != DestructibleType.TRANSITION)
+                                .Select(x => x.GetComponentInChildren<DestructibleImpactArea>());
 
         foreach (var d in changeList)
         {
-            if (!visited.Contains(d.gameObject))
+            if (d != null)
             {
                 d.gameObject.layer = Utilities.IntLayers.VISIBLETOP1;
-                var newDestImpactArea = GameObject.Instantiate(d.gameObject, d.transform.parent);
-                newDestImpactArea.gameObject.layer = Utilities.IntLayers.VISIBLETOP2;
-                visited.Add(d.gameObject);
             }
         }
-
     }
 
     public void TakeDamage(int damage)

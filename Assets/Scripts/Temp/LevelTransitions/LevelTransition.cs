@@ -13,7 +13,7 @@ public class LevelTransition : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        if (c.gameObject.layer == Utilities.IntLayers.PLAYER)
+        if (c.gameObject.layer == Utilities.IntLayers.PLAYER || c.gameObject.layer == Utilities.IntLayers.ENEMY)
         {
             playersInTrigger.Add(c.gameObject);
         }
@@ -21,7 +21,7 @@ public class LevelTransition : MonoBehaviour
 
     void OnTriggerExit(Collider c)
     {
-        if (c.gameObject.layer == Utilities.IntLayers.PLAYER)
+        if (c.gameObject.layer == Utilities.IntLayers.PLAYER || c.gameObject.layer == Utilities.IntLayers.ENEMY)
         {
             playersInTrigger.Remove(c.gameObject);
         }

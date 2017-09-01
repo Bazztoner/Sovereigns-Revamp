@@ -34,6 +34,8 @@ public class HUDController : Photon.MonoBehaviour
         EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
         EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
+
+        //EventManager.AddEventListener("DamageMade", OnDamageMade);
     }
 
     public void OnOnlineMode()
@@ -44,6 +46,11 @@ public class HUDController : Photon.MonoBehaviour
     public void OnOfflineMode()
     {
         EventManager.DispatchEvent("DoNotConnect", new object[] { true });
+    }
+
+    public void OnDummyTestMode()
+    {
+        EventManager.DispatchEvent("DoDummyTest", new object[] { true });
     }
 
     public void OnDividedScree()
@@ -136,7 +143,20 @@ public class HUDController : Photon.MonoBehaviour
 
     private void ApplyManaChanges(params object[] paramsContainer)
     {
-        mana.fillAmount = (float)paramsContainer[1];
+        if (GameManager.screenDivided)
+        {
+            if (this.gameObject.name == "HUD1")
+            {
+                if ((string)paramsContainer[2] == "Player1")
+                    mana.fillAmount = (float)paramsContainer[1];
+            }
+            else if (this.gameObject.name == "HUD2")
+            {
+                if ((string)paramsContainer[2] == "Player2")
+                    mana.fillAmount = (float)paramsContainer[1];
+            }
+        }
+        else mana.fillAmount = (float)paramsContainer[1];
     }
 
     void ApplyEnemyHPChanges(params object[] paramsContainer)
@@ -185,7 +205,26 @@ public class HUDController : Photon.MonoBehaviour
     #region Cooldown
     public void OnSpellCooldown(params object[] paramsContainer)
     {
-        StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1]));
+        if (GameManager.screenDivided)
+        {
+
+
+            if (this.gameObject.name == "HUD1")
+            {
+                if ((string)paramsContainer[2] == "Player1")
+                {
+                    StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1], this.gameObject.name));
+                }
+            }
+            else if (this.gameObject.name == "HUD2")
+            {
+                if ((string)paramsContainer[2] == "Player2")
+                {
+                    StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1], this.gameObject.name));
+                }
+            }
+        }
+        else StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1]));
     }
 
     IEnumerator ApplyCooldown(float cooldown, Spells spell)
@@ -235,5 +274,61 @@ public class HUDController : Photon.MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+
+    #region SplitScreen KORRUPTINES
+    IEnumerator ApplyCooldown(float cooldown, Spells spell, string hudName)
+    {
+        if (this.gameObject.name == hudName)
+        {
+            for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
+            {
+                allCooldowns[(int)spell][j].text = cooldown < 1 ? "1" : Mathf.Floor(cooldown).ToString();
+            }
+
+            StartCoroutine(FillImageCooldown(cooldown, spells[(int)spell]));
+
+            float cd = cooldown;
+
+            while (true)
+            {
+                yield return new WaitForSeconds(1);
+                cd--;
+
+                if (cd > 0)
+                {
+                    for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
+                    {
+                        allCooldowns[(int)spell][j].text = cd < 1 ? "1" : Mathf.Floor(cd).ToString();
+                    }
+                }
+                else
+                {
+                    spells[(int)spell].fillAmount = 0;
+
+                    for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
+                    {
+                        allCooldowns[(int)spell][j].text = "";
+                    }
+
+                    yield break;
+                }
+            }
+        }
+    }
+
+    IEnumerator FillImageCooldown(float cooldown, Image image, string hudName)
+    {
+        if (this.gameObject.name == hudName)
+        {
+            var cd = cooldown;
+            while (cd > 0)
+            {
+                cd -= Time.deltaTime;
+                image.fillAmount = cd / cooldown;
+                yield return new WaitForEndOfFrame();
+            }
+        }
+    }
+    #endregion
     #endregion
 }

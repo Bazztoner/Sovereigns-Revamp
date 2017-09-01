@@ -14,6 +14,7 @@ public class TransitionManager : MonoBehaviour
     {
         EventManager.AddEventListener("TransitionActivated", OnTransitionActivation);
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
+        EventManager.AddEventListener("DummyDamaged", OnDummyDamaged);
     }
 
     void OnCharacterDamaged(object[] paramsContainer)
@@ -26,6 +27,7 @@ public class TransitionManager : MonoBehaviour
         {
             if (tuple.Item1 != default(LevelTransition) && tuple.Item2 != default(GameObject))
             {
+                print("Transition: " + tuple.Item1 + " || " + "Attacked: " + tuple.Item2.name);
                 var trans = tuple.Item1;
                 var attacked = tuple.Item2;
                 var attacker = tuple.Item2.GetComponent<PlayerMovement>().Enemy.gameObject;
@@ -39,18 +41,51 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
+    void OnDummyDamaged(object[] paramsContainer)
+    {
+        print("Enter OnDummyDamaged");
+        var damagedName = (string)paramsContainer[0];
+
+        var tuple = GetIfInTrigger(damagedName);
+
+        if (tuple != null)
+        {
+            print("Entered tuple != null");
+            if (tuple.Item1 != default(LevelTransition) && tuple.Item2 != default(GameObject))
+            {
+                print("Transition: " + tuple.Item1 + " || " + "Attacked: " + tuple.Item2.name);
+                var trans = tuple.Item1;
+                var attacked = tuple.Item2;
+                var attacker = tuple.Item2.GetComponent<Enemy>().GetEnemy().gameObject;
+
+                var tempAngle = Vector3.Angle(attacker.transform.forward, trans.transform.forward);
+                if (tempAngle < 30f)
+                {
+                    EventManager.DispatchEvent("TransitionActivated", new object[] { trans, attacker, attacked });
+                }
+            }
+        }
+    }
+
+
     Tuple<LevelTransition, GameObject> GetIfInTrigger(string playerName)
     {
         var posibleTransitions = currentZone.transitions;
 
-        var transition = posibleTransitions
+        #region Deprecated
+        /*var transition = posibleTransitions
                         .Where(x => x.playersInTrigger.Any())
                         .TakeWhile(x => x.playersInTrigger.Any(g => g.name == playerName))
+                        .FirstOrDefault();*/
+        #endregion
+
+        var transition = posibleTransitions
+                        .Where(x => x.playersInTrigger.Any(g => g.name == playerName))
                         .FirstOrDefault();
 
         if (transition == default(LevelTransition)) return null;
 
-        var player = transition.playersInTrigger.TakeWhile(g => g.name == playerName).FirstOrDefault();
+        var player = transition.playersInTrigger.Where(g => g.name == playerName).FirstOrDefault();
 
         return new Tuple<LevelTransition, GameObject>(transition, player);
     }
@@ -68,7 +103,8 @@ public class TransitionManager : MonoBehaviour
     {
         //Attacked Player
         attacked.transform.position = transition.attackedRelocatePoint.position;
-        //TODO: Aplicar daño al attacked (transition.damage)
+        //FIXME: no es lo ideal
+        if (GameManager.screenDivided) attacked.GetComponentInParent<PlayerStats>().TakeDamage(transition.damage);
 
         //Attacker Player
         attacker.transform.position = transition.attackerRelocatePoint.position;
