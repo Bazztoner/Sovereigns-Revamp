@@ -38,40 +38,20 @@ public class DestructibleImpactArea : MonoBehaviour
 
     void CheckRotation(Vector3 rot, float angle)
     {
-        if (gameObject.name == "SingleDoorImpactArea")
+        var minAngle = angle;
+        Vector3 vectorRot = transform.forward;
+
+        foreach (var a in rotAngles)
         {
-            var minAngle = angle;
-            Vector3 vectorRot = transform.forward;
-
-            foreach (var a in rotAngles)
+            var tempAngle = Vector3.Angle(rot, a);
+            if (tempAngle < minAngle)
             {
-                var tempAngle = Vector3.Angle(rot, a);
-                if (tempAngle < minAngle)
-                {
-                    minAngle = tempAngle;
-                    vectorRot = a;
-                }
+                minAngle = tempAngle;
+                vectorRot = a;
             }
-
-            transform.forward = vectorRot;
         }
-        else
-        {
-            var minAngle = angle;
-            Vector3 vectorRot = transform.forward;
 
-            foreach (var a in rotAngles)
-            {
-                var tempAngle = Vector3.Angle(rot, a);
-                if (tempAngle < minAngle)
-                {
-                    minAngle = tempAngle;
-                    vectorRot = a;
-                }
-            }
-
-            transform.forward = vectorRot;
-        }
+        transform.rotation = Quaternion.Euler(vectorRot);
     }
 
     public void SetVisible(bool activate)

@@ -96,8 +96,7 @@ public class DestructibleObject : Photon.MonoBehaviour
             }
         }
 
-        transform.forward = vectorRot;
-        //transform.localEulerAngles = vectorRot;
+        transform.rotation = Quaternion.Euler(vectorRot);
     }
 
     public void DestroyObject(Vector3 rot, float angle)
