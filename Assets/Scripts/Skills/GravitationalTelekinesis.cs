@@ -11,6 +11,7 @@ public class GravitationalTelekinesis : ISpell
 
     LayerMask _layerMask;
     GravitationalDummy _dummy;
+    RaycastHit rch;
 
     float _castTime;
     float _cooldown;
@@ -25,6 +26,7 @@ public class GravitationalTelekinesis : ISpell
 
     bool _hasObject;
     bool _pulled;
+    bool inVisionRange;
 
     float _pullCooldown = 1.2f;
     float _launchCooldown = 2f;
@@ -97,10 +99,11 @@ public class GravitationalTelekinesis : ISpell
     {
         var telekObjs = TelekineticObject.allObjs;
         var objs = new List<TelekineticObject>();
+        var charac = skillPos.GetComponentInParent<Player1Input>().transform.position + new Vector3(0f, 1f, 0f);
 
         foreach (var item in telekObjs)
         {
-            var inDistance = Vector3.Distance(skillPos.transform.position, item.transform.position) < _radialRange;
+            var inDistance = Vector3.Distance(charac, item.transform.position) < _radialRange;
 
             if (item.enabled && inDistance) objs.Add(item);
         }
@@ -111,21 +114,12 @@ public class GravitationalTelekinesis : ISpell
 
         foreach (var o in objs)
         {
-            var fixedObjectPosition = o.transform.position + o.correctionVector;
+            var dst = Vector3.Distance(charac, o.transform.position);
 
-            var dst = Vector3.Distance(skillPos.transform.position, fixedObjectPosition);
+            inVisionRange = Physics.Raycast(charac, (o.transform.position - charac).normalized, out rch, dst, _layerMask);
 
-            RaycastHit rch;
-            var inVisionRange = Physics.Raycast(skillPos.position, fixedObjectPosition - skillPos.position, out rch, 100, _layerMask);
-
-            //var inVisionRange = !Physics.Raycast(skillPos.position, fixedObjectPosition - skillPos.position, 100, _layerMask, QueryTriggerInteraction.Ignore);
-            Debug.DrawRay(skillPos.position, fixedObjectPosition - skillPos.position, Color.red, 1);
-
-            if (inVisionRange)
-            {
-                Debug.Log("Collide with: " + rch.collider.name);
-            }
-
+            Debug.DrawRay(charac, (o.transform.position - charac).normalized, Color.red, 2);
+            
             if (dst < minDistance && !inVisionRange)
             {
                 minDistance = dst;
