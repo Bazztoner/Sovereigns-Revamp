@@ -75,6 +75,9 @@ public class CamRotationController : MonoBehaviour
                 | 1 << LayerMask.NameToLayer("Floor") 
                 | 1 << LayerMask.NameToLayer("HitBox")
                 | 1 << LayerMask.NameToLayer("PlayerCollider")
+                | 1 << Utilities.IntLayers.VISIBLETOP1
+                | 1 << Utilities.IntLayers.VISIBLETOP2
+                | 1 << Utilities.IntLayers.VISIBLETOBOTH
                  );
         _enemyMask = PhotonNetwork.offlineMode ? 0 << LayerMask.NameToLayer("Enemy") : 0 << LayerMask.NameToLayer("Player");
         _correctionVector = new Vector3(0f, 1f, 0f);
@@ -103,7 +106,7 @@ public class CamRotationController : MonoBehaviour
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
-        _cam.cullingMask &= ~(1 << cullLayer);
+        //_cam.cullingMask &= ~(1 << cullLayer);
         proyectionLayer = cullLayer;
     }
 
@@ -121,9 +124,7 @@ public class CamRotationController : MonoBehaviour
     #region Events
     void UseProjections(object[] paramsContainer)
     {
-        //showProjections = (bool)paramsContainer[0];
-        showProjections = true;
-        EventManager.DispatchEvent("ChangeStateDestuctibleProjections", new object[] { showProjections } );
+        showProjections = (bool)paramsContainer[0];
     }
 
     void ActivateProjections(object[] paramsContainer)
@@ -314,12 +315,10 @@ public class CamRotationController : MonoBehaviour
     {
         #region Cambios Iván 31/8
         //Agrego que no sean del tipo Transition
-        //Agrego que depende el layer viste
         List<DestructibleObject> inRangeObj = DestructibleObject.allObjs.Where(x => x.isAlive 
                                                                                && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
                                                                                && x.destructibleType != DestructibleType.TRANSITION
-                                                                               && x.GetComponentInChildren<Renderer>().isVisible
-                                                                               && x.GetComponentInChildren<DestructibleImpactArea>().gameObject.layer == proyectionLayer)
+                                                                               && x.GetComponentInChildren<Renderer>().isVisible)
                                                                         .ToList<DestructibleObject>();
         #endregion
         DestructibleObject closest;
@@ -357,8 +356,12 @@ public class CamRotationController : MonoBehaviour
 
     void MakeVisible(DestructibleObject obj, bool visible)
     {
-        var wf = obj.GetComponentInChildren<DestructibleImpactArea>();
-        wf.SetVisible(visible);
+        var wf = obj.GetComponentsInChildren<DestructibleImpactArea>().Where(x => x.gameObject.layer == proyectionLayer).FirstOrDefault();
+        if (wf != default(DestructibleImpactArea))
+        {
+            wf.SetVisible(visible);
+        }
+        
     }
 
     private void ChangeColor(DestructibleObject obj, Color col)

@@ -49,6 +49,10 @@ public class DestructibleObject : Photon.MonoBehaviour
             if (d != null)
             {
                 d.gameObject.layer = Utilities.IntLayers.VISIBLETOP1;
+                foreach (Transform c in d.transform)
+                {
+                    c.gameObject.layer = Utilities.IntLayers.VISIBLETOP1;
+                }
             }
         }
     }

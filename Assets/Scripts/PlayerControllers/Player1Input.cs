@@ -85,12 +85,12 @@ public class Player1Input : MonoBehaviour {
             if (this.gameObject.name == "Player1")
             {
                 _cam = GameObject.Find("CameraPlayer1").transform;
-                cullLayer = Utilities.IntLayers.VISIBLETOP2;
+                cullLayer = Utilities.IntLayers.VISIBLETOP1;
             }
             else if (this.gameObject.name == "Player2")
             {
                 _cam = GameObject.Find("CameraPlayer2").transform;
-                cullLayer = Utilities.IntLayers.VISIBLETOP1;
+                cullLayer = Utilities.IntLayers.VISIBLETOP2;
             }
         }
         else _cam = GameObject.Find("CameraContainer").transform;

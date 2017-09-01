@@ -46,6 +46,27 @@ public class AtractiveTelekinesis : ISpell
         manaCost = 32;
     }
 
+    public void Init(PlayerMovement character)
+    {
+        _castType = CastType.INSTANT;
+
+        _layerMask = 0 << LayerMask.NameToLayer("DestructibleObject");
+
+        _castTime = 0f;
+        _cooldown = 1f;
+
+        _radialRange = 12;
+        _damage = 5;
+
+        _hasObject = false;
+        _pulled = false;
+
+        var camContainter = character.GetComponent<Player1Input>().GetCamera;
+        _target = camContainter.CurrentTarget;
+
+        manaCost = 32;
+    }
+
     public void UseSpell() { }
 
     public void UseSpell(Transform me)
@@ -125,63 +146,5 @@ public class AtractiveTelekinesis : ISpell
     {
         return _castType;
     }
-    #endregion
-
-    #region Deprecated Methods
-    [System.Obsolete]
-    public void Init(PlayerMovement character)
-    {
-        throw new System.Exception("Not used");
-    }
-
-    /*void GetObject(Transform me)
-    {
-        var objs = new List<DestructibleObject>();
-
-        foreach (var item in _destructObjs)
-        {
-            if (Vector3.Distance(me.position, item.transform.position) < _radialRange && item.isAlive) objs.Add(item);
-        }
-
-        if (!objs.Any()) { return; }
-
-        float minDistance = _radialRange;
-
-        float nearDistance = _radialRange;
-
-        foreach (var o in objs)
-        {
-            //Filtrar por distancia
-            //Filtrar por Angulo
-            //Filtrar por colision o falta de
-            var tempDistance = Vector3.Distance(o.transform.position, me.position);
-
-            var tempAngle = Vector3.Angle(me.forward, (o.transform.position - me.position).normalized);
-
-            RaycastHit rch;
-            var objectsBetween = !Physics.Raycast(me.position, me.position - o.transform.position, out rch, 100, _layerMask);
-
-            Debug.DrawLine(me.position, o.transform.position, Color.blue, 1);
-            // Debug.Log("Item: " + o.name + " | World Pos: " + o.transform.position + " | Dist: " + tempDistance + " | objects between? " + objectsBetween + " | Angle: " + tempAngle);
-            
-            if (tempDistance < nearDistance 
-                && o.GetComponent<DestructibleObject>().isAlive 
-                && objectsBetween && tempAngle < 75)
-            {
-                nearDistance = tempDistance;
-                _target = o.GetComponent<DestructibleObject>();
-                //Debug.Log("Angle!: " + tempAngle); 
-            }
-        }
-
-        if (_target == null) return;
-
-        _hasObject = true;
-
-
-        var camContainter = me.GetComponentInParent<Player1Input>().GetCamera;
-
-        PullObject(camContainter);
-    }*/
     #endregion
 }

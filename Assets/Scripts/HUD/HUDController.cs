@@ -55,7 +55,7 @@ public class HUDController : Photon.MonoBehaviour
 
     public void OnDividedScree()
     {
-        EventManager.DispatchEvent("DividedScreen", new object[] { false });
+        EventManager.DispatchEvent("DividedScreen", new object[] { true });
         GameManager.screenDivided = true;
     }
 
@@ -207,8 +207,6 @@ public class HUDController : Photon.MonoBehaviour
     {
         if (GameManager.screenDivided)
         {
-
-
             if (this.gameObject.name == "HUD1")
             {
                 if ((string)paramsContainer[2] == "Player1")
