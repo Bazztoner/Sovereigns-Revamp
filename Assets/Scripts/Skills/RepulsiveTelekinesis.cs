@@ -59,7 +59,7 @@ public class RepulsiveTelekinesis : ISpell
 
         EventManager.DispatchEvent("RepulsiveTelekinesisCasted", new object[] { skillPos.position, skillPos.GetComponentInParent<PlayerParticles>() });
 
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
+        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, skillPos.GetComponentInParent<Player1Input>().gameObject.name });
     }
 
 

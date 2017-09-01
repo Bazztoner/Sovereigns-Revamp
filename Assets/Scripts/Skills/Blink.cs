@@ -49,7 +49,7 @@ public class Blink : ISpell
             _me.transform.forward = new Vector3(fTemp.x, _me.transform.forward.y, _me.transform.forward.z);
             //_me.transform.forward = new Vector3(_me.transform.forward.x, fTemp.y, _me.transform.forward.z);
             //_me.transform.forward = new Vector3(_me.transform.forward.x, _me.transform.forward.y, fTemp.z);
-            EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
+            EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, _me.gameObject.name });
         }
         else
         {

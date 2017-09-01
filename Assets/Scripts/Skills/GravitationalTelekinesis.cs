@@ -151,7 +151,7 @@ public class GravitationalTelekinesis : ISpell
         _cooldown = _pullCooldown;
         manaCost = _getObjectManaCost;
         _dummy.Execute(_target, _hasObject);
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
+        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, skillPos.GetComponentInParent<Player1Input>().gameObject.name });
         
     }
 
@@ -171,7 +171,7 @@ public class GravitationalTelekinesis : ISpell
         _dummy.Execute(_target, _hasObject);
         skillPos.GetComponentInParent<PlayerSkills>().gtHasObject = _hasObject;
         _target = null;
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
+        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, skillPos.GetComponentInParent<Player1Input>().gameObject.name });
     }
     
     #region Getters

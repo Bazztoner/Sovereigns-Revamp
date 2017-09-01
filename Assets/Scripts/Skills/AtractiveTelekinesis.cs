@@ -84,7 +84,7 @@ public class AtractiveTelekinesis : ISpell
 
         if (_target == null) return;
 
-        if (_target.isAlive) PullObject(camContainter);
+        if (_target.isAlive) PullObject(me);
        
     }
 
@@ -97,6 +97,19 @@ public class AtractiveTelekinesis : ISpell
         _hasObject = false;
 
         EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
+    }
+
+    void PullObject(Transform me)
+    {
+        var camContainter = me.GetComponentInParent<Player1Input>().GetCamera;
+        _target = camContainter.CurrentTarget;
+        if (PhotonNetwork.offlineMode) _target.DestroyObject(camContainter.transform.forward, camContainter.AngleVision);
+        else _target.photonView.RPC("RpcDestroy", PhotonTargets.All, camContainter.transform.forward, camContainter.AngleVision, PhotonNetwork.player.NickName);
+
+        _target = null;
+        _hasObject = false;
+
+        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, me.GetComponentInParent<Player1Input>().gameObject.name });
     }
 
     void PullObject()

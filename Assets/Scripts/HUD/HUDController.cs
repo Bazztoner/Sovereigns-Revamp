@@ -135,12 +135,6 @@ public class HUDController : Photon.MonoBehaviour
         }
     }
 
-    [PunRPC]
-    public void NotifyLife(float fillAmount, string nickName)
-    {
-        ApplyEnemyHPChanges(new object[] { fillAmount, nickName });
-    }
-
     private void ApplyManaChanges(params object[] paramsContainer)
     {
         if (GameManager.screenDivided)
@@ -158,6 +152,14 @@ public class HUDController : Photon.MonoBehaviour
         }
         else mana.fillAmount = (float)paramsContainer[1];
     }
+
+    [PunRPC]
+    public void NotifyLife(float fillAmount, string nickName)
+    {
+        ApplyEnemyHPChanges(new object[] { fillAmount, nickName });
+    }
+
+    
 
     void ApplyEnemyHPChanges(params object[] paramsContainer)
     {

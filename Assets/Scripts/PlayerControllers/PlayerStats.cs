@@ -133,7 +133,11 @@ public class PlayerStats : Photon.MonoBehaviour {
     #region Events
     void OnSpellCasted(params object[] paramsContainer)
     {
-        ConsumeMana((int)paramsContainer[0]);
+        if ((string)paramsContainer[1] == this.gameObject.name)
+        {
+            ConsumeMana((int)paramsContainer[0]);
+        }
+       
     }
 
     private void OnGameFinished(params object[] paramsContainer)
