@@ -113,6 +113,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     /// <summary>Makes the character run</summary>
     public void Run()
     {
+        EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, true });
         isRunning = true;
         sprintAvailable = false;
         speed = _originalRunSpeed;
@@ -121,6 +122,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     /// <summary>Makes the character walk</summary>
     public void StopRun()
     {
+        EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, false });
         isRunning = false;
         sprintAvailable = true;
         speed = _originalWalkSpeed;

@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerParticles : Photon.MonoBehaviour {
 
     private Transform _skillPos;
+    GameObject _runParticle;
+    GameObject _blinkTrail;
 
     //REVISAR: Estas dos variables las puse porque estaban en el characterMovement, pero parece ser que no se usan en ningun lado.
     public ParticleSystem launchParticleSystem;
@@ -24,6 +27,52 @@ public class PlayerParticles : Photon.MonoBehaviour {
 
         launchParticleSystem.transform.position = this.transform.position;
         chargeParticleSystem.transform.position = this.transform.position;
+
+        AddEvents();
+        AddRunParticle();
+        AddBlinkTrail();
+    }
+    
+    void AddEvents()
+    {
+        EventManager.AddEventListener("ActivateRunParticle", OnActivateRunning);
+        //EventManager.AddEventListener("ActivateBlinkTrail", OnActivateBlink);
+    }
+
+    void AddRunParticle()
+    {
+        var tempRunParticle = transform.Find("RunningParticle");
+        if (tempRunParticle == null)
+        {
+            var tempPart = GameObject.Instantiate(Resources.Load("Particles/RunningParticle") as GameObject, transform);
+            tempPart.transform.localPosition = Vector3.zero;
+            tempPart.transform.forward = tempPart.transform.parent.forward;
+            _runParticle = tempPart.gameObject;
+            _runParticle.SetActive(false);
+        }
+        else
+        {
+            _runParticle = tempRunParticle.gameObject;
+            _runParticle.SetActive(false);
+        }
+    }
+
+    void AddBlinkTrail()
+    {
+        var tempBlinkTrail = transform.Find("BlinkTrail");
+        if (tempBlinkTrail == null)
+        {
+            var tempTrail = GameObject.Instantiate(Resources.Load("Spells/BlinkTrail") as GameObject, transform);
+            tempTrail.transform.localPosition = Vector3.zero;
+            tempTrail.transform.forward = tempTrail.transform.parent.forward;
+            _blinkTrail = tempTrail.gameObject;
+            _blinkTrail.SetActive(false);
+        }
+        else
+        {
+            _blinkTrail = tempBlinkTrail.gameObject;
+            _blinkTrail.SetActive(false);
+        }
     }
     #endregion
 
@@ -68,5 +117,37 @@ public class PlayerParticles : Photon.MonoBehaviour {
         Destroy(p.gameObject, 3f);
         return p;
     }
+
+    void OnActivateRunning(object[] paramsContainer)
+    {
+        if (GameManager.screenDivided)
+        {
+            if(transform.GetComponent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+            {
+                _runParticle.SetActive((bool)paramsContainer[1]);
+            }
+        }
+        else _runParticle.SetActive((bool)paramsContainer[1]);
+    }
+
+    void OnActivateBlink(object[] paramsContainer)
+    {
+        if (GameManager.screenDivided)
+        {
+            if (transform.GetComponent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+            {
+                _blinkTrail.SetActive(true);
+                StartCoroutine(DeactivateBlinkTrail(1f));
+            }
+        }
+        else _blinkTrail.SetActive(true);
+    }
+
+    IEnumerator DeactivateBlinkTrail(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _blinkTrail.SetActive(false);
+    }
+
     #endregion
 }

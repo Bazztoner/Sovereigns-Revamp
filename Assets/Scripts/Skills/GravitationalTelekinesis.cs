@@ -105,7 +105,7 @@ public class GravitationalTelekinesis : ISpell
         {
             var inDistance = Vector3.Distance(charac, item.transform.position) < _radialRange;
 
-            if (item.enabled && inDistance) objs.Add(item);
+            if (item.enabled && inDistance && !item.IsGrabbed && !item.IsReadyToDestroy) objs.Add(item);
         }
 
         if (!objs.Any()) { return; }

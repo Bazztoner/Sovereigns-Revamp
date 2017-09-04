@@ -26,8 +26,12 @@ public class DestructAnimCont : MonoBehaviour
 
     void OnDestructionEnd()
     {
-        GetComponentInChildren<DestructibleBoundingBox>().gameObject.SetActive(false);
-
+        var boundingBox = GetComponentInChildren<DestructibleBoundingBox>();
+        if (boundingBox != null)
+        {
+            boundingBox.gameObject.SetActive(false);
+        }
+        
         var activateObjects = transform.GetComponentsInChildren<TelekineticObject>();
 
         foreach (var obj in activateObjects)

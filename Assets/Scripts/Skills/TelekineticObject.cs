@@ -16,12 +16,14 @@ public class TelekineticObject : Photon.MonoBehaviour
     public float pullSpeed;
     public static List<TelekineticObject> allObjs;
     public TrajectoryPredicter predicter;
+    public string particleName;
 
     bool _isLaunched;
     bool _isPulled;
     bool _isGrabbed;
     bool _hasToSync;
-    
+    bool _isReadyToDestroy;
+
     int _enemyLayer = 8;
     int _playerLayer = 13;
 
@@ -31,6 +33,10 @@ public class TelekineticObject : Photon.MonoBehaviour
     LayerMask _mask;
 
     Camera _cam;
+    public Camera Camera
+    {
+        get { return _cam; }
+    }
     public Vector3 correctionVector;
 
     RaycastHit _hit;
@@ -54,6 +60,11 @@ public class TelekineticObject : Photon.MonoBehaviour
         get { return _isPulled; }
     }
 
+    public bool IsReadyToDestroy
+    {
+        get { return _isReadyToDestroy; }
+    }
+
     void Awake()
     {
         if (allObjs == null) allObjs = new List<TelekineticObject>();
@@ -72,7 +83,6 @@ public class TelekineticObject : Photon.MonoBehaviour
         {
             _cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         }
-       
     }
 
     void Start()
@@ -88,6 +98,11 @@ public class TelekineticObject : Photon.MonoBehaviour
         correctionVector = new Vector3(0f, .3f, 0f);
     }
 
+    void OnEnable()
+    {
+        if (GameManager.screenDivided) EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
+    }
+
     void OnDividedScreen(object[] paramsContainer)
     {
         EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
@@ -98,6 +113,7 @@ public class TelekineticObject : Photon.MonoBehaviour
         var tgt = (TelekineticObject)paramsContainer[2];
         if (tgt.gameObject == gameObject)
         {
+            print("OnObjectPulled " + gameObject.name);
             var trn = (Transform)paramsContainer[0];
             var cam = trn.GetComponentInParent<Player1Input>().GetCamera;
             _cam = cam.GetCamera;
@@ -107,8 +123,24 @@ public class TelekineticObject : Photon.MonoBehaviour
     void TakeDamage()
     {
         life -= 1;
-        if (life <= 0) Destroy(this.gameObject);
+        if (life <= 0) StartCoroutine(DestroyTelekineticObject(3f));
     }
+
+    #region Cambios Iván 3/9
+    IEnumerator DestroyTelekineticObject(float time)
+    {
+        if (particleName == null || particleName == default(string))
+        {
+            particleName = "JarParticle";
+        }
+        var part = GameObject.Instantiate(Resources.Load("Particles/" + particleName) as GameObject, transform.position, Quaternion.identity);
+        Destroy(part, time);
+        GetComponent<Renderer>().enabled = false;
+        _isReadyToDestroy = true;
+        yield return new WaitForSeconds(time);
+        Destroy(this.gameObject);
+    }
+    #endregion
 
     void OnDestroy()
     {

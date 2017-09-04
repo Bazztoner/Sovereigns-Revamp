@@ -49,7 +49,6 @@ public class TrajectoryPredicter : MonoBehaviour
             mask = trn.GetComponentInParent<Player1Input>().gameObject.name == "Player1" ?
                        Utilities.IntLayers.VISIBLETOP1 : Utilities.IntLayers.VISIBLETOP2;
         }
-
        
         if (tgt == target)
         {
@@ -86,6 +85,8 @@ public class TrajectoryPredicter : MonoBehaviour
     /// </summary>
     void SimulatePath()
     {
+        if (target.Camera == null) return;
+
         Vector3[] segments = new Vector3[segmentCount];
 
         // The first line point is wherever the player's cannon, etc is

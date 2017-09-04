@@ -72,6 +72,14 @@ public class DestructibleObject : Photon.MonoBehaviour
         //MARTINNOTEMEENOJES();
 
         if (destructibleType == DestructibleType.DESTRUCTIBLE) GetComponentInChildren<Collider>().isTrigger = true;
+        else if (destructibleType == DestructibleType.TRANSITION)
+        {
+            var boundingBox = GetComponentInChildren<DestructibleBoundingBox>();
+            if (boundingBox != null)
+            {
+                boundingBox.enabled = false;
+            }
+        }
 
         isAlive = false;
         var wf = GetComponentsInChildren<DestructibleImpactArea>();
@@ -96,6 +104,8 @@ public class DestructibleObject : Photon.MonoBehaviour
             }
         }
 
+        ///Para mi estimadísimo señor Valladares: Aprecio infinitamente que haya aceptado mi sincera idea de que
+        ///hemos de hardcodear cuando la vida nos tira al suelo. Solo nosotros decidimos si nos levantamos ante ella.
         if((this.gameObject.name == "SingleDoor" || this.gameObject.name == "SingleDoor (1)") && Vector3.Angle(this.transform.forward, rot) >= 90) transform.forward *= -1;
         else transform.rotation = Quaternion.Euler(vectorRot);
     }

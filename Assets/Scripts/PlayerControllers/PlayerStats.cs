@@ -30,6 +30,7 @@ public class PlayerStats : Photon.MonoBehaviour {
             else if (value <= 0)
             {
                 hp = 0;
+                CancelInvoke();
                 if (!PhotonNetwork.offlineMode) EventManager.DispatchEvent("PlayerDeath", new object[] { PhotonNetwork.player.NickName });
                 else if (GameManager.screenDivided) EventManager.DispatchEvent("PlayerDeath", new object[] { this.gameObject.name });
             }
@@ -89,12 +90,9 @@ public class PlayerStats : Photon.MonoBehaviour {
 
     void RegainMana(float regained)
     {
-        if (_gameInCourse)
-        {
-            Mana += regained;
-            float fill = Mana / maxMana;
-            EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
-        }
+        Mana += regained;
+        float fill = Mana / maxMana;
+        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
     }
     void LoseHP(float damage)
     {
@@ -106,12 +104,9 @@ public class PlayerStats : Photon.MonoBehaviour {
     }
     void RegainHp(float regained)
     {
-        if (_gameInCourse)
-        {
-            Hp += regained;
-            float fill = Hp / maxHp;
-            EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, fill });
-        }
+        Hp += regained;
+        float fill = Hp / maxHp;
+        EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, fill });
     }
 
     public void TakeDamage(float damage)
