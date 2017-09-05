@@ -12,6 +12,9 @@ public class TransitionManager : MonoBehaviour
     Tuple<LevelTransition, GameObject, GameObject> transitionElements;
     Tuple<GameObject, GameObject> dummies;
 
+    /// <summary>
+    /// IUS FOR INISIALISEISHON
+    /// </summary>
 	void Start ()
     {
         EventManager.AddEventListener("TransitionActivated", OnTransitionActivation);
@@ -19,6 +22,13 @@ public class TransitionManager : MonoBehaviour
         EventManager.AddEventListener("DummyDamaged", OnDummyDamaged);
     }
 
+    /// <summary>
+    /// Handler se activa cuando se daña un jugador
+    /// </summary>
+    /// <param name="paramsContainer">
+    /// 0 - Name ||
+    /// 1 - 
+    /// </param>
     void OnCharacterDamaged(object[] paramsContainer)
     {
         var damagedName = (string)paramsContainer[0];
@@ -42,6 +52,13 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handler cuando se daña un dummy
+    /// </summary>
+    /// <param name="paramsContainer">
+    /// 0 - Name ||
+    /// 1 - 
+    /// </param>
     void OnDummyDamaged(object[] paramsContainer)
     {
         var damagedName = (string)paramsContainer[0];
@@ -65,10 +82,15 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Retorna una tupla con la Transición en la que está el jugador con el nombre parametrizado y el gameobject del mismo
+    /// </summary>
+    /// <param name="playerName"> Nombre del gameobject del jugador </param>
     Tuple<LevelTransition, GameObject> GetIfInTrigger(string playerName)
     {
         var posibleTransitions = currentZone.transitions;
 
+        //Retorna LevelTransition si encuentra un gameObject con el nombre del parámetro, sino default
         var transition = posibleTransitions
                         .Where(x => x.canBeUsed)
                         .Where(x => x.playersInTrigger.Any(g => g.name == playerName))
@@ -81,6 +103,16 @@ public class TransitionManager : MonoBehaviour
         return new Tuple<LevelTransition, GameObject>(transition, player);
     }
 
+    //Ordenadas por pasos
+
+    /// <summary>
+    /// Handler cuando se dispara la transición
+    /// </summary>
+    /// <param name="paramsContainer">
+    /// 0 - LevelTransition - Transición ||
+    /// 1 - GameObject - Atacante ||
+    /// 2 - GameObject - Víctima
+    /// </param>
     void OnTransitionActivation(object[] paramsContainer)
     {
         var transition = (LevelTransition)paramsContainer[0];
@@ -89,12 +121,16 @@ public class TransitionManager : MonoBehaviour
 
         transitionElements = new Tuple<LevelTransition, GameObject, GameObject>(transition, attacker, victim);
 
-        //StartCoroutine(TransitionWithLerping(transition, attacker, victim));
         StartCoroutine(TransitionWithAnimation(transition, attacker, victim));
     }
 
-    #region Testing 3/9
-    //Voy a tratar de ordenar las funciones en base a los pasos
+    /// <summary>
+    /// Corrutina para aplicar el Lerp hacia los puntos de origen, además de quitar el input a los jugadores
+    /// </summary>
+    /// <param name="transition"></param>
+    /// <param name="attacker"></param>
+    /// <param name="victim"></param>
+    /// <returns></returns>
     IEnumerator TransitionWithAnimation(LevelTransition transition, GameObject attacker, GameObject victim)
     {
         EventManager.DispatchEvent("TransitionBlockInputs", new object[] { false });
@@ -118,6 +154,10 @@ public class TransitionManager : MonoBehaviour
         EventManager.DispatchEvent("ActivateTransitionDummies", new object[] { transition, attacker, victim });
     }
 
+    /// <summary>
+    /// Activa los dummies, desactiva a los jugadores
+    /// </summary>
+    /// <param name="paramsContainer"></param>
     void OnTransitionDummiesActivated(object[] paramsContainer)
     {
         EventManager.RemoveEventListener("ActivateTransitionDummies", OnTransitionDummiesActivated);
@@ -135,20 +175,38 @@ public class TransitionManager : MonoBehaviour
 
         dummies = new Tuple<GameObject, GameObject>(dummyAttacker, dummyVictim);
 
+        //Activamos la cámara que apunta al atacante
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(true);
-        //dummyAttacker.MakeAttack();
+        //NO ANDA ESTA PORONGA
+        //dummyAttacker.GetComponent<TransitionDummy>().Animate("Attack");
         float waitTime = .3f;
         StartCoroutine(AttackWaitTime(transition, dummyAttacker, dummyVictim, waitTime));
     }
 
+    /// <summary>
+    /// Corrutina para esperar hasta que termine el ataque (hardcode?)
+    /// </summary>
+    /// <param name="transition"></param>
+    /// <param name="attacker"></param>
+    /// <param name="victim"></param>
+    /// <param name="waitTime"></param>
+    /// <returns></returns>
     IEnumerator AttackWaitTime(LevelTransition transition, GameObject attacker, GameObject victim, float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
 
         float launchForce = 166f;
+        victim.GetComponent<TransitionDummy>().Animate("Damaged");
         OnTransitionLaunchDummy(transition, attacker, victim, launchForce);
     }
 
+    /// <summary>
+    /// Aplica una fuerza al atacado para lanzarlo con addforce. Además, agrega un evento para cuando este colisione contra el destructible.
+    /// </summary>
+    /// <param name="transition"></param>
+    /// <param name="attacker"></param>
+    /// <param name="victim"></param>
+    /// <param name="launchForce"></param>
     void OnTransitionLaunchDummy(LevelTransition transition, GameObject attacker, GameObject victim, float launchForce)
     {
         var victimDummy = victim.GetComponent<TransitionDummy>();
@@ -158,6 +216,22 @@ public class TransitionManager : MonoBehaviour
         EventManager.AddEventListener("DummyCollidedWithDestructible", OnDummyCollided);
     }
 
+    #region WIP
+    [System.Obsolete("Aún no está funcional")]
+    void OnTransitionLerpDummy(LevelTransition transition, GameObject attacker, GameObject victim, float timeQuota, float maxTime)
+    {
+        var victimDummy = victim.GetComponent<TransitionDummy>();
+        var victimRb = victim.GetComponent<Rigidbody>();
+        //Lerp here
+        victimDummy.isLaunched = true;
+        EventManager.AddEventListener("DummyCollidedWithDestructible", OnDummyCollided);
+    }
+    #endregion
+
+    /// <summary>
+    /// Handler para cuando colisiona el dummy víctima con el destructible
+    /// </summary>
+    /// <param name="paramsContainer"></param>
     void OnDummyCollided(object[] paramsContainer)
     {
         EventManager.RemoveEventListener("DummyCollidedWithDestructible", OnDummyCollided);
@@ -170,6 +244,12 @@ public class TransitionManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Corrutina para que el atacante espere un poco luego de que el dummy víctima atraviese el destructible. El atacante correrá y la cámara se cambiará
+    /// </summary>
+    /// <param name="attackerRunDelay"></param>
+    /// <param name="cameraDelay"></param>
+    /// <returns></returns>
     IEnumerator DummyCollisionWaitTime(float attackerRunDelay, float cameraDelay)
     {
         yield return new WaitForSeconds(attackerRunDelay);
@@ -183,6 +263,7 @@ public class TransitionManager : MonoBehaviour
                       );
         yield return new WaitForSeconds(cameraDelay);
 
+        //Cambiamos las cámaras
         transitionElements.Item1.camerasForTransition[1].gameObject.SetActive(true);
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(false);
         yield return new WaitForSeconds(maxTimeForLerping);
@@ -190,6 +271,13 @@ public class TransitionManager : MonoBehaviour
         OnEndOfTransition(transitionElements.Item1, transitionElements.Item2, transitionElements.Item3);
     }
 
+    /// <summary>
+    /// Finalizamos la transición: apagamos dummies, prendemos jugadores, devolvemos el input a los jugadores y apagamos las cámaras.
+    /// También cancelamos la transición que usamos y la que va para el lado contrario
+    /// </summary>
+    /// <param name="transition"></param>
+    /// <param name="attacker"></param>
+    /// <param name="victim"></param>
     void OnEndOfTransition(LevelTransition transition, GameObject attacker, GameObject victim)
     {
         victim.transform.position = transition.victimRelocatePoint.position;
@@ -201,15 +289,31 @@ public class TransitionManager : MonoBehaviour
         transitionElements.Item1.camerasForTransition[1].gameObject.SetActive(false);
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(false);
         //FIXME: no es lo ideal
-        //if (GameManager.screenDivided) victim.GetComponentInParent<PlayerStats>().TakeDamage(transition.damage);
+        if (GameManager.screenDivided) victim.GetComponentInParent<PlayerStats>().TakeDamage(transition.damage);
 
+        var previousZone = currentZone;
         currentZone = transition.to;
+        /*var otherSide = currentZone.transitions.Where(x => x.from == previousZone && x.to == currentZone).FirstOrDefault();
+        if (otherSide != default(LevelTransition)) otherSide.canBeUsed = false;*/
         transition.canBeUsed = false;
+        transition.otherSide.canBeUsed = false;
+       
         EventManager.DispatchEvent("TransitionBlockInputs", new object[] { true });
     }
-    #endregion
 
+    IEnumerator MoveObject(Transform objToMove, Vector3 startPos, Vector3 endPos, float timeQuota, float maxTime)
+    {
+        var i = 0f;
+        float rate = 1f / timeQuota;
+        while (i < maxTime)
+        {
+            i += Time.deltaTime * rate;
+            objToMove.position = Vector3.Lerp(startPos, endPos, i);
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
+    #region Old
     IEnumerator TransitionWithLerping(LevelTransition transition, GameObject attacker, GameObject victim)
     {
         EventManager.DispatchEvent("TransitionBlockInputs", new object[] { false });
@@ -242,18 +346,8 @@ public class TransitionManager : MonoBehaviour
         transition.canBeUsed = false;
     }
 
-    IEnumerator MoveObject(Transform objToMove, Vector3 startPos,Vector3 endPos, float timeQuota, float maxTime)
-    {
-        var i = 0f;
-        float rate = 1f / timeQuota;
-        while (i < maxTime)
-        {
-            i += Time.deltaTime * rate;
-            objToMove.position = Vector3.Lerp(startPos, endPos, i);
-            yield return new WaitForEndOfFrame(); 
-        }
-    }
-
+    
+    #endregion
 
     #region Deprecated
     void OnBlackScreenTransition(LevelTransition transition, GameObject attacker, GameObject victim)

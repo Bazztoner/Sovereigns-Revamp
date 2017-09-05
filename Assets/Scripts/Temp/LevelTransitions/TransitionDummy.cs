@@ -14,7 +14,8 @@ public class TransitionDummy : MonoBehaviour
 
     void Start ()
     {
-        _an = GetComponentInChildren<Animator>();
+        _an = GetComponent<Animator>();
+        print(_an);
 	}
 	
 	void Update ()
@@ -22,10 +23,10 @@ public class TransitionDummy : MonoBehaviour
 		
 	}
 
-    public void MakeAttack()
+    public void Animate(string animation)
     {
-        var anim = Animator.StringToHash("YY");
-        _an.Play(anim);
+        //var anim = Animator.StringToHash("YY");
+        _an.Play(animation);
     }
 
     void OnTriggerEnter(Collider c)
@@ -37,4 +38,13 @@ public class TransitionDummy : MonoBehaviour
         }
     }
 
+    void OnAttackExit()
+    {
+        _an.SetBool("Attack", false);
+    }
+
+    void OnDamageExit()
+    {
+        _an.SetBool("Damaged", false);
+    }
 }

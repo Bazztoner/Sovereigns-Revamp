@@ -10,6 +10,7 @@ public class LevelTransition : MonoBehaviour
     public Transform victimRelocatePoint;
     public Transform attackerTransitionOrigin;
     public Transform victimTransitionOrigin;
+    public LevelTransition otherSide;
     public int damage;
     public List<GameObject> playersInTrigger;
     public bool canBeUsed = true;
@@ -19,11 +20,16 @@ public class LevelTransition : MonoBehaviour
     {
         attackerTransitionOrigin = transform.Find("AttackerOrigin");
         victimTransitionOrigin = transform;
+        attackerRelocatePoint = transform.Find("RelocationPoints").Find("AttackerRelocationPoint");
+        victimRelocatePoint = transform.Find("RelocationPoints").Find("VictimRelocationPoint");
         canBeUsed = true;
         var camContainer = transform.Find("Cameras");
         camerasForTransition = new Camera[2];
         camerasForTransition[0] = camContainer.Find("Camera1").GetComponent<Camera>();
         camerasForTransition[1] = camContainer.Find("Camera2").GetComponent<Camera>();
+
+        if (otherSide == this) throw new System.Exception("SOS PELOTUDO MAN PUSISTE UNO QUE SEA AMBOS LADOS: ERROR EN " + gameObject.name);
+        //TODO: Agregar que encuentre por código el lado opuesto :v
     }
 
     void OnTriggerEnter(Collider c)
