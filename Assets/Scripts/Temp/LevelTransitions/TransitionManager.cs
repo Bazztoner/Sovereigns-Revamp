@@ -9,7 +9,16 @@ public class TransitionManager : MonoBehaviour
 {
     public Zone currentZone;
     public Image blackScreen;
+    /// <summary>
+    /// 1 - LevelTransition - Transición ||
+    /// 2 - GameObject - Atacante ||
+    /// 3 - GameObject - Víctima
+    /// </summary>
     Tuple<LevelTransition, GameObject, GameObject> transitionElements;
+    /// <summary>
+    /// 1 - GameObject - Atacante ||
+    /// 2 - GameObject - Víctima
+    /// </summary>
     Tuple<GameObject, GameObject> dummies;
 
     /// <summary>
@@ -222,7 +231,7 @@ public class TransitionManager : MonoBehaviour
     {
         var victimDummy = victim.GetComponent<TransitionDummy>();
         var victimRb = victim.GetComponent<Rigidbody>();
-        //Lerp here
+        //StartCoroutine(MoveObject(victim, victim.transform.position, transition.victimRelocatePoint, ))
         victimDummy.isLaunched = true;
         EventManager.AddEventListener("DummyCollidedWithDestructible", OnDummyCollided);
     }

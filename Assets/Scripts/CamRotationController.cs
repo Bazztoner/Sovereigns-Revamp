@@ -69,7 +69,7 @@ public class CamRotationController : MonoBehaviour
     #region Initialization
     private void GetComponents()
     {
-        _cam = GetComponentInChildren<Camera>();
+        _cam = GetComponentsInChildren<Camera>().Where(x => x.gameObject.name != "Cam1 (1)" && x.gameObject.name != "Cam2 (1)").First();
         _mask = ~(1 << LayerMask.NameToLayer("Player") 
                 | 1 << LayerMask.NameToLayer("Enemy") 
                 | 1 << LayerMask.NameToLayer("Floor") 
