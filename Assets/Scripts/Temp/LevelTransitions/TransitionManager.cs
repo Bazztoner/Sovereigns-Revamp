@@ -56,6 +56,8 @@ public class TransitionManager : MonoBehaviour
                 if (tempAngle < 30f)
                 {
                     EventManager.DispatchEvent("TransitionActivated", new object[] { transition, attacker, victim } );
+                    EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
+                    EventManager.RemoveEventListener("DummyDamaged", OnDummyDamaged);
                 }
             }
         }
@@ -86,6 +88,8 @@ public class TransitionManager : MonoBehaviour
                 if (tempAngle < 30f)
                 {
                     EventManager.DispatchEvent("TransitionActivated", new object[] { transition, attacker, victim });
+                    EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
+                    EventManager.RemoveEventListener("DummyDamaged", OnDummyDamaged);
                 }
             }
         }
@@ -147,33 +151,26 @@ public class TransitionManager : MonoBehaviour
         var timeQuota = .2f;
 
         StartCoroutine(
-                       MoveObject(attacker.transform, attacker.transform.position, transition.attackerTransitionOrigin.position, timeQuota, maxTimeForLerping)
+                       MoveObject(attacker.transform, attacker.transform.position, transition.attackerTransitionOrigin.position, maxTimeForLerping)
                       );
         StartCoroutine(
-                       MoveObject(victim.transform, victim.transform.position, transition.victimTransitionOrigin.position, timeQuota, maxTimeForLerping)
+                       MoveObject(victim.transform, victim.transform.position, transition.victimTransitionOrigin.position, maxTimeForLerping)
                       );
-
-        yield return new WaitForSeconds(maxTimeForLerping);
-
-        EventManager.AddEventListener("ActivateTransitionDummies", OnTransitionDummiesActivated);
-
+        
+        yield return new WaitForSeconds(0);
+        
         victim.transform.position = transition.victimTransitionOrigin.position;
         attacker.transform.position = transition.attackerTransitionOrigin.position;
 
-        EventManager.DispatchEvent("ActivateTransitionDummies", new object[] { transition, attacker, victim });
+        OnTransitionDummiesActivated(transition, attacker, victim);
     }
 
     /// <summary>
     /// Activa los dummies, desactiva a los jugadores
     /// </summary>
     /// <param name="paramsContainer"></param>
-    void OnTransitionDummiesActivated(object[] paramsContainer)
+    void OnTransitionDummiesActivated(LevelTransition transition, GameObject attacker, GameObject victim)
     {
-        EventManager.RemoveEventListener("ActivateTransitionDummies", OnTransitionDummiesActivated);
-        var transition = (LevelTransition)paramsContainer[0];
-        var attacker = (GameObject)paramsContainer[1];
-        var victim = (GameObject)paramsContainer[2];
-
         var dummyAttacker = GameObject.Instantiate(Resources.Load("Transitions/Dummies/TransitionPlayerDummy") as GameObject, attacker.transform.position, Quaternion.identity);
         dummyAttacker.transform.forward = attacker.transform.forward;
         attacker.SetActive(false);
@@ -187,40 +184,25 @@ public class TransitionManager : MonoBehaviour
         //Activamos la cámara que apunta al atacante
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(true);
         //NO ANDA ESTA PORONGA
-        //dummyAttacker.GetComponent<TransitionDummy>().Animate("Attack");
+        dummyVictim.GetComponent<TransitionDummy>().Animate("transitionDamage");
         float waitTime = .3f;
-        StartCoroutine(AttackWaitTime(transition, dummyAttacker, dummyVictim, waitTime));
+        //StartCoroutine(AttackWaitTime(transition, dummyAttacker, dummyVictim, waitTime));
+        OnTransitionLaunchDummy(transition, dummyAttacker, dummyVictim, 0.5f);
     }
 
     /// <summary>
-    /// Corrutina para esperar hasta que termine el ataque (hardcode?)
+    /// Mueve con Lerp hacia la posicion final. Además, agrega un evento para cuando este colisione contra el destructible.
     /// </summary>
     /// <param name="transition"></param>
     /// <param name="attacker"></param>
     /// <param name="victim"></param>
-    /// <param name="waitTime"></param>
-    /// <returns></returns>
-    IEnumerator AttackWaitTime(LevelTransition transition, GameObject attacker, GameObject victim, float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-
-        float launchForce = 166f;
-        victim.GetComponent<TransitionDummy>().Animate("Damaged");
-        OnTransitionLaunchDummy(transition, attacker, victim, launchForce);
-    }
-
-    /// <summary>
-    /// Aplica una fuerza al atacado para lanzarlo con addforce. Además, agrega un evento para cuando este colisione contra el destructible.
-    /// </summary>
-    /// <param name="transition"></param>
-    /// <param name="attacker"></param>
-    /// <param name="victim"></param>
-    /// <param name="launchForce"></param>
-    void OnTransitionLaunchDummy(LevelTransition transition, GameObject attacker, GameObject victim, float launchForce)
+    /// <param name="maxTime"></param>
+    void OnTransitionLaunchDummy(LevelTransition transition, GameObject attacker, GameObject victim, float maxTime)
     {
         var victimDummy = victim.GetComponent<TransitionDummy>();
-        var victimRb = victim.GetComponent<Rigidbody>();
-        victimRb.AddForce(attacker.transform.forward * launchForce, ForceMode.Impulse);
+        StartCoroutine(
+                       MoveObject(victim.transform, victim.transform.position, transition.victimRelocatePoint.position, maxTime)
+                      );
         victimDummy.isLaunched = true;
         EventManager.AddEventListener("DummyCollidedWithDestructible", OnDummyCollided);
     }
@@ -268,7 +250,7 @@ public class TransitionManager : MonoBehaviour
                        MoveObject(transitionElements.Item2.transform,
                                   transitionElements.Item2.transform.position, 
                                   transitionElements.Item1.attackerRelocatePoint.position, 
-                                  timeQuota, maxTimeForLerping)
+                                  maxTimeForLerping)
                       );
         yield return new WaitForSeconds(cameraDelay);
 
@@ -308,97 +290,18 @@ public class TransitionManager : MonoBehaviour
         transition.otherSide.canBeUsed = false;
        
         EventManager.DispatchEvent("TransitionBlockInputs", new object[] { true });
+        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
+        EventManager.AddEventListener("DummyDamaged", OnDummyDamaged);
     }
 
-    IEnumerator MoveObject(Transform objToMove, Vector3 startPos, Vector3 endPos, float timeQuota, float maxTime)
+    IEnumerator MoveObject(Transform objToMove, Vector3 startPos, Vector3 endPos, float maxTime)
     {
         var i = 0f;
-        float rate = 1f / timeQuota;
         while (i < maxTime)
         {
-            i += Time.deltaTime * rate;
+            i += Time.deltaTime;
             objToMove.position = Vector3.Lerp(startPos, endPos, i);
             yield return new WaitForEndOfFrame();
         }
     }
-
-    #region Old
-    IEnumerator TransitionWithLerping(LevelTransition transition, GameObject attacker, GameObject victim)
-    {
-        EventManager.DispatchEvent("TransitionBlockInputs", new object[] { false });
-        var maxTimeForLerping = 1f;
-        var timeQuota = .2f;
-
-        StartCoroutine(
-                       MoveObject(attacker.transform, attacker.transform.position, transition.attackerTransitionOrigin.position, timeQuota, maxTimeForLerping)
-                      );
-        StartCoroutine(
-                       MoveObject(victim.transform, victim.transform.position, transition.victimTransitionOrigin.position, timeQuota, maxTimeForLerping)
-                      );
-
-        yield return new WaitForSeconds(maxTimeForLerping);
-
-        OnLerpingTransition(transition, attacker, victim);
-
-        EventManager.DispatchEvent("TransitionBlockInputs", new object[] { true });
-    }
-
-    void OnLerpingTransition(LevelTransition transition, GameObject attacker, GameObject victim)
-    {
-        victim.transform.position = transition.victimRelocatePoint.position;
-        //FIXME: no es lo ideal
-        if (GameManager.screenDivided) victim.GetComponentInParent<PlayerStats>().TakeDamage(transition.damage);
-
-        attacker.transform.position = transition.attackerRelocatePoint.position;
-
-        currentZone = transition.to;
-        transition.canBeUsed = false;
-    }
-
-    
-    #endregion
-
-    #region Deprecated
-    void OnBlackScreenTransition(LevelTransition transition, GameObject attacker, GameObject victim)
-    {
-        //Attacked Player
-        victim.transform.position = transition.victimRelocatePoint.position;
-        //FIXME: no es lo ideal
-        if (GameManager.screenDivided) victim.GetComponentInParent<PlayerStats>().TakeDamage(transition.damage);
-
-        //Attacker Player
-        attacker.transform.position = transition.attackerRelocatePoint.position;
-
-        currentZone = transition.to;
-        transition.canBeUsed = false;
-    }
-
-    IEnumerator TransitionWithBlackScreen(LevelTransition transition, GameObject attacker, GameObject victim)
-    {
-        ActivateBlackScreen(true);
-        EventManager.DispatchEvent("TransitionBlockInputs", new object[] { false });
-        yield return new WaitForSeconds(0.5f);
-
-        OnBlackScreenTransition(transition, attacker, victim);
-
-        yield return new WaitForSeconds(0.5f);
-        ActivateBlackScreen(false);
-        EventManager.DispatchEvent("TransitionBlockInputs", new object[] { true });
-    }
-
-    void ActivateBlackScreen(GameObject attacker, GameObject victim, bool activation)
-    {
-        var victimCamera = victim.GetComponent<Player1Input>().GetCamera.GetCamera;
-
-        var attackerCamera = attacker.GetComponent<Player1Input>().GetCamera.GetCamera;
-
-        victimCamera.enabled = activation;
-        attackerCamera.enabled = activation;
-    }
-
-    void ActivateBlackScreen(bool activation)
-    {
-        blackScreen.enabled = activation;
-    }
-    #endregion
 }

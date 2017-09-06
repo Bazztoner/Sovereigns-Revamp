@@ -25,8 +25,8 @@ public class TransitionDummy : MonoBehaviour
 
     public void Animate(string animation)
     {
-        //var anim = Animator.StringToHash("YY");
-        _an.Play(animation);
+        if (_an == null) _an = GetComponent<Animator>();
+        _an.SetBool(animation, true);
     }
 
     void OnTriggerEnter(Collider c)
@@ -36,6 +36,11 @@ public class TransitionDummy : MonoBehaviour
             EventManager.DispatchEvent("DummyCollidedWithDestructible", new object[] { c.gameObject.GetComponent<DestructibleObject>() });
             GetComponent<Collider>().isTrigger = false;
         }
+    }
+
+    void OnStartLerp()
+    {
+
     }
 
     void OnAttackExit()
