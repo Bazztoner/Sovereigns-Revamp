@@ -22,8 +22,8 @@ public class CamRotationController : MonoBehaviour
 
     private Transform _character;
     private Transform _enemy;
-    private float _rotationY = 0f;
-    private float _rotationX = 0f;
+    private float _rotationY;
+    private float _rotationX;
     private Vector3 _fixedCharPos;
     private Vector3 _correctionVector;
     private Vector3 _direction;
@@ -69,6 +69,7 @@ public class CamRotationController : MonoBehaviour
     #region Initialization
     private void GetComponents()
     {
+        //Ivan: para que haces esto si cada camara tiene solo un hijo de tipo camara y ninguno se llama asi??
         _cam = GetComponentsInChildren<Camera>().Where(x => x.gameObject.name != "Cam1 (1)" && x.gameObject.name != "Cam2 (1)").First();
         _mask = ~(1 << LayerMask.NameToLayer("Player") 
                 | 1 << LayerMask.NameToLayer("Enemy") 
@@ -106,7 +107,6 @@ public class CamRotationController : MonoBehaviour
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
-        //_cam.cullingMask &= ~(1 << cullLayer);
         proyectionLayer = cullLayer;
     }
 
@@ -176,11 +176,11 @@ public class CamRotationController : MonoBehaviour
                 
                 if (!_lockOn && (_instHorizontal != 0 || _instVertical != 0))
                 {
-                    _rotationY += _instVertical * rotateSpeed * sensivity;
+                    _rotationY += -_instVertical * rotateSpeed * sensivity;
                     _rotationY = Mathf.Clamp(_rotationY, minimumY, maximumY);
-                    _rotationX += _instHorizontal * rotateSpeed * sensivity;
-
-                    transform.localEulerAngles = new Vector3(_rotationY, _rotationX, 0);
+                    _rotationX = _instHorizontal * rotateSpeed * sensivity + transform.eulerAngles.y;
+                    
+                    transform.eulerAngles = new Vector3(_rotationY, _rotationX, 0);
                 }
             }
             else
@@ -192,9 +192,9 @@ public class CamRotationController : MonoBehaviour
                 {
                     _rotationY += -_instVertical * rotateSpeed * sensivity;
                     _rotationY = Mathf.Clamp(_rotationY, minimumY, maximumY);
-                    _rotationX += _instHorizontal * rotateSpeed * sensivity;
+                    _rotationX = _instHorizontal * rotateSpeed * sensivity + transform.eulerAngles.y;
 
-                    transform.localEulerAngles = new Vector3(_rotationY, _rotationX, 0);
+                    transform.eulerAngles = new Vector3(_rotationY, _rotationX, 0);
                 }
             }
         }
