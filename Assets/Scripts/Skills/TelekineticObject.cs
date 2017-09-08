@@ -322,9 +322,9 @@ public class TelekineticObject : Photon.MonoBehaviour
             //TODO evento para hacer daño a entity
 
             if (PhotonNetwork.offlineMode && c.gameObject.layer == _enemyLayer)
-                c.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
+                c.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage, "Telekinetic Object");
             else if (!PhotonNetwork.offlineMode && c.gameObject.layer == _playerLayer)
-                c.gameObject.GetComponentInParent<DataSync>().photonView.RPC("TakeDamage", PhotonTargets.All, damage, PhotonNetwork.player.NickName);
+                c.gameObject.GetComponentInParent<DataSync>().photonView.RPC("TakeDamage", PhotonTargets.All, damage, PhotonNetwork.player.NickName, "Telekinetic Object");
             
             TakeDamage();
             _isLaunched = false;

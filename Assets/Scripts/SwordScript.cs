@@ -52,10 +52,19 @@ public class SwordScript : MonoBehaviour
             
             _isDetecting = false;
             _appliedDamage = 0;
-            
-            if (!PhotonNetwork.offlineMode) other.gameObject.GetComponentInParent<DataSync>().photonView.RPC("TakeDamage", PhotonTargets.All, damage, PhotonNetwork.player.NickName);
-            else if (GameManager.screenDivided) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage);
-            else if (other.gameObject.GetComponentInParent<Enemy>() != null) other.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
+
+            if (!PhotonNetwork.offlineMode)
+            {
+                other.gameObject.GetComponentInParent<DataSync>().photonView.RPC("TakeDamage", PhotonTargets.All, damage, PhotonNetwork.player.NickName, "Melee");
+            }
+            else if (GameManager.screenDivided)
+            {
+                other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee");
+            }
+            else if (other.gameObject.GetComponentInParent<Enemy>() != null)
+            {
+                other.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage, "Melee");
+            }
         }
     }
 

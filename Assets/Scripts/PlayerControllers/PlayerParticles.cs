@@ -9,30 +9,29 @@ public class PlayerParticles : Photon.MonoBehaviour {
     GameObject _runParticle;
     GameObject _blinkTrail;
 
-    //REVISAR: Estas dos variables las puse porque estaban en el characterMovement, pero parece ser que no se usan en ningun lado.
-    public ParticleSystem launchParticleSystem;
-    public ParticleSystem chargeParticleSystem;
+    Player1Input _playerInput;
 
     void Start()
     {
         Initialize();
     }
 
+    void Update()
+    {
+        _runParticle.transform.forward = -_playerInput.RunDirection;
+    }
+
     #region Initialization
     private void Initialize()
     {
         _skillPos = transform.Find("SpellPos");
-        launchParticleSystem = transform.Find("Launch").GetComponent<ParticleSystem>();
-        chargeParticleSystem = transform.Find("Charge").GetComponent<ParticleSystem>();
-
-        launchParticleSystem.transform.position = this.transform.position;
-        chargeParticleSystem.transform.position = this.transform.position;
 
         AddEvents();
         AddRunParticle();
         AddBlinkTrail();
+        _playerInput = GetComponent<Player1Input>();
     }
-    
+
     void AddEvents()
     {
         EventManager.AddEventListener("ActivateRunParticle", OnActivateRunning);

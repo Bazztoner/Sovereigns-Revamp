@@ -32,6 +32,11 @@ public class Player1Input : MonoBehaviour {
     {
         get { return _cam.GetComponent<CamRotationController>(); }
     }
+
+    public Vector3 RunDirection
+    {
+        get { return _direction; }
+    }
     void Start()
     {
         Initialize();
@@ -229,7 +234,7 @@ public class Player1Input : MonoBehaviour {
     #region Skills
     private void CheckSkills()
     {
-        if (_canMove /*&& !GameManager.screenDivided*/)
+        if (_canMove)
         {
             if (readJoystick)
             {

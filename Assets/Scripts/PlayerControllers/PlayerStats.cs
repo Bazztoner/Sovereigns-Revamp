@@ -109,9 +109,16 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, fill });
     }
 
+    [System.Obsolete("No se usa más, usar la que toma un string como segundo parámetro")]
     public void TakeDamage(float damage)
     {
         EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
+        LoseHP(damage);
+    }
+
+    public void TakeDamage(float damage, string attackType)
+    {
+        EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
         LoseHP(damage);
     }
 

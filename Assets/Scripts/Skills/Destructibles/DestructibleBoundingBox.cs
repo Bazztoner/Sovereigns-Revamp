@@ -14,13 +14,13 @@ public class DestructibleBoundingBox : MonoBehaviour
         {
             //Hacer eventos para enviar daño, no manosear TakeDamage
             var dmg = transform.GetComponentInParent<DestructibleObject>().damage;
-            c.GetComponent<Enemy>().TakeDamage(dmg);
+            c.GetComponent<Enemy>().TakeDamage(dmg, "Destructible");
         }
         else if (c.gameObject.layer == 13)
         {
             //Hacer eventos para enviar daño, no manosear TakeDamage
             var dmg = transform.GetComponentInParent<DestructibleObject>().damage;
-            if (PhotonNetwork.offlineMode) c.GetComponent<PlayerStats>().TakeDamage(dmg);
+            if (PhotonNetwork.offlineMode) c.GetComponent<PlayerStats>().TakeDamage(dmg, "Destructible");
             else if(destr.nickName == PhotonNetwork.player.NickName)
             {
                 var charac = c.GetComponent<DataSync>();
@@ -33,7 +33,7 @@ public class DestructibleBoundingBox : MonoBehaviour
                 }
 
                 _targets.Add(charac);
-                charac.photonView.RPC("TakeDamage", PhotonTargets.All, dmg, PhotonNetwork.player.NickName);
+                charac.photonView.RPC("TakeDamage", PhotonTargets.All, dmg, PhotonNetwork.player.NickName, "Destructible");
             } 
         }
     }
