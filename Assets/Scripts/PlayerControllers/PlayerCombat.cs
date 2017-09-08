@@ -71,11 +71,13 @@ public class PlayerCombat : Photon.MonoBehaviour {
     private void OnIdleEnter(params object[] paramsContainer)
     {
         isAttacking = false;
+        //EventManager.DispatchEvent("SetTrailState", new object[] { gameObject.name, false });
     }
 
     private void OnAttackExit()
     {
         EventManager.DispatchEvent("AttackExit");
+        //EventManager.DispatchEvent("SetTrailState", new object[] { gameObject.name, false });
     }
 
     private void OnCharacterDamaged(params object[] paramsContainer)

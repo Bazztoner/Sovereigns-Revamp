@@ -77,7 +77,6 @@ public class Player1Input : MonoBehaviour {
         _ps = GetComponent<PlayerSkills>();
         _pst = GetComponent<PlayerStats>();
         FindCamera();
-        
     }
 
     private void FindCamera()

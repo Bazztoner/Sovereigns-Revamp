@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,8 +14,28 @@ public class SwordScript : MonoBehaviour
     void Start()
     {
         EventManager.AddEventListener("AttackEnter", OnAttackEnter);
+        EventManager.AddEventListener("SetTrailState", OnTrailStateChange);
         EventManager.AddEventListener("AttackExit", OnAttackExit);
         GetTrail(false);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="paramsContainer">
+    /// 0 - gameObject.Name || 
+    /// 1 - bool
+    /// </param>
+    void OnTrailStateChange(object[] paramsContainer)
+    {
+        if (GameManager.screenDivided)
+        {
+            if (this.transform.GetComponentInParent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+            {
+                ActivateTrail((bool)paramsContainer[1]);
+            }
+        }
+        else ActivateTrail((bool)paramsContainer[1]);
     }
 
     private void OnAttackEnter(params object[] paramsContainer)
@@ -38,6 +59,7 @@ public class SwordScript : MonoBehaviour
 
     private void OnAttackExit(params object[] paramsContainer)
     {
+        print("ATTACK EXIT");
         _isDetecting = false;
         _appliedDamage = 0;
         ActivateTrail(false);
@@ -68,7 +90,6 @@ public class SwordScript : MonoBehaviour
         }
     }
 
-    #region Cambios Iván 3/9
     void ActivateTrail(bool activate)
     {
         _trail.enabled = activate;
@@ -95,5 +116,4 @@ public class SwordScript : MonoBehaviour
     {
         _trail = transform.parent.parent.Find("SwordTrail").GetComponent<TrailRenderer>();
     }
-    #endregion
 }
