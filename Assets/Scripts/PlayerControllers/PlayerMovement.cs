@@ -14,7 +14,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     public float speed;
     [HideInInspector]
     public float speedMult;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isEvading;
     [HideInInspector]
     public bool runForward;
@@ -38,7 +38,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     public bool isRunning;
     [HideInInspector]
     public bool sprintAvailable;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isRolling;
     
     public Transform Enemy { get { return _enemy; } }

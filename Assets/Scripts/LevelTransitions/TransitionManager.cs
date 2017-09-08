@@ -297,9 +297,10 @@ public class TransitionManager : MonoBehaviour
     IEnumerator MoveObject(Transform objToMove, Vector3 startPos, Vector3 endPos, float maxTime)
     {
         var i = 0f;
-        while (i < maxTime)
+
+        while (i <= 1)
         {
-            i += Time.deltaTime;
+            i += Time.deltaTime / maxTime;
             objToMove.position = Vector3.Lerp(startPos, endPos, i);
             yield return new WaitForEndOfFrame();
         }

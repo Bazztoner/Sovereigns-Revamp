@@ -22,8 +22,8 @@ public class Player1Input : MonoBehaviour {
     private Vector3 _direction;
     private bool _checkingRoll = false;
     private bool _gameInCourse = true;
-    private bool _canMove = true;
-    private bool _canAttack = true;
+    public bool _canMove = true;
+    public bool _canAttack = true;
     private float _dodgeTime = 0.15f;
 
     public bool readJoystick;

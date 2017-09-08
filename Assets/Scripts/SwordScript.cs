@@ -14,42 +14,22 @@ public class SwordScript : MonoBehaviour
     void Start()
     {
         EventManager.AddEventListener("AttackEnter", OnAttackEnter);
-        EventManager.AddEventListener("SetTrailState", OnTrailStateChange);
         EventManager.AddEventListener("AttackExit", OnAttackExit);
         GetTrail(false);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="paramsContainer">
-    /// 0 - gameObject.Name || 
-    /// 1 - bool
-    /// </param>
-    void OnTrailStateChange(object[] paramsContainer)
-    {
-        if (GameManager.screenDivided)
-        {
-            if (this.transform.GetComponentInParent<Player1Input>().gameObject.name == (string)paramsContainer[0])
-            {
-                ActivateTrail((bool)paramsContainer[1]);
-            }
-        }
-        else ActivateTrail((bool)paramsContainer[1]);
     }
 
     private void OnAttackEnter(params object[] paramsContainer)
     {
         if (GameManager.screenDivided)
         {
-            if (this.transform.GetComponentInParent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+            if (this.transform.GetComponentInParent<Player1Input>().gameObject.name == (string)paramsContainer[0] && !_isDetecting)
             {
                 _isDetecting = true;
                 _appliedDamage = (int)paramsContainer[1];
                 ActivateTrail(true);
             }
         }
-        else
+        else if(!_isDetecting)
         {
             _isDetecting = true;
             _appliedDamage = (int)paramsContainer[1];
@@ -59,7 +39,6 @@ public class SwordScript : MonoBehaviour
 
     private void OnAttackExit(params object[] paramsContainer)
     {
-        print("ATTACK EXIT");
         _isDetecting = false;
         _appliedDamage = 0;
         ActivateTrail(false);
@@ -92,7 +71,7 @@ public class SwordScript : MonoBehaviour
 
     void ActivateTrail(bool activate)
     {
-        _trail.enabled = activate;
+        _trail.gameObject.SetActive(activate);
     }
 
     void GetTrail(bool isActiveFromStart)
@@ -103,12 +82,12 @@ public class SwordScript : MonoBehaviour
             var tempTrail = GameObject.Instantiate(Resources.Load("SwordTrail") as GameObject, transform.parent.parent);
             tempTrail.transform.localPosition = new Vector3(-1.291f, 0, 0);
             _trail = tempTrail.GetComponent<TrailRenderer>();
-            _trail.enabled = isActiveFromStart;
+            _trail.gameObject.SetActive(isActiveFromStart);
         }
         else
         {
             _trail = trailContainer.GetComponent<TrailRenderer>();
-            _trail.enabled = isActiveFromStart;
+            _trail.gameObject.SetActive(isActiveFromStart);
         }
     }
 

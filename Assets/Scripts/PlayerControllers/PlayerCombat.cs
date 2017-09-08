@@ -8,7 +8,7 @@ public class PlayerCombat : Photon.MonoBehaviour {
     public int lightAttackDamage = 6;
     public int heavyAttackDamage = 16;
     
-    [HideInInspector]
+    //[HideInInspector]
     public bool isAttacking = false;
     [HideInInspector]
     public bool isBlocking = false;
@@ -71,13 +71,12 @@ public class PlayerCombat : Photon.MonoBehaviour {
     private void OnIdleEnter(params object[] paramsContainer)
     {
         isAttacking = false;
-        //EventManager.DispatchEvent("SetTrailState", new object[] { gameObject.name, false });
+        EventManager.DispatchEvent("AttackExit");
     }
 
     private void OnAttackExit()
     {
         EventManager.DispatchEvent("AttackExit");
-        //EventManager.DispatchEvent("SetTrailState", new object[] { gameObject.name, false });
     }
 
     private void OnCharacterDamaged(params object[] paramsContainer)
