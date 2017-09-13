@@ -14,8 +14,6 @@ public class PlayerMovement : Photon.MonoBehaviour {
     public float speed;
     [HideInInspector]
     public float speedMult;
-    //[HideInInspector]
-    public bool isEvading;
     [HideInInspector]
     public bool runForward;
     [HideInInspector]
@@ -38,7 +36,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     public bool isRunning;
     [HideInInspector]
     public bool sprintAvailable;
-    //[HideInInspector]
+    [HideInInspector]
     public bool isRolling;
     
     public Transform Enemy { get { return _enemy; } }
@@ -61,13 +59,13 @@ public class PlayerMovement : Photon.MonoBehaviour {
         isRunning = false;
         sprintAvailable = true;
         isRolling = false;
-        isEvading = false;
     }
 
     private void AddEvents()
     {
         EventManager.AddEventListener("Attack", OnAttack);
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
+        EventManager.AddEventListener("RollExit", OnRollExit);
     }
     #endregion
 
@@ -97,15 +95,14 @@ public class PlayerMovement : Photon.MonoBehaviour {
     /// <summary>Sets the rotation of the character using the camera</summary>
     public void Rotate(Vector3 direction, Transform cam)
     {
-        if(direction != Vector3.zero && !isEvading) transform.forward = new Vector3(cam.forward.x, 0, cam.forward.z);
+        if(direction != Vector3.zero && !isRolling) transform.forward = new Vector3(cam.forward.x, 0, cam.forward.z);
     }
 
     /// <summary>Makes the character roll</summary>
     public void Roll(Vector3 direction)
     {
-        isEvading = true;
-        if (direction != Vector3.zero) transform.forward = new Vector3(transform.TransformDirection(direction).x, 0f, transform.TransformDirection(direction).z);
         isRolling = true;
+        if (direction != Vector3.zero) transform.forward = new Vector3(transform.TransformDirection(direction).x, 0f, transform.TransformDirection(direction).z);
         EventManager.DispatchEvent("RollingAnimation", new object[] { this.gameObject.name, isRolling });
         if (!PhotonNetwork.offlineMode) photonView.RPC("SetRollingOn", PhotonTargets.All);
     }
@@ -336,13 +333,11 @@ public class PlayerMovement : Photon.MonoBehaviour {
     #endregion
 
     #region Animation Events
-    /// <summary>This is for an animation event</summary>
-    private void OnRollExit()
+    /// <summary>This is what it stops the action of rolling when the animation ends.</summary>
+    private void OnRollExit(params object[] paramsContainer)
     {
-        isEvading = false;
-        isRolling = false;
-        EventManager.DispatchEvent("RollingAnimation", new object[] { this.gameObject.name, isRolling });
-        if (!PhotonNetwork.offlineMode) photonView.RPC("SetRollingOff", PhotonTargets.All);
+        if (this.gameObject.name == (string)paramsContainer[0])
+            isRolling = false;
     }
 
     private void OnCharacterDamaged(params object[] paramsContainer)

@@ -8,7 +8,7 @@ public class PlayerCombat : Photon.MonoBehaviour {
     public int lightAttackDamage = 6;
     public int heavyAttackDamage = 16;
     
-    //[HideInInspector]
+    [HideInInspector]
     public bool isAttacking = false;
     [HideInInspector]
     public bool isBlocking = false;

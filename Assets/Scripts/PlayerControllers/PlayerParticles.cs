@@ -18,11 +18,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
 
     void Update()
     {
-        /*if (-_playerInput.RunDirection != Vector3.zero)
-        {
-            _runParticle.transform.forward = -_playerInput.RunDirection;
-        }*/
-        
+        //_runParticle.transform.forward = -_playerInput.RunDirection;
     }
 
     #region Initialization
@@ -143,11 +139,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
                 StartCoroutine(DeactivateBlinkTrail(1f));
             }
         }
-        else
-        {
-            _blinkTrail.SetActive(true);
-            StartCoroutine(DeactivateBlinkTrail(1f));
-        }
+        else _blinkTrail.SetActive(true);
     }
 
     IEnumerator DeactivateBlinkTrail(float time)

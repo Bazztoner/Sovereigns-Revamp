@@ -8,9 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerSkills))]
 [RequireComponent(typeof(PlayerStats))]
 [RequireComponent(typeof(PlayerParticles))]
-#region Cambios Iván
 [RequireComponent(typeof(PlayerBlinkSpots))]
-#endregion
 
 public class Player1Input : MonoBehaviour {
 
@@ -22,8 +20,8 @@ public class Player1Input : MonoBehaviour {
     private Vector3 _direction;
     private bool _checkingRoll = false;
     private bool _gameInCourse = true;
-    public bool _canMove = true;
-    public bool _canAttack = true;
+    private bool _canMove = true;
+    private bool _canAttack = true;
     private float _dodgeTime = 0.15f;
 
     public bool readJoystick;
@@ -42,10 +40,7 @@ public class Player1Input : MonoBehaviour {
         Initialize();
         LockCursor();
         EventManager.AddEventListener("GameFinished", OnGameFinished);
-
-        #region Cambios Iván 31/8
         EventManager.AddEventListener("TransitionBlockInputs", OnTransition);
-        #endregion
     }
 
     void OnTransition(object[] paramsContainer)
@@ -115,10 +110,10 @@ public class Player1Input : MonoBehaviour {
     private void CheckConditions()
     {
         //Condition to move
-        _canMove = !_pc.isAttacking && !_pm.isEvading && !_ps.isCastingSpell && _gameInCourse && !_pst.isDead;
-
+        _canMove = !_pc.isAttacking && !_pm.isRolling && !_ps.isCastingSpell && _gameInCourse && !_pst.isDead;
+        
         //Condition to attack
-        _canAttack = !_pm.isEvading && !_ps.isCastingSpell && !_ps.gtHasObject && _gameInCourse;
+        _canAttack = !_pm.isRolling && !_ps.isCastingSpell && !_ps.gtHasObject && _gameInCourse;
 
         //Gets the movement direction
         _direction = readJoystick ? new Vector3(InputManager.instance.GetJoystickHorizontalMovement(), 0f, InputManager.instance.GetJoystickVerticalMovement()) 
@@ -176,14 +171,14 @@ public class Player1Input : MonoBehaviour {
 
         if (readJoystick)
         {
-            if (!InputManager.instance.GetJoystickRun() && !_pm.isEvading && !_ps.gtHasObject)
+            if (!InputManager.instance.GetJoystickRun() && !_pm.isRolling && !_ps.gtHasObject)
                 _pm.Roll(_direction);
             else if (_pm.sprintAvailable && !_pc.isBlocking && _direction.z > 0)
                 _pm.Run();
         }
         else
         {
-            if (!InputManager.instance.GetRun() && !_pm.isEvading && !_ps.gtHasObject)
+            if (!InputManager.instance.GetRun() && !_pm.isRolling && !_ps.gtHasObject)
                 _pm.Roll(_direction);
             else if (_pm.sprintAvailable && !_pc.isBlocking && _direction.z > 0)
                 _pm.Run();

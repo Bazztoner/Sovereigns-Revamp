@@ -46,7 +46,7 @@ public class AnimationController : MonoBehaviour {
     /// <summary>Rolling Animation</summary>
     private void OnRollingAnimation(params object[] paramsContainer)
     {
-        if((string)paramsContainer[0] == this.gameObject.name)
+        if ((string)paramsContainer[0] == this.gameObject.name)
             _anim.SetBool("isRolling", (bool)paramsContainer[1]);
     }
 
