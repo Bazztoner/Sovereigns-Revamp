@@ -30,6 +30,10 @@ public class AnimationController : MonoBehaviour {
     {
         if ((string)paramsContainer[0] == this.gameObject.name)
         {
+            _anim.SetFloat("xMovement", (float)paramsContainer[1]);
+            _anim.SetFloat("yMovement", (float)paramsContainer[2]);
+
+            /*
             _anim.SetBool("walkForward", (bool)paramsContainer[1]);
             _anim.SetBool("walkRight", (bool)paramsContainer[2]);
             _anim.SetBool("walkLeft", (bool)paramsContainer[3]);
@@ -40,6 +44,7 @@ public class AnimationController : MonoBehaviour {
             _anim.SetBool("sprintRight", (bool)paramsContainer[8]);
             _anim.SetBool("sprintLeft", (bool)paramsContainer[9]);
             _anim.SetFloat("speedMult", (float)paramsContainer[10]);
+            */
         }
     }
 
