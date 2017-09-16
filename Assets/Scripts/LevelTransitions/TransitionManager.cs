@@ -21,6 +21,13 @@ public class TransitionManager : MonoBehaviour
     /// </summary>
     Tuple<GameObject, GameObject> dummies;
 
+    public static TransitionManager instance;
+
+    void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
     /// <summary>
     /// IUS FOR INISIALISEISHON
     /// </summary>
@@ -195,9 +202,7 @@ public class TransitionManager : MonoBehaviour
 
         //Activamos la cámara que apunta al atacante
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(true);
-        //NO ANDA ESTA PORONGA
         dummyVictim.GetComponent<TransitionDummy>().Animate("transitionDamage");
-        //StartCoroutine(AttackWaitTime(transition, dummyAttacker, dummyVictim, waitTime));
         OnTransitionLaunchDummy(transition, dummyAttacker, dummyVictim, 0.5f);
     }
 
@@ -230,8 +235,6 @@ public class TransitionManager : MonoBehaviour
         float attackerRunDelay = .1f;
         float cameraDelay = .2f;
         StartCoroutine(DummyCollisionWaitTime(attackerRunDelay, cameraDelay));
-        //TODO: Agregar partícula de sangre a victim
-
     }
 
     /// <summary>
@@ -254,6 +257,12 @@ public class TransitionManager : MonoBehaviour
 
         //Cambiamos las cámaras
         transitionElements.Item1.camerasForTransition[1].gameObject.SetActive(true);
+
+        //"Lerp" test
+        transitionElements.Item1.camerasForTransition[1].transform.SetParent(transitionElements.Item3.transform);
+        transitionElements.Item1.camerasForTransition[1].transform.localPosition = Vector3.one;
+        transitionElements.Item1.camerasForTransition[1].transform.forward = -transitionElements.Item3.transform.forward;
+
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(false);
         yield return new WaitForSeconds(maxTimeForLerping);
 
@@ -281,8 +290,8 @@ public class TransitionManager : MonoBehaviour
         transitionElements.Item3.SetActive(true);
         transitionElements.Item1.camerasForTransition[1].gameObject.SetActive(false);
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(false);
-        //FIXME: no es lo ideal
-        if (GameManager.screenDivided) victim.GetComponentInParent<PlayerStats>().TakeDamage(transition.damage, "Transition");
+        //FIXME: no es lo ideal - Hacer que haga daño sin partícula?
+        //if (GameManager.screenDivided) victim.GetComponentInParent<PlayerStats>().TakeDamage(transition.damage, "Transition");
 
         var previousZone = currentZone;
         currentZone = transition.to;

@@ -313,12 +313,13 @@ public class CamRotationController : MonoBehaviour
     #region Highlight
     private void HighlightTarget()
     {
-        #region Cambios Iván 31/8
-        //Agrego que no sean del tipo Transition
+        #region Cambios Iván 15/9
+        //Agrego que estén en la zona, mi cabe zona
         List<DestructibleObject> inRangeObj = DestructibleObject.allObjs.Where(x => x.isAlive 
                                                                                && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
                                                                                && x.destructibleType != DestructibleType.TRANSITION
-                                                                               && x.GetComponentInChildren<Renderer>().isVisible)
+                                                                               && x.GetComponentInChildren<Renderer>().isVisible
+                                                                               && x.zone == TransitionManager.instance.currentZone)
                                                                         .ToList<DestructibleObject>();
         #endregion
         DestructibleObject closest;

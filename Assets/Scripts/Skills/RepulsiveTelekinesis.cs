@@ -24,7 +24,7 @@ public class RepulsiveTelekinesis : ISpell
     {
         _castType = CastType.DELAYED;
 
-        _layerMask = 0 << LayerMask.NameToLayer("TelekinesisObject");
+        _layerMask = 1 << LayerMask.NameToLayer("TelekinesisObject");
 
         _castTime = 1f;
 
@@ -55,6 +55,10 @@ public class RepulsiveTelekinesis : ISpell
     {
         var go = GameObject.Instantiate(Resources.Load("Spells/Dummies/RepulsiveDummy"), skillPos.position, Quaternion.identity) as GameObject;
         var dummy = go.GetComponent<RepulsiveDummy>();
+
+        var caster = skillPos.GetComponentInParent<PlayerMovement>();
+        var enemy = caster.EnemyTransform.gameObject;
+
         dummy.Execute(skillPos, _castTime, _radialRange, _verticalForce, _radialForce, _layerMask);
 
         EventManager.DispatchEvent("RepulsiveTelekinesisCasted", new object[] { skillPos.position, skillPos.GetComponentInParent<PlayerParticles>() });

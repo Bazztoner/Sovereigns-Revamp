@@ -138,7 +138,10 @@ public class PlayerMovement : Photon.MonoBehaviour {
     private void OnCharacterDamaged(params object[] paramsContainer)
     {
         if (this.gameObject.name == (string)paramsContainer[0])
+        {
             isRunning = false;
+            isRolling = false;
+        }
     }
     #endregion
 

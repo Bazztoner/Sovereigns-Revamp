@@ -125,8 +125,6 @@ public class TelekineticObject : Photon.MonoBehaviour
         life -= 1;
         if (life <= 0) StartCoroutine(DestroyTelekineticObject(3f));
     }
-
-    #region Cambios Iván 3/9
     IEnumerator DestroyTelekineticObject(float time)
     {
         if (particleName == null || particleName == default(string))
@@ -140,7 +138,6 @@ public class TelekineticObject : Photon.MonoBehaviour
         yield return new WaitForSeconds(time);
         Destroy(this.gameObject);
     }
-    #endregion
 
     void OnDestroy()
     {

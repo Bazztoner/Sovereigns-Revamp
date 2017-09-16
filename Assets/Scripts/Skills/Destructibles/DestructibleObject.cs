@@ -13,6 +13,7 @@ public class DestructibleObject : Photon.MonoBehaviour
 {
     public int life;
     public float damage;
+    public Zone zone;
 
     [HideInInspector]
     public string nickName;

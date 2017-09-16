@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class RepulsiveDummy : MonoBehaviour
 {
+    RaycastHit rch;
+
     public void Execute(Transform skillPos, float castTime, float radialRange, float verticalForce, float radialForce, LayerMask layerMask)
     {
         RepelObjects(skillPos, castTime, radialRange, verticalForce, radialForce, layerMask);
+        Destroy(gameObject, 0.3f);
     }
 
     void RepelObjects(Transform skillPos, float castTime, float radialRange, float verticalForce, float radialForce, LayerMask layerMask)
@@ -24,23 +27,15 @@ public class RepulsiveDummy : MonoBehaviour
 
         foreach (var o in objs)
         {
-            RaycastHit rch;
             Rigidbody rig = o.GetComponent<Rigidbody>();
-            var inVisionRange = !Physics.Raycast(skillPos.position, o.transform.position - skillPos.position, out rch, 100, layerMask);
+            var inVisionRange = Physics.Raycast(skillPos.position, o.transform.position - skillPos.position, out rch, 100, layerMask);
 
             Debug.DrawRay(skillPos.position, o.transform.position - skillPos.position, Color.red, 1);
-
-            if (!inVisionRange)
-            {
-                Debug.Log("Collide with: " + rch.collider.name);
-            }
 
             o.ChangeState(PhotonNetwork.player.NickName);
             rig.AddForce(Vector3.up * verticalForce);
             rig.AddExplosionForce(radialForce, skillPos.transform.position, radialRange);
             o.RepelObject();                                             
         }
-
-        Destroy(gameObject, 0.2f);
     }
 }

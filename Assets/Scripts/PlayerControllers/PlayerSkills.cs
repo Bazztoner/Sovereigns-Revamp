@@ -48,6 +48,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         EventManager.AddEventListener("ObjectPulled", OnObjectPulled);
         EventManager.AddEventListener("ObjectPulling", OnObjectPulling);
+        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
     }
     #endregion
 
@@ -151,6 +152,12 @@ public class PlayerSkills : Photon.MonoBehaviour
     void OnObjectPulled(params object[] paramsContainer)
     {
         isPulling = false;
+    }
+
+    void OnCharacterDamaged(params object[] paramsContainer)
+    {
+        if(this.gameObject.name == (string)paramsContainer[0])
+            isCastingSpell = false;
     }
     #endregion
 
