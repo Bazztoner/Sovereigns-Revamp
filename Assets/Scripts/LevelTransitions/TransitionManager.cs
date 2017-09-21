@@ -246,7 +246,7 @@ public class TransitionManager : MonoBehaviour
     IEnumerator DummyCollisionWaitTime(float attackerRunDelay, float cameraDelay)
     {
         yield return new WaitForSeconds(attackerRunDelay);
-        var maxTimeForLerpingPosition = 1f;
+        var maxTimeForLerpingPosition = .6f;
         var maxTimeForLerpingForward = .2f;
 
         StartCoroutine(

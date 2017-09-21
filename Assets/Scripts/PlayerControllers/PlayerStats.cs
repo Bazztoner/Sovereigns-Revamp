@@ -122,11 +122,19 @@ public class PlayerStats : Photon.MonoBehaviour {
         LoseHP(damage);
     }
 
+    #region Cambios Iván 21/9
+    /// <summary>
+    /// Para pasar la normal del polígono y que las partículas aparezcan
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <param name="attackType"></param>
+    /// <param name="polyNormal"></param>
     public void TakeDamage(float damage, string attackType, Vector3 polyNormal)
     {
         EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, polyNormal, this.GetComponent<PlayerParticles>(), attackType });
         LoseHP(damage);
     }
+    #endregion
 
     private void Regenerate()
     {

@@ -42,12 +42,18 @@ public class AnimationController : MonoBehaviour {
             _anim.SetBool("isRolling", (bool)paramsContainer[1]);
     }
 
+    #region Cambios Iván 21/9
+    //Agregada la línea de blockUp
     /// <summary>Blocking Animation</summary>
     private void OnBlocking(params object[] paramsContainer)
     {
-        if((string)paramsContainer[0] == this.gameObject.name)
+        if ((string)paramsContainer[0] == this.gameObject.name)
+        {
             _anim.SetBool("isBlocking", (bool)paramsContainer[1]);
+            _anim.SetBool("blockUp", (bool)paramsContainer[2]);
+        }
     }
+    #endregion
 
     /// <summary>Light Attack Animation</summary>
     private void OnX(params object[] paramsContainer)

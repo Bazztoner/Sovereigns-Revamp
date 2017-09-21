@@ -53,17 +53,25 @@ public class PlayerCombat : Photon.MonoBehaviour {
     }
 
     /// <summary>Makes the character block</summary>
+    [System.Obsolete("Usar la que toma un bool para la dirección de bloqueo")]
     public void Block()
     {
         isBlocking = true;
         EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking });
     }
 
+    /// <summary>Makes the character block up or mid</summary>
+    public void Block(bool blockUp)
+    {
+        isBlocking = true;
+        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking, blockUp });
+    }
+
     /// <summary>Makes the character stop blocking</summary>
     public void StopBlock()
     {
         isBlocking = false;
-        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking });
+        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking, false });
     }
     #endregion
 

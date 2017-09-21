@@ -213,12 +213,20 @@ public class Player1Input : MonoBehaviour {
         {
             if (readJoystick)
             {
-                if (InputManager.instance.GetJoystickBlocking()) _pc.Block();
+                if (InputManager.instance.GetJoystickBlocking())
+                {
+                    if (InputManager.instance.GetJoystickRun()) _pc.Block(true);
+                    else _pc.Block(false);
+                }
                 else _pc.StopBlock();
             }
             else
             {
-                if (InputManager.instance.GetBlocking()) _pc.Block();
+                if (InputManager.instance.GetBlocking())
+                {
+                    if (InputManager.instance.GetRun()) _pc.Block(true);
+                    else _pc.Block(false);
+                }
                 else _pc.StopBlock();
             }
         }

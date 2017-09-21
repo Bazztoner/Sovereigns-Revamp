@@ -23,10 +23,13 @@ public class LevelTransition : MonoBehaviour
         attackerRelocatePoint = transform.Find("RelocationPoints").Find("AttackerRelocationPoint");
         victimRelocatePoint = transform.Find("RelocationPoints").Find("VictimRelocationPoint");
         canBeUsed = true;
-        var camContainer = transform.Find("Cameras");
+
         camerasForTransition = new Camera[2];
-        camerasForTransition[0] = camContainer.Find("Camera1").GetComponent<Camera>();
-        camerasForTransition[1] = camContainer.Find("Camera2").GetComponent<Camera>();
+        var camContainer = transform.Find("Cameras");
+        var cam1 = camContainer.Find("Camera1");
+        var cam2 = camContainer.Find("Camera2");
+        camerasForTransition[0] = cam1.GetComponent<Camera>();
+        camerasForTransition[1] = cam2.GetComponent<Camera>();
 
         if (otherSide == this) throw new System.Exception("SOS PELOTUDO MAN PUSISTE UNO QUE SEA AMBOS LADOS: ERROR EN " + gameObject.name);
         //TODO: Agregar que encuentre por código el lado opuesto :v
