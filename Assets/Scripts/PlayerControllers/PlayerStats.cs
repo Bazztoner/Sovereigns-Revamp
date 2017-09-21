@@ -122,6 +122,12 @@ public class PlayerStats : Photon.MonoBehaviour {
         LoseHP(damage);
     }
 
+    public void TakeDamage(float damage, string attackType, Vector3 polyNormal)
+    {
+        EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, polyNormal, this.GetComponent<PlayerParticles>(), attackType });
+        LoseHP(damage);
+    }
+
     private void Regenerate()
     {
         if (hp < maxHp || mana < maxMana)

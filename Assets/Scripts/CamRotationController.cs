@@ -313,17 +313,16 @@ public class CamRotationController : MonoBehaviour
     #region Highlight
     private void HighlightTarget()
     {
-        #region Cambios Iván 15/9
         //Agrego que estén en la zona, mi cabe zona
         List<DestructibleObject> inRangeObj = DestructibleObject.allObjs.Where(x => x.isAlive 
+                                                                               && x.zone == TransitionManager.instance.currentZone
                                                                                && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
                                                                                && x.destructibleType != DestructibleType.TRANSITION
-                                                                               && x.GetComponentInChildren<Renderer>().isVisible
-                                                                               && x.zone == TransitionManager.instance.currentZone)
+                                                                               && x.GetComponentInChildren<Renderer>().isVisible)
                                                                         .ToList<DestructibleObject>();
-        #endregion
         DestructibleObject closest;
-        if (inRangeObj.Count() > 0)
+
+        if (inRangeObj.Any())
         {
             closest = inRangeObj[0];
             float angle = Vector3.Angle(transform.forward, (closest.transform.position - transform.position).normalized);
@@ -352,6 +351,14 @@ public class CamRotationController : MonoBehaviour
                 _currentTarget = closest;
                 MakeVisible(_currentTarget, true);
             }
+        }
+        else
+        {
+            if (_currentTarget != null)
+            {
+                MakeVisible(_currentTarget, false);
+            }
+            _currentTarget = null;
         }
     }
 

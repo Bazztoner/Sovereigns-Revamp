@@ -170,10 +170,10 @@ public class TransitionManager : MonoBehaviour
         var maxTimeForLerping = 1f;
 
         StartCoroutine(
-                       MoveObject(attacker.transform, attacker.transform.position, transition.attackerTransitionOrigin.position, maxTimeForLerping)
+                       LerpPosition(attacker.transform, attacker.transform.position, transition.attackerTransitionOrigin.position, maxTimeForLerping)
                       );
         StartCoroutine(
-                       MoveObject(victim.transform, victim.transform.position, transition.victimTransitionOrigin.position, maxTimeForLerping)
+                       LerpPosition(victim.transform, victim.transform.position, transition.victimTransitionOrigin.position, maxTimeForLerping)
                       );
         
         yield return new WaitForSeconds(0);
@@ -217,7 +217,7 @@ public class TransitionManager : MonoBehaviour
     {
         var victimDummy = victim.GetComponent<TransitionDummy>();
         StartCoroutine(
-                       MoveObject(victim.transform, victim.transform.position, transition.victimRelocatePoint.position, maxTime)
+                       LerpPosition(victim.transform, victim.transform.position, transition.victimRelocatePoint.position, maxTime)
                       );
         victimDummy.isLaunched = true;
         EventManager.AddEventListener("DummyCollidedWithDestructible", OnDummyCollided);
@@ -246,25 +246,47 @@ public class TransitionManager : MonoBehaviour
     IEnumerator DummyCollisionWaitTime(float attackerRunDelay, float cameraDelay)
     {
         yield return new WaitForSeconds(attackerRunDelay);
-        var maxTimeForLerping = 1f;
+        var maxTimeForLerpingPosition = 1f;
+        var maxTimeForLerpingForward = .2f;
+
         StartCoroutine(
-                       MoveObject(transitionElements.Item2.transform,
-                                  transitionElements.Item2.transform.position, 
-                                  transitionElements.Item1.attackerRelocatePoint.position, 
-                                  maxTimeForLerping)
+                       LerpPosition(transitionElements.Item2.transform,
+                                   transitionElements.Item2.transform.position, 
+                                   transitionElements.Item1.attackerRelocatePoint.position, 
+                                   maxTimeForLerpingPosition)
                       );
+
+        StartCoroutine(
+                       LerpForward(transitionElements.Item3.transform,
+                                   transitionElements.Item3.transform.forward,
+                                   -transitionElements.Item1.transform.forward,
+                                   maxTimeForLerpingForward)
+                      );
+
         yield return new WaitForSeconds(cameraDelay);
 
         //Cambiamos las cámaras
+        StartCoroutine(
+                        LerpPosition(transitionElements.Item1.camerasForTransition[0].transform,
+                                    transitionElements.Item1.camerasForTransition[0].transform.position,
+                                    transitionElements.Item1.camerasForTransition[1].transform.position,
+                                    maxTimeForLerpingPosition)
+                       );
+
+        yield return new WaitForSeconds(maxTimeForLerpingPosition/2);
+
+        StartCoroutine(
+                       LerpForward(transitionElements.Item1.camerasForTransition[0].transform,
+                                   transitionElements.Item1.camerasForTransition[0].transform.forward,
+                                   transitionElements.Item1.camerasForTransition[1].transform.forward,
+                                   maxTimeForLerpingForward)
+                      );
+
+        yield return new WaitForSeconds(maxTimeForLerpingPosition/2);
+
         transitionElements.Item1.camerasForTransition[1].gameObject.SetActive(true);
 
-        //"Lerp" test
-        transitionElements.Item1.camerasForTransition[1].transform.SetParent(transitionElements.Item3.transform);
-        transitionElements.Item1.camerasForTransition[1].transform.localPosition = Vector3.one;
-        transitionElements.Item1.camerasForTransition[1].transform.forward = -transitionElements.Item3.transform.forward;
-
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(false);
-        yield return new WaitForSeconds(maxTimeForLerping);
 
         OnEndOfTransition(transitionElements.Item1, transitionElements.Item2, transitionElements.Item3);
     }
@@ -286,8 +308,18 @@ public class TransitionManager : MonoBehaviour
 
         dummies.Item1.SetActive(false);
         dummies.Item2.SetActive(false);
+
         transitionElements.Item2.SetActive(true);
         transitionElements.Item3.SetActive(true);
+        var camAttacker = transitionElements.Item2.GetComponentInParent<Player1Input>().GetCamera;
+        camAttacker.transform.forward = transitionElements.Item1.transform.forward;
+
+        if (GameManager.screenDivided)
+        {
+            var camVictim = transitionElements.Item3.GetComponentInParent<Player1Input>().GetCamera;
+            camVictim.transform.forward = -transitionElements.Item1.transform.forward;
+        }
+
         transitionElements.Item1.camerasForTransition[1].gameObject.SetActive(false);
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(false);
         //FIXME: no es lo ideal - Hacer que haga daño sin partícula?
@@ -303,7 +335,7 @@ public class TransitionManager : MonoBehaviour
         EventManager.DispatchEvent("TransitionBlockInputs", new object[] { true });
     }
 
-    IEnumerator MoveObject(Transform objToMove, Vector3 startPos, Vector3 endPos, float maxTime)
+    IEnumerator LerpPosition(Transform objToMove, Vector3 startPos, Vector3 endPos, float maxTime)
     {
         var i = 0f;
 
@@ -311,6 +343,18 @@ public class TransitionManager : MonoBehaviour
         {
             i += Time.deltaTime / maxTime;
             objToMove.position = Vector3.Lerp(startPos, endPos, i);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator LerpForward(Transform objToMove, Vector3 startPos, Vector3 endPos, float maxTime)
+    {
+        var i = 0f;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / maxTime;
+            objToMove.forward = Vector3.Lerp(startPos, endPos, i);
             yield return new WaitForEndOfFrame();
         }
     }

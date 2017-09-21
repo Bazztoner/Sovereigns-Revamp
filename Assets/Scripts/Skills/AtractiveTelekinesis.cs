@@ -84,7 +84,7 @@ public class AtractiveTelekinesis : ISpell
 
         if (_target == null) return;
 
-        if (_target.isAlive) PullObject(me);
+        PullObject(me);
        
     }
 

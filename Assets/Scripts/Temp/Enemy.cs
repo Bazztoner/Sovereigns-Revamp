@@ -113,6 +113,18 @@ public class Enemy : MonoBehaviour
         else EventManager.DispatchEvent("CharacterDamaged", new object[] { transform.position, this, null, attackType });
     }
 
+    [PunRPC]
+    public void TakeDamage(float damage, string attackType, Vector3 polyNormal)
+    {
+        LoseHP(damage);
+        if (PhotonNetwork.offlineMode)
+        {
+            EventManager.DispatchEvent("EnemyDamaged", new object[] { polyNormal, this, attackType });
+            EventManager.DispatchEvent("DummyDamaged", new object[] { this.gameObject.name, polyNormal, attackType });
+        }
+        else EventManager.DispatchEvent("CharacterDamaged", new object[] { polyNormal, this, null, attackType });
+    }
+
     IEnumerator Regeneration()
     {
         float tick = 0.16f;

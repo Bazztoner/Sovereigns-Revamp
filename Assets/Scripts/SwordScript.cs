@@ -54,6 +54,21 @@ public class SwordScript : MonoBehaviour
             _isDetecting = false;
             _appliedDamage = 0;
 
+            //Test para la normal del polígono
+            /*RaycastHit rch;
+            var polyNormal = other.ClosestPointOnBounds(transform.position);
+
+            if (Physics.Raycast(transform.position, other.transform.position - transform.position, out rch, 10))
+            {
+                //if pointing at the object you want to get collision point for
+                if (rch.transform.gameObject == other.gameObject)
+                {
+                    //have locPos = the local position of the hit point
+                    //polyNormal = transform.InverseTransformPoint(rch.point);
+                    polyNormal = rch.point;
+                }
+            }*/
+
             if (!PhotonNetwork.offlineMode)
             {
                 other.gameObject.GetComponentInParent<DataSync>().photonView.RPC("TakeDamage", PhotonTargets.All, damage, PhotonNetwork.player.NickName, "Melee");

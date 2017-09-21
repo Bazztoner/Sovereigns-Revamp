@@ -240,6 +240,7 @@
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerSkills.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\Test\PlayerBlinkSpots.cs" />
+    <Compile Include="Assets\Scripts\RollBehaviour.cs" />
     <Compile Include="Assets\Scripts\RollStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\Skills\AtractiveTelekinesis.cs" />
     <Compile Include="Assets\Scripts\Skills\Blink.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleBoundingBox.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleImpactArea.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleObject.cs" />
+    <Compile Include="Assets\Scripts\Skills\FullTrajectoryPredicter.cs" />
     <Compile Include="Assets\Scripts\Skills\GravitationalDummy.cs" />
     <Compile Include="Assets\Scripts\Skills\GravitationalTelekinesis.cs" />
     <Compile Include="Assets\Scripts\Skills\RepulsiveDummy.cs" />
@@ -262,6 +264,7 @@
     <Compile Include="Assets\Scripts\Temp\Enemy.cs" />
     <Compile Include="Assets\Scripts\Utility\FList.cs" />
     <Compile Include="Assets\Scripts\Utility\IntLayers.cs" />
+    <Compile Include="Assets\Scripts\Utility\SlowMotion.cs" />
     <Compile Include="Assets\Scripts\Utility\Tuple.cs" />
     <Compile Include="Assets\Scripts\Utility\Zip.cs" />
   </ItemGroup>
