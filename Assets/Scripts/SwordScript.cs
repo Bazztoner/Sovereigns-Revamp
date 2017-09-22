@@ -9,12 +9,16 @@ public class SwordScript : MonoBehaviour
     private int _hitBoxLayer = 10;
     private int _appliedDamage = 0;
     private bool _isDetecting = false;
+    private bool _isHorizontal = false;
+    private bool _isVertical = false;
     TrailRenderer _trail;
 
     void Start()
     {
         EventManager.AddEventListener("AttackEnter", OnAttackEnter);
         EventManager.AddEventListener("AttackExit", OnAttackExit);
+        EventManager.AddEventListener("HorizontalAttack", OnHorizontalAttack);
+        EventManager.AddEventListener("VerticalAttack", OnVerticalAttack);
         GetTrail(false);
     }
 
@@ -40,8 +44,28 @@ public class SwordScript : MonoBehaviour
     private void OnAttackExit(params object[] paramsContainer)
     {
         _isDetecting = false;
+        _isHorizontal = false;
+        _isVertical = false;
         _appliedDamage = 0;
         ActivateTrail(false);
+    }
+
+    private void OnHorizontalAttack(params object[] paramsContainer)
+    {
+        if (this.transform.GetComponentInParent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+        {
+            _isHorizontal = true;
+            _isVertical = false;
+        }
+    }
+
+    private void OnVerticalAttack(params object[] paramsContainer)
+    {
+        if (this.transform.GetComponentInParent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+        {
+            _isHorizontal = false;
+            _isVertical = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,13 +99,25 @@ public class SwordScript : MonoBehaviour
             }
             else if (GameManager.screenDivided)
             {
-                other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee");
+                if (CheckIfFrontal(other))
+                {
+                    if(_isHorizontal) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "MeleeHorizontal");
+                    else if(_isVertical) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "MeleeVertical");
+                }
+                else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee");
             }
             else if (other.gameObject.GetComponentInParent<Enemy>() != null)
             {
                 other.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage, "Melee");
             }
         }
+    }
+
+    private bool CheckIfFrontal(Collider other)
+    {
+        var enemyForward = other.gameObject.GetComponentInParent<PlayerStats>().transform.forward;
+        var myForward = GetComponentInParent<PlayerStats>().transform.forward;
+        return Vector3.Angle(-enemyForward, myForward) <= 30 ? true : false;
     }
 
     void ActivateTrail(bool activate)

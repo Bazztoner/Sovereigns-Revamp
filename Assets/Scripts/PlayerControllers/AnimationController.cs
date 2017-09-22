@@ -86,6 +86,7 @@ public class AnimationController : MonoBehaviour {
         {
             _anim.SetBool("isRolling", false);
             _anim.SetBool("isBlocking", false);
+            _anim.SetBool("blockUp", false);
         }
     }
 

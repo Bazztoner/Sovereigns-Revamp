@@ -12,6 +12,8 @@ public class PlayerCombat : Photon.MonoBehaviour {
     public bool isAttacking = false;
     [HideInInspector]
     public bool isBlocking = false;
+    [HideInInspector]
+    public bool isBlockingUp = false;
     #endregion
 
     void Start()
@@ -49,7 +51,7 @@ public class PlayerCombat : Photon.MonoBehaviour {
     private void SetAttack()
     {
         isBlocking = false;
-        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking });
+        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking, isBlockingUp });
     }
 
     /// <summary>Makes the character block</summary>
@@ -64,6 +66,7 @@ public class PlayerCombat : Photon.MonoBehaviour {
     public void Block(bool blockUp)
     {
         isBlocking = true;
+        isBlockingUp = blockUp;
         EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking, blockUp });
     }
 
@@ -93,6 +96,7 @@ public class PlayerCombat : Photon.MonoBehaviour {
         {
             isAttacking = false;
             isBlocking = false;
+            isBlockingUp = false;
         }
     }
     #endregion

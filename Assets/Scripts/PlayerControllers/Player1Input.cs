@@ -22,6 +22,7 @@ public class Player1Input : MonoBehaviour {
     private bool _gameInCourse = true;
     private bool _canMove = true;
     private bool _canAttack = true;
+    private bool _isStun = false;
     private float _dodgeTime = 0.15f;
 
     public bool readJoystick;
@@ -41,11 +42,7 @@ public class Player1Input : MonoBehaviour {
         LockCursor();
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("TransitionBlockInputs", OnTransition);
-    }
-
-    void OnTransition(object[] paramsContainer)
-    {
-        _gameInCourse = (bool)paramsContainer[0];
+        EventManager.AddEventListener("Stun", OnStun);
     }
 
     void Update()
@@ -109,11 +106,19 @@ public class Player1Input : MonoBehaviour {
 
     private void CheckConditions()
     {
-        //Condition to move
-        _canMove = !_pc.isAttacking && !_pm.isRolling && !_ps.isCastingSpell && _gameInCourse && !_pst.isDead;
-        
-        //Condition to attack
-        _canAttack = !_pm.isRolling && !_ps.isCastingSpell && !_ps.gtHasObject && _gameInCourse;
+        if (!_isStun)
+        {
+            //Condition to move
+            _canMove = !_pc.isAttacking && !_pm.isRolling && !_ps.isCastingSpell && _gameInCourse && !_pst.isDead;
+
+            //Condition to attack
+            _canAttack = !_pm.isRolling && !_ps.isCastingSpell && !_ps.gtHasObject && _gameInCourse;
+        }
+        else
+        {
+            _canMove = false;
+            _canAttack = false;
+        }
 
         //Gets the movement direction
         _direction = readJoystick ? new Vector3(InputManager.instance.GetJoystickHorizontalMovement(), 0f, InputManager.instance.GetJoystickVerticalMovement()) 
@@ -144,47 +149,37 @@ public class Player1Input : MonoBehaviour {
             {
                 if (InputManager.instance.GetJoystickDodge())
                 {
-                    _checkingRoll = true;
-                    StartCoroutine(CheckEvade(_dodgeTime));
+                    if (_pc.isBlocking) _pc.Block(true);
+                    else
+                    {
+                        _checkingRoll = true;
+                        StartCoroutine(CheckEvade(_dodgeTime));
+                    }
                 }
-                else if (!_pm.sprintAvailable && !InputManager.instance.GetJoystickRun())
-                    _pm.StopRun();
+                else if (!InputManager.instance.GetJoystickRun())
+                {
+                    if(!_pm.sprintAvailable) _pm.StopRun();
+                    if (_pc.isBlocking) _pc.Block(false);
+                }
             }
             else
             {
                 if (InputManager.instance.GetDodge())
                 {
-                    _checkingRoll = true;
-                    StartCoroutine(CheckEvade(_dodgeTime));
+                    if (_pc.isBlocking) _pc.Block(true);
+                    else
+                    {
+                        _checkingRoll = true;
+                        StartCoroutine(CheckEvade(_dodgeTime));
+                    }
                 }
-                else if (!_pm.sprintAvailable && !InputManager.instance.GetRun())
-                    _pm.StopRun();
+                else if (!InputManager.instance.GetRun())
+                {
+                    if(!_pm.sprintAvailable) _pm.StopRun();
+                    if (_pc.isBlocking) _pc.Block(false);
+                }
             }
         }
-    }
-
-    /// <summary>Checks if the character is going to Run or going to Roll</summary>
-    IEnumerator CheckEvade(float time)
-    {
-        var w = new WaitForSeconds(time);
-        yield return w;
-
-        if (readJoystick)
-        {
-            if (!InputManager.instance.GetJoystickRun() && !_pm.isRolling && !_ps.gtHasObject)
-                _pm.Roll(_direction);
-            else if (_pm.sprintAvailable && !_pc.isBlocking && _direction.z > 0)
-                _pm.Run();
-        }
-        else
-        {
-            if (!InputManager.instance.GetRun() && !_pm.isRolling && !_ps.gtHasObject)
-                _pm.Roll(_direction);
-            else if (_pm.sprintAvailable && !_pc.isBlocking && _direction.z > 0)
-                _pm.Run();
-        }
-
-        _checkingRoll = false;
     }
     #endregion
 
@@ -213,21 +208,17 @@ public class Player1Input : MonoBehaviour {
         {
             if (readJoystick)
             {
-                if (InputManager.instance.GetJoystickBlocking())
-                {
-                    if (InputManager.instance.GetJoystickRun()) _pc.Block(true);
-                    else _pc.Block(false);
-                }
-                else _pc.StopBlock();
+                if (!_pc.isBlocking && !_pm.isRunning && InputManager.instance.GetJoystickBlocking())
+                    _pc.Block(false);
+                else if(_pc.isBlocking && !InputManager.instance.GetJoystickBlocking())
+                    _pc.StopBlock();
             }
             else
             {
-                if (InputManager.instance.GetBlocking())
-                {
-                    if (InputManager.instance.GetRun()) _pc.Block(true);
-                    else _pc.Block(false);
-                }
-                else _pc.StopBlock();
+                if (!_pc.isBlocking && !_pm.isRunning && InputManager.instance.GetBlocking())
+                    _pc.Block(false);
+                else if (_pc.isBlocking && !InputManager.instance.GetBlocking())
+                    _pc.StopBlock();
             }
         }
     }
@@ -261,6 +252,53 @@ public class Player1Input : MonoBehaviour {
                     _ps.BlinkSkill(_pst.mana);
             }
         }
+    }
+    #endregion
+
+    #region Events
+    void OnTransition(object[] paramsContainer)
+    {
+        _gameInCourse = (bool)paramsContainer[0];
+    }
+
+    private void OnStun(params object[] paramsContainer)
+    {
+        if ((string)paramsContainer[0] != this.gameObject.name)
+        {
+            _isStun = true;
+            Invoke("StopStun", (float)paramsContainer[1]);
+        }
+    }
+    #endregion
+
+    #region Coroutines
+    /// <summary>Checks if the character is going to Run or going to Roll</summary>
+    IEnumerator CheckEvade(float time)
+    {
+        var w = new WaitForSeconds(time);
+        yield return w;
+
+        if (readJoystick)
+        {
+            if (!InputManager.instance.GetJoystickRun() && !_pm.isRolling && !_ps.gtHasObject)
+                _pm.Roll(_direction);
+            else if (_pm.sprintAvailable && !_pc.isBlocking && _direction.z > 0)
+                _pm.Run();
+        }
+        else
+        {
+            if (!InputManager.instance.GetRun() && !_pm.isRolling && !_ps.gtHasObject)
+                _pm.Roll(_direction);
+            else if (_pm.sprintAvailable && !_pc.isBlocking && _direction.z > 0)
+                _pm.Run();
+        }
+
+        _checkingRoll = false;
+    }
+
+    private void StopStun()
+    {
+        _isStun = false;
     }
     #endregion
 }

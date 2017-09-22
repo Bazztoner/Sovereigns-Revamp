@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -223,7 +217,6 @@
     <Compile Include="Assets\Scripts\HUD\ConectionButton.cs" />
     <Compile Include="Assets\Scripts\HUD\HUDController.cs" />
     <Compile Include="Assets\Scripts\HitBoxScript.cs" />
-    <Compile Include="Assets\Scripts\IdleStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\LevelTransition.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\Subdivisions.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionDamageReset.cs" />
@@ -240,8 +233,6 @@
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerSkills.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\Test\PlayerBlinkSpots.cs" />
-    <Compile Include="Assets\Scripts\RollBehaviour.cs" />
-    <Compile Include="Assets\Scripts\RollStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\Skills\AtractiveTelekinesis.cs" />
     <Compile Include="Assets\Scripts\Skills\Blink.cs" />
     <Compile Include="Assets\Scripts\Skills\BlinkSpot.cs" />
@@ -250,6 +241,7 @@
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleBoundingBox.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleImpactArea.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleObject.cs" />
+    <Compile Include="Assets\Scripts\Skills\FullTrajectoryPredicter.cs" />
     <Compile Include="Assets\Scripts\Skills\GravitationalDummy.cs" />
     <Compile Include="Assets\Scripts\Skills\GravitationalTelekinesis.cs" />
     <Compile Include="Assets\Scripts\Skills\RepulsiveDummy.cs" />
@@ -258,7 +250,13 @@
     <Compile Include="Assets\Scripts\Skills\TelekineticObject.cs" />
     <Compile Include="Assets\Scripts\Skills\TrajectoryPredicter.cs" />
     <Compile Include="Assets\Scripts\SpawnSpot.cs" />
-    <Compile Include="Assets\Scripts\StateVarUnable.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\IdleStateBehaviour.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollBehaviour.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollStateBehaviour.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_HorizontalAttack.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_KnockBackAttack.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_VerticalAttack.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\StateVarUnable.cs" />
     <Compile Include="Assets\Scripts\SwordScript.cs" />
     <Compile Include="Assets\Scripts\Temp\Enemy.cs" />
     <Compile Include="Assets\Scripts\Utility\FList.cs" />

@@ -9,6 +9,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     private Transform _enemy;
     private float _originalWalkSpeed;
     private float _originalRunSpeed;
+    private float _knockBackForce = 5500f;
 
     [HideInInspector]
     public float speed;
@@ -23,7 +24,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     [HideInInspector]
     public bool isRolling;
     
-    public Transform Enemy { get { return _enemy; } }
+    public Transform Enemy { get { return _enemy != null ? _enemy : GetEnemy(); } }
     #endregion
 
     #region Initialization
@@ -45,9 +46,10 @@ public class PlayerMovement : Photon.MonoBehaviour {
 
     private void AddEvents()
     {
-        EventManager.AddEventListener("Attack", OnAttack);
+        //EventManager.AddEventListener("Attack", OnAttack);
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
         EventManager.AddEventListener("RollExit", OnRollExit);
+        EventManager.AddEventListener("DoKnockBack", OnDoKnockBack);
     }
     #endregion
 
@@ -116,14 +118,9 @@ public class PlayerMovement : Photon.MonoBehaviour {
         EventManager.DispatchEvent("RunningAnimations", new object[] { this.gameObject.name, xMovement, yMovement });
     }
 
-    /// <summary>Stops animations on attack</summary>
-    private void OnAttack(params object[] paramsContainer)
+    private void DoKnockBack()
     {
-        //Dejo esto comentado porque al parecer este evento ya no se usa, y no recuerdo para que era, asique por las dudas lo dejo aca.
-
-        //runForward = false;
-        //xMovement = 0f;
-        //yMovement = 0f;
+        _rigid.AddForce(Enemy.forward * _knockBackForce * Time.deltaTime, ForceMode.Impulse);
     }
     #endregion
 
@@ -142,6 +139,12 @@ public class PlayerMovement : Photon.MonoBehaviour {
             isRunning = false;
             isRolling = false;
         }
+    }
+
+    private void OnDoKnockBack(params object[] paramsContinaer)
+    {
+        if (this.gameObject.name == (string)paramsContinaer[0])
+            DoKnockBack();
     }
     #endregion
 

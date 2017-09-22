@@ -6,7 +6,12 @@ public class PlayerStats : Photon.MonoBehaviour {
 
     private bool _gameInCourse;
     private bool _isBlocking = false;
+    private bool _isBlockingUp = false;
+    private bool _isKnockBackAttack = false;
     private float _regenMult = 0.16f;
+    private float _perfectBlockPerc = 10f;
+    private float _imperfectBlockPerc = 45f;
+    private float _stunTime = 3f;
 
     [HideInInspector]
 	public bool isDamaged = false;
@@ -77,6 +82,8 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.AddEventListener("Blocking", OnBlocking);
         EventManager.AddEventListener("PlayerDeath", OnPlayerDeath);
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
+        EventManager.AddEventListener("KnockBackEnter", OnKnockBackEnter);
+        EventManager.AddEventListener("KnockBackExit", OnKnockBackExit);
     }
     #endregion
 
@@ -94,9 +101,55 @@ public class PlayerStats : Photon.MonoBehaviour {
         float fill = Mana / maxMana;
         EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
     }
-    void LoseHP(float damage)
+    void LoseHP(float damage, string attackType)
     {
-        var dmg = _isBlocking ? damage / 3 : damage;
+        float dmg;
+        bool blocked = true;
+
+        if (attackType == "MeleeHorizontal")
+        {
+            if (_isBlockingUp)
+            {
+                dmg = (_imperfectBlockPerc * damage) / 100;
+                if(_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+            } 
+            else if (_isBlocking)
+            {
+                dmg = (_perfectBlockPerc * damage) / 100;
+                EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+            } 
+            else
+            {
+                dmg = damage;
+                blocked = false;
+            }
+        }
+        else if (attackType == "MeleeVertical")
+        {
+            if (_isBlockingUp)
+            {
+                dmg = (_perfectBlockPerc * damage) / 100;
+                EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+            }
+            else if (_isBlocking)
+            {
+                dmg = (_imperfectBlockPerc * damage) / 100;
+                if(_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+            } 
+            else
+            {
+                dmg = damage;
+                blocked = false;
+            }
+        }
+        else
+        {
+            dmg = damage;
+            blocked = false;
+        }
+
+        if(!blocked) EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
+
         float fill = (Hp - dmg) / maxHp;
         if (fill < 0) fill = 0;
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, (dmg > Hp ? 0 : Hp - dmg), fill });
@@ -113,13 +166,13 @@ public class PlayerStats : Photon.MonoBehaviour {
     public void TakeDamage(float damage)
     {
         EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
-        LoseHP(damage);
+        LoseHP(damage, "");
     }
 
     public void TakeDamage(float damage, string attackType)
     {
-        EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
-        LoseHP(damage);
+        //EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
+        LoseHP(damage, attackType);
     }
 
     #region Cambios Iván 21/9
@@ -132,7 +185,7 @@ public class PlayerStats : Photon.MonoBehaviour {
     public void TakeDamage(float damage, string attackType, Vector3 polyNormal)
     {
         EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, polyNormal, this.GetComponent<PlayerParticles>(), attackType });
-        LoseHP(damage);
+        LoseHP(damage, ""); //le agregue las "" para que no tire error, porque cambie los parametros del metodo
     }
     #endregion
 
@@ -163,8 +216,11 @@ public class PlayerStats : Photon.MonoBehaviour {
 
     private void OnBlocking(params object[] paramsContainer)
     {
-        if((string)paramsContainer[0] == this.gameObject.name)
+        if ((string)paramsContainer[0] == this.gameObject.name)
+        {
             _isBlocking = (bool)paramsContainer[1];
+            _isBlockingUp = (bool)paramsContainer[2];
+        }
     }
 
     private void OnPlayerDeath(params object[] paramsContainer)
@@ -184,6 +240,8 @@ public class PlayerStats : Photon.MonoBehaviour {
         if (this.gameObject.name == (string)paramsContainer[0])
         {
             isDamaged = true;
+            _isBlocking = false;
+            _isBlockingUp = false;
             EventManager.DispatchEvent("IsDamaged", new object[] { this.gameObject.name, isDamaged });
 
             if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOn", PhotonTargets.All);
@@ -196,6 +254,18 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.DispatchEvent("IsDamaged", new object[] { this.gameObject.name, isDamaged });
 
         if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOff", PhotonTargets.All);
+    }
+
+    private void OnKnockBackEnter(params object[] paramsContainer)
+    {
+        if (this.gameObject.name != (string)paramsContainer[0])
+            _isKnockBackAttack = true;
+    }
+
+    private void OnKnockBackExit(params object[] paramsContainer)
+    {
+        if (this.gameObject.name != (string)paramsContainer[0])
+            _isKnockBackAttack = false;
     }
     #endregion
 }

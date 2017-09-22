@@ -51,7 +51,7 @@ public class TransitionManager : MonoBehaviour
     {
         var attackType = (string)paramsContainer[3];
         var attackTypeExists = attackType != null && attackType != default(string);
-        if (attackTypeExists && attackType == "Melee")
+        if (attackTypeExists && (attackType == "Melee" || attackType == "MeleeHorizontal" || attackType == "MeleeVertical"))
         {
             var damagedName = (string)paramsContainer[0];
 
@@ -89,7 +89,7 @@ public class TransitionManager : MonoBehaviour
     {
         var attackType = (string)paramsContainer[2];
         var attackTypeExists = attackType != null && attackType != default(string);
-        if (attackTypeExists && attackType == "Melee")
+        if (attackTypeExists && (attackType == "Melee" || attackType == "MeleeHorizontal" || attackType == "MeleeVertical"))
         {
             var damagedName = (string)paramsContainer[0];
 
