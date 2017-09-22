@@ -79,13 +79,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
     #endregion
 
     #region Particles
-    public GameObject ParticleCaller(GameObject part, Vector3 pos)
-    {
-        var inst = Instantiate(part, pos, Quaternion.identity);
-        Destroy(inst, 3);
-        return inst;
-    }
-
+    #region RPC
     [PunRPC]
     public GameObject RpcParticleCaller(string part, Vector3 pos)
     {
@@ -95,6 +89,22 @@ public class PlayerParticles : Photon.MonoBehaviour {
         return inst;
     }
 
+    [PunRPC]
+    public GameObject RpcParticleCaller(string part, Vector3 pos, float lifeTime)
+    {
+        var parts = Resources.Load(part, typeof(GameObject)) as GameObject;
+        var inst = Instantiate(parts, pos, Quaternion.identity);
+        Destroy(inst, lifeTime);
+        return inst;
+    }
+    #endregion
+    #region Part + pos/parent
+    public GameObject ParticleCaller(GameObject part, Vector3 pos)
+    {
+        var inst = Instantiate(part, pos, Quaternion.identity);
+        Destroy(inst, 3);
+        return inst;
+    }
 
     public GameObject ParticleCaller(string part, Vector3 pos)
     {
@@ -110,6 +120,83 @@ public class PlayerParticles : Photon.MonoBehaviour {
         Destroy(inst, 3);
         return inst;
     }
+    #endregion
+    #region Part + pos/parent + forward
+    public GameObject ParticleCaller(GameObject part, Vector3 pos, Vector3 fwd)
+    {
+        var inst = Instantiate(part, pos, Quaternion.identity);
+        inst.transform.forward = fwd;
+        Destroy(inst, 3);
+        return inst;
+    }
+
+    public GameObject ParticleCaller(string part, Vector3 pos, Vector3 fwd)
+    {
+        var parts = Resources.Load(part, typeof(GameObject)) as GameObject;
+        var inst = Instantiate(parts, pos, Quaternion.identity);
+        inst.transform.forward = fwd;
+        Destroy(inst, 3);
+        return inst;
+    }
+
+    public GameObject ParticleCaller(GameObject part, Transform parent, Vector3 fwd)
+    {
+        var inst = Instantiate(part, parent);
+        inst.transform.forward = fwd;
+        Destroy(inst, 3);
+        return inst;
+    }
+    #endregion
+
+    #region Part + pos/parent + lifetime
+    public GameObject ParticleCaller(GameObject part, Vector3 pos, float lifeTime)
+    {
+        var inst = Instantiate(part, pos, Quaternion.identity);
+        Destroy(inst, lifeTime);
+        return inst;
+    }
+
+    public GameObject ParticleCaller(string part, Vector3 pos, float lifeTime)
+    {
+        var parts = Resources.Load(part, typeof(GameObject)) as GameObject;
+        var inst = Instantiate(parts, pos, Quaternion.identity);
+        Destroy(inst, lifeTime);
+        return inst;
+    }
+
+    public GameObject ParticleCaller(GameObject part, Transform parent, float lifeTime)
+    {
+        var inst = Instantiate(part, parent);
+        Destroy(inst, lifeTime);
+        return inst;
+    }
+    #endregion
+    #region Part + pos/parent + lifetime + forward
+    public GameObject ParticleCaller(GameObject part, Vector3 pos, float lifeTime, Vector3 fwd)
+    {
+        var inst = Instantiate(part, pos, Quaternion.identity);
+        inst.transform.forward = fwd;
+        Destroy(inst, lifeTime);
+        return inst;
+    }
+
+    public GameObject ParticleCaller(string part, Vector3 pos, float lifeTime, Vector3 fwd)
+    {
+        var parts = Resources.Load(part, typeof(GameObject)) as GameObject;
+        var inst = Instantiate(parts, pos, Quaternion.identity);
+        inst.transform.forward = fwd;
+        Destroy(inst, lifeTime);
+        return inst;
+    }
+
+    public GameObject ParticleCaller(GameObject part, Transform parent, float lifeTime, Vector3 fwd)
+    {
+        var inst = Instantiate(part, parent);
+        inst.transform.forward = fwd;
+        Destroy(inst, lifeTime);
+        return inst;
+    }
+    #endregion
 
     public ParticleSystem ParticleDestroyer(string name)
     {

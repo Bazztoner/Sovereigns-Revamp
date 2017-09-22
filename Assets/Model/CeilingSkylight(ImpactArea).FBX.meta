@@ -1,0 +1,3148 @@
+fileFormatVersion: 2
+guid: b82ff475c22be834bbc571d0cca291bb
+timeCreated: 1506065476
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: CeilingSkylightFrame
+    100004: CeilingSkylightGlass_frag_001
+    100006: CeilingSkylightGlass_frag_002
+    100008: CeilingSkylightGlass_frag_003
+    100010: CeilingSkylightGlass_frag_004
+    100012: CeilingSkylightGlass_frag_005
+    100014: CeilingSkylightGlass_frag_006
+    100016: CeilingSkylightGlass_frag_007
+    100018: CeilingSkylightGlass_frag_008
+    100020: CeilingSkylightGlass_frag_009
+    100022: CeilingSkylightGlass_frag_010
+    100024: CeilingSkylightGlass_frag_011
+    100026: CeilingSkylightGlass_frag_012
+    100028: CeilingSkylightGlass_frag_013
+    100030: CeilingSkylightGlass_frag_014
+    100032: CeilingSkylightGlass_frag_015
+    100034: CeilingSkylightGlass_frag_016
+    100036: CeilingSkylightGlass_frag_017
+    100038: CeilingSkylightGlass_frag_018
+    100040: CeilingSkylightGlass_frag_019
+    100042: CeilingSkylightGlass_frag_020
+    100044: CeilingSkylightGlass_frag_021
+    100046: CeilingSkylightGlass_frag_022
+    100048: CeilingSkylightGlass_frag_023
+    100050: CeilingSkylightGlass_frag_024
+    100052: CeilingSkylightGlass_frag_025
+    100054: CeilingSkylightGlass_frag_026
+    100056: CeilingSkylightGlass_frag_027
+    100058: CeilingSkylightGlass_frag_028
+    100060: CeilingSkylightGlass_frag_029
+    100062: CeilingSkylightGlass_frag_030
+    100064: CeilingSkylightGlass_frag_031
+    100066: CeilingSkylightGlass_frag_032
+    100068: CeilingSkylightGlass_frag_033
+    100070: CeilingSkylightGlass_frag_034
+    100072: CeilingSkylightGlass_frag_035
+    100074: CeilingSkylightGlass_frag_036
+    100076: CeilingSkylightGlass_frag_037
+    100078: CeilingSkylightGlass_frag_038
+    100080: CeilingSkylightGlass_frag_039
+    100082: CeilingSkylightGlass_frag_040
+    100084: CeilingSkylightGlass_frag_041
+    100086: CeilingSkylightGlass_frag_042
+    100088: CeilingSkylightGlass_frag_043
+    100090: CeilingSkylightGlass_frag_044
+    100092: CeilingSkylightGlass_frag_045
+    100094: CeilingSkylightGlass_frag_046
+    100096: CeilingSkylightGlass_frag_047
+    100098: CeilingSkylightGlass_frag_048
+    100100: CeilingSkylightGlass_frag_049
+    100102: CeilingSkylightGlass_frag_050
+    100104: CeilingSkylightGlass_frag_051
+    100106: CeilingSkylightGlass_frag_052
+    100108: CeilingSkylightGlass_frag_053
+    100110: CeilingSkylightGlass_frag_054
+    100112: CeilingSkylightGlass_frag_055
+    100114: CeilingSkylightGlass_frag_056
+    100116: CeilingSkylightGlass_frag_057
+    100118: CeilingSkylightGlass_frag_058
+    100120: CeilingSkylightGlass_frag_059
+    100122: CeilingSkylightGlass_frag_060
+    100124: CeilingSkylightGlass_frag_061
+    100126: CeilingSkylightGlass_frag_062
+    100128: CeilingSkylightGlass_frag_063
+    100130: CeilingSkylightGlass_frag_064
+    100132: CeilingSkylightGlass_frag_065
+    100134: CeilingSkylightGlass_frag_066
+    100136: CeilingSkylightGlass_frag_067
+    100138: CeilingSkylightGlass_frag_068
+    100140: CeilingSkylightGlass_frag_069
+    100142: CeilingSkylightGlass_frag_070
+    100144: CeilingSkylightGlass_frag_071
+    100146: CeilingSkylightGlass_frag_072
+    100148: CeilingSkylightGlass_frag_073
+    100150: CeilingSkylightGlass_frag_074
+    100152: CeilingSkylightGlass_frag_075
+    100154: CeilingSkylightGlass_frag_076
+    100156: CeilingSkylightGlass_frag_077
+    100158: CeilingSkylightGlass_frag_078
+    100160: CeilingSkylightGlass_frag_079
+    100162: CeilingSkylightGlass_frag_080
+    100164: CeilingSkylightGlass_frag_081
+    100166: CeilingSkylightGlass_frag_082
+    100168: CeilingSkylightGlass_frag_083
+    100170: CeilingSkylightGlass_frag_084
+    100172: CeilingSkylightGlass_frag_085
+    100174: CeilingSkylightGlass_frag_086
+    100176: CeilingSkylightGlass_frag_087
+    100178: CeilingSkylightGlass_frag_088
+    100180: CeilingSkylightGlass_frag_089
+    100182: CeilingSkylightGlass_frag_090
+    100184: CeilingSkylightGlass_frag_091
+    100186: CeilingSkylightGlass_frag_092
+    100188: CeilingSkylightGlass_frag_093
+    100190: CeilingSkylightGlass_frag_094
+    100192: CeilingSkylightGlass_frag_095
+    100194: CeilingSkylightGlass_frag_096
+    100196: CeilingSkylightGlass_frag_097
+    100198: CeilingSkylightGlass_frag_098
+    100200: CeilingSkylightGlass_frag_099
+    100202: CeilingSkylightGlass_frag_100
+    100204: CeilingSkylightGlass_frag_101
+    100206: CeilingSkylightGlass_frag_102
+    100208: CeilingSkylightGlass_frag_103
+    100210: CeilingSkylightGlass_frag_104
+    100212: CeilingSkylightGlass_frag_105
+    100214: CeilingSkylightGlass_frag_106
+    100216: CeilingSkylightGlass_frag_107
+    100218: CeilingSkylightGlass_frag_108
+    100220: CeilingSkylightGlass_frag_109
+    100222: CeilingSkylightGlass_frag_110
+    100224: CeilingSkylightGlass_frag_111
+    100226: CeilingSkylightGlass_frag_112
+    100228: CeilingSkylightGlass_frag_113
+    100230: CeilingSkylightGlass_frag_114
+    100232: CeilingSkylightGlass_frag_115
+    100234: CeilingSkylightGlass_frag_116
+    100236: CeilingSkylightGlass_frag_117
+    100238: CeilingSkylightGlass_frag_118
+    100240: CeilingSkylightGlass_frag_119
+    100242: CeilingSkylightGlass_frag_120
+    100244: CeilingSkylightGlass_frag_121
+    100246: CeilingSkylightGlass_frag_122
+    100248: CeilingSkylightGlass_frag_123
+    100250: CeilingSkylightGlass_frag_124
+    100252: CeilingSkylightGlass_frag_125
+    100254: CeilingSkylightGlass_frag_126
+    100256: CeilingSkylightGlass_frag_127
+    100258: CeilingSkylightGlass_frag_128
+    100260: CeilingSkylightGlass_frag_129
+    100262: CeilingSkylightGlass_frag_130
+    100264: CeilingSkylightGlass_frag_131
+    100266: CeilingSkylightGlass_frag_132
+    100268: CeilingSkylightGlass_frag_133
+    100270: CeilingSkylightGlass_frag_134
+    100272: CeilingSkylightGlass_frag_135
+    100274: CeilingSkylightGlass_frag_136
+    100276: CeilingSkylightGlass_frag_137
+    100278: CeilingSkylightGlass_frag_138
+    100280: CeilingSkylightGlass_frag_139
+    100282: CeilingSkylightGlass_frag_140
+    100284: CeilingSkylightGlass_frag_141
+    100286: CeilingSkylightGlass_frag_142
+    100288: CeilingSkylightGlass_frag_143
+    100290: CeilingSkylightGlass_frag_144
+    100292: CeilingSkylightGlass_frag_145
+    100294: CeilingSkylightGlass_frag_146
+    100296: CeilingSkylightGlass_frag_147
+    100298: CeilingSkylightGlass_frag_148
+    100300: CeilingSkylightGlass_frag_149
+    100302: CeilingSkylightGlass_frag_150
+    100304: CeilingSkylightGlass_frag_151
+    100306: CeilingSkylightGlass_frag_152
+    100308: CeilingSkylightGlass_frag_153
+    100310: CeilingSkylightGlass_frag_154
+    100312: CeilingSkylightGlass_frag_155
+    100314: CeilingSkylightGlass_frag_156
+    100316: CeilingSkylightGlass_frag_157
+    100318: CeilingSkylightGlass_frag_158
+    100320: CeilingSkylightGlass_frag_159
+    100322: CeilingSkylightGlass_frag_160
+    100324: CeilingSkylightGlass_frag_161
+    100326: CeilingSkylightGlass_frag_162
+    100328: CeilingSkylightGlass_frag_163
+    100330: CeilingSkylightGlass_frag_164
+    100332: CeilingSkylightGlass_frag_165
+    100334: CeilingSkylightGlass_frag_166
+    100336: CeilingSkylightGlass_frag_167
+    100338: CeilingSkylightGlass_frag_168
+    100340: CeilingSkylightGlass_frag_169
+    100342: CeilingSkylightGlass_frag_170
+    100344: CeilingSkylightGlass_frag_171
+    100346: CeilingSkylightGlass_frag_172
+    100348: CeilingSkylightGlass_frag_173
+    100350: CeilingSkylightGlass_frag_174
+    100352: CeilingSkylightGlass_frag_175
+    100354: CeilingSkylightGlass_frag_176
+    100356: CeilingSkylightGlass_frag_177
+    100358: CeilingSkylightGlass_frag_178
+    100360: CeilingSkylightGlass_frag_179
+    100362: CeilingSkylightGlass_frag_180
+    100364: CeilingSkylightGlass_frag_181
+    100366: CeilingSkylightGlass_frag_182
+    100368: CeilingSkylightGlass_frag_183
+    100370: CeilingSkylightGlass_frag_184
+    100372: CeilingSkylightGlass_frag_185
+    100374: CeilingSkylightGlass_frag_186
+    100376: CeilingSkylightGlass_frag_187
+    100378: CeilingSkylightGlass_frag_188
+    100380: CeilingSkylightGlass_frag_189
+    100382: CeilingSkylightGlass_frag_190
+    100384: CeilingSkylightGlass_frag_191
+    100386: CeilingSkylightGlass_frag_192
+    100388: CeilingSkylightGlass_frag_193
+    100390: CeilingSkylightGlass_frag_194
+    100392: CeilingSkylightGlass_frag_195
+    100394: CeilingSkylightGlass_frag_196
+    100396: CeilingSkylightGlass_frag_197
+    100398: CeilingSkylightGlass_frag_198
+    100400: CeilingSkylightGlass_frag_199
+    100402: CeilingSkylightGlass_frag_200
+    100404: CeilingSkylightGlass_frag_201
+    100406: CeilingSkylightGlass_frag_202
+    100408: CeilingSkylightGlass_frag_203
+    100410: CeilingSkylightGlass_frag_204
+    100412: CeilingSkylightGlass_frag_205
+    100414: CeilingSkylightGlass_frag_206
+    100416: CeilingSkylightGlass_frag_207
+    100418: CeilingSkylightGlass_frag_208
+    100420: CeilingSkylightGlass_frag_209
+    100422: CeilingSkylightGlass_frag_210
+    100424: CeilingSkylightGlass_frag_211
+    100426: CeilingSkylightGlass_frag_212
+    100428: CeilingSkylightGlass_frag_213
+    100430: CeilingSkylightGlass_frag_214
+    100432: CeilingSkylightGlass_frag_215
+    100434: CeilingSkylightGlass_frag_216
+    100436: CeilingSkylightGlass_frag_217
+    100438: CeilingSkylightGlass_frag_218
+    100440: CeilingSkylightGlass_frag_219
+    100442: CeilingSkylightGlass_frag_220
+    100444: CeilingSkylightGlass_frag_221
+    100446: CeilingSkylightGlass_frag_222
+    100448: CeilingSkylightGlass_frag_223
+    100450: CeilingSkylightGlass_frag_224
+    100452: CeilingSkylightGlass_frag_225
+    100454: CeilingSkylightGlass_frag_226
+    100456: CeilingSkylightGlass_frag_227
+    100458: CeilingSkylightGlass_frag_228
+    100460: CeilingSkylightGlass_frag_229
+    100462: CeilingSkylightGlass_frag_230
+    100464: CeilingSkylightGlass_frag_231
+    100466: CeilingSkylightGlass_frag_232
+    100468: CeilingSkylightGlass_frag_233
+    100470: CeilingSkylightGlass_frag_234
+    100472: CeilingSkylightGlass_frag_235
+    100474: CeilingSkylightGlass_frag_236
+    100476: CeilingSkylightGlass_frag_237
+    100478: CeilingSkylightGlass_frag_238
+    100480: CeilingSkylightGlass_frag_239
+    100482: CeilingSkylightGlass_frag_240
+    100484: CeilingSkylightGlass_frag_241
+    100486: CeilingSkylightGlass_frag_242
+    100488: CeilingSkylightGlass_frag_243
+    100490: CeilingSkylightGlass_frag_244
+    100492: CeilingSkylightGlass_frag_245
+    100494: CeilingSkylightGlass_frag_246
+    100496: CeilingSkylightGlass_frag_247
+    100498: CeilingSkylightGlass_frag_248
+    100500: CeilingSkylightGlass_frag_249
+    100502: CeilingSkylightGlass_frag_250
+    100504: CeilingSkylightGlass_frag_251
+    100506: CeilingSkylightGlass_frag_252
+    100508: CeilingSkylightGlass_frag_253
+    100510: CeilingSkylightGlass_frag_254
+    100512: CeilingSkylightGlass_frag_255
+    100514: CeilingSkylightGlass_frag_256
+    100516: CeilingSkylightGlass_frag_257
+    100518: CeilingSkylightGlass_frag_258
+    100520: CeilingSkylightGlass_frag_259
+    100522: CeilingSkylightGlass_frag_260
+    100524: CeilingSkylightGlass_frag_261
+    100526: CeilingSkylightGlass_frag_262
+    100528: CeilingSkylightGlass_frag_263
+    100530: CeilingSkylightGlass_frag_264
+    100532: CeilingSkylightGlass_frag_265
+    100534: CeilingSkylightGlass_frag_266
+    100536: CeilingSkylightGlass_frag_267
+    100538: CeilingSkylightGlass_frag_268
+    100540: CeilingSkylightGlass_frag_269
+    100542: CeilingSkylightGlass_frag_270
+    100544: CeilingSkylightGlass_frag_271
+    100546: CeilingSkylightGlass_frag_272
+    100548: CeilingSkylightGlass_frag_273
+    100550: CeilingSkylightGlass_frag_274
+    100552: CeilingSkylightGlass_frag_275
+    100554: CeilingSkylightGlass_frag_276
+    100556: CeilingSkylightGlass_frag_277
+    100558: CeilingSkylightGlass_frag_278
+    100560: CeilingSkylightGlass_frag_279
+    100562: CeilingSkylightGlass_frag_280
+    100564: CeilingSkylightGlass_frag_281
+    100566: CeilingSkylightGlass_frag_282
+    100568: CeilingSkylightGlass_frag_283
+    100570: CeilingSkylightGlass_frag_284
+    100572: CeilingSkylightGlass_frag_285
+    100574: CeilingSkylightGlass_frag_286
+    100576: CeilingSkylightGlass_frag_287
+    100578: CeilingSkylightGlass_frag_288
+    100580: CeilingSkylightGlass_frag_289
+    100582: CeilingSkylightGlass_frag_290
+    100584: CeilingSkylightGlass_frag_291
+    100586: CeilingSkylightGlass_frag_292
+    100588: CeilingSkylightGlass_frag_293
+    100590: CeilingSkylightGlass_frag_294
+    100592: CeilingSkylightGlass_frag_295
+    100594: CeilingSkylightGlass_frag_296
+    100596: CeilingSkylightGlass_frag_297
+    100598: CeilingSkylightGlass_frag_298
+    100600: CeilingSkylightGlass_frag_299
+    100602: CeilingSkylightGlass_frag_300
+    100604: CeilingSkylightGlass_frag_301
+    100606: CeilingSkylightGlass_frag_302
+    100608: CeilingSkylightGlass_frag_303
+    100610: CeilingSkylightGlass_frag_304
+    100612: CeilingSkylightGlass_frag_305
+    100614: CeilingSkylightGlass_frag_306
+    100616: CeilingSkylightGlass_frag_307
+    100618: CeilingSkylightGlass_frag_308
+    100620: CeilingSkylightGlass_frag_309
+    100622: CeilingSkylightGlass_frag_310
+    100624: CeilingSkylightGlass_frag_311
+    100626: CeilingSkylightGlass_frag_312
+    100628: CeilingSkylightGlass_frag_313
+    100630: CeilingSkylightGlass_frag_314
+    100632: CeilingSkylightGlass_frag_315
+    100634: CeilingSkylightGlass_frag_316
+    100636: CeilingSkylightGlass_frag_317
+    100638: CeilingSkylightGlass_frag_318
+    100640: CeilingSkylightGlass_frag_319
+    100642: CeilingSkylightGlass_frag_320
+    100644: CeilingSkylightGlass_frag_321
+    100646: CeilingSkylightGlass_frag_322
+    100648: CeilingSkylightGlass_frag_323
+    100650: CeilingSkylightGlass_frag_324
+    100652: CeilingSkylightGlass_frag_325
+    100654: CeilingSkylightGlass_frag_326
+    100656: CeilingSkylightGlass_frag_327
+    100658: CeilingSkylightGlass_frag_328
+    100660: CeilingSkylightGlass_frag_329
+    100662: CeilingSkylightGlass_frag_330
+    100664: CeilingSkylightGlass_frag_331
+    100666: CeilingSkylightGlass_frag_332
+    100668: CeilingSkylightGlass_frag_333
+    100670: CeilingSkylightGlass_frag_334
+    100672: CeilingSkylightGlass_frag_335
+    100674: CeilingSkylightGlass_frag_336
+    100676: CeilingSkylightGlass_frag_337
+    100678: CeilingSkylightGlass_frag_338
+    100680: CeilingSkylightGlass_frag_339
+    100682: CeilingSkylightGlass_frag_340
+    100684: CeilingSkylightGlass_frag_341
+    100686: CeilingSkylightGlass_frag_342
+    100688: CeilingSkylightGlass_frag_343
+    100690: CeilingSkylightGlass_frag_344
+    100692: CeilingSkylightGlass_frag_345
+    100694: CeilingSkylightGlass_frag_346
+    100696: CeilingSkylightGlass_frag_347
+    100698: CeilingSkylightGlass_frag_348
+    100700: CeilingSkylightGlass_frag_349
+    100702: CeilingSkylightGlass_frag_350
+    100704: CeilingSkylightGlass_frag_351
+    100706: CeilingSkylightGlass_frag_352
+    100708: CeilingSkylightGlass_frag_353
+    100710: CeilingSkylightGlass_frag_354
+    100712: CeilingSkylightGlass_frag_355
+    100714: CeilingSkylightGlass_frag_356
+    100716: CeilingSkylightGlass_frag_357
+    100718: CeilingSkylightGlass_frag_358
+    100720: CeilingSkylightGlass_frag_359
+    100722: CeilingSkylightGlass_frag_360
+    100724: CeilingSkylightGlass_frag_361
+    100726: CeilingSkylightGlass_frag_362
+    100728: CeilingSkylightGlass_frag_363
+    100730: CeilingSkylightGlass_frag_364
+    100732: CeilingSkylightGlass_frag_365
+    100734: CeilingSkylightGlass_frag_366
+    100736: CeilingSkylightGlass_frag_367
+    100738: CeilingSkylightGlass_frag_368
+    100740: CeilingSkylightGlass_frag_369
+    100742: CeilingSkylightGlass_frag_370
+    100744: CeilingSkylightGlass_frag_371
+    100746: CeilingSkylightGlass_frag_372
+    100748: CeilingSkylightGlass_frag_373
+    100750: CeilingSkylightGlass_frag_374
+    100752: CeilingSkylightGlass_frag_375
+    100754: CeilingSkylightGlass_frag_376
+    100756: CeilingSkylightGlass_frag_377
+    100758: CeilingSkylightGlass_frag_378
+    100760: CeilingSkylightGlass_frag_379
+    100762: CeilingSkylightGlass_frag_380
+    100764: CeilingSkylightGlass_frag_381
+    100766: CeilingSkylightGlass_frag_382
+    100768: CeilingSkylightGlass_frag_383
+    100770: CeilingSkylightGlass_frag_384
+    100772: CeilingSkylightGlass_frag_385
+    100774: CeilingSkylightGlass_frag_386
+    100776: CeilingSkylightGlass_frag_387
+    100778: CeilingSkylightGlass_frag_388
+    100780: CeilingSkylightGlass_frag_389
+    100782: CeilingSkylightGlass_frag_390
+    100784: CeilingSkylightGlass_frag_391
+    100786: CeilingSkylightGlass_frag_392
+    100788: CeilingSkylightGlass_frag_393
+    100790: CeilingSkylightGlass_frag_394
+    100792: CeilingSkylightGlass_frag_395
+    100794: CeilingSkylightGlass_frag_396
+    100796: CeilingSkylightGlass_frag_397
+    100798: CeilingSkylightGlass_frag_398
+    100800: CeilingSkylightGlass_frag_399
+    100802: CeilingSkylightGlass_frag_400
+    100804: CeilingSkylightGlass_frag_401
+    100806: CeilingSkylightGlass_frag_402
+    100808: CeilingSkylightGlass_frag_403
+    100810: CeilingSkylightGlass_frag_404
+    100812: CeilingSkylightGlass_frag_405
+    100814: CeilingSkylightGlass_frag_406
+    100816: CeilingSkylightGlass_frag_407
+    100818: CeilingSkylightGlass_frag_408
+    100820: CeilingSkylightGlass_frag_409
+    100822: CeilingSkylightGlass_frag_410
+    100824: CeilingSkylightGlass_frag_411
+    100826: CeilingSkylightGlass_frag_412
+    100828: CeilingSkylightGlass_frag_413
+    100830: CeilingSkylightGlass_frag_414
+    100832: CeilingSkylightGlass_frag_415
+    100834: CeilingSkylightGlass_frag_416
+    100836: CeilingSkylightGlass_frag_417
+    100838: CeilingSkylightGlass_frag_418
+    100840: CeilingSkylightGlass_frag_419
+    100842: CeilingSkylightGlass_frag_420
+    100844: CeilingSkylightGlass_frag_421
+    100846: CeilingSkylightGlass_frag_422
+    100848: CeilingSkylightGlass_frag_423
+    100850: CeilingSkylightGlass_frag_424
+    100852: CeilingSkylightGlass_frag_425
+    100854: CeilingSkylightGlass_frag_426
+    100856: CeilingSkylightGlass_frag_427
+    100858: CeilingSkylightGlass_frag_428
+    100860: CeilingSkylightGlass_frag_429
+    100862: CeilingSkylightGlass_frag_430
+    100864: CeilingSkylightGlass_frag_431
+    100866: CeilingSkylightGlass_frag_432
+    100868: CeilingSkylightGlass_frag_433
+    400000: //RootNode
+    400002: CeilingSkylightFrame
+    400004: CeilingSkylightGlass_frag_001
+    400006: CeilingSkylightGlass_frag_002
+    400008: CeilingSkylightGlass_frag_003
+    400010: CeilingSkylightGlass_frag_004
+    400012: CeilingSkylightGlass_frag_005
+    400014: CeilingSkylightGlass_frag_006
+    400016: CeilingSkylightGlass_frag_007
+    400018: CeilingSkylightGlass_frag_008
+    400020: CeilingSkylightGlass_frag_009
+    400022: CeilingSkylightGlass_frag_010
+    400024: CeilingSkylightGlass_frag_011
+    400026: CeilingSkylightGlass_frag_012
+    400028: CeilingSkylightGlass_frag_013
+    400030: CeilingSkylightGlass_frag_014
+    400032: CeilingSkylightGlass_frag_015
+    400034: CeilingSkylightGlass_frag_016
+    400036: CeilingSkylightGlass_frag_017
+    400038: CeilingSkylightGlass_frag_018
+    400040: CeilingSkylightGlass_frag_019
+    400042: CeilingSkylightGlass_frag_020
+    400044: CeilingSkylightGlass_frag_021
+    400046: CeilingSkylightGlass_frag_022
+    400048: CeilingSkylightGlass_frag_023
+    400050: CeilingSkylightGlass_frag_024
+    400052: CeilingSkylightGlass_frag_025
+    400054: CeilingSkylightGlass_frag_026
+    400056: CeilingSkylightGlass_frag_027
+    400058: CeilingSkylightGlass_frag_028
+    400060: CeilingSkylightGlass_frag_029
+    400062: CeilingSkylightGlass_frag_030
+    400064: CeilingSkylightGlass_frag_031
+    400066: CeilingSkylightGlass_frag_032
+    400068: CeilingSkylightGlass_frag_033
+    400070: CeilingSkylightGlass_frag_034
+    400072: CeilingSkylightGlass_frag_035
+    400074: CeilingSkylightGlass_frag_036
+    400076: CeilingSkylightGlass_frag_037
+    400078: CeilingSkylightGlass_frag_038
+    400080: CeilingSkylightGlass_frag_039
+    400082: CeilingSkylightGlass_frag_040
+    400084: CeilingSkylightGlass_frag_041
+    400086: CeilingSkylightGlass_frag_042
+    400088: CeilingSkylightGlass_frag_043
+    400090: CeilingSkylightGlass_frag_044
+    400092: CeilingSkylightGlass_frag_045
+    400094: CeilingSkylightGlass_frag_046
+    400096: CeilingSkylightGlass_frag_047
+    400098: CeilingSkylightGlass_frag_048
+    400100: CeilingSkylightGlass_frag_049
+    400102: CeilingSkylightGlass_frag_050
+    400104: CeilingSkylightGlass_frag_051
+    400106: CeilingSkylightGlass_frag_052
+    400108: CeilingSkylightGlass_frag_053
+    400110: CeilingSkylightGlass_frag_054
+    400112: CeilingSkylightGlass_frag_055
+    400114: CeilingSkylightGlass_frag_056
+    400116: CeilingSkylightGlass_frag_057
+    400118: CeilingSkylightGlass_frag_058
+    400120: CeilingSkylightGlass_frag_059
+    400122: CeilingSkylightGlass_frag_060
+    400124: CeilingSkylightGlass_frag_061
+    400126: CeilingSkylightGlass_frag_062
+    400128: CeilingSkylightGlass_frag_063
+    400130: CeilingSkylightGlass_frag_064
+    400132: CeilingSkylightGlass_frag_065
+    400134: CeilingSkylightGlass_frag_066
+    400136: CeilingSkylightGlass_frag_067
+    400138: CeilingSkylightGlass_frag_068
+    400140: CeilingSkylightGlass_frag_069
+    400142: CeilingSkylightGlass_frag_070
+    400144: CeilingSkylightGlass_frag_071
+    400146: CeilingSkylightGlass_frag_072
+    400148: CeilingSkylightGlass_frag_073
+    400150: CeilingSkylightGlass_frag_074
+    400152: CeilingSkylightGlass_frag_075
+    400154: CeilingSkylightGlass_frag_076
+    400156: CeilingSkylightGlass_frag_077
+    400158: CeilingSkylightGlass_frag_078
+    400160: CeilingSkylightGlass_frag_079
+    400162: CeilingSkylightGlass_frag_080
+    400164: CeilingSkylightGlass_frag_081
+    400166: CeilingSkylightGlass_frag_082
+    400168: CeilingSkylightGlass_frag_083
+    400170: CeilingSkylightGlass_frag_084
+    400172: CeilingSkylightGlass_frag_085
+    400174: CeilingSkylightGlass_frag_086
+    400176: CeilingSkylightGlass_frag_087
+    400178: CeilingSkylightGlass_frag_088
+    400180: CeilingSkylightGlass_frag_089
+    400182: CeilingSkylightGlass_frag_090
+    400184: CeilingSkylightGlass_frag_091
+    400186: CeilingSkylightGlass_frag_092
+    400188: CeilingSkylightGlass_frag_093
+    400190: CeilingSkylightGlass_frag_094
+    400192: CeilingSkylightGlass_frag_095
+    400194: CeilingSkylightGlass_frag_096
+    400196: CeilingSkylightGlass_frag_097
+    400198: CeilingSkylightGlass_frag_098
+    400200: CeilingSkylightGlass_frag_099
+    400202: CeilingSkylightGlass_frag_100
+    400204: CeilingSkylightGlass_frag_101
+    400206: CeilingSkylightGlass_frag_102
+    400208: CeilingSkylightGlass_frag_103
+    400210: CeilingSkylightGlass_frag_104
+    400212: CeilingSkylightGlass_frag_105
+    400214: CeilingSkylightGlass_frag_106
+    400216: CeilingSkylightGlass_frag_107
+    400218: CeilingSkylightGlass_frag_108
+    400220: CeilingSkylightGlass_frag_109
+    400222: CeilingSkylightGlass_frag_110
+    400224: CeilingSkylightGlass_frag_111
+    400226: CeilingSkylightGlass_frag_112
+    400228: CeilingSkylightGlass_frag_113
+    400230: CeilingSkylightGlass_frag_114
+    400232: CeilingSkylightGlass_frag_115
+    400234: CeilingSkylightGlass_frag_116
+    400236: CeilingSkylightGlass_frag_117
+    400238: CeilingSkylightGlass_frag_118
+    400240: CeilingSkylightGlass_frag_119
+    400242: CeilingSkylightGlass_frag_120
+    400244: CeilingSkylightGlass_frag_121
+    400246: CeilingSkylightGlass_frag_122
+    400248: CeilingSkylightGlass_frag_123
+    400250: CeilingSkylightGlass_frag_124
+    400252: CeilingSkylightGlass_frag_125
+    400254: CeilingSkylightGlass_frag_126
+    400256: CeilingSkylightGlass_frag_127
+    400258: CeilingSkylightGlass_frag_128
+    400260: CeilingSkylightGlass_frag_129
+    400262: CeilingSkylightGlass_frag_130
+    400264: CeilingSkylightGlass_frag_131
+    400266: CeilingSkylightGlass_frag_132
+    400268: CeilingSkylightGlass_frag_133
+    400270: CeilingSkylightGlass_frag_134
+    400272: CeilingSkylightGlass_frag_135
+    400274: CeilingSkylightGlass_frag_136
+    400276: CeilingSkylightGlass_frag_137
+    400278: CeilingSkylightGlass_frag_138
+    400280: CeilingSkylightGlass_frag_139
+    400282: CeilingSkylightGlass_frag_140
+    400284: CeilingSkylightGlass_frag_141
+    400286: CeilingSkylightGlass_frag_142
+    400288: CeilingSkylightGlass_frag_143
+    400290: CeilingSkylightGlass_frag_144
+    400292: CeilingSkylightGlass_frag_145
+    400294: CeilingSkylightGlass_frag_146
+    400296: CeilingSkylightGlass_frag_147
+    400298: CeilingSkylightGlass_frag_148
+    400300: CeilingSkylightGlass_frag_149
+    400302: CeilingSkylightGlass_frag_150
+    400304: CeilingSkylightGlass_frag_151
+    400306: CeilingSkylightGlass_frag_152
+    400308: CeilingSkylightGlass_frag_153
+    400310: CeilingSkylightGlass_frag_154
+    400312: CeilingSkylightGlass_frag_155
+    400314: CeilingSkylightGlass_frag_156
+    400316: CeilingSkylightGlass_frag_157
+    400318: CeilingSkylightGlass_frag_158
+    400320: CeilingSkylightGlass_frag_159
+    400322: CeilingSkylightGlass_frag_160
+    400324: CeilingSkylightGlass_frag_161
+    400326: CeilingSkylightGlass_frag_162
+    400328: CeilingSkylightGlass_frag_163
+    400330: CeilingSkylightGlass_frag_164
+    400332: CeilingSkylightGlass_frag_165
+    400334: CeilingSkylightGlass_frag_166
+    400336: CeilingSkylightGlass_frag_167
+    400338: CeilingSkylightGlass_frag_168
+    400340: CeilingSkylightGlass_frag_169
+    400342: CeilingSkylightGlass_frag_170
+    400344: CeilingSkylightGlass_frag_171
+    400346: CeilingSkylightGlass_frag_172
+    400348: CeilingSkylightGlass_frag_173
+    400350: CeilingSkylightGlass_frag_174
+    400352: CeilingSkylightGlass_frag_175
+    400354: CeilingSkylightGlass_frag_176
+    400356: CeilingSkylightGlass_frag_177
+    400358: CeilingSkylightGlass_frag_178
+    400360: CeilingSkylightGlass_frag_179
+    400362: CeilingSkylightGlass_frag_180
+    400364: CeilingSkylightGlass_frag_181
+    400366: CeilingSkylightGlass_frag_182
+    400368: CeilingSkylightGlass_frag_183
+    400370: CeilingSkylightGlass_frag_184
+    400372: CeilingSkylightGlass_frag_185
+    400374: CeilingSkylightGlass_frag_186
+    400376: CeilingSkylightGlass_frag_187
+    400378: CeilingSkylightGlass_frag_188
+    400380: CeilingSkylightGlass_frag_189
+    400382: CeilingSkylightGlass_frag_190
+    400384: CeilingSkylightGlass_frag_191
+    400386: CeilingSkylightGlass_frag_192
+    400388: CeilingSkylightGlass_frag_193
+    400390: CeilingSkylightGlass_frag_194
+    400392: CeilingSkylightGlass_frag_195
+    400394: CeilingSkylightGlass_frag_196
+    400396: CeilingSkylightGlass_frag_197
+    400398: CeilingSkylightGlass_frag_198
+    400400: CeilingSkylightGlass_frag_199
+    400402: CeilingSkylightGlass_frag_200
+    400404: CeilingSkylightGlass_frag_201
+    400406: CeilingSkylightGlass_frag_202
+    400408: CeilingSkylightGlass_frag_203
+    400410: CeilingSkylightGlass_frag_204
+    400412: CeilingSkylightGlass_frag_205
+    400414: CeilingSkylightGlass_frag_206
+    400416: CeilingSkylightGlass_frag_207
+    400418: CeilingSkylightGlass_frag_208
+    400420: CeilingSkylightGlass_frag_209
+    400422: CeilingSkylightGlass_frag_210
+    400424: CeilingSkylightGlass_frag_211
+    400426: CeilingSkylightGlass_frag_212
+    400428: CeilingSkylightGlass_frag_213
+    400430: CeilingSkylightGlass_frag_214
+    400432: CeilingSkylightGlass_frag_215
+    400434: CeilingSkylightGlass_frag_216
+    400436: CeilingSkylightGlass_frag_217
+    400438: CeilingSkylightGlass_frag_218
+    400440: CeilingSkylightGlass_frag_219
+    400442: CeilingSkylightGlass_frag_220
+    400444: CeilingSkylightGlass_frag_221
+    400446: CeilingSkylightGlass_frag_222
+    400448: CeilingSkylightGlass_frag_223
+    400450: CeilingSkylightGlass_frag_224
+    400452: CeilingSkylightGlass_frag_225
+    400454: CeilingSkylightGlass_frag_226
+    400456: CeilingSkylightGlass_frag_227
+    400458: CeilingSkylightGlass_frag_228
+    400460: CeilingSkylightGlass_frag_229
+    400462: CeilingSkylightGlass_frag_230
+    400464: CeilingSkylightGlass_frag_231
+    400466: CeilingSkylightGlass_frag_232
+    400468: CeilingSkylightGlass_frag_233
+    400470: CeilingSkylightGlass_frag_234
+    400472: CeilingSkylightGlass_frag_235
+    400474: CeilingSkylightGlass_frag_236
+    400476: CeilingSkylightGlass_frag_237
+    400478: CeilingSkylightGlass_frag_238
+    400480: CeilingSkylightGlass_frag_239
+    400482: CeilingSkylightGlass_frag_240
+    400484: CeilingSkylightGlass_frag_241
+    400486: CeilingSkylightGlass_frag_242
+    400488: CeilingSkylightGlass_frag_243
+    400490: CeilingSkylightGlass_frag_244
+    400492: CeilingSkylightGlass_frag_245
+    400494: CeilingSkylightGlass_frag_246
+    400496: CeilingSkylightGlass_frag_247
+    400498: CeilingSkylightGlass_frag_248
+    400500: CeilingSkylightGlass_frag_249
+    400502: CeilingSkylightGlass_frag_250
+    400504: CeilingSkylightGlass_frag_251
+    400506: CeilingSkylightGlass_frag_252
+    400508: CeilingSkylightGlass_frag_253
+    400510: CeilingSkylightGlass_frag_254
+    400512: CeilingSkylightGlass_frag_255
+    400514: CeilingSkylightGlass_frag_256
+    400516: CeilingSkylightGlass_frag_257
+    400518: CeilingSkylightGlass_frag_258
+    400520: CeilingSkylightGlass_frag_259
+    400522: CeilingSkylightGlass_frag_260
+    400524: CeilingSkylightGlass_frag_261
+    400526: CeilingSkylightGlass_frag_262
+    400528: CeilingSkylightGlass_frag_263
+    400530: CeilingSkylightGlass_frag_264
+    400532: CeilingSkylightGlass_frag_265
+    400534: CeilingSkylightGlass_frag_266
+    400536: CeilingSkylightGlass_frag_267
+    400538: CeilingSkylightGlass_frag_268
+    400540: CeilingSkylightGlass_frag_269
+    400542: CeilingSkylightGlass_frag_270
+    400544: CeilingSkylightGlass_frag_271
+    400546: CeilingSkylightGlass_frag_272
+    400548: CeilingSkylightGlass_frag_273
+    400550: CeilingSkylightGlass_frag_274
+    400552: CeilingSkylightGlass_frag_275
+    400554: CeilingSkylightGlass_frag_276
+    400556: CeilingSkylightGlass_frag_277
+    400558: CeilingSkylightGlass_frag_278
+    400560: CeilingSkylightGlass_frag_279
+    400562: CeilingSkylightGlass_frag_280
+    400564: CeilingSkylightGlass_frag_281
+    400566: CeilingSkylightGlass_frag_282
+    400568: CeilingSkylightGlass_frag_283
+    400570: CeilingSkylightGlass_frag_284
+    400572: CeilingSkylightGlass_frag_285
+    400574: CeilingSkylightGlass_frag_286
+    400576: CeilingSkylightGlass_frag_287
+    400578: CeilingSkylightGlass_frag_288
+    400580: CeilingSkylightGlass_frag_289
+    400582: CeilingSkylightGlass_frag_290
+    400584: CeilingSkylightGlass_frag_291
+    400586: CeilingSkylightGlass_frag_292
+    400588: CeilingSkylightGlass_frag_293
+    400590: CeilingSkylightGlass_frag_294
+    400592: CeilingSkylightGlass_frag_295
+    400594: CeilingSkylightGlass_frag_296
+    400596: CeilingSkylightGlass_frag_297
+    400598: CeilingSkylightGlass_frag_298
+    400600: CeilingSkylightGlass_frag_299
+    400602: CeilingSkylightGlass_frag_300
+    400604: CeilingSkylightGlass_frag_301
+    400606: CeilingSkylightGlass_frag_302
+    400608: CeilingSkylightGlass_frag_303
+    400610: CeilingSkylightGlass_frag_304
+    400612: CeilingSkylightGlass_frag_305
+    400614: CeilingSkylightGlass_frag_306
+    400616: CeilingSkylightGlass_frag_307
+    400618: CeilingSkylightGlass_frag_308
+    400620: CeilingSkylightGlass_frag_309
+    400622: CeilingSkylightGlass_frag_310
+    400624: CeilingSkylightGlass_frag_311
+    400626: CeilingSkylightGlass_frag_312
+    400628: CeilingSkylightGlass_frag_313
+    400630: CeilingSkylightGlass_frag_314
+    400632: CeilingSkylightGlass_frag_315
+    400634: CeilingSkylightGlass_frag_316
+    400636: CeilingSkylightGlass_frag_317
+    400638: CeilingSkylightGlass_frag_318
+    400640: CeilingSkylightGlass_frag_319
+    400642: CeilingSkylightGlass_frag_320
+    400644: CeilingSkylightGlass_frag_321
+    400646: CeilingSkylightGlass_frag_322
+    400648: CeilingSkylightGlass_frag_323
+    400650: CeilingSkylightGlass_frag_324
+    400652: CeilingSkylightGlass_frag_325
+    400654: CeilingSkylightGlass_frag_326
+    400656: CeilingSkylightGlass_frag_327
+    400658: CeilingSkylightGlass_frag_328
+    400660: CeilingSkylightGlass_frag_329
+    400662: CeilingSkylightGlass_frag_330
+    400664: CeilingSkylightGlass_frag_331
+    400666: CeilingSkylightGlass_frag_332
+    400668: CeilingSkylightGlass_frag_333
+    400670: CeilingSkylightGlass_frag_334
+    400672: CeilingSkylightGlass_frag_335
+    400674: CeilingSkylightGlass_frag_336
+    400676: CeilingSkylightGlass_frag_337
+    400678: CeilingSkylightGlass_frag_338
+    400680: CeilingSkylightGlass_frag_339
+    400682: CeilingSkylightGlass_frag_340
+    400684: CeilingSkylightGlass_frag_341
+    400686: CeilingSkylightGlass_frag_342
+    400688: CeilingSkylightGlass_frag_343
+    400690: CeilingSkylightGlass_frag_344
+    400692: CeilingSkylightGlass_frag_345
+    400694: CeilingSkylightGlass_frag_346
+    400696: CeilingSkylightGlass_frag_347
+    400698: CeilingSkylightGlass_frag_348
+    400700: CeilingSkylightGlass_frag_349
+    400702: CeilingSkylightGlass_frag_350
+    400704: CeilingSkylightGlass_frag_351
+    400706: CeilingSkylightGlass_frag_352
+    400708: CeilingSkylightGlass_frag_353
+    400710: CeilingSkylightGlass_frag_354
+    400712: CeilingSkylightGlass_frag_355
+    400714: CeilingSkylightGlass_frag_356
+    400716: CeilingSkylightGlass_frag_357
+    400718: CeilingSkylightGlass_frag_358
+    400720: CeilingSkylightGlass_frag_359
+    400722: CeilingSkylightGlass_frag_360
+    400724: CeilingSkylightGlass_frag_361
+    400726: CeilingSkylightGlass_frag_362
+    400728: CeilingSkylightGlass_frag_363
+    400730: CeilingSkylightGlass_frag_364
+    400732: CeilingSkylightGlass_frag_365
+    400734: CeilingSkylightGlass_frag_366
+    400736: CeilingSkylightGlass_frag_367
+    400738: CeilingSkylightGlass_frag_368
+    400740: CeilingSkylightGlass_frag_369
+    400742: CeilingSkylightGlass_frag_370
+    400744: CeilingSkylightGlass_frag_371
+    400746: CeilingSkylightGlass_frag_372
+    400748: CeilingSkylightGlass_frag_373
+    400750: CeilingSkylightGlass_frag_374
+    400752: CeilingSkylightGlass_frag_375
+    400754: CeilingSkylightGlass_frag_376
+    400756: CeilingSkylightGlass_frag_377
+    400758: CeilingSkylightGlass_frag_378
+    400760: CeilingSkylightGlass_frag_379
+    400762: CeilingSkylightGlass_frag_380
+    400764: CeilingSkylightGlass_frag_381
+    400766: CeilingSkylightGlass_frag_382
+    400768: CeilingSkylightGlass_frag_383
+    400770: CeilingSkylightGlass_frag_384
+    400772: CeilingSkylightGlass_frag_385
+    400774: CeilingSkylightGlass_frag_386
+    400776: CeilingSkylightGlass_frag_387
+    400778: CeilingSkylightGlass_frag_388
+    400780: CeilingSkylightGlass_frag_389
+    400782: CeilingSkylightGlass_frag_390
+    400784: CeilingSkylightGlass_frag_391
+    400786: CeilingSkylightGlass_frag_392
+    400788: CeilingSkylightGlass_frag_393
+    400790: CeilingSkylightGlass_frag_394
+    400792: CeilingSkylightGlass_frag_395
+    400794: CeilingSkylightGlass_frag_396
+    400796: CeilingSkylightGlass_frag_397
+    400798: CeilingSkylightGlass_frag_398
+    400800: CeilingSkylightGlass_frag_399
+    400802: CeilingSkylightGlass_frag_400
+    400804: CeilingSkylightGlass_frag_401
+    400806: CeilingSkylightGlass_frag_402
+    400808: CeilingSkylightGlass_frag_403
+    400810: CeilingSkylightGlass_frag_404
+    400812: CeilingSkylightGlass_frag_405
+    400814: CeilingSkylightGlass_frag_406
+    400816: CeilingSkylightGlass_frag_407
+    400818: CeilingSkylightGlass_frag_408
+    400820: CeilingSkylightGlass_frag_409
+    400822: CeilingSkylightGlass_frag_410
+    400824: CeilingSkylightGlass_frag_411
+    400826: CeilingSkylightGlass_frag_412
+    400828: CeilingSkylightGlass_frag_413
+    400830: CeilingSkylightGlass_frag_414
+    400832: CeilingSkylightGlass_frag_415
+    400834: CeilingSkylightGlass_frag_416
+    400836: CeilingSkylightGlass_frag_417
+    400838: CeilingSkylightGlass_frag_418
+    400840: CeilingSkylightGlass_frag_419
+    400842: CeilingSkylightGlass_frag_420
+    400844: CeilingSkylightGlass_frag_421
+    400846: CeilingSkylightGlass_frag_422
+    400848: CeilingSkylightGlass_frag_423
+    400850: CeilingSkylightGlass_frag_424
+    400852: CeilingSkylightGlass_frag_425
+    400854: CeilingSkylightGlass_frag_426
+    400856: CeilingSkylightGlass_frag_427
+    400858: CeilingSkylightGlass_frag_428
+    400860: CeilingSkylightGlass_frag_429
+    400862: CeilingSkylightGlass_frag_430
+    400864: CeilingSkylightGlass_frag_431
+    400866: CeilingSkylightGlass_frag_432
+    400868: CeilingSkylightGlass_frag_433
+    2300000: CeilingSkylightFrame
+    2300002: CeilingSkylightGlass_frag_001
+    2300004: CeilingSkylightGlass_frag_002
+    2300006: CeilingSkylightGlass_frag_003
+    2300008: CeilingSkylightGlass_frag_004
+    2300010: CeilingSkylightGlass_frag_005
+    2300012: CeilingSkylightGlass_frag_006
+    2300014: CeilingSkylightGlass_frag_007
+    2300016: CeilingSkylightGlass_frag_008
+    2300018: CeilingSkylightGlass_frag_009
+    2300020: CeilingSkylightGlass_frag_010
+    2300022: CeilingSkylightGlass_frag_011
+    2300024: CeilingSkylightGlass_frag_012
+    2300026: CeilingSkylightGlass_frag_013
+    2300028: CeilingSkylightGlass_frag_014
+    2300030: CeilingSkylightGlass_frag_015
+    2300032: CeilingSkylightGlass_frag_016
+    2300034: CeilingSkylightGlass_frag_017
+    2300036: CeilingSkylightGlass_frag_018
+    2300038: CeilingSkylightGlass_frag_019
+    2300040: CeilingSkylightGlass_frag_020
+    2300042: CeilingSkylightGlass_frag_021
+    2300044: CeilingSkylightGlass_frag_022
+    2300046: CeilingSkylightGlass_frag_023
+    2300048: CeilingSkylightGlass_frag_024
+    2300050: CeilingSkylightGlass_frag_025
+    2300052: CeilingSkylightGlass_frag_026
+    2300054: CeilingSkylightGlass_frag_027
+    2300056: CeilingSkylightGlass_frag_028
+    2300058: CeilingSkylightGlass_frag_029
+    2300060: CeilingSkylightGlass_frag_030
+    2300062: CeilingSkylightGlass_frag_031
+    2300064: CeilingSkylightGlass_frag_032
+    2300066: CeilingSkylightGlass_frag_033
+    2300068: CeilingSkylightGlass_frag_034
+    2300070: CeilingSkylightGlass_frag_035
+    2300072: CeilingSkylightGlass_frag_036
+    2300074: CeilingSkylightGlass_frag_037
+    2300076: CeilingSkylightGlass_frag_038
+    2300078: CeilingSkylightGlass_frag_039
+    2300080: CeilingSkylightGlass_frag_040
+    2300082: CeilingSkylightGlass_frag_041
+    2300084: CeilingSkylightGlass_frag_042
+    2300086: CeilingSkylightGlass_frag_043
+    2300088: CeilingSkylightGlass_frag_044
+    2300090: CeilingSkylightGlass_frag_045
+    2300092: CeilingSkylightGlass_frag_046
+    2300094: CeilingSkylightGlass_frag_047
+    2300096: CeilingSkylightGlass_frag_048
+    2300098: CeilingSkylightGlass_frag_049
+    2300100: CeilingSkylightGlass_frag_050
+    2300102: CeilingSkylightGlass_frag_051
+    2300104: CeilingSkylightGlass_frag_052
+    2300106: CeilingSkylightGlass_frag_053
+    2300108: CeilingSkylightGlass_frag_054
+    2300110: CeilingSkylightGlass_frag_055
+    2300112: CeilingSkylightGlass_frag_056
+    2300114: CeilingSkylightGlass_frag_057
+    2300116: CeilingSkylightGlass_frag_058
+    2300118: CeilingSkylightGlass_frag_059
+    2300120: CeilingSkylightGlass_frag_060
+    2300122: CeilingSkylightGlass_frag_061
+    2300124: CeilingSkylightGlass_frag_062
+    2300126: CeilingSkylightGlass_frag_063
+    2300128: CeilingSkylightGlass_frag_064
+    2300130: CeilingSkylightGlass_frag_065
+    2300132: CeilingSkylightGlass_frag_066
+    2300134: CeilingSkylightGlass_frag_067
+    2300136: CeilingSkylightGlass_frag_068
+    2300138: CeilingSkylightGlass_frag_069
+    2300140: CeilingSkylightGlass_frag_070
+    2300142: CeilingSkylightGlass_frag_071
+    2300144: CeilingSkylightGlass_frag_072
+    2300146: CeilingSkylightGlass_frag_073
+    2300148: CeilingSkylightGlass_frag_074
+    2300150: CeilingSkylightGlass_frag_075
+    2300152: CeilingSkylightGlass_frag_076
+    2300154: CeilingSkylightGlass_frag_077
+    2300156: CeilingSkylightGlass_frag_078
+    2300158: CeilingSkylightGlass_frag_079
+    2300160: CeilingSkylightGlass_frag_080
+    2300162: CeilingSkylightGlass_frag_081
+    2300164: CeilingSkylightGlass_frag_082
+    2300166: CeilingSkylightGlass_frag_083
+    2300168: CeilingSkylightGlass_frag_084
+    2300170: CeilingSkylightGlass_frag_085
+    2300172: CeilingSkylightGlass_frag_086
+    2300174: CeilingSkylightGlass_frag_087
+    2300176: CeilingSkylightGlass_frag_088
+    2300178: CeilingSkylightGlass_frag_089
+    2300180: CeilingSkylightGlass_frag_090
+    2300182: CeilingSkylightGlass_frag_091
+    2300184: CeilingSkylightGlass_frag_092
+    2300186: CeilingSkylightGlass_frag_093
+    2300188: CeilingSkylightGlass_frag_094
+    2300190: CeilingSkylightGlass_frag_095
+    2300192: CeilingSkylightGlass_frag_096
+    2300194: CeilingSkylightGlass_frag_097
+    2300196: CeilingSkylightGlass_frag_098
+    2300198: CeilingSkylightGlass_frag_099
+    2300200: CeilingSkylightGlass_frag_100
+    2300202: CeilingSkylightGlass_frag_101
+    2300204: CeilingSkylightGlass_frag_102
+    2300206: CeilingSkylightGlass_frag_103
+    2300208: CeilingSkylightGlass_frag_104
+    2300210: CeilingSkylightGlass_frag_105
+    2300212: CeilingSkylightGlass_frag_106
+    2300214: CeilingSkylightGlass_frag_107
+    2300216: CeilingSkylightGlass_frag_108
+    2300218: CeilingSkylightGlass_frag_109
+    2300220: CeilingSkylightGlass_frag_110
+    2300222: CeilingSkylightGlass_frag_111
+    2300224: CeilingSkylightGlass_frag_112
+    2300226: CeilingSkylightGlass_frag_113
+    2300228: CeilingSkylightGlass_frag_114
+    2300230: CeilingSkylightGlass_frag_115
+    2300232: CeilingSkylightGlass_frag_116
+    2300234: CeilingSkylightGlass_frag_117
+    2300236: CeilingSkylightGlass_frag_118
+    2300238: CeilingSkylightGlass_frag_119
+    2300240: CeilingSkylightGlass_frag_120
+    2300242: CeilingSkylightGlass_frag_121
+    2300244: CeilingSkylightGlass_frag_122
+    2300246: CeilingSkylightGlass_frag_123
+    2300248: CeilingSkylightGlass_frag_124
+    2300250: CeilingSkylightGlass_frag_125
+    2300252: CeilingSkylightGlass_frag_126
+    2300254: CeilingSkylightGlass_frag_127
+    2300256: CeilingSkylightGlass_frag_128
+    2300258: CeilingSkylightGlass_frag_129
+    2300260: CeilingSkylightGlass_frag_130
+    2300262: CeilingSkylightGlass_frag_131
+    2300264: CeilingSkylightGlass_frag_132
+    2300266: CeilingSkylightGlass_frag_133
+    2300268: CeilingSkylightGlass_frag_134
+    2300270: CeilingSkylightGlass_frag_135
+    2300272: CeilingSkylightGlass_frag_136
+    2300274: CeilingSkylightGlass_frag_137
+    2300276: CeilingSkylightGlass_frag_138
+    2300278: CeilingSkylightGlass_frag_139
+    2300280: CeilingSkylightGlass_frag_140
+    2300282: CeilingSkylightGlass_frag_141
+    2300284: CeilingSkylightGlass_frag_142
+    2300286: CeilingSkylightGlass_frag_143
+    2300288: CeilingSkylightGlass_frag_144
+    2300290: CeilingSkylightGlass_frag_145
+    2300292: CeilingSkylightGlass_frag_146
+    2300294: CeilingSkylightGlass_frag_147
+    2300296: CeilingSkylightGlass_frag_148
+    2300298: CeilingSkylightGlass_frag_149
+    2300300: CeilingSkylightGlass_frag_150
+    2300302: CeilingSkylightGlass_frag_151
+    2300304: CeilingSkylightGlass_frag_152
+    2300306: CeilingSkylightGlass_frag_153
+    2300308: CeilingSkylightGlass_frag_154
+    2300310: CeilingSkylightGlass_frag_155
+    2300312: CeilingSkylightGlass_frag_156
+    2300314: CeilingSkylightGlass_frag_157
+    2300316: CeilingSkylightGlass_frag_158
+    2300318: CeilingSkylightGlass_frag_159
+    2300320: CeilingSkylightGlass_frag_160
+    2300322: CeilingSkylightGlass_frag_161
+    2300324: CeilingSkylightGlass_frag_162
+    2300326: CeilingSkylightGlass_frag_163
+    2300328: CeilingSkylightGlass_frag_164
+    2300330: CeilingSkylightGlass_frag_165
+    2300332: CeilingSkylightGlass_frag_166
+    2300334: CeilingSkylightGlass_frag_167
+    2300336: CeilingSkylightGlass_frag_168
+    2300338: CeilingSkylightGlass_frag_169
+    2300340: CeilingSkylightGlass_frag_170
+    2300342: CeilingSkylightGlass_frag_171
+    2300344: CeilingSkylightGlass_frag_172
+    2300346: CeilingSkylightGlass_frag_173
+    2300348: CeilingSkylightGlass_frag_174
+    2300350: CeilingSkylightGlass_frag_175
+    2300352: CeilingSkylightGlass_frag_176
+    2300354: CeilingSkylightGlass_frag_177
+    2300356: CeilingSkylightGlass_frag_178
+    2300358: CeilingSkylightGlass_frag_179
+    2300360: CeilingSkylightGlass_frag_180
+    2300362: CeilingSkylightGlass_frag_181
+    2300364: CeilingSkylightGlass_frag_182
+    2300366: CeilingSkylightGlass_frag_183
+    2300368: CeilingSkylightGlass_frag_184
+    2300370: CeilingSkylightGlass_frag_185
+    2300372: CeilingSkylightGlass_frag_186
+    2300374: CeilingSkylightGlass_frag_187
+    2300376: CeilingSkylightGlass_frag_188
+    2300378: CeilingSkylightGlass_frag_189
+    2300380: CeilingSkylightGlass_frag_190
+    2300382: CeilingSkylightGlass_frag_191
+    2300384: CeilingSkylightGlass_frag_192
+    2300386: CeilingSkylightGlass_frag_193
+    2300388: CeilingSkylightGlass_frag_194
+    2300390: CeilingSkylightGlass_frag_195
+    2300392: CeilingSkylightGlass_frag_196
+    2300394: CeilingSkylightGlass_frag_197
+    2300396: CeilingSkylightGlass_frag_198
+    2300398: CeilingSkylightGlass_frag_199
+    2300400: CeilingSkylightGlass_frag_200
+    2300402: CeilingSkylightGlass_frag_201
+    2300404: CeilingSkylightGlass_frag_202
+    2300406: CeilingSkylightGlass_frag_203
+    2300408: CeilingSkylightGlass_frag_204
+    2300410: CeilingSkylightGlass_frag_205
+    2300412: CeilingSkylightGlass_frag_206
+    2300414: CeilingSkylightGlass_frag_207
+    2300416: CeilingSkylightGlass_frag_208
+    2300418: CeilingSkylightGlass_frag_209
+    2300420: CeilingSkylightGlass_frag_210
+    2300422: CeilingSkylightGlass_frag_211
+    2300424: CeilingSkylightGlass_frag_212
+    2300426: CeilingSkylightGlass_frag_213
+    2300428: CeilingSkylightGlass_frag_214
+    2300430: CeilingSkylightGlass_frag_215
+    2300432: CeilingSkylightGlass_frag_216
+    2300434: CeilingSkylightGlass_frag_217
+    2300436: CeilingSkylightGlass_frag_218
+    2300438: CeilingSkylightGlass_frag_219
+    2300440: CeilingSkylightGlass_frag_220
+    2300442: CeilingSkylightGlass_frag_221
+    2300444: CeilingSkylightGlass_frag_222
+    2300446: CeilingSkylightGlass_frag_223
+    2300448: CeilingSkylightGlass_frag_224
+    2300450: CeilingSkylightGlass_frag_225
+    2300452: CeilingSkylightGlass_frag_226
+    2300454: CeilingSkylightGlass_frag_227
+    2300456: CeilingSkylightGlass_frag_228
+    2300458: CeilingSkylightGlass_frag_229
+    2300460: CeilingSkylightGlass_frag_230
+    2300462: CeilingSkylightGlass_frag_231
+    2300464: CeilingSkylightGlass_frag_232
+    2300466: CeilingSkylightGlass_frag_233
+    2300468: CeilingSkylightGlass_frag_234
+    2300470: CeilingSkylightGlass_frag_235
+    2300472: CeilingSkylightGlass_frag_236
+    2300474: CeilingSkylightGlass_frag_237
+    2300476: CeilingSkylightGlass_frag_238
+    2300478: CeilingSkylightGlass_frag_239
+    2300480: CeilingSkylightGlass_frag_240
+    2300482: CeilingSkylightGlass_frag_241
+    2300484: CeilingSkylightGlass_frag_242
+    2300486: CeilingSkylightGlass_frag_243
+    2300488: CeilingSkylightGlass_frag_244
+    2300490: CeilingSkylightGlass_frag_245
+    2300492: CeilingSkylightGlass_frag_246
+    2300494: CeilingSkylightGlass_frag_247
+    2300496: CeilingSkylightGlass_frag_248
+    2300498: CeilingSkylightGlass_frag_249
+    2300500: CeilingSkylightGlass_frag_250
+    2300502: CeilingSkylightGlass_frag_251
+    2300504: CeilingSkylightGlass_frag_252
+    2300506: CeilingSkylightGlass_frag_253
+    2300508: CeilingSkylightGlass_frag_254
+    2300510: CeilingSkylightGlass_frag_255
+    2300512: CeilingSkylightGlass_frag_256
+    2300514: CeilingSkylightGlass_frag_257
+    2300516: CeilingSkylightGlass_frag_258
+    2300518: CeilingSkylightGlass_frag_259
+    2300520: CeilingSkylightGlass_frag_260
+    2300522: CeilingSkylightGlass_frag_261
+    2300524: CeilingSkylightGlass_frag_262
+    2300526: CeilingSkylightGlass_frag_263
+    2300528: CeilingSkylightGlass_frag_264
+    2300530: CeilingSkylightGlass_frag_265
+    2300532: CeilingSkylightGlass_frag_266
+    2300534: CeilingSkylightGlass_frag_267
+    2300536: CeilingSkylightGlass_frag_268
+    2300538: CeilingSkylightGlass_frag_269
+    2300540: CeilingSkylightGlass_frag_270
+    2300542: CeilingSkylightGlass_frag_271
+    2300544: CeilingSkylightGlass_frag_272
+    2300546: CeilingSkylightGlass_frag_273
+    2300548: CeilingSkylightGlass_frag_274
+    2300550: CeilingSkylightGlass_frag_275
+    2300552: CeilingSkylightGlass_frag_276
+    2300554: CeilingSkylightGlass_frag_277
+    2300556: CeilingSkylightGlass_frag_278
+    2300558: CeilingSkylightGlass_frag_279
+    2300560: CeilingSkylightGlass_frag_280
+    2300562: CeilingSkylightGlass_frag_281
+    2300564: CeilingSkylightGlass_frag_282
+    2300566: CeilingSkylightGlass_frag_283
+    2300568: CeilingSkylightGlass_frag_284
+    2300570: CeilingSkylightGlass_frag_285
+    2300572: CeilingSkylightGlass_frag_286
+    2300574: CeilingSkylightGlass_frag_287
+    2300576: CeilingSkylightGlass_frag_288
+    2300578: CeilingSkylightGlass_frag_289
+    2300580: CeilingSkylightGlass_frag_290
+    2300582: CeilingSkylightGlass_frag_291
+    2300584: CeilingSkylightGlass_frag_292
+    2300586: CeilingSkylightGlass_frag_293
+    2300588: CeilingSkylightGlass_frag_294
+    2300590: CeilingSkylightGlass_frag_295
+    2300592: CeilingSkylightGlass_frag_296
+    2300594: CeilingSkylightGlass_frag_297
+    2300596: CeilingSkylightGlass_frag_298
+    2300598: CeilingSkylightGlass_frag_299
+    2300600: CeilingSkylightGlass_frag_300
+    2300602: CeilingSkylightGlass_frag_301
+    2300604: CeilingSkylightGlass_frag_302
+    2300606: CeilingSkylightGlass_frag_303
+    2300608: CeilingSkylightGlass_frag_304
+    2300610: CeilingSkylightGlass_frag_305
+    2300612: CeilingSkylightGlass_frag_306
+    2300614: CeilingSkylightGlass_frag_307
+    2300616: CeilingSkylightGlass_frag_308
+    2300618: CeilingSkylightGlass_frag_309
+    2300620: CeilingSkylightGlass_frag_310
+    2300622: CeilingSkylightGlass_frag_311
+    2300624: CeilingSkylightGlass_frag_312
+    2300626: CeilingSkylightGlass_frag_313
+    2300628: CeilingSkylightGlass_frag_314
+    2300630: CeilingSkylightGlass_frag_315
+    2300632: CeilingSkylightGlass_frag_316
+    2300634: CeilingSkylightGlass_frag_317
+    2300636: CeilingSkylightGlass_frag_318
+    2300638: CeilingSkylightGlass_frag_319
+    2300640: CeilingSkylightGlass_frag_320
+    2300642: CeilingSkylightGlass_frag_321
+    2300644: CeilingSkylightGlass_frag_322
+    2300646: CeilingSkylightGlass_frag_323
+    2300648: CeilingSkylightGlass_frag_324
+    2300650: CeilingSkylightGlass_frag_325
+    2300652: CeilingSkylightGlass_frag_326
+    2300654: CeilingSkylightGlass_frag_327
+    2300656: CeilingSkylightGlass_frag_328
+    2300658: CeilingSkylightGlass_frag_329
+    2300660: CeilingSkylightGlass_frag_330
+    2300662: CeilingSkylightGlass_frag_331
+    2300664: CeilingSkylightGlass_frag_332
+    2300666: CeilingSkylightGlass_frag_333
+    2300668: CeilingSkylightGlass_frag_334
+    2300670: CeilingSkylightGlass_frag_335
+    2300672: CeilingSkylightGlass_frag_336
+    2300674: CeilingSkylightGlass_frag_337
+    2300676: CeilingSkylightGlass_frag_338
+    2300678: CeilingSkylightGlass_frag_339
+    2300680: CeilingSkylightGlass_frag_340
+    2300682: CeilingSkylightGlass_frag_341
+    2300684: CeilingSkylightGlass_frag_342
+    2300686: CeilingSkylightGlass_frag_343
+    2300688: CeilingSkylightGlass_frag_344
+    2300690: CeilingSkylightGlass_frag_345
+    2300692: CeilingSkylightGlass_frag_346
+    2300694: CeilingSkylightGlass_frag_347
+    2300696: CeilingSkylightGlass_frag_348
+    2300698: CeilingSkylightGlass_frag_349
+    2300700: CeilingSkylightGlass_frag_350
+    2300702: CeilingSkylightGlass_frag_351
+    2300704: CeilingSkylightGlass_frag_352
+    2300706: CeilingSkylightGlass_frag_353
+    2300708: CeilingSkylightGlass_frag_354
+    2300710: CeilingSkylightGlass_frag_355
+    2300712: CeilingSkylightGlass_frag_356
+    2300714: CeilingSkylightGlass_frag_357
+    2300716: CeilingSkylightGlass_frag_358
+    2300718: CeilingSkylightGlass_frag_359
+    2300720: CeilingSkylightGlass_frag_360
+    2300722: CeilingSkylightGlass_frag_361
+    2300724: CeilingSkylightGlass_frag_362
+    2300726: CeilingSkylightGlass_frag_363
+    2300728: CeilingSkylightGlass_frag_364
+    2300730: CeilingSkylightGlass_frag_365
+    2300732: CeilingSkylightGlass_frag_366
+    2300734: CeilingSkylightGlass_frag_367
+    2300736: CeilingSkylightGlass_frag_368
+    2300738: CeilingSkylightGlass_frag_369
+    2300740: CeilingSkylightGlass_frag_370
+    2300742: CeilingSkylightGlass_frag_371
+    2300744: CeilingSkylightGlass_frag_372
+    2300746: CeilingSkylightGlass_frag_373
+    2300748: CeilingSkylightGlass_frag_374
+    2300750: CeilingSkylightGlass_frag_375
+    2300752: CeilingSkylightGlass_frag_376
+    2300754: CeilingSkylightGlass_frag_377
+    2300756: CeilingSkylightGlass_frag_378
+    2300758: CeilingSkylightGlass_frag_379
+    2300760: CeilingSkylightGlass_frag_380
+    2300762: CeilingSkylightGlass_frag_381
+    2300764: CeilingSkylightGlass_frag_382
+    2300766: CeilingSkylightGlass_frag_383
+    2300768: CeilingSkylightGlass_frag_384
+    2300770: CeilingSkylightGlass_frag_385
+    2300772: CeilingSkylightGlass_frag_386
+    2300774: CeilingSkylightGlass_frag_387
+    2300776: CeilingSkylightGlass_frag_388
+    2300778: CeilingSkylightGlass_frag_389
+    2300780: CeilingSkylightGlass_frag_390
+    2300782: CeilingSkylightGlass_frag_391
+    2300784: CeilingSkylightGlass_frag_392
+    2300786: CeilingSkylightGlass_frag_393
+    2300788: CeilingSkylightGlass_frag_394
+    2300790: CeilingSkylightGlass_frag_395
+    2300792: CeilingSkylightGlass_frag_396
+    2300794: CeilingSkylightGlass_frag_397
+    2300796: CeilingSkylightGlass_frag_398
+    2300798: CeilingSkylightGlass_frag_399
+    2300800: CeilingSkylightGlass_frag_400
+    2300802: CeilingSkylightGlass_frag_401
+    2300804: CeilingSkylightGlass_frag_402
+    2300806: CeilingSkylightGlass_frag_403
+    2300808: CeilingSkylightGlass_frag_404
+    2300810: CeilingSkylightGlass_frag_405
+    2300812: CeilingSkylightGlass_frag_406
+    2300814: CeilingSkylightGlass_frag_407
+    2300816: CeilingSkylightGlass_frag_408
+    2300818: CeilingSkylightGlass_frag_409
+    2300820: CeilingSkylightGlass_frag_410
+    2300822: CeilingSkylightGlass_frag_411
+    2300824: CeilingSkylightGlass_frag_412
+    2300826: CeilingSkylightGlass_frag_413
+    2300828: CeilingSkylightGlass_frag_414
+    2300830: CeilingSkylightGlass_frag_415
+    2300832: CeilingSkylightGlass_frag_416
+    2300834: CeilingSkylightGlass_frag_417
+    2300836: CeilingSkylightGlass_frag_418
+    2300838: CeilingSkylightGlass_frag_419
+    2300840: CeilingSkylightGlass_frag_420
+    2300842: CeilingSkylightGlass_frag_421
+    2300844: CeilingSkylightGlass_frag_422
+    2300846: CeilingSkylightGlass_frag_423
+    2300848: CeilingSkylightGlass_frag_424
+    2300850: CeilingSkylightGlass_frag_425
+    2300852: CeilingSkylightGlass_frag_426
+    2300854: CeilingSkylightGlass_frag_427
+    2300856: CeilingSkylightGlass_frag_428
+    2300858: CeilingSkylightGlass_frag_429
+    2300860: CeilingSkylightGlass_frag_430
+    2300862: CeilingSkylightGlass_frag_431
+    2300864: CeilingSkylightGlass_frag_432
+    2300866: CeilingSkylightGlass_frag_433
+    3300000: CeilingSkylightFrame
+    3300002: CeilingSkylightGlass_frag_001
+    3300004: CeilingSkylightGlass_frag_002
+    3300006: CeilingSkylightGlass_frag_003
+    3300008: CeilingSkylightGlass_frag_004
+    3300010: CeilingSkylightGlass_frag_005
+    3300012: CeilingSkylightGlass_frag_006
+    3300014: CeilingSkylightGlass_frag_007
+    3300016: CeilingSkylightGlass_frag_008
+    3300018: CeilingSkylightGlass_frag_009
+    3300020: CeilingSkylightGlass_frag_010
+    3300022: CeilingSkylightGlass_frag_011
+    3300024: CeilingSkylightGlass_frag_012
+    3300026: CeilingSkylightGlass_frag_013
+    3300028: CeilingSkylightGlass_frag_014
+    3300030: CeilingSkylightGlass_frag_015
+    3300032: CeilingSkylightGlass_frag_016
+    3300034: CeilingSkylightGlass_frag_017
+    3300036: CeilingSkylightGlass_frag_018
+    3300038: CeilingSkylightGlass_frag_019
+    3300040: CeilingSkylightGlass_frag_020
+    3300042: CeilingSkylightGlass_frag_021
+    3300044: CeilingSkylightGlass_frag_022
+    3300046: CeilingSkylightGlass_frag_023
+    3300048: CeilingSkylightGlass_frag_024
+    3300050: CeilingSkylightGlass_frag_025
+    3300052: CeilingSkylightGlass_frag_026
+    3300054: CeilingSkylightGlass_frag_027
+    3300056: CeilingSkylightGlass_frag_028
+    3300058: CeilingSkylightGlass_frag_029
+    3300060: CeilingSkylightGlass_frag_030
+    3300062: CeilingSkylightGlass_frag_031
+    3300064: CeilingSkylightGlass_frag_032
+    3300066: CeilingSkylightGlass_frag_033
+    3300068: CeilingSkylightGlass_frag_034
+    3300070: CeilingSkylightGlass_frag_035
+    3300072: CeilingSkylightGlass_frag_036
+    3300074: CeilingSkylightGlass_frag_037
+    3300076: CeilingSkylightGlass_frag_038
+    3300078: CeilingSkylightGlass_frag_039
+    3300080: CeilingSkylightGlass_frag_040
+    3300082: CeilingSkylightGlass_frag_041
+    3300084: CeilingSkylightGlass_frag_042
+    3300086: CeilingSkylightGlass_frag_043
+    3300088: CeilingSkylightGlass_frag_044
+    3300090: CeilingSkylightGlass_frag_045
+    3300092: CeilingSkylightGlass_frag_046
+    3300094: CeilingSkylightGlass_frag_047
+    3300096: CeilingSkylightGlass_frag_048
+    3300098: CeilingSkylightGlass_frag_049
+    3300100: CeilingSkylightGlass_frag_050
+    3300102: CeilingSkylightGlass_frag_051
+    3300104: CeilingSkylightGlass_frag_052
+    3300106: CeilingSkylightGlass_frag_053
+    3300108: CeilingSkylightGlass_frag_054
+    3300110: CeilingSkylightGlass_frag_055
+    3300112: CeilingSkylightGlass_frag_056
+    3300114: CeilingSkylightGlass_frag_057
+    3300116: CeilingSkylightGlass_frag_058
+    3300118: CeilingSkylightGlass_frag_059
+    3300120: CeilingSkylightGlass_frag_060
+    3300122: CeilingSkylightGlass_frag_061
+    3300124: CeilingSkylightGlass_frag_062
+    3300126: CeilingSkylightGlass_frag_063
+    3300128: CeilingSkylightGlass_frag_064
+    3300130: CeilingSkylightGlass_frag_065
+    3300132: CeilingSkylightGlass_frag_066
+    3300134: CeilingSkylightGlass_frag_067
+    3300136: CeilingSkylightGlass_frag_068
+    3300138: CeilingSkylightGlass_frag_069
+    3300140: CeilingSkylightGlass_frag_070
+    3300142: CeilingSkylightGlass_frag_071
+    3300144: CeilingSkylightGlass_frag_072
+    3300146: CeilingSkylightGlass_frag_073
+    3300148: CeilingSkylightGlass_frag_074
+    3300150: CeilingSkylightGlass_frag_075
+    3300152: CeilingSkylightGlass_frag_076
+    3300154: CeilingSkylightGlass_frag_077
+    3300156: CeilingSkylightGlass_frag_078
+    3300158: CeilingSkylightGlass_frag_079
+    3300160: CeilingSkylightGlass_frag_080
+    3300162: CeilingSkylightGlass_frag_081
+    3300164: CeilingSkylightGlass_frag_082
+    3300166: CeilingSkylightGlass_frag_083
+    3300168: CeilingSkylightGlass_frag_084
+    3300170: CeilingSkylightGlass_frag_085
+    3300172: CeilingSkylightGlass_frag_086
+    3300174: CeilingSkylightGlass_frag_087
+    3300176: CeilingSkylightGlass_frag_088
+    3300178: CeilingSkylightGlass_frag_089
+    3300180: CeilingSkylightGlass_frag_090
+    3300182: CeilingSkylightGlass_frag_091
+    3300184: CeilingSkylightGlass_frag_092
+    3300186: CeilingSkylightGlass_frag_093
+    3300188: CeilingSkylightGlass_frag_094
+    3300190: CeilingSkylightGlass_frag_095
+    3300192: CeilingSkylightGlass_frag_096
+    3300194: CeilingSkylightGlass_frag_097
+    3300196: CeilingSkylightGlass_frag_098
+    3300198: CeilingSkylightGlass_frag_099
+    3300200: CeilingSkylightGlass_frag_100
+    3300202: CeilingSkylightGlass_frag_101
+    3300204: CeilingSkylightGlass_frag_102
+    3300206: CeilingSkylightGlass_frag_103
+    3300208: CeilingSkylightGlass_frag_104
+    3300210: CeilingSkylightGlass_frag_105
+    3300212: CeilingSkylightGlass_frag_106
+    3300214: CeilingSkylightGlass_frag_107
+    3300216: CeilingSkylightGlass_frag_108
+    3300218: CeilingSkylightGlass_frag_109
+    3300220: CeilingSkylightGlass_frag_110
+    3300222: CeilingSkylightGlass_frag_111
+    3300224: CeilingSkylightGlass_frag_112
+    3300226: CeilingSkylightGlass_frag_113
+    3300228: CeilingSkylightGlass_frag_114
+    3300230: CeilingSkylightGlass_frag_115
+    3300232: CeilingSkylightGlass_frag_116
+    3300234: CeilingSkylightGlass_frag_117
+    3300236: CeilingSkylightGlass_frag_118
+    3300238: CeilingSkylightGlass_frag_119
+    3300240: CeilingSkylightGlass_frag_120
+    3300242: CeilingSkylightGlass_frag_121
+    3300244: CeilingSkylightGlass_frag_122
+    3300246: CeilingSkylightGlass_frag_123
+    3300248: CeilingSkylightGlass_frag_124
+    3300250: CeilingSkylightGlass_frag_125
+    3300252: CeilingSkylightGlass_frag_126
+    3300254: CeilingSkylightGlass_frag_127
+    3300256: CeilingSkylightGlass_frag_128
+    3300258: CeilingSkylightGlass_frag_129
+    3300260: CeilingSkylightGlass_frag_130
+    3300262: CeilingSkylightGlass_frag_131
+    3300264: CeilingSkylightGlass_frag_132
+    3300266: CeilingSkylightGlass_frag_133
+    3300268: CeilingSkylightGlass_frag_134
+    3300270: CeilingSkylightGlass_frag_135
+    3300272: CeilingSkylightGlass_frag_136
+    3300274: CeilingSkylightGlass_frag_137
+    3300276: CeilingSkylightGlass_frag_138
+    3300278: CeilingSkylightGlass_frag_139
+    3300280: CeilingSkylightGlass_frag_140
+    3300282: CeilingSkylightGlass_frag_141
+    3300284: CeilingSkylightGlass_frag_142
+    3300286: CeilingSkylightGlass_frag_143
+    3300288: CeilingSkylightGlass_frag_144
+    3300290: CeilingSkylightGlass_frag_145
+    3300292: CeilingSkylightGlass_frag_146
+    3300294: CeilingSkylightGlass_frag_147
+    3300296: CeilingSkylightGlass_frag_148
+    3300298: CeilingSkylightGlass_frag_149
+    3300300: CeilingSkylightGlass_frag_150
+    3300302: CeilingSkylightGlass_frag_151
+    3300304: CeilingSkylightGlass_frag_152
+    3300306: CeilingSkylightGlass_frag_153
+    3300308: CeilingSkylightGlass_frag_154
+    3300310: CeilingSkylightGlass_frag_155
+    3300312: CeilingSkylightGlass_frag_156
+    3300314: CeilingSkylightGlass_frag_157
+    3300316: CeilingSkylightGlass_frag_158
+    3300318: CeilingSkylightGlass_frag_159
+    3300320: CeilingSkylightGlass_frag_160
+    3300322: CeilingSkylightGlass_frag_161
+    3300324: CeilingSkylightGlass_frag_162
+    3300326: CeilingSkylightGlass_frag_163
+    3300328: CeilingSkylightGlass_frag_164
+    3300330: CeilingSkylightGlass_frag_165
+    3300332: CeilingSkylightGlass_frag_166
+    3300334: CeilingSkylightGlass_frag_167
+    3300336: CeilingSkylightGlass_frag_168
+    3300338: CeilingSkylightGlass_frag_169
+    3300340: CeilingSkylightGlass_frag_170
+    3300342: CeilingSkylightGlass_frag_171
+    3300344: CeilingSkylightGlass_frag_172
+    3300346: CeilingSkylightGlass_frag_173
+    3300348: CeilingSkylightGlass_frag_174
+    3300350: CeilingSkylightGlass_frag_175
+    3300352: CeilingSkylightGlass_frag_176
+    3300354: CeilingSkylightGlass_frag_177
+    3300356: CeilingSkylightGlass_frag_178
+    3300358: CeilingSkylightGlass_frag_179
+    3300360: CeilingSkylightGlass_frag_180
+    3300362: CeilingSkylightGlass_frag_181
+    3300364: CeilingSkylightGlass_frag_182
+    3300366: CeilingSkylightGlass_frag_183
+    3300368: CeilingSkylightGlass_frag_184
+    3300370: CeilingSkylightGlass_frag_185
+    3300372: CeilingSkylightGlass_frag_186
+    3300374: CeilingSkylightGlass_frag_187
+    3300376: CeilingSkylightGlass_frag_188
+    3300378: CeilingSkylightGlass_frag_189
+    3300380: CeilingSkylightGlass_frag_190
+    3300382: CeilingSkylightGlass_frag_191
+    3300384: CeilingSkylightGlass_frag_192
+    3300386: CeilingSkylightGlass_frag_193
+    3300388: CeilingSkylightGlass_frag_194
+    3300390: CeilingSkylightGlass_frag_195
+    3300392: CeilingSkylightGlass_frag_196
+    3300394: CeilingSkylightGlass_frag_197
+    3300396: CeilingSkylightGlass_frag_198
+    3300398: CeilingSkylightGlass_frag_199
+    3300400: CeilingSkylightGlass_frag_200
+    3300402: CeilingSkylightGlass_frag_201
+    3300404: CeilingSkylightGlass_frag_202
+    3300406: CeilingSkylightGlass_frag_203
+    3300408: CeilingSkylightGlass_frag_204
+    3300410: CeilingSkylightGlass_frag_205
+    3300412: CeilingSkylightGlass_frag_206
+    3300414: CeilingSkylightGlass_frag_207
+    3300416: CeilingSkylightGlass_frag_208
+    3300418: CeilingSkylightGlass_frag_209
+    3300420: CeilingSkylightGlass_frag_210
+    3300422: CeilingSkylightGlass_frag_211
+    3300424: CeilingSkylightGlass_frag_212
+    3300426: CeilingSkylightGlass_frag_213
+    3300428: CeilingSkylightGlass_frag_214
+    3300430: CeilingSkylightGlass_frag_215
+    3300432: CeilingSkylightGlass_frag_216
+    3300434: CeilingSkylightGlass_frag_217
+    3300436: CeilingSkylightGlass_frag_218
+    3300438: CeilingSkylightGlass_frag_219
+    3300440: CeilingSkylightGlass_frag_220
+    3300442: CeilingSkylightGlass_frag_221
+    3300444: CeilingSkylightGlass_frag_222
+    3300446: CeilingSkylightGlass_frag_223
+    3300448: CeilingSkylightGlass_frag_224
+    3300450: CeilingSkylightGlass_frag_225
+    3300452: CeilingSkylightGlass_frag_226
+    3300454: CeilingSkylightGlass_frag_227
+    3300456: CeilingSkylightGlass_frag_228
+    3300458: CeilingSkylightGlass_frag_229
+    3300460: CeilingSkylightGlass_frag_230
+    3300462: CeilingSkylightGlass_frag_231
+    3300464: CeilingSkylightGlass_frag_232
+    3300466: CeilingSkylightGlass_frag_233
+    3300468: CeilingSkylightGlass_frag_234
+    3300470: CeilingSkylightGlass_frag_235
+    3300472: CeilingSkylightGlass_frag_236
+    3300474: CeilingSkylightGlass_frag_237
+    3300476: CeilingSkylightGlass_frag_238
+    3300478: CeilingSkylightGlass_frag_239
+    3300480: CeilingSkylightGlass_frag_240
+    3300482: CeilingSkylightGlass_frag_241
+    3300484: CeilingSkylightGlass_frag_242
+    3300486: CeilingSkylightGlass_frag_243
+    3300488: CeilingSkylightGlass_frag_244
+    3300490: CeilingSkylightGlass_frag_245
+    3300492: CeilingSkylightGlass_frag_246
+    3300494: CeilingSkylightGlass_frag_247
+    3300496: CeilingSkylightGlass_frag_248
+    3300498: CeilingSkylightGlass_frag_249
+    3300500: CeilingSkylightGlass_frag_250
+    3300502: CeilingSkylightGlass_frag_251
+    3300504: CeilingSkylightGlass_frag_252
+    3300506: CeilingSkylightGlass_frag_253
+    3300508: CeilingSkylightGlass_frag_254
+    3300510: CeilingSkylightGlass_frag_255
+    3300512: CeilingSkylightGlass_frag_256
+    3300514: CeilingSkylightGlass_frag_257
+    3300516: CeilingSkylightGlass_frag_258
+    3300518: CeilingSkylightGlass_frag_259
+    3300520: CeilingSkylightGlass_frag_260
+    3300522: CeilingSkylightGlass_frag_261
+    3300524: CeilingSkylightGlass_frag_262
+    3300526: CeilingSkylightGlass_frag_263
+    3300528: CeilingSkylightGlass_frag_264
+    3300530: CeilingSkylightGlass_frag_265
+    3300532: CeilingSkylightGlass_frag_266
+    3300534: CeilingSkylightGlass_frag_267
+    3300536: CeilingSkylightGlass_frag_268
+    3300538: CeilingSkylightGlass_frag_269
+    3300540: CeilingSkylightGlass_frag_270
+    3300542: CeilingSkylightGlass_frag_271
+    3300544: CeilingSkylightGlass_frag_272
+    3300546: CeilingSkylightGlass_frag_273
+    3300548: CeilingSkylightGlass_frag_274
+    3300550: CeilingSkylightGlass_frag_275
+    3300552: CeilingSkylightGlass_frag_276
+    3300554: CeilingSkylightGlass_frag_277
+    3300556: CeilingSkylightGlass_frag_278
+    3300558: CeilingSkylightGlass_frag_279
+    3300560: CeilingSkylightGlass_frag_280
+    3300562: CeilingSkylightGlass_frag_281
+    3300564: CeilingSkylightGlass_frag_282
+    3300566: CeilingSkylightGlass_frag_283
+    3300568: CeilingSkylightGlass_frag_284
+    3300570: CeilingSkylightGlass_frag_285
+    3300572: CeilingSkylightGlass_frag_286
+    3300574: CeilingSkylightGlass_frag_287
+    3300576: CeilingSkylightGlass_frag_288
+    3300578: CeilingSkylightGlass_frag_289
+    3300580: CeilingSkylightGlass_frag_290
+    3300582: CeilingSkylightGlass_frag_291
+    3300584: CeilingSkylightGlass_frag_292
+    3300586: CeilingSkylightGlass_frag_293
+    3300588: CeilingSkylightGlass_frag_294
+    3300590: CeilingSkylightGlass_frag_295
+    3300592: CeilingSkylightGlass_frag_296
+    3300594: CeilingSkylightGlass_frag_297
+    3300596: CeilingSkylightGlass_frag_298
+    3300598: CeilingSkylightGlass_frag_299
+    3300600: CeilingSkylightGlass_frag_300
+    3300602: CeilingSkylightGlass_frag_301
+    3300604: CeilingSkylightGlass_frag_302
+    3300606: CeilingSkylightGlass_frag_303
+    3300608: CeilingSkylightGlass_frag_304
+    3300610: CeilingSkylightGlass_frag_305
+    3300612: CeilingSkylightGlass_frag_306
+    3300614: CeilingSkylightGlass_frag_307
+    3300616: CeilingSkylightGlass_frag_308
+    3300618: CeilingSkylightGlass_frag_309
+    3300620: CeilingSkylightGlass_frag_310
+    3300622: CeilingSkylightGlass_frag_311
+    3300624: CeilingSkylightGlass_frag_312
+    3300626: CeilingSkylightGlass_frag_313
+    3300628: CeilingSkylightGlass_frag_314
+    3300630: CeilingSkylightGlass_frag_315
+    3300632: CeilingSkylightGlass_frag_316
+    3300634: CeilingSkylightGlass_frag_317
+    3300636: CeilingSkylightGlass_frag_318
+    3300638: CeilingSkylightGlass_frag_319
+    3300640: CeilingSkylightGlass_frag_320
+    3300642: CeilingSkylightGlass_frag_321
+    3300644: CeilingSkylightGlass_frag_322
+    3300646: CeilingSkylightGlass_frag_323
+    3300648: CeilingSkylightGlass_frag_324
+    3300650: CeilingSkylightGlass_frag_325
+    3300652: CeilingSkylightGlass_frag_326
+    3300654: CeilingSkylightGlass_frag_327
+    3300656: CeilingSkylightGlass_frag_328
+    3300658: CeilingSkylightGlass_frag_329
+    3300660: CeilingSkylightGlass_frag_330
+    3300662: CeilingSkylightGlass_frag_331
+    3300664: CeilingSkylightGlass_frag_332
+    3300666: CeilingSkylightGlass_frag_333
+    3300668: CeilingSkylightGlass_frag_334
+    3300670: CeilingSkylightGlass_frag_335
+    3300672: CeilingSkylightGlass_frag_336
+    3300674: CeilingSkylightGlass_frag_337
+    3300676: CeilingSkylightGlass_frag_338
+    3300678: CeilingSkylightGlass_frag_339
+    3300680: CeilingSkylightGlass_frag_340
+    3300682: CeilingSkylightGlass_frag_341
+    3300684: CeilingSkylightGlass_frag_342
+    3300686: CeilingSkylightGlass_frag_343
+    3300688: CeilingSkylightGlass_frag_344
+    3300690: CeilingSkylightGlass_frag_345
+    3300692: CeilingSkylightGlass_frag_346
+    3300694: CeilingSkylightGlass_frag_347
+    3300696: CeilingSkylightGlass_frag_348
+    3300698: CeilingSkylightGlass_frag_349
+    3300700: CeilingSkylightGlass_frag_350
+    3300702: CeilingSkylightGlass_frag_351
+    3300704: CeilingSkylightGlass_frag_352
+    3300706: CeilingSkylightGlass_frag_353
+    3300708: CeilingSkylightGlass_frag_354
+    3300710: CeilingSkylightGlass_frag_355
+    3300712: CeilingSkylightGlass_frag_356
+    3300714: CeilingSkylightGlass_frag_357
+    3300716: CeilingSkylightGlass_frag_358
+    3300718: CeilingSkylightGlass_frag_359
+    3300720: CeilingSkylightGlass_frag_360
+    3300722: CeilingSkylightGlass_frag_361
+    3300724: CeilingSkylightGlass_frag_362
+    3300726: CeilingSkylightGlass_frag_363
+    3300728: CeilingSkylightGlass_frag_364
+    3300730: CeilingSkylightGlass_frag_365
+    3300732: CeilingSkylightGlass_frag_366
+    3300734: CeilingSkylightGlass_frag_367
+    3300736: CeilingSkylightGlass_frag_368
+    3300738: CeilingSkylightGlass_frag_369
+    3300740: CeilingSkylightGlass_frag_370
+    3300742: CeilingSkylightGlass_frag_371
+    3300744: CeilingSkylightGlass_frag_372
+    3300746: CeilingSkylightGlass_frag_373
+    3300748: CeilingSkylightGlass_frag_374
+    3300750: CeilingSkylightGlass_frag_375
+    3300752: CeilingSkylightGlass_frag_376
+    3300754: CeilingSkylightGlass_frag_377
+    3300756: CeilingSkylightGlass_frag_378
+    3300758: CeilingSkylightGlass_frag_379
+    3300760: CeilingSkylightGlass_frag_380
+    3300762: CeilingSkylightGlass_frag_381
+    3300764: CeilingSkylightGlass_frag_382
+    3300766: CeilingSkylightGlass_frag_383
+    3300768: CeilingSkylightGlass_frag_384
+    3300770: CeilingSkylightGlass_frag_385
+    3300772: CeilingSkylightGlass_frag_386
+    3300774: CeilingSkylightGlass_frag_387
+    3300776: CeilingSkylightGlass_frag_388
+    3300778: CeilingSkylightGlass_frag_389
+    3300780: CeilingSkylightGlass_frag_390
+    3300782: CeilingSkylightGlass_frag_391
+    3300784: CeilingSkylightGlass_frag_392
+    3300786: CeilingSkylightGlass_frag_393
+    3300788: CeilingSkylightGlass_frag_394
+    3300790: CeilingSkylightGlass_frag_395
+    3300792: CeilingSkylightGlass_frag_396
+    3300794: CeilingSkylightGlass_frag_397
+    3300796: CeilingSkylightGlass_frag_398
+    3300798: CeilingSkylightGlass_frag_399
+    3300800: CeilingSkylightGlass_frag_400
+    3300802: CeilingSkylightGlass_frag_401
+    3300804: CeilingSkylightGlass_frag_402
+    3300806: CeilingSkylightGlass_frag_403
+    3300808: CeilingSkylightGlass_frag_404
+    3300810: CeilingSkylightGlass_frag_405
+    3300812: CeilingSkylightGlass_frag_406
+    3300814: CeilingSkylightGlass_frag_407
+    3300816: CeilingSkylightGlass_frag_408
+    3300818: CeilingSkylightGlass_frag_409
+    3300820: CeilingSkylightGlass_frag_410
+    3300822: CeilingSkylightGlass_frag_411
+    3300824: CeilingSkylightGlass_frag_412
+    3300826: CeilingSkylightGlass_frag_413
+    3300828: CeilingSkylightGlass_frag_414
+    3300830: CeilingSkylightGlass_frag_415
+    3300832: CeilingSkylightGlass_frag_416
+    3300834: CeilingSkylightGlass_frag_417
+    3300836: CeilingSkylightGlass_frag_418
+    3300838: CeilingSkylightGlass_frag_419
+    3300840: CeilingSkylightGlass_frag_420
+    3300842: CeilingSkylightGlass_frag_421
+    3300844: CeilingSkylightGlass_frag_422
+    3300846: CeilingSkylightGlass_frag_423
+    3300848: CeilingSkylightGlass_frag_424
+    3300850: CeilingSkylightGlass_frag_425
+    3300852: CeilingSkylightGlass_frag_426
+    3300854: CeilingSkylightGlass_frag_427
+    3300856: CeilingSkylightGlass_frag_428
+    3300858: CeilingSkylightGlass_frag_429
+    3300860: CeilingSkylightGlass_frag_430
+    3300862: CeilingSkylightGlass_frag_431
+    3300864: CeilingSkylightGlass_frag_432
+    3300866: CeilingSkylightGlass_frag_433
+    4300000: CeilingSkylightFrame
+    4300002: CeilingSkylightGlass_frag_001
+    4300004: CeilingSkylightGlass_frag_002
+    4300006: CeilingSkylightGlass_frag_003
+    4300008: CeilingSkylightGlass_frag_004
+    4300010: CeilingSkylightGlass_frag_005
+    4300012: CeilingSkylightGlass_frag_006
+    4300014: CeilingSkylightGlass_frag_007
+    4300016: CeilingSkylightGlass_frag_008
+    4300018: CeilingSkylightGlass_frag_009
+    4300020: CeilingSkylightGlass_frag_010
+    4300022: CeilingSkylightGlass_frag_011
+    4300024: CeilingSkylightGlass_frag_012
+    4300026: CeilingSkylightGlass_frag_013
+    4300028: CeilingSkylightGlass_frag_014
+    4300030: CeilingSkylightGlass_frag_015
+    4300032: CeilingSkylightGlass_frag_016
+    4300034: CeilingSkylightGlass_frag_017
+    4300036: CeilingSkylightGlass_frag_018
+    4300038: CeilingSkylightGlass_frag_019
+    4300040: CeilingSkylightGlass_frag_020
+    4300042: CeilingSkylightGlass_frag_021
+    4300044: CeilingSkylightGlass_frag_022
+    4300046: CeilingSkylightGlass_frag_023
+    4300048: CeilingSkylightGlass_frag_024
+    4300050: CeilingSkylightGlass_frag_025
+    4300052: CeilingSkylightGlass_frag_026
+    4300054: CeilingSkylightGlass_frag_027
+    4300056: CeilingSkylightGlass_frag_028
+    4300058: CeilingSkylightGlass_frag_029
+    4300060: CeilingSkylightGlass_frag_030
+    4300062: CeilingSkylightGlass_frag_031
+    4300064: CeilingSkylightGlass_frag_032
+    4300066: CeilingSkylightGlass_frag_033
+    4300068: CeilingSkylightGlass_frag_034
+    4300070: CeilingSkylightGlass_frag_035
+    4300072: CeilingSkylightGlass_frag_036
+    4300074: CeilingSkylightGlass_frag_037
+    4300076: CeilingSkylightGlass_frag_038
+    4300078: CeilingSkylightGlass_frag_039
+    4300080: CeilingSkylightGlass_frag_040
+    4300082: CeilingSkylightGlass_frag_041
+    4300084: CeilingSkylightGlass_frag_042
+    4300086: CeilingSkylightGlass_frag_043
+    4300088: CeilingSkylightGlass_frag_044
+    4300090: CeilingSkylightGlass_frag_045
+    4300092: CeilingSkylightGlass_frag_046
+    4300094: CeilingSkylightGlass_frag_047
+    4300096: CeilingSkylightGlass_frag_048
+    4300098: CeilingSkylightGlass_frag_049
+    4300100: CeilingSkylightGlass_frag_050
+    4300102: CeilingSkylightGlass_frag_051
+    4300104: CeilingSkylightGlass_frag_052
+    4300106: CeilingSkylightGlass_frag_053
+    4300108: CeilingSkylightGlass_frag_054
+    4300110: CeilingSkylightGlass_frag_055
+    4300112: CeilingSkylightGlass_frag_056
+    4300114: CeilingSkylightGlass_frag_057
+    4300116: CeilingSkylightGlass_frag_058
+    4300118: CeilingSkylightGlass_frag_059
+    4300120: CeilingSkylightGlass_frag_060
+    4300122: CeilingSkylightGlass_frag_061
+    4300124: CeilingSkylightGlass_frag_062
+    4300126: CeilingSkylightGlass_frag_063
+    4300128: CeilingSkylightGlass_frag_064
+    4300130: CeilingSkylightGlass_frag_065
+    4300132: CeilingSkylightGlass_frag_066
+    4300134: CeilingSkylightGlass_frag_067
+    4300136: CeilingSkylightGlass_frag_068
+    4300138: CeilingSkylightGlass_frag_069
+    4300140: CeilingSkylightGlass_frag_070
+    4300142: CeilingSkylightGlass_frag_071
+    4300144: CeilingSkylightGlass_frag_072
+    4300146: CeilingSkylightGlass_frag_073
+    4300148: CeilingSkylightGlass_frag_074
+    4300150: CeilingSkylightGlass_frag_075
+    4300152: CeilingSkylightGlass_frag_076
+    4300154: CeilingSkylightGlass_frag_077
+    4300156: CeilingSkylightGlass_frag_078
+    4300158: CeilingSkylightGlass_frag_079
+    4300160: CeilingSkylightGlass_frag_080
+    4300162: CeilingSkylightGlass_frag_081
+    4300164: CeilingSkylightGlass_frag_082
+    4300166: CeilingSkylightGlass_frag_083
+    4300168: CeilingSkylightGlass_frag_084
+    4300170: CeilingSkylightGlass_frag_085
+    4300172: CeilingSkylightGlass_frag_086
+    4300174: CeilingSkylightGlass_frag_087
+    4300176: CeilingSkylightGlass_frag_088
+    4300178: CeilingSkylightGlass_frag_089
+    4300180: CeilingSkylightGlass_frag_090
+    4300182: CeilingSkylightGlass_frag_091
+    4300184: CeilingSkylightGlass_frag_092
+    4300186: CeilingSkylightGlass_frag_093
+    4300188: CeilingSkylightGlass_frag_094
+    4300190: CeilingSkylightGlass_frag_095
+    4300192: CeilingSkylightGlass_frag_096
+    4300194: CeilingSkylightGlass_frag_097
+    4300196: CeilingSkylightGlass_frag_098
+    4300198: CeilingSkylightGlass_frag_099
+    4300200: CeilingSkylightGlass_frag_100
+    4300202: CeilingSkylightGlass_frag_101
+    4300204: CeilingSkylightGlass_frag_102
+    4300206: CeilingSkylightGlass_frag_103
+    4300208: CeilingSkylightGlass_frag_104
+    4300210: CeilingSkylightGlass_frag_105
+    4300212: CeilingSkylightGlass_frag_106
+    4300214: CeilingSkylightGlass_frag_107
+    4300216: CeilingSkylightGlass_frag_108
+    4300218: CeilingSkylightGlass_frag_109
+    4300220: CeilingSkylightGlass_frag_110
+    4300222: CeilingSkylightGlass_frag_111
+    4300224: CeilingSkylightGlass_frag_112
+    4300226: CeilingSkylightGlass_frag_113
+    4300228: CeilingSkylightGlass_frag_114
+    4300230: CeilingSkylightGlass_frag_115
+    4300232: CeilingSkylightGlass_frag_116
+    4300234: CeilingSkylightGlass_frag_117
+    4300236: CeilingSkylightGlass_frag_118
+    4300238: CeilingSkylightGlass_frag_119
+    4300240: CeilingSkylightGlass_frag_120
+    4300242: CeilingSkylightGlass_frag_121
+    4300244: CeilingSkylightGlass_frag_122
+    4300246: CeilingSkylightGlass_frag_123
+    4300248: CeilingSkylightGlass_frag_124
+    4300250: CeilingSkylightGlass_frag_125
+    4300252: CeilingSkylightGlass_frag_126
+    4300254: CeilingSkylightGlass_frag_127
+    4300256: CeilingSkylightGlass_frag_128
+    4300258: CeilingSkylightGlass_frag_129
+    4300260: CeilingSkylightGlass_frag_130
+    4300262: CeilingSkylightGlass_frag_131
+    4300264: CeilingSkylightGlass_frag_132
+    4300266: CeilingSkylightGlass_frag_133
+    4300268: CeilingSkylightGlass_frag_134
+    4300270: CeilingSkylightGlass_frag_135
+    4300272: CeilingSkylightGlass_frag_136
+    4300274: CeilingSkylightGlass_frag_137
+    4300276: CeilingSkylightGlass_frag_138
+    4300278: CeilingSkylightGlass_frag_139
+    4300280: CeilingSkylightGlass_frag_140
+    4300282: CeilingSkylightGlass_frag_141
+    4300284: CeilingSkylightGlass_frag_142
+    4300286: CeilingSkylightGlass_frag_143
+    4300288: CeilingSkylightGlass_frag_144
+    4300290: CeilingSkylightGlass_frag_145
+    4300292: CeilingSkylightGlass_frag_146
+    4300294: CeilingSkylightGlass_frag_147
+    4300296: CeilingSkylightGlass_frag_148
+    4300298: CeilingSkylightGlass_frag_149
+    4300300: CeilingSkylightGlass_frag_150
+    4300302: CeilingSkylightGlass_frag_151
+    4300304: CeilingSkylightGlass_frag_152
+    4300306: CeilingSkylightGlass_frag_153
+    4300308: CeilingSkylightGlass_frag_154
+    4300310: CeilingSkylightGlass_frag_155
+    4300312: CeilingSkylightGlass_frag_156
+    4300314: CeilingSkylightGlass_frag_157
+    4300316: CeilingSkylightGlass_frag_158
+    4300318: CeilingSkylightGlass_frag_159
+    4300320: CeilingSkylightGlass_frag_160
+    4300322: CeilingSkylightGlass_frag_161
+    4300324: CeilingSkylightGlass_frag_162
+    4300326: CeilingSkylightGlass_frag_163
+    4300328: CeilingSkylightGlass_frag_164
+    4300330: CeilingSkylightGlass_frag_165
+    4300332: CeilingSkylightGlass_frag_166
+    4300334: CeilingSkylightGlass_frag_167
+    4300336: CeilingSkylightGlass_frag_168
+    4300338: CeilingSkylightGlass_frag_169
+    4300340: CeilingSkylightGlass_frag_170
+    4300342: CeilingSkylightGlass_frag_171
+    4300344: CeilingSkylightGlass_frag_172
+    4300346: CeilingSkylightGlass_frag_173
+    4300348: CeilingSkylightGlass_frag_174
+    4300350: CeilingSkylightGlass_frag_175
+    4300352: CeilingSkylightGlass_frag_176
+    4300354: CeilingSkylightGlass_frag_177
+    4300356: CeilingSkylightGlass_frag_178
+    4300358: CeilingSkylightGlass_frag_179
+    4300360: CeilingSkylightGlass_frag_180
+    4300362: CeilingSkylightGlass_frag_181
+    4300364: CeilingSkylightGlass_frag_182
+    4300366: CeilingSkylightGlass_frag_183
+    4300368: CeilingSkylightGlass_frag_184
+    4300370: CeilingSkylightGlass_frag_185
+    4300372: CeilingSkylightGlass_frag_186
+    4300374: CeilingSkylightGlass_frag_187
+    4300376: CeilingSkylightGlass_frag_188
+    4300378: CeilingSkylightGlass_frag_189
+    4300380: CeilingSkylightGlass_frag_190
+    4300382: CeilingSkylightGlass_frag_191
+    4300384: CeilingSkylightGlass_frag_192
+    4300386: CeilingSkylightGlass_frag_193
+    4300388: CeilingSkylightGlass_frag_194
+    4300390: CeilingSkylightGlass_frag_195
+    4300392: CeilingSkylightGlass_frag_196
+    4300394: CeilingSkylightGlass_frag_197
+    4300396: CeilingSkylightGlass_frag_198
+    4300398: CeilingSkylightGlass_frag_199
+    4300400: CeilingSkylightGlass_frag_200
+    4300402: CeilingSkylightGlass_frag_201
+    4300404: CeilingSkylightGlass_frag_202
+    4300406: CeilingSkylightGlass_frag_203
+    4300408: CeilingSkylightGlass_frag_204
+    4300410: CeilingSkylightGlass_frag_205
+    4300412: CeilingSkylightGlass_frag_206
+    4300414: CeilingSkylightGlass_frag_207
+    4300416: CeilingSkylightGlass_frag_208
+    4300418: CeilingSkylightGlass_frag_209
+    4300420: CeilingSkylightGlass_frag_210
+    4300422: CeilingSkylightGlass_frag_211
+    4300424: CeilingSkylightGlass_frag_212
+    4300426: CeilingSkylightGlass_frag_213
+    4300428: CeilingSkylightGlass_frag_214
+    4300430: CeilingSkylightGlass_frag_215
+    4300432: CeilingSkylightGlass_frag_216
+    4300434: CeilingSkylightGlass_frag_217
+    4300436: CeilingSkylightGlass_frag_218
+    4300438: CeilingSkylightGlass_frag_219
+    4300440: CeilingSkylightGlass_frag_220
+    4300442: CeilingSkylightGlass_frag_221
+    4300444: CeilingSkylightGlass_frag_222
+    4300446: CeilingSkylightGlass_frag_223
+    4300448: CeilingSkylightGlass_frag_224
+    4300450: CeilingSkylightGlass_frag_225
+    4300452: CeilingSkylightGlass_frag_226
+    4300454: CeilingSkylightGlass_frag_227
+    4300456: CeilingSkylightGlass_frag_228
+    4300458: CeilingSkylightGlass_frag_229
+    4300460: CeilingSkylightGlass_frag_230
+    4300462: CeilingSkylightGlass_frag_231
+    4300464: CeilingSkylightGlass_frag_232
+    4300466: CeilingSkylightGlass_frag_233
+    4300468: CeilingSkylightGlass_frag_234
+    4300470: CeilingSkylightGlass_frag_235
+    4300472: CeilingSkylightGlass_frag_236
+    4300474: CeilingSkylightGlass_frag_237
+    4300476: CeilingSkylightGlass_frag_238
+    4300478: CeilingSkylightGlass_frag_239
+    4300480: CeilingSkylightGlass_frag_240
+    4300482: CeilingSkylightGlass_frag_241
+    4300484: CeilingSkylightGlass_frag_242
+    4300486: CeilingSkylightGlass_frag_243
+    4300488: CeilingSkylightGlass_frag_244
+    4300490: CeilingSkylightGlass_frag_245
+    4300492: CeilingSkylightGlass_frag_246
+    4300494: CeilingSkylightGlass_frag_247
+    4300496: CeilingSkylightGlass_frag_248
+    4300498: CeilingSkylightGlass_frag_249
+    4300500: CeilingSkylightGlass_frag_250
+    4300502: CeilingSkylightGlass_frag_251
+    4300504: CeilingSkylightGlass_frag_252
+    4300506: CeilingSkylightGlass_frag_253
+    4300508: CeilingSkylightGlass_frag_254
+    4300510: CeilingSkylightGlass_frag_255
+    4300512: CeilingSkylightGlass_frag_256
+    4300514: CeilingSkylightGlass_frag_257
+    4300516: CeilingSkylightGlass_frag_258
+    4300518: CeilingSkylightGlass_frag_259
+    4300520: CeilingSkylightGlass_frag_260
+    4300522: CeilingSkylightGlass_frag_261
+    4300524: CeilingSkylightGlass_frag_262
+    4300526: CeilingSkylightGlass_frag_263
+    4300528: CeilingSkylightGlass_frag_264
+    4300530: CeilingSkylightGlass_frag_265
+    4300532: CeilingSkylightGlass_frag_266
+    4300534: CeilingSkylightGlass_frag_267
+    4300536: CeilingSkylightGlass_frag_268
+    4300538: CeilingSkylightGlass_frag_269
+    4300540: CeilingSkylightGlass_frag_270
+    4300542: CeilingSkylightGlass_frag_271
+    4300544: CeilingSkylightGlass_frag_272
+    4300546: CeilingSkylightGlass_frag_273
+    4300548: CeilingSkylightGlass_frag_274
+    4300550: CeilingSkylightGlass_frag_275
+    4300552: CeilingSkylightGlass_frag_276
+    4300554: CeilingSkylightGlass_frag_277
+    4300556: CeilingSkylightGlass_frag_278
+    4300558: CeilingSkylightGlass_frag_279
+    4300560: CeilingSkylightGlass_frag_280
+    4300562: CeilingSkylightGlass_frag_281
+    4300564: CeilingSkylightGlass_frag_282
+    4300566: CeilingSkylightGlass_frag_283
+    4300568: CeilingSkylightGlass_frag_284
+    4300570: CeilingSkylightGlass_frag_285
+    4300572: CeilingSkylightGlass_frag_286
+    4300574: CeilingSkylightGlass_frag_287
+    4300576: CeilingSkylightGlass_frag_288
+    4300578: CeilingSkylightGlass_frag_289
+    4300580: CeilingSkylightGlass_frag_290
+    4300582: CeilingSkylightGlass_frag_291
+    4300584: CeilingSkylightGlass_frag_292
+    4300586: CeilingSkylightGlass_frag_293
+    4300588: CeilingSkylightGlass_frag_294
+    4300590: CeilingSkylightGlass_frag_295
+    4300592: CeilingSkylightGlass_frag_296
+    4300594: CeilingSkylightGlass_frag_297
+    4300596: CeilingSkylightGlass_frag_298
+    4300598: CeilingSkylightGlass_frag_299
+    4300600: CeilingSkylightGlass_frag_300
+    4300602: CeilingSkylightGlass_frag_301
+    4300604: CeilingSkylightGlass_frag_302
+    4300606: CeilingSkylightGlass_frag_303
+    4300608: CeilingSkylightGlass_frag_304
+    4300610: CeilingSkylightGlass_frag_305
+    4300612: CeilingSkylightGlass_frag_306
+    4300614: CeilingSkylightGlass_frag_307
+    4300616: CeilingSkylightGlass_frag_308
+    4300618: CeilingSkylightGlass_frag_309
+    4300620: CeilingSkylightGlass_frag_310
+    4300622: CeilingSkylightGlass_frag_311
+    4300624: CeilingSkylightGlass_frag_312
+    4300626: CeilingSkylightGlass_frag_313
+    4300628: CeilingSkylightGlass_frag_314
+    4300630: CeilingSkylightGlass_frag_315
+    4300632: CeilingSkylightGlass_frag_316
+    4300634: CeilingSkylightGlass_frag_317
+    4300636: CeilingSkylightGlass_frag_318
+    4300638: CeilingSkylightGlass_frag_319
+    4300640: CeilingSkylightGlass_frag_320
+    4300642: CeilingSkylightGlass_frag_321
+    4300644: CeilingSkylightGlass_frag_322
+    4300646: CeilingSkylightGlass_frag_323
+    4300648: CeilingSkylightGlass_frag_324
+    4300650: CeilingSkylightGlass_frag_325
+    4300652: CeilingSkylightGlass_frag_326
+    4300654: CeilingSkylightGlass_frag_327
+    4300656: CeilingSkylightGlass_frag_328
+    4300658: CeilingSkylightGlass_frag_329
+    4300660: CeilingSkylightGlass_frag_330
+    4300662: CeilingSkylightGlass_frag_331
+    4300664: CeilingSkylightGlass_frag_332
+    4300666: CeilingSkylightGlass_frag_333
+    4300668: CeilingSkylightGlass_frag_334
+    4300670: CeilingSkylightGlass_frag_335
+    4300672: CeilingSkylightGlass_frag_336
+    4300674: CeilingSkylightGlass_frag_337
+    4300676: CeilingSkylightGlass_frag_338
+    4300678: CeilingSkylightGlass_frag_339
+    4300680: CeilingSkylightGlass_frag_340
+    4300682: CeilingSkylightGlass_frag_341
+    4300684: CeilingSkylightGlass_frag_342
+    4300686: CeilingSkylightGlass_frag_343
+    4300688: CeilingSkylightGlass_frag_344
+    4300690: CeilingSkylightGlass_frag_345
+    4300692: CeilingSkylightGlass_frag_346
+    4300694: CeilingSkylightGlass_frag_347
+    4300696: CeilingSkylightGlass_frag_348
+    4300698: CeilingSkylightGlass_frag_349
+    4300700: CeilingSkylightGlass_frag_350
+    4300702: CeilingSkylightGlass_frag_351
+    4300704: CeilingSkylightGlass_frag_352
+    4300706: CeilingSkylightGlass_frag_353
+    4300708: CeilingSkylightGlass_frag_354
+    4300710: CeilingSkylightGlass_frag_355
+    4300712: CeilingSkylightGlass_frag_356
+    4300714: CeilingSkylightGlass_frag_357
+    4300716: CeilingSkylightGlass_frag_358
+    4300718: CeilingSkylightGlass_frag_359
+    4300720: CeilingSkylightGlass_frag_360
+    4300722: CeilingSkylightGlass_frag_361
+    4300724: CeilingSkylightGlass_frag_362
+    4300726: CeilingSkylightGlass_frag_363
+    4300728: CeilingSkylightGlass_frag_364
+    4300730: CeilingSkylightGlass_frag_365
+    4300732: CeilingSkylightGlass_frag_366
+    4300734: CeilingSkylightGlass_frag_367
+    4300736: CeilingSkylightGlass_frag_368
+    4300738: CeilingSkylightGlass_frag_369
+    4300740: CeilingSkylightGlass_frag_370
+    4300742: CeilingSkylightGlass_frag_371
+    4300744: CeilingSkylightGlass_frag_372
+    4300746: CeilingSkylightGlass_frag_373
+    4300748: CeilingSkylightGlass_frag_374
+    4300750: CeilingSkylightGlass_frag_375
+    4300752: CeilingSkylightGlass_frag_376
+    4300754: CeilingSkylightGlass_frag_377
+    4300756: CeilingSkylightGlass_frag_378
+    4300758: CeilingSkylightGlass_frag_379
+    4300760: CeilingSkylightGlass_frag_380
+    4300762: CeilingSkylightGlass_frag_381
+    4300764: CeilingSkylightGlass_frag_382
+    4300766: CeilingSkylightGlass_frag_383
+    4300768: CeilingSkylightGlass_frag_384
+    4300770: CeilingSkylightGlass_frag_385
+    4300772: CeilingSkylightGlass_frag_386
+    4300774: CeilingSkylightGlass_frag_387
+    4300776: CeilingSkylightGlass_frag_388
+    4300778: CeilingSkylightGlass_frag_389
+    4300780: CeilingSkylightGlass_frag_390
+    4300782: CeilingSkylightGlass_frag_391
+    4300784: CeilingSkylightGlass_frag_392
+    4300786: CeilingSkylightGlass_frag_393
+    4300788: CeilingSkylightGlass_frag_394
+    4300790: CeilingSkylightGlass_frag_395
+    4300792: CeilingSkylightGlass_frag_396
+    4300794: CeilingSkylightGlass_frag_397
+    4300796: CeilingSkylightGlass_frag_398
+    4300798: CeilingSkylightGlass_frag_399
+    4300800: CeilingSkylightGlass_frag_400
+    4300802: CeilingSkylightGlass_frag_401
+    4300804: CeilingSkylightGlass_frag_402
+    4300806: CeilingSkylightGlass_frag_403
+    4300808: CeilingSkylightGlass_frag_404
+    4300810: CeilingSkylightGlass_frag_405
+    4300812: CeilingSkylightGlass_frag_406
+    4300814: CeilingSkylightGlass_frag_407
+    4300816: CeilingSkylightGlass_frag_408
+    4300818: CeilingSkylightGlass_frag_409
+    4300820: CeilingSkylightGlass_frag_410
+    4300822: CeilingSkylightGlass_frag_411
+    4300824: CeilingSkylightGlass_frag_412
+    4300826: CeilingSkylightGlass_frag_413
+    4300828: CeilingSkylightGlass_frag_414
+    4300830: CeilingSkylightGlass_frag_415
+    4300832: CeilingSkylightGlass_frag_416
+    4300834: CeilingSkylightGlass_frag_417
+    4300836: CeilingSkylightGlass_frag_418
+    4300838: CeilingSkylightGlass_frag_419
+    4300840: CeilingSkylightGlass_frag_420
+    4300842: CeilingSkylightGlass_frag_421
+    4300844: CeilingSkylightGlass_frag_422
+    4300846: CeilingSkylightGlass_frag_423
+    4300848: CeilingSkylightGlass_frag_424
+    4300850: CeilingSkylightGlass_frag_425
+    4300852: CeilingSkylightGlass_frag_426
+    4300854: CeilingSkylightGlass_frag_427
+    4300856: CeilingSkylightGlass_frag_428
+    4300858: CeilingSkylightGlass_frag_429
+    4300860: CeilingSkylightGlass_frag_430
+    4300862: CeilingSkylightGlass_frag_431
+    4300864: CeilingSkylightGlass_frag_432
+    4300866: CeilingSkylightGlass_frag_433
+    7400000: VitrauxImpcArea
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: VitrauxImpcArea
+      takeName: Take 001
+      firstFrame: 152
+      lastFrame: 155
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CeilingSkylightFrame
+        weight: 1
+      - path: CeilingSkylightGlass_frag_001
+        weight: 1
+      - path: CeilingSkylightGlass_frag_002
+        weight: 1
+      - path: CeilingSkylightGlass_frag_003
+        weight: 1
+      - path: CeilingSkylightGlass_frag_004
+        weight: 1
+      - path: CeilingSkylightGlass_frag_005
+        weight: 1
+      - path: CeilingSkylightGlass_frag_006
+        weight: 1
+      - path: CeilingSkylightGlass_frag_007
+        weight: 1
+      - path: CeilingSkylightGlass_frag_008
+        weight: 1
+      - path: CeilingSkylightGlass_frag_009
+        weight: 1
+      - path: CeilingSkylightGlass_frag_010
+        weight: 1
+      - path: CeilingSkylightGlass_frag_011
+        weight: 1
+      - path: CeilingSkylightGlass_frag_012
+        weight: 1
+      - path: CeilingSkylightGlass_frag_013
+        weight: 1
+      - path: CeilingSkylightGlass_frag_014
+        weight: 1
+      - path: CeilingSkylightGlass_frag_015
+        weight: 1
+      - path: CeilingSkylightGlass_frag_016
+        weight: 1
+      - path: CeilingSkylightGlass_frag_017
+        weight: 1
+      - path: CeilingSkylightGlass_frag_018
+        weight: 1
+      - path: CeilingSkylightGlass_frag_019
+        weight: 1
+      - path: CeilingSkylightGlass_frag_020
+        weight: 1
+      - path: CeilingSkylightGlass_frag_021
+        weight: 1
+      - path: CeilingSkylightGlass_frag_022
+        weight: 1
+      - path: CeilingSkylightGlass_frag_023
+        weight: 1
+      - path: CeilingSkylightGlass_frag_024
+        weight: 1
+      - path: CeilingSkylightGlass_frag_025
+        weight: 1
+      - path: CeilingSkylightGlass_frag_026
+        weight: 1
+      - path: CeilingSkylightGlass_frag_027
+        weight: 1
+      - path: CeilingSkylightGlass_frag_028
+        weight: 1
+      - path: CeilingSkylightGlass_frag_029
+        weight: 1
+      - path: CeilingSkylightGlass_frag_030
+        weight: 1
+      - path: CeilingSkylightGlass_frag_031
+        weight: 1
+      - path: CeilingSkylightGlass_frag_032
+        weight: 1
+      - path: CeilingSkylightGlass_frag_033
+        weight: 1
+      - path: CeilingSkylightGlass_frag_034
+        weight: 1
+      - path: CeilingSkylightGlass_frag_035
+        weight: 1
+      - path: CeilingSkylightGlass_frag_036
+        weight: 1
+      - path: CeilingSkylightGlass_frag_037
+        weight: 1
+      - path: CeilingSkylightGlass_frag_038
+        weight: 1
+      - path: CeilingSkylightGlass_frag_039
+        weight: 1
+      - path: CeilingSkylightGlass_frag_040
+        weight: 1
+      - path: CeilingSkylightGlass_frag_041
+        weight: 1
+      - path: CeilingSkylightGlass_frag_042
+        weight: 1
+      - path: CeilingSkylightGlass_frag_043
+        weight: 1
+      - path: CeilingSkylightGlass_frag_044
+        weight: 1
+      - path: CeilingSkylightGlass_frag_045
+        weight: 1
+      - path: CeilingSkylightGlass_frag_046
+        weight: 1
+      - path: CeilingSkylightGlass_frag_047
+        weight: 1
+      - path: CeilingSkylightGlass_frag_048
+        weight: 1
+      - path: CeilingSkylightGlass_frag_049
+        weight: 1
+      - path: CeilingSkylightGlass_frag_050
+        weight: 1
+      - path: CeilingSkylightGlass_frag_051
+        weight: 1
+      - path: CeilingSkylightGlass_frag_052
+        weight: 1
+      - path: CeilingSkylightGlass_frag_053
+        weight: 1
+      - path: CeilingSkylightGlass_frag_054
+        weight: 1
+      - path: CeilingSkylightGlass_frag_055
+        weight: 1
+      - path: CeilingSkylightGlass_frag_056
+        weight: 1
+      - path: CeilingSkylightGlass_frag_057
+        weight: 1
+      - path: CeilingSkylightGlass_frag_058
+        weight: 1
+      - path: CeilingSkylightGlass_frag_059
+        weight: 1
+      - path: CeilingSkylightGlass_frag_060
+        weight: 1
+      - path: CeilingSkylightGlass_frag_061
+        weight: 1
+      - path: CeilingSkylightGlass_frag_062
+        weight: 1
+      - path: CeilingSkylightGlass_frag_063
+        weight: 1
+      - path: CeilingSkylightGlass_frag_064
+        weight: 1
+      - path: CeilingSkylightGlass_frag_065
+        weight: 1
+      - path: CeilingSkylightGlass_frag_066
+        weight: 1
+      - path: CeilingSkylightGlass_frag_067
+        weight: 1
+      - path: CeilingSkylightGlass_frag_068
+        weight: 1
+      - path: CeilingSkylightGlass_frag_069
+        weight: 1
+      - path: CeilingSkylightGlass_frag_070
+        weight: 1
+      - path: CeilingSkylightGlass_frag_071
+        weight: 1
+      - path: CeilingSkylightGlass_frag_072
+        weight: 1
+      - path: CeilingSkylightGlass_frag_073
+        weight: 1
+      - path: CeilingSkylightGlass_frag_074
+        weight: 1
+      - path: CeilingSkylightGlass_frag_075
+        weight: 1
+      - path: CeilingSkylightGlass_frag_076
+        weight: 1
+      - path: CeilingSkylightGlass_frag_077
+        weight: 1
+      - path: CeilingSkylightGlass_frag_078
+        weight: 1
+      - path: CeilingSkylightGlass_frag_079
+        weight: 1
+      - path: CeilingSkylightGlass_frag_080
+        weight: 1
+      - path: CeilingSkylightGlass_frag_081
+        weight: 1
+      - path: CeilingSkylightGlass_frag_082
+        weight: 1
+      - path: CeilingSkylightGlass_frag_083
+        weight: 1
+      - path: CeilingSkylightGlass_frag_084
+        weight: 1
+      - path: CeilingSkylightGlass_frag_085
+        weight: 1
+      - path: CeilingSkylightGlass_frag_086
+        weight: 1
+      - path: CeilingSkylightGlass_frag_087
+        weight: 1
+      - path: CeilingSkylightGlass_frag_088
+        weight: 1
+      - path: CeilingSkylightGlass_frag_089
+        weight: 1
+      - path: CeilingSkylightGlass_frag_090
+        weight: 1
+      - path: CeilingSkylightGlass_frag_091
+        weight: 1
+      - path: CeilingSkylightGlass_frag_092
+        weight: 1
+      - path: CeilingSkylightGlass_frag_093
+        weight: 1
+      - path: CeilingSkylightGlass_frag_094
+        weight: 1
+      - path: CeilingSkylightGlass_frag_095
+        weight: 1
+      - path: CeilingSkylightGlass_frag_096
+        weight: 1
+      - path: CeilingSkylightGlass_frag_097
+        weight: 1
+      - path: CeilingSkylightGlass_frag_098
+        weight: 1
+      - path: CeilingSkylightGlass_frag_099
+        weight: 1
+      - path: CeilingSkylightGlass_frag_100
+        weight: 1
+      - path: CeilingSkylightGlass_frag_101
+        weight: 1
+      - path: CeilingSkylightGlass_frag_102
+        weight: 1
+      - path: CeilingSkylightGlass_frag_103
+        weight: 1
+      - path: CeilingSkylightGlass_frag_104
+        weight: 1
+      - path: CeilingSkylightGlass_frag_105
+        weight: 1
+      - path: CeilingSkylightGlass_frag_106
+        weight: 1
+      - path: CeilingSkylightGlass_frag_107
+        weight: 1
+      - path: CeilingSkylightGlass_frag_108
+        weight: 1
+      - path: CeilingSkylightGlass_frag_109
+        weight: 1
+      - path: CeilingSkylightGlass_frag_110
+        weight: 1
+      - path: CeilingSkylightGlass_frag_111
+        weight: 1
+      - path: CeilingSkylightGlass_frag_112
+        weight: 1
+      - path: CeilingSkylightGlass_frag_113
+        weight: 1
+      - path: CeilingSkylightGlass_frag_114
+        weight: 1
+      - path: CeilingSkylightGlass_frag_115
+        weight: 1
+      - path: CeilingSkylightGlass_frag_116
+        weight: 1
+      - path: CeilingSkylightGlass_frag_117
+        weight: 1
+      - path: CeilingSkylightGlass_frag_118
+        weight: 1
+      - path: CeilingSkylightGlass_frag_119
+        weight: 1
+      - path: CeilingSkylightGlass_frag_120
+        weight: 1
+      - path: CeilingSkylightGlass_frag_121
+        weight: 1
+      - path: CeilingSkylightGlass_frag_122
+        weight: 1
+      - path: CeilingSkylightGlass_frag_123
+        weight: 1
+      - path: CeilingSkylightGlass_frag_124
+        weight: 1
+      - path: CeilingSkylightGlass_frag_125
+        weight: 1
+      - path: CeilingSkylightGlass_frag_126
+        weight: 1
+      - path: CeilingSkylightGlass_frag_127
+        weight: 1
+      - path: CeilingSkylightGlass_frag_128
+        weight: 1
+      - path: CeilingSkylightGlass_frag_129
+        weight: 1
+      - path: CeilingSkylightGlass_frag_130
+        weight: 1
+      - path: CeilingSkylightGlass_frag_131
+        weight: 1
+      - path: CeilingSkylightGlass_frag_132
+        weight: 1
+      - path: CeilingSkylightGlass_frag_133
+        weight: 1
+      - path: CeilingSkylightGlass_frag_134
+        weight: 1
+      - path: CeilingSkylightGlass_frag_135
+        weight: 1
+      - path: CeilingSkylightGlass_frag_136
+        weight: 1
+      - path: CeilingSkylightGlass_frag_137
+        weight: 1
+      - path: CeilingSkylightGlass_frag_138
+        weight: 1
+      - path: CeilingSkylightGlass_frag_139
+        weight: 1
+      - path: CeilingSkylightGlass_frag_140
+        weight: 1
+      - path: CeilingSkylightGlass_frag_141
+        weight: 1
+      - path: CeilingSkylightGlass_frag_142
+        weight: 1
+      - path: CeilingSkylightGlass_frag_143
+        weight: 1
+      - path: CeilingSkylightGlass_frag_144
+        weight: 1
+      - path: CeilingSkylightGlass_frag_145
+        weight: 1
+      - path: CeilingSkylightGlass_frag_146
+        weight: 1
+      - path: CeilingSkylightGlass_frag_147
+        weight: 1
+      - path: CeilingSkylightGlass_frag_148
+        weight: 1
+      - path: CeilingSkylightGlass_frag_149
+        weight: 1
+      - path: CeilingSkylightGlass_frag_150
+        weight: 1
+      - path: CeilingSkylightGlass_frag_151
+        weight: 1
+      - path: CeilingSkylightGlass_frag_152
+        weight: 1
+      - path: CeilingSkylightGlass_frag_153
+        weight: 1
+      - path: CeilingSkylightGlass_frag_154
+        weight: 1
+      - path: CeilingSkylightGlass_frag_155
+        weight: 1
+      - path: CeilingSkylightGlass_frag_156
+        weight: 1
+      - path: CeilingSkylightGlass_frag_157
+        weight: 1
+      - path: CeilingSkylightGlass_frag_158
+        weight: 1
+      - path: CeilingSkylightGlass_frag_159
+        weight: 1
+      - path: CeilingSkylightGlass_frag_160
+        weight: 1
+      - path: CeilingSkylightGlass_frag_161
+        weight: 1
+      - path: CeilingSkylightGlass_frag_162
+        weight: 1
+      - path: CeilingSkylightGlass_frag_163
+        weight: 1
+      - path: CeilingSkylightGlass_frag_164
+        weight: 1
+      - path: CeilingSkylightGlass_frag_165
+        weight: 1
+      - path: CeilingSkylightGlass_frag_166
+        weight: 1
+      - path: CeilingSkylightGlass_frag_167
+        weight: 1
+      - path: CeilingSkylightGlass_frag_168
+        weight: 1
+      - path: CeilingSkylightGlass_frag_169
+        weight: 1
+      - path: CeilingSkylightGlass_frag_170
+        weight: 1
+      - path: CeilingSkylightGlass_frag_171
+        weight: 1
+      - path: CeilingSkylightGlass_frag_172
+        weight: 1
+      - path: CeilingSkylightGlass_frag_173
+        weight: 1
+      - path: CeilingSkylightGlass_frag_174
+        weight: 1
+      - path: CeilingSkylightGlass_frag_175
+        weight: 1
+      - path: CeilingSkylightGlass_frag_176
+        weight: 1
+      - path: CeilingSkylightGlass_frag_177
+        weight: 1
+      - path: CeilingSkylightGlass_frag_178
+        weight: 1
+      - path: CeilingSkylightGlass_frag_179
+        weight: 1
+      - path: CeilingSkylightGlass_frag_180
+        weight: 1
+      - path: CeilingSkylightGlass_frag_181
+        weight: 1
+      - path: CeilingSkylightGlass_frag_182
+        weight: 1
+      - path: CeilingSkylightGlass_frag_183
+        weight: 1
+      - path: CeilingSkylightGlass_frag_184
+        weight: 1
+      - path: CeilingSkylightGlass_frag_185
+        weight: 1
+      - path: CeilingSkylightGlass_frag_186
+        weight: 1
+      - path: CeilingSkylightGlass_frag_187
+        weight: 1
+      - path: CeilingSkylightGlass_frag_188
+        weight: 1
+      - path: CeilingSkylightGlass_frag_189
+        weight: 1
+      - path: CeilingSkylightGlass_frag_190
+        weight: 1
+      - path: CeilingSkylightGlass_frag_191
+        weight: 1
+      - path: CeilingSkylightGlass_frag_192
+        weight: 1
+      - path: CeilingSkylightGlass_frag_193
+        weight: 1
+      - path: CeilingSkylightGlass_frag_194
+        weight: 1
+      - path: CeilingSkylightGlass_frag_195
+        weight: 1
+      - path: CeilingSkylightGlass_frag_196
+        weight: 1
+      - path: CeilingSkylightGlass_frag_197
+        weight: 1
+      - path: CeilingSkylightGlass_frag_198
+        weight: 1
+      - path: CeilingSkylightGlass_frag_199
+        weight: 1
+      - path: CeilingSkylightGlass_frag_200
+        weight: 1
+      - path: CeilingSkylightGlass_frag_201
+        weight: 1
+      - path: CeilingSkylightGlass_frag_202
+        weight: 1
+      - path: CeilingSkylightGlass_frag_203
+        weight: 1
+      - path: CeilingSkylightGlass_frag_204
+        weight: 1
+      - path: CeilingSkylightGlass_frag_205
+        weight: 1
+      - path: CeilingSkylightGlass_frag_206
+        weight: 1
+      - path: CeilingSkylightGlass_frag_207
+        weight: 1
+      - path: CeilingSkylightGlass_frag_208
+        weight: 1
+      - path: CeilingSkylightGlass_frag_209
+        weight: 1
+      - path: CeilingSkylightGlass_frag_210
+        weight: 1
+      - path: CeilingSkylightGlass_frag_211
+        weight: 1
+      - path: CeilingSkylightGlass_frag_212
+        weight: 1
+      - path: CeilingSkylightGlass_frag_213
+        weight: 1
+      - path: CeilingSkylightGlass_frag_214
+        weight: 1
+      - path: CeilingSkylightGlass_frag_215
+        weight: 1
+      - path: CeilingSkylightGlass_frag_216
+        weight: 1
+      - path: CeilingSkylightGlass_frag_217
+        weight: 1
+      - path: CeilingSkylightGlass_frag_218
+        weight: 1
+      - path: CeilingSkylightGlass_frag_219
+        weight: 1
+      - path: CeilingSkylightGlass_frag_220
+        weight: 1
+      - path: CeilingSkylightGlass_frag_221
+        weight: 1
+      - path: CeilingSkylightGlass_frag_222
+        weight: 1
+      - path: CeilingSkylightGlass_frag_223
+        weight: 1
+      - path: CeilingSkylightGlass_frag_224
+        weight: 1
+      - path: CeilingSkylightGlass_frag_225
+        weight: 1
+      - path: CeilingSkylightGlass_frag_226
+        weight: 1
+      - path: CeilingSkylightGlass_frag_227
+        weight: 1
+      - path: CeilingSkylightGlass_frag_228
+        weight: 1
+      - path: CeilingSkylightGlass_frag_229
+        weight: 1
+      - path: CeilingSkylightGlass_frag_230
+        weight: 1
+      - path: CeilingSkylightGlass_frag_231
+        weight: 1
+      - path: CeilingSkylightGlass_frag_232
+        weight: 1
+      - path: CeilingSkylightGlass_frag_233
+        weight: 1
+      - path: CeilingSkylightGlass_frag_234
+        weight: 1
+      - path: CeilingSkylightGlass_frag_235
+        weight: 1
+      - path: CeilingSkylightGlass_frag_236
+        weight: 1
+      - path: CeilingSkylightGlass_frag_237
+        weight: 1
+      - path: CeilingSkylightGlass_frag_238
+        weight: 1
+      - path: CeilingSkylightGlass_frag_239
+        weight: 1
+      - path: CeilingSkylightGlass_frag_240
+        weight: 1
+      - path: CeilingSkylightGlass_frag_241
+        weight: 1
+      - path: CeilingSkylightGlass_frag_242
+        weight: 1
+      - path: CeilingSkylightGlass_frag_243
+        weight: 1
+      - path: CeilingSkylightGlass_frag_244
+        weight: 1
+      - path: CeilingSkylightGlass_frag_245
+        weight: 1
+      - path: CeilingSkylightGlass_frag_246
+        weight: 1
+      - path: CeilingSkylightGlass_frag_247
+        weight: 1
+      - path: CeilingSkylightGlass_frag_248
+        weight: 1
+      - path: CeilingSkylightGlass_frag_249
+        weight: 1
+      - path: CeilingSkylightGlass_frag_250
+        weight: 1
+      - path: CeilingSkylightGlass_frag_251
+        weight: 1
+      - path: CeilingSkylightGlass_frag_252
+        weight: 1
+      - path: CeilingSkylightGlass_frag_253
+        weight: 1
+      - path: CeilingSkylightGlass_frag_254
+        weight: 1
+      - path: CeilingSkylightGlass_frag_255
+        weight: 1
+      - path: CeilingSkylightGlass_frag_256
+        weight: 1
+      - path: CeilingSkylightGlass_frag_257
+        weight: 1
+      - path: CeilingSkylightGlass_frag_258
+        weight: 1
+      - path: CeilingSkylightGlass_frag_259
+        weight: 1
+      - path: CeilingSkylightGlass_frag_260
+        weight: 1
+      - path: CeilingSkylightGlass_frag_261
+        weight: 1
+      - path: CeilingSkylightGlass_frag_262
+        weight: 1
+      - path: CeilingSkylightGlass_frag_263
+        weight: 1
+      - path: CeilingSkylightGlass_frag_264
+        weight: 1
+      - path: CeilingSkylightGlass_frag_265
+        weight: 1
+      - path: CeilingSkylightGlass_frag_266
+        weight: 1
+      - path: CeilingSkylightGlass_frag_267
+        weight: 1
+      - path: CeilingSkylightGlass_frag_268
+        weight: 1
+      - path: CeilingSkylightGlass_frag_269
+        weight: 1
+      - path: CeilingSkylightGlass_frag_270
+        weight: 1
+      - path: CeilingSkylightGlass_frag_271
+        weight: 1
+      - path: CeilingSkylightGlass_frag_272
+        weight: 1
+      - path: CeilingSkylightGlass_frag_273
+        weight: 1
+      - path: CeilingSkylightGlass_frag_274
+        weight: 1
+      - path: CeilingSkylightGlass_frag_275
+        weight: 1
+      - path: CeilingSkylightGlass_frag_276
+        weight: 1
+      - path: CeilingSkylightGlass_frag_277
+        weight: 1
+      - path: CeilingSkylightGlass_frag_278
+        weight: 1
+      - path: CeilingSkylightGlass_frag_279
+        weight: 1
+      - path: CeilingSkylightGlass_frag_280
+        weight: 1
+      - path: CeilingSkylightGlass_frag_281
+        weight: 1
+      - path: CeilingSkylightGlass_frag_282
+        weight: 1
+      - path: CeilingSkylightGlass_frag_283
+        weight: 1
+      - path: CeilingSkylightGlass_frag_284
+        weight: 1
+      - path: CeilingSkylightGlass_frag_285
+        weight: 1
+      - path: CeilingSkylightGlass_frag_286
+        weight: 1
+      - path: CeilingSkylightGlass_frag_287
+        weight: 1
+      - path: CeilingSkylightGlass_frag_288
+        weight: 1
+      - path: CeilingSkylightGlass_frag_289
+        weight: 1
+      - path: CeilingSkylightGlass_frag_290
+        weight: 1
+      - path: CeilingSkylightGlass_frag_291
+        weight: 1
+      - path: CeilingSkylightGlass_frag_292
+        weight: 1
+      - path: CeilingSkylightGlass_frag_293
+        weight: 1
+      - path: CeilingSkylightGlass_frag_294
+        weight: 1
+      - path: CeilingSkylightGlass_frag_295
+        weight: 1
+      - path: CeilingSkylightGlass_frag_296
+        weight: 1
+      - path: CeilingSkylightGlass_frag_297
+        weight: 1
+      - path: CeilingSkylightGlass_frag_298
+        weight: 1
+      - path: CeilingSkylightGlass_frag_299
+        weight: 1
+      - path: CeilingSkylightGlass_frag_300
+        weight: 1
+      - path: CeilingSkylightGlass_frag_301
+        weight: 1
+      - path: CeilingSkylightGlass_frag_302
+        weight: 1
+      - path: CeilingSkylightGlass_frag_303
+        weight: 1
+      - path: CeilingSkylightGlass_frag_304
+        weight: 1
+      - path: CeilingSkylightGlass_frag_305
+        weight: 1
+      - path: CeilingSkylightGlass_frag_306
+        weight: 1
+      - path: CeilingSkylightGlass_frag_307
+        weight: 1
+      - path: CeilingSkylightGlass_frag_308
+        weight: 1
+      - path: CeilingSkylightGlass_frag_309
+        weight: 1
+      - path: CeilingSkylightGlass_frag_310
+        weight: 1
+      - path: CeilingSkylightGlass_frag_311
+        weight: 1
+      - path: CeilingSkylightGlass_frag_312
+        weight: 1
+      - path: CeilingSkylightGlass_frag_313
+        weight: 1
+      - path: CeilingSkylightGlass_frag_314
+        weight: 1
+      - path: CeilingSkylightGlass_frag_315
+        weight: 1
+      - path: CeilingSkylightGlass_frag_316
+        weight: 1
+      - path: CeilingSkylightGlass_frag_317
+        weight: 1
+      - path: CeilingSkylightGlass_frag_318
+        weight: 1
+      - path: CeilingSkylightGlass_frag_319
+        weight: 1
+      - path: CeilingSkylightGlass_frag_320
+        weight: 1
+      - path: CeilingSkylightGlass_frag_321
+        weight: 1
+      - path: CeilingSkylightGlass_frag_322
+        weight: 1
+      - path: CeilingSkylightGlass_frag_323
+        weight: 1
+      - path: CeilingSkylightGlass_frag_324
+        weight: 1
+      - path: CeilingSkylightGlass_frag_325
+        weight: 1
+      - path: CeilingSkylightGlass_frag_326
+        weight: 1
+      - path: CeilingSkylightGlass_frag_327
+        weight: 1
+      - path: CeilingSkylightGlass_frag_328
+        weight: 1
+      - path: CeilingSkylightGlass_frag_329
+        weight: 1
+      - path: CeilingSkylightGlass_frag_330
+        weight: 1
+      - path: CeilingSkylightGlass_frag_331
+        weight: 1
+      - path: CeilingSkylightGlass_frag_332
+        weight: 1
+      - path: CeilingSkylightGlass_frag_333
+        weight: 1
+      - path: CeilingSkylightGlass_frag_334
+        weight: 1
+      - path: CeilingSkylightGlass_frag_335
+        weight: 1
+      - path: CeilingSkylightGlass_frag_336
+        weight: 1
+      - path: CeilingSkylightGlass_frag_337
+        weight: 1
+      - path: CeilingSkylightGlass_frag_338
+        weight: 1
+      - path: CeilingSkylightGlass_frag_339
+        weight: 1
+      - path: CeilingSkylightGlass_frag_340
+        weight: 1
+      - path: CeilingSkylightGlass_frag_341
+        weight: 1
+      - path: CeilingSkylightGlass_frag_342
+        weight: 1
+      - path: CeilingSkylightGlass_frag_343
+        weight: 1
+      - path: CeilingSkylightGlass_frag_344
+        weight: 1
+      - path: CeilingSkylightGlass_frag_345
+        weight: 1
+      - path: CeilingSkylightGlass_frag_346
+        weight: 1
+      - path: CeilingSkylightGlass_frag_347
+        weight: 1
+      - path: CeilingSkylightGlass_frag_348
+        weight: 1
+      - path: CeilingSkylightGlass_frag_349
+        weight: 1
+      - path: CeilingSkylightGlass_frag_350
+        weight: 1
+      - path: CeilingSkylightGlass_frag_351
+        weight: 1
+      - path: CeilingSkylightGlass_frag_352
+        weight: 1
+      - path: CeilingSkylightGlass_frag_353
+        weight: 1
+      - path: CeilingSkylightGlass_frag_354
+        weight: 1
+      - path: CeilingSkylightGlass_frag_355
+        weight: 1
+      - path: CeilingSkylightGlass_frag_356
+        weight: 1
+      - path: CeilingSkylightGlass_frag_357
+        weight: 1
+      - path: CeilingSkylightGlass_frag_358
+        weight: 1
+      - path: CeilingSkylightGlass_frag_359
+        weight: 1
+      - path: CeilingSkylightGlass_frag_360
+        weight: 1
+      - path: CeilingSkylightGlass_frag_361
+        weight: 1
+      - path: CeilingSkylightGlass_frag_362
+        weight: 1
+      - path: CeilingSkylightGlass_frag_363
+        weight: 1
+      - path: CeilingSkylightGlass_frag_364
+        weight: 1
+      - path: CeilingSkylightGlass_frag_365
+        weight: 1
+      - path: CeilingSkylightGlass_frag_366
+        weight: 1
+      - path: CeilingSkylightGlass_frag_367
+        weight: 1
+      - path: CeilingSkylightGlass_frag_368
+        weight: 1
+      - path: CeilingSkylightGlass_frag_369
+        weight: 1
+      - path: CeilingSkylightGlass_frag_370
+        weight: 1
+      - path: CeilingSkylightGlass_frag_371
+        weight: 1
+      - path: CeilingSkylightGlass_frag_372
+        weight: 1
+      - path: CeilingSkylightGlass_frag_373
+        weight: 1
+      - path: CeilingSkylightGlass_frag_374
+        weight: 1
+      - path: CeilingSkylightGlass_frag_375
+        weight: 1
+      - path: CeilingSkylightGlass_frag_376
+        weight: 1
+      - path: CeilingSkylightGlass_frag_377
+        weight: 1
+      - path: CeilingSkylightGlass_frag_378
+        weight: 1
+      - path: CeilingSkylightGlass_frag_379
+        weight: 1
+      - path: CeilingSkylightGlass_frag_380
+        weight: 1
+      - path: CeilingSkylightGlass_frag_381
+        weight: 1
+      - path: CeilingSkylightGlass_frag_382
+        weight: 1
+      - path: CeilingSkylightGlass_frag_383
+        weight: 1
+      - path: CeilingSkylightGlass_frag_384
+        weight: 1
+      - path: CeilingSkylightGlass_frag_385
+        weight: 1
+      - path: CeilingSkylightGlass_frag_386
+        weight: 1
+      - path: CeilingSkylightGlass_frag_387
+        weight: 1
+      - path: CeilingSkylightGlass_frag_388
+        weight: 1
+      - path: CeilingSkylightGlass_frag_389
+        weight: 1
+      - path: CeilingSkylightGlass_frag_390
+        weight: 1
+      - path: CeilingSkylightGlass_frag_391
+        weight: 1
+      - path: CeilingSkylightGlass_frag_392
+        weight: 1
+      - path: CeilingSkylightGlass_frag_393
+        weight: 1
+      - path: CeilingSkylightGlass_frag_394
+        weight: 1
+      - path: CeilingSkylightGlass_frag_395
+        weight: 1
+      - path: CeilingSkylightGlass_frag_396
+        weight: 1
+      - path: CeilingSkylightGlass_frag_397
+        weight: 1
+      - path: CeilingSkylightGlass_frag_398
+        weight: 1
+      - path: CeilingSkylightGlass_frag_399
+        weight: 1
+      - path: CeilingSkylightGlass_frag_400
+        weight: 1
+      - path: CeilingSkylightGlass_frag_401
+        weight: 1
+      - path: CeilingSkylightGlass_frag_402
+        weight: 1
+      - path: CeilingSkylightGlass_frag_403
+        weight: 1
+      - path: CeilingSkylightGlass_frag_404
+        weight: 1
+      - path: CeilingSkylightGlass_frag_405
+        weight: 1
+      - path: CeilingSkylightGlass_frag_406
+        weight: 1
+      - path: CeilingSkylightGlass_frag_407
+        weight: 1
+      - path: CeilingSkylightGlass_frag_408
+        weight: 1
+      - path: CeilingSkylightGlass_frag_409
+        weight: 1
+      - path: CeilingSkylightGlass_frag_410
+        weight: 1
+      - path: CeilingSkylightGlass_frag_411
+        weight: 1
+      - path: CeilingSkylightGlass_frag_412
+        weight: 1
+      - path: CeilingSkylightGlass_frag_413
+        weight: 1
+      - path: CeilingSkylightGlass_frag_414
+        weight: 1
+      - path: CeilingSkylightGlass_frag_415
+        weight: 1
+      - path: CeilingSkylightGlass_frag_416
+        weight: 1
+      - path: CeilingSkylightGlass_frag_417
+        weight: 1
+      - path: CeilingSkylightGlass_frag_418
+        weight: 1
+      - path: CeilingSkylightGlass_frag_419
+        weight: 1
+      - path: CeilingSkylightGlass_frag_420
+        weight: 1
+      - path: CeilingSkylightGlass_frag_421
+        weight: 1
+      - path: CeilingSkylightGlass_frag_422
+        weight: 1
+      - path: CeilingSkylightGlass_frag_423
+        weight: 1
+      - path: CeilingSkylightGlass_frag_424
+        weight: 1
+      - path: CeilingSkylightGlass_frag_425
+        weight: 1
+      - path: CeilingSkylightGlass_frag_426
+        weight: 1
+      - path: CeilingSkylightGlass_frag_427
+        weight: 1
+      - path: CeilingSkylightGlass_frag_428
+        weight: 1
+      - path: CeilingSkylightGlass_frag_429
+        weight: 1
+      - path: CeilingSkylightGlass_frag_430
+        weight: 1
+      - path: CeilingSkylightGlass_frag_431
+        weight: 1
+      - path: CeilingSkylightGlass_frag_432
+        weight: 1
+      - path: CeilingSkylightGlass_frag_433
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

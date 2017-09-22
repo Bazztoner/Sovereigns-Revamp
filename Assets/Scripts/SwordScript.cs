@@ -52,7 +52,15 @@ public class SwordScript : MonoBehaviour
 
     private void OnHorizontalAttack(params object[] paramsContainer)
     {
-        if (this.transform.GetComponentInParent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+        if (GameManager.screenDivided)
+        {
+            if (this.transform.GetComponentInParent<PlayerMovement>().gameObject.name == (string)paramsContainer[0])
+            {
+                _isHorizontal = true;
+                _isVertical = false;
+            }
+        }
+        else
         {
             _isHorizontal = true;
             _isVertical = false;
@@ -61,10 +69,18 @@ public class SwordScript : MonoBehaviour
 
     private void OnVerticalAttack(params object[] paramsContainer)
     {
-        if (this.transform.GetComponentInParent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+        if (GameManager.screenDivided)
         {
-            _isHorizontal = false;
-            _isVertical = true;
+            if (this.transform.GetComponentInParent<PlayerMovement>().gameObject.name == (string)paramsContainer[0])
+            {
+                _isHorizontal = false;
+                _isVertical = true;
+            }
+        }
+        else
+        {
+            _isHorizontal = true;
+            _isVertical = false;
         }
     }
 

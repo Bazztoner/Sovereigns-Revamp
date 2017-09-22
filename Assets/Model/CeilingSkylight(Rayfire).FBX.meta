@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f81fbd8fefc66974cb540b6c1c95f320
-timeCreated: 1506058635
+guid: 3af210c87ded0994bb577a6069a22864
+timeCreated: 1506065476
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -440,26 +440,6 @@ ModelImporter:
     100864: CeilingSkylightGlass_frag_431
     100866: CeilingSkylightGlass_frag_432
     100868: CeilingSkylightGlass_frag_433
-    100870: CeilingSkylightGlass_frag_434
-    100872: CeilingSkylightGlass_frag_435
-    100874: CeilingSkylightGlass_frag_436
-    100876: CeilingSkylightGlass_frag_437
-    100878: CeilingSkylightGlass_frag_438
-    100880: CeilingSkylightGlass_frag_439
-    100882: CeilingSkylightGlass_frag_440
-    100884: CeilingSkylightGlass_frag_441
-    100886: CeilingSkylightGlass_frag_442
-    100888: CeilingSkylightGlass_frag_443
-    100890: CeilingSkylightGlass_frag_444
-    100892: CeilingSkylightGlass_frag_445
-    100894: CeilingSkylightGlass_frag_446
-    100896: CeilingSkylightGlass_frag_447
-    100898: CeilingSkylightGlass_frag_448
-    100900: CeilingSkylightGlass_frag_449
-    100902: CeilingSkylightGlass_frag_450
-    100904: CeilingSkylightGlass_frag_451
-    100906: CeilingSkylightGlass_frag_452
-    100908: CeilingSkylightGlass_frag_453
     400000: //RootNode
     400002: CeilingSkylightFrame
     400004: CeilingSkylightGlass_frag_001
@@ -895,26 +875,6 @@ ModelImporter:
     400864: CeilingSkylightGlass_frag_431
     400866: CeilingSkylightGlass_frag_432
     400868: CeilingSkylightGlass_frag_433
-    400870: CeilingSkylightGlass_frag_434
-    400872: CeilingSkylightGlass_frag_435
-    400874: CeilingSkylightGlass_frag_436
-    400876: CeilingSkylightGlass_frag_437
-    400878: CeilingSkylightGlass_frag_438
-    400880: CeilingSkylightGlass_frag_439
-    400882: CeilingSkylightGlass_frag_440
-    400884: CeilingSkylightGlass_frag_441
-    400886: CeilingSkylightGlass_frag_442
-    400888: CeilingSkylightGlass_frag_443
-    400890: CeilingSkylightGlass_frag_444
-    400892: CeilingSkylightGlass_frag_445
-    400894: CeilingSkylightGlass_frag_446
-    400896: CeilingSkylightGlass_frag_447
-    400898: CeilingSkylightGlass_frag_448
-    400900: CeilingSkylightGlass_frag_449
-    400902: CeilingSkylightGlass_frag_450
-    400904: CeilingSkylightGlass_frag_451
-    400906: CeilingSkylightGlass_frag_452
-    400908: CeilingSkylightGlass_frag_453
     2300000: CeilingSkylightFrame
     2300002: CeilingSkylightGlass_frag_001
     2300004: CeilingSkylightGlass_frag_002
@@ -1349,26 +1309,6 @@ ModelImporter:
     2300862: CeilingSkylightGlass_frag_431
     2300864: CeilingSkylightGlass_frag_432
     2300866: CeilingSkylightGlass_frag_433
-    2300868: CeilingSkylightGlass_frag_434
-    2300870: CeilingSkylightGlass_frag_435
-    2300872: CeilingSkylightGlass_frag_436
-    2300874: CeilingSkylightGlass_frag_437
-    2300876: CeilingSkylightGlass_frag_438
-    2300878: CeilingSkylightGlass_frag_439
-    2300880: CeilingSkylightGlass_frag_440
-    2300882: CeilingSkylightGlass_frag_441
-    2300884: CeilingSkylightGlass_frag_442
-    2300886: CeilingSkylightGlass_frag_443
-    2300888: CeilingSkylightGlass_frag_444
-    2300890: CeilingSkylightGlass_frag_445
-    2300892: CeilingSkylightGlass_frag_446
-    2300894: CeilingSkylightGlass_frag_447
-    2300896: CeilingSkylightGlass_frag_448
-    2300898: CeilingSkylightGlass_frag_449
-    2300900: CeilingSkylightGlass_frag_450
-    2300902: CeilingSkylightGlass_frag_451
-    2300904: CeilingSkylightGlass_frag_452
-    2300906: CeilingSkylightGlass_frag_453
     3300000: CeilingSkylightFrame
     3300002: CeilingSkylightGlass_frag_001
     3300004: CeilingSkylightGlass_frag_002
@@ -1803,26 +1743,6 @@ ModelImporter:
     3300862: CeilingSkylightGlass_frag_431
     3300864: CeilingSkylightGlass_frag_432
     3300866: CeilingSkylightGlass_frag_433
-    3300868: CeilingSkylightGlass_frag_434
-    3300870: CeilingSkylightGlass_frag_435
-    3300872: CeilingSkylightGlass_frag_436
-    3300874: CeilingSkylightGlass_frag_437
-    3300876: CeilingSkylightGlass_frag_438
-    3300878: CeilingSkylightGlass_frag_439
-    3300880: CeilingSkylightGlass_frag_440
-    3300882: CeilingSkylightGlass_frag_441
-    3300884: CeilingSkylightGlass_frag_442
-    3300886: CeilingSkylightGlass_frag_443
-    3300888: CeilingSkylightGlass_frag_444
-    3300890: CeilingSkylightGlass_frag_445
-    3300892: CeilingSkylightGlass_frag_446
-    3300894: CeilingSkylightGlass_frag_447
-    3300896: CeilingSkylightGlass_frag_448
-    3300898: CeilingSkylightGlass_frag_449
-    3300900: CeilingSkylightGlass_frag_450
-    3300902: CeilingSkylightGlass_frag_451
-    3300904: CeilingSkylightGlass_frag_452
-    3300906: CeilingSkylightGlass_frag_453
     4300000: CeilingSkylightFrame
     4300002: CeilingSkylightGlass_frag_001
     4300004: CeilingSkylightGlass_frag_002
@@ -2257,27 +2177,7 @@ ModelImporter:
     4300862: CeilingSkylightGlass_frag_431
     4300864: CeilingSkylightGlass_frag_432
     4300866: CeilingSkylightGlass_frag_433
-    4300868: CeilingSkylightGlass_frag_434
-    4300870: CeilingSkylightGlass_frag_435
-    4300872: CeilingSkylightGlass_frag_436
-    4300874: CeilingSkylightGlass_frag_437
-    4300876: CeilingSkylightGlass_frag_438
-    4300878: CeilingSkylightGlass_frag_439
-    4300880: CeilingSkylightGlass_frag_440
-    4300882: CeilingSkylightGlass_frag_441
-    4300884: CeilingSkylightGlass_frag_442
-    4300886: CeilingSkylightGlass_frag_443
-    4300888: CeilingSkylightGlass_frag_444
-    4300890: CeilingSkylightGlass_frag_445
-    4300892: CeilingSkylightGlass_frag_446
-    4300894: CeilingSkylightGlass_frag_447
-    4300896: CeilingSkylightGlass_frag_448
-    4300898: CeilingSkylightGlass_frag_449
-    4300900: CeilingSkylightGlass_frag_450
-    4300902: CeilingSkylightGlass_frag_451
-    4300904: CeilingSkylightGlass_frag_452
-    4300906: CeilingSkylightGlass_frag_453
-    7400000: Take 001
+    7400000: VitrauxDestruct
     9500000: //RootNode
     11100000: //RootNode
   materials:
@@ -2302,10 +2202,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: VitrauxDestruct
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 100.00001
+      firstFrame: 10
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -3195,46 +3095,6 @@ ModelImporter:
       - path: CeilingSkylightGlass_frag_432
         weight: 1
       - path: CeilingSkylightGlass_frag_433
-        weight: 1
-      - path: CeilingSkylightGlass_frag_434
-        weight: 1
-      - path: CeilingSkylightGlass_frag_435
-        weight: 1
-      - path: CeilingSkylightGlass_frag_436
-        weight: 1
-      - path: CeilingSkylightGlass_frag_437
-        weight: 1
-      - path: CeilingSkylightGlass_frag_438
-        weight: 1
-      - path: CeilingSkylightGlass_frag_439
-        weight: 1
-      - path: CeilingSkylightGlass_frag_440
-        weight: 1
-      - path: CeilingSkylightGlass_frag_441
-        weight: 1
-      - path: CeilingSkylightGlass_frag_442
-        weight: 1
-      - path: CeilingSkylightGlass_frag_443
-        weight: 1
-      - path: CeilingSkylightGlass_frag_444
-        weight: 1
-      - path: CeilingSkylightGlass_frag_445
-        weight: 1
-      - path: CeilingSkylightGlass_frag_446
-        weight: 1
-      - path: CeilingSkylightGlass_frag_447
-        weight: 1
-      - path: CeilingSkylightGlass_frag_448
-        weight: 1
-      - path: CeilingSkylightGlass_frag_449
-        weight: 1
-      - path: CeilingSkylightGlass_frag_450
-        weight: 1
-      - path: CeilingSkylightGlass_frag_451
-        weight: 1
-      - path: CeilingSkylightGlass_frag_452
-        weight: 1
-      - path: CeilingSkylightGlass_frag_453
         weight: 1
       maskType: 3
       maskSource: {instanceID: 0}

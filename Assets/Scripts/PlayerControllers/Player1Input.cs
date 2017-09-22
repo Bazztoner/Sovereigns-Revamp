@@ -265,6 +265,7 @@ public class Player1Input : MonoBehaviour {
     {
         if ((string)paramsContainer[0] != this.gameObject.name)
         {
+            EventManager.DispatchEvent("StunParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
             _isStun = true;
             Invoke("StopStun", (float)paramsContainer[1]);
         }

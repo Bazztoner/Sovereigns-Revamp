@@ -11,7 +11,7 @@ public class PlayerStats : Photon.MonoBehaviour {
     private float _regenMult = 0.16f;
     private float _perfectBlockPerc = 10f;
     private float _imperfectBlockPerc = 45f;
-    private float _stunTime = 3f;
+    private float _stunTime = 1.2f;
 
     [HideInInspector]
 	public bool isDamaged = false;
@@ -101,6 +101,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         float fill = Mana / maxMana;
         EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
     }
+
     void LoseHP(float damage, string attackType)
     {
         float dmg;
@@ -117,6 +118,7 @@ public class PlayerStats : Photon.MonoBehaviour {
             {
                 dmg = (_perfectBlockPerc * damage) / 100;
                 EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+                //EventManager.DispatchEvent("StunParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), _stunTime });
             } 
             else
             {
@@ -130,6 +132,7 @@ public class PlayerStats : Photon.MonoBehaviour {
             {
                 dmg = (_perfectBlockPerc * damage) / 100;
                 EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+                //EventManager.DispatchEvent("StunParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), _stunTime });
             }
             else if (_isBlocking)
             {
@@ -149,6 +152,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         }
 
         if(!blocked) EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
+        else EventManager.DispatchEvent("BlockParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
 
         float fill = (Hp - dmg) / maxHp;
         if (fill < 0) fill = 0;

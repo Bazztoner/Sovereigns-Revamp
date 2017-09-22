@@ -20,11 +20,71 @@ public class ParticleManager : MonoBehaviour
     void Start ()
     {
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamage);
+        EventManager.AddEventListener("StunParticle", OnStunParticle);
+        EventManager.AddEventListener("BlockParticle", OnBlockParticle);
         EventManager.AddEventListener("EnemyDamaged", OnEnemyDamage);
         EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
         //EventManager.AddEventListener("TelekinesisObjectLaunched", OnObjectLaunched);
         EventManager.AddEventListener("RepulsiveTelekinesisLoad", OnRepulsiveTelekinesisLoad);
         EventManager.AddEventListener("RepulsiveTelekinesisCasted", OnRepulsiveTelekinesisCasted);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="paramsContainer">
+    /// CasterName - String ||  
+    /// Position ||  
+    /// PlayerParticles ||  
+    /// _stunTime
+    /// </param>
+    void OnStunParticle(object[] paramsContainer)
+    {
+        var caster = (PlayerParticles)paramsContainer[2];
+        var tempPos = (Vector3)paramsContainer[1];
+        var allChilds = caster.GetComponentsInChildren<Transform>();
+        var stunTime = (float)paramsContainer[3];
+        Transform parent = caster.transform;
+
+        foreach (Transform child in allChilds)
+        {
+            if (child.name == "Helmet")
+            {
+                parent = child;
+                break;
+            }
+        }
+
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "StunGraphic", parent, stunTime);
+        else caster.ParticleCaller(parts[(int)ParticleID.StunGraphic].gameObject, parent, stunTime);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="paramsContainer">
+    /// CasterName - String ||  
+    /// Position ||  
+    /// PlayerParticles ||  
+    /// </param>
+    void OnBlockParticle(object[] paramsContainer)
+    {
+        var caster = (PlayerParticles)paramsContainer[2];
+        var tempPos = (Vector3)paramsContainer[1];
+        var allChilds = caster.GetComponentsInChildren<Transform>();
+        Vector3 pos = Vector3.zero;
+
+        foreach (Transform child in allChilds)
+        {
+            if (child.name == "Shield")
+            {
+                pos = child.position;
+                break;
+            }
+        }
+
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "BlockingSparks", pos, caster.transform.forward);
+        else caster.ParticleCaller(parts[(int)ParticleID.BlockingSparks].gameObject, pos, caster.transform.forward);
     }
 
     void OnRepulsiveTelekinesisLoad(object[] paramsContainer)
@@ -91,5 +151,6 @@ public enum ParticleID
     BlockingSparks,
     ChargeShockwave,
     LaunchShockwave,
+    StunGraphic,
     Count
 }

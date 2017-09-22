@@ -13,6 +13,7 @@ public class DestructibleImpactArea : MonoBehaviour
     {
         all = GetComponentsInChildren<MeshRenderer>().Where(x => x.gameObject != gameObject).ToArray();
         rotAngles = GetComponentInParent<DestructibleObject>().rotAngles;
+        SetVisible(false);
         FindCamera();
     }
 
