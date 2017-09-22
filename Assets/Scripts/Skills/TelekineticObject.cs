@@ -127,6 +127,7 @@ public class TelekineticObject : Photon.MonoBehaviour
     }
     IEnumerator DestroyTelekineticObject(float time)
     {
+        EventManager.RemoveEventListener("TelekinesisObjectPulled", OnObjectPulled);
         if (particleName == null || particleName == default(string))
         {
             particleName = "JarParticle";

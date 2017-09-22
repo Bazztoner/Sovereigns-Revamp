@@ -15,7 +15,7 @@ AvatarMask:
   - m_Path: Base Human
     m_Weight: 1
   - m_Path: Base HumanHub001
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanHub001Bone001
     m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanHub001Bone001/Base HumanHub001Bone001Bone001
@@ -77,20 +77,20 @@ AvatarMask:
   - m_Path: Base HumanHub001/Base HumanRLeg1/Right UpLeg
     m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone
     m_Weight: 1
@@ -191,7 +191,7 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
       HumanRArm1
@@ -286,30 +286,30 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/RS
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1/Base HumanSpine2
       1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1/Base HumanSpine2
       1/Base HumanHub003
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1/Base HumanSpine2
       1/Base HumanHub003/Helmet
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Wing
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanSpine5/Base HumanHub002/Wing_Spades
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Base HumanHub001/Waist
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: ChestPlate
     m_Weight: 1
   - m_Path: Left Boot

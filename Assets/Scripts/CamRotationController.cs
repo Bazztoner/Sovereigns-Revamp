@@ -176,7 +176,7 @@ public class CamRotationController : MonoBehaviour
                 
                 if (!_lockOn && (_instHorizontal != 0 || _instVertical != 0))
                 {
-                    _rotationY += -_instVertical * rotateSpeed * sensivity;
+                    _rotationY += _instVertical * rotateSpeed * sensivity;
                     _rotationY = Mathf.Clamp(_rotationY, minimumY, maximumY);
                     _rotationX = _instHorizontal * rotateSpeed * sensivity + transform.eulerAngles.y;
                     

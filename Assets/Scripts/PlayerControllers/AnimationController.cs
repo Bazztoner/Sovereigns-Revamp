@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,22 @@ public class AnimationController : MonoBehaviour {
         EventManager.AddEventListener("IsDead", OnIsDead);
         EventManager.AddEventListener("IsDamaged", OnIsDamaged);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
+        EventManager.AddEventListener("GuardBreak", OnGuardBreak);
+        EventManager.AddEventListener("StunParticle", OnStun);
+    }
+
+    void OnStun(object[] paramsContainer)
+    {
+        if(gameObject.name == (string)paramsContainer[0])
+        {
+            _anim.SetBool("X", false);
+            _anim.SetBool("Y", false);
+        }
+    }
+
+    void OnGuardBreak(object[] paramsContainer)
+    {
+        if (gameObject.name == (string)paramsContainer[0]) _anim.SetBool("guardBreak", true);
     }
 
     /// <summary>Running animations</summary>

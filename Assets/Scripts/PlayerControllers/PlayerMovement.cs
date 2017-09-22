@@ -9,7 +9,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     private Transform _enemy;
     private float _originalWalkSpeed;
     private float _originalRunSpeed;
-    private float _knockBackForce = 5500f;
+    private float _knockBackForce = 4500f;
 
     [HideInInspector]
     public float speed;
@@ -131,7 +131,8 @@ public class PlayerMovement : Photon.MonoBehaviour {
 
     private void DoKnockBack()
     {
-        _rigid.AddForce(Enemy.forward * _knockBackForce * Time.deltaTime, ForceMode.Impulse);
+        EventManager.DispatchEvent("GuardBreak", new object[] { gameObject.name });
+        //_rigid.AddForce(Enemy.forward * _knockBackForce * Time.deltaTime, ForceMode.Impulse);
     }
     #endregion
 
