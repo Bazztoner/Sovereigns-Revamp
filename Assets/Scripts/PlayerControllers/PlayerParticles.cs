@@ -18,7 +18,10 @@ public class PlayerParticles : Photon.MonoBehaviour {
 
     void Update()
     {
-        //_runParticle.transform.forward = -_playerInput.RunDirection;
+        if (_runParticle.activeInHierarchy)
+        {
+            _runParticle.transform.forward = new Vector3(transform.TransformDirection(_playerInput.RunDirection).x, 0, transform.TransformDirection(_playerInput.RunDirection).z);
+        }
     }
 
     #region Initialization

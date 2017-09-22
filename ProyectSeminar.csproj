@@ -262,6 +262,7 @@
     <Compile Include="Assets\Scripts\StateVarUnable.cs" />
     <Compile Include="Assets\Scripts\SwordScript.cs" />
     <Compile Include="Assets\Scripts\Temp\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Utility\Billboard.cs" />
     <Compile Include="Assets\Scripts\Utility\FList.cs" />
     <Compile Include="Assets\Scripts\Utility\IntLayers.cs" />
     <Compile Include="Assets\Scripts\Utility\SlowMotion.cs" />

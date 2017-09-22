@@ -235,10 +235,14 @@ public class CamRotationController : MonoBehaviour
         var checkVision = Physics.Raycast(_fixedCharPos, dir, dist, _enemyMask) && Physics.Raycast(transform.TransformPoint(_cam.transform.localPosition), dir2, lockOnDistance, _enemyMask);
 
         if (!_lockOn && Vector3.Distance(_character.position, _enemy.position) <= lockOnDistance && !checkVision)
+        {
             _lockOn = true;
+            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.name, _lockOn, proyectionLayer });
+        }
         else if (_lockOn)
         {
             _lockOn = false;
+            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.name, _lockOn, proyectionLayer });
             _keepReadjusting = true;
         }
     }

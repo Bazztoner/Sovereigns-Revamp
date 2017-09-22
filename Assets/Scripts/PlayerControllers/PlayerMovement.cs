@@ -94,7 +94,6 @@ public class PlayerMovement : Photon.MonoBehaviour {
     /// <summary>Makes the character run</summary>
     public void Run()
     {
-        EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, true });
         isRunning = true;
         sprintAvailable = false;
         speed = _originalRunSpeed;
@@ -103,7 +102,6 @@ public class PlayerMovement : Photon.MonoBehaviour {
     /// <summary>Makes the character walk</summary>
     public void StopRun()
     {
-        EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, false });
         isRunning = false;
         sprintAvailable = true;
         speed = _originalWalkSpeed;
@@ -113,7 +111,20 @@ public class PlayerMovement : Photon.MonoBehaviour {
     private void SetMovementStats(Vector3 direction)
     {
         xMovement = direction.x;
-        yMovement = isRunning ? direction.z * 2 : direction.z;
+        //yMovement = isRunning ? direction.z * 2 : direction.z;
+        #region Cambios Iván 22/9
+        //Ahora las partículas de correr se prienden bien
+        if (isRunning)
+        {
+            yMovement = direction.z * 2;
+            EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, true });
+        }
+        else
+        {
+            yMovement = direction.z;
+            EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, false });
+        }
+        #endregion
 
         EventManager.DispatchEvent("RunningAnimations", new object[] { this.gameObject.name, xMovement, yMovement });
     }
