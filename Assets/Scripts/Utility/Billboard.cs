@@ -26,11 +26,15 @@ public class Billboard : MonoBehaviour
     void OnLockOnActivation(object[] paramsContainer)
     {
         _cam = (Camera)paramsContainer[0];
-        var sender = (string)paramsContainer[1];
+        var senderName = (string)paramsContainer[1];
         var activate = (bool)paramsContainer[2];
         var layer = (int)paramsContainer[3];
+        var sender = GetComponentInParent<Player1Input>();
 
-        if (sender == GetComponentInParent<Player1Input>().gameObject.name) return;
+        if (sender != null)
+        {
+            if (senderName == sender.gameObject.name) return;
+        }
 
         if (activate)
         {
