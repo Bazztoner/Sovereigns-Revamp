@@ -246,8 +246,8 @@ public class Player1Input : MonoBehaviour {
                     _ps.DestructiveSkill(_pst.mana);
                 //else if (InputManager.instance.GetClassSkill())
                     //_ps.GravitationalSkill(_pst.mana);
-                //else if (!_ps.isPulling && InputManager.instance.GetSkill())
-                //    _ps.RepulsiveSkill(_pst.mana);
+                else if (!_ps.isPulling && InputManager.instance.GetSkill())
+                    _ps.RepulsiveSkill(_pst.mana);
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetUseItem())
                     _ps.BlinkSkill(_pst.mana);
             }

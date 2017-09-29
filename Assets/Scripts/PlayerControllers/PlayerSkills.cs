@@ -35,7 +35,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         _gravitationalSkill = new GravitationalTelekinesis();
         _gravitationalSkill.Init();
 
-        _repulsiveSkill = new RepulsiveTelekinesis();
+        _repulsiveSkill = new RepulsiveTelekinesis1();
         _repulsiveSkill.Init();
 
         _blinkSkill = new Blink();

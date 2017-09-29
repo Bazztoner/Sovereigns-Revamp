@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-/// <summary>
-/// FIXME: Rehacer
-/// </summary>
 [RequireComponent(typeof(LineRenderer))]
 public class TrajectoryPredicter : MonoBehaviour
 {
