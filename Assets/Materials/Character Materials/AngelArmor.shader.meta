@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 2d8649dbe53609349a917e0e842bcbc0
+timeCreated: 1506661102
+licenseType: Free
+ShaderImporter:
+  defaultTextures:
+  - _Angel_armor_Angel_Armor_Normal: {fileID: 2800000, guid: b7509aa2b4f21ee4aae564be4a6438a7,
+      type: 3}
+  - _FabricMask: {fileID: 2800000, guid: a1c44a0104646ef4fb872bdf09f040ed, type: 3}
+  - _LeatherMask: {fileID: 2800000, guid: dcd4695d3d04346458bcbfd9d32a7e3e, type: 3}
+  - _FeatherMask: {fileID: 2800000, guid: bc05315d45cc1324e879741b665d9f40, type: 3}
+  - _Angel_armor_Angel_Armor_AlbedoTransparency: {fileID: 2800000, guid: cea5711908e46ac42a5f8fe0dc5e8323,
+      type: 3}
+  - _Angel_armor_Angel_Armor_Emission: {fileID: 2800000, guid: c562a47e9d99c7749b86b5d3dc5ec2ab,
+      type: 3}
+  - _Angel_armor_Angel_Armor_MetallicSmoothness: {fileID: 2800000, guid: 45cde113058dc5b4bacf06427768b39d,
+      type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
