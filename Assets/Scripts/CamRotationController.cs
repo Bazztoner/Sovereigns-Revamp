@@ -129,6 +129,12 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("DoDummyTest", UseProjections);
         EventManager.AddEventListener("DividedScreen", UseProjections);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
+        EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
+    }
+
+    void OnTransitionSmoothUpdate(object[] paramsContainer)
+    {
+        smoothCamera = (bool)paramsContainer[0];
     }
 
     private Transform GetEnemy()

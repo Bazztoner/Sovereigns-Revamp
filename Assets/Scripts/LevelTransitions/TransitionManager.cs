@@ -190,6 +190,8 @@ public class TransitionManager : MonoBehaviour
     /// <param name="paramsContainer"></param>
     void OnTransitionDummiesActivated(LevelTransition transition, GameObject attacker, GameObject victim)
     {
+        EventManager.DispatchEvent("TransitionSmoothCameraUpdate", new object[] { false });
+
         var dummyAttacker = GameObject.Instantiate(Resources.Load("Transitions/Dummies/TransitionPlayerDummy") as GameObject, attacker.transform.position, Quaternion.identity);
         dummyAttacker.transform.forward = attacker.transform.forward;
         attacker.SetActive(false);
@@ -265,6 +267,15 @@ public class TransitionManager : MonoBehaviour
 
         yield return new WaitForSeconds(cameraDelay);
 
+        /*blackScreen.enabled = true;
+        var colorTransparent = blackScreen.color;
+        colorTransparent.a = 1;
+        blackScreen.color = colorTransparent;
+        var fadeTime = maxTimeForLerpingPosition / 2.3f;
+        colorTransparent.a = 0;
+
+        StartCoroutine(LerpBlackScreen(blackScreen.color, colorTransparent, blackScreen.color, fadeTime));*/
+
         //Cambiamos las cámaras
         StartCoroutine(
                         LerpPosition(transitionElements.Item1.camerasForTransition[0].transform,
@@ -332,7 +343,31 @@ public class TransitionManager : MonoBehaviour
        
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
         EventManager.AddEventListener("DummyDamaged", OnDummyDamaged);
+
+        //StartCoroutine(BlackScreenUpdate(.5f));
+        Invoke("CameraSmoothChange", .2f);
         EventManager.DispatchEvent("TransitionBlockInputs", new object[] { true });
+    }
+
+    IEnumerator BlackScreenUpdate(float startDelay)
+    {
+        yield return new WaitForSeconds(startDelay);
+
+        var color = blackScreen.color;
+        var colorTransparent = blackScreen.color;
+        var fadeTime = .3f;
+        colorTransparent.a = 0;
+
+        StartCoroutine(LerpBlackScreen(blackScreen.color, blackScreen.color, colorTransparent, fadeTime));
+        yield return new WaitForSeconds(fadeTime);
+        blackScreen.enabled = false;
+        Invoke("CameraSmoothChange", .2f);
+        EventManager.DispatchEvent("TransitionBlockInputs", new object[] { true });
+    }
+
+    void CameraSmoothChange()
+    {
+        EventManager.DispatchEvent("TransitionSmoothCameraUpdate", new object[] { true });
     }
 
     IEnumerator LerpPosition(Transform objToMove, Vector3 startPos, Vector3 endPos, float maxTime)
@@ -355,6 +390,31 @@ public class TransitionManager : MonoBehaviour
         {
             i += Time.deltaTime / maxTime;
             objToMove.forward = Vector3.Lerp(startPos, endPos, i);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator LerpFloat(float value, float startValue, float endValue, float maxTime)
+    {
+        var i = 0f;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / maxTime;
+            value = Mathf.Lerp(startValue, endValue, i);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator LerpBlackScreen(Color color, Color startValue, Color endValue, float maxTime)
+    {
+        var i = 0f;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / maxTime;
+            color = Color.Lerp(startValue, endValue, i);
+            blackScreen.color = color;
             yield return new WaitForEndOfFrame();
         }
     }

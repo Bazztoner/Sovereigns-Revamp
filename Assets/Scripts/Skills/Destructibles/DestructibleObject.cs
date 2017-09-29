@@ -36,7 +36,6 @@ public class DestructibleObject : Photon.MonoBehaviour
         if (allObjs == null) allObjs = new List<DestructibleObject>();
         allObjs.Add(this);
         isAlive = true;
-
         EventManager.AddEventListener("DividedScreen", OnDividedScreen);
     }
 
