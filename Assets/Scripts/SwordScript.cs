@@ -11,6 +11,8 @@ public class SwordScript : MonoBehaviour
     private bool _isDetecting = false;
     private bool _isHorizontal = false;
     private bool _isVertical = false;
+    bool _isParry = false;
+    bool _isGuardBreak = false;
     TrailRenderer _trail;
 
     void Start()
@@ -19,6 +21,8 @@ public class SwordScript : MonoBehaviour
         EventManager.AddEventListener("AttackExit", OnAttackExit);
         EventManager.AddEventListener("HorizontalAttack", OnHorizontalAttack);
         EventManager.AddEventListener("VerticalAttack", OnVerticalAttack);
+        EventManager.AddEventListener("ParryAttack", OnParryAttack);
+        EventManager.AddEventListener("GuardBreakAttack", OnGuardBreakAttack);
         GetTrail(false);
     }
 
@@ -33,7 +37,7 @@ public class SwordScript : MonoBehaviour
                 ActivateTrail(true);
             }
         }
-        else if(!_isDetecting)
+        else if (!_isDetecting)
         {
             _isDetecting = true;
             _appliedDamage = (int)paramsContainer[1];
@@ -57,13 +61,17 @@ public class SwordScript : MonoBehaviour
             if (this.transform.GetComponentInParent<PlayerMovement>().gameObject.name == (string)paramsContainer[0])
             {
                 _isHorizontal = true;
+                _isParry = false;
                 _isVertical = false;
+                _isGuardBreak = false;
             }
         }
         else
         {
             _isHorizontal = true;
             _isVertical = false;
+            _isParry = false;
+            _isGuardBreak = false;
         }
     }
 
@@ -75,12 +83,58 @@ public class SwordScript : MonoBehaviour
             {
                 _isHorizontal = false;
                 _isVertical = true;
+                _isParry = false;
+                _isGuardBreak = false;
             }
         }
         else
         {
             _isHorizontal = true;
+            _isParry = false;
             _isVertical = false;
+            _isGuardBreak = false;
+        }
+    }
+
+    private void OnParryAttack(params object[] paramsContainer)
+    {
+        if (GameManager.screenDivided)
+        {
+            if (this.transform.GetComponentInParent<PlayerMovement>().gameObject.name == (string)paramsContainer[0])
+            {
+                _isHorizontal = false;
+                _isVertical = false;
+                _isGuardBreak = false;
+                _isParry = true;
+            }
+        }
+        else
+        {
+            _isHorizontal = false;
+            _isVertical = false;
+            _isGuardBreak = false;
+            _isParry = true;
+        }
+    }
+
+    private void OnGuardBreakAttack(params object[] paramsContainer)
+    {
+        if (GameManager.screenDivided)
+        {
+            if (this.transform.GetComponentInParent<PlayerMovement>().gameObject.name == (string)paramsContainer[0])
+            {
+                _isHorizontal = false;
+                _isVertical = false;
+                _isGuardBreak = true;
+                _isParry = false;
+            }
+        }
+        else
+        {
+            _isHorizontal = false;
+            _isVertical = false;
+            _isGuardBreak = true;
+            _isParry = false;
         }
     }
 
@@ -90,7 +144,8 @@ public class SwordScript : MonoBehaviour
         {
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;
-            
+            var myName = GetComponentInParent<Player1Input>().gameObject.name;
+
             _isDetecting = false;
             _appliedDamage = 0;
 
@@ -117,8 +172,10 @@ public class SwordScript : MonoBehaviour
             {
                 if (CheckIfFrontal(other))
                 {
-                    if(_isHorizontal) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "MeleeHorizontal");
-                    else if(_isVertical) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "MeleeVertical");
+                    if (_isHorizontal) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "MeleeHorizontal", myName);
+                    else if (_isVertical) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "MeleeVertical", myName);
+                    else if (_isParry) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "ParryAttack", myName);
+                    else if (_isGuardBreak) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "GuardBreakAttack", myName);
                 }
                 else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee");
             }

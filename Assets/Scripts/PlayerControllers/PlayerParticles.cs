@@ -164,9 +164,10 @@ public class PlayerParticles : Photon.MonoBehaviour {
         return inst;
     }
 
-    public GameObject ParticleCaller(GameObject part, Transform parent, float lifeTime)
+    public GameObject ParticleCaller(GameObject part, Transform parent, float lifeTime, bool alignToZero)
     {
         var inst = Instantiate(part, parent);
+        if (alignToZero) inst.transform.localPosition = Vector3.zero;
         Destroy(inst, lifeTime);
         return inst;
     }

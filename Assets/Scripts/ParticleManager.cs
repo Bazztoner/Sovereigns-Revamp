@@ -21,6 +21,7 @@ public class ParticleManager : MonoBehaviour
     {
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamage);
         EventManager.AddEventListener("StunParticle", OnStunParticle);
+        EventManager.AddEventListener("GuardBreakParticle", OnGuardBreakParticle);
         EventManager.AddEventListener("BlockParticle", OnBlockParticle);
         EventManager.AddEventListener("EnemyDamaged", OnEnemyDamage);
         EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
@@ -56,7 +57,37 @@ public class ParticleManager : MonoBehaviour
         }
 
         if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "StunGraphic", parent, stunTime);
-        else caster.ParticleCaller(parts[(int)ParticleID.StunGraphic].gameObject, parent, stunTime);
+        else caster.ParticleCaller(parts[(int)ParticleID.StunGraphic].gameObject, parent, stunTime, true);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="paramsContainer">
+    /// CasterName - String ||  
+    /// Position ||  
+    /// PlayerParticles ||  
+    /// _breakTime
+    /// </param>
+    void OnGuardBreakParticle(object[] paramsContainer)
+    {
+        var caster = (PlayerParticles)paramsContainer[2];
+        var tempPos = (Vector3)paramsContainer[1];
+        var allChilds = caster.GetComponentsInChildren<Transform>();
+        var stunTime = (float)paramsContainer[3];
+        Transform parent = caster.transform;
+
+        foreach (Transform child in allChilds)
+        {
+            if (child.name == "Shield")
+            {
+                parent = child;
+                break;
+            }
+        }
+
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "GuardBreakGraphic", parent, stunTime);
+        else caster.ParticleCaller(parts[(int)ParticleID.GuardBreakGraphic].gameObject, parent, stunTime, true);
     }
 
     /// <summary>
@@ -152,5 +183,6 @@ public enum ParticleID
     ChargeShockwave,
     LaunchShockwave,
     StunGraphic,
+    GuardBreakGraphic,
     Count
 }

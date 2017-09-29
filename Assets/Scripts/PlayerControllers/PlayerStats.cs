@@ -8,6 +8,7 @@ public class PlayerStats : Photon.MonoBehaviour {
     private bool _isBlocking = false;
     private bool _isBlockingUp = false;
     private bool _isKnockBackAttack = false;
+    private bool _isStunAttack = false;
     private float _regenMult = 0.16f;
     private float _perfectBlockPerc = 10f;
     private float _imperfectBlockPerc = 45f;
@@ -84,6 +85,8 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
         EventManager.AddEventListener("KnockBackEnter", OnKnockBackEnter);
         EventManager.AddEventListener("KnockBackExit", OnKnockBackExit);
+        //EventManager.AddEventListener("StunAttackEnter", OnStunAttackEnter);
+        //EventManager.AddEventListener("StunAttackExit", OnStunAttackExit);
     }
     #endregion
 
@@ -112,14 +115,13 @@ public class PlayerStats : Photon.MonoBehaviour {
             if (_isBlockingUp)
             {
                 dmg = (_imperfectBlockPerc * damage) / 100;
-                if(_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
-            } 
+                if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+            }
             else if (_isBlocking)
             {
                 dmg = (_perfectBlockPerc * damage) / 100;
                 EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
-                //EventManager.DispatchEvent("StunParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), _stunTime });
-            } 
+            }
             else
             {
                 dmg = damage;
@@ -132,18 +134,33 @@ public class PlayerStats : Photon.MonoBehaviour {
             {
                 dmg = (_perfectBlockPerc * damage) / 100;
                 EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
-                //EventManager.DispatchEvent("StunParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), _stunTime });
             }
             else if (_isBlocking)
             {
                 dmg = (_imperfectBlockPerc * damage) / 100;
-                if(_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
-            } 
+                if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+            }
             else
             {
                 dmg = damage;
                 blocked = false;
             }
+        }
+        else if (attackType == "ParryAttack")
+        {
+            if (GetComponent<PlayerCombat>().isAttacking) EventManager.DispatchEvent("Stun", new object[] { "Me", _stunTime });
+            dmg = 10;
+            blocked = false;
+        }
+        else if (attackType == "GuardBreakAttack")
+        {
+            if (_isBlocking || _isBlockingUp)
+            {
+                EventManager.DispatchEvent("Stun", new object[] { "Me", _stunTime });
+                EventManager.DispatchEvent("GuardBreak", new object[] { "Me", _stunTime * 2 });
+            }
+            dmg = damage * 1.6f;
+            blocked = false;
         }
         else
         {
@@ -151,7 +168,79 @@ public class PlayerStats : Photon.MonoBehaviour {
             blocked = false;
         }
 
-        if(!blocked) EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
+        if (!blocked) EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
+        else EventManager.DispatchEvent("BlockParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
+
+        float fill = (Hp - dmg) / maxHp;
+        if (fill < 0) fill = 0;
+        EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, (dmg > Hp ? 0 : Hp - dmg), fill });
+        Hp = dmg >= Hp ? 0 : Hp - dmg;
+
+    }
+    void LoseHP(float damage, string attackType, string attackerName)
+    {
+        float dmg;
+        bool blocked = true;
+
+        if (attackType == "MeleeHorizontal")
+        {
+            if (_isBlockingUp)
+            {
+                dmg = (_imperfectBlockPerc * damage) / 100;
+                if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+            }
+            else if (_isBlocking)
+            {
+                dmg = (_perfectBlockPerc * damage) / 100;
+                EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+            }
+            else
+            {
+                dmg = damage;
+                blocked = false;
+            }
+        }
+        else if (attackType == "MeleeVertical")
+        {
+            if (_isBlockingUp)
+            {
+                dmg = (_perfectBlockPerc * damage) / 100;
+                EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+            }
+            else if (_isBlocking)
+            {
+                dmg = (_imperfectBlockPerc * damage) / 100;
+                if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+            }
+            else
+            {
+                dmg = damage;
+                blocked = false;
+            }
+        }
+        else if (attackType == "ParryAttack")
+        {
+            if (GetComponent<PlayerCombat>().isAttacking) EventManager.DispatchEvent("Stun", new object[] { attackerName, _stunTime });
+            dmg = 10;
+            blocked = false;
+        }
+        else if (attackType == "GuardBreakAttack")
+        {
+            if (_isBlocking || _isBlockingUp)
+            {
+                EventManager.DispatchEvent("Stun", new object[] { attackerName, _stunTime });
+                EventManager.DispatchEvent("GuardBreak", new object[] { attackerName, _stunTime * 2 });
+            }
+            dmg = damage * 1.6f;
+            blocked = false;
+        }
+        else
+        {
+            dmg = damage;
+            blocked = false;
+        }
+
+        if (!blocked) EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
         else EventManager.DispatchEvent("BlockParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
 
         float fill = (Hp - dmg) / maxHp;
@@ -177,6 +266,12 @@ public class PlayerStats : Photon.MonoBehaviour {
     {
         //EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
         LoseHP(damage, attackType);
+    }
+
+    public void TakeDamage(float damage, string attackType, string attackerName)
+    {
+        //EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
+        LoseHP(damage, attackType, attackerName);
     }
 
     #region Cambios Iván 21/9
@@ -210,7 +305,6 @@ public class PlayerStats : Photon.MonoBehaviour {
         {
             ConsumeMana((int)paramsContainer[0]);
         }
-       
     }
 
     private void OnGameFinished(params object[] paramsContainer)
@@ -270,6 +364,18 @@ public class PlayerStats : Photon.MonoBehaviour {
     {
         if (this.gameObject.name != (string)paramsContainer[0])
             _isKnockBackAttack = false;
+    }
+
+    private void OnStunAttackEnter(params object[] paramsContainer)
+    {
+        if (this.gameObject.name != (string)paramsContainer[0])
+            _isStunAttack = true;
+    }
+
+    private void OnStunAttackExit(params object[] paramsContainer)
+    {
+        if (this.gameObject.name != (string)paramsContainer[0])
+            _isStunAttack = false;
     }
     #endregion
 }

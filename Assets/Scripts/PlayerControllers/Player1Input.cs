@@ -22,6 +22,7 @@ public class Player1Input : MonoBehaviour {
     private bool _gameInCourse = true;
     private bool _canMove = true;
     private bool _canAttack = true;
+    bool _canBlock = true;
     private bool _isStun = false;
     private float _dodgeTime = 0.15f;
 
@@ -43,6 +44,7 @@ public class Player1Input : MonoBehaviour {
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("TransitionBlockInputs", OnTransition);
         EventManager.AddEventListener("Stun", OnStun);
+        EventManager.AddEventListener("GuardBreak", OnGuardBreak);
     }
 
     void Update()
@@ -204,7 +206,7 @@ public class Player1Input : MonoBehaviour {
             }
         }
 
-        if (_canMove)
+        if (_canMove && _canBlock)
         {
             if (readJoystick)
             {
@@ -246,8 +248,8 @@ public class Player1Input : MonoBehaviour {
                     _ps.DestructiveSkill(_pst.mana);
                 //else if (InputManager.instance.GetClassSkill())
                     //_ps.GravitationalSkill(_pst.mana);
-                else if (!_ps.isPulling && InputManager.instance.GetSkill())
-                    _ps.RepulsiveSkill(_pst.mana);
+                //else if (!_ps.isPulling && InputManager.instance.GetSkill())
+                   // _ps.RepulsiveSkill(_pst.mana);
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetUseItem())
                     _ps.BlinkSkill(_pst.mana);
             }
@@ -270,7 +272,23 @@ public class Player1Input : MonoBehaviour {
             Invoke("StopStun", (float)paramsContainer[1]);
         }
     }
+
+    private void OnGuardBreak(params object[] paramsContainer)
+    {
+        if ((string)paramsContainer[0] != this.gameObject.name)
+        {
+            EventManager.DispatchEvent("GuardBreakParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
+
+            _canBlock = false;
+            Invoke("BlockEnable", (float)paramsContainer[1]);
+        }
+    }
     #endregion
+
+    void BlockEnable()
+    {
+        _canBlock = true;
+    }
 
     #region Coroutines
     /// <summary>Checks if the character is going to Run or going to Roll</summary>
