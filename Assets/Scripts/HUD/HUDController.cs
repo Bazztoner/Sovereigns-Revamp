@@ -34,8 +34,31 @@ public class HUDController : Photon.MonoBehaviour
         EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
         EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
+        EventManager.AddEventListener("LockOnActivated", OnLockOnActivated);
 
         //EventManager.AddEventListener("DamageMade", OnDamageMade);
+    }
+
+    private void OnLockOnActivated(object[] paramsContainer)
+    {
+        if (GameManager.screenDivided)
+        {
+            if ((this.gameObject.name == "HUD1" && (string)paramsContainer[1] == "Player1") ||
+                (this.gameObject.name == "HUD2" && (string)paramsContainer[1] == "Player2"))
+            {
+                if ((bool)paramsContainer[2])
+                    crosshair.SetActive(false);
+                else
+                    crosshair.SetActive(true);
+            }
+        }
+        else
+        {
+            if ((bool)paramsContainer[2])
+                crosshair.SetActive(false);
+            else
+                crosshair.SetActive(true);
+        }
     }
 
     public void OnOnlineMode()

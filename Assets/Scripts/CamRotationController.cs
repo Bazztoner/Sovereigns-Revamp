@@ -15,6 +15,7 @@ public class CamRotationController : MonoBehaviour
     public float destructibleDistance = 15f;
     public float sensivity;
     public bool showProjections;
+    public bool smoothCamera = true;
     public Vector3 initialPosition;
     public Color destructibleColor;
 
@@ -34,7 +35,6 @@ public class CamRotationController : MonoBehaviour
     private float _instVertical;
     private bool _gameInCourse = true;
     private bool _lockOn = false;
-    private bool _keepReadjusting = false;
     private bool _readJoystick;
     private Color _originalColor = Color.white;
     private LayerMask _mask;
@@ -47,6 +47,11 @@ public class CamRotationController : MonoBehaviour
     public DestructibleObject CurrentTarget
     {
         get { return _currentTarget; }
+    }
+
+    public Transform Enemy
+    {
+        get { return _enemy; }
     }
 
 	public Camera GetCamera
@@ -83,6 +88,8 @@ public class CamRotationController : MonoBehaviour
         _enemyMask = PhotonNetwork.offlineMode ? 0 << LayerMask.NameToLayer("Enemy") : 0 << LayerMask.NameToLayer("Player");
         _correctionVector = new Vector3(0f, 1f, 0f);
         lockOnDistance = lockOnDistance == 0f ? 10f : lockOnDistance;
+
+        _enemy = GetEnemy();
     }
 
     public void Init(Transform charac, bool readJoystick)
@@ -95,6 +102,8 @@ public class CamRotationController : MonoBehaviour
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
+
+        _enemy = GetEnemy();
     }
 
     public void Init(Transform charac, bool readJoystick, int cullLayer)
@@ -108,6 +117,8 @@ public class CamRotationController : MonoBehaviour
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
         proyectionLayer = cullLayer;
+
+        _enemy = GetEnemy();
     }
 
     private void AddEvents()
@@ -118,6 +129,32 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("DoDummyTest", UseProjections);
         EventManager.AddEventListener("DividedScreen", UseProjections);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
+    }
+
+    private Transform GetEnemy()
+    {
+        if (GameManager.screenDivided || !PhotonNetwork.offlineMode)
+        {
+            var enems = GameObject.FindObjectsOfType<Player1Input>();
+
+            foreach (var enem in enems)
+            {
+                if (enem.transform != _character)
+                    return enem.transform;
+            }
+        }
+        else
+        {
+            var enems = GameObject.FindObjectsOfType<CharacterMovement>();
+
+            foreach (var enem in enems)
+            {
+                if (enem.transform != _character)
+                    return enem.transform;
+            }
+        }
+
+        return null;
     }
     #endregion
 
@@ -165,38 +202,45 @@ public class CamRotationController : MonoBehaviour
         if (_character != null)
         {
             if (transform.position != _character.position)
-                transform.position = Vector3.Lerp(transform.position, _character.position, smoothPercentage);
-
-            ReLocateCamera();
-
-            if (_readJoystick)
             {
-                _instHorizontal = InputManager.instance.GetJoystickHorizontalCamera();
-                _instVertical = InputManager.instance.GetJoystickVerticalCamera();
-                
-                if (!_lockOn && (_instHorizontal != 0 || _instVertical != 0))
+                if (smoothCamera)
+                    transform.position = Vector3.Lerp(transform.position, _character.position, smoothPercentage);
+                else
+                    transform.position = _character.position;
+            }
+
+            if (!_lockOn)
+            {
+                if (_readJoystick)
                 {
-                    _rotationY += _instVertical * rotateSpeed * sensivity;
-                    _rotationY = Mathf.Clamp(_rotationY, minimumY, maximumY);
-                    _rotationX = _instHorizontal * rotateSpeed * sensivity + transform.eulerAngles.y;
-                    
-                    transform.eulerAngles = new Vector3(_rotationY, _rotationX, 0);
+                    _instHorizontal = InputManager.instance.GetJoystickHorizontalCamera();
+                    _instVertical = InputManager.instance.GetJoystickVerticalCamera();
+
+                    if (_instHorizontal != 0 || _instVertical != 0)
+                    {
+                        _rotationY += _instVertical * rotateSpeed * sensivity;
+                        _rotationY = Mathf.Clamp(_rotationY, minimumY, maximumY);
+                        _rotationX = _instHorizontal * rotateSpeed * sensivity + transform.eulerAngles.y;
+
+                        transform.eulerAngles = new Vector3(_rotationY, _rotationX, 0);
+                    }
+                }
+                else
+                {
+                    _instHorizontal = InputManager.instance.GetHorizontalCamera();
+                    _instVertical = InputManager.instance.GetVerticalCamera();
+
+                    if (_instHorizontal != 0 || _instVertical != 0)
+                    {
+                        _rotationY += -_instVertical * rotateSpeed * sensivity;
+                        _rotationY = Mathf.Clamp(_rotationY, minimumY, maximumY);
+                        _rotationX = _instHorizontal * rotateSpeed * sensivity + transform.eulerAngles.y;
+
+                        transform.eulerAngles = new Vector3(_rotationY, _rotationX, 0);
+                    }
                 }
             }
-            else
-            {
-                _instHorizontal = InputManager.instance.GetHorizontalCamera();
-                _instVertical = InputManager.instance.GetVerticalCamera();
-
-                if (!_lockOn && (_instHorizontal != 0 || _instVertical != 0))
-                {
-                    _rotationY += -_instVertical * rotateSpeed * sensivity;
-                    _rotationY = Mathf.Clamp(_rotationY, minimumY, maximumY);
-                    _rotationX = _instHorizontal * rotateSpeed * sensivity + transform.eulerAngles.y;
-
-                    transform.eulerAngles = new Vector3(_rotationY, _rotationX, 0);
-                }
-            }
+            else LockOn();
         }
     }
     #endregion
@@ -204,37 +248,14 @@ public class CamRotationController : MonoBehaviour
     #region Lock
     private void CamLock()
     {
-        if (_enemy == null)
-        {
-            if (GameManager.screenDivided || !PhotonNetwork.offlineMode)
-            {
-                var enems = GameObject.FindObjectsOfType<Player1Input>();
-
-                foreach (var enem in enems)
-                {
-                    if (enem.transform != _character) _enemy = enem.transform;
-                }
-            }
-            else
-            {
-                var enems = GameObject.FindObjectsOfType<CharacterMovement>();
-
-                foreach (var enem in enems)
-                {
-                    if (enem.transform != _character) _enemy = enem.transform;
-                }
-            }
-            
-        }
-
-        var dir = (_enemy.position - _character.position).normalized;
-        var dir2 = (_enemy.position - transform.TransformPoint(_cam.transform.localPosition)).normalized;
+        var dir = (Enemy.position - _character.position).normalized;
+        var dir2 = (Enemy.position - transform.TransformPoint(_cam.transform.localPosition)).normalized;
         var dist = lockOnDistance - Vector3.Distance(transform.TransformPoint(_cam.transform.localPosition), _character.position);
         _fixedCharPos = _character.position + _correctionVector;
 
         var checkVision = Physics.Raycast(_fixedCharPos, dir, dist, _enemyMask) && Physics.Raycast(transform.TransformPoint(_cam.transform.localPosition), dir2, lockOnDistance, _enemyMask);
 
-        if (!_lockOn && Vector3.Distance(_character.position, _enemy.position) <= lockOnDistance && !checkVision)
+        if (!_lockOn && Vector3.Distance(_character.position, Enemy.position) <= lockOnDistance && !checkVision)
         {
             _lockOn = true;
             EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.name, _lockOn, proyectionLayer });
@@ -243,17 +264,29 @@ public class CamRotationController : MonoBehaviour
         {
             _lockOn = false;
             EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.name, _lockOn, proyectionLayer });
-            _keepReadjusting = true;
         }
     }
 
     private void CheckDistance()
     {
-        if (Vector3.Distance(_character.position, _enemy.position) > lockOnDistance)
+        if (Vector3.Distance(_character.position, Enemy.position) > lockOnDistance)
         {
             _lockOn = false;
-            _keepReadjusting = true;
+            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.name, _lockOn, proyectionLayer });
         }
+    }
+
+    private void LockOn()
+    {
+        _fixedCharPos = Enemy.position + _correctionVector;
+        var direction = (_fixedCharPos - transform.position).normalized;
+
+        direction = new Vector3(direction.x, 0f, direction.z);
+
+        if (transform.forward != direction)
+            transform.forward = Vector3.Lerp(transform.forward, direction, smoothPercentage);
+
+        CheckDistance();
     }
     #endregion
 
@@ -282,36 +315,41 @@ public class CamRotationController : MonoBehaviour
         }
     }
 
+    #region Old LockOn
+    /*
     private void ReLocateCamera()
     {
         if (_lockOn)
         {
-            _fixedCharPos = _enemy.position + _correctionVector;
+            _fixedCharPos = Enemy.position + _correctionVector;
             var direction = (_fixedCharPos - transform.position).normalized;
+            
+            direction = new Vector3(direction.x, 0f, direction.z);
 
             if (transform.forward != direction)
-            {
-                transform.forward = Vector3.Lerp(transform.forward, direction, 0.6f);
-                transform.forward = new Vector3(transform.forward.x, 0f, transform.forward.z);
-            }
+                transform.forward = Vector3.Lerp(transform.forward, direction, smoothPercentage);
 
             var direction2 = (_fixedCharPos - transform.TransformPoint(_cam.transform.localPosition)).normalized;
 
             if (_cam.transform.forward != direction2)
-                _cam.transform.forward = Vector3.Lerp(_cam.transform.forward, direction2, 0.6f);
-
+                _cam.transform.forward = Vector3.Lerp(_cam.transform.forward, direction2, smoothPercentage);
+            
+            
             CheckDistance();
         }
         else if(_keepReadjusting)
         {
-            if (transform.forward != _character.forward || _cam.transform.forward != _character.forward)
-            {
-                transform.forward = Vector3.Lerp(transform.forward, _character.forward, 0.6f);
-                _cam.transform.forward = Vector3.Lerp(_cam.transform.forward, _character.forward, 0.6f);
-            }
-            else _keepReadjusting = false;   
+            if (transform.forward != _character.forward)
+                transform.forward = Vector3.Lerp(transform.forward, _character.forward, smoothPercentage);
+
+            if (_cam.transform.forward != _character.forward)
+                _cam.transform.forward = Vector3.Lerp(_cam.transform.forward, _character.forward, smoothPercentage);
+
+            if (transform.forward == _character.forward && _cam.transform.forward == _character.forward)
+                _keepReadjusting = false;
         }
-    }
+    }*/
+    #endregion
     #endregion
 
     #region Highlight

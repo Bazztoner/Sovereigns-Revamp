@@ -253,17 +253,20 @@
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\IdleStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollStateBehaviour.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_GuardBreakEnter.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_HorizontalAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_KnockBackAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_VerticalAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\StateVarUnable.cs" />
     <Compile Include="Assets\Scripts\SwordScript.cs" />
     <Compile Include="Assets\Scripts\Temp\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Utility\Billboard.cs" />
     <Compile Include="Assets\Scripts\Utility\FList.cs" />
     <Compile Include="Assets\Scripts\Utility\IntLayers.cs" />
     <Compile Include="Assets\Scripts\Utility\SlowMotion.cs" />
     <Compile Include="Assets\Scripts\Utility\Tuple.cs" />
     <Compile Include="Assets\Scripts\Utility\Zip.cs" />
+    <Compile Include="Assets\StunGraphic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Photon Unity Networking\changelog.txt" />
