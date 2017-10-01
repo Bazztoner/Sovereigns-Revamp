@@ -105,6 +105,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
     }
 
+    [System.Obsolete("Usar la que pide nombre de jugador")]
     void LoseHP(float damage, string attackType)
     {
         float dmg;
@@ -177,6 +178,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         Hp = dmg >= Hp ? 0 : Hp - dmg;
 
     }
+
     void LoseHP(float damage, string attackType, string attackerName)
     {
         float dmg;
@@ -247,6 +249,8 @@ public class PlayerStats : Photon.MonoBehaviour {
         if (fill < 0) fill = 0;
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, (dmg > Hp ? 0 : Hp - dmg), fill });
         Hp = dmg >= Hp ? 0 : Hp - dmg;
+
+        GetComponent<Player1Input>().GetCamera.ShakeCamera(.1f, .01f);
     }
     void RegainHp(float regained)
     {
@@ -262,6 +266,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         LoseHP(damage, "");
     }
 
+    [System.Obsolete("Usar la que pide nombre de jugador")]
     public void TakeDamage(float damage, string attackType)
     {
         //EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
@@ -281,10 +286,11 @@ public class PlayerStats : Photon.MonoBehaviour {
     /// <param name="damage"></param>
     /// <param name="attackType"></param>
     /// <param name="polyNormal"></param>
+    [System.Obsolete("Anda para el ojete, no usar/fixear")]
     public void TakeDamage(float damage, string attackType, Vector3 polyNormal)
     {
         EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, polyNormal, this.GetComponent<PlayerParticles>(), attackType });
-        LoseHP(damage, ""); //le agregue las "" para que no tire error, porque cambie los parametros del metodo
+        LoseHP(damage, "");
     }
     #endregion
 

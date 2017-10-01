@@ -36,7 +36,11 @@ public class NetworkManager : MonoBehaviour {
             PhotonNetwork.player.NickName = "Player " + Random.Range(0, 100);
             PhotonNetwork.ConnectUsingSettings("ProjectSeminarV002");
         }
-        else PhotonNetwork.offlineMode = true;
+        else
+        {
+            PhotonNetwork.offlineMode = true;
+            EventManager.DispatchEvent("BeginGame");
+        }
     }
 
     private void OnJoinedLobby()

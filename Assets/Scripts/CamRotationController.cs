@@ -44,9 +44,19 @@ public class CamRotationController : MonoBehaviour
     private List<MarkableObject> _allMarkables;
     private DestructibleObject _currentTarget;
 
+    Quaternion _fixedLocalRot;
+
+    CameraShake _shake;
+
     public DestructibleObject CurrentTarget
     {
         get { return _currentTarget; }
+    }
+
+    public Quaternion FixedRotation
+    {
+        get { return _fixedLocalRot; }
+        set { _fixedLocalRot = value; }
     }
 
     public Transform Enemy
@@ -54,11 +64,11 @@ public class CamRotationController : MonoBehaviour
         get { return _enemy; }
     }
 
-	public Camera GetCamera
+    public Camera GetCamera
     {
         get { return _cam; }
     }
-	
+
     public float AngleVision
     {
         get { return _angleVision; }
@@ -69,6 +79,8 @@ public class CamRotationController : MonoBehaviour
     {
         GetComponents();
         AddEvents();
+        gameObject.AddComponent(typeof(CameraShake));
+        _shake = GetComponent<CameraShake>();
     }
 
     #region Initialization
@@ -76,9 +88,9 @@ public class CamRotationController : MonoBehaviour
     {
         //Ivan: para que haces esto si cada camara tiene solo un hijo de tipo camara y ninguno se llama asi??
         _cam = GetComponentsInChildren<Camera>().Where(x => x.gameObject.name != "Cam1 (1)" && x.gameObject.name != "Cam2 (1)").First();
-        _mask = ~(1 << LayerMask.NameToLayer("Player") 
-                | 1 << LayerMask.NameToLayer("Enemy") 
-                | 1 << LayerMask.NameToLayer("Floor") 
+        _mask = ~(1 << LayerMask.NameToLayer("Player")
+                | 1 << LayerMask.NameToLayer("Enemy")
+                | 1 << LayerMask.NameToLayer("Floor")
                 | 1 << LayerMask.NameToLayer("HitBox")
                 | 1 << LayerMask.NameToLayer("PlayerCollider")
                 | 1 << Utilities.IntLayers.VISIBLETOP1
@@ -183,7 +195,7 @@ public class CamRotationController : MonoBehaviour
 
     void Update()
     {
-        if(showProjections) HighlightTarget();
+        if (showProjections) HighlightTarget();
     }
 
     void FixedUpdate()
@@ -362,7 +374,7 @@ public class CamRotationController : MonoBehaviour
     private void HighlightTarget()
     {
         //Agrego que estén en la zona, mi cabe zona
-        List<DestructibleObject> inRangeObj = DestructibleObject.allObjs.Where(x => x.isAlive 
+        List<DestructibleObject> inRangeObj = DestructibleObject.allObjs.Where(x => x.isAlive
                                                                                && x.zone == TransitionManager.instance.currentZone
                                                                                && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
                                                                                && x.destructibleType != DestructibleType.TRANSITION
@@ -417,7 +429,7 @@ public class CamRotationController : MonoBehaviour
         {
             wf.SetVisible(visible);
         }
-        
+
     }
 
     private void ChangeColor(DestructibleObject obj, Color col)
@@ -432,7 +444,14 @@ public class CamRotationController : MonoBehaviour
         }
     }
     #endregion
-    
+
+    #region Shake
+    public void ShakeCamera(float amount, float duration)
+    {
+        _shake.ShakeCamera(amount, duration);
+    }
+    #endregion
+
 }
 
 public class MarkableObject

@@ -93,7 +93,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AngelArmorColor.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />
@@ -209,7 +208,9 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Scripts\AngelArmorColor.cs" />
     <Compile Include="Assets\Scripts\CamRotationController.cs" />
+    <Compile Include="Assets\Scripts\DestructiblePopupGraphic.cs" />
     <Compile Include="Assets\Scripts\DividedScreen.cs" />
     <Compile Include="Assets\Scripts\Entities.cs" />
     <Compile Include="Assets\Scripts\Framework\DataSync.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionDummy.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionManager.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\Zone.cs" />
+    <Compile Include="Assets\Scripts\LockOnGraphic.cs" />
     <Compile Include="Assets\Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\AnimationController.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\CharacterMovement.cs" />
@@ -260,6 +262,7 @@
     <Compile Include="Assets\Scripts\Skills\Test\RepulsiveDummy1.cs" />
     <Compile Include="Assets\Scripts\Skills\Test\RepulsiveTelekinesis1.cs" />
     <Compile Include="Assets\Scripts\Skills\TrajectoryPredicter.cs" />
+    <Compile Include="Assets\Scripts\SlowMotion.cs" />
     <Compile Include="Assets\Scripts\SpawnSpot.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\IdleStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollBehaviour.cs" />
@@ -271,15 +274,14 @@
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_ParryAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_VerticalAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\StateVarUnable.cs" />
+    <Compile Include="Assets\Scripts\StunGraphic.cs" />
     <Compile Include="Assets\Scripts\SwordScript.cs" />
+    <Compile Include="Assets\Scripts\Temp\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Temp\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Utility\Billboard.cs" />
     <Compile Include="Assets\Scripts\Utility\FList.cs" />
     <Compile Include="Assets\Scripts\Utility\IntLayers.cs" />
-    <Compile Include="Assets\Scripts\Utility\SlowMotion.cs" />
     <Compile Include="Assets\Scripts\Utility\Tuple.cs" />
     <Compile Include="Assets\Scripts\Utility\Zip.cs" />
-    <Compile Include="Assets\StunGraphic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Character Materials\AngelArmor.shader" />
