@@ -177,7 +177,7 @@ public class SwordScript : MonoBehaviour
                     else if (_isParry) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "ParryAttack", myName);
                     else if (_isGuardBreak) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "GuardBreakAttack", myName);
                 }
-                else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee");
+                else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee", myName);
             }
             else if (other.gameObject.GetComponentInParent<Enemy>() != null)
             {

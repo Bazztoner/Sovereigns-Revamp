@@ -41,6 +41,7 @@ public class CamRotationController : MonoBehaviour
     private LayerMask _enemyMask;
     private Camera _cam;
     private RaycastHit _hit;
+    [System.Obsolete("Ya no se usa más")]
     private List<MarkableObject> _allMarkables;
     private DestructibleObject _currentTarget;
 
@@ -87,7 +88,7 @@ public class CamRotationController : MonoBehaviour
     private void GetComponents()
     {
         //Ivan: para que haces esto si cada camara tiene solo un hijo de tipo camara y ninguno se llama asi??
-        _cam = GetComponentsInChildren<Camera>().Where(x => x.gameObject.name != "Cam1 (1)" && x.gameObject.name != "Cam2 (1)").First();
+        _cam = GetComponentInChildren<Camera>();
         _mask = ~(1 << LayerMask.NameToLayer("Player")
                 | 1 << LayerMask.NameToLayer("Enemy")
                 | 1 << LayerMask.NameToLayer("Floor")
@@ -131,6 +132,8 @@ public class CamRotationController : MonoBehaviour
         proyectionLayer = cullLayer;
 
         _enemy = GetEnemy();
+        showProjections = true;
+        //HighlightTarget();
     }
 
     private void AddEvents()
@@ -140,6 +143,7 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("DoNotConnect", UseProjections);
         EventManager.AddEventListener("DoDummyTest", UseProjections);
         EventManager.AddEventListener("DividedScreen", UseProjections);
+        //EventManager.AddEventListener("BeginGame", UseProjections);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
     }
@@ -374,12 +378,14 @@ public class CamRotationController : MonoBehaviour
     private void HighlightTarget()
     {
         //Agrego que estén en la zona, mi cabe zona
-        List<DestructibleObject> inRangeObj = DestructibleObject.allObjs.Where(x => x.isAlive
-                                                                               && x.zone == TransitionManager.instance.currentZone
-                                                                               && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
-                                                                               && x.destructibleType != DestructibleType.TRANSITION
-                                                                               && x.GetComponentInChildren<Renderer>().isVisible)
-                                                                        .ToList<DestructibleObject>();
+        var dstruc = DestructibleObject.allObjs;
+        List<DestructibleObject> inRangeObj = dstruc.Where(x => x.isAlive
+                                                             && x != null
+                                                             && x.zone == TransitionManager.instance.currentZone
+                                                             && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
+                                                             && x.destructibleType != DestructibleType.TRANSITION
+                                                             && x.GetComponentInChildren<Renderer>().isVisible)
+                                                    .ToList<DestructibleObject>();
         DestructibleObject closest;
 
         if (inRangeObj.Any())
@@ -404,8 +410,7 @@ public class CamRotationController : MonoBehaviour
                 _currentTarget = closest;
                 MakeVisible(_currentTarget, true);
             }
-
-            if (closest != _currentTarget)
+            else if (closest != _currentTarget)
             {
                 MakeVisible(_currentTarget, false);
                 _currentTarget = closest;
@@ -432,6 +437,7 @@ public class CamRotationController : MonoBehaviour
 
     }
 
+    [System.Obsolete("Ya no se usa más")]
     private void ChangeColor(DestructibleObject obj, Color col)
     {
         var renders = obj.GetComponentsInChildren<Renderer>();
@@ -454,6 +460,7 @@ public class CamRotationController : MonoBehaviour
 
 }
 
+[System.Obsolete("Ya no se usa más")]
 public class MarkableObject
 {
     public float distance;

@@ -5,11 +5,12 @@ using System.Linq;
 
 public class DestructibleImpactArea : MonoBehaviour
 {
-    MeshRenderer[] all;
+    MeshRenderer[] _all;
     public Vector3[] rotAngles;
-    CamRotationController cam;
-    public DestructiblePopupGraphic _popup;
+    CamRotationController _cam;
+    public DestructiblePopupGraphic popup;
     public bool isShown;
+    Collider _col;
 
     void Start()
     {
@@ -18,8 +19,9 @@ public class DestructibleImpactArea : MonoBehaviour
 
     void OnBeginGame(object[] paramsContainer)
     {
-        all = GetComponentsInChildren<MeshRenderer>().Where(x => x.gameObject != gameObject).ToArray();
+        _all = GetComponentsInChildren<MeshRenderer>().Where(x => x.gameObject != gameObject).ToArray();
         rotAngles = GetComponentInParent<DestructibleObject>().rotAngles;
+        _col = GetComponentInParent<Collider>();
         isShown = false;
         FindCamera();
         SetVisible(false);
@@ -31,28 +33,35 @@ public class DestructibleImpactArea : MonoBehaviour
         {
             if (gameObject.layer == Utilities.IntLayers.VISIBLETOP1)
             {
-                if (_popup == null)
+                _cam = GameObject.Find("Player1").GetComponent<Player1Input>().GetCamera;
+                if (popup == null)
                 {
-                    _popup = transform.parent.FindChild("PopupP2").GetComponentInParent<DestructiblePopupGraphic>();
-                    cam = GameObject.Find("Player1").GetComponent<Player1Input>().GetCamera;
+                    popup = transform.parent.FindChild("PopupP1").GetComponentInParent<DestructiblePopupGraphic>();
                 }
             }
             else if (gameObject.layer == Utilities.IntLayers.VISIBLETOP2)
             {
-                if (_popup == null)
+                _cam = GameObject.Find("Player2").GetComponent<Player1Input>().GetCamera;
+                if (popup == null)
                 {
-                    _popup = transform.parent.FindChild("PopupP1").GetComponentInParent<DestructiblePopupGraphic>();
-                    cam = GameObject.Find("Player2").GetComponent<Player1Input>().GetCamera;
+                    popup = transform.parent.FindChild("PopupP2").GetComponentInParent<DestructiblePopupGraphic>();
                 }
             }
         }
         else
         {
-            if (_popup == null)
+            _cam = GameObject.FindObjectOfType<CamRotationController>();
+            if (popup == null)
             {
-                _popup = transform.parent.FindChild("PopupP2").GetComponentInParent<DestructiblePopupGraphic>();
+                if (gameObject.layer == Utilities.IntLayers.VISIBLETOP1)
+                {
+                    popup = transform.parent.FindChild("PopupP1").GetComponentInParent<DestructiblePopupGraphic>();
+                }
+                else if (gameObject.layer == Utilities.IntLayers.VISIBLETOP2)
+                {
+                    popup = transform.parent.FindChild("PopupP2").GetComponentInParent<DestructiblePopupGraphic>();
+                }
             }
-            cam = GameObject.FindObjectOfType<CamRotationController>();
         }
     }
 
@@ -60,8 +69,8 @@ public class DestructibleImpactArea : MonoBehaviour
     {
         if (rotAngles.Length != 0)
         {
-            if (!cam.gameObject.activeInHierarchy) FindCamera();
-            CheckRotation(cam.transform.forward, cam.AngleVision);
+            if (!_cam.gameObject.activeInHierarchy) FindCamera();
+            CheckRotation(_cam.transform.forward, _cam.AngleVision);
         }
     }
 
@@ -80,33 +89,22 @@ public class DestructibleImpactArea : MonoBehaviour
             }
         }
 
-        var parent = this.GetComponentInParent<DestructibleObject>().transform;
+        var parent = GetComponentInParent<DestructibleObject>().transform;
 
-        if (this.gameObject.name == "SingleDoorImpactArea" && Vector3.Angle(parent.forward, rot) <= 90)
+        if (gameObject.name == "SingleDoorImpactArea" && Vector3.Angle(parent.forward, rot) <= 90)
         {
-            this.transform.forward = parent.forward * -1;
+            transform.forward = parent.forward * -1;
         }
         else transform.rotation = Quaternion.Euler(vectorRot);
     }
 
     public void SetVisible(bool activate)
     {
-        foreach (var m in all)
+        foreach (var m in _all)
         {
             m.enabled = activate;
         }
-
-        if (_popup == null)
-        {
-            if (GameManager.screenDivided)
-            {
-                if (gameObject.layer == Utilities.IntLayers.VISIBLETOP1) _popup = transform.parent.FindChild("PopupP2").GetComponentInParent<DestructiblePopupGraphic>();
-                else if (gameObject.layer == Utilities.IntLayers.VISIBLETOP2) _popup = transform.parent.FindChild("PopupP1").GetComponentInParent<DestructiblePopupGraphic>();
-            }
-            else _popup = transform.parent.FindChild("PopupP2").GetComponentInParent<DestructiblePopupGraphic>();
-        }
-
-        _popup.GetComponent<SpriteRenderer>().enabled = activate;
         isShown = activate;
+        popup.Activate(_cam, _col, activate);
     }
 }

@@ -6,42 +6,36 @@ using UnityEngine;
 public class DestructiblePopupGraphic : MonoBehaviour
 {
     Collider _col;
-    DestructibleImpactArea _impactArea;
-    DestructibleObject _obj;
     CamRotationController _cam;
+    float originalPosY;
+    bool isShown;
 
     void Start()
     {
-        EventManager.AddEventListener("BeginGame", OnBeginGame);
+        originalPosY = transform.position.y;
     }
 
-    void OnBeginGame(object[] paramsContainer)
+    public void Activate(CamRotationController cam, Collider col, bool activate)
     {
-        _col = GetComponentInParent<Collider>();
-        _impactArea = GetComponentInParent<DestructibleImpactArea>();
-        _obj = GetComponentInParent<DestructibleObject>();
+        _cam = cam;
+        _col = col;
+        isShown = activate;
+        GetComponent<Renderer>().enabled = activate;
+    }
 
-        if (GameManager.screenDivided)
-        {
-            if (gameObject.layer == Utilities.IntLayers.VISIBLETOP1)
-            {
-                _cam = GameObject.Find("Player1").GetComponent<Player1Input>().GetCamera;
-            }
-            else if (gameObject.layer == Utilities.IntLayers.VISIBLETOP2)
-            {
-                _cam = GameObject.Find("Player2").GetComponent<Player1Input>().GetCamera;
-            }
-        }
-        else _cam = GameObject.FindObjectOfType<CamRotationController>();
-
+    public void Activate(bool activate = false)
+    {
+        isShown = activate;
+        GetComponent<Renderer>().enabled = activate;
     }
 
     void LateUpdate()
     {
-        if(_cam != null)
+        if(_cam != null && _col != null && isShown)
         {
             transform.LookAt(_cam.transform.position);
-            transform.position = _col.ClosestPointOnBounds(new Vector3(_cam.transform.position.x, 0, _cam.transform.position.z));
+            transform.position = _col.ClosestPointOnBounds(_cam.transform.position);
+            transform.position = new Vector3(transform.position.x, originalPosY, transform.position.z);
         }
     }
 }
