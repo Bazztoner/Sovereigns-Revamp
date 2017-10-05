@@ -59,8 +59,6 @@ public class AnimationController : MonoBehaviour {
             _anim.SetBool("isRolling", (bool)paramsContainer[1]);
     }
 
-    #region Cambios Iván 21/9
-    //Agregada la línea de blockUp
     /// <summary>Blocking Animation</summary>
     private void OnBlocking(params object[] paramsContainer)
     {
@@ -70,7 +68,6 @@ public class AnimationController : MonoBehaviour {
             _anim.SetBool("blockUp", (bool)paramsContainer[2]);
         }
     }
-    #endregion
 
     /// <summary>Light Attack Animation</summary>
     private void OnX(params object[] paramsContainer)
@@ -94,6 +91,7 @@ public class AnimationController : MonoBehaviour {
     }
 
     /// <summary>Damage Animation</summary>
+    /// [2] Can the entity cancel his actual attack by beign damaged?
     private void OnIsDamaged(params object[] paramsContainer)
     {
         if(this.gameObject.name == (string)paramsContainer[0])
@@ -110,8 +108,13 @@ public class AnimationController : MonoBehaviour {
     /// <summary>Makes the character stop running after the match finished</summary>
     private void OnGameFinished(params object[] paramsContainer)
     {
+        _anim.SetFloat("xMovement",0);
+        _anim.SetFloat("yMovement", 0);
         _anim.SetBool("runForward", false);
         _anim.SetBool("runRight", false);
         _anim.SetBool("runLeft", false);
+        _anim.SetBool("isRolling", false);
+        _anim.SetBool("isBlocking", false);
+        _anim.SetBool("blockUp", false);
     }
 }

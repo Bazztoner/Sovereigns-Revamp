@@ -94,7 +94,8 @@ public class PlayerCombat : Photon.MonoBehaviour {
     {
         if (this.gameObject.name == (string)paramsContainer[0])
         {
-            isAttacking = false;
+            var cancelAttack = (bool)paramsContainer[4];
+            isAttacking = cancelAttack;
             isBlocking = false;
             isBlockingUp = false;
         }
