@@ -45,6 +45,15 @@ public class Player1Input : MonoBehaviour {
         EventManager.AddEventListener("TransitionBlockInputs", OnTransition);
         EventManager.AddEventListener("Stun", OnStun);
         EventManager.AddEventListener("GuardBreak", OnGuardBreak);
+        EventManager.AddEventListener("SpecialAttack", OnSpecialAttack);
+    }
+
+    void OnSpecialAttack(object[] paramsContainer)
+    {
+        if (gameObject.name == (string)paramsContainer[0])
+        {
+            _pc.StopBlock();
+        }
     }
 
     void Update()

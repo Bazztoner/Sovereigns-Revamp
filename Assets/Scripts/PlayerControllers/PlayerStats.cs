@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ public class PlayerStats : Photon.MonoBehaviour {
 	public bool isDamaged = false;
     [HideInInspector]
     public bool isDead = false;
+    [HideInInspector]
+    public bool uncancelableAttack = false;
 
     public float hp;
     public int maxHp;
@@ -85,6 +88,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
         EventManager.AddEventListener("KnockBackEnter", OnKnockBackEnter);
         EventManager.AddEventListener("KnockBackExit", OnKnockBackExit);
+        EventManager.AddEventListener("SpecialAttack", OnSpecialAttackUpdate);
         //EventManager.AddEventListener("StunAttackEnter", OnStunAttackEnter);
         //EventManager.AddEventListener("StunAttackExit", OnStunAttackExit);
     }
@@ -242,7 +246,7 @@ public class PlayerStats : Photon.MonoBehaviour {
             blocked = false;
         }
 
-        if (!blocked) EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
+        if (!blocked) EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType, uncancelableAttack });
         else EventManager.DispatchEvent("BlockParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
 
         float fill = (Hp - dmg) / maxHp;
@@ -339,19 +343,30 @@ public class PlayerStats : Photon.MonoBehaviour {
         if (!PhotonNetwork.offlineMode) photonView.RPC("SetDeathOn", PhotonTargets.All);
     }
 
+    #region Cambios Iván 5/10
+    //Agregada comprobación para hacer ataques imbloqueables
+    /// <summary>
+    /// 0 - Sender name
+    /// 1 - transform.position
+    /// 2 - PlayerParticles
+    /// 3 - attackType
+    /// 4 - AttackcanBeCanceled
+    /// </summary>
+    /// <param name="paramsContainer"></param>
     private void OnCharacterDamaged(params object[] paramsContainer)
     {
         if (this.gameObject.name == (string)paramsContainer[0])
         {
-            isDamaged = true;
-            _isBlocking = false;
+            //isDamaged = true;
+            isDamaged = (bool)paramsContainer[4];
+           _isBlocking = false;
             _isBlockingUp = false;
             EventManager.DispatchEvent("IsDamaged", new object[] { this.gameObject.name, isDamaged });
 
             if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOn", PhotonTargets.All);
         }
     }
-
+    #endregion
     private void OnDamageExit()
     {
         isDamaged = false;
@@ -382,6 +397,17 @@ public class PlayerStats : Photon.MonoBehaviour {
     {
         if (this.gameObject.name != (string)paramsContainer[0])
             _isStunAttack = false;
+    }
+
+    void OnSpecialAttackUpdate(object[] paramsContainer)
+    {
+        var sender = (string)paramsContainer[0];
+        var activate = (bool)paramsContainer[1];
+        if (sender == gameObject.name)
+        {
+            uncancelableAttack = activate;
+            print("Sender: " + sender + " || UncancelableAttack? " + uncancelableAttack);
+        }
     }
     #endregion
 }

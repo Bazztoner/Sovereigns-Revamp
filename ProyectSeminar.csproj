@@ -263,6 +263,8 @@
     <Compile Include="Assets\Scripts\Skills\Test\RepulsiveTelekinesis1.cs" />
     <Compile Include="Assets\Scripts\Skills\TrajectoryPredicter.cs" />
     <Compile Include="Assets\Scripts\SlowMotion.cs" />
+    <Compile Include="Assets\Scripts\Sound\PlayerSoundControl.cs" />
+    <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\SpawnSpot.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\IdleStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollBehaviour.cs" />

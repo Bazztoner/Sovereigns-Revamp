@@ -15,7 +15,6 @@ public class TransitionDummy : MonoBehaviour
     void Start ()
     {
         _an = GetComponent<Animator>();
-        print(_an);
 	}
 	
 	void Update ()

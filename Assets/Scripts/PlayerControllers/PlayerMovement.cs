@@ -9,7 +9,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     private Transform _enemy;
     private float _originalWalkSpeed;
     private float _originalRunSpeed;
-    private float _knockBackForce = 4500f;
+    private float _knockBackForce = 3500f;
 
     [HideInInspector]
     public float speed;
@@ -111,8 +111,6 @@ public class PlayerMovement : Photon.MonoBehaviour {
     private void SetMovementStats(Vector3 direction)
     {
         xMovement = direction.x;
-        //yMovement = isRunning ? direction.z * 2 : direction.z;
-        #region Cambios Iván 22/9
         //Ahora las partículas de correr se prienden bien
         if (isRunning)
         {
@@ -124,15 +122,14 @@ public class PlayerMovement : Photon.MonoBehaviour {
             yMovement = direction.z;
             EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, false });
         }
-        #endregion
 
         EventManager.DispatchEvent("RunningAnimations", new object[] { this.gameObject.name, xMovement, yMovement });
     }
 
     private void DoKnockBack()
     {
-        EventManager.DispatchEvent("GuardBreak", new object[] { gameObject.name });
-        //_rigid.AddForce(Enemy.forward * _knockBackForce * Time.deltaTime, ForceMode.Impulse);
+        //EventManager.DispatchEvent("GuardBreak", new object[] { gameObject.name });
+        _rigid.AddForce(Enemy.forward * _knockBackForce * Time.deltaTime, ForceMode.Impulse);
     }
     #endregion
 

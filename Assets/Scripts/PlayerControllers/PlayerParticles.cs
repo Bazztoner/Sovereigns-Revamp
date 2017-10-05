@@ -16,6 +16,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
         Initialize();
     }
 
+
     void Update()
     {
         if (_runParticle.activeInHierarchy)
@@ -38,7 +39,15 @@ public class PlayerParticles : Photon.MonoBehaviour {
     void AddEvents()
     {
         EventManager.AddEventListener("ActivateRunParticle", OnActivateRunning);
+        EventManager.AddEventListener("GameFinished", OnGameFinished);
         //EventManager.AddEventListener("ActivateBlinkTrail", OnActivateBlink);
+    }
+
+    void OnGameFinished(object[] paramsContainer)
+    {
+        EventManager.RemoveEventListener("ActivateRunParticle", OnActivateRunning);
+        _blinkTrail.SetActive(false);
+        _runParticle.SetActive(false);
     }
 
     void AddRunParticle()
