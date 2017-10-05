@@ -23,7 +23,6 @@ public class AnimationController : MonoBehaviour {
         EventManager.AddEventListener("Y", OnY);
         EventManager.AddEventListener("IsDead", OnIsDead);
         EventManager.AddEventListener("IsDamaged", OnIsDamaged);
-        EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("GuardBreak", OnGuardBreak);
         EventManager.AddEventListener("StunParticle", OnStun);
     }
@@ -105,13 +104,5 @@ public class AnimationController : MonoBehaviour {
             _anim.SetBool("isBlocking", false);
             _anim.SetBool("blockUp", false);
         }
-    }
-
-    /// <summary>Makes the character stop running after the match finished</summary>
-    private void OnGameFinished(params object[] paramsContainer)
-    {
-        _anim.SetBool("runForward", false);
-        _anim.SetBool("runRight", false);
-        _anim.SetBool("runLeft", false);
     }
 }

@@ -9,12 +9,18 @@ public class LockOnGraphic : MonoBehaviour
     Camera _cam;
     void Start()
     {
-        _graph = GetComponent<SpriteRenderer>();
+        _graph = GetComponentInChildren<SpriteRenderer>();
         _graph.enabled = false;
         var pongCol = _graph.color;
         pongCol.r = 1;
         StartCoroutine(LerpColor(_graph.color, _graph.color, pongCol, 1.3f));
         EventManager.AddEventListener("LockOnActivated", OnLockOnActivation);
+        EventManager.AddEventListener("PlayerDeath", OnPlayerDeath);
+    }
+
+    private void OnPlayerDeath(object[] paramsContainer)
+    {
+        _graph.enabled = false;
     }
 
     /// <summary>
@@ -28,12 +34,11 @@ public class LockOnGraphic : MonoBehaviour
     /// </param>
     void OnLockOnActivation(object[] paramsContainer)
     {
-        var myCharacter = GetComponentInParent<Player1Input>();
+        var myCharacter = this.GetComponentInParent<Player1Input>();
         var senderName = (string)paramsContainer[1];
-        if (myCharacter != null)
-        {
-            if (senderName == myCharacter.gameObject.name) return;
-        }
+
+        if (myCharacter != null && senderName == myCharacter.gameObject.name)
+            return;
 
         _cam = (Camera)paramsContainer[0];
         var activate = (bool)paramsContainer[2];
@@ -55,9 +60,14 @@ public class LockOnGraphic : MonoBehaviour
     void LateUpdate()
     {
         if (_graph.enabled && _cam != null)
-        {
-            transform.LookAt(_cam.transform.position);
-        }
+            RotateGraph();
+    }
+
+    private void RotateGraph()
+    {
+        var direction = (_cam.transform.position - this.transform.position).normalized;
+
+        this.transform.forward = new Vector3(direction.x, 0f, direction.z);
     }
 
     IEnumerator LerpColor(Color color, Color startValue, Color endValue, float maxTime)

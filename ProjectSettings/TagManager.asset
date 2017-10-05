@@ -27,8 +27,8 @@ TagManager:
   - VisibleToP2
   - VisibleBoth
   - PlayerCollider
-  - 
-  - 
+  - LockOnP1
+  - LockOnP2
   - 
   - 
   - 

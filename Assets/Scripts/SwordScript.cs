@@ -144,7 +144,7 @@ public class SwordScript : MonoBehaviour
         {
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;
-            var myName = GetComponentInParent<Player1Input>().gameObject.name;
+            var myName = this.GetComponentInParent<Player1Input>().gameObject.name;
 
             _isDetecting = false;
             _appliedDamage = 0;
@@ -177,7 +177,7 @@ public class SwordScript : MonoBehaviour
                     else if (_isParry) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "ParryAttack", myName);
                     else if (_isGuardBreak) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "GuardBreakAttack", myName);
                 }
-                else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee");
+                else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee", this.GetComponentInParent<Player1Input>().gameObject.name);
             }
             else if (other.gameObject.GetComponentInParent<Enemy>() != null)
             {

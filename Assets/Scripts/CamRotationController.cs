@@ -20,6 +20,7 @@ public class CamRotationController : MonoBehaviour
     public Color destructibleColor;
 
     int proyectionLayer;
+    int lockOnLayer;
 
     private Transform _character;
     private Transform _enemy;
@@ -129,6 +130,7 @@ public class CamRotationController : MonoBehaviour
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
         proyectionLayer = cullLayer;
+        lockOnLayer = proyectionLayer == 16 ? 20 : 21;
 
         _enemy = GetEnemy();
     }
@@ -276,12 +278,12 @@ public class CamRotationController : MonoBehaviour
         if (!_lockOn && Vector3.Distance(_character.position, Enemy.position) <= lockOnDistance && !checkVision)
         {
             _lockOn = true;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.name, _lockOn, proyectionLayer });
+            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, lockOnLayer });
         }
         else if (_lockOn)
         {
             _lockOn = false;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.name, _lockOn, proyectionLayer });
+            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, lockOnLayer });
         }
     }
 
@@ -290,7 +292,7 @@ public class CamRotationController : MonoBehaviour
         if (Vector3.Distance(_character.position, Enemy.position) > lockOnDistance)
         {
             _lockOn = false;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.name, _lockOn, proyectionLayer });
+            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, lockOnLayer });
         }
     }
 
