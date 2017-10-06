@@ -215,8 +215,6 @@ public class HUDController : Photon.MonoBehaviour
         ApplyEnemyHPChanges(new object[] { fillAmount, nickName });
     }
 
-    
-
     void ApplyEnemyHPChanges(params object[] paramsContainer)
     {
         //Puse esto para que deje de tirar el error al inicio del juego de que no encuentra la barra de vida.

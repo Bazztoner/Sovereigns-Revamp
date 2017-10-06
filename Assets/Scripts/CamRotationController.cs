@@ -101,7 +101,6 @@ public class CamRotationController : MonoBehaviour
     #region Initialization
     private void GetComponents()
     {
-        //Ivan: para que haces esto si cada camara tiene solo un hijo de tipo camara y ninguno se llama asi??
         _cam = GetComponentInChildren<Camera>();
 
         var temp1 = _cam.transform.FindChild("SubCam1");
@@ -109,7 +108,7 @@ public class CamRotationController : MonoBehaviour
 
         var temp = temp1 != null ? temp1 : temp2;
 
-        _subCam = temp.GetComponent<Camera>();
+        //_subCam = temp.GetComponent<Camera>();
 
         _mask = ~(1 << LayerMask.NameToLayer("Player")
                 | 1 << LayerMask.NameToLayer("Enemy")
