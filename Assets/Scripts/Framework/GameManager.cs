@@ -130,6 +130,7 @@ public class GameManager : Photon.MonoBehaviour
 
     private void EndMatch()
     {
+        EventManager.DispatchEvent("EndMatch");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         DestructibleObject.DeleteAllObjs();

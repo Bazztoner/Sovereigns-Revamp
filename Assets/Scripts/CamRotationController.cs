@@ -45,6 +45,8 @@ public class CamRotationController : MonoBehaviour
     private RaycastHit _hit;
     private DestructibleObject _currentTarget;
 
+    Camera _subCam;
+
     [System.Obsolete("Ya no se usa más")]
     private List<MarkableObject> _allMarkables;
     [System.Obsolete("Ya no se usa más")]
@@ -77,6 +79,11 @@ public class CamRotationController : MonoBehaviour
         get { return _cam; }
     }
 
+    public Camera GetSubCamera
+    {
+        get { return _subCam; }
+    }
+
     public float AngleVision
     {
         get { return _angleVision; }
@@ -96,6 +103,14 @@ public class CamRotationController : MonoBehaviour
     {
         //Ivan: para que haces esto si cada camara tiene solo un hijo de tipo camara y ninguno se llama asi??
         _cam = GetComponentInChildren<Camera>();
+
+        var temp1 = _cam.transform.FindChild("SubCam1");
+        var temp2 = _cam.transform.FindChild("SubCam2");
+
+        var temp = temp1 != null ? temp1 : temp2;
+
+        _subCam = temp.GetComponent<Camera>();
+
         _mask = ~(1 << LayerMask.NameToLayer("Player")
                 | 1 << LayerMask.NameToLayer("Enemy")
                 | 1 << LayerMask.NameToLayer("Floor")
@@ -155,6 +170,7 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
         EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
+        EventManager.AddEventListener("TransitionCameraUpdate", OnTransitionCameraUpdate);
     }
 
     void OnTransitionSmoothUpdate(object[] paramsContainer)
@@ -202,12 +218,14 @@ public class CamRotationController : MonoBehaviour
 
     private void OnGameFinished(params object[] paramsContainer)
     {
+        showProjections = false;
         _gameInCourse = false;
     }
 
     private void OnRestartRound(params object[] paramsContainer)
     {
         _gameInCourse = true;
+        showProjections = true;
 
         if ((bool)paramsContainer[0])
         {
@@ -491,87 +509,100 @@ public class CamRotationController : MonoBehaviour
     /// 0 - Is Start?
     /// </summary>
     /// <param name="paramsContainer"></param>
-    void OnTransitionUpdate(object[] paramsContainer)
+    void OnTransitionCameraUpdate(object[] paramsContainer)
     {
+        var start = (bool)paramsContainer[0];
         if (_proyectionLayer == Utilities.IntLayers.VISIBLETOP1)
         {
-            _offset = new Vector2(1, 0);
+            if (start)
+            {
+                _offset = new Vector2(1, 0);
+            }
+            else
+            {
+                _offset = new Vector2(-1, 0);
+            }
         }
         else
         {
-            _offset = new Vector2(-1, 0);
+            if (start)
+            {
+                _offset = new Vector2(-1, 0);
+            }
+            else
+            {
+                _offset = new Vector2(1, 0);
+            }
         }
-        _isInTransition = (bool)paramsContainer[0];
+
+        StartCoroutine(TransitionCameraUpdate(.5f));
     }
 
     /// Camera's offset in screen coordinates (animate this using your favourite method). 
     /// Zero means no effect. Axes may be swapped from what you expect. 
     /// Experiment with values between -1 and 1. public Vector2 offset;
 
-    void OnPreRender()
+    void MoveCameraRect(Camera cam)
     {
-        if (_isInTransition)
+        var r = new Rect(0f, 0f, 1f, 1f);
+        var alignFactor = Vector2.one;
+
+        if (_offset.y >= 0f)
         {
-            var r = new Rect(0f, 0f, 1f, 1f);
-            var alignFactor = Vector2.one;
-
-            if (_offset.y >= 0f)
-            {
-                // Sliding down
-                r.height = 1f - _offset.y;
-                alignFactor.y = 1f;
-            }
-            else
-            {
-                // Sliding up
-                r.y = -_offset.y;
-                r.height = 1f + _offset.y;
-                alignFactor.y = -1f;
-            }
-
-            if (_offset.x >= 0f)
-            {
-                // Sliding right
-                r.width = 1f - _offset.x;
-                alignFactor.x = 1f;
-            }
-            else
-            {
-                // Sliding left
-                r.x = -_offset.x;
-                r.width = 1f + _offset.x;
-                alignFactor.x = -1f;
-            }
-
-            // Avoid division by zero
-            if (r.width == 0f)
-            {
-                r.width = 0.001f;
-            }
-            if (r.height == 0f)
-            {
-                r.height = 0.001f;
-            }
-
-            // Set the camera's render rectangle to r, but use the normal projection matrix
-            // This works around Unity modifying the projection matrix to correct for the aspect ratio
-            // (which is normally desirable behaviour, but interferes with this effect)
-            GetCamera.rect = new Rect(0, 0, 1, 1);
-            GetCamera.ResetProjectionMatrix();
-            var m = GetCamera.projectionMatrix;
-            GetCamera.rect = r;
-
-            // The above has caused the scene render to be squashed into the rectangle r.
-            // Apply a scale factor to un-squash it.
-            // The translation factor aligns the top of the scene to the top of the view
-            // (without this, the view is of the middle of the scene)
-            var m2 = Matrix4x4.TRS(
-                new Vector3(alignFactor.x * (-1 / r.width + 1), alignFactor.y * (-1 / r.height + 1), 0),
-                Quaternion.identity,
-                new Vector3(1 / r.width, 1 / r.height, 1));
-
-            GetCamera.projectionMatrix = m2 * m;
+            // Sliding down
+            r.height = 1f - _offset.y;
+            alignFactor.y = 1f;
         }
+        else
+        {
+            // Sliding up
+            r.y = -_offset.y;
+            r.height = 1f + _offset.y;
+            alignFactor.y = -1f;
+        }
+
+        if (_offset.x >= 0f)
+        {
+            // Sliding right
+            r.width = 1f - _offset.x;
+            alignFactor.x = 1f;
+        }
+        else
+        {
+            // Sliding left
+            r.x = -_offset.x;
+            r.width = 1f + _offset.x;
+            alignFactor.x = -1f;
+        }
+
+        // Avoid division by zero
+        if (r.width == 0f)
+        {
+            r.width = 0.001f;
+        }
+        if (r.height == 0f)
+        {
+            r.height = 0.001f;
+        }
+
+        // Set the camera's render rectangle to r, but use the normal projection matrix
+        // This works around Unity modifying the projection matrix to correct for the aspect ratio
+        // (which is normally desirable behaviour, but interferes with this effect)
+        cam.rect = new Rect(0, 0, 1, 1);
+        cam.ResetProjectionMatrix();
+        var m = cam.projectionMatrix;
+        cam.rect = r;
+
+        // The above has caused the scene render to be squashed into the rectangle r.
+        // Apply a scale factor to un-squash it.
+        // The translation factor aligns the top of the scene to the top of the view
+        // (without this, the view is of the middle of the scene)
+        var m2 = Matrix4x4.TRS(
+            new Vector3(alignFactor.x * (-1 / r.width + 1), alignFactor.y * (-1 / r.height + 1), 0),
+            Quaternion.identity,
+            new Vector3(1 / r.width, 1 / r.height, 1));
+
+        cam.projectionMatrix = m2 * m;
     }
 
 
@@ -585,6 +616,18 @@ public class CamRotationController : MonoBehaviour
         {
             i += Time.deltaTime / maxTime;
             objToMove.position = Vector2.Lerp(startPos, endPos, i);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator TransitionCameraUpdate(float maxTime)
+    {
+        var i = 0f;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / maxTime;
+            MoveCameraRect(GetCamera);
             yield return new WaitForEndOfFrame();
         }
     }

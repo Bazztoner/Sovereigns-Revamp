@@ -93,8 +93,35 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.AddEventListener("KnockBackExit", OnKnockBackExit);
         EventManager.AddEventListener("SpecialAttack", OnSpecialAttackUpdate);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
+        EventManager.AddEventListener("ApplyPlayerStartingColors", OnApplyPlayerStartingColors);
         //EventManager.AddEventListener("StunAttackEnter", OnStunAttackEnter);
         //EventManager.AddEventListener("StunAttackExit", OnStunAttackExit);
+    }
+
+    void OnApplyPlayerStartingColors(object[] paramsContainer)
+    {
+        if (gameObject.name == "Player2")
+        {
+            var array = (List<AngelArmorColor>)paramsContainer[0];
+            var myColor = array[1];
+            myColor.transform.SetParent(transform);
+            myColor.gameObject.SetActive(true);
+        }
+        else
+        {
+            var array = (List<AngelArmorColor>)paramsContainer[0];
+            var myColor = array[0];
+            myColor.transform.SetParent(transform);
+            myColor.gameObject.SetActive(true);
+        }
+
+    }
+
+    public void OnApplyPlayerStartingColors(AngelArmorColor color)
+    {
+        color.transform.SetParent(transform);
+        color.gameObject.SetActive(true);
+        color.ExecuteColorizer();
     }
     #endregion
 
@@ -326,8 +353,10 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, hpFill });
         EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, manaFill, this.gameObject.name });
 
-        transform.position = gameObject.name == "Player1" ? GameObject.Find("SpawnSpotsP1").transform.position : GameObject.Find("SpawnSpotsP2").transform.position;
-        transform.forward = gameObject.name == "Player1" ? GameObject.Find("SpawnSpotsP1").transform.forward : GameObject.Find("SpawnSpotsP2").transform.forward;
+        var ssCont = GameObject.Find("SpawnSpots");
+
+        transform.position = gameObject.name == "Player1" ? ssCont.transform.Find("SpawnSpotP1").transform.position : ssCont.transform.Find("SpawnSpotP2").transform.position;
+        transform.forward = gameObject.name == "Player1" ? ssCont.transform.Find("SpawnSpotP1").transform.forward : ssCont.transform.Find("SpawnSpotP2").transform.forward;
 
 
         isDead = false;

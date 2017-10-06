@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DividedScreen : MonoBehaviour {
 
@@ -39,7 +40,23 @@ public class DividedScreen : MonoBehaviour {
         _player1.gameObject.SetActive(true);
         _player2.gameObject.SetActive(true);
 
+        SetPlayerStartingColors();
+
         EventManager.DispatchEvent("GameStarted");
+    }
+
+    void SetPlayerStartingColors()
+    {
+        var colors = GameObject.Find("AngelArmorColorsContainer").GetComponentsInChildren<AngelArmorColor>().ToList();
+        var rnd1 = Random.Range(0, colors.Count);
+        int rnd2;
+
+        do { rnd2 = Random.Range(0, colors.Count);
+        } while (rnd2 == rnd1);
+        
+        //EventManager.DispatchEvent("ApplyPlayerStartingColors", colors);
+        _player1.GetComponent<PlayerStats>().OnApplyPlayerStartingColors(colors[rnd1]);
+        _player2.GetComponent<PlayerStats>().OnApplyPlayerStartingColors(colors[rnd2]);
     }
 
     private void OnRestartRound(params object[] paramsContainer)

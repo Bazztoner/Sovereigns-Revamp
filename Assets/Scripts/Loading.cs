@@ -7,6 +7,6 @@ public class Loading : MonoBehaviour {
     
 	void Start ()
     {
-        SceneManager.LoadSceneAsync("TransitionsTest");
+        //SceneManager.LoadSceneAsync("TransitionsTest");
 	}
 }

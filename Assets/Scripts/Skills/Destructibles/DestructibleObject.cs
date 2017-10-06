@@ -36,7 +36,25 @@ public class DestructibleObject : Photon.MonoBehaviour
         if (allObjs == null) allObjs = new List<DestructibleObject>();
         allObjs.Add(this);
         isAlive = true;
+
+        if (gameObject.name == "Column" || gameObject.name == "Chandelier")
+        {
+            zone = GameObject.FindObjectsOfType<Zone>().Where(x => x.name == "MainHall").FirstOrDefault();
+        }
+        else if (gameObject.name == "Vitraux")
+        {
+            zone = GameObject.FindObjectsOfType<Zone>().Where(x => x.name == "Altar").FirstOrDefault();
+        }
+
         EventManager.AddEventListener("DividedScreen", OnDividedScreen);
+        EventManager.AddEventListener("EndMatch", OnEndMatch);
+
+    }
+
+    void OnEndMatch(object[] paramsContainer)
+    {
+        EventManager.RemoveEventListener("DividedScreen", OnDividedScreen);
+        EventManager.RemoveEventListener("EndMatch", OnEndMatch);
     }
 
     void OnDividedScreen(object[] paramsContainer)
