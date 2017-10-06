@@ -93,31 +93,11 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.AddEventListener("KnockBackExit", OnKnockBackExit);
         EventManager.AddEventListener("SpecialAttack", OnSpecialAttackUpdate);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
-        EventManager.AddEventListener("ApplyPlayerStartingColors", OnApplyPlayerStartingColors);
         //EventManager.AddEventListener("StunAttackEnter", OnStunAttackEnter);
         //EventManager.AddEventListener("StunAttackExit", OnStunAttackExit);
     }
 
-    void OnApplyPlayerStartingColors(object[] paramsContainer)
-    {
-        if (gameObject.name == "Player2")
-        {
-            var array = (List<AngelArmorColor>)paramsContainer[0];
-            var myColor = array[1];
-            myColor.transform.SetParent(transform);
-            myColor.gameObject.SetActive(true);
-        }
-        else
-        {
-            var array = (List<AngelArmorColor>)paramsContainer[0];
-            var myColor = array[0];
-            myColor.transform.SetParent(transform);
-            myColor.gameObject.SetActive(true);
-        }
-
-    }
-
-    public void OnApplyPlayerStartingColors(AngelArmorColor color)
+    public void ApplyPlayerStartingColor(AngelArmorColor color)
     {
         color.transform.SetParent(transform);
         color.gameObject.SetActive(true);
@@ -318,7 +298,6 @@ public class PlayerStats : Photon.MonoBehaviour {
         LoseHP(damage, attackType, attackerName);
     }
 
-    #region Cambios Iván 21/9
     /// <summary>
     /// Para pasar la normal del polígono y que las partículas aparezcan
     /// </summary>
@@ -331,7 +310,6 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, polyNormal, this.GetComponent<PlayerParticles>(), attackType });
         LoseHP(damage, "");
     }
-    #endregion
 
     private void Regenerate()
     {
@@ -439,6 +417,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         }
     }
     #endregion
+
     private void OnDamageExit()
     {
         isDamaged = false;

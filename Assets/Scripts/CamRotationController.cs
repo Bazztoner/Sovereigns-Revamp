@@ -170,7 +170,7 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
         EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
-        EventManager.AddEventListener("TransitionCameraUpdate", OnTransitionCameraUpdate);
+        //EventManager.AddEventListener("TransitionCameraUpdate", OnTransitionCameraUpdate);
     }
 
     void OnTransitionSmoothUpdate(object[] paramsContainer)
@@ -512,30 +512,57 @@ public class CamRotationController : MonoBehaviour
     void OnTransitionCameraUpdate(object[] paramsContainer)
     {
         var start = (bool)paramsContainer[0];
+
+        Camera subCam;
+        Vector2 originalPosCam1 = GetCamera.rect.position;
+        Vector2 originalPosCam2;
+
+        var lerpTime = .2f;
+
         if (_proyectionLayer == Utilities.IntLayers.VISIBLETOP1)
         {
+            subCam = GetCamera.transform.FindChild("SubCam1").GetComponent<Camera>();
+            originalPosCam2 = subCam.rect.position;
+
             if (start)
             {
-                _offset = new Vector2(1, 0);
+                _offset = new Vector2(-.5f, 1f);
+
+                StartCoroutine(LerpRect(GetCamera, originalPosCam1, _offset, lerpTime));
+                StartCoroutine(LerpRect(subCam, originalPosCam2, _offset, lerpTime));
             }
             else
             {
-                _offset = new Vector2(-1, 0);
+                _offset = new Vector2(0f, 1f);
+
+                StartCoroutine(LerpRect(GetCamera, _offset, originalPosCam1, lerpTime));
+                StartCoroutine(LerpRect(subCam, _offset, originalPosCam2, lerpTime));
             }
         }
         else
         {
+            subCam = GetCamera.transform.FindChild("SubCam2").GetComponent<Camera>();
+            originalPosCam2 = subCam.rect.position;
+
             if (start)
             {
-                _offset = new Vector2(-1, 0);
+                _offset = new Vector2(1f, 0f);
+
+                StartCoroutine(LerpRect(GetCamera, originalPosCam1, _offset, lerpTime));
+                StartCoroutine(LerpRect(subCam, originalPosCam2, _offset, lerpTime));
             }
             else
             {
-                _offset = new Vector2(1, 0);
+                _offset = new Vector2(.5f, 0f);
+
+                StartCoroutine(LerpRect(GetCamera, _offset, originalPosCam1, lerpTime));
+                StartCoroutine(LerpRect(subCam, _offset, originalPosCam2, lerpTime));
             }
+            
         }
 
-        StartCoroutine(TransitionCameraUpdate(.5f));
+        /*StartCoroutine(TransitionCameraUpdate(GetCamera, .5f));
+        StartCoroutine(TransitionCameraUpdate(subCam, .5f));*/
     }
 
     /// Camera's offset in screen coordinates (animate this using your favourite method). 
@@ -605,29 +632,106 @@ public class CamRotationController : MonoBehaviour
         cam.projectionMatrix = m2 * m;
     }
 
+    void MoveCameraRect(Camera cam, Vector2 offst)
+    {
+        var r = new Rect(0f, 0f, 1f, .5f);
+        var alignFactor = Vector2.one;
+
+        if (offst.y >= 0f)
+        {
+            // Sliding down
+            r.height = 1f - offst.y;
+            alignFactor.y = 1f;
+        }
+        else
+        {
+            // Sliding up
+            r.y = -offst.y;
+            r.height = 1f + offst.y;
+            alignFactor.y = -1f;
+        }
+
+        if (offst.x >= 0f)
+        {
+            // Sliding right
+            r.width = 1f - offst.x;
+            alignFactor.x = 1f;
+        }
+        else
+        {
+            // Sliding left
+            r.x = -offst.x;
+            r.width = 1f + offst.x;
+            alignFactor.x = -1f;
+        }
+
+        // Avoid division by zero
+        if (r.width == 0f)
+        {
+            r.width = 0.001f;
+        }
+        if (r.height == 0f)
+        {
+            r.height = 0.001f;
+        }
+
+        // Set the camera's render rectangle to r, but use the normal projection matrix
+        // This works around Unity modifying the projection matrix to correct for the aspect ratio
+        // (which is normally desirable behaviour, but interferes with this effect)
+        cam.rect = new Rect(0, 0, 1f, .5f);
+        //cam.ResetProjectionMatrix();
+        //var m = cam.projectionMatrix;
+        cam.rect = r;
+
+        // The above has caused the scene render to be squashed into the rectangle r.
+        // Apply a scale factor to un-squash it.
+        // The translation factor aligns the top of the scene to the top of the view
+        // (without this, the view is of the middle of the scene)
+        /*var m2 = Matrix4x4.TRS(
+            new Vector3(alignFactor.x * (-1f / r.width + .5f), alignFactor.y * (-1f / r.height + 1f), 0),
+            Quaternion.identity,
+            new Vector3(1f / r.width, 1.5f / r.height, 1f));
+
+        cam.projectionMatrix = m2 * m;*/
+    }
 
     #endregion
 
-    IEnumerator LerpRectPosition(Rect objToMove, Vector2 startPos, Vector2 endPos, float maxTime)
+    IEnumerator LerpRectPosition(Camera cam, float maxTime)
     {
         var i = 0f;
 
         while (i <= 1)
         {
             i += Time.deltaTime / maxTime;
-            objToMove.position = Vector2.Lerp(startPos, endPos, i);
+            MoveCameraRect(cam);
             yield return new WaitForEndOfFrame();
         }
     }
 
-    IEnumerator TransitionCameraUpdate(float maxTime)
+    IEnumerator TransitionCameraUpdate(Camera cam, float maxTime)
+    {
+        var i = 0f;
+        while (i <= 1)
+        {
+            i += Time.deltaTime / maxTime;
+            var offst = Vector2.Lerp(_offset, new Vector2(-_offset.x, 0), i);
+            MoveCameraRect(cam, offst);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator LerpRect(Camera cam, Vector3 startPos, Vector3 endPos, float maxTime)
     {
         var i = 0f;
 
         while (i <= 1)
         {
             i += Time.deltaTime / maxTime;
-            MoveCameraRect(GetCamera);
+            var rkt = cam.rect;
+            var vkt = Vector3.Lerp(startPos, endPos, i);
+            rkt.Set(vkt.x, vkt.y, 1, .5f);
+            cam.rect = rkt;
             yield return new WaitForEndOfFrame();
         }
     }

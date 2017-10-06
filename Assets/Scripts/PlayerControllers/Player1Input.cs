@@ -85,7 +85,6 @@ public class Player1Input : MonoBehaviour {
 
     private void FindCamera()
     {
-        #region Cambios Iván 29/8
         //Lo que cambié fue: Agregué cullLayer y agregué una sobrecarga en el init del CamRotationController para cullear la máscara ( ° ͜ʖ ͡°)
         int cullLayer = default(int);
         if (GameManager.screenDivided)
@@ -105,8 +104,6 @@ public class Player1Input : MonoBehaviour {
 
         if (cullLayer != default(int)) _cam.GetComponent<CamRotationController>().Init(this.transform, readJoystick, cullLayer);
         else _cam.GetComponent<CamRotationController>().Init(this.transform, readJoystick);
-
-        #endregion
     }
 
     private void LockCursor()

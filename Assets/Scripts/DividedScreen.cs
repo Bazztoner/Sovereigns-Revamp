@@ -54,9 +54,8 @@ public class DividedScreen : MonoBehaviour {
         do { rnd2 = Random.Range(0, colors.Count);
         } while (rnd2 == rnd1);
         
-        //EventManager.DispatchEvent("ApplyPlayerStartingColors", colors);
-        _player1.GetComponent<PlayerStats>().OnApplyPlayerStartingColors(colors[rnd1]);
-        _player2.GetComponent<PlayerStats>().OnApplyPlayerStartingColors(colors[rnd2]);
+        _player1.GetComponent<PlayerStats>().ApplyPlayerStartingColor(colors[rnd1]);
+        _player2.GetComponent<PlayerStats>().ApplyPlayerStartingColor(colors[rnd2]);
     }
 
     private void OnRestartRound(params object[] paramsContainer)
