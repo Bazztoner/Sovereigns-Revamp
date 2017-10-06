@@ -23,7 +23,7 @@ public class DestructibleBoundingBox : MonoBehaviour
             var dmg = transform.GetComponentInParent<DestructibleObject>().damage;
             if (PhotonNetwork.offlineMode)
             {
-                c.GetComponent<PlayerStats>().TakeDamage(dmg, "Destructible");
+                c.GetComponent<PlayerStats>().TakeDamage(dmg, "Destructible", gameObject.name);
                 gameObject.SetActive(false);
             }
             else if (destr.nickName == PhotonNetwork.player.NickName)

@@ -17,10 +17,12 @@ public class CamRotationController : MonoBehaviour
     public bool showProjections;
     public bool smoothCamera = true;
     public Vector3 initialPosition;
+
+    [System.Obsolete("Ya no se usa más")]
     public Color destructibleColor;
 
-    int proyectionLayer;
-    int lockOnLayer;
+    int _proyectionLayer;
+    int _lockOnLayer;
 
     private Transform _character;
     private Transform _enemy;
@@ -37,18 +39,22 @@ public class CamRotationController : MonoBehaviour
     private bool _gameInCourse = true;
     private bool _lockOn = false;
     private bool _readJoystick;
-    private Color _originalColor = Color.white;
     private LayerMask _mask;
     private LayerMask _enemyMask;
     private Camera _cam;
     private RaycastHit _hit;
-    [System.Obsolete("Ya no se usa más")]
-    private List<MarkableObject> _allMarkables;
     private DestructibleObject _currentTarget;
 
-    Quaternion _fixedLocalRot;
+    [System.Obsolete("Ya no se usa más")]
+    private List<MarkableObject> _allMarkables;
+    [System.Obsolete("Ya no se usa más")]
+    private Color _originalColor = Color.white;
 
+
+    Vector2 _offset;
+    Quaternion _fixedLocalRot;
     CameraShake _shake;
+    bool _isInTransition;
 
     public DestructibleObject CurrentTarget
     {
@@ -130,8 +136,8 @@ public class CamRotationController : MonoBehaviour
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
-        proyectionLayer = cullLayer;
-        lockOnLayer = proyectionLayer == 16 ? 20 : 21;
+        _proyectionLayer = cullLayer;
+        _lockOnLayer = _proyectionLayer == 16 ? 20 : 21;
 
         _enemy = GetEnemy();
         showProjections = true;
@@ -301,12 +307,12 @@ public class CamRotationController : MonoBehaviour
         if (!_lockOn && Vector3.Distance(_character.position, Enemy.position) <= lockOnDistance && !checkVision)
         {
             _lockOn = true;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, lockOnLayer });
+            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, _lockOnLayer });
         }
         else if (_lockOn)
         {
             _lockOn = false;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, lockOnLayer });
+            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, _lockOnLayer });
         }
     }
 
@@ -315,7 +321,7 @@ public class CamRotationController : MonoBehaviour
         if (Vector3.Distance(_character.position, Enemy.position) > lockOnDistance)
         {
             _lockOn = false;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, lockOnLayer });
+            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, _lockOnLayer });
         }
     }
 
@@ -451,7 +457,7 @@ public class CamRotationController : MonoBehaviour
 
     void MakeVisible(DestructibleObject obj, bool visible)
     {
-        var wf = obj.GetComponentsInChildren<DestructibleImpactArea>().Where(x => x.gameObject.layer == proyectionLayer).FirstOrDefault();
+        var wf = obj.GetComponentsInChildren<DestructibleImpactArea>().Where(x => x.gameObject.layer == _proyectionLayer).FirstOrDefault();
         if (wf != default(DestructibleImpactArea))
         {
             wf.SetVisible(visible);
@@ -479,6 +485,109 @@ public class CamRotationController : MonoBehaviour
         _shake.ShakeCamera(amount, duration);
     }
     #endregion
+
+    #region Transition
+    /// <summary>
+    /// 0 - Is Start?
+    /// </summary>
+    /// <param name="paramsContainer"></param>
+    void OnTransitionUpdate(object[] paramsContainer)
+    {
+        if (_proyectionLayer == Utilities.IntLayers.VISIBLETOP1)
+        {
+            _offset = new Vector2(1, 0);
+        }
+        else
+        {
+            _offset = new Vector2(-1, 0);
+        }
+        _isInTransition = (bool)paramsContainer[0];
+    }
+
+    /// Camera's offset in screen coordinates (animate this using your favourite method). 
+    /// Zero means no effect. Axes may be swapped from what you expect. 
+    /// Experiment with values between -1 and 1. public Vector2 offset;
+
+    void OnPreRender()
+    {
+        if (_isInTransition)
+        {
+            var r = new Rect(0f, 0f, 1f, 1f);
+            var alignFactor = Vector2.one;
+
+            if (_offset.y >= 0f)
+            {
+                // Sliding down
+                r.height = 1f - _offset.y;
+                alignFactor.y = 1f;
+            }
+            else
+            {
+                // Sliding up
+                r.y = -_offset.y;
+                r.height = 1f + _offset.y;
+                alignFactor.y = -1f;
+            }
+
+            if (_offset.x >= 0f)
+            {
+                // Sliding right
+                r.width = 1f - _offset.x;
+                alignFactor.x = 1f;
+            }
+            else
+            {
+                // Sliding left
+                r.x = -_offset.x;
+                r.width = 1f + _offset.x;
+                alignFactor.x = -1f;
+            }
+
+            // Avoid division by zero
+            if (r.width == 0f)
+            {
+                r.width = 0.001f;
+            }
+            if (r.height == 0f)
+            {
+                r.height = 0.001f;
+            }
+
+            // Set the camera's render rectangle to r, but use the normal projection matrix
+            // This works around Unity modifying the projection matrix to correct for the aspect ratio
+            // (which is normally desirable behaviour, but interferes with this effect)
+            GetCamera.rect = new Rect(0, 0, 1, 1);
+            GetCamera.ResetProjectionMatrix();
+            var m = GetCamera.projectionMatrix;
+            GetCamera.rect = r;
+
+            // The above has caused the scene render to be squashed into the rectangle r.
+            // Apply a scale factor to un-squash it.
+            // The translation factor aligns the top of the scene to the top of the view
+            // (without this, the view is of the middle of the scene)
+            var m2 = Matrix4x4.TRS(
+                new Vector3(alignFactor.x * (-1 / r.width + 1), alignFactor.y * (-1 / r.height + 1), 0),
+                Quaternion.identity,
+                new Vector3(1 / r.width, 1 / r.height, 1));
+
+            GetCamera.projectionMatrix = m2 * m;
+        }
+    }
+
+
+    #endregion
+
+    IEnumerator LerpRectPosition(Rect objToMove, Vector2 startPos, Vector2 endPos, float maxTime)
+    {
+        var i = 0f;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / maxTime;
+            objToMove.position = Vector2.Lerp(startPos, endPos, i);
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
 }
 

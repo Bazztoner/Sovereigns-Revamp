@@ -231,6 +231,7 @@
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionDummy.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionManager.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\Zone.cs" />
+    <Compile Include="Assets\Scripts\Loading.cs" />
     <Compile Include="Assets\Scripts\LockOnGraphic.cs" />
     <Compile Include="Assets\Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\AnimationController.cs" />

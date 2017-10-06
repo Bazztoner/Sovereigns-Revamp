@@ -191,6 +191,7 @@ public class TransitionManager : MonoBehaviour
     void OnTransitionDummiesActivated(LevelTransition transition, GameObject attacker, GameObject victim)
     {
         EventManager.DispatchEvent("TransitionSmoothCameraUpdate", new object[] { false });
+        EventManager.DispatchEvent("TransitionCameraUpdate", true);
 
         var dummyAttacker = GameObject.Instantiate(Resources.Load("Transitions/Dummies/TransitionPlayerDummy") as GameObject, attacker.transform.position, Quaternion.identity);
         dummyAttacker.transform.forward = attacker.transform.forward;
@@ -267,15 +268,6 @@ public class TransitionManager : MonoBehaviour
 
         yield return new WaitForSeconds(cameraDelay);
 
-        /*blackScreen.enabled = true;
-        var colorTransparent = blackScreen.color;
-        colorTransparent.a = 1;
-        blackScreen.color = colorTransparent;
-        var fadeTime = maxTimeForLerpingPosition / 2.3f;
-        colorTransparent.a = 0;
-
-        StartCoroutine(LerpBlackScreen(blackScreen.color, colorTransparent, blackScreen.color, fadeTime));*/
-
         //Cambiamos las cámaras
         StartCoroutine(
                         LerpPosition(transitionElements.Item1.camerasForTransition[0].transform,
@@ -330,6 +322,8 @@ public class TransitionManager : MonoBehaviour
             var camVictim = transitionElements.Item3.GetComponentInParent<Player1Input>().GetCamera;
             camVictim.transform.forward = -transitionElements.Item1.transform.forward;
         }
+
+        EventManager.DispatchEvent("TransitionCameraUpdate", false);
 
         transitionElements.Item1.camerasForTransition[1].gameObject.SetActive(false);
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(false);

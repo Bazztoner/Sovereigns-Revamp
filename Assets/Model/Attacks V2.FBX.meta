@@ -2725,7 +2725,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 135
     - serializedVersion: 16
-      name: 2Block+X
+      name: 2YX
       takeName: Take 001
       firstFrame: 301
       lastFrame: 326
@@ -3019,7 +3019,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 135
     - serializedVersion: 16
-      name: 2YX
+      name: 2Block+X
       takeName: Take 001
       firstFrame: 416
       lastFrame: 446

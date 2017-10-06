@@ -326,8 +326,10 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, hpFill });
         EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, manaFill, this.gameObject.name });
 
-        this.transform.localPosition = initialPosition;
-        this.transform.rotation = initialRotation;
+        transform.position = gameObject.name == "Player1" ? GameObject.Find("SpawnSpotsP1").transform.position : GameObject.Find("SpawnSpotsP2").transform.position;
+        transform.forward = gameObject.name == "Player1" ? GameObject.Find("SpawnSpotsP1").transform.forward : GameObject.Find("SpawnSpotsP2").transform.forward;
+
+
         isDead = false;
 
         if (!(bool)paramsContainer[0])
@@ -399,7 +401,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         if (this.gameObject.name == (string)paramsContainer[0])
         {
             //isDamaged = true;
-            isDamaged = (bool)paramsContainer[4];
+            isDamaged = !(bool)paramsContainer[4];
            _isBlocking = false;
             _isBlockingUp = false;
             EventManager.DispatchEvent("IsDamaged", new object[] { this.gameObject.name, isDamaged });
