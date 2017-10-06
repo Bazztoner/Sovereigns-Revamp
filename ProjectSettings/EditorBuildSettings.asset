@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Scene/HeavenTempleTest.unity
   - enabled: 1
     path: Assets/Scene/TransitionsTest.unity
+  - enabled: 1
+    path: Assets/Scene/Loading.unity

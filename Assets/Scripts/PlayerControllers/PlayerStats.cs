@@ -28,6 +28,8 @@ public class PlayerStats : Photon.MonoBehaviour {
     public int maxMana;
     public float hpRegeneration;
     public float manaRegeneration;
+    public Vector3 initialPosition;
+    public Quaternion initialRotation;
 
     #region Get and Set
     public float Hp
@@ -62,7 +64,7 @@ public class PlayerStats : Photon.MonoBehaviour {
     void Start()
     {
         AddEvents();
-
+        _gameInCourse = true;
         InvokeRepeating("Regenerate", _regenMult, _regenMult);
     }
 
@@ -89,6 +91,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.AddEventListener("KnockBackEnter", OnKnockBackEnter);
         EventManager.AddEventListener("KnockBackExit", OnKnockBackExit);
         EventManager.AddEventListener("SpecialAttack", OnSpecialAttackUpdate);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
         //EventManager.AddEventListener("StunAttackEnter", OnStunAttackEnter);
         //EventManager.AddEventListener("StunAttackExit", OnStunAttackExit);
     }
@@ -309,6 +312,40 @@ public class PlayerStats : Photon.MonoBehaviour {
     #endregion
 
     #region Events
+    private void OnRestartRound(params object[] paramsContainer)
+    {
+        Hp = maxHp;
+        Mana = maxMana;
+        var hpFill = Hp / maxHp;
+        var manaFill = Mana / maxMana;
+        EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, hpFill });
+        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, manaFill, this.gameObject.name });
+
+        this.transform.localPosition = initialPosition;
+        this.transform.rotation = initialRotation;
+        isDead = false;
+
+        if (!(bool)paramsContainer[0])
+        {
+            _gameInCourse = true;
+            InvokeRepeating("Regenerate", _regenMult, _regenMult);
+        }
+        else
+        {
+            EventManager.RemoveEventListener("SpellCasted", OnSpellCasted);
+            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
+            EventManager.RemoveEventListener("Blocking", OnBlocking);
+            EventManager.RemoveEventListener("PlayerDeath", OnPlayerDeath);
+            EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
+            EventManager.RemoveEventListener("KnockBackEnter", OnKnockBackEnter);
+            EventManager.RemoveEventListener("KnockBackExit", OnKnockBackExit);
+            EventManager.RemoveEventListener("SpecialAttack", OnSpecialAttackUpdate);
+            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+
+            this.gameObject.SetActive(false);
+        }
+    }
+
     void OnSpellCasted(params object[] paramsContainer)
     {
         if ((string)paramsContainer[1] == this.gameObject.name)

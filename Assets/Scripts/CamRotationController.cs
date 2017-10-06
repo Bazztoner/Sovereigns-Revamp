@@ -147,6 +147,7 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("DividedScreen", UseProjections);
         //EventManager.AddEventListener("BeginGame", UseProjections);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
         EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
     }
 
@@ -196,6 +197,24 @@ public class CamRotationController : MonoBehaviour
     private void OnGameFinished(params object[] paramsContainer)
     {
         _gameInCourse = false;
+    }
+
+    private void OnRestartRound(params object[] paramsContainer)
+    {
+        _gameInCourse = true;
+
+        if ((bool)paramsContainer[0])
+        {
+            EventManager.RemoveEventListener("ChangeStateDestuctibleProjections", ActivateProjections);
+            EventManager.RemoveEventListener("DoConnect", UseProjections);
+            EventManager.RemoveEventListener("DoNotConnect", UseProjections);
+            EventManager.RemoveEventListener("DoDummyTest", UseProjections);
+            EventManager.RemoveEventListener("DividedScreen", UseProjections);
+            //EventManager.RemoveEventListener("BeginGame", UseProjections);
+            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
+            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+            EventManager.RemoveEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
+        }
     }
     #endregion
 
@@ -427,6 +446,7 @@ public class CamRotationController : MonoBehaviour
             }
             _currentTarget = null;
         }
+
     }
 
     void MakeVisible(DestructibleObject obj, bool visible)

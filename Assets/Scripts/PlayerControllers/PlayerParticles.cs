@@ -40,6 +40,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
     {
         EventManager.AddEventListener("ActivateRunParticle", OnActivateRunning);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
         //EventManager.AddEventListener("ActivateBlinkTrail", OnActivateBlink);
     }
 
@@ -48,6 +49,16 @@ public class PlayerParticles : Photon.MonoBehaviour {
         EventManager.RemoveEventListener("ActivateRunParticle", OnActivateRunning);
         _blinkTrail.SetActive(false);
         _runParticle.SetActive(false);
+    }
+
+    private void OnRestartRound(params object[] paramsContainer)
+    {
+        if ((bool)paramsContainer[0])
+        {
+            EventManager.RemoveEventListener("ActivateRunParticle", OnActivateRunning);
+            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
+            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+        }
     }
 
     void AddRunParticle()

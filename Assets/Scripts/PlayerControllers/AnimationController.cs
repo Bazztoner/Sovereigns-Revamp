@@ -25,6 +25,7 @@ public class AnimationController : MonoBehaviour {
         EventManager.AddEventListener("IsDamaged", OnIsDamaged);
         EventManager.AddEventListener("GuardBreak", OnGuardBreak);
         EventManager.AddEventListener("StunParticle", OnStun);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
     }
 
     void OnStun(object[] paramsContainer)
@@ -85,7 +86,10 @@ public class AnimationController : MonoBehaviour {
     /// <summary>Death Animation</summary>
     private void OnIsDead(params object[] paramsContainer)
     {
-        if(this.gameObject.name == (string)paramsContainer[0])
+        _anim.SetFloat("xMovement", 0);
+        _anim.SetFloat("yMovement", 0);
+
+        if (this.gameObject.name == (string)paramsContainer[0])
             _anim.SetBool("isDead", (bool)paramsContainer[1]);
     }
 
@@ -115,5 +119,34 @@ public class AnimationController : MonoBehaviour {
         _anim.SetBool("isRolling", false);
         _anim.SetBool("isBlocking", false);
         _anim.SetBool("blockUp", false);
+    }
+
+    /// <summary>Resets the animator to start over the game</summary>
+    private void OnRestartRound(params object[] paramsContainer)
+    {
+        _anim.SetBool("isBlocking", false);
+        _anim.SetBool("isRolling", false);
+        _anim.SetBool("X", false);
+        _anim.SetBool("Y", false);
+        _anim.SetBool("isDamaged", false);
+        _anim.SetBool("isDead", false);
+        _anim.SetBool("transitionDamage", false);
+        _anim.SetBool("blockUp", false);
+        _anim.SetFloat("xMovement", 0f);
+        _anim.SetFloat("yMovement", 0f);
+
+        if ((bool)paramsContainer[0])
+        {
+            EventManager.RemoveEventListener("RunningAnimations", OnRunningAnimations);
+            EventManager.RemoveEventListener("RollingAnimation", OnRollingAnimation);
+            EventManager.RemoveEventListener("Blocking", OnBlocking);
+            EventManager.RemoveEventListener("X", OnX);
+            EventManager.RemoveEventListener("Y", OnY);
+            EventManager.RemoveEventListener("IsDead", OnIsDead);
+            EventManager.RemoveEventListener("IsDamaged", OnIsDamaged);
+            EventManager.RemoveEventListener("GuardBreak", OnGuardBreak);
+            EventManager.RemoveEventListener("StunParticle", OnStun);
+            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+        }
     }
 }

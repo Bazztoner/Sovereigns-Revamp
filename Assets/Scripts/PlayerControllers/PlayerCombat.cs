@@ -20,6 +20,17 @@ public class PlayerCombat : Photon.MonoBehaviour {
     {
         EventManager.AddEventListener("IdleEnter", OnIdleEnter);
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
+    }
+
+    private void OnRestartRound(params object[] paramsContainer)
+    {
+        if ((bool)paramsContainer[0])
+        {
+            EventManager.RemoveEventListener("IdleEnter", OnIdleEnter);
+            EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
+            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+        }
     }
 
     #region Actions

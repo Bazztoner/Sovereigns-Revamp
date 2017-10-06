@@ -57,6 +57,11 @@ public class DestructibleObject : Photon.MonoBehaviour
         }
     }
 
+    public static void DeleteAllObjs()
+    {
+        allObjs = null;
+    }
+
     public void TakeDamage(int damage)
     {
         life -= damage;

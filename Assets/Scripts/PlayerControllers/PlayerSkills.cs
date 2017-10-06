@@ -49,6 +49,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         EventManager.AddEventListener("ObjectPulled", OnObjectPulled);
         EventManager.AddEventListener("ObjectPulling", OnObjectPulling);
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
     }
     #endregion
 
@@ -158,6 +159,17 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         if(this.gameObject.name == (string)paramsContainer[0])
             isCastingSpell = false;
+    }
+
+    private void OnRestartRound(params object[] paramsContainer)
+    {
+        if ((bool)paramsContainer[0])
+        {
+            EventManager.RemoveEventListener("ObjectPulled", OnObjectPulled);
+            EventManager.RemoveEventListener("ObjectPulling", OnObjectPulling);
+            EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
+            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+        }
     }
     #endregion
 

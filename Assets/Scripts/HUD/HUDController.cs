@@ -34,6 +34,7 @@ public class HUDController : Photon.MonoBehaviour
         EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
         EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
         EventManager.AddEventListener("LockOnActivated", OnLockOnActivated);
 
         //EventManager.AddEventListener("DamageMade", OnDamageMade);
@@ -224,6 +225,23 @@ public class HUDController : Photon.MonoBehaviour
                     else damageText.text = "You Win";
                 }
             }
+        }
+    }
+
+    private void OnRestartRound(params object[] paramsContainer)
+    {
+        damageText.text = "";
+
+        if ((bool)paramsContainer[0])
+        {
+            EventManager.RemoveEventListener("LifeUpdate", ApplyHPChanges);
+            EventManager.RemoveEventListener("ManaUpdate", ApplyManaChanges);
+            EventManager.RemoveEventListener("SpellCooldown", OnSpellCooldown);
+            EventManager.RemoveEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
+            EventManager.RemoveEventListener("EnemyDamaged", OnEnemyDamaged);
+            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
+            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+            EventManager.RemoveEventListener("LockOnActivated", OnLockOnActivated);
         }
     }
 

@@ -12,6 +12,7 @@ public class DestructibleImpactArea : MonoBehaviour
     public bool isShown;
     Collider _col;
 
+
     void Start()
     {
         EventManager.AddEventListener("BeginGame", OnBeginGame);

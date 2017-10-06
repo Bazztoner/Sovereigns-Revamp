@@ -46,6 +46,7 @@ public class Player1Input : MonoBehaviour {
         EventManager.AddEventListener("Stun", OnStun);
         EventManager.AddEventListener("GuardBreak", OnGuardBreak);
         EventManager.AddEventListener("SpecialAttack", OnSpecialAttack);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
     }
 
     void OnSpecialAttack(object[] paramsContainer)
@@ -141,6 +142,22 @@ public class Player1Input : MonoBehaviour {
     private void OnGameFinished(params object[] paramsContainer)
     {
         _gameInCourse = false;
+    }
+
+    private void OnRestartRound(params object[] paramsContainer)
+    {
+        _gameInCourse = true;
+
+        if ((bool)paramsContainer[0])
+        {
+            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
+            EventManager.RemoveEventListener("TransitionBlockInputs", OnTransition);
+            EventManager.RemoveEventListener("Stun", OnStun);
+            EventManager.RemoveEventListener("GuardBreak", OnGuardBreak);
+            EventManager.RemoveEventListener("SpecialAttack", OnSpecialAttack);
+            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+        }
+        else FindCamera();
     }
 
     #region Movement

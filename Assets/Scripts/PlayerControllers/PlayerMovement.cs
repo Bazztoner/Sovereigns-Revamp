@@ -50,6 +50,19 @@ public class PlayerMovement : Photon.MonoBehaviour {
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
         EventManager.AddEventListener("RollExit", OnRollExit);
         EventManager.AddEventListener("DoKnockBack", OnDoKnockBack);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
+    }
+
+    private void OnRestartRound(params object[] paramsContainer)
+    {
+        if ((bool)paramsContainer[0])
+        {
+            //EventManager.RemoveEventListener("Attack", OnAttack);
+            EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
+            EventManager.RemoveEventListener("RollExit", OnRollExit);
+            EventManager.RemoveEventListener("DoKnockBack", OnDoKnockBack);
+            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+        }
     }
     #endregion
 
