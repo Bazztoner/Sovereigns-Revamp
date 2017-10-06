@@ -27,17 +27,17 @@ public class SoundManager : MonoBehaviour
 
     void OnSwordAttack(params object[] info)
     {
-        PlaySound(angelAttack);
+        PlaySound(angelAttack, Random.Range(0.8f, 1.2f));
     }
 
     void OnShieldBash(params object[] info)
     {
-        PlaySound(angelShieldBash);
+        PlaySound(angelShieldBash, Random.Range(0.9f, 1.1f));
     }
 
     void OnAngelBlock(params object[] info)
     {
-        PlaySound(angelBlock);
+        PlaySound(angelBlock, Random.Range(0.9f, 1.1f));
     }
 
     void OnStun(params object[] info)
@@ -47,7 +47,7 @@ public class SoundManager : MonoBehaviour
 
     void OnAngelDamaged(params object[] info)
     {
-        PlaySound(angelDamage);
+        PlaySound(angelDamage, Random.Range(0.95f, 1.1f));
     }
 
     void OnAngelDeath(params object[] info)
@@ -55,9 +55,9 @@ public class SoundManager : MonoBehaviour
         PlaySound(angelDeath);
     }
 
-    void PlaySound(AudioClip aud)
+    void PlaySound(AudioClip aud, float pitch = 1)
     {
-        audioSource.pitch = Random.Range(0.75f, 1.5f);
+        audioSource.pitch = pitch;
         audioSource.PlayOneShot(aud);
     }
 }
