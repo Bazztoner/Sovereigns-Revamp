@@ -47,8 +47,9 @@ public class GameManager : Photon.MonoBehaviour
     private void OnPlayerDied(params object[] paramsContainer)
     {
         var message = (string)paramsContainer[0] + " has lost the match";
-        if (!PhotonNetwork.offlineMode) photonView.RPC("RpcEndGame", PhotonTargets.All, message, (string)paramsContainer[0]);
-        else if (GameManager.screenDivided) EndGame((string)paramsContainer[0]);
+        //if (!PhotonNetwork.offlineMode) photonView.RPC("RpcEndGame", PhotonTargets.All, message, (string)paramsContainer[0]);
+        //else if (GameManager.screenDivided) EndGame((string)paramsContainer[0]);
+        if (GameManager.screenDivided) EndGame((string)paramsContainer[0]);
     }
 
     private void DiscountTime()
@@ -86,8 +87,8 @@ public class GameManager : Photon.MonoBehaviour
         _isGameStarted = false;
         CancelInvoke();
 
-        if (player == "Player1") _player1Score++;
-        else if (player == "Player2") _player2Score++;
+        if (player == "Player1") _player2Score++;
+        else if (player == "Player2") _player1Score++;
         else if (player == "")
         {
             if (_p1.Hp > _p2.Hp) _player1Score++;
@@ -99,23 +100,29 @@ public class GameManager : Photon.MonoBehaviour
             }
         }
 
-        Invoke("NextRound", _restartTime);
-        EventManager.DispatchEvent("GameFinished", new object[] { player });
+        NextRound(player);
     }
 
-    private void NextRound()
+    private void NextRound(string player)
     {
         _round++;
 
         if (_round >= _maxRound || ((_player1Score >= (_maxRound / 2) + 1) || (_player2Score >= (_maxRound / 2) + 1)))
-            EndMatch();
+        {
+            EventManager.DispatchEvent("EndOfMatch", new object[] { _player1Score, _player2Score });
+            Invoke("EndMatch", _restartTime);
+        }
         else
-            RestartRound();
+        {
+            EventManager.DispatchEvent("GameFinished", new object[] { player });
+            Invoke("RestartRound", _restartTime);
+        }
     }
 
     private void RestartRound()
     {
         EventManager.DispatchEvent("RestartRound", new object[] { false });
+        EventManager.DispatchEvent("SetRoundText", new object[] { _round });
         time = _maxTime;
         _isGameStarted = true;
         InvokeRepeating("DiscountTime", 1f, 1f);

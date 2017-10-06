@@ -12,9 +12,18 @@ public class HUDController : Photon.MonoBehaviour
     Image[] spells = new Image[5];
     Image hp;
     Image mana;
+    public Image youWin;
+    public Image youLose;
+    public Image timeOut;
+    public Image victory;
+    public Image defeat;
+    public Image tie;
     public Image enemyLifebar;
+    public Image[] roundTexts;
     public Text damageText;
     public Animator hudAnim;
+
+    private float _imgTime = 3f;
 
     List<Text[]> allCooldowns = new List<Text[]>();
 
@@ -24,6 +33,7 @@ public class HUDController : Photon.MonoBehaviour
     {
         GetEverything();
         AddEvents();
+        DeactivateImages();
     }
 
     private void AddEvents()
@@ -36,8 +46,30 @@ public class HUDController : Photon.MonoBehaviour
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
         EventManager.AddEventListener("LockOnActivated", OnLockOnActivated);
+        EventManager.AddEventListener("SetRoundText", OnSetRoundText);
+        EventManager.AddEventListener("EndOfMatch", OnEndOfMatch);
 
         //EventManager.AddEventListener("DamageMade", OnDamageMade);
+    }
+
+    private void DeactivateImages()
+    {
+        if (this.gameObject.name != "HUD")
+        {
+            foreach (var img in roundTexts)
+            {
+                img.enabled = false;
+            }
+
+            youWin.enabled = false;
+            youLose.enabled = false;
+            timeOut.enabled = false;
+            victory.enabled = false;
+            defeat.enabled = false;
+            tie.enabled = false;
+
+            OnSetRoundText(new object[] { 0 });
+        }
     }
 
     private void OnLockOnActivated(object[] paramsContainer)
@@ -204,26 +236,53 @@ public class HUDController : Photon.MonoBehaviour
 
     private void OnGameFinished(params object[] paramsContainer)
     {
-        if ((string)paramsContainer[0] == "") damageText.text = "Time Out";
+        if ((string)paramsContainer[0] == "") timeOut.enabled = true;
         else
         {
             if (!PhotonNetwork.offlineMode)
             {
-                if ((string)paramsContainer[0] == PhotonNetwork.player.NickName) damageText.text = "You Lose";
-                else damageText.text = "You Win";
+                if ((string)paramsContainer[0] == PhotonNetwork.player.NickName) youLose.enabled = true;
+                else youWin.enabled = true; 
             }
             else if (GameManager.screenDivided)
             {
                 if (this.gameObject.name == "HUD1")
                 {
-                    if ((string)paramsContainer[0] == "Player1") damageText.text = "You Lose";
-                    else damageText.text = "You Win";
+                    if ((string)paramsContainer[0] == "Player1") youLose.enabled = true;
+                    else youWin.enabled = true;
                 }
                 else if (this.gameObject.name == "HUD2")
                 {
-                    if ((string)paramsContainer[0] == "Player2") damageText.text = "You Lose";
-                    else damageText.text = "You Win";
+                    if ((string)paramsContainer[0] == "Player2") youLose.enabled = true;
+                    else youWin.enabled = true;
                 }
+            }
+        }
+        if (this.gameObject.name != "HUD")
+        {
+            if (youWin.enabled) StartCoroutine(RemoveImage(youWin, _imgTime));
+            else if (youLose.enabled) StartCoroutine(RemoveImage(youLose, _imgTime));
+            else if (timeOut.enabled) StartCoroutine(RemoveImage(timeOut, _imgTime));
+        }
+    }
+
+    private void OnEndOfMatch(params object[] paramsContainer)
+    {
+        if (this.gameObject.name != "HUD")
+        {
+            var p1 = (int)paramsContainer[0];
+            var p2 = (int)paramsContainer[1];
+
+            if (p1 == p2) tie.enabled = true;
+            else if (p1 > p2)
+            {
+                if (this.gameObject.name == "HUD1") victory.enabled = true;
+                else if(this.gameObject.name == "HUD2") defeat.enabled = true;
+            }
+            else
+            {
+                if (this.gameObject.name == "HUD2") victory.enabled = true;
+                else if (this.gameObject.name == "HUD1") defeat.enabled = true;
             }
         }
     }
@@ -242,6 +301,17 @@ public class HUDController : Photon.MonoBehaviour
             EventManager.RemoveEventListener("GameFinished", OnGameFinished);
             EventManager.RemoveEventListener("RestartRound", OnRestartRound);
             EventManager.RemoveEventListener("LockOnActivated", OnLockOnActivated);
+            EventManager.RemoveEventListener("SetRoundText", OnSetRoundText);
+            EventManager.RemoveEventListener("EndOfMatch", OnEndOfMatch);
+        }
+    }
+
+    private void OnSetRoundText(params object[] paramsContainer)
+    {
+        if (this.gameObject.name != "HUD")
+        {
+            roundTexts[(int)paramsContainer[0]].enabled = true;
+            StartCoroutine(RemoveImage(roundTexts[(int)paramsContainer[0]], _imgTime));
         }
     }
 
@@ -314,6 +384,12 @@ public class HUDController : Photon.MonoBehaviour
             image.fillAmount = cd / cooldown;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    IEnumerator RemoveImage(Image img, float time)
+    {
+        yield return new WaitForSeconds(time);
+        img.enabled = false;
     }
 
     #region SplitScreen KORRUPTINES
