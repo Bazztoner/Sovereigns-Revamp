@@ -33,7 +33,6 @@ public class TransitionManager : MonoBehaviour
     /// </summary>
 	void Start ()
     {
-        EventManager.AddEventListener("TransitionActivated", OnTransitionActivation);
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
         EventManager.AddEventListener("DummyDamaged", OnDummyDamaged);
     }
@@ -73,7 +72,9 @@ public class TransitionManager : MonoBehaviour
                     var tempAngle = Vector3.Angle(attacker.transform.forward, transition.transform.forward);
                     if (tempAngle < 30f)
                     {
-                        EventManager.DispatchEvent("TransitionActivated", new object[] { transition, attacker, victim });
+                        transitionElements = null;
+                        transitionElements = new Tuple<LevelTransition, GameObject, GameObject>(transition, attacker, victim);
+                        ActivateTransition();
                         EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
                         EventManager.RemoveEventListener("DummyDamaged", OnDummyDamaged);
                     }
@@ -111,7 +112,9 @@ public class TransitionManager : MonoBehaviour
                     var tempAngle = Vector3.Angle(attacker.transform.forward, transition.transform.forward);
                     if (tempAngle < 30f)
                     {
-                        EventManager.DispatchEvent("TransitionActivated", new object[] { transition, attacker, victim });
+                        transitionElements = null;
+                        transitionElements = new Tuple<LevelTransition, GameObject, GameObject>(transition, attacker, victim);
+                        ActivateTransition();
                         EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
                         EventManager.RemoveEventListener("DummyDamaged", OnDummyDamaged);
                     }
@@ -151,15 +154,9 @@ public class TransitionManager : MonoBehaviour
     /// 1 - GameObject - Atacante ||
     /// 2 - GameObject - Víctima
     /// </param>
-    void OnTransitionActivation(object[] paramsContainer)
+    void ActivateTransition()
     {
-        var transition = (LevelTransition)paramsContainer[0];
-        var attacker = (GameObject)paramsContainer[1];
-        var victim = (GameObject)paramsContainer[2];
-
-        transitionElements = new Tuple<LevelTransition, GameObject, GameObject>(transition, attacker, victim);
-
-        StartCoroutine(TransitionWithAnimation(transition, attacker, victim));
+        StartCoroutine(TransitionWithAnimation());
     }
 
     /// <summary>
@@ -169,10 +166,14 @@ public class TransitionManager : MonoBehaviour
     /// <param name="attacker"></param>
     /// <param name="victim"></param>
     /// <returns></returns>
-    IEnumerator TransitionWithAnimation(LevelTransition transition, GameObject attacker, GameObject victim)
+    IEnumerator TransitionWithAnimation()
     {
         EventManager.DispatchEvent("TransitionBlockInputs", new object[] { false });
         var maxTimeForLerping = 1f;
+
+        var transition = transitionElements.Item1;
+        var attacker = transitionElements.Item2;
+        var victim = transitionElements.Item3;
 
         StartCoroutine(
                        LerpPosition(attacker.transform, attacker.transform.position, transition.attackerTransitionOrigin.position, maxTimeForLerping)
@@ -186,17 +187,21 @@ public class TransitionManager : MonoBehaviour
         victim.transform.position = transition.victimTransitionOrigin.position;
         attacker.transform.position = transition.attackerTransitionOrigin.position;
 
-        OnTransitionDummiesActivated(transition, attacker, victim);
+        ActivateTransitionDummies();
     }
 
     /// <summary>
     /// Activa los dummies, desactiva a los jugadores
     /// </summary>
     /// <param name="paramsContainer"></param>
-    void OnTransitionDummiesActivated(LevelTransition transition, GameObject attacker, GameObject victim)
+    void ActivateTransitionDummies()
     {
         EventManager.DispatchEvent("TransitionSmoothCameraUpdate", new object[] { false });
         EventManager.DispatchEvent("TransitionCameraUpdate", true);
+
+        var transition = transitionElements.Item1;
+        var attacker = transitionElements.Item2;
+        var victim = transitionElements.Item3;
 
         var dummyAttacker = GameObject.Instantiate(Resources.Load("Transitions/Dummies/TransitionPlayerDummy") as GameObject, attacker.transform.position, Quaternion.identity);
         dummyAttacker.transform.forward = attacker.transform.forward;
@@ -211,7 +216,7 @@ public class TransitionManager : MonoBehaviour
         //Activamos la cámara que apunta al atacante
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(true);
         dummyVictim.GetComponent<TransitionDummy>().Animate("transitionDamage");
-        OnTransitionLaunchDummy(transition, dummyAttacker, dummyVictim, 0.5f);
+        OnTransitionLaunchDummy(0.5f);
     }
 
     /// <summary>
@@ -221,8 +226,12 @@ public class TransitionManager : MonoBehaviour
     /// <param name="attacker"></param>
     /// <param name="victim"></param>
     /// <param name="maxTime"></param>
-    void OnTransitionLaunchDummy(LevelTransition transition, GameObject attacker, GameObject victim, float maxTime)
+    void OnTransitionLaunchDummy(float maxTime)
     {
+        var transition = transitionElements.Item1;
+        var attacker = dummies.Item1;
+        var victim = dummies.Item2;
+
         var victimDummy = victim.GetComponent<TransitionDummy>();
         StartCoroutine(
                        LerpPosition(victim.transform, victim.transform.position, transition.victimRelocatePoint.position, maxTime)
@@ -296,7 +305,7 @@ public class TransitionManager : MonoBehaviour
 
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(false);
 
-        OnEndOfTransition(transitionElements.Item1, transitionElements.Item2, transitionElements.Item3);
+        OnEndOfTransition();
     }
 
     /// <summary>
@@ -306,8 +315,12 @@ public class TransitionManager : MonoBehaviour
     /// <param name="transition"></param>
     /// <param name="attacker"></param>
     /// <param name="victim"></param>
-    void OnEndOfTransition(LevelTransition transition, GameObject attacker, GameObject victim)
+    void OnEndOfTransition()
     {
+        var transition = transitionElements.Item1;
+        var attacker = transitionElements.Item2;
+        var victim = transitionElements.Item3;
+
         victim.transform.position = transition.victimRelocatePoint.position;
         victim.transform.forward = -transition.transform.forward;
 
@@ -315,7 +328,11 @@ public class TransitionManager : MonoBehaviour
         attacker.transform.forward = transition.transform.forward;
 
         dummies.Item1.SetActive(false);
+        Destroy(dummies.Item1);
         dummies.Item2.SetActive(false);
+        Destroy(dummies.Item2);
+
+        dummies = null;
 
         transitionElements.Item2.SetActive(true);
         transitionElements.Item3.SetActive(true);
@@ -332,6 +349,7 @@ public class TransitionManager : MonoBehaviour
 
         transitionElements.Item1.camerasForTransition[1].gameObject.SetActive(false);
         transitionElements.Item1.camerasForTransition[0].gameObject.SetActive(false);
+        transitionElements = null;
         //FIXME: no es lo ideal - Hacer que haga daño sin partícula?
         //if (GameManager.screenDivided) victim.GetComponentInParent<PlayerStats>().TakeDamage(transition.damage, "Transition");
 
