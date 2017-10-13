@@ -393,7 +393,6 @@ public class PlayerStats : Photon.MonoBehaviour {
         if (!PhotonNetwork.offlineMode) photonView.RPC("SetDeathOn", PhotonTargets.All);
     }
 
-    #region Cambios Iván 5/10
     //Agregada comprobación para hacer ataques imbloqueables
     /// <summary>
     /// 0 - Sender name
@@ -416,7 +415,6 @@ public class PlayerStats : Photon.MonoBehaviour {
             if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOn", PhotonTargets.All);
         }
     }
-    #endregion
 
     private void OnDamageExit()
     {
@@ -457,7 +455,6 @@ public class PlayerStats : Photon.MonoBehaviour {
         if (sender == gameObject.name)
         {
             uncancelableAttack = activate;
-            //print("Sender: " + sender + " || UncancelableAttack? " + uncancelableAttack);
         }
     }
     #endregion

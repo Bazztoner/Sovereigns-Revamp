@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(NetworkAttacks))]
 [RequireComponent(typeof(AnimationController))]
 [RequireComponent(typeof(Animator))]
+[System.Obsolete("Ya no se usa, borrar")]
 public class CharacterMovement : Photon.MonoBehaviour
 {
     #region Variables

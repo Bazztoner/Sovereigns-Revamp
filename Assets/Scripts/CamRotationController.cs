@@ -119,6 +119,7 @@ public class CamRotationController : MonoBehaviour
                 | 1 << Utilities.IntLayers.VISIBLETOP1
                 | 1 << Utilities.IntLayers.VISIBLETOP2
                 | 1 << Utilities.IntLayers.VISIBLETOBOTH
+                | 1 << LayerMask.NameToLayer("WeaponCollider")
                  );
         _enemyMask = PhotonNetwork.offlineMode ? 0 << LayerMask.NameToLayer("Enemy") : 0 << LayerMask.NameToLayer("Player");
         _correctionVector = new Vector3(0f, 1f, 0f);
@@ -127,11 +128,12 @@ public class CamRotationController : MonoBehaviour
         _enemy = GetEnemy();
     }
 
+
     public void Init(Transform charac, bool readJoystick)
     {
         _character = charac;
         _readJoystick = readJoystick;
-        if (_readJoystick) sensivity *= 4;
+        if (_readJoystick) sensivity = 4;
         else sensivity = 0.1f;
         transform.position = _character.position;
         transform.rotation = _character.rotation;
@@ -146,7 +148,7 @@ public class CamRotationController : MonoBehaviour
     {
         _character = charac;
         _readJoystick = readJoystick;
-        if (_readJoystick) sensivity *= 4;
+        if (_readJoystick) sensivity = 4;
         else sensivity = 0.1f;
         transform.position = _character.position;
         transform.rotation = _character.rotation;

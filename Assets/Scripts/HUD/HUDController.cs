@@ -165,7 +165,7 @@ public class HUDController : Photon.MonoBehaviour
         EventManager.DispatchEvent("DoDummyTest", new object[] { true });
     }
 
-    public void OnDividedScree()
+    public void OnDividedScreen()
     {
         EventManager.DispatchEvent("DividedScreen", new object[] { true });
         GameManager.screenDivided = true;

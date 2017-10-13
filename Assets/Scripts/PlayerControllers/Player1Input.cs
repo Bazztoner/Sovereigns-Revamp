@@ -12,7 +12,6 @@ using UnityEngine;
 
 public class Player1Input : MonoBehaviour
 {
-
     private PlayerMovement _pm;
     private PlayerCombat _pc;
     private PlayerSkills _ps;

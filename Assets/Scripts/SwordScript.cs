@@ -170,7 +170,7 @@ public class SwordScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (_isDetecting /*&& _isActive*/ && other.gameObject.layer == _hitBoxLayer)
+        if (_isDetecting  && other.gameObject.layer == _hitBoxLayer)
         {
             print("Collider: " + gameObject.name);
             var dmgMult = other.transform.GetComponent<HitBoxScript>();

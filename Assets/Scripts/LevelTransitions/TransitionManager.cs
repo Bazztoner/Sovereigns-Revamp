@@ -35,6 +35,12 @@ public class TransitionManager : MonoBehaviour
     {
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
         EventManager.AddEventListener("DummyDamaged", OnDummyDamaged);
+        EventManager.AddEventListener("RestartRound", OnRestartRound);
+    }
+
+    void OnRestartRound(object[] paramsContainer)
+    {
+        currentZone = GameObject.Find("MainHall").GetComponent<Zone>();
     }
 
     public static void DeleteInstance()
