@@ -32,9 +32,9 @@ public class AngelArmorColor : MonoBehaviour
     {
         rend = transform.parent.GetComponentsInChildren<Renderer>()
                .Where(x => x.gameObject.name == "Left Shin" ||
-                      x.gameObject.name == "Left Upleg" ||
+                      x.gameObject.name == "Left UpLeg" ||
                       x.gameObject.name == "Right Shin" ||
-                      x.gameObject.name == "Right Upleg" ||
+                      x.gameObject.name == "Right UpLeg" ||
                       x.gameObject.name == "Left Arm" ||
                       x.gameObject.name == "Left PreArm" ||
                       x.gameObject.name == "LSP" ||
@@ -50,7 +50,7 @@ public class AngelArmorColor : MonoBehaviour
                       x.gameObject.name == "Left Glove" ||
                       x.gameObject.name == "Right Boot" ||
                       x.gameObject.name == "Right Glove" ||
-                      x.gameObject.name == "WaistCoat")
+                      x.gameObject.name == "Waistcoat")
                 .ToArray();
     }
 }

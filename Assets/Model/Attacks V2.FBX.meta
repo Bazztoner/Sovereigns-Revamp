@@ -271,6 +271,7 @@ ModelImporter:
     7400016: 2Block+X
     7400018: 2YX
     7400020: 2Block+Y
+    7400022: Stun
     9500000: //RootNode
     13700000: Angel Lowpoly
     13700002: ChestPlate
@@ -3350,6 +3351,286 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Base Human
+        weight: 1
+      - path: Base HumanHub001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone001/Base HumanHub001Bone001Bone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone001/Base HumanHub001Bone001Bone001/Base
+          HumanHub001Bone001Bone001Bone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone001/Base HumanHub001Bone001Bone001/Base
+          HumanHub001Bone001Bone001Bone001/Base HumanHub001Bone001Bone001Bone001Bone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone003
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone003/Base HumanHub001Bone001Bone003
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone003/Base HumanHub001Bone001Bone003/Base
+          HumanHub001Bone001Bone001Bone003
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone003/Base HumanHub001Bone001Bone003/Base
+          HumanHub001Bone001Bone001Bone003/Base HumanHub001Bone001Bone001Bone001Bone003
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone004
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone004/Base HumanHub001Bone001Bone004
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone004/Base HumanHub001Bone001Bone004/Base
+          HumanHub001Bone001Bone001Bone004
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone004/Base HumanHub001Bone001Bone004/Base
+          HumanHub001Bone001Bone001Bone004/Base HumanHub001Bone001Bone001Bone001Bone004
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone005
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone006
+        weight: 1
+      - path: Base HumanHub001/Base HumanLLeg1
+        weight: 1
+      - path: Base HumanHub001/Base HumanLLeg1/Base HumanLLeg2
+        weight: 1
+      - path: Base HumanHub001/Base HumanLLeg1/Base HumanLLeg2/Base HumanLLegAnkle
+        weight: 1
+      - path: Base HumanHub001/Base HumanLLeg1/Base HumanLLeg2/Base HumanLLegAnkle/Base
+          HumanLLegDigit11
+        weight: 1
+      - path: Base HumanHub001/Base HumanRLeg1
+        weight: 1
+      - path: Base HumanHub001/Base HumanRLeg1/Base HumanRLeg2
+        weight: 1
+      - path: Base HumanHub001/Base HumanRLeg1/Base HumanRLeg2/Base HumanRLegAnkle
+        weight: 1
+      - path: Base HumanHub001/Base HumanRLeg1/Base HumanRLeg2/Base HumanRLegAnkle/Base
+          HumanRLegDigit11
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit11
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit11/Base
+          HumanLArmDigit12
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit21
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit21/Base
+          HumanLArmDigit22
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit21/Base
+          HumanLArmDigit22/Base HumanLArmDigit23
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit31
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit31/Base
+          HumanLArmDigit32
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit31/Base
+          HumanLArmDigit32/Base HumanLArmDigit33
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit41
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit41/Base
+          HumanLArmDigit42
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit41/Base
+          HumanLArmDigit42/Base HumanLArmDigit43
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit51
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit51/Base
+          HumanLArmDigit52
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit51/Base
+          HumanLArmDigit52/Base HumanLArmDigit53
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanPalmBone002
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanPalmBone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit11
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit11/Base
+          HumanRArmDigit12
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit21
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit21/Base
+          HumanRArmDigit22
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit21/Base
+          HumanRArmDigit22/Base HumanRArmDigit23
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit31
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit31/Base
+          HumanRArmDigit32
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit31/Base
+          HumanRArmDigit32/Base HumanRArmDigit33
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit41
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit41/Base
+          HumanRArmDigit42
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit41/Base
+          HumanRArmDigit42/Base HumanRArmDigit43
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit51
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit51/Base
+          HumanRArmDigit52
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit51/Base
+          HumanRArmDigit52/Base HumanRArmDigit53
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1/Base HumanSpine2
+          1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1/Base HumanSpine2
+          1/Base HumanHub003
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 135
+    - serializedVersion: 16
+      name: Stun
+      takeName: Take 001
+      firstFrame: 494
+      lastFrame: 534
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
       transformMask:
       - path: 
         weight: 1

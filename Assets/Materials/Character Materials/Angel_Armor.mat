@@ -177,26 +177,26 @@ Material:
       second: 1
     - first:
         name: __dirty
-      second: 1
+      second: 0
     m_Colors:
     - first:
         name: _BaseMetal
-      second: {r: 0, g: 0.2660243, b: 0.63235295, a: 0}
+      second: {r: 0, g: 0.26602423, b: 0.63235295, a: 0}
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EdgePlating
-      second: {r: 0.9632353, g: 0.04249566, b: 0.04249566, a: 0}
+      second: {r: 0.9632353, g: 0.042495616, b: 0.042495616, a: 0}
     - first:
         name: _EmissionColor
       second: {r: 0.7, g: 0.7, b: 0.7, a: 1}
     - first:
         name: _Fabric
-      second: {r: 0.14878891, g: 0.63235295, b: 0.29219067, a: 0}
+      second: {r: 0.14878884, g: 0.63235295, b: 0.2921906, a: 0}
     - first:
         name: _Feather
-      second: {r: 0.7040837, g: 0.74264705, b: 0.04368512, a: 0}
+      second: {r: 0.7040837, g: 0.74264705, b: 0.04368507, a: 0}
     - first:
         name: _Leather
       second: {r: 0.86764705, g: 0.03827853, b: 0.7761305, a: 0}
