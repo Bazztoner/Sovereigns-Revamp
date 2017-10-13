@@ -50,6 +50,7 @@ public class Player1Input : MonoBehaviour
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("TransitionBlockInputs", OnTransition);
         EventManager.AddEventListener("Stun", OnStun);
+        EventManager.AddEventListener("StopStun", OnStopStun);
         EventManager.AddEventListener("GuardBreak", OnGuardBreak);
         EventManager.AddEventListener("SpecialAttack", OnSpecialAttack);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
@@ -156,6 +157,7 @@ public class Player1Input : MonoBehaviour
             EventManager.RemoveEventListener("GameFinished", OnGameFinished);
             EventManager.RemoveEventListener("TransitionBlockInputs", OnTransition);
             EventManager.RemoveEventListener("Stun", OnStun);
+            EventManager.RemoveEventListener("StopStun", OnStopStun);
             EventManager.RemoveEventListener("GuardBreak", OnGuardBreak);
             EventManager.RemoveEventListener("SpecialAttack", OnSpecialAttack);
             EventManager.RemoveEventListener("RestartRound", OnRestartRound);
@@ -297,6 +299,8 @@ public class Player1Input : MonoBehaviour
         if ((string)paramsContainer[0] != this.gameObject.name)
         {
             EventManager.DispatchEvent("StunParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
+            EventManager.DispatchEvent("StunShake", new object[] { GetCamera.transform, (float)paramsContainer[1] });
+
             _isStun = true;
             Invoke("StopStun", (float)paramsContainer[1]);
         }
@@ -344,9 +348,17 @@ public class Player1Input : MonoBehaviour
         _checkingRoll = false;
     }
 
+    private void OnStopStun(params object[] paramsContainer)
+    {
+        if ((string)paramsContainer[0] == gameObject.name)
+        {
+            _isStun = false;
+        }
+    }
+
     private void StopStun()
     {
-        _isStun = false;
+        EventManager.DispatchEvent("StopStun", gameObject.name);
     }
     #endregion
 }

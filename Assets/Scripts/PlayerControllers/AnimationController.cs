@@ -25,6 +25,7 @@ public class AnimationController : MonoBehaviour {
         EventManager.AddEventListener("IsDamaged", OnIsDamaged);
         EventManager.AddEventListener("GuardBreak", OnGuardBreak);
         EventManager.AddEventListener("StunParticle", OnStun);
+        EventManager.AddEventListener("StopStun", OnStopStun);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
     }
 
@@ -34,6 +35,16 @@ public class AnimationController : MonoBehaviour {
         {
             _anim.SetBool("X", false);
             _anim.SetBool("Y", false);
+            _anim.SetBool("isStunned", true);
+            _anim.SetFloat("stunSpeed", .6f);
+        }
+    }
+
+    void OnStopStun(object[] paramsContainer)
+    {
+        if (gameObject.name == (string)paramsContainer[0])
+        {
+            _anim.SetBool("isStunned", false);
         }
     }
 

@@ -172,6 +172,7 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
         EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
+        EventManager.AddEventListener("StunShake", OnStun);
         //EventManager.AddEventListener("TransitionCameraUpdate", OnTransitionCameraUpdate);
     }
 
@@ -239,6 +240,7 @@ public class CamRotationController : MonoBehaviour
             EventManager.RemoveEventListener("GameFinished", OnGameFinished);
             EventManager.RemoveEventListener("RestartRound", OnRestartRound);
             EventManager.RemoveEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
+            EventManager.RemoveEventListener("StunShake", OnStun);
         }
     }
     #endregion
@@ -467,6 +469,16 @@ public class CamRotationController : MonoBehaviour
     public void ShakeCamera(float amount, float duration)
     {
         _shake.ShakeCamera(amount, duration);
+    }
+
+    void OnStun(object[] paramsContainer)
+    {
+        var camTrn = (Transform)paramsContainer[0];
+        if (camTrn == transform)
+        {
+            float amnt = 2;
+            ShakeCamera(amnt, (float)paramsContainer[1]/ amnt);
+        }
     }
     #endregion
 
