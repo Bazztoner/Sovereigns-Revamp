@@ -232,10 +232,10 @@
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionManager.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\Zone.cs" />
     <Compile Include="Assets\Scripts\Loading.cs" />
-    <Compile Include="Assets\Scripts\LockOnGraphic.cs" />
     <Compile Include="Assets\Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\AnimationController.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\PlayerControllers\Player1Colliders.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\Player1Input.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerBlinkSpots.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerCombat.cs" />
@@ -270,6 +270,7 @@
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\IdleStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollStateBehaviour.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_BigShieldAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_GuardBreakAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_GuardBreakEnter.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_HorizontalAttack.cs" />

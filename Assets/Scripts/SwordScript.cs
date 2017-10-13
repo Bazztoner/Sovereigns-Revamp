@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,19 +15,48 @@ public class SwordScript : MonoBehaviour
     bool _isParry = false;
     bool _isGuardBreak = false;
     TrailRenderer _trail;
+    bool _isActive = false;
 
     void Start()
     {
+        GetTrail(false);
+        AddEvents();
+    }
+
+    void AddEvents()
+    {
+        AddAttackEvents();
+        AddAttackTypeEvents();
+    }
+
+    void AddAttackEvents()
+    {
+        EventManager.AddEventListener("ActivateCollider", OnActivateCollider);
         EventManager.AddEventListener("AttackEnter", OnAttackEnter);
         EventManager.AddEventListener("AttackExit", OnAttackExit);
+    }
+
+    void OnActivateCollider(object[] paramsContainer)
+    {
+        if ((string)paramsContainer[0] == gameObject.name)
+        {
+            _isActive = true;
+        }
+        else
+        {
+            _isActive = false;
+        }
+    }
+
+    void AddAttackTypeEvents()
+    {
         EventManager.AddEventListener("HorizontalAttack", OnHorizontalAttack);
         EventManager.AddEventListener("VerticalAttack", OnVerticalAttack);
         EventManager.AddEventListener("ParryAttack", OnParryAttack);
         EventManager.AddEventListener("GuardBreakAttack", OnGuardBreakAttack);
-        GetTrail(false);
     }
 
-    private void OnAttackEnter(params object[] paramsContainer)
+    void OnAttackEnter(params object[] paramsContainer)
     {
         if (GameManager.screenDivided)
         {
@@ -138,31 +168,17 @@ public class SwordScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (_isDetecting && other.gameObject.layer == _hitBoxLayer)
+        if (_isDetecting /*&& _isActive*/ && other.gameObject.layer == _hitBoxLayer)
         {
+            print("Collider: " + gameObject.name);
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;
             var myName = this.GetComponentInParent<Player1Input>().gameObject.name;
 
             _isDetecting = false;
             _appliedDamage = 0;
-
-            //Test para la normal del polígono
-            /*RaycastHit rch;
-            var polyNormal = other.ClosestPointOnBounds(transform.position);
-
-            if (Physics.Raycast(transform.position, other.transform.position - transform.position, out rch, 10))
-            {
-                //if pointing at the object you want to get collision point for
-                if (rch.transform.gameObject == other.gameObject)
-                {
-                    //have locPos = the local position of the hit point
-                    //polyNormal = transform.InverseTransformPoint(rch.point);
-                    polyNormal = rch.point;
-                }
-            }*/
 
             if (!PhotonNetwork.offlineMode)
             {
@@ -200,11 +216,12 @@ public class SwordScript : MonoBehaviour
 
     void GetTrail(bool isActiveFromStart)
     {
-        var trailContainer = transform.parent.parent.Find("SwordTrail");
+        var trailContainer = GetComponentInParent<Player1Input>().transform.FindChild("SwordTrail");
         if (trailContainer == null)
         {
             var tempTrail = GameObject.Instantiate(Resources.Load("SwordTrail") as GameObject, transform.parent.parent);
             tempTrail.transform.localPosition = new Vector3(-1.291f, 0, 0);
+            tempTrail.gameObject.name = "SwordTrail";
             _trail = tempTrail.GetComponent<TrailRenderer>();
             _trail.gameObject.SetActive(isActiveFromStart);
         }
@@ -218,5 +235,27 @@ public class SwordScript : MonoBehaviour
     void GetTrail()
     {
         _trail = transform.parent.parent.Find("SwordTrail").GetComponent<TrailRenderer>();
+    }
+
+    [System.Obsolete("Anda para el ojete, no usar y, si no hay paja, fixear")]
+    Vector3 GetPolyNormal(Collider other)
+    {
+        //Test para la normal del polígono
+        RaycastHit rch;
+        var polyNormal = other.ClosestPointOnBounds(transform.position);
+
+        if (Physics.Raycast(transform.position, other.transform.position - transform.position, out rch, 10))
+        {
+            //if pointing at the object you want to get collision point for
+            if (rch.transform.gameObject == other.gameObject)
+            {
+                //have locPos = the local position of the hit point
+                //polyNormal = transform.InverseTransformPoint(rch.point);
+                polyNormal = rch.point;
+                return polyNormal;
+            }
+            else return Vector3.zero;
+        }
+        else return Vector3.zero;
     }
 }

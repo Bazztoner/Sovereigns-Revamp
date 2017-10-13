@@ -156,6 +156,7 @@ public class TransitionManager : MonoBehaviour
     /// </param>
     void ActivateTransition()
     {
+        EventManager.DispatchEvent("TransitionActivation", true);
         StartCoroutine(TransitionWithAnimation());
     }
 
@@ -364,6 +365,8 @@ public class TransitionManager : MonoBehaviour
         //StartCoroutine(BlackScreenUpdate(.5f));
         Invoke("CameraSmoothChange", .2f);
         EventManager.DispatchEvent("TransitionBlockInputs", new object[] { true });
+        EventManager.DispatchEvent("TransitionActivation", false);
+
     }
 
     IEnumerator BlackScreenUpdate(float startDelay)
