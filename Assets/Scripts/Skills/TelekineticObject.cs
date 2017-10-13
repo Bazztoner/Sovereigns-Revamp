@@ -103,6 +103,11 @@ public class TelekineticObject : Photon.MonoBehaviour
         if (GameManager.screenDivided) EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
     }
 
+    public static void DeleteAllObjs()
+    {
+        allObjs = null;
+    }
+
     void OnDividedScreen(object[] paramsContainer)
     {
         EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
@@ -142,7 +147,8 @@ public class TelekineticObject : Photon.MonoBehaviour
 
     void OnDestroy()
     {
-        allObjs.Remove(this);
+        if(allObjs != null)
+            allObjs.Remove(this);
     }
 
     public void MoveToObjective()

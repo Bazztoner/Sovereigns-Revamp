@@ -7,6 +7,7 @@ using System;
 
 public class HUDController : Photon.MonoBehaviour
 {
+    #region Variables
     public GameObject gui;
     public GameObject crosshair;
     Image[] spells = new Image[5];
@@ -19,21 +20,36 @@ public class HUDController : Photon.MonoBehaviour
     public Image defeat;
     public Image tie;
     public Image enemyLifebar;
+    public Image lockOnImage;
     public Image[] roundTexts;
     public Text damageText;
     public Animator hudAnim;
+    public RectTransform enemyBar;
 
     private float _imgTime = 3f;
+    private float _smooth = 0.1f;
+    private bool _gameInCourse = false;
+    private Vector3 _v3Lock;
+    private Vector2 _localPos;
+    private RectTransform _rect;
+    private Transform _lockTarget;
+    private Camera _cam;
 
     List<Text[]> allCooldowns = new List<Text[]>();
 
     public enum Spells { Environmental, Class, Picked, Mobility, Passive, Count };
+    #endregion
 
     void Start()
     {
         GetEverything();
         AddEvents();
         DeactivateImages();
+    }
+
+    void LateUpdate()
+    {
+        FollowTarget();
     }
 
     private void AddEvents()
@@ -48,8 +64,7 @@ public class HUDController : Photon.MonoBehaviour
         EventManager.AddEventListener("LockOnActivated", OnLockOnActivated);
         EventManager.AddEventListener("SetRoundText", OnSetRoundText);
         EventManager.AddEventListener("EndOfMatch", OnEndOfMatch);
-
-        //EventManager.AddEventListener("DamageMade", OnDamageMade);
+        EventManager.AddEventListener("PlayerDeath", OnPlayerDeath);
     }
 
     private void DeactivateImages()
@@ -72,27 +87,68 @@ public class HUDController : Photon.MonoBehaviour
         }
     }
 
+    #region LockOn
     private void OnLockOnActivated(object[] paramsContainer)
     {
         if (GameManager.screenDivided)
         {
-            if ((this.gameObject.name == "HUD1" && (string)paramsContainer[1] == "Player1") ||
-                (this.gameObject.name == "HUD2" && (string)paramsContainer[1] == "Player2"))
+            if ((this.gameObject.name == "HUD1" && (string)paramsContainer[0] == "Player1") ||
+                (this.gameObject.name == "HUD2" && (string)paramsContainer[0] == "Player2"))
             {
-                if ((bool)paramsContainer[2])
+                if ((bool)paramsContainer[1])
+                {
                     crosshair.SetActive(false);
+                    lockOnImage.gameObject.SetActive(true);
+                    _lockTarget = (Transform)paramsContainer[2];
+                    _cam = (Camera)paramsContainer[3];
+                    _cam = _cam.GetComponentInChildren<Camera>();
+                }
                 else
+                {
                     crosshair.SetActive(true);
+                    lockOnImage.gameObject.SetActive(false);
+                    lockOnImage.rectTransform.localPosition = new Vector3(0f, 0f, 0f);
+                }
             }
         }
         else
         {
-            if ((bool)paramsContainer[2])
+            if ((bool)paramsContainer[1])
+            {
                 crosshair.SetActive(false);
+                lockOnImage.gameObject.SetActive(true);
+                _lockTarget = (Transform)paramsContainer[2];
+                _cam = (Camera)paramsContainer[3];
+                _cam = _cam.GetComponentInChildren<Camera>();
+            }
             else
+            {
                 crosshair.SetActive(true);
+                lockOnImage.gameObject.SetActive(false);
+                lockOnImage.rectTransform.localPosition = new Vector3(0f, 0f, 0f);
+            }
         }
     }
+
+    private void FollowTarget()
+    {
+        if (lockOnImage.gameObject.activeInHierarchy && GameManager.screenDivided)
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, _cam.WorldToScreenPoint(_lockTarget.position), _cam, out _localPos);
+        else if (lockOnImage.gameObject.activeInHierarchy && !GameManager.screenDivided)
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, _cam.WorldToScreenPoint(_lockTarget.position), null, out _localPos);
+
+        _v3Lock = new Vector3(_localPos.x, _localPos.y, 0f);
+
+        if (lockOnImage.gameObject.activeInHierarchy && _localPos != null && lockOnImage.rectTransform.localPosition != _v3Lock)
+            lockOnImage.rectTransform.localPosition = Vector3.Lerp(lockOnImage.rectTransform.localPosition, _v3Lock, _smooth);
+    }
+
+    private void OnPlayerDeath(params object[] paramsContainer)
+    {
+        lockOnImage.gameObject.SetActive(false);
+        lockOnImage.rectTransform.localPosition = new Vector3(0f, 0f, 0f);
+    }
+    #endregion
 
     public void OnOnlineMode()
     {
@@ -118,6 +174,7 @@ public class HUDController : Photon.MonoBehaviour
     void GetEverything()
     {
         var tnf = gui.transform.GetComponentsInChildren<Transform>(false);
+        _rect = this.GetComponent<RectTransform>();
 
         foreach (var child in tnf)
         {
@@ -144,6 +201,7 @@ public class HUDController : Photon.MonoBehaviour
                 spells[4] = child.GetComponent<Image>();
             }
         }
+
         FillArrays();
     }
 
@@ -222,9 +280,9 @@ public class HUDController : Photon.MonoBehaviour
         {
             if (PhotonNetwork.offlineMode)
                 enemyLifebar.fillAmount = (float)paramsContainer[1];
-            else if((string)paramsContainer[1] != PhotonNetwork.player.NickName)
+            else if ((string)paramsContainer[1] != PhotonNetwork.player.NickName)
                 enemyLifebar.fillAmount = (float)paramsContainer[0];
-        } 
+        }
     }
 
     void OnEnemyDamaged(object[] paramsContainer)
@@ -240,7 +298,7 @@ public class HUDController : Photon.MonoBehaviour
             if (!PhotonNetwork.offlineMode)
             {
                 if ((string)paramsContainer[0] == PhotonNetwork.player.NickName) youLose.enabled = true;
-                else youWin.enabled = true; 
+                else youWin.enabled = true;
             }
             else if (GameManager.screenDivided)
             {
@@ -275,7 +333,7 @@ public class HUDController : Photon.MonoBehaviour
             else if (p1 > p2)
             {
                 if (this.gameObject.name == "HUD1") victory.enabled = true;
-                else if(this.gameObject.name == "HUD2") defeat.enabled = true;
+                else if (this.gameObject.name == "HUD2") defeat.enabled = true;
             }
             else
             {

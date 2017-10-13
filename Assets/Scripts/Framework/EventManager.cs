@@ -31,4 +31,9 @@ public class EventManager {
     {
         if (_events != null && _events.ContainsKey(eventName) && _events[eventName] != null) _events[eventName](paramsContainer);
     }
+
+    public static void ClearAllEvents()
+    {
+        _events = null;
+    }
 }

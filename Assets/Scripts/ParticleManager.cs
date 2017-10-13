@@ -29,6 +29,11 @@ public class ParticleManager : MonoBehaviour
         EventManager.AddEventListener("RepulsiveTelekinesisLoad", OnRepulsiveTelekinesisLoad);
         EventManager.AddEventListener("RepulsiveTelekinesisCasted", OnRepulsiveTelekinesisCasted);
     }
+
+    public static void DestroyInstance()
+    {
+        instance = null;
+    }
     
     /// <summary>
     /// 

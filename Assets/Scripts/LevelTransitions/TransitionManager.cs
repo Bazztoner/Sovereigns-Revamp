@@ -38,6 +38,11 @@ public class TransitionManager : MonoBehaviour
         EventManager.AddEventListener("DummyDamaged", OnDummyDamaged);
     }
 
+    public static void DeleteInstance()
+    {
+        instance = null;
+    }
+
     /// <summary>
     /// Handler se activa cuando se daña un jugador
     /// </summary>

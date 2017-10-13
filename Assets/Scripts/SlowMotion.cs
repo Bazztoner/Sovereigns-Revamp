@@ -13,6 +13,12 @@ public class SlowMotion : MonoBehaviour
         EventManager.AddEventListener("CharacterDamaged", Activate);
         EventManager.AddEventListener("DummyDamaged", Activate);
     }
+
+    public static void DestroyInstance()
+    {
+        instance = null;
+    }
+
     public void Activate(params object[] info)
     {
         StartCoroutine(SlowMo(waitTime, scale));

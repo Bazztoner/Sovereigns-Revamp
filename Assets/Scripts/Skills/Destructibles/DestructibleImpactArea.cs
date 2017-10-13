@@ -14,7 +14,7 @@ public class DestructibleImpactArea : MonoBehaviour
 
     void Start()
     {
-        EventManager.AddEventListener("BeginGame", OnBeginGame);
+        EventManager.AddEventListener("GameStarted", OnBeginGame);
         EventManager.AddEventListener("EndMatch", OnEndMatch);
     }
 

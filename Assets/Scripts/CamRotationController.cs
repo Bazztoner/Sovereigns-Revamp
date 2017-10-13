@@ -25,6 +25,7 @@ public class CamRotationController : MonoBehaviour
     int _lockOnLayer;
 
     private Transform _character;
+    private Transform _lockPosition;
     private Transform _enemy;
     private float _rotationY;
     private float _rotationX;
@@ -138,6 +139,7 @@ public class CamRotationController : MonoBehaviour
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
 
         _enemy = GetEnemy();
+        _lockPosition = _enemy.Find("LockOnPosition");
     }
 
     public void Init(Transform charac, bool readJoystick, int cullLayer)
@@ -154,6 +156,7 @@ public class CamRotationController : MonoBehaviour
         _lockOnLayer = _proyectionLayer == 16 ? 20 : 21;
 
         _enemy = GetEnemy();
+        _lockPosition = _enemy.Find("LockOnPosition");
         showProjections = true;
         //HighlightTarget();
     }
@@ -233,7 +236,6 @@ public class CamRotationController : MonoBehaviour
             EventManager.RemoveEventListener("DoNotConnect", UseProjections);
             EventManager.RemoveEventListener("DoDummyTest", UseProjections);
             EventManager.RemoveEventListener("DividedScreen", UseProjections);
-            //EventManager.RemoveEventListener("BeginGame", UseProjections);
             EventManager.RemoveEventListener("GameFinished", OnGameFinished);
             EventManager.RemoveEventListener("RestartRound", OnRestartRound);
             EventManager.RemoveEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
@@ -256,7 +258,6 @@ public class CamRotationController : MonoBehaviour
         if (_gameInCourse)
         {
             ClippingBehaviour();
-
             if (!_readJoystick && InputManager.instance.GetLockOn()) CamLock();
             else if (_readJoystick && InputManager.instance.GetJoystickLockOn()) CamLock();
         }
@@ -324,12 +325,12 @@ public class CamRotationController : MonoBehaviour
         if (!_lockOn && Vector3.Distance(_character.position, Enemy.position) <= lockOnDistance && !checkVision)
         {
             _lockOn = true;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, _lockOnLayer });
+            EventManager.DispatchEvent("LockOnActivated", new object[] { _character.gameObject.name, _lockOn, _lockPosition, GetCamera });
         }
         else if (_lockOn)
         {
             _lockOn = false;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, _lockOnLayer });
+            EventManager.DispatchEvent("LockOnActivated", new object[] { _character.gameObject.name, _lockOn });
         }
     }
 
@@ -338,7 +339,7 @@ public class CamRotationController : MonoBehaviour
         if (Vector3.Distance(_character.position, Enemy.position) > lockOnDistance)
         {
             _lockOn = false;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { GetCamera, _character.gameObject.name, _lockOn, _lockOnLayer });
+            EventManager.DispatchEvent("LockOnActivated", new object[] { _character.gameObject.name, _lockOn });
         }
     }
 
@@ -351,7 +352,6 @@ public class CamRotationController : MonoBehaviour
 
         if (transform.forward != direction)
             transform.forward = Vector3.Lerp(transform.forward, direction, smoothPercentage);
-
         CheckDistance();
     }
     #endregion
@@ -380,42 +380,6 @@ public class CamRotationController : MonoBehaviour
             }
         }
     }
-
-    #region Old LockOn
-    /*
-    private void ReLocateCamera()
-    {
-        if (_lockOn)
-        {
-            _fixedCharPos = Enemy.position + _correctionVector;
-            var direction = (_fixedCharPos - transform.position).normalized;
-            
-            direction = new Vector3(direction.x, 0f, direction.z);
-
-            if (transform.forward != direction)
-                transform.forward = Vector3.Lerp(transform.forward, direction, smoothPercentage);
-
-            var direction2 = (_fixedCharPos - transform.TransformPoint(_cam.transform.localPosition)).normalized;
-
-            if (_cam.transform.forward != direction2)
-                _cam.transform.forward = Vector3.Lerp(_cam.transform.forward, direction2, smoothPercentage);
-            
-            
-            CheckDistance();
-        }
-        else if(_keepReadjusting)
-        {
-            if (transform.forward != _character.forward)
-                transform.forward = Vector3.Lerp(transform.forward, _character.forward, smoothPercentage);
-
-            if (_cam.transform.forward != _character.forward)
-                _cam.transform.forward = Vector3.Lerp(_cam.transform.forward, _character.forward, smoothPercentage);
-
-            if (transform.forward == _character.forward && _cam.transform.forward == _character.forward)
-                _keepReadjusting = false;
-        }
-    }*/
-    #endregion
     #endregion
 
     #region Highlight
@@ -423,53 +387,56 @@ public class CamRotationController : MonoBehaviour
     {
         //Agrego que estén en la zona, mi cabe zona
         var dstruc = DestructibleObject.allObjs;
-        List<DestructibleObject> inRangeObj = dstruc.Where(x => x.isAlive
+
+        if (dstruc != null)
+        {
+            List<DestructibleObject> inRangeObj = dstruc.Where(x => x.isAlive
                                                              && x != null
                                                              && x.zone == TransitionManager.instance.currentZone
                                                              && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
                                                              && x.destructibleType != DestructibleType.TRANSITION
                                                              && x.GetComponentInChildren<Renderer>().isVisible)
                                                     .ToList<DestructibleObject>();
-        DestructibleObject closest;
+            DestructibleObject closest;
 
-        if (inRangeObj.Any())
-        {
-            closest = inRangeObj[0];
-            float angle = Vector3.Angle(transform.forward, (closest.transform.position - transform.position).normalized);
-            float tempAngle;
-
-            foreach (var dest in inRangeObj)
+            if (inRangeObj.Any())
             {
-                tempAngle = Vector3.Angle(transform.forward, (dest.transform.position - transform.position).normalized);
+                closest = inRangeObj[0];
+                float angle = Vector3.Angle(transform.forward, (closest.transform.position - transform.position).normalized);
+                float tempAngle;
 
-                if (tempAngle < angle)
+                foreach (var dest in inRangeObj)
                 {
-                    closest = dest;
-                    angle = tempAngle;
+                    tempAngle = Vector3.Angle(transform.forward, (dest.transform.position - transform.position).normalized);
+
+                    if (tempAngle < angle)
+                    {
+                        closest = dest;
+                        angle = tempAngle;
+                    }
+                }
+
+                if (_currentTarget == null)
+                {
+                    _currentTarget = closest;
+                    MakeVisible(_currentTarget, true);
+                }
+                else if (closest != _currentTarget)
+                {
+                    MakeVisible(_currentTarget, false);
+                    _currentTarget = closest;
+                    MakeVisible(_currentTarget, true);
                 }
             }
-
-            if (_currentTarget == null)
+            else
             {
-                _currentTarget = closest;
-                MakeVisible(_currentTarget, true);
-            }
-            else if (closest != _currentTarget)
-            {
-                MakeVisible(_currentTarget, false);
-                _currentTarget = closest;
-                MakeVisible(_currentTarget, true);
+                if (_currentTarget != null)
+                {
+                    MakeVisible(_currentTarget, false);
+                }
+                _currentTarget = null;
             }
         }
-        else
-        {
-            if (_currentTarget != null)
-            {
-                MakeVisible(_currentTarget, false);
-            }
-            _currentTarget = null;
-        }
-
     }
 
     void MakeVisible(DestructibleObject obj, bool visible)
@@ -557,7 +524,7 @@ public class CamRotationController : MonoBehaviour
                 StartCoroutine(LerpRect(GetCamera, _offset, originalPosCam1, lerpTime));
                 StartCoroutine(LerpRect(subCam, _offset, originalPosCam2, lerpTime));
             }
-            
+
         }
 
         /*StartCoroutine(TransitionCameraUpdate(GetCamera, .5f));
@@ -696,6 +663,7 @@ public class CamRotationController : MonoBehaviour
 
     #endregion
 
+    #region Coroutines
     IEnumerator LerpRectPosition(Camera cam, float maxTime)
     {
         var i = 0f;
@@ -734,6 +702,7 @@ public class CamRotationController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+    #endregion
 
 }
 

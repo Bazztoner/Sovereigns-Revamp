@@ -133,10 +133,15 @@ public class GameManager : Photon.MonoBehaviour
         EventManager.DispatchEvent("EndMatch");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
         DestructibleObject.DeleteAllObjs();
+        TransitionManager.DeleteInstance();
+        TelekineticObject.DeleteAllObjs();
+        ParticleManager.DestroyInstance();
+        SlowMotion.DestroyInstance();
+        EventManager.ClearAllEvents();
 
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadSceneAsync("Loading");
-        //EventManager.DispatchEvent("RestartRound", new object[] { true });
     }
 }

@@ -10,7 +10,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerParticles))]
 [RequireComponent(typeof(PlayerBlinkSpots))]
 
-public class Player1Input : MonoBehaviour {
+public class Player1Input : MonoBehaviour
+{
 
     private PlayerMovement _pm;
     private PlayerCombat _pc;
@@ -30,7 +31,12 @@ public class Player1Input : MonoBehaviour {
 
     public CamRotationController GetCamera
     {
-        get { return _cam.GetComponent<CamRotationController>(); }
+        get
+        {
+            if (_cam == null)
+                FindCamera();
+            return _cam.GetComponent<CamRotationController>();
+        }
     }
 
     public Vector3 RunDirection
@@ -68,10 +74,10 @@ public class Player1Input : MonoBehaviour {
         }
     }
 
-    void FixedUpdate ()
+    void FixedUpdate()
     {
-        if(_gameInCourse) CheckMove();
-	}
+        if (_gameInCourse) CheckMove();
+    }
 
     #region Initialization
     private void Initialize()
@@ -130,7 +136,7 @@ public class Player1Input : MonoBehaviour {
         }
 
         //Gets the movement direction
-        _direction = readJoystick ? new Vector3(InputManager.instance.GetJoystickHorizontalMovement(), 0f, InputManager.instance.GetJoystickVerticalMovement()) 
+        _direction = readJoystick ? new Vector3(InputManager.instance.GetJoystickHorizontalMovement(), 0f, InputManager.instance.GetJoystickVerticalMovement())
                                   : new Vector3(InputManager.instance.GetHorizontalMovement(), 0f, InputManager.instance.GetVerticalMovement());
 
         _pm.Rotate(_direction, _cam);
@@ -183,7 +189,7 @@ public class Player1Input : MonoBehaviour {
                 }
                 else if (!InputManager.instance.GetJoystickRun())
                 {
-                    if(!_pm.sprintAvailable) _pm.StopRun();
+                    if (!_pm.sprintAvailable) _pm.StopRun();
                     if (_pc.isBlocking) _pc.Block(false);
                 }
             }
@@ -200,7 +206,7 @@ public class Player1Input : MonoBehaviour {
                 }
                 else if (!InputManager.instance.GetRun())
                 {
-                    if(!_pm.sprintAvailable) _pm.StopRun();
+                    if (!_pm.sprintAvailable) _pm.StopRun();
                     if (_pc.isBlocking) _pc.Block(false);
                 }
             }
@@ -235,7 +241,7 @@ public class Player1Input : MonoBehaviour {
             {
                 if (!_pc.isBlocking && !_pm.isRunning && InputManager.instance.GetJoystickBlocking())
                     _pc.Block(false);
-                else if(_pc.isBlocking && !InputManager.instance.GetJoystickBlocking())
+                else if (_pc.isBlocking && !InputManager.instance.GetJoystickBlocking())
                     _pc.StopBlock();
             }
             else
@@ -259,7 +265,7 @@ public class Player1Input : MonoBehaviour {
                 if (!_ps.isPulling && InputManager.instance.GetJoystickEnviromentSkill())
                     _ps.DestructiveSkill(_pst.mana);
                 //else if (InputManager.instance.GetJoystickClassSkill())
-                    //_ps.GravitationalSkill(_pst.mana);
+                //_ps.GravitationalSkill(_pst.mana);
                 //else if (!_ps.isPulling && InputManager.instance.GetJoystickSkill())
                 //    _ps.RepulsiveSkill(_pst.mana);
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetJoystickUseItem())
@@ -270,9 +276,9 @@ public class Player1Input : MonoBehaviour {
                 if (!_ps.isPulling && InputManager.instance.GetEnviromentSkill())
                     _ps.DestructiveSkill(_pst.mana);
                 //else if (InputManager.instance.GetClassSkill())
-                    //_ps.GravitationalSkill(_pst.mana);
+                //_ps.GravitationalSkill(_pst.mana);
                 //else if (!_ps.isPulling && InputManager.instance.GetSkill())
-                   // _ps.RepulsiveSkill(_pst.mana);
+                // _ps.RepulsiveSkill(_pst.mana);
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetUseItem())
                     _ps.BlinkSkill(_pst.mana);
             }
