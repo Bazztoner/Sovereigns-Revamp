@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4067056989286778}
   - component: {fileID: 65972206197129796}
   - component: {fileID: 114577627477272958}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: BigShieldCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

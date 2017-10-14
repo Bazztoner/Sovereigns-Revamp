@@ -29,6 +29,12 @@ public class AnimationController : MonoBehaviour {
         EventManager.AddEventListener("RestartRound", OnRestartRound);
     }
 
+    //For the fucking block+Y
+    void OnAttackEnter()
+    {
+        EventManager.DispatchEvent("AttackEnter", new object[] { gameObject.name, GetComponent<PlayerCombat>().heavyAttackDamage });
+    }
+
     void OnStun(object[] paramsContainer)
     {
         if(gameObject.name == (string)paramsContainer[0])

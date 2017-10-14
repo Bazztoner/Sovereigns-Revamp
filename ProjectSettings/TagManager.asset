@@ -27,7 +27,7 @@ TagManager:
   - VisibleToP2
   - VisibleBoth
   - PlayerCollider
-  - 
+  - WeaponCollider
   - 
   - 
   - 

@@ -478,8 +478,8 @@ public class CamRotationController : MonoBehaviour
         var camTrn = (Transform)paramsContainer[0];
         if (camTrn == transform)
         {
-            float amnt = 2;
-            ShakeCamera(amnt, (float)paramsContainer[1]/ amnt);
+            float amnt = 6;
+            ShakeCamera(amnt, (float)paramsContainer[1]);
         }
     }
     #endregion

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4429271369999484}
   - component: {fileID: 65679550847963840}
   - component: {fileID: 114536724328850826}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: BigSwordCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
