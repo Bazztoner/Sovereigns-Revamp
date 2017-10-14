@@ -172,7 +172,6 @@ public class SwordScript : MonoBehaviour
     {
         if (_isDetecting  && other.gameObject.layer == _hitBoxLayer)
         {
-            print("Collider: " + gameObject.name);
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;
             var myName = this.GetComponentInParent<Player1Input>().gameObject.name;

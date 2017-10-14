@@ -19,7 +19,6 @@ public class HUDController : Photon.MonoBehaviour
     public Image victory;
     public Image defeat;
     public Image tie;
-    public Image enemyLifebar;
     public Image lockOnImage;
     public Image[] roundTexts;
     public Text damageText;
@@ -57,7 +56,6 @@ public class HUDController : Photon.MonoBehaviour
         EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
         EventManager.AddEventListener("ManaUpdate", ApplyManaChanges);
         EventManager.AddEventListener("SpellCooldown", OnSpellCooldown);
-        EventManager.AddEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
         EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
@@ -227,20 +225,10 @@ public class HUDController : Photon.MonoBehaviour
     {
         if (GameManager.screenDivided)
         {
-            if (this.gameObject.name == "HUD1")
-            {
-                if ((string)paramsContainer[0] == "Player1")
-                    hp.fillAmount = (float)paramsContainer[2];
-                else if ((string)paramsContainer[0] == "Player2" && enemyLifebar != null)
-                    enemyLifebar.fillAmount = (float)paramsContainer[2];
-            }
-            else if (this.gameObject.name == "HUD2")
-            {
-                if ((string)paramsContainer[0] == "Player1" && enemyLifebar != null)
-                    enemyLifebar.fillAmount = (float)paramsContainer[2];
-                else if ((string)paramsContainer[0] == "Player2")
-                    hp.fillAmount = (float)paramsContainer[2];
-            }
+            if (this.gameObject.name == "HUD1" && (string)paramsContainer[0] == "Player1")
+                hp.fillAmount = (float)paramsContainer[2];
+            else if (this.gameObject.name == "HUD2" && (string)paramsContainer[0] == "Player2")
+                hp.fillAmount = (float)paramsContainer[2];
         }
         else
         {
@@ -266,25 +254,7 @@ public class HUDController : Photon.MonoBehaviour
         }
         else mana.fillAmount = (float)paramsContainer[1];
     }
-
-    [PunRPC]
-    public void NotifyLife(float fillAmount, string nickName)
-    {
-        ApplyEnemyHPChanges(new object[] { fillAmount, nickName });
-    }
-
-    void ApplyEnemyHPChanges(params object[] paramsContainer)
-    {
-        //Puse esto para que deje de tirar el error al inicio del juego de que no encuentra la barra de vida.
-        if (enemyLifebar != null)
-        {
-            if (PhotonNetwork.offlineMode)
-                enemyLifebar.fillAmount = (float)paramsContainer[1];
-            else if ((string)paramsContainer[1] != PhotonNetwork.player.NickName)
-                enemyLifebar.fillAmount = (float)paramsContainer[0];
-        }
-    }
-
+    
     void OnEnemyDamaged(object[] paramsContainer)
     {
         hudAnim.Play(0);
@@ -352,7 +322,6 @@ public class HUDController : Photon.MonoBehaviour
             EventManager.RemoveEventListener("LifeUpdate", ApplyHPChanges);
             EventManager.RemoveEventListener("ManaUpdate", ApplyManaChanges);
             EventManager.RemoveEventListener("SpellCooldown", OnSpellCooldown);
-            EventManager.RemoveEventListener("EnemyLifeUpdate", ApplyEnemyHPChanges);
             EventManager.RemoveEventListener("EnemyDamaged", OnEnemyDamaged);
             EventManager.RemoveEventListener("GameFinished", OnGameFinished);
             EventManager.RemoveEventListener("RestartRound", OnRestartRound);
