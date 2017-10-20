@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class StunStateBehaviour : StateMachineBehaviour
 {
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        //animator.SetBool("isStunned", true);
-    }
-
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("isStunned", false);

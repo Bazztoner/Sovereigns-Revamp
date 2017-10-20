@@ -249,8 +249,8 @@ public class PlayerStats : Photon.MonoBehaviour {
         {
             if (_isBlocking || _isBlockingUp)
             {
-                EventManager.DispatchEvent("Stun", new object[] { attackerName, _stunTime });
                 EventManager.DispatchEvent("GuardBreak", new object[] { attackerName, _stunTime * 2 });
+                EventManager.DispatchEvent("Stun", new object[] { attackerName, _stunTime });
             }
             dmg = damage * 1.6f;
             blocked = false;
@@ -269,7 +269,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, (dmg > Hp ? 0 : Hp - dmg), fill });
         Hp = dmg >= Hp ? 0 : Hp - dmg;
 
-        GetComponent<Player1Input>().GetCamera.ShakeCamera(.1f, .01f);
+        GetComponent<Player1Input>().GetCamera.ShakeCamera(1f, .3f);
     }
     void RegainHp(float regained)
     {

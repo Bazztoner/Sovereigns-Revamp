@@ -298,7 +298,7 @@ public class Player1Input : MonoBehaviour
         if ((string)paramsContainer[0] != this.gameObject.name)
         {
             EventManager.DispatchEvent("StunParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
-            EventManager.DispatchEvent("StunShake", new object[] { GetCamera.transform, (float)paramsContainer[1] });
+            EventManager.DispatchEvent("StunShake", new object[] { GetCamera.transform, (float)paramsContainer[1], _canBlock });
 
             _isStun = true;
             Invoke("StopStun", (float)paramsContainer[1]);
@@ -357,7 +357,7 @@ public class Player1Input : MonoBehaviour
 
     private void StopStun()
     {
-        EventManager.DispatchEvent("StopStun", gameObject.name);
+        EventManager.DispatchEvent("StopStunCamera", new object[] { gameObject.name, GetCamera.transform });
     }
     #endregion
 }

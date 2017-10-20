@@ -47,6 +47,7 @@ public class CamRotationController : MonoBehaviour
     private DestructibleObject _currentTarget;
 
     Camera _subCam;
+    Transform oldParent;
 
     [System.Obsolete("Ya no se usa más")]
     private List<MarkableObject> _allMarkables;
@@ -138,6 +139,7 @@ public class CamRotationController : MonoBehaviour
         transform.position = _character.position;
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
+        initialPosition = _cam.transform.localPosition;
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
 
         _enemy = GetEnemy();
@@ -153,6 +155,7 @@ public class CamRotationController : MonoBehaviour
         transform.position = _character.position;
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
+        initialPosition = _cam.transform.localPosition;
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
         _proyectionLayer = cullLayer;
         _lockOnLayer = _proyectionLayer == 16 ? 20 : 21;
@@ -161,6 +164,7 @@ public class CamRotationController : MonoBehaviour
         _lockPosition = _enemy.Find("LockOnPosition");
         showProjections = true;
         //HighlightTarget();
+        oldParent = transform.parent;
     }
 
     private void AddEvents()
@@ -175,6 +179,7 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("RestartRound", OnRestartRound);
         EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
         EventManager.AddEventListener("StunShake", OnStun);
+        EventManager.AddEventListener("StopStunCamera", OnStopStun);
         //EventManager.AddEventListener("TransitionCameraUpdate", OnTransitionCameraUpdate);
     }
 
@@ -243,6 +248,8 @@ public class CamRotationController : MonoBehaviour
             EventManager.RemoveEventListener("RestartRound", OnRestartRound);
             EventManager.RemoveEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
             EventManager.RemoveEventListener("StunShake", OnStun);
+            EventManager.RemoveEventListener("StopStunCamera", OnStopStun);
+
         }
     }
     #endregion
@@ -473,13 +480,39 @@ public class CamRotationController : MonoBehaviour
         _shake.ShakeCamera(amount, duration);
     }
 
+    /// <summary>
+    /// 0 - camTransform
+    /// 1 - stunTime
+    /// 2 - emparent
+    /// </summary>
+    /// <param name="paramsContainer"></param>
     void OnStun(object[] paramsContainer)
     {
+        var emparent = (bool)paramsContainer[2];
+        float amnt;
         var camTrn = (Transform)paramsContainer[0];
         if (camTrn == transform)
         {
-            float amnt = 6;
+            if (emparent)
+            {
+                transform.parent = transform.parent.GetComponentsInChildren<Transform>().Where(x => x.name == "Base HumanRArmCollarbone").FirstOrDefault();
+                amnt = .3f;
+            }
+            else
+            {
+                amnt = 12f;
+            }
+
             ShakeCamera(amnt, (float)paramsContainer[1]);
+        }
+    }
+
+    void OnStopStun(object[] paramsContainer)
+    {
+        var camTrn = (Transform)paramsContainer[1];
+        if (camTrn == transform)
+        {
+            transform.parent = oldParent;
         }
     }
     #endregion
