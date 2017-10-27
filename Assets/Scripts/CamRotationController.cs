@@ -489,22 +489,28 @@ public class CamRotationController : MonoBehaviour
     void OnStun(object[] paramsContainer)
     {
         var emparent = (bool)paramsContainer[2];
-        float amnt;
+        float amount;
+        var time = (float)paramsContainer[1];
         var camTrn = (Transform)paramsContainer[0];
         if (camTrn == transform)
         {
             if (emparent)
             {
                 transform.parent = transform.parent.GetComponentsInChildren<Transform>().Where(x => x.name == "Base HumanRArmCollarbone").FirstOrDefault();
-                amnt = .3f;
+                amount = .3f;
+                StunFeedback(amount, time);
             }
             else
             {
-                amnt = 12f;
+                amount = 12f;
+                ShakeCamera(amount, time);
             }
-
-            ShakeCamera(amnt, (float)paramsContainer[1]);
         }
+    }
+
+    void StunFeedback(float displacementAmount, float time)
+    {
+        iTween.ShakeRotation(gameObject, transform.forward * displacementAmount, time);
     }
 
     void OnStopStun(object[] paramsContainer)

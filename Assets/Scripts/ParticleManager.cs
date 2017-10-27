@@ -9,6 +9,9 @@ public class ParticleManager : MonoBehaviour
 
     //Primitivo, cambiar a Pool
     // ESTO AHORA SE VA A USAR CON GAMEOBJECTS, TENEMOS PARTÍCULAS DE MÁS DE UN SISTEMA
+    /// <summary>
+    /// HACE COMO 4 MESES QUE DIJE QUE LO IBA A CAMBIAR A POOL Y NO LO HICE
+    /// </summary>
     public GameObject[] parts;
 
     void Awake()
@@ -60,6 +63,8 @@ public class ParticleManager : MonoBehaviour
                 break;
             }
         }
+
+        var nupoz = new Vector3(parent.transform.position.x, parent.transform.position.y + 1, parent.transform.position.z);
 
         if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "StunGraphic", parent, stunTime);
         else caster.ParticleCaller(parts[(int)ParticleID.StunGraphic].gameObject, parent, stunTime, true);
