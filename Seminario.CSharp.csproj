@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -223,6 +217,7 @@
     <Compile Include="Assets\Scripts\Framework\NetworkCharacter.cs" />
     <Compile Include="Assets\Scripts\Framework\NetworkManager.cs" />
     <Compile Include="Assets\Scripts\HUD\ConectionButton.cs" />
+    <Compile Include="Assets\Scripts\HUD\FloatingLifeBar.cs" />
     <Compile Include="Assets\Scripts\HUD\HUDController.cs" />
     <Compile Include="Assets\Scripts\HitBoxScript.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\LevelTransition.cs" />
@@ -235,6 +230,7 @@
     <Compile Include="Assets\Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\AnimationController.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\PlayerControllers\Player1Colliders.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\Player1Input.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerBlinkSpots.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerCombat.cs" />
@@ -269,6 +265,7 @@
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\IdleStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollStateBehaviour.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_BigShieldAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_GuardBreakAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_GuardBreakEnter.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_HorizontalAttack.cs" />
@@ -276,6 +273,7 @@
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_ParryAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_VerticalAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\StateVarUnable.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\StunStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\StunGraphic.cs" />
     <Compile Include="Assets\Scripts\SwordScript.cs" />
     <Compile Include="Assets\Scripts\Temp\CameraShake.cs" />
@@ -416,6 +414,8 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\UIDefault.shader" />
     <None Include="Assets\AmplifyShaderEditor\Readme.txt" />
     <None Include="Assets\Materials\Character Materials\AngelArmor.shader" />
+    <None Include="Assets\Materials\Hud\FillAmount.shader" />
+    <None Include="Assets\Materials\Shaders\WallTesselation.shader" />
     <None Include="Assets\Photon Unity Networking\changelog.txt" />
     <None Include="Assets\Photon Unity Networking\link.xml" />
     <None Include="Assets\Photon Unity Networking\readme.txt" />

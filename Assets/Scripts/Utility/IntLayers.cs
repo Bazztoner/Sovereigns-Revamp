@@ -18,5 +18,7 @@ namespace Utilities
         public const int VISIBLETOP2 = 17;
         public const int VISIBLETOBOTH = 18;
         public const int PLAYERCOLLIDER = 19;
+        public const int WEAPONCOLLIDER = 20;
+        public const int NOSHADOWS = 21;
     }
 }

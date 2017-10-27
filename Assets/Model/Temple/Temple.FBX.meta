@@ -1,0 +1,432 @@
+fileFormatVersion: 2
+guid: 224e86d6bac964f4bb86298403467986
+timeCreated: 1508872760
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: AltarBase
+    100002: AltarInnerDoor
+    100004: AltarWindowMiddle
+    100006: AltarWindowSide
+    100008: BellHolder
+    100010: Ceiling
+    100012: CeilingSkylightFrame
+    100014: CeilingSkylightGlass
+    100016: ChandellierFrame
+    100018: ChandellierGlass
+    100020: Concrete
+    100022: DestructibleNaveColumn
+    100024: ExteriorSideDoor
+    100026: FirePit
+    100028: Floor
+    100030: Fountain
+    100032: Frames
+    100034: GardenBenches
+    100036: GardenColumn
+    100038: GardenExteriorBaseColumn
+    100040: GardenExteriorTopColumn
+    100042: GardenGrass
+    100044: GardenOuterRing
+    100046: GardenRing
+    100048: HallwayWindow
+    100050: Hedge
+    100052: InnerWalls
+    100054: IronFence
+    100056: Jar
+    100058: Lamp
+    100060: MainDoor
+    100062: Mountain
+    100064: NaveColumn
+    100066: NaveSideDoor
+    100068: NaveWindow
+    100070: NaveWindowPilar
+    100072: OuterWalls
+    100074: OuterWalls2
+    100076: Painting
+    100078: Point_AltarBase
+    100080: Point_AltarBase 1
+    100082: Point_AltarWindowMiddle
+    100084: Point_AltarWindowSide
+    100086: Point_AltarWindowSide 1
+    100088: Point_AltarWindowSide 2
+    100090: Point_Chandellier
+    100092: Point_DestructibleNaveColumn
+    100094: Point_ExteriorSideDoor
+    100096: Point_FirePit
+    100098: Point_GardenColumn
+    100100: Point_GardenColumn 1
+    100102: Point_GardenColumn 2
+    100104: Point_GardenColumn 3
+    100106: Point_GardenColumn 4
+    100108: Point_GardenColumn 5
+    100110: Point_GardenColumn 6
+    100112: Point_GardenExteriorBaseColumn
+    100114: Point_GardenExteriorBaseColumn 1
+    100116: Point_GardenExteriorBaseColumn 2
+    100118: Point_GardenExteriorBaseColumn 3
+    100120: Point_GardenExteriorBaseColumn 4
+    100122: Point_GardenExteriorTopColumn
+    100124: Point_GardenExteriorTopColumn 1
+    100126: Point_GardenExteriorTopColumn 2
+    100128: Point_GardenExteriorTopColumn 3
+    100130: Point_GardenExteriorTopColumn 4
+    100132: Point_HallwayWindow
+    100134: Point_HallwayWindow 1
+    100136: Point_HallwayWindow 2
+    100138: Point_HallwayWindow 3
+    100140: Point_HallwayWindow 4
+    100142: Point_Hedge
+    100144: Point_Hedge 1
+    100146: Point_Hedge 2
+    100148: Point_Hedge 3
+    100150: Point_Hedge 4
+    100152: Point_Hedge 5
+    100154: Point_Hedge 6
+    100156: Point_Lamp
+    100158: Point_Lamp 1
+    100160: Point_Lamp 2
+    100162: Point_NaveColumn
+    100164: Point_NaveColumn 1
+    100166: Point_NaveColumn 2
+    100168: Point_NaveSideDoor
+    100170: Point_NaveSideDoor 1
+    100172: Point_NaveSideDoor 2
+    100174: Point_NaveWindow
+    100176: Point_NaveWindowPilar
+    100178: Point_NaveWindowPilar 1
+    100180: Point_NaveWindowPilar 10
+    100182: Point_NaveWindowPilar 11
+    100184: Point_NaveWindowPilar 12
+    100186: Point_NaveWindowPilar 13
+    100188: Point_NaveWindowPilar 14
+    100190: Point_NaveWindowPilar 2
+    100192: Point_NaveWindowPilar 3
+    100194: Point_NaveWindowPilar 4
+    100196: Point_NaveWindowPilar 5
+    100198: Point_NaveWindowPilar 6
+    100200: Point_NaveWindowPilar 7
+    100202: Point_NaveWindowPilar 8
+    100204: Point_NaveWindowPilar 9
+    100206: Point_TempleFence
+    100208: Roof
+    100210: //RootNode
+    100212: TempleFence
+    100214: TempleFenceGate
+    100216: TempleSkylights
+    100218: Various
+    100220: Vase
+    400000: AltarBase
+    400002: AltarInnerDoor
+    400004: AltarWindowMiddle
+    400006: AltarWindowSide
+    400008: BellHolder
+    400010: Ceiling
+    400012: CeilingSkylightFrame
+    400014: CeilingSkylightGlass
+    400016: ChandellierFrame
+    400018: ChandellierGlass
+    400020: Concrete
+    400022: DestructibleNaveColumn
+    400024: ExteriorSideDoor
+    400026: FirePit
+    400028: Floor
+    400030: Fountain
+    400032: Frames
+    400034: GardenBenches
+    400036: GardenColumn
+    400038: GardenExteriorBaseColumn
+    400040: GardenExteriorTopColumn
+    400042: GardenGrass
+    400044: GardenOuterRing
+    400046: GardenRing
+    400048: HallwayWindow
+    400050: Hedge
+    400052: InnerWalls
+    400054: IronFence
+    400056: Jar
+    400058: Lamp
+    400060: MainDoor
+    400062: Mountain
+    400064: NaveColumn
+    400066: NaveSideDoor
+    400068: NaveWindow
+    400070: NaveWindowPilar
+    400072: OuterWalls
+    400074: OuterWalls2
+    400076: Painting
+    400078: Point_AltarBase
+    400080: Point_AltarBase 1
+    400082: Point_AltarWindowMiddle
+    400084: Point_AltarWindowSide
+    400086: Point_AltarWindowSide 1
+    400088: Point_AltarWindowSide 2
+    400090: Point_Chandellier
+    400092: Point_DestructibleNaveColumn
+    400094: Point_ExteriorSideDoor
+    400096: Point_FirePit
+    400098: Point_GardenColumn
+    400100: Point_GardenColumn 1
+    400102: Point_GardenColumn 2
+    400104: Point_GardenColumn 3
+    400106: Point_GardenColumn 4
+    400108: Point_GardenColumn 5
+    400110: Point_GardenColumn 6
+    400112: Point_GardenExteriorBaseColumn
+    400114: Point_GardenExteriorBaseColumn 1
+    400116: Point_GardenExteriorBaseColumn 2
+    400118: Point_GardenExteriorBaseColumn 3
+    400120: Point_GardenExteriorBaseColumn 4
+    400122: Point_GardenExteriorTopColumn
+    400124: Point_GardenExteriorTopColumn 1
+    400126: Point_GardenExteriorTopColumn 2
+    400128: Point_GardenExteriorTopColumn 3
+    400130: Point_GardenExteriorTopColumn 4
+    400132: Point_HallwayWindow
+    400134: Point_HallwayWindow 1
+    400136: Point_HallwayWindow 2
+    400138: Point_HallwayWindow 3
+    400140: Point_HallwayWindow 4
+    400142: Point_Hedge
+    400144: Point_Hedge 1
+    400146: Point_Hedge 2
+    400148: Point_Hedge 3
+    400150: Point_Hedge 4
+    400152: Point_Hedge 5
+    400154: Point_Hedge 6
+    400156: Point_Lamp
+    400158: Point_Lamp 1
+    400160: Point_Lamp 2
+    400162: Point_NaveColumn
+    400164: Point_NaveColumn 1
+    400166: Point_NaveColumn 2
+    400168: Point_NaveSideDoor
+    400170: Point_NaveSideDoor 1
+    400172: Point_NaveSideDoor 2
+    400174: Point_NaveWindow
+    400176: Point_NaveWindowPilar
+    400178: Point_NaveWindowPilar 1
+    400180: Point_NaveWindowPilar 10
+    400182: Point_NaveWindowPilar 11
+    400184: Point_NaveWindowPilar 12
+    400186: Point_NaveWindowPilar 13
+    400188: Point_NaveWindowPilar 14
+    400190: Point_NaveWindowPilar 2
+    400192: Point_NaveWindowPilar 3
+    400194: Point_NaveWindowPilar 4
+    400196: Point_NaveWindowPilar 5
+    400198: Point_NaveWindowPilar 6
+    400200: Point_NaveWindowPilar 7
+    400202: Point_NaveWindowPilar 8
+    400204: Point_NaveWindowPilar 9
+    400206: Point_TempleFence
+    400208: Roof
+    400210: //RootNode
+    400212: TempleFence
+    400214: TempleFenceGate
+    400216: TempleSkylights
+    400218: Various
+    400220: Vase
+    2300000: AltarBase
+    2300002: AltarInnerDoor
+    2300004: AltarWindowMiddle
+    2300006: AltarWindowSide
+    2300008: BellHolder
+    2300010: Ceiling
+    2300012: CeilingSkylightFrame
+    2300014: CeilingSkylightGlass
+    2300016: ChandellierFrame
+    2300018: ChandellierGlass
+    2300020: Concrete
+    2300022: DestructibleNaveColumn
+    2300024: ExteriorSideDoor
+    2300026: FirePit
+    2300028: Floor
+    2300030: Fountain
+    2300032: Frames
+    2300034: GardenBenches
+    2300036: GardenColumn
+    2300038: GardenExteriorBaseColumn
+    2300040: GardenExteriorTopColumn
+    2300042: GardenGrass
+    2300044: GardenOuterRing
+    2300046: GardenRing
+    2300048: HallwayWindow
+    2300050: Hedge
+    2300052: InnerWalls
+    2300054: IronFence
+    2300056: Jar
+    2300058: Lamp
+    2300060: MainDoor
+    2300062: Mountain
+    2300064: NaveColumn
+    2300066: NaveSideDoor
+    2300068: NaveWindow
+    2300070: NaveWindowPilar
+    2300072: OuterWalls
+    2300074: OuterWalls2
+    2300076: Painting
+    2300078: Roof
+    2300080: TempleFence
+    2300082: TempleFenceGate
+    2300084: TempleSkylights
+    2300086: Various
+    2300088: Vase
+    3300000: AltarBase
+    3300002: AltarInnerDoor
+    3300004: AltarWindowMiddle
+    3300006: AltarWindowSide
+    3300008: BellHolder
+    3300010: Ceiling
+    3300012: CeilingSkylightFrame
+    3300014: CeilingSkylightGlass
+    3300016: ChandellierFrame
+    3300018: ChandellierGlass
+    3300020: Concrete
+    3300022: DestructibleNaveColumn
+    3300024: ExteriorSideDoor
+    3300026: FirePit
+    3300028: Floor
+    3300030: Fountain
+    3300032: Frames
+    3300034: GardenBenches
+    3300036: GardenColumn
+    3300038: GardenExteriorBaseColumn
+    3300040: GardenExteriorTopColumn
+    3300042: GardenGrass
+    3300044: GardenOuterRing
+    3300046: GardenRing
+    3300048: HallwayWindow
+    3300050: Hedge
+    3300052: InnerWalls
+    3300054: IronFence
+    3300056: Jar
+    3300058: Lamp
+    3300060: MainDoor
+    3300062: Mountain
+    3300064: NaveColumn
+    3300066: NaveSideDoor
+    3300068: NaveWindow
+    3300070: NaveWindowPilar
+    3300072: OuterWalls
+    3300074: OuterWalls2
+    3300076: Painting
+    3300078: Roof
+    3300080: TempleFence
+    3300082: TempleFenceGate
+    3300084: TempleSkylights
+    3300086: Various
+    3300088: Vase
+    4300000: MainDoor
+    4300002: NaveWindow
+    4300004: AltarBase
+    4300006: FirePit
+    4300008: ChandellierFrame
+    4300010: Lamp
+    4300012: Vase
+    4300014: Jar
+    4300016: NaveWindowPilar
+    4300018: ExteriorSideDoor
+    4300020: GardenColumn
+    4300022: GardenRing
+    4300024: NaveSideDoor
+    4300026: GardenExteriorBaseColumn
+    4300028: GardenExteriorTopColumn
+    4300030: HallwayWindow
+    4300032: AltarWindowMiddle
+    4300034: Fountain
+    4300036: Mountain
+    4300038: TempleSkylights
+    4300040: Painting
+    4300042: AltarWindowSide
+    4300044: TempleFence
+    4300046: NaveColumn
+    4300048: IronFence
+    4300050: GardenOuterRing
+    4300052: GardenBenches
+    4300054: ChandellierGlass
+    4300056: CeilingSkylightFrame
+    4300058: CeilingSkylightGlass
+    4300060: AltarInnerDoor
+    4300062: BellHolder
+    4300064: InnerWalls
+    4300066: Various
+    4300068: GardenGrass
+    4300070: Concrete
+    4300072: Floor
+    4300074: Roof
+    4300076: OuterWalls
+    4300078: OuterWalls2
+    4300080: Frames
+    4300082: Ceiling
+    4300084: DestructibleNaveColumn
+    4300086: TempleFenceGate
+    4300088: Hedge
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
