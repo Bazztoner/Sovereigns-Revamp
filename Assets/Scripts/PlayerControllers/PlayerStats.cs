@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : Photon.MonoBehaviour {
+public class PlayerStats : Photon.MonoBehaviour
+{
 
     private bool _gameInCourse;
     private bool _isBlocking = false;
@@ -16,7 +17,7 @@ public class PlayerStats : Photon.MonoBehaviour {
     private float _stunTime = 1.2f;
 
     [HideInInspector]
-	public bool isDamaged = false;
+    public bool isDamaged = false;
     [HideInInspector]
     public bool isDead = false;
     [HideInInspector]
@@ -70,7 +71,7 @@ public class PlayerStats : Photon.MonoBehaviour {
     }
 
     #region Initialization
-    
+
     //This is for multiplayer only
     public void Initialize()
     {
@@ -261,7 +262,11 @@ public class PlayerStats : Photon.MonoBehaviour {
             blocked = false;
         }
 
-        if (!blocked) EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType, uncancelableAttack });
+        if (!blocked)
+        {
+            EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType, uncancelableAttack });
+            EventManager.DispatchEvent("UpdateComboMeter", new object[] { this.gameObject.name });
+        }
         else EventManager.DispatchEvent("BlockParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
 
         float fill = (Hp - dmg) / maxHp;
@@ -408,7 +413,7 @@ public class PlayerStats : Photon.MonoBehaviour {
         {
             //isDamaged = true;
             isDamaged = !(bool)paramsContainer[4];
-           _isBlocking = false;
+            _isBlocking = false;
             _isBlockingUp = false;
             EventManager.DispatchEvent("IsDamaged", new object[] { this.gameObject.name, isDamaged });
 

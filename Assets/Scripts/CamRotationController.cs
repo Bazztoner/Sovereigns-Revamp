@@ -139,7 +139,7 @@ public class CamRotationController : MonoBehaviour
         transform.position = _character.position;
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
-        initialPosition = _cam.transform.localPosition;
+        //initialPosition = _cam.transform.localPosition;
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
 
         _enemy = GetEnemy();
@@ -155,7 +155,7 @@ public class CamRotationController : MonoBehaviour
         transform.position = _character.position;
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
-        initialPosition = _cam.transform.localPosition;
+        //initialPosition = _cam.transform.localPosition;
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
         _proyectionLayer = cullLayer;
         _lockOnLayer = _proyectionLayer == 16 ? 20 : 21;
@@ -401,12 +401,12 @@ public class CamRotationController : MonoBehaviour
 
         if (dstruc != null)
         {
-            List<DestructibleObject> inRangeObj = dstruc.Where(x => x.isAlive
-                                                             && x != null
+            List<DestructibleObject> inRangeObj = dstruc.Where(x => x != null
+                                                             && x.isAlive
                                                              && x.zone == TransitionManager.instance.currentZone
                                                              && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
                                                              && x.destructibleType != DestructibleType.TRANSITION
-                                                             && x.GetComponentInChildren<Renderer>().isVisible)
+                                                             /*&& x.GetComponentInChildren<Renderer>().isVisible*/)
                                                     .ToList<DestructibleObject>();
             DestructibleObject closest;
 

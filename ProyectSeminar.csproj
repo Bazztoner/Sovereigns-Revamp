@@ -421,6 +421,7 @@
     <None Include="Assets\AmplifyShaderEditor\Readme.txt" />
     <None Include="Assets\Materials\Character Materials\AngelArmor.shader" />
     <None Include="Assets\Materials\Hud\FillAmount.shader" />
+    <None Include="Assets\Materials\Shaders\WallTesselation.shader" />
     <None Include="Assets\Photon Unity Networking\changelog.txt" />
     <None Include="Assets\Photon Unity Networking\link.xml" />
     <None Include="Assets\Photon Unity Networking\readme.txt" />

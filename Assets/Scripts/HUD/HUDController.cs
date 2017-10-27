@@ -24,6 +24,7 @@ public class HUDController : Photon.MonoBehaviour
     public Text damageText;
     public Animator hudAnim;
     public RectTransform enemyBar;
+    public float comboLifeTime = 1f;
 
     private float _imgTime = 3f;
     private float _smooth = 0.1f;
@@ -33,6 +34,9 @@ public class HUDController : Photon.MonoBehaviour
     private RectTransform _rect;
     private Transform _lockTarget;
     private Camera _cam;
+
+    Text comboText;
+    byte comboMeter;
 
     List<Text[]> allCooldowns = new List<Text[]>();
 
@@ -51,7 +55,7 @@ public class HUDController : Photon.MonoBehaviour
         FollowTarget();
     }
 
-    private void AddEvents()
+    void AddEvents()
     {
         EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
         EventManager.AddEventListener("ManaUpdate", ApplyManaChanges);
@@ -63,9 +67,53 @@ public class HUDController : Photon.MonoBehaviour
         EventManager.AddEventListener("SetRoundText", OnSetRoundText);
         EventManager.AddEventListener("EndOfMatch", OnEndOfMatch);
         EventManager.AddEventListener("PlayerDeath", OnPlayerDeath);
+        EventManager.AddEventListener("UpdateComboMeter", OnCombo);
     }
 
-    private void DeactivateImages()
+    void OnCombo(object[] paramsContainer)
+    {
+        if (GameManager.screenDivided)
+        {
+            if (this.gameObject.name == "HUD1" && (string)paramsContainer[0] == "Player2")
+            {
+                UpdateCombo(true);
+            }
+            else if (this.gameObject.name == "HUD1" && (string)paramsContainer[0] == "Player1")
+            {
+                ResetCombo();
+            }
+            else if (this.gameObject.name == "HUD2" && (string)paramsContainer[0] == "Player1")
+            {
+                UpdateCombo(true);
+            }
+            else if (this.gameObject.name == "HUD2" && (string)paramsContainer[0] == "Player2")
+            {
+                ResetCombo();
+            }
+        }
+    }
+
+    void UpdateCombo(bool cancelInvoke)
+    {
+        if (cancelInvoke)
+        {
+            CancelInvoke("ResetCombo");
+        }
+
+        comboMeter++;
+        comboText.text = "x"+comboMeter.ToString();
+        Invoke("ResetCombo", comboLifeTime);
+    }
+
+    void ResetCombo()
+    {
+        comboMeter = 0;
+        comboText.text = "";
+
+        CancelInvoke("StartComboLifeTime");
+    }
+
+    void DeactivateImages()
     {
         if (this.gameObject.name != "HUD")
         {
@@ -200,6 +248,8 @@ public class HUDController : Photon.MonoBehaviour
             }
         }
 
+        comboText = transform.FindChild("Combometer").GetComponent<Text>();
+
         FillArrays();
     }
 
@@ -254,7 +304,7 @@ public class HUDController : Photon.MonoBehaviour
         }
         else mana.fillAmount = (float)paramsContainer[1];
     }
-    
+
     void OnEnemyDamaged(object[] paramsContainer)
     {
         hudAnim.Play(0);

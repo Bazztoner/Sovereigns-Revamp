@@ -12,6 +12,7 @@ public class DestructAnimCont : MonoBehaviour
     {
         _an = GetComponent<Animation>();
         var activateObjects = transform.GetComponentsInChildren<TelekineticObject>();
+        _an.clip.frameRate = 90;
 
         foreach (var obj in activateObjects)
         {
