@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Demon Tail
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: CATRigLLegPlatform
+    m_Weight: 0
+  - m_Path: CATRigRLegPlatform
+    m_Weight: 0
+  - m_Path: CATRigTail1
+    m_Weight: 1
+  - m_Path: CATRigTail1/CATRigTail2
+    m_Weight: 1
+  - m_Path: CATRigTail1/CATRigTail2/CATRigTail3
+    m_Weight: 1
+  - m_Path: CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4
+    m_Weight: 1
+  - m_Path: CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4/CATRigTail5
+    m_Weight: 1
+  - m_Path: CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4/CATRigTail5/CATRigTail6
+    m_Weight: 1
+  - m_Path: CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4/CATRigTail5/CATRigTail6/CATRigTail7
+    m_Weight: 1
+  - m_Path: DemonArmor
+    m_Weight: 0
+  - m_Path: DemonBody
+    m_Weight: 0
+  - m_Path: IK Chain001
+    m_Weight: 1
+  - m_Path: PelvisHub
+    m_Weight: 0
+  - m_Path: PelvisHub/CATRigLLegUpVectorNode
+    m_Weight: 0
+  - m_Path: PelvisHub/CATRigLoinCloth1
+    m_Weight: 0
+  - m_Path: PelvisHub/CATRigLoinCloth1/CATRigLoinCloth2
+    m_Weight: 0
+  - m_Path: PelvisHub/CATRigLoinCloth1/CATRigLoinCloth2/CATRigLoinCloth3
+    m_Weight: 0
+  - m_Path: PelvisHub/CATRigRLegUpVectorNode
+    m_Weight: 0
+  - m_Path: PelvisHub/LeftLeg
+    m_Weight: 0
+  - m_Path: PelvisHub/LeftLeg/LeftShin
+    m_Weight: 0
+  - m_Path: PelvisHub/LeftLeg/LeftShin/CATRigLLegAnkle
+    m_Weight: 0
+  - m_Path: PelvisHub/LeftLeg/LeftShin/CATRigLLegAnkle/CATRigLLegRightPhalanges1
+    m_Weight: 0
+  - m_Path: PelvisHub/LeftLeg/LeftShin/CATRigLLegAnkle/CATRigLLegRightPhalanges1/CATRigLLegRightPhalanges2
+    m_Weight: 0
+  - m_Path: PelvisHub/Point001
+    m_Weight: 0
+  - m_Path: PelvisHub/Point001/Point002
+    m_Weight: 0
+  - m_Path: PelvisHub/Point001/Point002/Point003
+    m_Weight: 0
+  - m_Path: PelvisHub/RightLeg
+    m_Weight: 0
+  - m_Path: PelvisHub/RightLeg/RightShin
+    m_Weight: 0
+  - m_Path: PelvisHub/RightLeg/RightShin/RightAnkle
+    m_Weight: 0
+  - m_Path: PelvisHub/RightLeg/RightShin/RightAnkle/CATRigRLegRightPhalanges1
+    m_Weight: 0
+  - m_Path: PelvisHub/RightLeg/RightShin/RightAnkle/CATRigRLegRightPhalanges1/CATRigRLegRightPhalanges2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftIndex1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftIndex1/CATRigLArmLeftIndex2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftIndex1/CATRigLArmLeftIndex2/CATRigLArmLeftIndex3
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftMiddle1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftMiddle1/CATRigLArmLeftMiddle2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftMiddle1/CATRigLArmLeftMiddle2/CATRigLArmLeftMiddle3
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftRing1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftRing1/CATRigLArmLeftRing2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftRing1/CATRigLArmLeftRing2/CATRigLArmLeftRing3
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftThumb1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftThumb1/CATRigLArmLeftThumb2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/LeftCollarbone/LeftArm/LeftForeArm/LeftPalm/CATRigLArmLeftThumb1/CATRigLArmLeftThumb2/CATRigLArmLeftThumb3
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/NeckSpine1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/NeckSpine1/NeckSpine2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/NeckSpine1/NeckSpine2/NecklaceBase
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/NeckSpine1/NeckSpine2/NecklaceBase/NecklaceTip
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/NeckSpine1/NeckSpine2/NeckSpine3
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/NeckSpine1/NeckSpine2/NeckSpine3/HeadHub
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/NeckSpine1/NeckSpine2/NeckSpine3/HeadHub/JawJoint
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/NeckSpine1/NeckSpine2/NeckSpine3/HeadHub/JawJoint/Jaw
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightIndex1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightIndex1/CATRigRArmRightIndex2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightIndex1/CATRigRArmRightIndex2/CATRigRArmRightIndex3
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightMiddle1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightMiddle1/CATRigRArmRightMiddle2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightMiddle1/CATRigRArmRightMiddle2/CATRigRArmRightMiddle3
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightRing1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightRing1/CATRigRArmRightRing2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightRing1/CATRigRArmRightRing2/CATRigRArmRightRing3
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightThumb1
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightThumb1/CATRigRArmRightThumb2
+    m_Weight: 0
+  - m_Path: PelvisHub/Spine1/Spine2/Spine3/Spine4/Spine5/TorsoHub/RightCollarbone/RightArm/RightForeArm/RightPalm/CATRigRArmRightThumb1/CATRigRArmRightThumb2/CATRigRArmRightThumb3
+    m_Weight: 0
+  - m_Path: Rig
+    m_Weight: 0
+  - m_Path: TailSpline
+    m_Weight: 1
