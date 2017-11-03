@@ -67,7 +67,8 @@ public class PlayerStats : Photon.MonoBehaviour
     {
         AddEvents();
         _gameInCourse = true;
-        InvokeRepeating("Regenerate", _regenMult, _regenMult);
+        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, Mana / maxMana, this.gameObject.name });
+        //InvokeRepeating("Regenerate", _regenMult, _regenMult);
     }
 
     #region Initialization
@@ -114,7 +115,7 @@ public class PlayerStats : Photon.MonoBehaviour
         EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
     }
 
-    void RegainMana(float regained)
+    public void RegainMana(float regained)
     {
         Mana += regained;
         float fill = Mana / maxMana;
@@ -330,7 +331,7 @@ public class PlayerStats : Photon.MonoBehaviour
     private void OnRestartRound(params object[] paramsContainer)
     {
         Hp = maxHp;
-        Mana = maxMana;
+        Mana = 0;
         var hpFill = Hp / maxHp;
         var manaFill = Mana / maxMana;
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, hpFill });
@@ -347,7 +348,7 @@ public class PlayerStats : Photon.MonoBehaviour
         if (!(bool)paramsContainer[0])
         {
             _gameInCourse = true;
-            InvokeRepeating("Regenerate", _regenMult, _regenMult);
+            //InvokeRepeating("Regenerate", _regenMult, _regenMult);
         }
         else
         {

@@ -193,6 +193,8 @@ public class SwordScript : MonoBehaviour
                     else if (_isGuardBreak) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "GuardBreakAttack", myName);
                 }
                 else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee", this.GetComponentInParent<Player1Input>().gameObject.name);
+
+                this.GetComponentInParent<PlayerStats>().RegainMana(damage * 0.3f);
             }
             else if (other.gameObject.GetComponentInParent<Enemy>() != null)
             {
