@@ -162,18 +162,17 @@ public class CamRotationController : MonoBehaviour
 
         _enemy = GetEnemy();
         _lockPosition = _enemy.Find("LockOnPosition");
-        showProjections = true;
-        //HighlightTarget();
+        //showProjections = true;
         oldParent = transform.parent;
     }
 
     private void AddEvents()
     {
         EventManager.AddEventListener("ChangeStateDestuctibleProjections", ActivateProjections);
-        EventManager.AddEventListener("DoConnect", UseProjections);
+        /*EventManager.AddEventListener("DoConnect", UseProjections);
         EventManager.AddEventListener("DoNotConnect", UseProjections);
         EventManager.AddEventListener("DoDummyTest", UseProjections);
-        EventManager.AddEventListener("DividedScreen", UseProjections);
+        EventManager.AddEventListener("DividedScreen", UseProjections);*/
         //EventManager.AddEventListener("BeginGame", UseProjections);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
@@ -240,10 +239,10 @@ public class CamRotationController : MonoBehaviour
         if ((bool)paramsContainer[0])
         {
             EventManager.RemoveEventListener("ChangeStateDestuctibleProjections", ActivateProjections);
-            EventManager.RemoveEventListener("DoConnect", UseProjections);
+            /*EventManager.RemoveEventListener("DoConnect", UseProjections);
             EventManager.RemoveEventListener("DoNotConnect", UseProjections);
             EventManager.RemoveEventListener("DoDummyTest", UseProjections);
-            EventManager.RemoveEventListener("DividedScreen", UseProjections);
+            EventManager.RemoveEventListener("DividedScreen", UseProjections);*/
             EventManager.RemoveEventListener("GameFinished", OnGameFinished);
             EventManager.RemoveEventListener("RestartRound", OnRestartRound);
             EventManager.RemoveEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);

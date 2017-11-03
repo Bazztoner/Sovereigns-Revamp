@@ -23,8 +23,6 @@ public class DestructibleObject : Photon.MonoBehaviour
     public GameObject defaultObject;
     public GameObject destroyedObject;
 
-    public float[] destructionAngles;
-
     public bool isAlive;
 
     public static List<DestructibleObject> allObjs;
@@ -136,7 +134,7 @@ public class DestructibleObject : Photon.MonoBehaviour
     public void DestroyObject(Vector3 rot, float angle)
     {
         defaultObject.SetActive(false);
-        if(rotAngles.Length != 0) CheckRotation(rot, angle);
+        if(rotAngles.Length > 0) CheckRotation(rot, angle);
         destroyedObject.SetActive(true);
 
         if (destructibleType == DestructibleType.DESTRUCTIBLE) GetComponentInChildren<Collider>().isTrigger = true;
@@ -153,7 +151,7 @@ public class DestructibleObject : Photon.MonoBehaviour
     {
         nickName = caster;
         defaultObject.SetActive(false);
-        if (rotAngles.Length != 0) CheckRotation(rot, angle);
+        if (rotAngles.Length > 0) CheckRotation(rot, angle);
         destroyedObject.SetActive(true);
 
         if (destructibleType == DestructibleType.DESTRUCTIBLE) GetComponentInChildren<Collider>().isTrigger = true;
@@ -167,12 +165,6 @@ public class DestructibleObject : Photon.MonoBehaviour
     public void RpcDestroy(Vector3 rot, float angle, string caster)
     {
         DestroyObject(rot, angle, caster);
-    }
-
-    void MARTINNOTEMEENOJES()
-    {
-        var rnd = UnityEngine.Random.Range(0, destructionAngles.Length);
-        transform.Rotate(new Vector3(0, destructionAngles[rnd]));
     }
 }
 

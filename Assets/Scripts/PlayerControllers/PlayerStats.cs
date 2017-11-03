@@ -78,8 +78,8 @@ public class PlayerStats : Photon.MonoBehaviour
     {
         hp = 500;
         maxHp = 500;
-        mana = 215;
-        maxMana = 215;
+        mana = 0;
+        maxMana = 250;
         hpRegeneration = 2;
         manaRegeneration = 5;
     }

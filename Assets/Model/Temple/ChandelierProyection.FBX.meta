@@ -1,0 +1,901 @@
+fileFormatVersion: 2
+guid: 6752a77985fdc2246a74804233a7d4b4
+timeCreated: 1509682772
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ChandellierFrame
+    100004: ChandellierGlass_frag_001
+    100006: ChandellierGlass_frag_002
+    100008: ChandellierGlass_frag_003
+    100010: ChandellierGlass_frag_004
+    100012: ChandellierGlass_frag_005
+    100014: ChandellierGlass_frag_006
+    100016: ChandellierGlass_frag_007
+    100018: ChandellierGlass_frag_008
+    100020: ChandellierGlass_frag_009
+    100022: ChandellierGlass_frag_010
+    100024: ChandellierGlass_frag_011
+    100026: ChandellierGlass_frag_012
+    100028: ChandellierGlass_frag_013
+    100030: ChandellierGlass_frag_014
+    100032: ChandellierGlass_frag_015
+    100034: ChandellierGlass_frag_016
+    100036: ChandellierGlass_frag_017
+    100038: ChandellierGlass_frag_018
+    100040: ChandellierGlass_frag_019
+    100042: ChandellierGlass_frag_020
+    100044: ChandellierGlass_frag_021
+    100046: ChandellierGlass_frag_022
+    100048: ChandellierGlass_frag_023
+    100050: ChandellierGlass_frag_024
+    100052: ChandellierGlass_frag_025
+    100054: ChandellierGlass_frag_026
+    100056: ChandellierGlass_frag_027
+    100058: ChandellierGlass_frag_028
+    100060: ChandellierGlass_frag_029
+    100062: ChandellierGlass_frag_030
+    100064: ChandellierGlass_frag_031
+    100066: ChandellierGlass_frag_032
+    100068: ChandellierGlass_frag_033
+    100070: ChandellierGlass_frag_034
+    100072: ChandellierGlass_frag_035
+    100074: ChandellierGlass_frag_036
+    100076: ChandellierGlass_frag_037
+    100078: ChandellierGlass_frag_038
+    100080: ChandellierGlass_frag_039
+    100082: ChandellierGlass_frag_040
+    100084: ChandellierGlass_frag_041
+    100086: ChandellierGlass_frag_042
+    100088: ChandellierGlass_frag_043
+    100090: ChandellierGlass_frag_044
+    100092: ChandellierGlass_frag_045
+    100094: ChandellierGlass_frag_046
+    100096: ChandellierGlass_frag_047
+    100098: ChandellierGlass_frag_048
+    100100: ChandellierGlass_frag_049
+    100102: ChandellierGlass_frag_050
+    100104: ChandellierGlass_frag_051
+    100106: ChandellierGlass_frag_052
+    100108: ChandellierGlass_frag_053
+    100110: ChandellierGlass_frag_054
+    100112: ChandellierGlass_frag_055
+    100114: ChandellierGlass_frag_056
+    100116: ChandellierGlass_frag_057
+    100118: ChandellierGlass_frag_058
+    100120: ChandellierGlass_frag_059
+    100122: ChandellierGlass_frag_060
+    100124: ChandellierGlass_frag_061
+    100126: ChandellierGlass_frag_062
+    100128: ChandellierGlass_frag_063
+    100130: ChandellierGlass_frag_064
+    100132: ChandellierGlass_frag_065
+    100134: ChandellierGlass_frag_066
+    100136: ChandellierGlass_frag_067
+    100138: ChandellierGlass_frag_068
+    100140: ChandellierGlass_frag_069
+    100142: ChandellierGlass_frag_070
+    100144: ChandellierGlass_frag_071
+    100146: ChandellierGlass_frag_072
+    100148: ChandellierGlass_frag_073
+    100150: ChandellierGlass_frag_074
+    100152: ChandellierGlass_frag_075
+    100154: ChandellierGlass_frag_076
+    100156: ChandellierGlass_frag_077
+    100158: ChandellierGlass_frag_078
+    100160: ChandellierGlass_frag_079
+    100162: ChandellierGlass_frag_080
+    100164: ChandellierGlass_frag_081
+    100166: ChandellierGlass_frag_082
+    100168: ChandellierGlass_frag_083
+    100170: ChandellierGlass_frag_084
+    100172: ChandellierGlass_frag_085
+    100174: ChandellierGlass_frag_086
+    100176: ChandellierGlass_frag_087
+    100178: ChandellierGlass_frag_088
+    100180: ChandellierGlass_frag_089
+    100182: ChandellierGlass_frag_090
+    100184: ChandellierGlass_frag_091
+    100186: ChandellierGlass_frag_092
+    100188: ChandellierGlass_frag_093
+    100190: ChandellierGlass_frag_094
+    100192: ChandellierGlass_frag_095
+    100194: ChandellierGlass_frag_096
+    100196: ChandellierGlass_frag_097
+    100198: ChandellierGlass_frag_098
+    100200: ChandellierGlass_frag_099
+    100202: ChandellierGlass_frag_100
+    100204: ChandellierGlass_frag_101
+    100206: ChandellierGlass_frag_102
+    100208: Object001
+    100210: Object002
+    100212: Object003
+    100214: Object004
+    100216: Object005
+    100218: Object006
+    100220: Object007
+    100222: Object008
+    100224: Object009
+    100226: Object010
+    400000: //RootNode
+    400002: ChandellierFrame
+    400004: ChandellierGlass_frag_001
+    400006: ChandellierGlass_frag_002
+    400008: ChandellierGlass_frag_003
+    400010: ChandellierGlass_frag_004
+    400012: ChandellierGlass_frag_005
+    400014: ChandellierGlass_frag_006
+    400016: ChandellierGlass_frag_007
+    400018: ChandellierGlass_frag_008
+    400020: ChandellierGlass_frag_009
+    400022: ChandellierGlass_frag_010
+    400024: ChandellierGlass_frag_011
+    400026: ChandellierGlass_frag_012
+    400028: ChandellierGlass_frag_013
+    400030: ChandellierGlass_frag_014
+    400032: ChandellierGlass_frag_015
+    400034: ChandellierGlass_frag_016
+    400036: ChandellierGlass_frag_017
+    400038: ChandellierGlass_frag_018
+    400040: ChandellierGlass_frag_019
+    400042: ChandellierGlass_frag_020
+    400044: ChandellierGlass_frag_021
+    400046: ChandellierGlass_frag_022
+    400048: ChandellierGlass_frag_023
+    400050: ChandellierGlass_frag_024
+    400052: ChandellierGlass_frag_025
+    400054: ChandellierGlass_frag_026
+    400056: ChandellierGlass_frag_027
+    400058: ChandellierGlass_frag_028
+    400060: ChandellierGlass_frag_029
+    400062: ChandellierGlass_frag_030
+    400064: ChandellierGlass_frag_031
+    400066: ChandellierGlass_frag_032
+    400068: ChandellierGlass_frag_033
+    400070: ChandellierGlass_frag_034
+    400072: ChandellierGlass_frag_035
+    400074: ChandellierGlass_frag_036
+    400076: ChandellierGlass_frag_037
+    400078: ChandellierGlass_frag_038
+    400080: ChandellierGlass_frag_039
+    400082: ChandellierGlass_frag_040
+    400084: ChandellierGlass_frag_041
+    400086: ChandellierGlass_frag_042
+    400088: ChandellierGlass_frag_043
+    400090: ChandellierGlass_frag_044
+    400092: ChandellierGlass_frag_045
+    400094: ChandellierGlass_frag_046
+    400096: ChandellierGlass_frag_047
+    400098: ChandellierGlass_frag_048
+    400100: ChandellierGlass_frag_049
+    400102: ChandellierGlass_frag_050
+    400104: ChandellierGlass_frag_051
+    400106: ChandellierGlass_frag_052
+    400108: ChandellierGlass_frag_053
+    400110: ChandellierGlass_frag_054
+    400112: ChandellierGlass_frag_055
+    400114: ChandellierGlass_frag_056
+    400116: ChandellierGlass_frag_057
+    400118: ChandellierGlass_frag_058
+    400120: ChandellierGlass_frag_059
+    400122: ChandellierGlass_frag_060
+    400124: ChandellierGlass_frag_061
+    400126: ChandellierGlass_frag_062
+    400128: ChandellierGlass_frag_063
+    400130: ChandellierGlass_frag_064
+    400132: ChandellierGlass_frag_065
+    400134: ChandellierGlass_frag_066
+    400136: ChandellierGlass_frag_067
+    400138: ChandellierGlass_frag_068
+    400140: ChandellierGlass_frag_069
+    400142: ChandellierGlass_frag_070
+    400144: ChandellierGlass_frag_071
+    400146: ChandellierGlass_frag_072
+    400148: ChandellierGlass_frag_073
+    400150: ChandellierGlass_frag_074
+    400152: ChandellierGlass_frag_075
+    400154: ChandellierGlass_frag_076
+    400156: ChandellierGlass_frag_077
+    400158: ChandellierGlass_frag_078
+    400160: ChandellierGlass_frag_079
+    400162: ChandellierGlass_frag_080
+    400164: ChandellierGlass_frag_081
+    400166: ChandellierGlass_frag_082
+    400168: ChandellierGlass_frag_083
+    400170: ChandellierGlass_frag_084
+    400172: ChandellierGlass_frag_085
+    400174: ChandellierGlass_frag_086
+    400176: ChandellierGlass_frag_087
+    400178: ChandellierGlass_frag_088
+    400180: ChandellierGlass_frag_089
+    400182: ChandellierGlass_frag_090
+    400184: ChandellierGlass_frag_091
+    400186: ChandellierGlass_frag_092
+    400188: ChandellierGlass_frag_093
+    400190: ChandellierGlass_frag_094
+    400192: ChandellierGlass_frag_095
+    400194: ChandellierGlass_frag_096
+    400196: ChandellierGlass_frag_097
+    400198: ChandellierGlass_frag_098
+    400200: ChandellierGlass_frag_099
+    400202: ChandellierGlass_frag_100
+    400204: ChandellierGlass_frag_101
+    400206: ChandellierGlass_frag_102
+    400208: Object001
+    400210: Object002
+    400212: Object003
+    400214: Object004
+    400216: Object005
+    400218: Object006
+    400220: Object007
+    400222: Object008
+    400224: Object009
+    400226: Object010
+    2300000: ChandellierFrame
+    2300002: ChandellierGlass_frag_001
+    2300004: ChandellierGlass_frag_002
+    2300006: ChandellierGlass_frag_003
+    2300008: ChandellierGlass_frag_004
+    2300010: ChandellierGlass_frag_005
+    2300012: ChandellierGlass_frag_006
+    2300014: ChandellierGlass_frag_007
+    2300016: ChandellierGlass_frag_008
+    2300018: ChandellierGlass_frag_009
+    2300020: ChandellierGlass_frag_010
+    2300022: ChandellierGlass_frag_011
+    2300024: ChandellierGlass_frag_012
+    2300026: ChandellierGlass_frag_013
+    2300028: ChandellierGlass_frag_014
+    2300030: ChandellierGlass_frag_015
+    2300032: ChandellierGlass_frag_016
+    2300034: ChandellierGlass_frag_017
+    2300036: ChandellierGlass_frag_018
+    2300038: ChandellierGlass_frag_019
+    2300040: ChandellierGlass_frag_020
+    2300042: ChandellierGlass_frag_021
+    2300044: ChandellierGlass_frag_022
+    2300046: ChandellierGlass_frag_023
+    2300048: ChandellierGlass_frag_024
+    2300050: ChandellierGlass_frag_025
+    2300052: ChandellierGlass_frag_026
+    2300054: ChandellierGlass_frag_027
+    2300056: ChandellierGlass_frag_028
+    2300058: ChandellierGlass_frag_029
+    2300060: ChandellierGlass_frag_030
+    2300062: ChandellierGlass_frag_031
+    2300064: ChandellierGlass_frag_032
+    2300066: ChandellierGlass_frag_033
+    2300068: ChandellierGlass_frag_034
+    2300070: ChandellierGlass_frag_035
+    2300072: ChandellierGlass_frag_036
+    2300074: ChandellierGlass_frag_037
+    2300076: ChandellierGlass_frag_038
+    2300078: ChandellierGlass_frag_039
+    2300080: ChandellierGlass_frag_040
+    2300082: ChandellierGlass_frag_041
+    2300084: ChandellierGlass_frag_042
+    2300086: ChandellierGlass_frag_043
+    2300088: ChandellierGlass_frag_044
+    2300090: ChandellierGlass_frag_045
+    2300092: ChandellierGlass_frag_046
+    2300094: ChandellierGlass_frag_047
+    2300096: ChandellierGlass_frag_048
+    2300098: ChandellierGlass_frag_049
+    2300100: ChandellierGlass_frag_050
+    2300102: ChandellierGlass_frag_051
+    2300104: ChandellierGlass_frag_052
+    2300106: ChandellierGlass_frag_053
+    2300108: ChandellierGlass_frag_054
+    2300110: ChandellierGlass_frag_055
+    2300112: ChandellierGlass_frag_056
+    2300114: ChandellierGlass_frag_057
+    2300116: ChandellierGlass_frag_058
+    2300118: ChandellierGlass_frag_059
+    2300120: ChandellierGlass_frag_060
+    2300122: ChandellierGlass_frag_061
+    2300124: ChandellierGlass_frag_062
+    2300126: ChandellierGlass_frag_063
+    2300128: ChandellierGlass_frag_064
+    2300130: ChandellierGlass_frag_065
+    2300132: ChandellierGlass_frag_066
+    2300134: ChandellierGlass_frag_067
+    2300136: ChandellierGlass_frag_068
+    2300138: ChandellierGlass_frag_069
+    2300140: ChandellierGlass_frag_070
+    2300142: ChandellierGlass_frag_071
+    2300144: ChandellierGlass_frag_072
+    2300146: ChandellierGlass_frag_073
+    2300148: ChandellierGlass_frag_074
+    2300150: ChandellierGlass_frag_075
+    2300152: ChandellierGlass_frag_076
+    2300154: ChandellierGlass_frag_077
+    2300156: ChandellierGlass_frag_078
+    2300158: ChandellierGlass_frag_079
+    2300160: ChandellierGlass_frag_080
+    2300162: ChandellierGlass_frag_081
+    2300164: ChandellierGlass_frag_082
+    2300166: ChandellierGlass_frag_083
+    2300168: ChandellierGlass_frag_084
+    2300170: ChandellierGlass_frag_085
+    2300172: ChandellierGlass_frag_086
+    2300174: ChandellierGlass_frag_087
+    2300176: ChandellierGlass_frag_088
+    2300178: ChandellierGlass_frag_089
+    2300180: ChandellierGlass_frag_090
+    2300182: ChandellierGlass_frag_091
+    2300184: ChandellierGlass_frag_092
+    2300186: ChandellierGlass_frag_093
+    2300188: ChandellierGlass_frag_094
+    2300190: ChandellierGlass_frag_095
+    2300192: ChandellierGlass_frag_096
+    2300194: ChandellierGlass_frag_097
+    2300196: ChandellierGlass_frag_098
+    2300198: ChandellierGlass_frag_099
+    2300200: ChandellierGlass_frag_100
+    2300202: ChandellierGlass_frag_101
+    2300204: ChandellierGlass_frag_102
+    2300206: Object001
+    2300208: Object002
+    2300210: Object003
+    2300212: Object004
+    2300214: Object005
+    2300216: Object006
+    2300218: Object007
+    2300220: Object008
+    2300222: Object009
+    2300224: Object010
+    3300000: ChandellierFrame
+    3300002: ChandellierGlass_frag_001
+    3300004: ChandellierGlass_frag_002
+    3300006: ChandellierGlass_frag_003
+    3300008: ChandellierGlass_frag_004
+    3300010: ChandellierGlass_frag_005
+    3300012: ChandellierGlass_frag_006
+    3300014: ChandellierGlass_frag_007
+    3300016: ChandellierGlass_frag_008
+    3300018: ChandellierGlass_frag_009
+    3300020: ChandellierGlass_frag_010
+    3300022: ChandellierGlass_frag_011
+    3300024: ChandellierGlass_frag_012
+    3300026: ChandellierGlass_frag_013
+    3300028: ChandellierGlass_frag_014
+    3300030: ChandellierGlass_frag_015
+    3300032: ChandellierGlass_frag_016
+    3300034: ChandellierGlass_frag_017
+    3300036: ChandellierGlass_frag_018
+    3300038: ChandellierGlass_frag_019
+    3300040: ChandellierGlass_frag_020
+    3300042: ChandellierGlass_frag_021
+    3300044: ChandellierGlass_frag_022
+    3300046: ChandellierGlass_frag_023
+    3300048: ChandellierGlass_frag_024
+    3300050: ChandellierGlass_frag_025
+    3300052: ChandellierGlass_frag_026
+    3300054: ChandellierGlass_frag_027
+    3300056: ChandellierGlass_frag_028
+    3300058: ChandellierGlass_frag_029
+    3300060: ChandellierGlass_frag_030
+    3300062: ChandellierGlass_frag_031
+    3300064: ChandellierGlass_frag_032
+    3300066: ChandellierGlass_frag_033
+    3300068: ChandellierGlass_frag_034
+    3300070: ChandellierGlass_frag_035
+    3300072: ChandellierGlass_frag_036
+    3300074: ChandellierGlass_frag_037
+    3300076: ChandellierGlass_frag_038
+    3300078: ChandellierGlass_frag_039
+    3300080: ChandellierGlass_frag_040
+    3300082: ChandellierGlass_frag_041
+    3300084: ChandellierGlass_frag_042
+    3300086: ChandellierGlass_frag_043
+    3300088: ChandellierGlass_frag_044
+    3300090: ChandellierGlass_frag_045
+    3300092: ChandellierGlass_frag_046
+    3300094: ChandellierGlass_frag_047
+    3300096: ChandellierGlass_frag_048
+    3300098: ChandellierGlass_frag_049
+    3300100: ChandellierGlass_frag_050
+    3300102: ChandellierGlass_frag_051
+    3300104: ChandellierGlass_frag_052
+    3300106: ChandellierGlass_frag_053
+    3300108: ChandellierGlass_frag_054
+    3300110: ChandellierGlass_frag_055
+    3300112: ChandellierGlass_frag_056
+    3300114: ChandellierGlass_frag_057
+    3300116: ChandellierGlass_frag_058
+    3300118: ChandellierGlass_frag_059
+    3300120: ChandellierGlass_frag_060
+    3300122: ChandellierGlass_frag_061
+    3300124: ChandellierGlass_frag_062
+    3300126: ChandellierGlass_frag_063
+    3300128: ChandellierGlass_frag_064
+    3300130: ChandellierGlass_frag_065
+    3300132: ChandellierGlass_frag_066
+    3300134: ChandellierGlass_frag_067
+    3300136: ChandellierGlass_frag_068
+    3300138: ChandellierGlass_frag_069
+    3300140: ChandellierGlass_frag_070
+    3300142: ChandellierGlass_frag_071
+    3300144: ChandellierGlass_frag_072
+    3300146: ChandellierGlass_frag_073
+    3300148: ChandellierGlass_frag_074
+    3300150: ChandellierGlass_frag_075
+    3300152: ChandellierGlass_frag_076
+    3300154: ChandellierGlass_frag_077
+    3300156: ChandellierGlass_frag_078
+    3300158: ChandellierGlass_frag_079
+    3300160: ChandellierGlass_frag_080
+    3300162: ChandellierGlass_frag_081
+    3300164: ChandellierGlass_frag_082
+    3300166: ChandellierGlass_frag_083
+    3300168: ChandellierGlass_frag_084
+    3300170: ChandellierGlass_frag_085
+    3300172: ChandellierGlass_frag_086
+    3300174: ChandellierGlass_frag_087
+    3300176: ChandellierGlass_frag_088
+    3300178: ChandellierGlass_frag_089
+    3300180: ChandellierGlass_frag_090
+    3300182: ChandellierGlass_frag_091
+    3300184: ChandellierGlass_frag_092
+    3300186: ChandellierGlass_frag_093
+    3300188: ChandellierGlass_frag_094
+    3300190: ChandellierGlass_frag_095
+    3300192: ChandellierGlass_frag_096
+    3300194: ChandellierGlass_frag_097
+    3300196: ChandellierGlass_frag_098
+    3300198: ChandellierGlass_frag_099
+    3300200: ChandellierGlass_frag_100
+    3300202: ChandellierGlass_frag_101
+    3300204: ChandellierGlass_frag_102
+    3300206: Object001
+    3300208: Object002
+    3300210: Object003
+    3300212: Object004
+    3300214: Object005
+    3300216: Object006
+    3300218: Object007
+    3300220: Object008
+    3300222: Object009
+    3300224: Object010
+    4300000: ChandellierFrame
+    4300002: Object001
+    4300004: Object004
+    4300006: Object003
+    4300008: Object002
+    4300010: Object005
+    4300012: Object006
+    4300014: ChandellierGlass_frag_010
+    4300016: ChandellierGlass_frag_011
+    4300018: ChandellierGlass_frag_012
+    4300020: ChandellierGlass_frag_013
+    4300022: ChandellierGlass_frag_014
+    4300024: ChandellierGlass_frag_035
+    4300026: ChandellierGlass_frag_036
+    4300028: ChandellierGlass_frag_037
+    4300030: ChandellierGlass_frag_038
+    4300032: ChandellierGlass_frag_039
+    4300034: ChandellierGlass_frag_055
+    4300036: ChandellierGlass_frag_056
+    4300038: ChandellierGlass_frag_057
+    4300040: ChandellierGlass_frag_058
+    4300042: ChandellierGlass_frag_059
+    4300044: Object007
+    4300046: Object008
+    4300048: Object009
+    4300050: Object010
+    4300052: ChandellierGlass_frag_090
+    4300054: ChandellierGlass_frag_091
+    4300056: ChandellierGlass_frag_092
+    4300058: ChandellierGlass_frag_093
+    4300060: ChandellierGlass_frag_094
+    4300062: ChandellierGlass_frag_095
+    4300064: ChandellierGlass_frag_096
+    4300066: ChandellierGlass_frag_097
+    4300068: ChandellierGlass_frag_098
+    4300070: ChandellierGlass_frag_099
+    4300072: ChandellierGlass_frag_045
+    4300074: ChandellierGlass_frag_046
+    4300076: ChandellierGlass_frag_047
+    4300078: ChandellierGlass_frag_048
+    4300080: ChandellierGlass_frag_049
+    4300082: ChandellierGlass_frag_005
+    4300084: ChandellierGlass_frag_006
+    4300086: ChandellierGlass_frag_007
+    4300088: ChandellierGlass_frag_008
+    4300090: ChandellierGlass_frag_009
+    4300092: ChandellierGlass_frag_100
+    4300094: ChandellierGlass_frag_101
+    4300096: ChandellierGlass_frag_102
+    4300098: ChandellierGlass_frag_015
+    4300100: ChandellierGlass_frag_016
+    4300102: ChandellierGlass_frag_017
+    4300104: ChandellierGlass_frag_018
+    4300106: ChandellierGlass_frag_019
+    4300108: ChandellierGlass_frag_040
+    4300110: ChandellierGlass_frag_041
+    4300112: ChandellierGlass_frag_042
+    4300114: ChandellierGlass_frag_043
+    4300116: ChandellierGlass_frag_044
+    4300118: ChandellierGlass_frag_050
+    4300120: ChandellierGlass_frag_051
+    4300122: ChandellierGlass_frag_052
+    4300124: ChandellierGlass_frag_053
+    4300126: ChandellierGlass_frag_054
+    4300128: ChandellierGlass_frag_060
+    4300130: ChandellierGlass_frag_061
+    4300132: ChandellierGlass_frag_062
+    4300134: ChandellierGlass_frag_063
+    4300136: ChandellierGlass_frag_064
+    4300138: ChandellierGlass_frag_020
+    4300140: ChandellierGlass_frag_021
+    4300142: ChandellierGlass_frag_022
+    4300144: ChandellierGlass_frag_023
+    4300146: ChandellierGlass_frag_024
+    4300148: ChandellierGlass_frag_001
+    4300150: ChandellierGlass_frag_025
+    4300152: ChandellierGlass_frag_026
+    4300154: ChandellierGlass_frag_027
+    4300156: ChandellierGlass_frag_028
+    4300158: ChandellierGlass_frag_029
+    4300160: ChandellierGlass_frag_080
+    4300162: ChandellierGlass_frag_081
+    4300164: ChandellierGlass_frag_082
+    4300166: ChandellierGlass_frag_083
+    4300168: ChandellierGlass_frag_084
+    4300170: ChandellierGlass_frag_085
+    4300172: ChandellierGlass_frag_086
+    4300174: ChandellierGlass_frag_087
+    4300176: ChandellierGlass_frag_088
+    4300178: ChandellierGlass_frag_089
+    4300180: ChandellierGlass_frag_070
+    4300182: ChandellierGlass_frag_071
+    4300184: ChandellierGlass_frag_072
+    4300186: ChandellierGlass_frag_073
+    4300188: ChandellierGlass_frag_074
+    4300190: ChandellierGlass_frag_075
+    4300192: ChandellierGlass_frag_076
+    4300194: ChandellierGlass_frag_077
+    4300196: ChandellierGlass_frag_078
+    4300198: ChandellierGlass_frag_079
+    4300200: ChandellierGlass_frag_065
+    4300202: ChandellierGlass_frag_066
+    4300204: ChandellierGlass_frag_067
+    4300206: ChandellierGlass_frag_068
+    4300208: ChandellierGlass_frag_069
+    4300210: ChandellierGlass_frag_030
+    4300212: ChandellierGlass_frag_031
+    4300214: ChandellierGlass_frag_032
+    4300216: ChandellierGlass_frag_033
+    4300218: ChandellierGlass_frag_034
+    4300220: ChandellierGlass_frag_002
+    4300222: ChandellierGlass_frag_003
+    4300224: ChandellierGlass_frag_004
+    7400000: ChandelierProyection
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: ChandelierProyection
+      takeName: Take 001
+      firstFrame: 66
+      lastFrame: 67
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ChandellierFrame
+        weight: 1
+      - path: ChandellierGlass_frag_001
+        weight: 1
+      - path: ChandellierGlass_frag_002
+        weight: 1
+      - path: ChandellierGlass_frag_003
+        weight: 1
+      - path: ChandellierGlass_frag_004
+        weight: 1
+      - path: ChandellierGlass_frag_005
+        weight: 1
+      - path: ChandellierGlass_frag_006
+        weight: 1
+      - path: ChandellierGlass_frag_007
+        weight: 1
+      - path: ChandellierGlass_frag_008
+        weight: 1
+      - path: ChandellierGlass_frag_009
+        weight: 1
+      - path: ChandellierGlass_frag_010
+        weight: 1
+      - path: ChandellierGlass_frag_011
+        weight: 1
+      - path: ChandellierGlass_frag_012
+        weight: 1
+      - path: ChandellierGlass_frag_013
+        weight: 1
+      - path: ChandellierGlass_frag_014
+        weight: 1
+      - path: ChandellierGlass_frag_015
+        weight: 1
+      - path: ChandellierGlass_frag_016
+        weight: 1
+      - path: ChandellierGlass_frag_017
+        weight: 1
+      - path: ChandellierGlass_frag_018
+        weight: 1
+      - path: ChandellierGlass_frag_019
+        weight: 1
+      - path: ChandellierGlass_frag_020
+        weight: 1
+      - path: ChandellierGlass_frag_021
+        weight: 1
+      - path: ChandellierGlass_frag_022
+        weight: 1
+      - path: ChandellierGlass_frag_023
+        weight: 1
+      - path: ChandellierGlass_frag_024
+        weight: 1
+      - path: ChandellierGlass_frag_025
+        weight: 1
+      - path: ChandellierGlass_frag_026
+        weight: 1
+      - path: ChandellierGlass_frag_027
+        weight: 1
+      - path: ChandellierGlass_frag_028
+        weight: 1
+      - path: ChandellierGlass_frag_029
+        weight: 1
+      - path: ChandellierGlass_frag_030
+        weight: 1
+      - path: ChandellierGlass_frag_031
+        weight: 1
+      - path: ChandellierGlass_frag_032
+        weight: 1
+      - path: ChandellierGlass_frag_033
+        weight: 1
+      - path: ChandellierGlass_frag_034
+        weight: 1
+      - path: ChandellierGlass_frag_035
+        weight: 1
+      - path: ChandellierGlass_frag_036
+        weight: 1
+      - path: ChandellierGlass_frag_037
+        weight: 1
+      - path: ChandellierGlass_frag_038
+        weight: 1
+      - path: ChandellierGlass_frag_039
+        weight: 1
+      - path: ChandellierGlass_frag_040
+        weight: 1
+      - path: ChandellierGlass_frag_041
+        weight: 1
+      - path: ChandellierGlass_frag_042
+        weight: 1
+      - path: ChandellierGlass_frag_043
+        weight: 1
+      - path: ChandellierGlass_frag_044
+        weight: 1
+      - path: ChandellierGlass_frag_045
+        weight: 1
+      - path: ChandellierGlass_frag_046
+        weight: 1
+      - path: ChandellierGlass_frag_047
+        weight: 1
+      - path: ChandellierGlass_frag_048
+        weight: 1
+      - path: ChandellierGlass_frag_049
+        weight: 1
+      - path: ChandellierGlass_frag_050
+        weight: 1
+      - path: ChandellierGlass_frag_051
+        weight: 1
+      - path: ChandellierGlass_frag_052
+        weight: 1
+      - path: ChandellierGlass_frag_053
+        weight: 1
+      - path: ChandellierGlass_frag_054
+        weight: 1
+      - path: ChandellierGlass_frag_055
+        weight: 1
+      - path: ChandellierGlass_frag_056
+        weight: 1
+      - path: ChandellierGlass_frag_057
+        weight: 1
+      - path: ChandellierGlass_frag_058
+        weight: 1
+      - path: ChandellierGlass_frag_059
+        weight: 1
+      - path: ChandellierGlass_frag_060
+        weight: 1
+      - path: ChandellierGlass_frag_061
+        weight: 1
+      - path: ChandellierGlass_frag_062
+        weight: 1
+      - path: ChandellierGlass_frag_063
+        weight: 1
+      - path: ChandellierGlass_frag_064
+        weight: 1
+      - path: ChandellierGlass_frag_065
+        weight: 1
+      - path: ChandellierGlass_frag_066
+        weight: 1
+      - path: ChandellierGlass_frag_067
+        weight: 1
+      - path: ChandellierGlass_frag_068
+        weight: 1
+      - path: ChandellierGlass_frag_069
+        weight: 1
+      - path: ChandellierGlass_frag_070
+        weight: 1
+      - path: ChandellierGlass_frag_071
+        weight: 1
+      - path: ChandellierGlass_frag_072
+        weight: 1
+      - path: ChandellierGlass_frag_073
+        weight: 1
+      - path: ChandellierGlass_frag_074
+        weight: 1
+      - path: ChandellierGlass_frag_075
+        weight: 1
+      - path: ChandellierGlass_frag_076
+        weight: 1
+      - path: ChandellierGlass_frag_077
+        weight: 1
+      - path: ChandellierGlass_frag_078
+        weight: 1
+      - path: ChandellierGlass_frag_079
+        weight: 1
+      - path: ChandellierGlass_frag_080
+        weight: 1
+      - path: ChandellierGlass_frag_081
+        weight: 1
+      - path: ChandellierGlass_frag_082
+        weight: 1
+      - path: ChandellierGlass_frag_083
+        weight: 1
+      - path: ChandellierGlass_frag_084
+        weight: 1
+      - path: ChandellierGlass_frag_085
+        weight: 1
+      - path: ChandellierGlass_frag_086
+        weight: 1
+      - path: ChandellierGlass_frag_087
+        weight: 1
+      - path: ChandellierGlass_frag_088
+        weight: 1
+      - path: ChandellierGlass_frag_089
+        weight: 1
+      - path: ChandellierGlass_frag_090
+        weight: 1
+      - path: ChandellierGlass_frag_091
+        weight: 1
+      - path: ChandellierGlass_frag_092
+        weight: 1
+      - path: ChandellierGlass_frag_093
+        weight: 1
+      - path: ChandellierGlass_frag_094
+        weight: 1
+      - path: ChandellierGlass_frag_095
+        weight: 1
+      - path: ChandellierGlass_frag_096
+        weight: 1
+      - path: ChandellierGlass_frag_097
+        weight: 1
+      - path: ChandellierGlass_frag_098
+        weight: 1
+      - path: ChandellierGlass_frag_099
+        weight: 1
+      - path: ChandellierGlass_frag_100
+        weight: 1
+      - path: ChandellierGlass_frag_101
+        weight: 1
+      - path: ChandellierGlass_frag_102
+        weight: 1
+      - path: Object001
+        weight: 1
+      - path: Object002
+        weight: 1
+      - path: Object003
+        weight: 1
+      - path: Object004
+        weight: 1
+      - path: Object005
+        weight: 1
+      - path: Object006
+        weight: 1
+      - path: Object007
+        weight: 1
+      - path: Object008
+        weight: 1
+      - path: Object009
+        weight: 1
+      - path: Object010
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

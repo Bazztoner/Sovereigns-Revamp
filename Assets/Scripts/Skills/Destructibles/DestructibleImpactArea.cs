@@ -74,7 +74,7 @@ public class DestructibleImpactArea : MonoBehaviour
 
     void LateUpdate()
     {
-        if (rotAngles.Length != 0)
+        if (rotAngles.Length > 0)
         {
             if (!_cam.gameObject.activeInHierarchy) FindCamera();
             CheckRotation(_cam.transform.forward, _cam.AngleVision);
@@ -98,11 +98,7 @@ public class DestructibleImpactArea : MonoBehaviour
 
         var parent = GetComponentInParent<DestructibleObject>().transform;
 
-        if (gameObject.name == "SingleDoorImpactArea" && Vector3.Angle(parent.forward, rot) <= 90)
-        {
-            transform.forward = parent.forward * -1;
-        }
-        else transform.rotation = Quaternion.Euler(vectorRot);
+        transform.rotation = Quaternion.Euler(vectorRot);
     }
 
     public void SetVisible(bool activate)

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +27,11 @@ public class PlayerSkills : Photon.MonoBehaviour
         AddEvents();
     }
 
+    float GetActualMana()
+    {
+        return GetComponent<PlayerStats>().Mana;
+    }
+
     #region Initialization
     private void InitializeVariables()
     {
@@ -42,6 +48,8 @@ public class PlayerSkills : Photon.MonoBehaviour
         _blinkSkill.Init(GetComponent<PlayerMovement>());
 
         _skillPos = transform.Find("SpellPos");
+
+        StartCoroutine(PutAtractiveVisible(_destructiveSkill.GetManaCost()));
     }
 
     private void AddEvents()
@@ -133,14 +141,31 @@ public class PlayerSkills : Photon.MonoBehaviour
         spell.EnterInCooldown();
         if (spell.GetType() == typeof(AtractiveTelekinesis))
         {
-            EventManager.DispatchEvent("ChangeStateDestuctibleProjections", new object[] { false });
+            ActivateDestructibleProyections(false);
         }
+
         yield return new WaitForSeconds(spell.CooldownTime());
+
         spell.ExitFromCooldown();
         if (spell.GetType() == typeof(AtractiveTelekinesis))
         {
-            EventManager.DispatchEvent("ChangeStateDestuctibleProjections", new object[] { true });
+            StartCoroutine(PutAtractiveVisible(spell.GetManaCost()));
         }
+    }
+
+    IEnumerator PutAtractiveVisible(float cost)
+    {
+        while (GetActualMana() < cost)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        ActivateDestructibleProyections(true);
+    }
+
+    void ActivateDestructibleProyections(bool activate)
+    {
+        EventManager.DispatchEvent("ChangeStateDestuctibleProjections", new object[] { activate });
     }
     #endregion
 

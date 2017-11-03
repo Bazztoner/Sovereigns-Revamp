@@ -43,7 +43,7 @@ public class AtractiveTelekinesis : ISpell
         _hasObject = false;
         _pulled = false;
 
-        manaCost = 32;
+        manaCost = 150;
     }
 
     public void Init(PlayerMovement character)
@@ -64,7 +64,7 @@ public class AtractiveTelekinesis : ISpell
         var camContainter = character.GetComponent<Player1Input>().GetCamera;
         _target = camContainter.CurrentTarget;
 
-        manaCost = 32;
+        manaCost = 150;
     }
 
     public void UseSpell() { }

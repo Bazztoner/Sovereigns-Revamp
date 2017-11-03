@@ -194,7 +194,7 @@ public class SwordScript : MonoBehaviour
                 }
                 else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee", this.GetComponentInParent<Player1Input>().gameObject.name);
 
-                this.GetComponentInParent<PlayerStats>().RegainMana(damage * 0.3f);
+                this.GetComponentInParent<PlayerStats>().RegainMana(damage * 0.6f);
             }
             else if (other.gameObject.GetComponentInParent<Enemy>() != null)
             {
