@@ -7,7 +7,7 @@ public class PlayerSkills : Photon.MonoBehaviour
 {
     #region Variables
     private ISpell _destructiveSkill;
-    private ISpell _gravitationalSkill;
+    private ISpell _arcaneOrbSkill;
     private ISpell _repulsiveSkill;
     private ISpell _blinkSkill;
     private Transform _skillPos;
@@ -38,11 +38,11 @@ public class PlayerSkills : Photon.MonoBehaviour
         _destructiveSkill = new AtractiveTelekinesis();
         _destructiveSkill.Init();
 
-        _gravitationalSkill = new GravitationalTelekinesis();
-        _gravitationalSkill.Init();
+        _arcaneOrbSkill = new SK_ArcaneOrb();
+        _arcaneOrbSkill.Init(GetComponent<PlayerMovement>());
 
-        _repulsiveSkill = new RepulsiveTelekinesis1();
-        _repulsiveSkill.Init();
+        //_repulsiveSkill = new RepulsiveTelekinesis();
+        //_repulsiveSkill.Init();
 
         _blinkSkill = new Blink();
         _blinkSkill.Init(GetComponent<PlayerMovement>());
@@ -73,7 +73,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     public void GravitationalSkill(float mana)
     {
         _mana = mana;
-        UseSkill(_gravitationalSkill, HUDController.Spells.Class, _skillPos);
+        UseSkill(_arcaneOrbSkill, HUDController.Spells.Class, _skillPos);
     }
 
     /// <summary>Activates the repulsive skill</summary>
@@ -82,7 +82,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         _mana = mana;
         UseSkill(_repulsiveSkill, HUDController.Spells.Picked, _skillPos);
     }
-    
+
     /// <summary>Activates the blink skill</summary>
     public void BlinkSkill(float mana)
     {
@@ -182,7 +182,7 @@ public class PlayerSkills : Photon.MonoBehaviour
 
     void OnCharacterDamaged(params object[] paramsContainer)
     {
-        if(this.gameObject.name == (string)paramsContainer[0])
+        if (this.gameObject.name == (string)paramsContainer[0])
             isCastingSpell = false;
     }
 

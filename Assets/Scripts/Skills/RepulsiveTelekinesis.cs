@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
+[System.Obsolete("SCRAPPED", true)]
 public class RepulsiveTelekinesis : ISpell
 {
     CastType _castType;
@@ -39,7 +40,7 @@ public class RepulsiveTelekinesis : ISpell
 
     public void Init(PlayerMovement character)
     {
-        throw new System.Exception("Not used");
+        Init();
     }
 
     public void UseSpell() { }
@@ -54,12 +55,12 @@ public class RepulsiveTelekinesis : ISpell
     void SpawnDummy(Transform skillPos)
     {
         var go = GameObject.Instantiate(Resources.Load("Spells/Dummies/RepulsiveDummy"), skillPos.position, Quaternion.identity) as GameObject;
-        var dummy = go.GetComponent<RepulsiveDummy>();
+        var dummy = go.GetComponent<DMM_ArcaneRepulsion>();
 
         var caster = skillPos.GetComponentInParent<PlayerMovement>();
         var enemy = caster.EnemyTransform.gameObject;
 
-        dummy.Execute(skillPos, _castTime, _radialRange, _verticalForce, _radialForce, _layerMask);
+        dummy.Execute(skillPos, _castTime, _radialRange, _verticalForce, _radialForce, _layerMask, "ESTE SKILL NO ANDA XD");
 
         EventManager.DispatchEvent("RepulsiveTelekinesisCasted", new object[] { skillPos.position, skillPos.GetComponentInParent<PlayerParticles>() });
 

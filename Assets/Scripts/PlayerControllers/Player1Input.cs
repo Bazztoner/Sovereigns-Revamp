@@ -265,8 +265,8 @@ public class Player1Input : MonoBehaviour
             {
                 if (!_ps.isPulling && InputManager.instance.GetJoystickEnviromentSkill())
                     _ps.DestructiveSkill(_pst.mana);
-                //else if (InputManager.instance.GetJoystickClassSkill())
-                //_ps.GravitationalSkill(_pst.mana);
+                else if (InputManager.instance.GetJoystickClassSkill())
+                _ps.GravitationalSkill(_pst.mana);
                 //else if (!_ps.isPulling && InputManager.instance.GetJoystickSkill())
                 //    _ps.RepulsiveSkill(_pst.mana);
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetJoystickUseItem())
@@ -276,8 +276,8 @@ public class Player1Input : MonoBehaviour
             {
                 if (!_ps.isPulling && InputManager.instance.GetEnviromentSkill())
                     _ps.DestructiveSkill(_pst.mana);
-                //else if (InputManager.instance.GetClassSkill())
-                //_ps.GravitationalSkill(_pst.mana);
+                else if (InputManager.instance.GetClassSkill())
+                _ps.GravitationalSkill(_pst.mana);
                 //else if (!_ps.isPulling && InputManager.instance.GetSkill())
                 // _ps.RepulsiveSkill(_pst.mana);
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetUseItem())

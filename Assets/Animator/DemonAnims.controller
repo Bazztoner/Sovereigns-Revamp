@@ -96,7 +96,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Block
     m_StateMachine: {fileID: 1107475543147646530}
-    m_Mask: {fileID: 101100000, guid: 2267a9a8f1dbb7a4bbcc9856b1084ba1, type: 2}
+    m_Mask: {fileID: 101100000, guid: 1decf136bb8cfd548ab529696bcedb51, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -108,7 +108,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Attacks
     m_StateMachine: {fileID: 1107823470901761694}
-    m_Mask: {fileID: 101100000, guid: 6cebc0950a0b7e84cb73741afb1da39f, type: 2}
+    m_Mask: {fileID: 101100000, guid: 00e7bc21431d28d499c7c1c9cba751b2, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -120,7 +120,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Stun
     m_StateMachine: {fileID: 1107992963156467434}
-    m_Mask: {fileID: 101100000, guid: 2267a9a8f1dbb7a4bbcc9856b1084ba1, type: 2}
+    m_Mask: {fileID: 101100000, guid: 040216ad6a9601c44b191bae449367cc, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -132,7 +132,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Dmg Feedback
     m_StateMachine: {fileID: 1107003459103824896}
-    m_Mask: {fileID: 101100000, guid: 6cebc0950a0b7e84cb73741afb1da39f, type: 2}
+    m_Mask: {fileID: 101100000, guid: 00e7bc21431d28d499c7c1c9cba751b2, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -406,6 +406,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efaebdd8bee3d1a40b55014e1ff279f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114814454127618432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a79a5b8c7191e14f8b721412a15eee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114843084707373920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -639,7 +650,7 @@ BlendTree:
     m_DirectBlendParameter: speedMult
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 5e15d8728b6dcc44aac923dfa4f359f0, type: 3}
+    m_Motion: {fileID: 7400000, guid: 448511410d5984f4f8299d827e306bde, type: 3}
     m_Threshold: 0.9166667
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -3346,7 +3357,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101232231192183042}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114814454127618432}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3445,7 +3457,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 2Block+X
+  m_Name: Block+X
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3459,7 +3471,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400018, guid: aad8e2a402bcbc648a292954fc7abe22, type: 3}
+  m_Motion: {fileID: 7400008, guid: 448511410d5984f4f8299d827e306bde, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -3708,7 +3720,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 2Block+Y
+  m_Name: Block+Y
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3722,7 +3734,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400020, guid: aad8e2a402bcbc648a292954fc7abe22, type: 3}
+  m_Motion: {fileID: 7400012, guid: 533f2fae9652d7449a6a05f1aaf5e7d7, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

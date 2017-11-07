@@ -170,7 +170,7 @@ public class SwordScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (_isDetecting  && other.gameObject.layer == _hitBoxLayer)
+        if (_isDetecting && other.gameObject.layer == _hitBoxLayer)
         {
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;
@@ -236,27 +236,5 @@ public class SwordScript : MonoBehaviour
     void GetTrail()
     {
         _trail = transform.parent.parent.Find("SwordTrail").GetComponent<TrailRenderer>();
-    }
-
-    [System.Obsolete("Anda para el ojete, no usar y, si no hay paja, fixear")]
-    Vector3 GetPolyNormal(Collider other)
-    {
-        //Test para la normal del polígono
-        RaycastHit rch;
-        var polyNormal = other.ClosestPointOnBounds(transform.position);
-
-        if (Physics.Raycast(transform.position, other.transform.position - transform.position, out rch, 10))
-        {
-            //if pointing at the object you want to get collision point for
-            if (rch.transform.gameObject == other.gameObject)
-            {
-                //have locPos = the local position of the hit point
-                //polyNormal = transform.InverseTransformPoint(rch.point);
-                polyNormal = rch.point;
-                return polyNormal;
-            }
-            else return Vector3.zero;
-        }
-        else return Vector3.zero;
     }
 }

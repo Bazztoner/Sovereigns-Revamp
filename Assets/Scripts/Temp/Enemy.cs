@@ -89,18 +89,6 @@ public class Enemy : MonoBehaviour
         EventManager.DispatchEvent("EnemyLifeUpdate", new object[] { Hp, fill });
     }
 
-    [PunRPC] [System.Obsolete("No se usa más, usar la que toma un string como segundo parámetro")]
-    public void TakeDamage(float damage)
-    {
-        LoseHP(damage);
-        if (PhotonNetwork.offlineMode)
-        {
-            EventManager.DispatchEvent("EnemyDamaged", new object[] { transform.position, this });
-            EventManager.DispatchEvent("DummyDamaged", new object[] { this.gameObject.name, transform.position });
-        }
-        else EventManager.DispatchEvent("CharacterDamaged", new object[] { transform.position, this });
-    }
-
     [PunRPC]
     public void TakeDamage(float damage, string attackType)
     {

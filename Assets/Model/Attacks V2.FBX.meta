@@ -992,7 +992,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4851063
+      - time: 0.50461847
         functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -1279,15 +1279,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.38297844
-        functionName: OnAttackExit
+      - time: 0.2526317
+        functionName: OnSwordSoundStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2526317
-        functionName: OnSwordSoundStart
+      - time: 0.39273453
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -1573,15 +1573,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.38723388
-        functionName: OnAttackExit
+      - time: 0.22807054
+        functionName: OnSwordSoundStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.22807054
-        functionName: OnSwordSoundStart
+      - time: 0.41650218
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -2161,15 +2161,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.45106357
-        functionName: OnAttackExit
+      - time: 0.3754384
+        functionName: OnSwordSoundStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3754384
-        functionName: OnSwordSoundStart
+      - time: 0.4656977
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -2455,15 +2455,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.5021276
-        functionName: OnAttackExit
+      - time: 0.36140385
+        functionName: OnSwordSoundStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.36140385
-        functionName: OnSwordSoundStart
+      - time: 0.48749346
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -2749,15 +2749,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.48510608
-        functionName: OnAttackExit
+      - time: 0.39298224
+        functionName: OnShieldBashSound
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.39298224
-        functionName: OnShieldBashSound
+      - time: 0.577789
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -3337,22 +3337,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6936173
-        functionName: OnAttackExit
+      - time: 0.5182054
+        functionName: OnAttackEnter
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6070178
+      - time: 0.5728715
         functionName: OnSwordSoundStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5864981
-        functionName: OnAttackEnter
+      - time: 0.63020265
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

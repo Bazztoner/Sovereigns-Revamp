@@ -29,7 +29,6 @@ public class DestructibleBoundingBox : MonoBehaviour
             else if (destr.nickName == PhotonNetwork.player.NickName)
             {
                 var charac = c.GetComponent<DataSync>();
-                var cm = c.GetComponent<CharacterMovement>();
 
                 foreach (var player in _targets)
                 {

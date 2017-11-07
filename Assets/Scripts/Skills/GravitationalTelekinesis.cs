@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+[System.Obsolete("SCRAPPED", true)]
 public class GravitationalTelekinesis : ISpell
 {
     TelekineticObject _target;
@@ -56,10 +57,9 @@ public class GravitationalTelekinesis : ISpell
         //SpawnDummy();
     }
 
-    [System.Obsolete]
     public void Init(PlayerMovement character)
     {
-        throw new System.Exception("Not used");
+        Init();
     }
 
     void SpawnDummy()
@@ -119,7 +119,7 @@ public class GravitationalTelekinesis : ISpell
             inVisionRange = Physics.Raycast(charac, (o.transform.position - charac).normalized, out rch, dst, _layerMask);
 
             Debug.DrawRay(charac, (o.transform.position - charac).normalized, Color.red, 2);
-            
+
             if (dst < minDistance && !inVisionRange)
             {
                 minDistance = dst;
@@ -135,7 +135,7 @@ public class GravitationalTelekinesis : ISpell
 
         PullObject(skillPos);
         EventManager.DispatchEvent("ObjectPulling");
-       
+
     }
 
     void PullObject(Transform skillPos)
@@ -152,7 +152,7 @@ public class GravitationalTelekinesis : ISpell
         manaCost = _getObjectManaCost;
         _dummy.Execute(_target, _hasObject);
         EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, skillPos.GetComponentInParent<Player1Input>().gameObject.name });
-        
+
     }
 
     void LaunchObject(Transform skillPos)
@@ -173,7 +173,7 @@ public class GravitationalTelekinesis : ISpell
         _target = null;
         EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, skillPos.GetComponentInParent<Player1Input>().gameObject.name });
     }
-    
+
     #region Getters
     public CastType GetCastType()
     {

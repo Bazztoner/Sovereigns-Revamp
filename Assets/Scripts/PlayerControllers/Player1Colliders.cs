@@ -26,10 +26,21 @@ public class Player1Colliders : MonoBehaviour
     {
         allColliders = new List<Collider>();
 
-        allColliders.Add(FindCollider(transform, "SwordCollider", "Sword"));
-        allColliders.Add(FindCollider(transform, "ShieldCollider", "Shield"));
-        allColliders.Add(FindCollider(transform, "BigSwordCollider", "Sword"));
-        allColliders.Add(FindCollider(transform, "BigShieldCollider", "Shield"));
+        if (gameObject.name == "Player1")
+        {
+            allColliders.Add(FindCollider(transform, "SwordCollider", "Sword"));
+            allColliders.Add(FindCollider(transform, "ShieldCollider", "Shield"));
+            allColliders.Add(FindCollider(transform, "BigSwordCollider", "Sword"));
+            allColliders.Add(FindCollider(transform, "BigShieldCollider", "Shield"));
+        }
+        else
+        {
+            allColliders.Add(FindCollider(transform, "ClawsCollider", "LeftPalm"));
+            allColliders.Add(FindCollider(transform, "ClawsCollider", "RightPalm"));
+            allColliders.Add(FindCollider(transform, "ClawsCollider", "LeftPalm"));
+            allColliders.Add(FindCollider(transform, "ClawsCollider", "RightPalm"));
+        }
+        
     }
 
 

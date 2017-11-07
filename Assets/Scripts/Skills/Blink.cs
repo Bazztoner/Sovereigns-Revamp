@@ -19,20 +19,20 @@ public class Blink : ISpell
 
     public void Init()
     {
-        throw new System.Exception("Not used");
-    }
-
-    public void Init(PlayerMovement character)
-    {
         _castType = CastType.INSTANT;
-
-        _me = character;
-        _enemy = _me.EnemyTransform;
 
         _castTime = 0f;
         _cooldown = 1f;
 
         manaCost = 10;
+    }
+
+    public void Init(PlayerMovement character)
+    {
+        Init();
+
+        _me = character;
+        _enemy = _me.EnemyTransform;
     }
 
     public void UseSpell()

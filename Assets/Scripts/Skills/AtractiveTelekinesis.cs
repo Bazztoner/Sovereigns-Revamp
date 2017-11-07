@@ -48,25 +48,12 @@ public class AtractiveTelekinesis : ISpell
 
     public void Init(PlayerMovement character)
     {
-        _castType = CastType.INSTANT;
-
-        _layerMask = 0 << LayerMask.NameToLayer("DestructibleObject");
-
-        _castTime = 0f;
-        _cooldown = 1f;
-
-        _radialRange = 12;
-        _damage = 5;
-
-        _hasObject = false;
-        _pulled = false;
-
         var camContainter = character.GetComponent<Player1Input>().GetCamera;
         _target = camContainter.CurrentTarget;
-
-        manaCost = 150;
+        Init();
     }
 
+    [System.Obsolete("Not used")]
     public void UseSpell() { }
 
     public void UseSpell(Transform me)

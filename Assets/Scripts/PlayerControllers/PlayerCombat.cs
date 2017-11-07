@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : Photon.MonoBehaviour {
+public class PlayerCombat : Photon.MonoBehaviour
+{
 
     #region Variables
     public int lightAttackDamage = 6;
     public int heavyAttackDamage = 16;
-    
+
     [HideInInspector]
     public bool isAttacking = false;
     [HideInInspector]
@@ -38,7 +39,7 @@ public class PlayerCombat : Photon.MonoBehaviour {
     public void DoLightAttack()
     {
         isAttacking = true;
-        
+
         EventManager.DispatchEvent("X", new object[] { this.gameObject.name, true });
 
         SetAttack();
@@ -50,7 +51,7 @@ public class PlayerCombat : Photon.MonoBehaviour {
     public void DoHeavyAttack()
     {
         isAttacking = true;
-        
+
         EventManager.DispatchEvent("Y", new object[] { this.gameObject.name, true });
 
         SetAttack();
@@ -63,14 +64,6 @@ public class PlayerCombat : Photon.MonoBehaviour {
     {
         isBlocking = false;
         EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking, isBlockingUp });
-    }
-
-    /// <summary>Makes the character block</summary>
-    [System.Obsolete("Usar la que toma un bool para la dirección de bloqueo")]
-    public void Block()
-    {
-        isBlocking = true;
-        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking });
     }
 
     /// <summary>Makes the character block up or mid</summary>

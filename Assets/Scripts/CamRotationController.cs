@@ -18,9 +18,6 @@ public class CamRotationController : MonoBehaviour
     public bool smoothCamera = true;
     public Vector3 initialPosition;
 
-    [System.Obsolete("Ya no se usa más")]
-    public Color destructibleColor;
-
     int _proyectionLayer;
     int _lockOnLayer;
 
@@ -48,12 +45,6 @@ public class CamRotationController : MonoBehaviour
 
     Camera _subCam;
     Transform oldParent;
-
-    [System.Obsolete("Ya no se usa más")]
-    private List<MarkableObject> _allMarkables;
-    [System.Obsolete("Ya no se usa más")]
-    private Color _originalColor = Color.white;
-
 
     Vector2 _offset;
     Quaternion _fixedLocalRot;
@@ -201,7 +192,7 @@ public class CamRotationController : MonoBehaviour
         }
         else
         {
-            var enems = GameObject.FindObjectsOfType<CharacterMovement>();
+            var enems = GameObject.FindObjectsOfType<Enemy>();
 
             foreach (var enem in enems)
             {
@@ -457,19 +448,6 @@ public class CamRotationController : MonoBehaviour
             wf.SetVisible(visible);
         }
 
-    }
-
-    [System.Obsolete("Ya no se usa más")]
-    private void ChangeColor(DestructibleObject obj, Color col)
-    {
-        var renders = obj.GetComponentsInChildren<Renderer>();
-
-        foreach (var rend in renders)
-        {
-            var mat = rend.material;
-            mat.color = col;
-            rend.material = mat;
-        }
     }
     #endregion
 
@@ -756,19 +734,4 @@ public class CamRotationController : MonoBehaviour
     }
     #endregion
 
-}
-
-[System.Obsolete("Ya no se usa más")]
-public class MarkableObject
-{
-    public float distance;
-    public float angle;
-    public DestructibleObject target;
-
-    public MarkableObject(float dist, float ang, DestructibleObject targ)
-    {
-        distance = dist;
-        angle = ang;
-        target = targ;
-    }
 }

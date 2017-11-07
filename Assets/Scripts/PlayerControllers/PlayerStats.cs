@@ -122,82 +122,6 @@ public class PlayerStats : Photon.MonoBehaviour
         EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
     }
 
-    [System.Obsolete("Usar la que pide nombre de jugador")]
-    void LoseHP(float damage, string attackType)
-    {
-        float dmg;
-        bool blocked = true;
-
-        if (attackType == "MeleeHorizontal")
-        {
-            if (_isBlockingUp)
-            {
-                dmg = (_imperfectBlockPerc * damage) / 100;
-                EventManager.DispatchEvent("BlockSound");
-                if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
-            }
-            else if (_isBlocking)
-            {
-                dmg = (_perfectBlockPerc * damage) / 100;
-                EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
-            }
-            else
-            {
-                dmg = damage;
-                blocked = false;
-            }
-        }
-        else if (attackType == "MeleeVertical")
-        {
-            if (_isBlockingUp)
-            {
-                dmg = (_perfectBlockPerc * damage) / 100;
-                EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
-            }
-            else if (_isBlocking)
-            {
-                dmg = (_imperfectBlockPerc * damage) / 100;
-                EventManager.DispatchEvent("BlockSound");
-                if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
-            }
-            else
-            {
-                dmg = damage;
-                blocked = false;
-            }
-        }
-        else if (attackType == "ParryAttack")
-        {
-            if (GetComponent<PlayerCombat>().isAttacking) EventManager.DispatchEvent("Stun", new object[] { "Me", _stunTime });
-            dmg = 10;
-            blocked = false;
-        }
-        else if (attackType == "GuardBreakAttack")
-        {
-            if (_isBlocking || _isBlockingUp)
-            {
-                EventManager.DispatchEvent("Stun", new object[] { "Me", _stunTime });
-                EventManager.DispatchEvent("GuardBreak", new object[] { "Me", _stunTime * 2 });
-            }
-            dmg = damage * 1.6f;
-            blocked = false;
-        }
-        else
-        {
-            dmg = damage;
-            blocked = false;
-        }
-
-        if (!blocked) EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
-        else EventManager.DispatchEvent("BlockParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
-
-        float fill = (Hp - dmg) / maxHp;
-        if (fill < 0) fill = 0;
-        EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, (dmg > Hp ? 0 : Hp - dmg), fill });
-        Hp = dmg >= Hp ? 0 : Hp - dmg;
-
-    }
-
     void LoseHP(float damage, string attackType, string attackerName)
     {
         float dmg;
@@ -284,37 +208,10 @@ public class PlayerStats : Photon.MonoBehaviour
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, fill });
     }
 
-    [System.Obsolete("No se usa más, usar la que toma un string como segundo parámetro")]
-    public void TakeDamage(float damage)
-    {
-        EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
-        LoseHP(damage, "");
-    }
-
-    [System.Obsolete("Usar la que pide nombre de jugador")]
-    public void TakeDamage(float damage, string attackType)
-    {
-        //EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
-        LoseHP(damage, attackType);
-    }
 
     public void TakeDamage(float damage, string attackType, string attackerName)
     {
-        //EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType });
         LoseHP(damage, attackType, attackerName);
-    }
-
-    /// <summary>
-    /// Para pasar la normal del polígono y que las partículas aparezcan
-    /// </summary>
-    /// <param name="damage"></param>
-    /// <param name="attackType"></param>
-    /// <param name="polyNormal"></param>
-    [System.Obsolete("Anda para el ojete, no usar/fixear")]
-    public void TakeDamage(float damage, string attackType, Vector3 polyNormal)
-    {
-        EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, polyNormal, this.GetComponent<PlayerParticles>(), attackType });
-        LoseHP(damage, "");
     }
 
     private void Regenerate()

@@ -44,6 +44,17 @@ public class GameManager : Photon.MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (_isGameStarted && Input.GetKeyDown(KeyCode.P))
+        {
+            if (_p1 == null) _p1 = GameObject.Find("Player1").GetComponent<PlayerStats>();
+            if (_p2 == null) _p2 = GameObject.Find("Player2").GetComponent<PlayerStats>();
+            _p1.RegainMana(100);
+            _p2.RegainMana(100);
+        }
+    }
+
     private void OnPlayerDied(params object[] paramsContainer)
     {
         var message = (string)paramsContainer[0] + " has lost the match";

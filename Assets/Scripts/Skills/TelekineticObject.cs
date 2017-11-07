@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// Esta clase es para cada objeto pequeño que sea interactuable por Telekinesis
 /// </summary>
 [RequireComponent(typeof(PhotonView))]
+//[System.Obsolete("SCRAPPED", true)]
 public class TelekineticObject : Photon.MonoBehaviour
 {
     public float damage;
