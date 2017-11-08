@@ -9,6 +9,7 @@ public class ArcaneOrb : MonoBehaviour
     public int damage;
     public float throwForce;
     public float lifeTime = 3;
+    bool _aiming;
 
     string _owner;
     Rigidbody _rb;
@@ -23,45 +24,76 @@ public class ArcaneOrb : MonoBehaviour
 
     public void Init(Transform parent, string owner)
     {
-        transform.SetParent(parent);
+        transform.parent = parent;
         transform.localPosition = Vector3.zero;
         transform.forward = transform.parent.forward;
-        this._owner = owner;
-	}
+        _owner = owner;
+        _aiming = true;
+    }
 
     public void Launch(Vector3 dir)
     {
         _rb.AddForce(dir * throwForce);
-        Invoke("StartDeathTimer", lifeTime);
+        _aiming = false;
+        Invoke("DeathTimer", lifeTime);
     }
 
     public void Launch(Vector3 dir, float force)
     {
         _rb.AddForce(dir * force);
-        Invoke("StartDeathTimer", lifeTime);
+        _aiming = false;
+        Invoke("DeathTimer", lifeTime);
     }
 
-    void StartDeathTimer()
+    void LateUpdate()
     {
+        if (transform.parent != null && _aiming) _rb.MovePosition(transform.parent.position);
+    }
+
+    void DeathTimer()
+    {
+        EventManager.DispatchEvent("ArcaneOrbDestroyedByLifeTime", new object[] { this });
+        ApplyAreaOfEffect();
+        CancelInvoke();
         Destroy(gameObject);
     }
 
     public void ApplyAreaOfEffect()
     {
-        var obj = GameObject.Instantiate(Resources.Load("Spells/Dummies/ArcaneRepulsionDummy")) as GameObject; 
+        var obj = GameObject.Instantiate(Resources.Load("Spells/Dummies/ArcaneRepulsionDummy")) as GameObject;
         var dmm = obj.GetComponent<DMM_ArcaneRepulsion>();
-        dmm.Execute(transform, 0.01f, 30, 100, 300, _layMask, _owner);
+        dmm.Execute(transform, 0.01f, 5, 320, 600, _layMask, _owner);
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.layer == Utilities.IntLayers.PLAYER && col.gameObject.name != _owner)
+        if (!_aiming)
         {
-            col.GetComponent<PlayerStats>().TakeDamage(damage, "Spell", _owner);
-            ApplyAreaOfEffect();
-            CancelInvoke();
-            Destroy(gameObject);
+            var check = col.gameObject.layer == Utilities.IntLayers.PLAYERCOLLIDER ||
+                        col.gameObject.layer == Utilities.IntLayers.PLAYER ||
+                        col.gameObject.layer == LayerMask.NameToLayer("Default");
+
+            var isAPedazoDeHijaDePuta = col.transform.name == "ArcaneOrb(Clone)";
+
+            check = check && !isAPedazoDeHijaDePuta;
+
+            if (!isAPedazoDeHijaDePuta)
+            {
+                var comp = col.GetComponentInParent<PlayerStats>();
+                var compName = col.gameObject.name;
+
+                if (comp != null && compName != _owner)
+                {
+                    comp.TakeDamage(damage, "Spell", _owner);
+                }
+
+                ApplyAreaOfEffect();
+                CancelInvoke();
+                print(col.transform.name);
+                Destroy(gameObject);
+            }
         }
+
     }
 
 }

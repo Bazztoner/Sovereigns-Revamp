@@ -40,7 +40,7 @@ public class DestructibleImpactArea : MonoBehaviour
         {
             if (gameObject.layer == Utilities.IntLayers.VISIBLETOP1)
             {
-                _cam = GameObject.Find("Player1").GetComponent<Player1Input>().GetCamera;
+                _cam = GameObject.Find("Player1").GetComponent<PlayerInput>().GetCamera;
                 if (popup == null)
                 {
                     popup = transform.parent.FindChild("PopupP1").GetComponentInParent<DestructiblePopupGraphic>();
@@ -48,7 +48,7 @@ public class DestructibleImpactArea : MonoBehaviour
             }
             else if (gameObject.layer == Utilities.IntLayers.VISIBLETOP2)
             {
-                _cam = GameObject.Find("Player2").GetComponent<Player1Input>().GetCamera;
+                _cam = GameObject.Find("Player2").GetComponent<PlayerInput>().GetCamera;
                 if (popup == null)
                 {
                     popup = transform.parent.FindChild("PopupP2").GetComponentInParent<DestructiblePopupGraphic>();

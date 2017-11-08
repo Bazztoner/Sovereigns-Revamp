@@ -13,12 +13,28 @@ public class PlayerSkills : Photon.MonoBehaviour
     private Transform _skillPos;
     private float _mana;
 
+    Dictionary<ISpell, int> _spellsWithPhases = new Dictionary<ISpell, int>();
+
     [HideInInspector]
     public bool isPulling = false;
+    /// <summary>
+    /// Canalizado: Funciona mientras es canalizado.
+    /// </summary>
+    [HideInInspector]
+    public bool isChannelingSpell = false;
+    /// <summary>
+    /// Retrasadado xd: Tarda x tiempo en lanzarse
+    /// </summary>
     [HideInInspector]
     public bool isCastingSpell = false;
+    /// <summary>
+    /// Varias fases: Cada uso del spell cambia de fase al spell. Al ser lanzado en la última fase, el spell se da por terminado
+    /// (ej: se crea un escudo en fase 0, en fase 1 se convierte en una energía que daña por cercanía, en fase 2 se lanza el proyectil y ahi se da por terminado)
+    /// </summary>
     [HideInInspector]
-    public bool gtHasObject = false; //Usar esta variable en vez de la que estaba en CharacterMovent
+    public bool isPhasingSpell = false;
+    [HideInInspector]
+    public bool gtHasObject = false;
     #endregion
 
     void Start()
@@ -100,7 +116,6 @@ public class PlayerSkills : Photon.MonoBehaviour
             if (canCast)
             {
                 spell.UseSpell(skillPos);
-                //EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType });
                 EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
@@ -110,6 +125,30 @@ public class PlayerSkills : Photon.MonoBehaviour
             if (canCast)
             {
                 StartCoroutine(CastSpell(spell.CastTime(), spell, pickType, skillPos));
+            }
+        }
+        else if(spell.GetCastType() == CastType.TWO_STEP)
+        {
+            if (canCast)
+            {
+                /*if (_spellsWithPhases.ContainsKey(spell)) _spellsWithPhases[spell] = _spellsWithPhases[spell] > 0 ? 0 : 1;
+                else _spellsWithPhases.Add(spell, 0);*/
+
+                if (!_spellsWithPhases.ContainsKey(spell)) _spellsWithPhases.Add(spell, 0);
+
+                if (_spellsWithPhases[spell] == 0)
+                {
+                    isPhasingSpell = true;
+                    _spellsWithPhases[spell]++;
+                }
+                else
+                {
+                    isPhasingSpell = false;
+                    _spellsWithPhases[spell] = 0;
+                }
+                spell.UseSpell(skillPos);
+                EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
+                StartCoroutine(SpellCooldown(spell, pickType));
             }
         }
     }
@@ -122,13 +161,13 @@ public class PlayerSkills : Photon.MonoBehaviour
         var vTemp = new Vector3(transform.position.x, transform.position.y + 0.66f, transform.position.z);
         EventManager.DispatchEvent("RepulsiveTelekinesisLoad", new object[] { vTemp, this.GetComponent<PlayerParticles>() });
 
-        isCastingSpell = true;
+        isChannelingSpell = true;
 
         var w = new WaitForSeconds(time);
         yield return w;
 
         _repulsiveSkill.UseSpell(skillPos);
-        isCastingSpell = false;
+        isChannelingSpell = false;
 
 
         EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
@@ -183,7 +222,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     void OnCharacterDamaged(params object[] paramsContainer)
     {
         if (this.gameObject.name == (string)paramsContainer[0])
-            isCastingSpell = false;
+            isChannelingSpell = false;
     }
 
     private void OnRestartRound(params object[] paramsContainer)

@@ -121,7 +121,7 @@ public class TelekineticObject : Photon.MonoBehaviour
         {
             print("OnObjectPulled " + gameObject.name);
             var trn = (Transform)paramsContainer[0];
-            var cam = trn.GetComponentInParent<Player1Input>().GetCamera;
+            var cam = trn.GetComponentInParent<PlayerInput>().GetCamera;
             _cam = cam.GetCamera;
         }
     }

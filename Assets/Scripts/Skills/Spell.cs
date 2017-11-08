@@ -34,5 +34,6 @@ public enum CastType
 {
     INSTANT,
     DELAYED,
-    CONTINUOUS
+    CONTINUOUS,
+    TWO_STEP
 }

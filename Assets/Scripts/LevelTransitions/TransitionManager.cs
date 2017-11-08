@@ -343,12 +343,12 @@ public class TransitionManager : MonoBehaviour
 
         transitionElements.Item2.SetActive(true);
         transitionElements.Item3.SetActive(true);
-        var camAttacker = transitionElements.Item2.GetComponentInParent<Player1Input>().GetCamera;
+        var camAttacker = transitionElements.Item2.GetComponentInParent<PlayerInput>().GetCamera;
         camAttacker.transform.forward = transitionElements.Item1.transform.forward;
 
         if (GameManager.screenDivided)
         {
-            var camVictim = transitionElements.Item3.GetComponentInParent<Player1Input>().GetCamera;
+            var camVictim = transitionElements.Item3.GetComponentInParent<PlayerInput>().GetCamera;
             camVictim.transform.forward = -transitionElements.Item1.transform.forward;
         }
 

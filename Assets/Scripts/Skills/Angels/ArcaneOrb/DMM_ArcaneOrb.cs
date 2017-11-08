@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,9 +11,12 @@ public class DMM_ArcaneOrb : MonoBehaviour
 
     public void Init(Transform parent, string owner)
     {
-        transform.SetParent(parent);
+        transform.parent = parent;
         transform.localPosition = Vector3.zero;
+        transform.forward = parent.forward;
         _owner = owner;
+
+        EventManager.AddEventListener("ArcaneOrbDestroyedByLifeTime", OnOrbDestruction);
     }
 
     public void Execute()
@@ -20,7 +24,18 @@ public class DMM_ArcaneOrb : MonoBehaviour
         if (!_aiming) CreateOrb();
         else LaunchOrb();
     }
-    
+
+    public void Execute(Vector3 dir)
+    {
+        if (!_aiming) CreateOrb();
+        else LaunchOrb(dir);
+    }
+
+    void Update()
+    {
+        if (transform.parent != null && _aiming) transform.position = transform.parent.position;
+    }
+
     void CreateOrb()
     {
         _aiming = true;
@@ -35,5 +50,24 @@ public class DMM_ArcaneOrb : MonoBehaviour
         _aiming = false;
         _orb.Launch(transform.forward);
         _orb = null;
+    }
+
+    void LaunchOrb(Vector3 dir)
+    {
+        if (_orb == null) return;
+        _aiming = false;
+        _orb.Launch(dir);
+        _orb = null;
+    }
+
+    void OnOrbDestruction(object[] paramsContainer)
+    {
+        if (_orb == (ArcaneOrb)paramsContainer[0])
+        {
+            _aiming = false;
+            _orb = null;
+            EventManager.DispatchEvent("ArcaneDummyDestroyedByLifeTime", new object[] { this });
+            Destroy(gameObject);
+        }
     }
 }

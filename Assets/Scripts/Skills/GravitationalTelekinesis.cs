@@ -99,7 +99,7 @@ public class GravitationalTelekinesis : ISpell
     {
         var telekObjs = TelekineticObject.allObjs;
         var objs = new List<TelekineticObject>();
-        var charac = skillPos.GetComponentInParent<Player1Input>().transform.position + new Vector3(0f, 1f, 0f);
+        var charac = skillPos.GetComponentInParent<PlayerInput>().transform.position + new Vector3(0f, 1f, 0f);
 
         foreach (var item in telekObjs)
         {
@@ -151,7 +151,7 @@ public class GravitationalTelekinesis : ISpell
         _cooldown = _pullCooldown;
         manaCost = _getObjectManaCost;
         _dummy.Execute(_target, _hasObject);
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, skillPos.GetComponentInParent<Player1Input>().gameObject.name });
+        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, skillPos.GetComponentInParent<PlayerInput>().gameObject.name });
 
     }
 
@@ -171,7 +171,7 @@ public class GravitationalTelekinesis : ISpell
         _dummy.Execute(_target, _hasObject);
         skillPos.GetComponentInParent<PlayerSkills>().gtHasObject = _hasObject;
         _target = null;
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, skillPos.GetComponentInParent<Player1Input>().gameObject.name });
+        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, skillPos.GetComponentInParent<PlayerInput>().gameObject.name });
     }
 
     #region Getters

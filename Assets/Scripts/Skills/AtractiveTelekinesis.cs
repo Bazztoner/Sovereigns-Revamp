@@ -48,7 +48,7 @@ public class AtractiveTelekinesis : ISpell
 
     public void Init(PlayerMovement character)
     {
-        var camContainter = character.GetComponent<Player1Input>().GetCamera;
+        var camContainter = character.GetComponent<PlayerInput>().GetCamera;
         _target = camContainter.CurrentTarget;
         Init();
     }
@@ -66,7 +66,7 @@ public class AtractiveTelekinesis : ISpell
 
     void GetObject(Transform me)
     {
-        var camContainter = me.GetComponentInParent<Player1Input>().GetCamera;
+        var camContainter = me.GetComponentInParent<PlayerInput>().GetCamera;
         _target = camContainter.CurrentTarget;
 
         if (_target == null) return;
@@ -88,7 +88,7 @@ public class AtractiveTelekinesis : ISpell
 
     void PullObject(Transform me)
     {
-        var camContainter = me.GetComponentInParent<Player1Input>().GetCamera;
+        var camContainter = me.GetComponentInParent<PlayerInput>().GetCamera;
         _target = camContainter.CurrentTarget;
         if (PhotonNetwork.offlineMode) _target.DestroyObject(camContainter.transform.forward, camContainter.AngleVision);
         else _target.photonView.RPC("RpcDestroy", PhotonTargets.All, camContainter.transform.forward, camContainter.AngleVision, PhotonNetwork.player.NickName);
@@ -96,7 +96,7 @@ public class AtractiveTelekinesis : ISpell
         _target = null;
         _hasObject = false;
 
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, me.GetComponentInParent<Player1Input>().gameObject.name });
+        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, me.GetComponentInParent<PlayerInput>().gameObject.name });
     }
 
     void PullObject()

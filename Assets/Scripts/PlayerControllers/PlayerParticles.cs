@@ -9,7 +9,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
     GameObject _runParticle;
     GameObject _blinkTrail;
 
-    Player1Input _playerInput;
+    PlayerInput _playerInput;
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
         AddEvents();
         AddRunParticle();
         AddBlinkTrail();
-        _playerInput = GetComponent<Player1Input>();
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     void AddEvents()
@@ -232,7 +232,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
     {
         if (GameManager.screenDivided)
         {
-            if(transform.GetComponent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+            if(transform.GetComponent<PlayerInput>().gameObject.name == (string)paramsContainer[0])
             {
                 _runParticle.SetActive((bool)paramsContainer[1]);
             }
@@ -244,7 +244,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
     {
         if (GameManager.screenDivided)
         {
-            if (transform.GetComponent<Player1Input>().gameObject.name == (string)paramsContainer[0])
+            if (transform.GetComponent<PlayerInput>().gameObject.name == (string)paramsContainer[0])
             {
                 _blinkTrail.SetActive(true);
                 StartCoroutine(DeactivateBlinkTrail(1f));

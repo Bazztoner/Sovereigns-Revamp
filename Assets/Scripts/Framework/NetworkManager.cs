@@ -85,7 +85,7 @@ public class NetworkManager : MonoBehaviour {
         SpawnSpot spot = _spawnSpots[Random.Range(0, _spawnSpots.Length)]; //TODO, cambiar para que spawnee en un lugar especifico dependiendo jugador.
         GameObject myCharacter = PhotonNetwork.Instantiate("Player1", spot.transform.position, spot.transform.rotation, 0);
         
-        myCharacter.GetComponent<Player1Input>().enabled = true;
+        myCharacter.GetComponent<PlayerInput>().enabled = true;
         myCharacter.GetComponent<PlayerMovement>().enabled = true;
         myCharacter.GetComponent<PlayerStats>().enabled = true;
         myCharacter.GetComponent<PlayerCombat>().enabled = true;

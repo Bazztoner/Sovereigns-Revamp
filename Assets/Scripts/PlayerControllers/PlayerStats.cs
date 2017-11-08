@@ -199,7 +199,7 @@ public class PlayerStats : Photon.MonoBehaviour
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, (dmg > Hp ? 0 : Hp - dmg), fill });
         Hp = dmg >= Hp ? 0 : Hp - dmg;
 
-        GetComponent<Player1Input>().GetCamera.ShakeCamera(1f, .3f);
+        GetComponent<PlayerInput>().GetCamera.ShakeCamera(1f, .3f);
     }
     void RegainHp(float regained)
     {

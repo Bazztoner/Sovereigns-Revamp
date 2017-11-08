@@ -5,11 +5,14 @@ using System.Linq;
 
 public class SK_ArcaneOrb : ISpell
 {
+    public const string spellName = "ArcaneOrb";
     CastType _castType;
 
     LayerMask _layerMask;
     DMM_ArcaneOrb _dummy;
     RaycastHit _rch;
+    CamRotationController _cam;
+    PlayerMovement _char;
 
     string _owner;
     float _castTime;
@@ -27,7 +30,7 @@ public class SK_ArcaneOrb : ISpell
 
     public void Init()
     {
-        _castType = CastType.INSTANT;
+        _castType = CastType.TWO_STEP;
 
         _layerMask = ~(1 << Utilities.IntLayers.TELEKINESISOBJECT
                      | 1 << Utilities.IntLayers.PLAYER
@@ -37,11 +40,14 @@ public class SK_ArcaneOrb : ISpell
         _cooldown = _orbCreationCooldown;
 
         manaCost = _orbCreationManaCost;
+        EventManager.AddEventListener("ArcaneDummyDestroyedByLifeTime", OnDummyDestruction);
     }
 
     public void Init(PlayerMovement character)
     {
         _owner = character.gameObject.name;
+        _cam = character.GetComponent<PlayerInput>().GetCamera;
+        _char = character;
         Init();
     }
 
@@ -74,7 +80,8 @@ public class SK_ArcaneOrb : ISpell
             SpawnDummy(skillPos);
         }
         RelocateDummy(skillPos);
-        _dummy.Execute();
+
+        _dummy.Execute(GetLaunchDirection());
 
         EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, _owner });
 
@@ -89,6 +96,28 @@ public class SK_ArcaneOrb : ISpell
             _cooldown = _orbCreationCooldown;
         }
         _hasOrb = !_hasOrb;
+    }
+
+    public Vector3 GetLaunchDirection()
+    {
+        Vector3 targetPoint = Vector3.zero;
+
+        if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out _rch, 200f))
+            targetPoint = _rch.point;
+
+        return targetPoint != Vector3.zero ? (targetPoint - _char.transform.parent.TransformPoint(_char.transform.localPosition)).normalized : _char.transform.parent.forward;
+    }
+
+    void OnDummyDestruction(object[] paramsContainer)
+    {
+        if (_dummy == (DMM_ArcaneOrb)paramsContainer[0])
+        {
+            GameObject.Destroy(_dummy);
+            _dummy = null;
+            _hasOrb = false;
+            manaCost = _orbCreationManaCost;
+            _cooldown = _orbCreationCooldown;
+        }
     }
 
     #region Getters

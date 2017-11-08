@@ -29,7 +29,7 @@ public class FloatingLifeBar : MonoBehaviour
     private void Initialize()
     {
         if(GameManager.screenDivided)
-            _name = this.GetComponentInParent<Player1Input>().gameObject.name;
+            _name = this.GetComponentInParent<PlayerInput>().gameObject.name;
         else
             _name = this.GetComponentInParent<Enemy>().gameObject.name;
 

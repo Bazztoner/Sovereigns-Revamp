@@ -16,13 +16,13 @@ public class DMM_ArcaneRepulsion : MonoBehaviour
 
     void RepelObjects(Transform skillPos, float castTime, float radialRange, float verticalForce, float radialForce, LayerMask layerMask, string caster)
     {
-        var target = GameObject.FindObjectsOfType<Player1Input>().Where(x => x.gameObject.name != caster).FirstOrDefault();
+        var target = GameObject.FindObjectsOfType<PlayerInput>().Where(x => x.gameObject.name != caster).FirstOrDefault();
         if (target == null) return;
 
         if (Vector3.Distance(skillPos.position, target.transform.position) < radialRange)
         {
             Rigidbody rig = target.GetComponent<Rigidbody>();
-            var inVisionRange = Physics.Raycast(skillPos.position, target.transform.position - skillPos.position, out _rch, 100, layerMask);
+            var inVisionRange = Physics.Raycast(skillPos.position, target.transform.position - skillPos.position, out _rch, radialRange, layerMask);
 
             Debug.DrawRay(skillPos.position, target.transform.position - skillPos.position, Color.red, 1);
 

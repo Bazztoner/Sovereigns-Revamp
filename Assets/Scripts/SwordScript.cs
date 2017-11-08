@@ -60,7 +60,7 @@ public class SwordScript : MonoBehaviour
     {
         if (GameManager.screenDivided)
         {
-            if (this.transform.GetComponentInParent<Player1Input>().gameObject.name == (string)paramsContainer[0] && !_isDetecting)
+            if (this.transform.GetComponentInParent<PlayerInput>().gameObject.name == (string)paramsContainer[0] && !_isDetecting)
             {
                 _isDetecting = true;
                 _appliedDamage = (int)paramsContainer[1];
@@ -174,7 +174,7 @@ public class SwordScript : MonoBehaviour
         {
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;
-            var myName = this.GetComponentInParent<Player1Input>().gameObject.name;
+            var myName = this.GetComponentInParent<PlayerInput>().gameObject.name;
 
             _isDetecting = false;
             _appliedDamage = 0;
@@ -192,7 +192,7 @@ public class SwordScript : MonoBehaviour
                     else if (_isParry) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "ParryAttack", myName);
                     else if (_isGuardBreak) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "GuardBreakAttack", myName);
                 }
-                else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee", this.GetComponentInParent<Player1Input>().gameObject.name);
+                else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee", this.GetComponentInParent<PlayerInput>().gameObject.name);
 
                 this.GetComponentInParent<PlayerStats>().RegainMana(damage * 0.6f);
             }
@@ -217,7 +217,7 @@ public class SwordScript : MonoBehaviour
 
     void GetTrail(bool isActiveFromStart)
     {
-        var trailContainer = GetComponentInParent<Player1Input>().transform.FindChild("SwordTrail");
+        var trailContainer = GetComponentInParent<PlayerInput>().transform.FindChild("SwordTrail");
         if (trailContainer == null)
         {
             var tempTrail = GameObject.Instantiate(Resources.Load("SwordTrail") as GameObject, transform.parent.parent);

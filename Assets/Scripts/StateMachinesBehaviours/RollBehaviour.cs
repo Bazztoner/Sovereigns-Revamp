@@ -16,7 +16,7 @@ public class RollBehaviour : StateMachineBehaviour {
         {
             EventManager.DispatchEvent("RollExit", new object[] { animator.gameObject.name });
         }
-        else if (animator.gameObject.GetComponent<Player1Input>().enabled)
+        else if (animator.gameObject.GetComponent<PlayerInput>().enabled)
         {
             EventManager.DispatchEvent("RollExit", new object[] { animator.gameObject.name });
         }

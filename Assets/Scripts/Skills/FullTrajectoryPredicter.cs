@@ -46,7 +46,7 @@ public class FullTrajectoryPredicter : MonoBehaviour
         if (GameManager.screenDivided)
         {
             var trn = (Transform)paramsContainer[0];
-            mask = trn.GetComponentInParent<Player1Input>().gameObject.name == "Player1" ?
+            mask = trn.GetComponentInParent<PlayerInput>().gameObject.name == "Player1" ?
                        Utilities.IntLayers.VISIBLETOP1 : Utilities.IntLayers.VISIBLETOP2;
         }
        

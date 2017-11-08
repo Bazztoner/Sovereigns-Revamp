@@ -182,7 +182,7 @@ public class CamRotationController : MonoBehaviour
     {
         if (GameManager.screenDivided || !PhotonNetwork.offlineMode)
         {
-            var enems = GameObject.FindObjectsOfType<Player1Input>();
+            var enems = GameObject.FindObjectsOfType<PlayerInput>();
 
             foreach (var enem in enems)
             {

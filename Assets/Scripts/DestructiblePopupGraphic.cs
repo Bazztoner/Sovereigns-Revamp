@@ -42,11 +42,11 @@ public class DestructiblePopupGraphic : MonoBehaviour
         {
             if (gameObject.layer == Utilities.IntLayers.VISIBLETOP1)
             {
-                _cam = GameObject.Find("Player1").GetComponent<Player1Input>().GetCamera;
+                _cam = GameObject.Find("Player1").GetComponent<PlayerInput>().GetCamera;
             }
             else if (gameObject.layer == Utilities.IntLayers.VISIBLETOP2)
             {
-                _cam = GameObject.Find("Player2").GetComponent<Player1Input>().GetCamera;
+                _cam = GameObject.Find("Player2").GetComponent<PlayerInput>().GetCamera;
             }
         }
     }
