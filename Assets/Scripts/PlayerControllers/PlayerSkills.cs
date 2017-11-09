@@ -53,6 +53,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         _destructiveSkill = new AtractiveTelekinesis();
         _destructiveSkill.Init();
+        StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)_destructiveSkill));
 
         _arcaneOrbSkill = new SK_ArcaneOrb();
         _arcaneOrbSkill.Init(GetComponent<PlayerMovement>());
@@ -64,8 +65,6 @@ public class PlayerSkills : Photon.MonoBehaviour
         _blinkSkill.Init(GetComponent<PlayerMovement>());
 
         _skillPos = transform.Find("SpellPos");
-
-        StartCoroutine(PutAtractiveVisible(_destructiveSkill.GetManaCost()));
     }
 
     private void AddEvents()
@@ -131,9 +130,6 @@ public class PlayerSkills : Photon.MonoBehaviour
         {
             if (canCast)
             {
-                /*if (_spellsWithPhases.ContainsKey(spell)) _spellsWithPhases[spell] = _spellsWithPhases[spell] > 0 ? 0 : 1;
-                else _spellsWithPhases.Add(spell, 0);*/
-
                 if (!_spellsWithPhases.ContainsKey(spell)) _spellsWithPhases.Add(spell, 0);
 
                 if (_spellsWithPhases[spell] == 0)
@@ -151,6 +147,14 @@ public class PlayerSkills : Photon.MonoBehaviour
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }
+
+        /*var castTo = (AtractiveTelekinesis)_destructiveSkill;
+
+        if (!castTo.showProjections(GetActualMana()))
+        {
+            ActivateDestructibleProyections(false);
+            StartCoroutine(PutAtractiveVisible(castTo));
+        }*/
     }
     #endregion
 
@@ -178,33 +182,29 @@ public class PlayerSkills : Photon.MonoBehaviour
     IEnumerator SpellCooldown(ISpell spell, HUDController.Spells pickType)
     {
         spell.EnterInCooldown();
-        if (spell.GetType() == typeof(AtractiveTelekinesis))
+        /*if (spell.GetType() == typeof(AtractiveTelekinesis))
         {
             ActivateDestructibleProyections(false);
-        }
+            StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)spell));
+        }*/
 
         yield return new WaitForSeconds(spell.CooldownTime());
 
         spell.ExitFromCooldown();
-        if (spell.GetType() == typeof(AtractiveTelekinesis))
-        {
-            StartCoroutine(PutAtractiveVisible(spell.GetManaCost()));
-        }
     }
 
-    IEnumerator PutAtractiveVisible(float cost)
+    IEnumerator PutAtractiveVisible(AtractiveTelekinesis spell)
     {
-        while (GetActualMana() < cost)
+        while (true)
         {
+            ActivateDestructibleProyections(spell.showProjections(GetActualMana()));
             yield return new WaitForEndOfFrame();
         }
-
-        ActivateDestructibleProyections(true);
     }
 
     void ActivateDestructibleProyections(bool activate)
     {
-        EventManager.DispatchEvent("ChangeStateDestuctibleProjections", new object[] { activate });
+        EventManager.DispatchEvent("ChangeStateDestuctibleProjections", new object[] { activate, gameObject.name });
     }
     #endregion
 

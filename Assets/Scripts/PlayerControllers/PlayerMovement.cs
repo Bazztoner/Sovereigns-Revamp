@@ -110,6 +110,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
         isRunning = true;
         sprintAvailable = false;
         speed = _originalRunSpeed;
+
     }
 
     /// <summary>Makes the character walk</summary>

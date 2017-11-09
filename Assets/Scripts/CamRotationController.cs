@@ -50,6 +50,7 @@ public class CamRotationController : MonoBehaviour
     Quaternion _fixedLocalRot;
     CameraShake _shake;
     bool _isInTransition;
+    string _owner;
 
     public DestructibleObject CurrentTarget
     {
@@ -120,7 +121,6 @@ public class CamRotationController : MonoBehaviour
         _enemy = GetEnemy();
     }
 
-
     public void Init(Transform charac, bool readJoystick)
     {
         _character = charac;
@@ -130,11 +130,13 @@ public class CamRotationController : MonoBehaviour
         transform.position = _character.position;
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
-        //initialPosition = _cam.transform.localPosition;
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
+        _lockOnLayer = _proyectionLayer == 16 ? 20 : 21;
 
         _enemy = GetEnemy();
         _lockPosition = _enemy.Find("LockOnPosition");
+        oldParent = transform.parent;
+        _owner = charac.name;
     }
 
     public void Init(Transform charac, bool readJoystick, int cullLayer)
@@ -146,31 +148,25 @@ public class CamRotationController : MonoBehaviour
         transform.position = _character.position;
         transform.rotation = _character.rotation;
         if (_cam == null) _cam = GetComponentInChildren<Camera>();
-        //initialPosition = _cam.transform.localPosition;
         _cam.transform.localPosition = transform.InverseTransformPoint(initialPosition);
         _proyectionLayer = cullLayer;
         _lockOnLayer = _proyectionLayer == 16 ? 20 : 21;
 
         _enemy = GetEnemy();
         _lockPosition = _enemy.Find("LockOnPosition");
-        //showProjections = true;
         oldParent = transform.parent;
+        _owner = charac.name;
+
     }
 
     private void AddEvents()
     {
         EventManager.AddEventListener("ChangeStateDestuctibleProjections", ActivateProjections);
-        /*EventManager.AddEventListener("DoConnect", UseProjections);
-        EventManager.AddEventListener("DoNotConnect", UseProjections);
-        EventManager.AddEventListener("DoDummyTest", UseProjections);
-        EventManager.AddEventListener("DividedScreen", UseProjections);*/
-        //EventManager.AddEventListener("BeginGame", UseProjections);
         EventManager.AddEventListener("GameFinished", OnGameFinished);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
         EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
         EventManager.AddEventListener("StunShake", OnStun);
         EventManager.AddEventListener("StopStunCamera", OnStopStun);
-        //EventManager.AddEventListener("TransitionCameraUpdate", OnTransitionCameraUpdate);
     }
 
     void OnTransitionSmoothUpdate(object[] paramsContainer)
@@ -211,9 +207,20 @@ public class CamRotationController : MonoBehaviour
         showProjections = (bool)paramsContainer[0];
     }
 
+    /// <summary>
+    /// 0 - showProyections - bool
+    /// 1 - senderName - string
+    /// </summary>
+    /// <param name="paramsContainer"></param>
     void ActivateProjections(object[] paramsContainer)
     {
-        showProjections = (bool)paramsContainer[0];
+        var sender = (string)paramsContainer[1];
+        var activate = (bool)paramsContainer[0];
+
+        if (_owner == sender /*&& showProjections != activate*/)
+        {
+            showProjections = activate;
+        }
     }
 
     private void OnGameFinished(params object[] paramsContainer)
@@ -230,10 +237,6 @@ public class CamRotationController : MonoBehaviour
         if ((bool)paramsContainer[0])
         {
             EventManager.RemoveEventListener("ChangeStateDestuctibleProjections", ActivateProjections);
-            /*EventManager.RemoveEventListener("DoConnect", UseProjections);
-            EventManager.RemoveEventListener("DoNotConnect", UseProjections);
-            EventManager.RemoveEventListener("DoDummyTest", UseProjections);
-            EventManager.RemoveEventListener("DividedScreen", UseProjections);*/
             EventManager.RemoveEventListener("GameFinished", OnGameFinished);
             EventManager.RemoveEventListener("RestartRound", OnRestartRound);
             EventManager.RemoveEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
@@ -246,7 +249,7 @@ public class CamRotationController : MonoBehaviour
 
     void Update()
     {
-        if (showProjections) HighlightTarget();
+        HighlightTarget();
     }
 
     void FixedUpdate()
@@ -386,57 +389,68 @@ public class CamRotationController : MonoBehaviour
     #region Highlight
     private void HighlightTarget()
     {
-        //Agrego que estén en la zona, mi cabe zona
-        var dstruc = DestructibleObject.allObjs;
-
-        if (dstruc != null)
+        if (showProjections)
         {
-            List<DestructibleObject> inRangeObj = dstruc.Where(x => x != null
-                                                             && x.isAlive
-                                                             && x.zone == TransitionManager.instance.currentZone
-                                                             && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
-                                                             && x.destructibleType != DestructibleType.TRANSITION
-                                                             /*&& x.GetComponentInChildren<Renderer>().isVisible*/)
-                                                    .ToList<DestructibleObject>();
-            DestructibleObject closest;
+            //Agrego que estén en la zona, mi cabe zona
+            var dstruc = DestructibleObject.allObjs;
 
-            if (inRangeObj.Any())
+            if (dstruc != null)
             {
-                closest = inRangeObj[0];
-                float angle = Vector3.Angle(transform.forward, (closest.transform.position - transform.position).normalized);
-                float tempAngle;
+                List<DestructibleObject> inRangeObj = dstruc.Where(x => x != null
+                                                                 && x.isAlive
+                                                                 && x.zone == TransitionManager.instance.currentZone
+                                                                 && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
+                                                                 && x.destructibleType != DestructibleType.TRANSITION
+                                                                 /*&& x.GetComponentInChildren<Renderer>().isVisible*/)
+                                                        .ToList<DestructibleObject>();
+                DestructibleObject closest;
 
-                foreach (var dest in inRangeObj)
+                if (inRangeObj.Any())
                 {
-                    tempAngle = Vector3.Angle(transform.forward, (dest.transform.position - transform.position).normalized);
+                    closest = inRangeObj[0];
+                    float angle = Vector3.Angle(transform.forward, (closest.transform.position - transform.position).normalized);
+                    float tempAngle;
 
-                    if (tempAngle < angle)
+                    foreach (var dest in inRangeObj)
                     {
-                        closest = dest;
-                        angle = tempAngle;
+                        tempAngle = Vector3.Angle(transform.forward, (dest.transform.position - transform.position).normalized);
+
+                        if (tempAngle < angle)
+                        {
+                            closest = dest;
+                            angle = tempAngle;
+                        }
+                    }
+
+                    if (_currentTarget == null)
+                    {
+                        _currentTarget = closest;
+                        MakeVisible(_currentTarget, true);
+                    }
+                    else if (closest != _currentTarget)
+                    {
+                        MakeVisible(_currentTarget, false);
+                        _currentTarget = closest;
+                        MakeVisible(_currentTarget, true);
                     }
                 }
-
-                if (_currentTarget == null)
+                else
                 {
-                    _currentTarget = closest;
-                    MakeVisible(_currentTarget, true);
-                }
-                else if (closest != _currentTarget)
-                {
-                    MakeVisible(_currentTarget, false);
-                    _currentTarget = closest;
-                    MakeVisible(_currentTarget, true);
+                    if (_currentTarget != null)
+                    {
+                        MakeVisible(_currentTarget, false);
+                    }
+                    _currentTarget = null;
                 }
             }
-            else
+        }
+        else
+        {
+            if (_currentTarget != null)
             {
-                if (_currentTarget != null)
-                {
-                    MakeVisible(_currentTarget, false);
-                }
-                _currentTarget = null;
+                MakeVisible(_currentTarget, false);
             }
+            _currentTarget = null;
         }
     }
 

@@ -28,6 +28,8 @@ public class AtractiveTelekinesis : ISpell
     float _pullCooldown = .3f;
     float _launchCooldown = 2f;
 
+    public bool projecting;
+
     public void Init()
     {
         _castType = CastType.INSTANT;
@@ -44,6 +46,11 @@ public class AtractiveTelekinesis : ISpell
         _pulled = false;
 
         manaCost = 150;
+    }
+
+    public bool showProjections(float mana)
+    {
+        return manaCost < mana && !_inSpellCooldown;
     }
 
     public void Init(PlayerMovement character)

@@ -64,6 +64,7 @@ public class PlayerCombat : Photon.MonoBehaviour
     {
         isBlocking = false;
         EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking, isBlockingUp });
+        EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, false });
     }
 
     /// <summary>Makes the character block up or mid</summary>
