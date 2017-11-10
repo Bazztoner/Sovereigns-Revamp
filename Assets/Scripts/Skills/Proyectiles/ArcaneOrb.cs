@@ -73,24 +73,19 @@ public class ArcaneOrb : MonoBehaviour
                         col.gameObject.layer == Utilities.IntLayers.PLAYER ||
                         col.gameObject.layer == LayerMask.NameToLayer("Default");
 
-            var isAPedazoDeHijaDePuta = col.transform.name == "ArcaneOrb(Clone)";
-
-            check = check && !isAPedazoDeHijaDePuta;
-
-            if (!isAPedazoDeHijaDePuta)
+            if (check)
             {
                 var comp = col.GetComponentInParent<PlayerStats>();
                 var compName = col.gameObject.name;
 
-                if (comp != null && compName != _owner)
+                if (compName != _owner)
                 {
-                    comp.TakeDamage(damage, "Spell", _owner);
+                    if (comp != null) comp.TakeDamage(damage, "Spell", _owner);
+                    ApplyAreaOfEffect();
+                    CancelInvoke();
+                    print(col.transform.name);
+                    Destroy(gameObject);
                 }
-
-                ApplyAreaOfEffect();
-                CancelInvoke();
-                print(col.transform.name);
-                Destroy(gameObject);
             }
         }
 

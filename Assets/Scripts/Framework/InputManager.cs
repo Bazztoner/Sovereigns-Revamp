@@ -8,33 +8,27 @@ public class InputManager : MonoBehaviour {
     public static InputManager instance;
 
     public KeyCode forward = KeyCode.W;
-    public KeyCode backward = KeyCode.S;
+    public KeyCode backwards = KeyCode.S;
     public KeyCode left = KeyCode.A;
     public KeyCode right = KeyCode.D;
-    public KeyCode lightAttack = KeyCode.Mouse0;
-    public KeyCode heavyAttack = KeyCode.Mouse1;
-    public KeyCode blocking = KeyCode.Space;
+    public KeyCode horizontalAttack = KeyCode.Mouse0;
+    public KeyCode verticalAttack = KeyCode.Mouse1;
+    public KeyCode block = KeyCode.Space;
     public KeyCode dodge_run = KeyCode.LeftShift;
-    public KeyCode useObject = KeyCode.F;
-    public KeyCode classSkill = KeyCode.E;
-    public KeyCode enviromentSkill = KeyCode.R;
-    public KeyCode skill = KeyCode.Q;
+    public KeyCode movementSkill = KeyCode.F;
+    public KeyCode universalSkill = KeyCode.Alpha1;
+    public KeyCode classSkill = KeyCode.Alpha2;
+    public KeyCode enviromentalSkill = KeyCode.Alpha3;
     public KeyCode lockOn = KeyCode.Mouse2;
-    public KeyCode enviromentAction = KeyCode.LeftControl;
-    public KeyCode item1 = KeyCode.Alpha1;
-    public KeyCode item2 = KeyCode.Alpha2;
-    public KeyCode item3 = KeyCode.Alpha3;
-    public KeyCode item4 = KeyCode.Alpha4;
+    public KeyCode useSkill = KeyCode.Q;
 
-    public KeyCode lightAttackGamepad = KeyCode.JoystickButton2;
-    public KeyCode heavyAttackGamepad = KeyCode.JoystickButton3;
+    public KeyCode horizontalAttackGamepad = KeyCode.JoystickButton2;
+    public KeyCode verticalAttackGamepad = KeyCode.JoystickButton3;
     public KeyCode dodge_runGamepad = KeyCode.JoystickButton0;
-    public KeyCode useObjectGamepad = KeyCode.JoystickButton1;
-    public KeyCode classSkillGamepad = KeyCode.JoystickButton4;
-    public KeyCode enviromentSkillGamepad = KeyCode.JoystickButton10;
-    public KeyCode skillGamepad = KeyCode.JoystickButton5;
+    public KeyCode movementSkillGamepad = KeyCode.JoystickButton10;
+
+    public KeyCode useSkillGamepad = KeyCode.JoystickButton1;
     public KeyCode lockOnGamepad = KeyCode.JoystickButton9;
-    public KeyCode enviromentActionGamepad = KeyCode.JoystickButton8;
     #endregion
 
     void Awake()
@@ -47,7 +41,7 @@ public class InputManager : MonoBehaviour {
     public float GetVerticalMovement()
     {
         if (Input.GetKey(forward)) return 1f;
-        else if (Input.GetKey(backward)) return -1f;
+        else if (Input.GetKey(backwards)) return -1f;
         else return 0f;
     }
 
@@ -72,17 +66,17 @@ public class InputManager : MonoBehaviour {
 
     public bool GetLightAttack()
     {
-        return (Input.GetKeyDown(lightAttack));
+        return (Input.GetKeyDown(horizontalAttack));
     }
 
     public bool GetHeavyAttack()
     {
-        return (Input.GetKeyDown(heavyAttack));
+        return (Input.GetKeyDown(verticalAttack));
     }
 
     public bool GetBlocking()
     {
-        return (Input.GetKey(blocking));
+        return (Input.GetKey(block));
     }
 
     public bool GetDodge()
@@ -95,9 +89,9 @@ public class InputManager : MonoBehaviour {
         return (Input.GetKey(dodge_run));
     }
 
-    public bool GetUseItem()
+    public bool GetMovementSkill()
     {
-        return (Input.GetKeyDown(useObject));
+        return (Input.GetKeyDown(movementSkill));
     }
 
     public bool GetClassSkill()
@@ -107,12 +101,12 @@ public class InputManager : MonoBehaviour {
 
     public bool GetEnviromentSkill()
     {
-        return (Input.GetKeyDown(enviromentSkill));
+        return (Input.GetKeyDown(enviromentalSkill));
     }
 
-    public bool GetSkill()
+    public bool GetUniversalSkill()
     {
-        return (Input.GetKeyDown(skill));
+        return (Input.GetKeyDown(universalSkill));
     }
 
     public bool GetLockOn()
@@ -120,29 +114,9 @@ public class InputManager : MonoBehaviour {
         return (Input.GetKeyDown(lockOn));
     }
 
-    public bool GetEnviromentAction()
+    public bool GetUseSkill()
     {
-        return (Input.GetKeyDown(enviromentAction));
-    }
-
-    public bool GetItem1()
-    {
-        return (Input.GetKeyDown(item1));
-    }
-
-    public bool GetItem2()
-    {
-        return (Input.GetKeyDown(item2));
-    }
-
-    public bool GetItem3()
-    {
-        return (Input.GetKeyDown(item3));
-    }
-
-    public bool GetItem4()
-    {
-        return (Input.GetKeyDown(item4));
+        return (Input.GetKeyDown(useSkill));
     }
     #endregion
 
@@ -178,12 +152,12 @@ public class InputManager : MonoBehaviour {
 
     public bool GetJoystickLightAttack()
     {
-        return (Input.GetKeyDown(lightAttackGamepad));
+        return (Input.GetKeyDown(horizontalAttackGamepad));
     }
 
     public bool GetJoystickHeavyAttack()
     {
-        return (Input.GetKeyDown(heavyAttackGamepad));
+        return (Input.GetKeyDown(verticalAttackGamepad));
     }
 
     public bool GetJoystickBlocking()
@@ -201,24 +175,24 @@ public class InputManager : MonoBehaviour {
         return (Input.GetKey(dodge_runGamepad));
     }
 
-    public bool GetJoystickUseItem()
-    {
-        return (Input.GetKeyDown(useObjectGamepad));
-    }
-
-    public bool GetJoystickClassSkill()
-    {
-        return (Input.GetKeyDown(classSkillGamepad));
-    }
-
-    public bool GetJoystickEnviromentSkill()
+    public bool GetJoystickMovementSkill()
     {
         return (Input.GetAxis("RT/LT") < 0);
     }
 
-    public bool GetJoystickSkill()
+    public bool GetJoystickClassSkill()
     {
-        return (Input.GetKeyDown(skillGamepad));
+        return (Input.GetAxis("DpadY") > 0);
+    }
+
+    public bool GetJoystickEnviromentSkill()
+    {
+        return (Input.GetAxis("DpadX") > 0);
+    }
+
+    public bool GetJoystickUniversalSkill()
+    {
+        return (Input.GetAxis("DpadX") < 0);
     }
 
     public bool GetJoystickLockOn()
@@ -226,31 +200,10 @@ public class InputManager : MonoBehaviour {
         return (Input.GetKeyDown(lockOnGamepad));
     }
 
-    public bool GetJoystickEnviromentAction()
+    public bool GetJoystickUseSkill()
     {
-        return (Input.GetKeyDown(enviromentActionGamepad));
+        return (Input.GetKeyDown(useSkillGamepad));
     }
-
-    public bool GetJoystickItem1()
-    {
-        return (Input.GetAxis("DpadY") > 0);
-    }
-
-    public bool GetJoystickItem2()
-    {
-        return (Input.GetAxis("DpadX") > 0);
-    }
-
-    public bool GetJoystickItem3()
-    {
-        return (Input.GetAxis("DpadY") < 0);
-    }
-
-    public bool GetJoystickItem4()
-    {
-        return (Input.GetAxis("DpadX") < 0);
-    }
-
     #endregion
 
 }
