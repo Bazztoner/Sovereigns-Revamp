@@ -212,6 +212,7 @@
     <Compile Include="Assets\Scripts\Framework\GameManager.cs" />
     <Compile Include="Assets\Scripts\Framework\IObservable.cs" />
     <Compile Include="Assets\Scripts\Framework\IObserver.cs" />
+    <Compile Include="Assets\Scripts\Framework\InputManager - backup.cs" />
     <Compile Include="Assets\Scripts\Framework\InputManager.cs" />
     <Compile Include="Assets\Scripts\Framework\NetworkAttacks.cs" />
     <Compile Include="Assets\Scripts\Framework\NetworkCharacter.cs" />
