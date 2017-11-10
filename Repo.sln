@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repo.Plugins", "Repo.Plugins.csproj", "{79E0726B-4948-539C-AECC-19C3F36C63B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repo", "Repo.csproj", "{0DA38C2F-84F0-F3D4-B74D-69854874032F}"

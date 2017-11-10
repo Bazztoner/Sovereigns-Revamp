@@ -17,7 +17,8 @@ public class FloatingLifeBar : MonoBehaviour
     
     void LateUpdate()
     {
-        this.GetComponent<RectTransform>().LookAt(_cam);
+        //Removido por peticiones del todo poderoso lider designer, alabado sea el lider.
+        //this.GetComponent<RectTransform>().LookAt(_cam);
     }
 
     private void OnLifeUpdate(params object[] paramsContainer)

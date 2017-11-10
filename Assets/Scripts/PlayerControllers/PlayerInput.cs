@@ -124,10 +124,10 @@ public class PlayerInput : MonoBehaviour
         if (!_isStun)
         {
             //Condition to move
-            _canMove = !_pc.isAttacking && !_pm.isRolling && !_ps.isChannelingSpell && !_ps.isCastingSpell && _gameInCourse && !_pst.isDead;
+            _canMove = !_pc.isAttacking && !_pm.isRolling && !_ps.isChannelingSpell && !_ps.isCastingSpell && _gameInCourse && !_pst.isDead && !_pst.isDamaged;
 
             //Condition to attack
-            _canAttack = !_pm.isRolling && !_ps.isPhasingSpell && !_ps.isChannelingSpell && !_ps.isCastingSpell && !_ps.gtHasObject && _gameInCourse && !_pst.isDead;
+            _canAttack = !_pm.isRolling && !_ps.isPhasingSpell && !_ps.isChannelingSpell && !_ps.isCastingSpell && !_ps.gtHasObject && _gameInCourse && !_pst.isDead && !_pst.isDamaged;
         }
         else
         {

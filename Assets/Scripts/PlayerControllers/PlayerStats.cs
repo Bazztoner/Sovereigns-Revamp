@@ -91,6 +91,7 @@ public class PlayerStats : Photon.MonoBehaviour
         EventManager.AddEventListener("Blocking", OnBlocking);
         EventManager.AddEventListener("PlayerDeath", OnPlayerDeath);
         EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
+        EventManager.AddEventListener("DamageExit", OnDamageExit);
         EventManager.AddEventListener("KnockBackEnter", OnKnockBackEnter);
         EventManager.AddEventListener("KnockBackExit", OnKnockBackExit);
         EventManager.AddEventListener("SpecialAttack", OnSpecialAttackUpdate);
@@ -319,12 +320,15 @@ public class PlayerStats : Photon.MonoBehaviour
         }
     }
 
-    private void OnDamageExit()
+    private void OnDamageExit(params object[] paramasContainer)
     {
-        isDamaged = false;
-        EventManager.DispatchEvent("IsDamaged", new object[] { this.gameObject.name, isDamaged });
+        if (this.gameObject.name == (string)paramasContainer[0])
+        {
+            isDamaged = false;
+            EventManager.DispatchEvent("IsDamaged", new object[] { this.gameObject.name, isDamaged });
 
-        if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOff", PhotonTargets.All);
+            if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOff", PhotonTargets.All);
+        }
     }
 
     private void OnKnockBackEnter(params object[] paramsContainer)
