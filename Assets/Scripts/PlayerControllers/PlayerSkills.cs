@@ -6,12 +6,14 @@ using UnityEngine;
 public class PlayerSkills : Photon.MonoBehaviour
 {
     #region Variables
-    private ISpell _destructiveSkill;
-    private ISpell _arcaneOrbSkill;
-    private ISpell _repulsiveSkill;
-    private ISpell _blinkSkill;
+    private ISpell _environmentalSkill;
+    private ISpell _classSkill;
+    private ISpell _universalSkill;
+    private ISpell _movementSkill;
     private Transform _skillPos;
     private float _mana;
+    ISpell _actualSkill;
+    HUDController.Spells _actualSkillType;
 
     Dictionary<ISpell, int> _spellsWithPhases = new Dictionary<ISpell, int>();
 
@@ -51,18 +53,21 @@ public class PlayerSkills : Photon.MonoBehaviour
     #region Initialization
     private void InitializeVariables()
     {
-        _destructiveSkill = new AtractiveTelekinesis();
-        _destructiveSkill.Init();
-        StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)_destructiveSkill));
+        _environmentalSkill = new AtractiveTelekinesis();
+        _environmentalSkill.Init();
+        StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)_environmentalSkill));
 
-        _arcaneOrbSkill = new SK_ArcaneOrb();
-        _arcaneOrbSkill.Init(GetComponent<PlayerMovement>());
+        _classSkill = new SK_ArcaneOrb();
+        _classSkill.Init(GetComponent<PlayerMovement>());
+
+        _actualSkill = _classSkill;
+        _actualSkillType = HUDController.Spells.Class;
 
         //_repulsiveSkill = new RepulsiveTelekinesis();
         //_repulsiveSkill.Init();
 
-        _blinkSkill = new Blink();
-        _blinkSkill.Init(GetComponent<PlayerMovement>());
+        _movementSkill = new Blink();
+        _movementSkill.Init(GetComponent<PlayerMovement>());
 
         _skillPos = transform.Find("SpellPos");
     }
@@ -77,36 +82,42 @@ public class PlayerSkills : Photon.MonoBehaviour
     #endregion
 
     #region Skills
-    /// <summary>Activates the destructive skill</summary>
-    public void DestructiveSkill(float mana)
+    public void UseSkill(float mana)
     {
         _mana = mana;
-        UseSkill(_destructiveSkill, HUDController.Spells.Environmental, _skillPos);
+        ActivateSkill(_actualSkill, _actualSkillType, _skillPos);
+    }
+
+    /// <summary>Activates the destructive skill</summary>
+    public void EnvironmentalSkill()
+    {
+        _actualSkill = _environmentalSkill;
+        _actualSkillType = HUDController.Spells.Environmental;
     }
 
     /// <summary>Activates the gravitational skill</summary>
-    public void GravitationalSkill(float mana)
+    public void ClassSkill()
     {
-        _mana = mana;
-        UseSkill(_arcaneOrbSkill, HUDController.Spells.Class, _skillPos);
+        _actualSkill = _classSkill;
+        _actualSkillType = HUDController.Spells.Class;
     }
 
     /// <summary>Activates the repulsive skill</summary>
-    public void RepulsiveSkill(float mana)
+    public void UniversalSkill()
     {
-        _mana = mana;
-        UseSkill(_repulsiveSkill, HUDController.Spells.Picked, _skillPos);
+        _actualSkill = _universalSkill;
+        _actualSkillType = HUDController.Spells.Universal;
     }
 
     /// <summary>Activates the blink skill</summary>
-    public void BlinkSkill(float mana)
+    public void MovementSkill(float mana)
     {
         _mana = mana;
-        UseSkill(_blinkSkill, HUDController.Spells.Mobility, null);
+        ActivateSkill(_movementSkill, HUDController.Spells.Mobility, null);
     }
 
     /// <summary>Decides if it needs to wait or not to launch an spell</summary>
-    private void UseSkill(ISpell spell, HUDController.Spells pickType, Transform skillPos)
+    private void ActivateSkill(ISpell spell, HUDController.Spells pickType, Transform skillPos)
     {
         var canCast = !spell.IsInCooldown() && spell.GetManaCost() < _mana;
 
@@ -126,7 +137,7 @@ public class PlayerSkills : Photon.MonoBehaviour
                 StartCoroutine(CastSpell(spell.CastTime(), spell, pickType, skillPos));
             }
         }
-        else if(spell.GetCastType() == CastType.TWO_STEP)
+        else if (spell.GetCastType() == CastType.TWO_STEP)
         {
             if (canCast)
             {
@@ -170,7 +181,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         var w = new WaitForSeconds(time);
         yield return w;
 
-        _repulsiveSkill.UseSpell(skillPos);
+        _universalSkill.UseSpell(skillPos);
         isChannelingSpell = false;
 
 
@@ -197,7 +208,8 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         while (true)
         {
-            ActivateDestructibleProyections(spell.showProjections(GetActualMana()));
+            if (_actualSkillType == HUDController.Spells.Environmental)
+                ActivateDestructibleProyections(spell.showProjections(GetActualMana()));
             yield return new WaitForEndOfFrame();
         }
     }

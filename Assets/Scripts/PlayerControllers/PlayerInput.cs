@@ -263,25 +263,29 @@ public class PlayerInput : MonoBehaviour
         {
             if (readJoystick)
             {
-                if (!_ps.isPulling && InputManager.instance.GetJoystickEnviromentSkill())
-                    _ps.DestructiveSkill(_pst.mana);
+                if (InputManager.instance.GetJoystickEnviromentSkill())
+                    _ps.EnvironmentalSkill();
                 else if (InputManager.instance.GetJoystickClassSkill())
-                    _ps.GravitationalSkill(_pst.mana);
-                //else if (!_ps.isPulling && InputManager.instance.GetJoystickSkill())
-                //    _ps.RepulsiveSkill(_pst.mana);
-                else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetJoystickUseItem())
-                    _ps.BlinkSkill(_pst.mana);
+                    _ps.ClassSkill();
+                /*else if (!_ps.isPulling && InputManager.instance.GetJoystickUniversalSkill())
+                    _ps.UniversalSkill(_pst.mana);*/
+                else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetJoystickMovementSkill())
+                    _ps.MovementSkill(_pst.mana);
+                else if (InputManager.instance.GetJoystickUseSkill())
+                    _ps.UseSkill(_pst.mana);
             }
             else
             {
-                if (!_ps.isPulling && InputManager.instance.GetEnviromentSkill())
-                    _ps.DestructiveSkill(_pst.mana);
+                if (InputManager.instance.GetEnviromentSkill())
+                    _ps.EnvironmentalSkill();
                 else if (InputManager.instance.GetClassSkill())
-                    _ps.GravitationalSkill(_pst.mana);
-                //else if (!_ps.isPulling && InputManager.instance.GetSkill())
-                // _ps.RepulsiveSkill(_pst.mana);
-                else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetUseItem())
-                    _ps.BlinkSkill(_pst.mana);
+                    _ps.ClassSkill();
+                /*else if (!_ps.isPulling && InputManager.instance.GetUniversalSkill())
+                 _ps.UniversalSkill(_pst.mana);*/
+                else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetMovementSkill())
+                    _ps.MovementSkill(_pst.mana);
+                else if (InputManager.instance.GetUseSkill())
+                    _ps.UseSkill(_pst.mana);
             }
         }
     }

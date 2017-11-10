@@ -43,7 +43,7 @@ public class HUDController : Photon.MonoBehaviour
 
     List<Text[]> allCooldowns = new List<Text[]>();
 
-    public enum Spells { Environmental, Class, Picked, Mobility, Passive, Count };
+    public enum Spells { Environmental, Class, Universal, Mobility, Passive, Count };
     #endregion
 
     void Start()
@@ -223,8 +223,8 @@ public class HUDController : Photon.MonoBehaviour
 
     void GetEverything()
     {
-        var tnf = gui.transform.GetComponentsInChildren<Transform>(false);
-        _rect = this.GetComponent<RectTransform>();
+        var tnf = gui.transform.GetComponentsInChildren<Transform>(true);
+        _rect = GetComponent<RectTransform>();
 
         foreach (var child in tnf)
         {

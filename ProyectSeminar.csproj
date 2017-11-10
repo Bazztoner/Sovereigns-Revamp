@@ -218,6 +218,7 @@
     <Compile Include="Assets\Scripts\Framework\GameManager.cs" />
     <Compile Include="Assets\Scripts\Framework\IObservable.cs" />
     <Compile Include="Assets\Scripts\Framework\IObserver.cs" />
+    <Compile Include="Assets\Scripts\Framework\InputManager - backup.cs" />
     <Compile Include="Assets\Scripts\Framework\InputManager.cs" />
     <Compile Include="Assets\Scripts\Framework\NetworkAttacks.cs" />
     <Compile Include="Assets\Scripts\Framework\NetworkCharacter.cs" />
@@ -271,6 +272,7 @@
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_BigShieldAttack.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_Damage.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_GuardBreakAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_GuardBreakEnter.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_HorizontalAttack.cs" />
