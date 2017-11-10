@@ -57,14 +57,25 @@ public class PlayerSkills : Photon.MonoBehaviour
         _environmentalSkill.Init();
         StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)_environmentalSkill));
 
-        _classSkill = new SK_ArcaneOrb();
-        _classSkill.Init(GetComponent<PlayerMovement>());
+        if (gameObject.name == "Player1" || gameObject.name == "Player3")
+        {
+            _classSkill = new SK_ArcaneOrb();
+            _classSkill.Init(GetComponent<PlayerMovement>());
+        }
+        else
+        {
+            _classSkill = new SK_ToxicBlood();
+            _classSkill.Init(GetComponent<PlayerMovement>());
+        }
 
         _actualSkill = _classSkill;
         _actualSkillType = HUDController.Spells.Class;
 
-        //_repulsiveSkill = new RepulsiveTelekinesis();
-        //_repulsiveSkill.Init();
+        if (gameObject.name == "Player2")
+        {
+            _universalSkill = new SK_DoubleEdgedScales();
+            _universalSkill.Init(GetComponent<PlayerMovement>());
+        }
 
         _movementSkill = new Blink();
         _movementSkill.Init(GetComponent<PlayerMovement>());
@@ -158,14 +169,6 @@ public class PlayerSkills : Photon.MonoBehaviour
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }
-
-        /*var castTo = (AtractiveTelekinesis)_destructiveSkill;
-
-        if (!castTo.showProjections(GetActualMana()))
-        {
-            ActivateDestructibleProyections(false);
-            StartCoroutine(PutAtractiveVisible(castTo));
-        }*/
     }
     #endregion
 
@@ -174,7 +177,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     IEnumerator CastSpell(float time, ISpell spell, HUDController.Spells pickType, Transform skillPos)
     {
         var vTemp = new Vector3(transform.position.x, transform.position.y + 0.66f, transform.position.z);
-        EventManager.DispatchEvent("RepulsiveTelekinesisLoad", new object[] { vTemp, this.GetComponent<PlayerParticles>() });
+        EventManager.DispatchEvent("SpellBeingCasted", new object[] { vTemp, this.GetComponent<PlayerParticles>() });
 
         isChannelingSpell = true;
 
@@ -193,11 +196,6 @@ public class PlayerSkills : Photon.MonoBehaviour
     IEnumerator SpellCooldown(ISpell spell, HUDController.Spells pickType)
     {
         spell.EnterInCooldown();
-        /*if (spell.GetType() == typeof(AtractiveTelekinesis))
-        {
-            ActivateDestructibleProyections(false);
-            StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)spell));
-        }*/
 
         yield return new WaitForSeconds(spell.CooldownTime());
 
@@ -210,6 +208,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         {
             if (_actualSkillType == HUDController.Spells.Environmental)
                 ActivateDestructibleProyections(spell.showProjections(GetActualMana()));
+            else ActivateDestructibleProyections(false);
             yield return new WaitForEndOfFrame();
         }
     }

@@ -126,7 +126,11 @@ public class PlayerStats : Photon.MonoBehaviour
     void LoseHP(float damage, string attackType, string attackerName)
     {
         float dmg;
-        bool blocked = true;
+        //bool blocked = true;
+        // 0 - Not blocked
+        // 1 - Block without particle / special particle
+        // 2 - Blocked with particle
+        byte blockPhase = 0;
 
         if (attackType == "MeleeHorizontal")
         {
@@ -135,16 +139,18 @@ public class PlayerStats : Photon.MonoBehaviour
                 dmg = (_imperfectBlockPerc * damage) / 100;
                 EventManager.DispatchEvent("BlockSound");
                 if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+                blockPhase = 2;
             }
             else if (_isBlocking)
             {
                 dmg = (_perfectBlockPerc * damage) / 100;
                 EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+                blockPhase = 2;
             }
             else
             {
                 dmg = damage;
-                blocked = false;
+                blockPhase = 0;
             }
         }
         else if (attackType == "MeleeVertical")
@@ -153,24 +159,26 @@ public class PlayerStats : Photon.MonoBehaviour
             {
                 dmg = (_perfectBlockPerc * damage) / 100;
                 EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+                blockPhase = 2;
             }
             else if (_isBlocking)
             {
                 dmg = (_imperfectBlockPerc * damage) / 100;
                 EventManager.DispatchEvent("BlockSound");
                 if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+                blockPhase = 2;
             }
             else
             {
                 dmg = damage;
-                blocked = false;
+                blockPhase = 0;
             }
         }
         else if (attackType == "ParryAttack")
         {
             if (GetComponent<PlayerCombat>().isAttacking) EventManager.DispatchEvent("Stun", new object[] { attackerName, _stunTime });
             dmg = 10;
-            blocked = false;
+            blockPhase = 0;
         }
         else if (attackType == "GuardBreakAttack")
         {
@@ -180,17 +188,32 @@ public class PlayerStats : Photon.MonoBehaviour
                 EventManager.DispatchEvent("Stun", new object[] { attackerName, _stunTime });
             }
             dmg = damage * 1.6f;
-            blocked = false;
+            blockPhase = 0;
+        }
+        else if (attackType == "Spell")
+        {
+            dmg = damage;
+            blockPhase = 0;
+        }
+        else if (attackType == "Health reduction")
+        {
+            dmg = damage;
+            blockPhase = 1;
         }
         else
         {
             dmg = damage;
-            blocked = false;
+            blockPhase = 0;
         }
 
-        if (!blocked)
+        if (blockPhase == 0)
         {
             EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType, uncancelableAttack });
+            EventManager.DispatchEvent("UpdateComboMeter", new object[] { this.gameObject.name });
+        }
+        else if (blockPhase == 1)
+        {
+            EventManager.DispatchEvent("ToxicDamageParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
             EventManager.DispatchEvent("UpdateComboMeter", new object[] { this.gameObject.name });
         }
         else EventManager.DispatchEvent("BlockParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
@@ -209,10 +232,34 @@ public class PlayerStats : Photon.MonoBehaviour
         EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, fill });
     }
 
-
     public void TakeDamage(float damage, string attackType, string attackerName)
     {
-        LoseHP(damage, attackType, attackerName);
+        if (gameObject.name != attackerName) LoseHP(damage, attackType, attackerName);
+    }
+
+    public void TakeDamage(float damage, string attackType, string attackerName, float time, int tickCoeficient)
+    {
+        if (gameObject.name != attackerName) StartCoroutine(TakeDamagePerSecond(damage, attackType, attackerName, time, tickCoeficient));
+    }
+
+    IEnumerator TakeDamagePerSecond(float damage, string attackType, string attackerName, float time, int tickCoeficient)
+    {
+        var tickDuration = time / tickCoeficient;
+        var ticks = 0;
+        float actualDuration = 0;
+        var appliedDamage = damage / tickCoeficient;
+        while (actualDuration <= time)
+        {
+            ticks++;
+
+            if (ticks == 30 || ticks == 60)
+                LoseHP(appliedDamage, attackType, attackerName);
+            else
+                LoseHP(appliedDamage, "Health reduction", attackerName);
+
+            actualDuration += tickDuration;
+            yield return new WaitForSeconds(tickDuration);
+        }
     }
 
     private void Regenerate()

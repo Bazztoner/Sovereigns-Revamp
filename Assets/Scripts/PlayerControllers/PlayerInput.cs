@@ -51,17 +51,12 @@ public class PlayerInput : MonoBehaviour
         EventManager.AddEventListener("Stun", OnStun);
         EventManager.AddEventListener("StopStun", OnStopStun);
         EventManager.AddEventListener("GuardBreak", OnGuardBreak);
+        EventManager.AddEventListener("DoubleEdgedScalesCasted", OnDoubleEdgedScalesCasted);
         EventManager.AddEventListener("SpecialAttack", OnSpecialAttack);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
     }
 
-    void OnSpecialAttack(object[] paramsContainer)
-    {
-        if (gameObject.name == (string)paramsContainer[0])
-        {
-            _pc.StopBlock();
-        }
-    }
+    
 
     void Update()
     {
@@ -267,8 +262,8 @@ public class PlayerInput : MonoBehaviour
                     _ps.EnvironmentalSkill();
                 else if (InputManager.instance.GetJoystickClassSkill())
                     _ps.ClassSkill();
-                /*else if (!_ps.isPulling && InputManager.instance.GetJoystickUniversalSkill())
-                    _ps.UniversalSkill(_pst.mana);*/
+                else if (!_ps.isPulling && InputManager.instance.GetJoystickUniversalSkill())
+                    _ps.UniversalSkill();
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetJoystickMovementSkill())
                     _ps.MovementSkill(_pst.mana);
                 else if (InputManager.instance.GetJoystickUseSkill())
@@ -281,7 +276,7 @@ public class PlayerInput : MonoBehaviour
                 else if (InputManager.instance.GetClassSkill())
                     _ps.ClassSkill();
                 /*else if (!_ps.isPulling && InputManager.instance.GetUniversalSkill())
-                 _ps.UniversalSkill(_pst.mana);*/
+                 _ps.UniversalSkill();*/
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetMovementSkill())
                     _ps.MovementSkill(_pst.mana);
                 else if (InputManager.instance.GetUseSkill())
@@ -295,6 +290,25 @@ public class PlayerInput : MonoBehaviour
     void OnTransition(object[] paramsContainer)
     {
         _gameInCourse = (bool)paramsContainer[0];
+    }
+
+    void OnDoubleEdgedScalesCasted(object[] paramsContainer)
+    {
+        if ((string)paramsContainer[0] == this.gameObject.name)
+        {
+            EventManager.DispatchEvent("GuardBreakParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
+
+            _canBlock = false;
+            Invoke("BlockEnable", (float)paramsContainer[1]);
+        }
+    }
+
+    void OnSpecialAttack(object[] paramsContainer)
+    {
+        if (gameObject.name == (string)paramsContainer[0])
+        {
+            _pc.StopBlock();
+        }
     }
 
     private void OnStun(params object[] paramsContainer)

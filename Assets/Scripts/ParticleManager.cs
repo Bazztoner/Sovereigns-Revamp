@@ -20,24 +20,27 @@ public class ParticleManager : MonoBehaviour
         else instance = this;
     }
 
-    void Start ()
+    void Start()
     {
-        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamage);
+        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
         EventManager.AddEventListener("StunParticle", OnStunParticle);
         EventManager.AddEventListener("GuardBreakParticle", OnGuardBreakParticle);
         EventManager.AddEventListener("BlockParticle", OnBlockParticle);
+        EventManager.AddEventListener("ToxicDamageParticle", OnToxicDamageParticle);
         EventManager.AddEventListener("EnemyDamaged", OnEnemyDamage);
         EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
         //EventManager.AddEventListener("TelekinesisObjectLaunched", OnObjectLaunched);
-        EventManager.AddEventListener("RepulsiveTelekinesisLoad", OnRepulsiveTelekinesisLoad);
+        EventManager.AddEventListener("SpellBeingCasted", OnSpellBeingCasted);
         EventManager.AddEventListener("RepulsiveTelekinesisCasted", OnRepulsiveTelekinesisCasted);
     }
+
+
 
     public static void DestroyInstance()
     {
         instance = null;
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -84,20 +87,31 @@ public class ParticleManager : MonoBehaviour
         var caster = (PlayerParticles)paramsContainer[2];
         var tempPos = (Vector3)paramsContainer[1];
         var allChilds = caster.GetComponentsInChildren<Transform>();
-        var stunTime = (float)paramsContainer[3];
+        var breakTime = (float)paramsContainer[3];
         Transform parent = caster.transform;
 
         foreach (Transform child in allChilds)
         {
-            if (child.name == "Shield")
+            if (caster.gameObject.name == "Player2")
             {
-                parent = child;
-                break;
+                if (child.name == "LeftPalm" || child.name == "RightPalm")
+                {
+                    parent = child;
+                    if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "GuardBreakGraphic", parent, breakTime);
+                    else caster.ParticleCaller(parts[(int)ParticleID.GuardBreakGraphic].gameObject, parent, breakTime, true);
+                }
+            }
+            else
+            {
+                if (child.name == "Shield")
+                {
+                    parent = child;
+                    if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "GuardBreakGraphic", parent, breakTime);
+                    else caster.ParticleCaller(parts[(int)ParticleID.GuardBreakGraphic].gameObject, parent, breakTime, true);
+                    break;
+                }
             }
         }
-
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "GuardBreakGraphic", parent, stunTime);
-        else caster.ParticleCaller(parts[(int)ParticleID.GuardBreakGraphic].gameObject, parent, stunTime, true);
     }
 
     /// <summary>
@@ -128,13 +142,23 @@ public class ParticleManager : MonoBehaviour
         else caster.ParticleCaller(parts[(int)ParticleID.BlockingSparks].gameObject, pos, caster.transform.forward);
     }
 
-    void OnRepulsiveTelekinesisLoad(object[] paramsContainer)
+    void OnToxicDamageParticle(object[] paramsContainer)
+    {
+        var caster = (PlayerParticles)paramsContainer[2];
+        var tempPos = (Vector3)paramsContainer[1];
+        var pos = new Vector3(tempPos.x, tempPos.y + 0.66f, tempPos.z);
+
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Toxine", pos);
+        else caster.ParticleCaller(parts[(int)ParticleID.ToxineDamage].gameObject, pos);
+    }
+
+    void OnSpellBeingCasted(object[] paramsContainer)
     {
         var caster = (PlayerParticles)paramsContainer[1];
         var tempPos = (Vector3)paramsContainer[0];
         var pos = new Vector3(tempPos.x, tempPos.y - 1, tempPos.z);
 
-        if(!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Charge", pos);
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Charge", pos);
         else caster.ParticleCaller(parts[(int)ParticleID.ChargeShockwave].gameObject, pos);
     }
 
@@ -147,7 +171,7 @@ public class ParticleManager : MonoBehaviour
         else caster.ParticleCaller(parts[(int)ParticleID.LaunchShockwave].gameObject, pos);
     }
 
-    void OnCharacterDamage(object[] paramsContainer)
+    void OnCharacterDamaged(object[] paramsContainer)
     {
         var caster = (PlayerParticles)paramsContainer[2];
         var tempPos = (Vector3)paramsContainer[1];
@@ -170,7 +194,7 @@ public class ParticleManager : MonoBehaviour
     {
         var caster = (PlayerParticles)paramsContainer[1];
         var tempPos = (Transform)paramsContainer[0];
-        
+
         var inst = caster.ParticleCaller(parts[(int)ParticleID.MagicAura].gameObject, tempPos);
 
         inst.transform.localPosition = Vector3.zero;
@@ -194,5 +218,6 @@ public enum ParticleID
     LaunchShockwave,
     StunGraphic,
     GuardBreakGraphic,
+    ToxineDamage,
     Count
 }

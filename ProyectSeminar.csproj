@@ -251,6 +251,10 @@
     <Compile Include="Assets\Scripts\Skills\Blink.cs" />
     <Compile Include="Assets\Scripts\Skills\BlinkSpot.cs" />
     <Compile Include="Assets\Scripts\Skills\Debris.cs" />
+    <Compile Include="Assets\Scripts\Skills\Demons\DoubleEdgedScales\DMM_DoubleEdgedScales.cs" />
+    <Compile Include="Assets\Scripts\Skills\Demons\DoubleEdgedScales\SK_DoubleEdgedScales.cs" />
+    <Compile Include="Assets\Scripts\Skills\Demons\ToxicBlood\DMM_ToxicBlood.cs" />
+    <Compile Include="Assets\Scripts\Skills\Demons\ToxicBlood\SK_ToxicBlood.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructAnimCont.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleBoundingBox.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleImpactArea.cs" />
@@ -259,6 +263,8 @@
     <Compile Include="Assets\Scripts\Skills\GravitationalDummy.cs" />
     <Compile Include="Assets\Scripts\Skills\GravitationalTelekinesis.cs" />
     <Compile Include="Assets\Scripts\Skills\Proyectiles\ArcaneOrb.cs" />
+    <Compile Include="Assets\Scripts\Skills\Proyectiles\DoubleEdgedScale.cs" />
+    <Compile Include="Assets\Scripts\Skills\Proyectiles\ToxicBlood.cs" />
     <Compile Include="Assets\Scripts\Skills\RepulsiveDummy.cs" />
     <Compile Include="Assets\Scripts\Skills\RepulsiveTelekinesis.cs" />
     <Compile Include="Assets\Scripts\Skills\Spell.cs" />
