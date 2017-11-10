@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 96
-  throwForce: 35
+  throwForce: 450
   _rb: {fileID: 0}
 --- !u!136 &136190217063157536
 CapsuleCollider:

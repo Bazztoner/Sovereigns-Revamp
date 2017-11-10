@@ -23,6 +23,7 @@ public class DoubleEdgedScale : MonoBehaviour
     {
         if (_rb == null) _rb = GetComponent<Rigidbody>();
         _rb.AddForce(transform.forward * throwForce);
+        transform.parent = null;
         Destroy(gameObject, 2f);
     }
 
@@ -30,6 +31,7 @@ public class DoubleEdgedScale : MonoBehaviour
     {
         if (_rb == null) _rb = GetComponent<Rigidbody>();
         _rb.AddForce(dir * throwForce);
+        transform.parent = null;
         Destroy(gameObject, 2f);
     }
 
