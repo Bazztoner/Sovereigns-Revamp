@@ -20,6 +20,7 @@ public class HUDController : Photon.MonoBehaviour
     public Image defeat;
     public Image tie;
     public Image lockOnImage;
+    public Image enemyLifeBarFill;
     public Image[] roundTexts;
     public Text damageText;
     public Animator hudAnim;
@@ -30,9 +31,11 @@ public class HUDController : Photon.MonoBehaviour
     private float _smooth = 0.1f;
     private bool _gameInCourse = false;
     private Vector3 _v3Lock;
+    private Vector2 _barLocalPos;
     private Vector2 _localPos;
     private RectTransform _rect;
     private Transform _lockTarget;
+    private Transform _enemyBarPos;
     private Camera _cam;
 
     Text comboText;
@@ -53,6 +56,7 @@ public class HUDController : Photon.MonoBehaviour
     void LateUpdate()
     {
         FollowTarget();
+        RelocateEnemyLifeBar();
     }
 
     void AddEvents()
@@ -250,7 +254,40 @@ public class HUDController : Photon.MonoBehaviour
 
         comboText = transform.FindChild("Combometer").GetComponent<Text>();
 
+        if (this.gameObject.name == "HUD1")
+            _enemyBarPos = GameObject.Find("Player2").transform.Find("LifeBarPos");
+        else if(this.gameObject.name == "HUD2")
+            _enemyBarPos = GameObject.Find("Player1").transform.Find("LifeBarPos");
+
         FillArrays();
+    }
+
+    private void RelocateEnemyLifeBar()
+    {
+        if (_enemyBarPos != null)
+        {
+            var camPos = this.GetComponent<Canvas>().worldCamera.transform.position;
+            var enemyDir = (_enemyBarPos.position - camPos).normalized;
+            var enemyDir2 = new Vector2(enemyDir.x, enemyDir.z);
+            var camForward = new Vector2(this.GetComponent<Canvas>().worldCamera.transform.forward.x, this.GetComponent<Canvas>().worldCamera.transform.forward.z);
+            var angle = Vector3.Angle(enemyDir2, camForward);
+
+            if (angle <= this.GetComponent<Canvas>().worldCamera.fieldOfView)
+            {
+                enemyBar.gameObject.SetActive(true);
+
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(this.GetComponent<RectTransform>(),
+                                      RectTransformUtility.WorldToScreenPoint(this.GetComponent<Canvas>().worldCamera, _enemyBarPos.position),
+                                      this.GetComponent<Canvas>().worldCamera,
+                                      out _barLocalPos);
+
+                enemyBar.localPosition = _barLocalPos;
+            }
+            else
+            {
+                enemyBar.gameObject.SetActive(false);
+            }
+        }
     }
 
     /// <summary>
@@ -279,6 +316,8 @@ public class HUDController : Photon.MonoBehaviour
                 hp.fillAmount = (float)paramsContainer[2];
             else if (this.gameObject.name == "HUD2" && (string)paramsContainer[0] == "Player2")
                 hp.fillAmount = (float)paramsContainer[2];
+            else if ((this.gameObject.name == "HUD1" && (string)paramsContainer[0] == "Player2") || (this.gameObject.name == "HUD2" && (string)paramsContainer[0] == "Player1"))
+                enemyLifeBarFill.fillAmount = (float)paramsContainer[2];
         }
         else
         {

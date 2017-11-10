@@ -86,8 +86,11 @@ public class PlayerCombat : Photon.MonoBehaviour
     #region Animation Events
     private void OnIdleEnter(params object[] paramsContainer)
     {
-        isAttacking = false;
-        EventManager.DispatchEvent("AttackExit");
+        if (this.gameObject.name == (string)paramsContainer[0])
+        {
+            isAttacking = false;
+            EventManager.DispatchEvent("AttackExit");
+        }
     }
 
     private void OnAttackExit()
