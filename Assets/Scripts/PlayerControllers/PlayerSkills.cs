@@ -11,7 +11,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     private ISpell _universalSkill;
     private ISpell _movementSkill;
     private Transform _skillPos;
-    private float _mana;
+    public float mana;
     ISpell _actualSkill;
     HUDController.Spells _actualSkillType;
 
@@ -56,6 +56,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         _environmentalSkill = new AtractiveTelekinesis();
         _environmentalSkill.Init();
         StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)_environmentalSkill));
+        StartCoroutine(UpdateSkillsState());
 
         if (gameObject.name == "Player1" || gameObject.name == "Player3")
         {
@@ -95,7 +96,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     #region Skills
     public void UseSkill(float mana)
     {
-        _mana = mana;
+        //this.mana = mana;
         ActivateSkill(_actualSkill, _actualSkillType, _skillPos);
     }
 
@@ -104,6 +105,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         _actualSkill = _environmentalSkill;
         _actualSkillType = HUDController.Spells.Environmental;
+        EventManager.DispatchEvent("UISpellChanged", new object[] { _actualSkillType, gameObject.name });
     }
 
     /// <summary>Activates the gravitational skill</summary>
@@ -111,6 +113,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         _actualSkill = _classSkill;
         _actualSkillType = HUDController.Spells.Class;
+        EventManager.DispatchEvent("UISpellChanged", new object[] { _actualSkillType, gameObject.name });
     }
 
     /// <summary>Activates the repulsive skill</summary>
@@ -118,19 +121,20 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         _actualSkill = _universalSkill;
         _actualSkillType = HUDController.Spells.Universal;
+        EventManager.DispatchEvent("UISpellChanged", new object[] { _actualSkillType, gameObject.name });
     }
 
     /// <summary>Activates the blink skill</summary>
     public void MovementSkill(float mana)
     {
-        _mana = mana;
+        //this.mana = mana;
         ActivateSkill(_movementSkill, HUDController.Spells.Mobility, null);
     }
 
     /// <summary>Decides if it needs to wait or not to launch an spell</summary>
     private void ActivateSkill(ISpell spell, HUDController.Spells pickType, Transform skillPos)
     {
-        var canCast = !spell.IsInCooldown() && spell.GetManaCost() < _mana;
+        var canCast = !spell.IsInCooldown() && spell.GetManaCost() < mana;
 
         if (spell.GetCastType() == CastType.INSTANT)
         {
@@ -200,6 +204,20 @@ public class PlayerSkills : Photon.MonoBehaviour
         yield return new WaitForSeconds(spell.CooldownTime());
 
         spell.ExitFromCooldown();
+    }
+
+    IEnumerator UpdateSkillsState()
+    {
+        var skills = new ISpell[4] { _environmentalSkill, _classSkill, _universalSkill, _movementSkill };
+        while ("Santiago Maldonado" != "Lo mató Gendarmería")
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+                var hasMana = _environmentalSkill.GetManaCost() < mana;
+                EventManager.DispatchEvent("UIUpdateSkillState", new object[] { hasMana, i, gameObject.name });
+            }
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     IEnumerator PutAtractiveVisible(AtractiveTelekinesis spell)

@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerParticles : Photon.MonoBehaviour {
+public class PlayerParticles : Photon.MonoBehaviour
+{
 
     private Transform _skillPos;
     GameObject _runParticle;
@@ -191,6 +193,20 @@ public class PlayerParticles : Photon.MonoBehaviour {
         Destroy(inst, lifeTime);
         return inst;
     }
+
+    public GameObject ParticleCaller(GameObject part, RectTransform parent, float lifeTime, bool alignToZero)
+    {
+        //parent.anchoredPosition = Vector2.zero;
+        var inst = Instantiate(part, parent);
+        var coso = Camera.main.WorldToScreenPoint(parent.position);
+        if (alignToZero)
+        {
+            inst.transform.localPosition = coso;
+            inst.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+        Destroy(inst, lifeTime);
+        return inst;
+    }
     #endregion
     #region Part + pos/parent + lifetime + forward
     public GameObject ParticleCaller(GameObject part, Vector3 pos, float lifeTime, Vector3 fwd)
@@ -232,7 +248,7 @@ public class PlayerParticles : Photon.MonoBehaviour {
     {
         if (GameManager.screenDivided)
         {
-            if(transform.GetComponent<PlayerInput>().gameObject.name == (string)paramsContainer[0])
+            if (transform.GetComponent<PlayerInput>().gameObject.name == (string)paramsContainer[0])
             {
                 _runParticle.SetActive((bool)paramsContainer[1]);
             }

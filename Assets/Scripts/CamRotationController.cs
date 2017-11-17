@@ -167,6 +167,7 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
         EventManager.AddEventListener("StunShake", OnStun);
         EventManager.AddEventListener("StopStunCamera", OnStopStun);
+        EventManager.AddEventListener("StartBlinkFeedback", OnActivateBlink);
     }
 
     void OnTransitionSmoothUpdate(object[] paramsContainer)
@@ -265,6 +266,21 @@ public class CamRotationController : MonoBehaviour
             if (!_readJoystick && InputManager.instance.GetLockOn()) CamLock();
             else if (_readJoystick && InputManager.instance.GetJoystickLockOn()) CamLock();
         }
+    }
+
+    void OnActivateBlink(object[] paramsContainer)
+    {
+        if ((CamRotationController)paramsContainer[0] == this)
+        {
+            BlinkFeedback();
+        }
+    }
+
+    void BlinkFeedback()
+    {
+        var startFov = GetCamera.fieldOfView;
+        var endFov = GetCamera.fieldOfView * 2;
+        StartCoroutine(LerpCameraFOV(startFov, endFov, .3f));
     }
 
     #region Movement
@@ -521,7 +537,7 @@ public class CamRotationController : MonoBehaviour
     /// <param name="paramsContainer"></param>
     void OnTransitionCameraUpdate(object[] paramsContainer)
     {
-        var start = (bool)paramsContainer[0];
+        /*var start = (bool)paramsContainer[0];
 
         Camera subCam;
         Vector2 originalPosCam1 = GetCamera.rect.position;
@@ -570,7 +586,7 @@ public class CamRotationController : MonoBehaviour
             }
 
         }
-
+        */
         /*StartCoroutine(TransitionCameraUpdate(GetCamera, .5f));
         StartCoroutine(TransitionCameraUpdate(subCam, .5f));*/
     }
@@ -720,6 +736,18 @@ public class CamRotationController : MonoBehaviour
         }
     }
 
+    IEnumerator LerpCameraRect(Camera cam, float maxTime)
+    {
+        var i = 0f;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / maxTime;
+            MoveCameraRect(cam);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     IEnumerator TransitionCameraUpdate(Camera cam, float maxTime)
     {
         var i = 0f;
@@ -732,17 +760,25 @@ public class CamRotationController : MonoBehaviour
         }
     }
 
-    IEnumerator LerpRect(Camera cam, Vector3 startPos, Vector3 endPos, float maxTime)
+    IEnumerator LerpCameraFOV(float startValue, float endValue, float maxTime)
     {
         var i = 0f;
 
         while (i <= 1)
         {
-            i += Time.deltaTime / maxTime;
-            var rkt = cam.rect;
-            var vkt = Vector3.Lerp(startPos, endPos, i);
-            rkt.Set(vkt.x, vkt.y, 1, .5f);
-            cam.rect = rkt;
+            i += Time.deltaTime / (maxTime / 2);
+            var lerp = Mathf.Lerp(startValue, endValue, i);
+            GetCamera.fieldOfView = lerp;
+            yield return new WaitForEndOfFrame();
+        }
+
+        i = 0;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / (maxTime / 2);
+            var lerp = Mathf.Lerp(endValue, startValue, i);
+            GetCamera.fieldOfView = lerp;
             yield return new WaitForEndOfFrame();
         }
     }

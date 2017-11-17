@@ -11,6 +11,8 @@ public class HUDController : Photon.MonoBehaviour
     public GameObject gui;
     public GameObject crosshair;
     Image[] spells = new Image[5];
+    Image[] icons = new Image[5];
+    Image[] frames = new Image[5];
     Image hp;
     Image mana;
     public Image youWin;
@@ -72,6 +74,53 @@ public class HUDController : Photon.MonoBehaviour
         EventManager.AddEventListener("EndOfMatch", OnEndOfMatch);
         EventManager.AddEventListener("PlayerDeath", OnPlayerDeath);
         EventManager.AddEventListener("UpdateComboMeter", OnCombo);
+        EventManager.AddEventListener("UISpellChanged", OnSpellChanged);
+        EventManager.AddEventListener("UIUpdateSkillState", OnUpdateSkillState);
+    }
+
+    void OnUpdateSkillState(object[] paramsContainer)
+    {
+        var hasMana = (bool)paramsContainer[0];
+        var i = (int)paramsContainer[1];
+        var sender = (string)paramsContainer[2];
+
+        if (this.gameObject.name == "HUD1" && sender == "Player1" || this.gameObject.name == "HUD2" && sender == "Player2")
+        {
+            var newColor = icons[i].color;
+            newColor = hasMana ? Color.white : Color.blue;
+            icons[i].color = newColor;
+        }
+    }
+
+    /// <summary>
+    /// 0 - Skill Type Enum
+    /// 1 - Player Name
+    /// </summary>
+    /// <param name="paramsContainer"></param>
+    void OnSpellChanged(object[] paramsContainer)
+    {
+        var type = (Spells)paramsContainer[0];
+        var pos = spells[(int)type].rectTransform;
+
+        if (this.gameObject.name == "HUD1" && (string)paramsContainer[1] == "Player1" || this.gameObject.name == "HUD2" && (string)paramsContainer[1] == "Player2")
+        {
+            for (int i = 0; i < frames.Length -1; i++)
+            {
+                if (i != (int)type && frames[i] != null)
+                {
+                    var newColor = frames[i].color;
+                    newColor = Color.red;
+                    frames[i].color = newColor;
+                }
+                else
+                {
+                    var newColor = frames[i].color;
+                    newColor = Color.white;
+                    frames[i].color = newColor;
+                }
+            }
+            EventManager.DispatchEvent("ActivateParticleSpellChanged", new object[] { (string)paramsContainer[1], pos });
+        }
     }
 
     void OnCombo(object[] paramsContainer)
@@ -105,7 +154,7 @@ public class HUDController : Photon.MonoBehaviour
         }
 
         comboMeter++;
-        comboText.text = "x"+comboMeter.ToString();
+        comboText.text = "x" + comboMeter.ToString();
         Invoke("ResetCombo", comboLifeTime);
     }
 
@@ -250,13 +299,55 @@ public class HUDController : Photon.MonoBehaviour
             {
                 spells[4] = child.GetComponent<Image>();
             }
+
+            else if (child.gameObject.name == "EnvSkillIcon")
+            {
+                icons[0] = child.GetComponent<Image>();
+            }
+            else if (child.gameObject.name == "ClassSkillIcon")
+            {
+                icons[1] = child.GetComponent<Image>();
+            }
+            else if (child.gameObject.name == "PickedSkillIcon")
+            {
+                icons[2] = child.GetComponent<Image>();
+            }
+            else if (child.gameObject.name == "BlinkSkillIcon")
+            {
+                icons[3] = child.GetComponent<Image>();
+            }
+            else if (child.gameObject.name == "PassiveSkillIcon")
+            {
+                icons[4] = child.GetComponent<Image>();
+            }
+
+            else if (child.gameObject.name == "EnvSkillFrame")
+            {
+                frames[0] = child.GetComponent<Image>();
+            }
+            else if (child.gameObject.name == "ClassSkillFrame")
+            {
+                frames[1] = child.GetComponent<Image>();
+            }
+            else if (child.gameObject.name == "PickedSkillFrame")
+            {
+                frames[2] = child.GetComponent<Image>();
+            }
+            else if (child.gameObject.name == "BlinkSkillFrame")
+            {
+                frames[3] = child.GetComponent<Image>();
+            }
+            else if (child.gameObject.name == "PassiveSkillFrame")
+            {
+                frames[4] = child.GetComponent<Image>();
+            }
         }
 
         comboText = transform.FindChild("Combometer").GetComponent<Text>();
 
         if (this.gameObject.name == "HUD1")
             _enemyBarPos = GameObject.Find("Player2").transform.Find("LifeBarPos");
-        else if(this.gameObject.name == "HUD2")
+        else if (this.gameObject.name == "HUD2")
             _enemyBarPos = GameObject.Find("Player1").transform.Find("LifeBarPos");
 
         FillArrays();
