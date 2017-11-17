@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -233,6 +227,7 @@
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionDummy.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionManager.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\Zone.cs" />
+    <Compile Include="Assets\Scripts\LightMapLerping.cs" />
     <Compile Include="Assets\Scripts\Loading.cs" />
     <Compile Include="Assets\Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\AnimationController.cs" />
@@ -251,6 +246,10 @@
     <Compile Include="Assets\Scripts\Skills\Blink.cs" />
     <Compile Include="Assets\Scripts\Skills\BlinkSpot.cs" />
     <Compile Include="Assets\Scripts\Skills\Debris.cs" />
+    <Compile Include="Assets\Scripts\Skills\Demons\DoubleEdgedScales\DMM_DoubleEdgedScales.cs" />
+    <Compile Include="Assets\Scripts\Skills\Demons\DoubleEdgedScales\SK_DoubleEdgedScales.cs" />
+    <Compile Include="Assets\Scripts\Skills\Demons\ToxicBlood\DMM_ToxicBlood.cs" />
+    <Compile Include="Assets\Scripts\Skills\Demons\ToxicBlood\SK_ToxicBlood.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructAnimCont.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleBoundingBox.cs" />
     <Compile Include="Assets\Scripts\Skills\Destructibles\DestructibleImpactArea.cs" />
@@ -259,6 +258,8 @@
     <Compile Include="Assets\Scripts\Skills\GravitationalDummy.cs" />
     <Compile Include="Assets\Scripts\Skills\GravitationalTelekinesis.cs" />
     <Compile Include="Assets\Scripts\Skills\Proyectiles\ArcaneOrb.cs" />
+    <Compile Include="Assets\Scripts\Skills\Proyectiles\DoubleEdgedScale.cs" />
+    <Compile Include="Assets\Scripts\Skills\Proyectiles\ToxicBlood.cs" />
     <Compile Include="Assets\Scripts\Skills\RepulsiveDummy.cs" />
     <Compile Include="Assets\Scripts\Skills\RepulsiveTelekinesis.cs" />
     <Compile Include="Assets\Scripts\Skills\Spell.cs" />
@@ -423,6 +424,7 @@
     <None Include="Assets\AmplifyShaderEditor\Readme.txt" />
     <None Include="Assets\Materials\Character Materials\Angel\AngelArmor.shader" />
     <None Include="Assets\Materials\Hud\FillAmount.shader" />
+    <None Include="Assets\Materials\Shaders\LightMapLerper.shader" />
     <None Include="Assets\Materials\Shaders\WallTesselation.shader" />
     <None Include="Assets\Photon Unity Networking\changelog.txt" />
     <None Include="Assets\Photon Unity Networking\link.xml" />

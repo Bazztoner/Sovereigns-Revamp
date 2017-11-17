@@ -7,9 +7,9 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: InnerWalls
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 23d01d33b9860d14d9147636f99bf35e, type: 3}
   m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP
-  m_LightmapFlags: 1
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -54,7 +54,7 @@ Material:
     - first:
         name: _InnerWalls_InnerWalls_AlbedoTransparency_DISP
       second:
-        m_Texture: {fileID: 2800000, guid: 0d39ad56c98d959439a434e97de88edb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 445bec721d6e76d4d9cf55c05a0dbaf8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -123,7 +123,7 @@ Material:
       second: 1
     - first:
         name: _Intensity
-      second: -0.02
+      second: 0.35
     - first:
         name: _Metallic
       second: 0
@@ -148,6 +148,9 @@ Material:
     - first:
         name: _SubDivisions
       second: 30
+    - first:
+        name: _TessPhongStrength
+      second: 1
     - first:
         name: _UVSec
       second: 0
