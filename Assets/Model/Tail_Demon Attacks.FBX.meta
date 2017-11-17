@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 533f2fae9652d7449a6a05f1aaf5e7d7
+guid: ab3ea7b864b101a4396bb47131978572
 timeCreated: 1509659698
 licenseType: Free
 ModelImporter:
@@ -161,13 +161,13 @@ ModelImporter:
     400150: Spine5
     400152: TailSpline
     400154: TorsoHub
-    7400000: D_Y
-    7400002: D_YY
-    7400004: D_YYY
-    7400006: D_X
-    7400008: D_XX
-    7400010: D_XXX
-    7400012: D_BLOCK+Y
+    7400000: TD_Y
+    7400002: TD_YY
+    7400004: TD_YYY
+    7400006: TD_X
+    7400008: TD_XX
+    7400010: TD_XXX
+    7400012: TD_BLOCK+Y
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -191,7 +191,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: D_Y
+      name: TD_Y
       takeName: Take 001
       firstFrame: 60
       lastFrame: 97
@@ -219,7 +219,7 @@ ModelImporter:
       maskSource: {fileID: 101100000, guid: e037524ef0e34d44a926b6a9e71ce5bd, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: D_YY
+      name: TD_YY
       takeName: Take 001
       firstFrame: 98
       lastFrame: 137
@@ -247,7 +247,7 @@ ModelImporter:
       maskSource: {fileID: 101100000, guid: e037524ef0e34d44a926b6a9e71ce5bd, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: D_YYY
+      name: TD_YYY
       takeName: Take 001
       firstFrame: 144
       lastFrame: 173
@@ -275,7 +275,7 @@ ModelImporter:
       maskSource: {fileID: 101100000, guid: e037524ef0e34d44a926b6a9e71ce5bd, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: D_X
+      name: TD_X
       takeName: Take 001
       firstFrame: 174
       lastFrame: 205
@@ -303,7 +303,7 @@ ModelImporter:
       maskSource: {fileID: 101100000, guid: e037524ef0e34d44a926b6a9e71ce5bd, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: D_XX
+      name: TD_XX
       takeName: Take 001
       firstFrame: 206
       lastFrame: 230
@@ -331,7 +331,7 @@ ModelImporter:
       maskSource: {fileID: 101100000, guid: e037524ef0e34d44a926b6a9e71ce5bd, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: D_XXX
+      name: TD_XXX
       takeName: Take 001
       firstFrame: 231
       lastFrame: 255
@@ -359,7 +359,7 @@ ModelImporter:
       maskSource: {fileID: 101100000, guid: e037524ef0e34d44a926b6a9e71ce5bd, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: D_BLOCK+Y
+      name: TD_BLOCK+Y
       takeName: Take 001
       firstFrame: 256
       lastFrame: 305
