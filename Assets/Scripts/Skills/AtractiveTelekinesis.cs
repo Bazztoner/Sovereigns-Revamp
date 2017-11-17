@@ -79,7 +79,7 @@ public class AtractiveTelekinesis : ISpell
         if (_target == null) return;
 
         PullObject(me);
-       
+
     }
 
     void PullObject(CamRotationController cam)
@@ -121,7 +121,7 @@ public class AtractiveTelekinesis : ISpell
     }
 
     #region "Getters"
-    public float CastTime() 
+    public float CastTime()
     {
         return _castTime;
     }

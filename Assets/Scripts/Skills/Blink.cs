@@ -45,6 +45,7 @@ public class Blink : ISpell
         if (to != default(Transform))
         {
             EventManager.DispatchEvent("ActivateBlinkTrail", new object[] { _me.gameObject.name });
+            EventManager.DispatchEvent("StartBlinkFeedback", new object[] { _me.GetComponent<PlayerInput>().GetCamera });
 
             _me.transform.position = to.position;
             var fTemp = _enemy.position - _me.transform.position;

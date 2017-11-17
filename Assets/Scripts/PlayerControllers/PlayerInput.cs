@@ -56,8 +56,6 @@ public class PlayerInput : MonoBehaviour
         EventManager.AddEventListener("RestartRound", OnRestartRound);
     }
 
-    
-
     void Update()
     {
         if (_gameInCourse)
@@ -66,6 +64,7 @@ public class PlayerInput : MonoBehaviour
             CheckRollAndRun();
             CheckAttacks();
             CheckSkills();
+            _ps.mana = _pst.Mana;
         }
     }
 

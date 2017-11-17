@@ -29,12 +29,21 @@ public class ParticleManager : MonoBehaviour
         EventManager.AddEventListener("ToxicDamageParticle", OnToxicDamageParticle);
         EventManager.AddEventListener("EnemyDamaged", OnEnemyDamage);
         EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
-        //EventManager.AddEventListener("TelekinesisObjectLaunched", OnObjectLaunched);
         EventManager.AddEventListener("SpellBeingCasted", OnSpellBeingCasted);
+        EventManager.AddEventListener("ActivateParticleSpellChanged", OnSpellChanged);
         EventManager.AddEventListener("RepulsiveTelekinesisCasted", OnRepulsiveTelekinesisCasted);
     }
 
+    void OnSpellChanged(object[] paramsContainer)
+    {
+        var sender = (string)paramsContainer[0];
+        var prnt = (RectTransform)paramsContainer[1];
 
+        var caster = GameObject.Find(sender).GetComponent<PlayerParticles>();
+
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "SpellChangeParticle", prnt, 1.1f);
+        else caster.ParticleCaller(parts[(int)ParticleID.SpellChangeParticle].gameObject, prnt, 1.1f, true);
+    }
 
     public static void DestroyInstance()
     {
@@ -219,5 +228,6 @@ public enum ParticleID
     StunGraphic,
     GuardBreakGraphic,
     ToxineDamage,
+    SpellChangeParticle,
     Count
 }
