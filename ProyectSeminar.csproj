@@ -233,6 +233,7 @@
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionDummy.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\TransitionManager.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\Zone.cs" />
+    <Compile Include="Assets\Scripts\LightMapLerping.cs" />
     <Compile Include="Assets\Scripts\Loading.cs" />
     <Compile Include="Assets\Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\AnimationController.cs" />
@@ -429,6 +430,7 @@
     <None Include="Assets\AmplifyShaderEditor\Readme.txt" />
     <None Include="Assets\Materials\Character Materials\Angel\AngelArmor.shader" />
     <None Include="Assets\Materials\Hud\FillAmount.shader" />
+    <None Include="Assets\Materials\Shaders\LightMapLerper.shader" />
     <None Include="Assets\Materials\Shaders\WallTesselation.shader" />
     <None Include="Assets\Photon Unity Networking\changelog.txt" />
     <None Include="Assets\Photon Unity Networking\link.xml" />
