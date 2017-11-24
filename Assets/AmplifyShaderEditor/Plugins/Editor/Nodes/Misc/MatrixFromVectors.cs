@@ -37,6 +37,7 @@ namespace AmplifyShaderEditor
 			AddOutputPort( m_selectedOutputType, Constants.EmptyPortValue );
 			m_textLabelWidth = 90;
 			m_autoWrapProperties = true;
+			m_hasLeftDropdown = true;
 			UpdatePorts();
 		}
 
@@ -51,33 +52,11 @@ namespace AmplifyShaderEditor
 			}
 		}
 
-
 		public override void Destroy()
 		{
 			base.Destroy();
 			m_upperLeftWidget = null;
 		}
-
-		public override void OnNodeLayout( DrawInfo drawInfo )
-		{
-			base.OnNodeLayout( drawInfo );
-			m_upperLeftWidget.OnNodeLayout( m_globalPosition, drawInfo );
-		}
-
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-			m_upperLeftWidget.DrawGUIControls( drawInfo );
-		}
-
-		public override void OnNodeRepaint( DrawInfo drawInfo )
-		{
-			base.OnNodeRepaint( drawInfo );
-			if( !m_isVisible )
-				return;
-			m_upperLeftWidget.OnNodeRepaint( ContainerGraph.LodLevel );
-		}
-
 
 		public override void Draw( DrawInfo drawInfo )
 		{

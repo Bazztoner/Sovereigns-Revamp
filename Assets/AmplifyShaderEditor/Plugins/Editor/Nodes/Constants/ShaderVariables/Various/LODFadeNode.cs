@@ -17,5 +17,27 @@ namespace AmplifyShaderEditor
 			ChangeOutputName( 4, "Unused" );
 			m_value = "unity_LODFade";
 		}
+
+		public override void RefreshExternalReferences()
+		{
+			base.RefreshExternalReferences();
+			if( !m_outputPorts[ 0 ].IsConnected )
+			{
+				m_outputPorts[ 0 ].Visible = false;
+				m_sizeIsDirty = true;
+			}
+
+			if( !m_outputPorts[ 3 ].IsConnected )
+			{
+				m_outputPorts[ 3 ].Visible = false;
+				m_sizeIsDirty = true;
+			}
+
+			if( !m_outputPorts[ 4 ].IsConnected )
+			{
+				m_outputPorts[ 4 ].Visible = false;
+				m_sizeIsDirty = true;
+			}
+		}
 	}
 }

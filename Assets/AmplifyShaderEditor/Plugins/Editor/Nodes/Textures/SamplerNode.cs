@@ -43,7 +43,10 @@ namespace AmplifyShaderEditor
 		private float InstanceIconHeight = 19;
 
 		private readonly Color ReferenceHeaderColor = new Color( 2.66f, 1.02f, 0.6f, 1.0f );
-		
+
+		public readonly static int[] AvailableAutoCast = { 0, 1, 2, 3, 4 };
+		public readonly static string[] AvailableAutoCastStr = { "Auto", "Locked To Texture 1D", "Locked To Texture 2D", "Locked To Texture 3D", "Locked To Cube" };
+
 		[SerializeField]
 		private int m_textureCoordSet = 0;
 
@@ -153,45 +156,49 @@ namespace AmplifyShaderEditor
 		{
 			base.SetPreviewInputs();
 
-			if ( m_cachedUvsId == -1 )
+			if( m_cachedUvsId == -1 )
 				m_cachedUvsId = Shader.PropertyToID( "_CustomUVs" );
 
-			if ( m_cachedSamplerId == -1 )
-				m_cachedSamplerId = Shader.PropertyToID( "_Sampler" );
+			PreviewMaterial.SetInt( m_cachedUvsId, ( m_uvPort.IsConnected ? 1 : 0 ) );
 
-			if ( m_cachedUnpackId == -1 )
+			if( m_cachedUnpackId == -1 )
 				m_cachedUnpackId = Shader.PropertyToID( "_Unpack" );
 
-			if ( m_cachedLodId == -1 )
-				m_cachedLodId = Shader.PropertyToID( "_LodType" );
-
-			if ( m_defaultId == -1 )
-				m_defaultId = Shader.PropertyToID( "_Default" );
-
-			PreviewMaterial.SetInt( m_cachedLodId, ( m_mipMode == MipType.MipLevel ? 1 : ( m_mipMode == MipType.MipBias ? 2 : 0 ) ) );
 			PreviewMaterial.SetInt( m_cachedUnpackId, m_autoUnpackNormals ? 1 : 0 );
 
+			if( m_cachedLodId == -1 )
+				m_cachedLodId = Shader.PropertyToID( "_LodType" );
+
+			PreviewMaterial.SetInt( m_cachedLodId, ( m_mipMode == MipType.MipLevel ? 1 : ( m_mipMode == MipType.MipBias ? 2 : 0 ) ) );
+
+			//if ( m_cachedSamplerId == -1 )
+			//	m_cachedSamplerId = Shader.PropertyToID( "_Sampler" );
+
 			bool usingTexture = false;
-			if ( SoftValidReference && m_referenceSampler.TextureProperty != null )
+			if( SoftValidReference && m_referenceSampler.TextureProperty != null )
 			{
 				PreviewMaterial.SetTexture( m_cachedSamplerId, m_referenceSampler.TextureProperty.Value );
-				if ( m_referenceSampler.TextureProperty.Value != null )
+				if( m_referenceSampler.TextureProperty.Value != null )
 					usingTexture = true;
 			}
-			else if ( TextureProperty != null )
+			else if( TextureProperty != null )
 			{
-				if ( !( Value is Texture3D || Value is Cubemap ) )
-					PreviewMaterial.SetTexture( m_cachedSamplerId, TextureProperty.Value );
-				if ( TextureProperty.Value != null )
+				//	//Debug.Log( (Value is Texture2DArray) +" "+ m_currentType );
+				//	if( !(m_currentType == TextureType.Texture2DArray) )
+				//		PreviewMaterial.SetTexture( m_cachedSamplerId, TextureProperty.Value );
+				//	//if ( !( Value is Texture3D || Value is Cubemap ) || !(m_currentType == TextureType.Cube) || !( Value is Texture2DArray ) )
+				//	//PreviewMaterial.SetTexture( m_cachedSamplerId, TextureProperty.Value );
+				if( TextureProperty.Value != null )
 					usingTexture = true;
 			}
 
-			if(usingTexture)
+			if( m_defaultId == -1 )
+				m_defaultId = Shader.PropertyToID( "_Default" );
+
+			if( usingTexture )
 				PreviewMaterial.SetInt( m_defaultId, 0 );
 			else
-				PreviewMaterial.SetInt( m_defaultId, ( ( int ) m_defaultTextureValue ) + 1 );
-
-			PreviewMaterial.SetInt( m_cachedUvsId, ( m_uvPort.IsConnected ? 1 : 0 ) );
+				PreviewMaterial.SetInt( m_defaultId, ( (int)m_defaultTextureValue ) + 1 );
 		}
 
 		protected override void OnUniqueIDAssigned()
@@ -212,6 +219,7 @@ namespace AmplifyShaderEditor
 				case TextureType.Texture1D:
 				m_samplerType = "tex1D";
 				break;
+				case TextureType.ProceduralTexture:
 				case TextureType.Texture2D:
 				m_samplerType = "tex2D";
 				break;
@@ -256,15 +264,14 @@ namespace AmplifyShaderEditor
 				SetAdditonalTitleText( string.Format( Constants.PropertyValueLabel, GetPropertyValStr() ) );
 				ConfigureInputPorts();
 				ConfigureOutputPorts();
-				//ResizeNodeToPreview();
 			}
 		}
 
 		new void ShowDefaults()
 		{
-			m_textureCoordSet = EditorGUILayoutIntPopup( Constants.AvailableUVSetsLabel, m_textureCoordSet, Constants.AvailableUVSetsStr, Constants.AvailableUVSets );
 			m_defaultTextureValue = (TexturePropertyValues)EditorGUILayoutEnumPopup( DefaultTextureStr, m_defaultTextureValue );
-			AutoCastType newAutoCast = (AutoCastType)EditorGUILayoutEnumPopup( AutoCastModeStr, m_autocastMode );
+			AutoCastType newAutoCast = (AutoCastType)EditorGUILayoutIntPopup( AutoCastModeStr, (int)m_autocastMode, AvailableAutoCastStr, AvailableAutoCast );
+			//AutoCastType newAutoCast = (AutoCastType)EditorGUILayoutEnumPopup( AutoCastModeStr, m_autocastMode );
 			if ( newAutoCast != m_autocastMode )
 			{
 				m_autocastMode = newAutoCast;
@@ -273,7 +280,6 @@ namespace AmplifyShaderEditor
 					ConfigTextureData( m_currentType );
 					ConfigureInputPorts();
 					ConfigureOutputPorts();
-					//ResizeNodeToPreview();
 				}
 			}
 		}
@@ -283,7 +289,6 @@ namespace AmplifyShaderEditor
 			m_autoUnpackNormals = m_isNormalMap;
 			ConfigureInputPorts();
 			ConfigureOutputPorts();
-			//ResizeNodeToPreview();
 		}
 
 
@@ -356,6 +361,12 @@ namespace AmplifyShaderEditor
 			m_normalPort.ChangeType( WirePortDataType.FLOAT, false );
 			switch ( m_currentType )
 			{
+				case TextureType.Texture1D:
+				m_uvPort.ChangeType( WirePortDataType.FLOAT, false );
+				m_ddxPort.ChangeType( WirePortDataType.FLOAT, false );
+				m_ddyPort.ChangeType( WirePortDataType.FLOAT, false );
+				break;
+				case TextureType.ProceduralTexture:
 				case TextureType.Texture2D:
 				m_uvPort.ChangeType( WirePortDataType.FLOAT2, false );
 				m_ddxPort.ChangeType( WirePortDataType.FLOAT2, false );
@@ -402,6 +413,12 @@ namespace AmplifyShaderEditor
 
 			switch ( m_currentType )
 			{
+				case TextureType.Texture1D:
+				m_uvPort.ChangeType( WirePortDataType.FLOAT, false );
+				m_ddxPort.ChangeType( WirePortDataType.FLOAT, false );
+				m_ddyPort.ChangeType( WirePortDataType.FLOAT, false );
+				break;
+				case TextureType.ProceduralTexture:
 				case TextureType.Texture2D:
 				m_uvPort.ChangeType( WirePortDataType.FLOAT2, false );
 				m_ddxPort.ChangeType( WirePortDataType.FLOAT2, false );
@@ -424,7 +441,7 @@ namespace AmplifyShaderEditor
 
 			if ( !AutoUnpackNormals )
 			{
-				m_colorPort.ChangeProperties( "RGBA", WirePortDataType.FLOAT4, false );
+				m_colorPort.ChangeProperties( "RGBA", WirePortDataType.COLOR, false );
 				m_outputPorts[ m_colorPort.PortId + 1 ].ChangeProperties( "R", WirePortDataType.FLOAT, false );
 				m_outputPorts[ m_colorPort.PortId + 2 ].ChangeProperties( "G", WirePortDataType.FLOAT, false );
 				m_outputPorts[ m_colorPort.PortId + 3 ].ChangeProperties( "B", WirePortDataType.FLOAT, false );
@@ -461,6 +478,8 @@ namespace AmplifyShaderEditor
 
 		public void DrawSamplerOptions()
 		{
+			m_textureCoordSet = EditorGUILayoutIntPopup( Constants.AvailableUVSetsLabel, m_textureCoordSet, Constants.AvailableUVSetsStr, Constants.AvailableUVSets );
+
 			MipType newMipMode = (MipType)EditorGUILayoutEnumPopup( MipModeStr, m_mipMode );
 			if ( newMipMode != m_mipMode )
 			{
@@ -582,7 +601,7 @@ namespace AmplifyShaderEditor
 		{
 			base.DrawGUIControls( drawInfo );
 
-			if ( m_state != ReferenceState.Self && drawInfo.CurrentEventType == EventType.mouseDown && m_previewRect.Contains( drawInfo.MousePosition ) )
+			if ( m_state != ReferenceState.Self && drawInfo.CurrentEventType == EventType.mouseDown && m_previewRect.Contains( drawInfo.MousePosition ) && drawInfo.LeftMouseButtonPressed )
 			{
 				UIUtils.FocusOnNode( m_previewTextProp, 1, true );
 				Event.current.Use();
@@ -721,6 +740,21 @@ namespace AmplifyShaderEditor
 							break;
 						}
 					}
+				} else
+				{
+					// Set References Options
+					AutoCastType newAutoCast = m_referenceSampler.AutocastMode;
+					if( newAutoCast != m_autocastMode )
+					{
+						m_autocastMode = newAutoCast;
+						if( m_autocastMode != AutoCastType.Auto )
+						{
+							ConfigTextureData( m_currentType );
+							ConfigureInputPorts();
+							ConfigureOutputPorts();
+							//ResizeNodeToPreview();
+						}
+					}
 				}
 			}
 
@@ -827,6 +861,7 @@ namespace AmplifyShaderEditor
 
 			if ( SoftValidReference )
 			{
+				OrderIndex = m_referenceSampler.RawOrderIndex;
 				if( m_referenceSampler.TexPort.IsConnected )
 					portProperty = m_referenceSampler.TexPort.GenerateShaderForOutput( ref dataCollector, m_texPort.DataType, ignoreLocalVar );
 			}
@@ -860,7 +895,7 @@ namespace AmplifyShaderEditor
 				base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
 			
 			string valueName = SetFetchedData( ref dataCollector, ignoreLocalVar, outputId, portProperty );
-			if ( TextureProperty is VirtualTexturePropertyNode )
+			if ( TextureProperty is VirtualTextureObject )
 			{
 				return valueName;
 			}
@@ -871,7 +906,7 @@ namespace AmplifyShaderEditor
 			}
 		}
 
-		public string SampleVirtualTexture( VirtualTexturePropertyNode node, string coord )
+		public string SampleVirtualTexture( VirtualTextureObject node, string coord )
 		{
 			string sampler = string.Empty;
 			switch ( node.Channel )
@@ -925,7 +960,7 @@ namespace AmplifyShaderEditor
 
 			if ( ignoreLocalVar )
 			{
-				if ( TextureProperty is VirtualTexturePropertyNode )
+				if ( TextureProperty is VirtualTextureObject )
 					Debug.Log( "TODO" );
 
 				if ( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation )
@@ -938,7 +973,7 @@ namespace AmplifyShaderEditor
 				return samplerValue;
 			}
 
-			VirtualTexturePropertyNode vtex = ( TextureProperty as VirtualTexturePropertyNode );
+			VirtualTextureObject vtex = ( TextureProperty as VirtualTextureObject );
 
 			if ( vtex != null )
 			{
@@ -1116,6 +1151,12 @@ namespace AmplifyShaderEditor
 			{
 				value = string.Format( m_normalMapUnpackMode, value );
 			}
+		}
+
+		public override void ReadOutputDataFromString( ref string[] nodeParams )
+		{
+			base.ReadOutputDataFromString( ref nodeParams );
+			ConfigureOutputPorts();
 		}
 
 		public override void ReadFromString( ref string[] nodeParams )
@@ -1313,177 +1354,113 @@ namespace AmplifyShaderEditor
 		public string GetUVCoords( ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar, string portProperty )
 		{
 			bool isVertex = ( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation );
-			if ( m_uvPort.IsConnected )
-			{
-				if ( ( m_mipMode == MipType.MipLevel || m_mipMode == MipType.MipBias ) && m_lodPort.IsConnected )
-				{
-					string lodLevel = m_lodPort.GeneratePortInstructions( ref dataCollector );
-					if ( m_currentType != TextureType.Texture2D )
-					{
-						string uvs = m_uvPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalVar, true );
-						return UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT4 ) + "( " + uvs + ", " + lodLevel + ")";
-					}
-					else
-					{
-						string uvs = m_uvPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT2, ignoreLocalVar, true );
-						return UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT4 ) + "( " + uvs + ", 0, " + lodLevel + ")";
-					}
-				}
-				else if ( m_mipMode == MipType.Derivative )
-				{
-					if ( m_currentType != TextureType.Texture2D )
-					{
-						string uvs = m_uvPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalVar, true );
-						string ddx = m_ddxPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalVar, true );
-						string ddy = m_ddyPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalVar, true );
-						return uvs + ", " + ddx + ", " + ddy;
-					}
-					else
-					{
-						string uvs = m_uvPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT2, ignoreLocalVar, true );
-						string ddx = m_ddxPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT2, ignoreLocalVar, true );
-						string ddy = m_ddyPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT2, ignoreLocalVar, true );
-						return uvs + ", " + ddx + ", " + ddy;
-					}
 
+			// make sure the final result is always a float4 with empty 0's in the middle
+			string uvAppendix = ", ";
+			int coordSize = 3;
+			if( m_uvPort.DataType == WirePortDataType.FLOAT2 )
+			{
+				uvAppendix = ", 0, ";
+				coordSize = 2;
+			}
+			else if( m_uvPort.DataType == WirePortDataType.FLOAT )
+			{
+				uvAppendix = ", 0, 0, ";
+				coordSize = 1;
+			}
+
+			string uvs = m_uvPort.GeneratePortInstructions( ref dataCollector );
+
+			// generate automatic UVs if not connected
+			if( !m_uvPort.IsConnected )
+			{
+				string propertyName = CurrentPropertyReference;
+
+				// check for references
+				if( !string.IsNullOrEmpty( portProperty ) && portProperty != "0.0" )
+					propertyName = portProperty;
+
+				int coordSet = ( ( m_textureCoordSet < 0 ) ? 0 : m_textureCoordSet );
+				string uvName = IOUtils.GetUVChannelName( propertyName, coordSet );
+				string dummyPropUV = "_tex" + ( coordSize != 2 ? "" + coordSize : "" ) + "coord" + ( coordSet > 0 ? ( coordSet + 1 ).ToString() : "" );
+				string dummyUV = "uv" + ( coordSet > 0 ? ( coordSet + 1 ).ToString() : "" ) + dummyPropUV;
+
+				string attr = GetPropertyValue();
+				bool scaleOffset = true;
+				if( attr.IndexOf( "[NoScaleOffset]" ) > -1 )
+					scaleOffset = false;
+
+				if( scaleOffset )
+					dataCollector.AddToUniforms( UniqueId, "float4", propertyName + "_ST" );
+
+				dataCollector.AddToProperties( UniqueId, "[HideInInspector] " + dummyPropUV + "( \"\", 2D ) = \"white\" {}", 9999 );
+
+				string coordInput = string.Empty;
+				if( isVertex )
+				{
+					coordInput = Constants.VertexShaderInputStr + ".texcoord";
+					if( coordSet > 0 )
+						coordInput += coordSet.ToString();
 				}
 				else
 				{
-					if ( m_currentType != TextureType.Texture2D )
-						return m_uvPort.GenerateShaderForOutput( ref dataCollector, isVertex ? WirePortDataType.FLOAT4 : WirePortDataType.FLOAT3, ignoreLocalVar, true );
-					else
-						return m_uvPort.GenerateShaderForOutput( ref dataCollector, isVertex ? WirePortDataType.FLOAT4 : WirePortDataType.FLOAT2, ignoreLocalVar, true );
+					coordInput = Constants.InputVarStr + "." + dummyUV;
+					dataCollector.AddToInput( UniqueId, "float" + ( coordSize > 1 ? coordSize.ToString() : "" ) + " " + dummyUV, true );
 				}
+
+				if( dataCollector.MasterNodeCategory == AvailableShaderTypes.Template )
+				{
+					if( dataCollector.TemplateDataCollectorInstance.HasUV( m_textureCoordSet ) )
+						coordInput = dataCollector.TemplateDataCollectorInstance.GetUVName( m_textureCoordSet );
+					else
+						coordInput = dataCollector.TemplateDataCollectorInstance.RegisterUV( m_textureCoordSet );
+				}
+
+				if( coordSize > 2 )
+				{
+					uvName += coordSize;
+					dataCollector.UsingHigherSizeTexcoords = true;
+					dataCollector.AddLocalVariable( UniqueId, "float" + coordSize + " " + uvName + " = " + coordInput + ";" );
+					if( scaleOffset )
+						dataCollector.AddLocalVariable( UniqueId, uvName + ".xy = " + coordInput + ".xy * " + propertyName + "_ST.xy + " + propertyName + "_ST.zw;" );
+				}
+				else
+				{
+					if( coordSize == 1)
+						uvName += coordSize;
+
+					if( scaleOffset )
+						dataCollector.AddLocalVariable( UniqueId, PrecisionType.Float, m_uvPort.DataType, uvName, coordInput + " * " + propertyName + "_ST.xy + " + propertyName + "_ST.zw" );
+					else
+						dataCollector.AddLocalVariable( UniqueId, PrecisionType.Float, m_uvPort.DataType, uvName, coordInput );
+				}
+
+				uvs = uvName;
+			}
+
+			if( isVertex )
+			{
+				string lodLevel = m_lodPort.GeneratePortInstructions( ref dataCollector );
+
+				return UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT4 ) + "( " + uvs + uvAppendix + lodLevel + ")";
 			}
 			else
 			{
-
-				string vertexCoords = Constants.VertexShaderInputStr + ".texcoord";
-				if ( m_textureCoordSet > 0 )
+				if( ( m_mipMode == MipType.MipLevel || m_mipMode == MipType.MipBias ) && m_lodPort.IsConnected )
 				{
-					vertexCoords += m_textureCoordSet.ToString();
+					string lodLevel = m_lodPort.GeneratePortInstructions( ref dataCollector );
+					
+					return UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT4 ) + "( " + uvs + uvAppendix + lodLevel + ")";
 				}
-
-				string propertyName = CurrentPropertyReference;
-				
-				if ( !string.IsNullOrEmpty( portProperty ) && portProperty != "0.0" )
+				else if( m_mipMode == MipType.Derivative )
 				{
-					propertyName = portProperty;
-				}
-				string uvChannelName = IOUtils.GetUVChannelName( propertyName, m_textureCoordSet );
-
-				if ( dataCollector.MasterNodeCategory == AvailableShaderTypes.Template )
-				{
-					//TEMPLATES
-					string propertyHelperVar = propertyName + "_ST";
-					dataCollector.AddToUniforms( UniqueId, "float4", propertyHelperVar );
-					string uvName = string.Empty;
-					if ( dataCollector.TemplateDataCollectorInstance.HasUV( m_textureCoordSet ) )
-					{
-						uvName = dataCollector.TemplateDataCollectorInstance.GetUVName( m_textureCoordSet );
-					}
-					else
-					{
-						uvName = dataCollector.TemplateDataCollectorInstance.RegisterUV( m_textureCoordSet );
-						//uvName = TemplateHelperFunctions.GenerateTextureSemantic( ref dataCollector, m_textureCoordSet );
-						//uvName = ( dataCollector.IsFragmentCategory ? Constants.InputVarStr : Constants.VertexShaderInputStr ) + "." + uvName;
-					}
-
-					uvChannelName = "uv" + propertyName;
-					if ( isVertex )
-					{
-						string value = string.Format( Constants.TilingOffsetFormat, uvName, propertyHelperVar + ".xy", propertyHelperVar + ".zw" );
-						string lodLevel = "0";
-
-						if ( m_mipMode == MipType.MipLevel || m_mipMode == MipType.MipBias )
-							lodLevel = m_lodPort.GeneratePortInstructions( ref dataCollector );
-						value = "float4( " + value + ", 0 , " + lodLevel + " )";
-						dataCollector.AddLocalVariable( UniqueId, m_currentPrecisionType, WirePortDataType.FLOAT4, uvChannelName, value );
-					}
-					else
-					{
-						dataCollector.AddLocalVariable( UniqueId, m_currentPrecisionType, WirePortDataType.FLOAT2, uvChannelName, string.Format( Constants.TilingOffsetFormat, uvName, propertyHelperVar + ".xy", propertyHelperVar + ".zw" ) );
-					}
+					string ddx = m_ddxPort.GeneratePortInstructions( ref dataCollector );
+					string ddy = m_ddyPort.GeneratePortInstructions( ref dataCollector );
+					return uvs + ", " + ddx + ", " + ddy;
 				}
 				else
 				{
-					string dummyPropUV = "_texcoord" + ( m_textureCoordSet > 0 ? ( m_textureCoordSet + 1 ).ToString() : "" );
-				string dummyUV = "uv" + ( m_textureCoordSet > 0 ? ( m_textureCoordSet + 1 ).ToString() : "" ) + dummyPropUV;
-
-				//dataCollector.AddToUniforms( UniqueId, "uniform float4 " + propertyName + "_ST;");
-					dataCollector.AddToProperties( UniqueId, "[HideInInspector] " + dummyPropUV + "( \"\", 2D ) = \"white\" {}", 100 );
-				dataCollector.AddToInput( UniqueId, "float2 " + dummyUV, true );
-
-				if ( isVertex )
-				{
-					dataCollector.AddToUniforms( UniqueId, "uniform float4 " + propertyName + "_ST;" );
-
-					string lodLevel = "0";
-
-						if ( m_mipMode == MipType.MipLevel || m_mipMode == MipType.MipBias )
-						lodLevel = m_lodPort.GeneratePortInstructions( ref dataCollector );
-
-					dataCollector.AddToVertexLocalVariables( UniqueId, "float4 " + uvChannelName + " = float4(" + vertexCoords + " * " + propertyName + "_ST.xy + " + propertyName + "_ST.zw, 0 ," + lodLevel + ");" );
-					return uvChannelName;
-				}
-				else
-				{
-					string attr = GetPropertyValue();
-
-					if ( attr.IndexOf( "[NoScaleOffset]" ) > -1 )
-					{
-						dataCollector.AddToLocalVariables( UniqueId, PrecisionType.Float, WirePortDataType.FLOAT2, uvChannelName, Constants.InputVarStr + "." + dummyUV );
-					}
-					else
-					{
-						dataCollector.AddToUniforms( UniqueId, "uniform float4 " + propertyName + "_ST;" );
-						dataCollector.AddToLocalVariables( UniqueId, PrecisionType.Float, WirePortDataType.FLOAT2, uvChannelName, Constants.InputVarStr + "." + dummyUV + " * " + propertyName + "_ST.xy + " + propertyName + "_ST.zw" );
-					}
-				}
-				}
-				string uvCoord = uvChannelName;
-				if ( ( m_mipMode == MipType.MipLevel || m_mipMode == MipType.MipBias ) && m_lodPort.IsConnected )
-				{
-					string lodLevel = m_lodPort.GeneratePortInstructions( ref dataCollector  );
-					if ( m_currentType != TextureType.Texture2D )
-					{
-						string uvs = string.Format( "float3({0},0.0)", uvCoord ); ;
-						return UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT4 ) + "( " + uvs + ", " + lodLevel + ")";
-					}
-					else
-					{
-						string uvs = uvCoord;
-						return UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT4 ) + "( " + uvs + ", 0, " + lodLevel + ")";
-					}
-				}
-				else if ( m_mipMode == MipType.Derivative )
-				{
-					if ( m_currentType != TextureType.Texture2D )
-					{
-						string uvs = string.Format( "float3({0},0.0)", uvCoord );
-						string ddx = m_ddxPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalVar, true );
-						string ddy = m_ddyPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT3, ignoreLocalVar, true );
-						return uvs + ", " + ddx + ", " + ddy;
-					}
-					else
-					{
-						string uvs = uvCoord;
-						string ddx = m_ddxPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT2, ignoreLocalVar, true );
-						string ddy = m_ddyPort.GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT2, ignoreLocalVar, true );
-						return uvs + ", " + ddx + ", " + ddy;
-					}
-				}
-
-				else
-				{
-					if ( m_currentType != TextureType.Texture2D )
-					{
-						return string.Format( "float3({0},0.0)", uvCoord );
-					}
-					else
-					{
-						return uvCoord;
-					}
+					return uvs;
 				}
 			}
 		}
@@ -1574,6 +1551,11 @@ namespace AmplifyShaderEditor
 
 			switch ( m_currentType )
 			{
+				case TextureType.Texture1D:
+				{
+					return PropertyAttributes + GetTexture1DPropertyValue();
+				}
+				case TextureType.ProceduralTexture:
 				case TextureType.Texture2D:
 				{
 					return PropertyAttributes + GetTexture2DPropertyValue();

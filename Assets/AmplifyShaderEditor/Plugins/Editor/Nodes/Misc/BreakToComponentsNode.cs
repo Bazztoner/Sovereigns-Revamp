@@ -2,6 +2,7 @@
 // Copyright (c) Amplify Creations, Lda <info@amplify.pt>
 
 using System;
+using UnityEngine;
 
 namespace AmplifyShaderEditor
 {
@@ -27,6 +28,31 @@ namespace AmplifyShaderEditor
 				}
 			}
 			m_previewShaderGUID = "5f58f74a202ba804daddec838b75207d";
+		}
+
+		public override void RenderNodePreview()
+		{
+			if( !m_initialized )
+				return;
+
+			SetPreviewInputs();
+
+			int count = m_outputPorts.Count;
+			for( int i = 0; i < count; i++ )
+			{
+				RenderTexture temp = RenderTexture.active;
+				RenderTexture.active = m_outputPorts[ i ].OutputPreviewTexture;
+				Graphics.Blit( null, m_outputPorts[ i ].OutputPreviewTexture, PreviewMaterial, Mathf.Min( i, 3 ) );
+				RenderTexture.active = temp;
+			}
+		}
+
+		public override RenderTexture PreviewTexture
+		{
+			get
+			{
+				return m_inputPorts[ 0 ].InputPreviewTexture;
+			}
 		}
 
 		void UpdateOutputs( WirePortDataType newType )

@@ -31,10 +31,13 @@ namespace AmplifyShaderEditor
 			if ( dataCollector.IsTemplate )
 				return dataCollector.TemplateDataCollectorInstance.GetWorldToTangentMatrix();
 
-			dataCollector.ForceNormal = true;
+			if( dataCollector.IsFragmentCategory )
+			{
+				dataCollector.ForceNormal = true;
 
-			dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_NORMAL ), true );
-			dataCollector.AddToInput( UniqueId, Constants.InternalData, false );
+				dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_NORMAL ), true );
+				dataCollector.AddToInput( UniqueId, Constants.InternalData, false );
+			}
 
 			GeneratorUtils.GenerateWorldToTangentMatrix( ref dataCollector, UniqueId, m_currentPrecisionType );
 

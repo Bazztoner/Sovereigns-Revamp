@@ -11,7 +11,7 @@ namespace AmplifyShaderEditor
 		{
 			base.CommonInit( uniqueId );
 			AddInputPort( WirePortDataType.FLOAT4, false, string.Empty );
-			AddOutputVectorPorts( WirePortDataType.FLOAT4, string.Empty );
+			AddOutputVectorPorts( WirePortDataType.FLOAT4, "XYZW" );
 			m_useInternalPortData = true;
 			m_inputPorts[ 0 ].Vector4InternalData = new UnityEngine.Vector4( 0, 0, 0, 1 );
 		}

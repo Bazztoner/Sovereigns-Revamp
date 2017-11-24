@@ -5,12 +5,14 @@ using System;
 namespace AmplifyShaderEditor
 {
 	[Serializable]
-	[NodeAttributes( "Distance", "Math Operators", "Euclidean distance between two points" )]
+	[NodeAttributes( "Distance", "Vector Operators", "Euclidean distance between two points" )]
 	public sealed class DistanceOpNode : DynamicTypeNode
 	{
 		protected override void CommonInit( int uniqueId )
 		{
 			base.CommonInit( uniqueId );
+			m_inputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT4, false );
+			m_inputPorts[ 1 ].ChangeType( WirePortDataType.FLOAT4, false );
 			m_outputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT, false );
 			m_dynamicOutputType = false;
 			m_useInternalPortData = true;

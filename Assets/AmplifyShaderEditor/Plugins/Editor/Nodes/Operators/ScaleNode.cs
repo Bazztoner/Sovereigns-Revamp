@@ -83,6 +83,7 @@ namespace AmplifyShaderEditor
 
 			if ( insideBox )
 			{
+				GUI.FocusControl( null );
 				m_isEditingFields = true;
 			}
 			else if ( m_isEditingFields && !insideBox )

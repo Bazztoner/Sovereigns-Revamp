@@ -164,6 +164,7 @@ namespace AmplifyShaderEditor
 
 			if ( insideBox )
 			{
+				GUI.FocusControl( null );
 				m_isEditingFields = true;
 			}
 			else if ( m_isEditingFields && !insideBox )
@@ -243,7 +244,7 @@ namespace AmplifyShaderEditor
 		public override void UpdateMaterial( Material mat )
 		{
 			base.UpdateMaterial( mat );
-			if ( UIUtils.IsProperty( m_currentParameterType ) )
+			if ( UIUtils.IsProperty( m_currentParameterType ) && !InsideShaderFunction )
 			{
 				mat.SetVector( m_propertyName, m_materialValue );
 			}

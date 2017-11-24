@@ -12,15 +12,17 @@ namespace AmplifyShaderEditor
 		protected override void CommonInit( int uniqueId )
 		{
 			base.CommonInit( uniqueId );
-			m_inputPorts[ 0 ].Name = "Incident";
-			m_inputPorts[ 1 ].Name = "Normal";
+			m_inputPorts[ 0 ].ChangeProperties( "Incident", WirePortDataType.FLOAT4, false );
+			m_inputPorts[ 1 ].ChangeProperties( "Normal", WirePortDataType.FLOAT4, false );
+			m_outputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT4, false );
+
 			m_textLabelWidth = 67;
 			m_previewShaderGUID = "fb520f2145c0fa0409320a9e6d720758";
 		}
 
 		public override string BuildResults( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
 		{
-			if ( m_outputPorts[ 0 ].IsLocalValue )
+			if( m_outputPorts[ 0 ].IsLocalValue )
 				return m_outputPorts[ 0 ].LocalValue;
 
 			base.BuildResults( outputId, ref dataCollector, ignoreLocalvar );

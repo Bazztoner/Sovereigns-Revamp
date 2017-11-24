@@ -583,6 +583,11 @@ namespace UnityEditor
 			return ( int ) ShaderUtilEx.Type.InvokeMember( "GetShaderErrorCount", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.InvokeMethod, null, null, new object[] { s } );
 		}
 
+		public static int GetAvailableShaderCompilerPlatforms()
+		{
+			return (int)ShaderUtilEx.Type.InvokeMember( "GetAvailableShaderCompilerPlatforms", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.InvokeMethod, null, null, new object[] { } );
+		}
+
 		public static ShaderError[] GetShaderErrors( Shader s )
 		{
 			System.Type shaderErrorType = System.Type.GetType( "UnityEditor.ShaderError, UnityEditor" );

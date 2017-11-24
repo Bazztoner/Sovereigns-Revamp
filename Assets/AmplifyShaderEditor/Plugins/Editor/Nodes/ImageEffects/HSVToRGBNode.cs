@@ -4,7 +4,7 @@ namespace AmplifyShaderEditor
 {
 	[Serializable]
 	[NodeAttributes( "HSV to RGB", "Image Effects", "Converts from HSV to RGB color space" )]
-	public class HSVToRGBNode : ParentNode
+	public sealed class HSVToRGBNode : ParentNode
 	{
 		private const string HSVToRGBHeader = "HSVToRGB( {0}3({1},{2},{3}) )";
 		private readonly string[] HSVToRGBFunction = { "{0}3 HSVToRGB( {0}3 c )\n",
@@ -26,7 +26,7 @@ namespace AmplifyShaderEditor
 			AddInputPort( WirePortDataType.FLOAT, false, "Hue" );
 			AddInputPort( WirePortDataType.FLOAT, false, "Saturation" );
 			AddInputPort( WirePortDataType.FLOAT, false, "Value" );
-			AddOutputColorPorts( Constants.EmptyPortValue, false );
+			AddOutputColorPorts( "RGB", false );
 		}
 
 		public override void DrawProperties()

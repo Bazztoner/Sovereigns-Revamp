@@ -68,4 +68,5 @@ Shader /*ase_name*/ "ASETemplateShaders/DefaultUnlit" /*end*/
 			ENDCG
 		}
 	}
+	CustomEditor "ASEMaterialInspector"
 }

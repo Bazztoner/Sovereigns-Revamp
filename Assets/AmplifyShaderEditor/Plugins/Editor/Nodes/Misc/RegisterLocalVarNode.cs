@@ -68,7 +68,7 @@ namespace AmplifyShaderEditor
 
 		void UpdateTitle()
 		{
-			SetAdditonalTitleText( string.Format( Constants.PropertyValueLabel, m_variableName ) );
+			SetAdditonalTitleText( string.Format( Constants.SubTitleVarNameFormatStr, m_variableName ) );
 		}
 
 		public override void DrawProperties()

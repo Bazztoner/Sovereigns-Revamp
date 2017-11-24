@@ -17,6 +17,16 @@ namespace AmplifyShaderEditor
 		private const string FailStr = "Fail";
 		private const string ZFailStr = "ZFail";
 
+		private const string ComparisonFrontStr = "Comparison Front";
+		private const string PassFrontStr = "Pass Front";
+		private const string FailFrontStr = "Fail Front";
+		private const string ZFailFrontStr = "ZFail Front";
+
+		private const string ComparisonBackStr = "Comparison Back";
+		private const string PassBackStr = "Pass Back";
+		private const string FailBackStr = "Fail Back";
+		private const string ZFailBackStr = "ZFail Back";
+
 		private readonly string[] ComparisonValues = {  "<Default>",
 														"Greater" ,
 														"GEqual" ,
@@ -79,22 +89,32 @@ namespace AmplifyShaderEditor
 		[SerializeField]
 		private int m_comparisonFunctionIdx = ComparisonDefaultValue;
 
+		[SerializeField]
+		private int m_comparisonFunctionBackIdx = ComparisonDefaultValue;
+
 		//Pass Stencil Op
 		private const int PassStencilOpDefaultValue = 0;
 		[SerializeField]
 		private int m_passStencilOpIdx = PassStencilOpDefaultValue;
 
-		//Fail Stencil Op 
 		[SerializeField]
-		private int m_failStencilOpIdx;
+		private int m_passStencilOpBackIdx = PassStencilOpDefaultValue;
+
+		//Fail Stencil Op 
 		private const int FailStencilOpDefaultValue = 0;
+		[SerializeField]
+		private int m_failStencilOpIdx = FailStencilOpDefaultValue;
+		[SerializeField]
+		private int m_failStencilOpBackIdx = FailStencilOpDefaultValue;
 
 		//ZFail Stencil Op
 		private const int ZFailStencilOpDefaultValue = 0;
 		[SerializeField]
 		private int m_zFailStencilOpIdx = ZFailStencilOpDefaultValue;
+		[SerializeField]
+		private int m_zFailStencilOpBackIdx = ZFailStencilOpDefaultValue;
 
-		public string CreateStencilOp()
+		public string CreateStencilOp( UndoParentNode owner )
 		{
 			string result = "\t\tStencil\n\t\t{\n";
 			result += string.Format( "\t\t\tRef {0}\n", m_refValue );
@@ -108,25 +128,38 @@ namespace AmplifyShaderEditor
 				result += string.Format( "\t\t\tWriteMask {0}\n", m_writeMask );
 			}
 
-			if ( m_comparisonFunctionIdx != ComparisonDefaultValue )
+			if( ( owner as StandardSurfaceOutputNode ).CurrentCullMode == CullMode.Off )
 			{
-				result += string.Format( "\t\t\tComp {0}\n", ComparisonValues[ m_comparisonFunctionIdx ] );
+				if( m_comparisonFunctionIdx != ComparisonDefaultValue )
+					result += string.Format( "\t\t\tCompFront {0}\n", ComparisonValues[ m_comparisonFunctionIdx ] );
+				if( m_passStencilOpIdx != PassStencilOpDefaultValue )
+					result += string.Format( "\t\t\tPassFront {0}\n", StencilOpsValues[ m_passStencilOpIdx ] );
+				if( m_failStencilOpIdx != FailStencilOpDefaultValue )
+					result += string.Format( "\t\t\tFailFront {0}\n", StencilOpsValues[ m_failStencilOpIdx ] );
+				if( m_zFailStencilOpIdx != ZFailStencilOpDefaultValue )
+					result += string.Format( "\t\t\tZFailFront {0}\n", StencilOpsValues[ m_zFailStencilOpIdx ] );
+
+				if( m_comparisonFunctionBackIdx != ComparisonDefaultValue )
+					result += string.Format( "\t\t\tCompBack {0}\n", ComparisonValues[ m_comparisonFunctionBackIdx ] );
+				if( m_passStencilOpBackIdx != PassStencilOpDefaultValue )
+					result += string.Format( "\t\t\tPassBack {0}\n", StencilOpsValues[ m_passStencilOpBackIdx ] );
+				if( m_failStencilOpBackIdx != FailStencilOpDefaultValue )
+					result += string.Format( "\t\t\tFailBack {0}\n", StencilOpsValues[ m_failStencilOpBackIdx ] );
+				if( m_zFailStencilOpBackIdx != ZFailStencilOpDefaultValue )
+					result += string.Format( "\t\t\tZFailBack {0}\n", StencilOpsValues[ m_zFailStencilOpBackIdx ] );
+			}
+			else
+			{
+				if ( m_comparisonFunctionIdx != ComparisonDefaultValue )
+					result += string.Format( "\t\t\tComp {0}\n", ComparisonValues[ m_comparisonFunctionIdx ] );
+				if ( m_passStencilOpIdx != PassStencilOpDefaultValue )
+					result += string.Format( "\t\t\tPass {0}\n", StencilOpsValues[ m_passStencilOpIdx ] );
+				if ( m_failStencilOpIdx != FailStencilOpDefaultValue )
+					result += string.Format( "\t\t\tFail {0}\n", StencilOpsValues[ m_failStencilOpIdx ] );
+				if ( m_zFailStencilOpIdx != ZFailStencilOpDefaultValue )
+					result += string.Format( "\t\t\tZFail {0}\n", StencilOpsValues[ m_zFailStencilOpIdx ] );
 			}
 
-			if ( m_passStencilOpIdx != PassStencilOpDefaultValue )
-			{
-				result += string.Format( "\t\t\tPass {0}\n", StencilOpsValues[ m_passStencilOpIdx ] );
-			}
-
-			if ( m_failStencilOpIdx != FailStencilOpDefaultValue )
-			{
-				result += string.Format( "\t\t\tFail {0}\n", StencilOpsValues[ m_failStencilOpIdx ] );
-			}
-
-			if ( m_zFailStencilOpIdx != ZFailStencilOpDefaultValue )
-			{
-				result += string.Format( "\t\t\tZFail {0}\n", StencilOpsValues[ m_zFailStencilOpIdx ] );
-			}
 
 			result += "\t\t}\n";
 			return result;
@@ -140,11 +173,24 @@ namespace AmplifyShaderEditor
 				 m_refValue = owner.EditorGUILayoutIntSlider( ReferenceValueContent, m_refValue, 0, 255 );
 				 m_readMask = owner.EditorGUILayoutIntSlider( ReadMaskContent, m_readMask, 0, 255 );
 				 m_writeMask = owner.EditorGUILayoutIntSlider( WriteMaskContent, m_writeMask, 0, 255 );
-				 m_comparisonFunctionIdx = owner.EditorGUILayoutPopup( ComparisonStr, m_comparisonFunctionIdx, ComparisonLabels );
-				 m_passStencilOpIdx = owner.EditorGUILayoutPopup( PassStr, m_passStencilOpIdx, StencilOpsLabels );
-				 m_failStencilOpIdx = owner.EditorGUILayoutPopup( FailStr, m_failStencilOpIdx, StencilOpsLabels );
-				 m_zFailStencilOpIdx = owner.EditorGUILayoutPopup( ZFailStr, m_zFailStencilOpIdx, StencilOpsLabels );
-
+				 if( (owner as StandardSurfaceOutputNode).CurrentCullMode == CullMode.Off )
+				 {
+					 m_comparisonFunctionIdx = owner.EditorGUILayoutPopup( ComparisonFrontStr, m_comparisonFunctionIdx, ComparisonLabels );
+					 m_passStencilOpIdx = owner.EditorGUILayoutPopup( PassFrontStr, m_passStencilOpIdx, StencilOpsLabels );
+					 m_failStencilOpIdx = owner.EditorGUILayoutPopup( FailFrontStr, m_failStencilOpIdx, StencilOpsLabels );
+					 m_zFailStencilOpIdx = owner.EditorGUILayoutPopup( ZFailFrontStr, m_zFailStencilOpIdx, StencilOpsLabels );
+					 EditorGUILayout.Separator();
+					 m_comparisonFunctionBackIdx = owner.EditorGUILayoutPopup( ComparisonBackStr, m_comparisonFunctionBackIdx, ComparisonLabels );
+					 m_passStencilOpBackIdx = owner.EditorGUILayoutPopup( PassBackStr, m_passStencilOpBackIdx, StencilOpsLabels );
+					 m_failStencilOpBackIdx = owner.EditorGUILayoutPopup( FailBackStr, m_failStencilOpBackIdx, StencilOpsLabels );
+					 m_zFailStencilOpBackIdx = owner.EditorGUILayoutPopup( ZFailBackStr, m_zFailStencilOpBackIdx, StencilOpsLabels );
+				 } else
+				 {
+					 m_comparisonFunctionIdx = owner.EditorGUILayoutPopup( ComparisonStr, m_comparisonFunctionIdx, ComparisonLabels );
+					 m_passStencilOpIdx = owner.EditorGUILayoutPopup( PassStr, m_passStencilOpIdx, StencilOpsLabels );
+					 m_failStencilOpIdx = owner.EditorGUILayoutPopup( FailStr, m_failStencilOpIdx, StencilOpsLabels );
+					 m_zFailStencilOpIdx = owner.EditorGUILayoutPopup( ZFailStr, m_zFailStencilOpIdx, StencilOpsLabels );
+				 }
 			 } );
 			EditorVariablesManager.ExpandedStencilOptions.Value = foldoutValue;
 		}
@@ -159,6 +205,14 @@ namespace AmplifyShaderEditor
 			m_passStencilOpIdx = Convert.ToInt32( nodeParams[ index++ ] );
 			m_failStencilOpIdx = Convert.ToInt32( nodeParams[ index++ ] );
 			m_zFailStencilOpIdx = Convert.ToInt32( nodeParams[ index++ ] );
+
+			if( UIUtils.CurrentShaderVersion() > 13203 )
+			{
+				m_comparisonFunctionBackIdx = Convert.ToInt32( nodeParams[ index++ ] );
+				m_passStencilOpBackIdx = Convert.ToInt32( nodeParams[ index++ ] );
+				m_failStencilOpBackIdx = Convert.ToInt32( nodeParams[ index++ ] );
+				m_zFailStencilOpBackIdx = Convert.ToInt32( nodeParams[ index++ ] );
+			}
 		}
 
 		public void WriteToString( ref string nodeInfo )
@@ -171,6 +225,10 @@ namespace AmplifyShaderEditor
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_passStencilOpIdx );
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_failStencilOpIdx );
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_zFailStencilOpIdx );
+			IOUtils.AddFieldValueToString( ref nodeInfo, m_comparisonFunctionBackIdx );
+			IOUtils.AddFieldValueToString( ref nodeInfo, m_passStencilOpBackIdx );
+			IOUtils.AddFieldValueToString( ref nodeInfo, m_failStencilOpBackIdx );
+			IOUtils.AddFieldValueToString( ref nodeInfo, m_zFailStencilOpBackIdx );
 		}
 
 		public bool Active

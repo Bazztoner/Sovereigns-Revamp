@@ -284,7 +284,7 @@ namespace AmplifyShaderEditor
 		{
 			base.UpdateMaterial( mat );
 
-			if ( UIUtils.IsProperty( m_currentParameterType ) )
+			if ( UIUtils.IsProperty( m_currentParameterType ) && !InsideShaderFunction )
 			{
 				mat.SetColor( m_propertyName, m_materialValue );
 			}

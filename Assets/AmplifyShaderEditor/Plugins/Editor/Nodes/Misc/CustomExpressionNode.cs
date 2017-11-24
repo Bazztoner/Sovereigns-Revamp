@@ -47,6 +47,16 @@ namespace AmplifyShaderEditor
 		"sampler3D",
 		"samplerCUBE"};
 
+		private readonly string[] AvailableOutputWireTypesStr =
+		{
+		"int",
+		"float",
+		"float2",
+		"float3",
+		"float4",
+		"float3x3",
+		"float4x4"};
+
 		private readonly string[] QualifiersStr =
 		{
 			"In",
@@ -67,6 +77,17 @@ namespace AmplifyShaderEditor
 			WirePortDataType.SAMPLER2D,
 			WirePortDataType.SAMPLER3D,
 			WirePortDataType.SAMPLERCUBE
+		};
+
+		private readonly WirePortDataType[] AvailableOutputWireTypes =
+		{
+			WirePortDataType.INT,
+			WirePortDataType.FLOAT,
+			WirePortDataType.FLOAT2,
+			WirePortDataType.FLOAT3,
+			WirePortDataType.FLOAT4,
+			WirePortDataType.FLOAT3x3,
+			WirePortDataType.FLOAT4x4
 		};
 
 
@@ -306,10 +327,10 @@ namespace AmplifyShaderEditor
 			if ( !m_callMode )
 			{
 				EditorGUI.BeginChangeCheck();
-				m_outputTypeIdx = EditorGUILayoutPopup( OutputTypeStr, m_outputTypeIdx, AvailableWireTypesStr );
+				m_outputTypeIdx = EditorGUILayoutPopup( OutputTypeStr, m_outputTypeIdx, AvailableOutputWireTypesStr );
 				if ( EditorGUI.EndChangeCheck() )
 				{
-					m_outputPorts[ 0 ].ChangeType( AvailableWireTypes[ m_outputTypeIdx ], false );
+					m_outputPorts[ 0 ].ChangeType( AvailableOutputWireTypes[ m_outputTypeIdx ], false );
 				}
 			}
 		}
@@ -330,7 +351,7 @@ namespace AmplifyShaderEditor
 					m_containerGraph.DeleteConnection( true, UniqueId, m_inputPorts[ 0 ].PortId, false, true );
 				}
 				DeleteInputPortByArrayIdx( 0 );
-				m_outputPorts[ 0 ].ChangeType( AvailableWireTypes[ m_outputTypeIdx ], false );
+				m_outputPorts[ 0 ].ChangeType( AvailableOutputWireTypes[ m_outputTypeIdx ], false );
 			}
 		}
 
@@ -624,6 +645,12 @@ namespace AmplifyShaderEditor
 			m_code = m_code.Replace( LineFeedSeparator, '\n' );
 			m_code = m_code.Replace( SemiColonSeparator, ';' );
 			m_outputTypeIdx = Convert.ToInt32( GetCurrentParam( ref nodeParams ) );
+			if( m_outputTypeIdx >= AvailableWireTypes.Length )
+			{
+				UIUtils.ShowMessage( "Sampler types were removed as a valid output custom expression type" );
+				m_outputTypeIdx = 1;
+			}
+
 			m_outputPorts[ 0 ].ChangeType( AvailableWireTypes[ m_outputTypeIdx ], false );
 
 			if ( UIUtils.CurrentShaderVersion() > 12001 )

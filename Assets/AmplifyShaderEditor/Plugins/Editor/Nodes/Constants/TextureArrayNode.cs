@@ -95,7 +95,7 @@ namespace AmplifyShaderEditor
 			m_ddxPort.Visible = false;
 			m_ddyPort = m_inputPorts[ 6 ];
 			m_ddyPort.Visible = false;
-			m_insideSize.Set( 110, 110 + 5 );
+			m_insideSize.Set( 128, 128 + 5 );
 			m_drawPrecisionUI = false;
 			m_currentParameterType = PropertyType.Property;
 			m_freeType = false;
@@ -711,9 +711,20 @@ namespace AmplifyShaderEditor
 			}
 		}
 
+		public override string PropertyInspectorName
+		{
+			get
+			{
+				if( m_referenceType == TexReferenceType.Instance && m_referenceSampler != null )
+					return m_referenceSampler.PropertyInspectorName;
+				else
+					return base.PropertyInspectorName;
+			}
+		}
+
 		public override string GetPropertyValue()
 		{
-			return PropertyAttributes + PropertyName + "(\"" + m_propertyInspectorName + "\", 2DArray ) = \"\" {}";
+			return PropertyAttributes + PropertyName + "(\"" + PropertyInspectorName + "\", 2DArray ) = \"\" {}";
 		}
 
 		public override bool GetUniformData( out string dataType, out string dataName )
@@ -794,7 +805,7 @@ namespace AmplifyShaderEditor
 		public override void UpdateMaterial( Material mat )
 		{
 			base.UpdateMaterial( mat );
-			if( UIUtils.IsProperty( m_currentParameterType ) )
+			if( UIUtils.IsProperty( m_currentParameterType ) && !InsideShaderFunction )
 			{
 				OnPropertyNameChanged();
 				if( mat.HasProperty( PropertyName ) )

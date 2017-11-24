@@ -21,6 +21,7 @@ namespace AmplifyShaderEditor
 			base.CommonInit( uniqueId );
 			AddOutputPort( WirePortDataType.FLOAT, "Depth" );
 			m_autoWrapProperties = true;
+			m_hasLeftDropdown = true;
 			SetAdditonalTitleText( string.Format( Constants.SubTitleSpaceFormatStr, m_viewSpaceStr[ m_viewSpaceInt ] ) );
 		}
 
@@ -39,26 +40,6 @@ namespace AmplifyShaderEditor
 				if( PaddingTitleRight == 0 )
 					PaddingTitleRight = Constants.PropertyPickerWidth + Constants.IconsLeftRightMargin;
 			}
-		}
-
-		public override void OnNodeLayout( DrawInfo drawInfo )
-		{
-			base.OnNodeLayout( drawInfo );
-			m_upperLeftWidget.OnNodeLayout( m_globalPosition, drawInfo );
-		}
-
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-			m_upperLeftWidget.DrawGUIControls( drawInfo );
-		}
-
-		public override void OnNodeRepaint( DrawInfo drawInfo )
-		{
-			base.OnNodeRepaint( drawInfo );
-			if( !m_isVisible )
-				return;
-			m_upperLeftWidget.OnNodeRepaint( ContainerGraph.LodLevel );
 		}
 
 		public override void Draw( DrawInfo drawInfo )

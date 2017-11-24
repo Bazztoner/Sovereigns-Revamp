@@ -104,6 +104,8 @@ namespace AmplifyShaderEditor
 		private Dictionary<string, PropertyDataCollector> m_vertexDataDict;
 		private Dictionary<string, PropertyDataCollector> m_customOutputDict;
 		private Dictionary<string, string> m_localFunctions;
+		private Dictionary<string, string> m_grabPassDict;
+
 		private TextureChannelUsage[] m_requireTextureProperty = { TextureChannelUsage.Not_Used, TextureChannelUsage.Not_Used, TextureChannelUsage.Not_Used, TextureChannelUsage.Not_Used };
 
 		private bool m_dirtyInputs;
@@ -129,6 +131,7 @@ namespace AmplifyShaderEditor
 		private bool m_usingTexcoord3;
 		private bool m_usingWorldPosition;
 		private bool m_usingWorldNormal;
+		private bool m_usingScreenPos;
 		private bool m_usingWorldReflection;
 		private bool m_usingViewDirection;
 		private bool m_usingLightAttenuation;
@@ -217,6 +220,7 @@ namespace AmplifyShaderEditor
 			m_localFunctions = new Dictionary<string, string>();
 			m_vertexDataDict = new Dictionary<string, PropertyDataCollector>();
 			m_customOutputDict = new Dictionary<string, PropertyDataCollector>();
+			m_grabPassDict = new Dictionary<string, string>();
 
 			m_dirtyInputs = false;
 			m_dirtyCustomInputs = false;
@@ -361,6 +365,9 @@ namespace AmplifyShaderEditor
 				m_dirtyInputs = true;
 
 				// TODO: move this elsewhere (waste of string calculations)
+				if( m_input.Contains( " screenPos;" ) )
+					UsingScreenPos = true;
+
 				if ( m_input.Contains( " worldNormal;" ) )
 					UsingWorldNormal = true;
 
@@ -512,6 +519,11 @@ namespace AmplifyShaderEditor
 		public void AddGrabPass( string value )
 		{
 
+			if( m_grabPassDict.ContainsKey( value ) )
+				return;
+
+			m_grabPassDict.Add( value, value );
+
 			if ( string.IsNullOrEmpty( value ) )
 			{
 				if ( !m_grabPassIsDirty )
@@ -538,18 +550,18 @@ namespace AmplifyShaderEditor
 			if ( string.IsNullOrEmpty( dataName ) || string.IsNullOrEmpty( dataType ) )
 				return;
 
-			if ( !m_uniformsDict.ContainsKey( dataName ) )
+			string value = UIUtils.GenerateUniformName( dataType, dataName );
+			if ( !m_uniformsDict.ContainsKey( value ) && !m_uniformsDict.ContainsKey( dataName ) )
 			{
-				string value = UIUtils.GenerateUniformName( dataType, dataName );
 				m_uniforms += "\t\t" + value + '\n';
-				m_uniformsDict.Add( dataName, new PropertyDataCollector( nodeId, value ) );
-				m_uniformsList.Add( m_uniformsDict[ dataName ] );
+				m_uniformsDict.Add( value, new PropertyDataCollector( nodeId, value ) );
+				m_uniformsList.Add( m_uniformsDict[ value ] );
 				m_dirtyUniforms = true;
 			}
-			else if ( m_uniformsDict[ dataName ].NodeId != nodeId )
-			{
-				if ( m_showDebugMessages ) UIUtils.ShowMessage( "AddToUniforms:Attempting to add duplicate " + dataName, MessageSeverity.Warning );
-			}
+			//else if ( m_uniformsDict[ value ].NodeId != nodeId )
+			//{
+			//	if ( m_showDebugMessages ) UIUtils.ShowMessage( "AddToUniforms:Attempting to add duplicate " + value, MessageSeverity.Warning );
+			//}
 		}
 
 		public void AddToUniforms( int nodeId, string value )
@@ -1143,6 +1155,9 @@ namespace AmplifyShaderEditor
 			m_grabPassList.Clear();
 			m_grabPassList = null;
 
+			m_grabPassDict.Clear();
+			m_grabPassDict = null;
+
 			m_propertyNodes.Clear();
 			m_propertyNodes = null;
 
@@ -1310,6 +1325,12 @@ namespace AmplifyShaderEditor
 		{
 			get { return m_usingInternalData; }
 			set { m_usingInternalData = value; }
+		}
+
+		public bool UsingScreenPos
+		{
+			get { return m_usingScreenPos; }
+			set { m_usingScreenPos = value; }
 		}
 
 		public bool UsingWorldNormal

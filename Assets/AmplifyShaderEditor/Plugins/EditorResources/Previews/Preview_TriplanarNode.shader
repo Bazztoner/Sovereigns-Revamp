@@ -36,18 +36,18 @@ Shader "Hidden/TriplanarNode"
 				projNormal.y = max( 0, projNormal.y * nsign.y );
 				half3 xNorm; half3 yNorm; half3 yNormN; half3 zNorm;
 				xNorm = UnpackNormal( tex2D( midBumpMap, tilling * worldPos.zy * float2( nsign.x, 1.0 ) ) );
-				yNorm = UnpackNormal( tex2D( topBumpMap, tilling * worldPos.zx ) );
-				yNormN = UnpackNormal( tex2D( botBumpMap, tilling * worldPos.zx ) );
+				yNorm = UnpackNormal( tex2D( topBumpMap, tilling * worldPos.xz * float2( nsign.y, 1.0 ) ) );
+				yNormN = UnpackNormal( tex2D( botBumpMap, tilling * worldPos.xz * float2( nsign.y, 1.0 ) ) );
 				zNorm = UnpackNormal( tex2D( midBumpMap, tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ) );
-				xNorm = normalize( half3( xNorm.xy * float2( nsign.x, 1.0 ) + worldNormal.zy, worldNormal.x ) );
-				yNorm = normalize( half3( yNorm.xy + worldNormal.zx, worldNormal.y));
-				yNormN = normalize( half3( yNormN.xy + worldNormal.zx, worldNormal.y));
-				zNorm = normalize( half3( zNorm.xy * float2( -nsign.z, 1.0 ) + worldNormal.xy, worldNormal.z ) );
+				xNorm = half3( xNorm.xy * float2( nsign.x, 1.0 ) + worldNormal.zy, worldNormal.x );
+				yNorm = half3( yNorm.xy * float2( nsign.y, 1.0 ) + worldNormal.xz, worldNormal.y );
+				yNormN = half3( yNormN.xy * float2( nsign.y, 1.0 ) + worldNormal.xz, worldNormal.y );
+				zNorm = half3( zNorm.xy * float2( -nsign.z, 1.0 ) + worldNormal.xy, worldNormal.z );
 				xNorm = xNorm.zyx;
-				yNorm = yNorm.yzx;
-				yNormN = yNormN.yzx;
+				yNorm = yNorm.xzy;
+				yNormN = yNormN.xzy;
 				zNorm = zNorm.xyz;
-				return xNorm * projNormal.x + yNorm * projNormal.y + yNormN * negProjNormalY + zNorm * projNormal.z;
+				return normalize( xNorm * projNormal.x + yNorm * projNormal.y + yNormN * negProjNormalY + zNorm * projNormal.z );
 			}
 
 			inline float4 TriplanarSampling( sampler2D topTexMap, sampler2D midTexMap, sampler2D botTexMap, float3 worldPos, float3 worldNormal, float falloff, float tilling )
@@ -59,10 +59,10 @@ Shader "Hidden/TriplanarNode"
 				projNormal.y = max( 0, projNormal.y * nsign.y );
 				half4 xNorm; half4 yNorm; half4 yNormN; half4 zNorm;
 				xNorm = ( tex2D( midTexMap, tilling * worldPos.zy * float2( nsign.x, 1.0 ) ) );
-				yNorm = ( tex2D( topTexMap, tilling * worldPos.zx ) );
-				yNormN = ( tex2D( botTexMap, tilling * worldPos.zx ) );
+				yNorm = ( tex2D( topTexMap, tilling * worldPos.xz * float2( nsign.y, 1.0 ) ) );
+				yNormN = ( tex2D( botTexMap, tilling * worldPos.xz * float2( nsign.y, 1.0 ) ) );
 				zNorm = ( tex2D( midTexMap, tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ) );
-				return xNorm* projNormal.x + yNorm* projNormal.y + yNormN * negProjNormalY + zNorm* projNormal.z;
+				return xNorm * projNormal.x + yNorm * projNormal.y + yNormN * negProjNormalY + zNorm * projNormal.z;
 			}
 
 			float4 frag( v2f_img i ) : SV_Target

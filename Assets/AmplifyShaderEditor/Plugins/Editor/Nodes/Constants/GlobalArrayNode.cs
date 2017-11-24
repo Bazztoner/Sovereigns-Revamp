@@ -10,7 +10,7 @@ using AmplifyShaderEditor;
 using UnityEditor;
 
 [Serializable]
-[NodeAttributes( "Global Array", "Constants And Properties", "The node returns a value from a global array, which you can configure by entering the name of the array in the node's settings.", null, KeyCode.None, true, false, null, null, true )]
+[NodeAttributes( "Global Array", "Constants And Properties", "The node returns a value from a global array, which you can configure by entering the name of the array in the node's settings.", null, KeyCode.None, true, false, null, null, "Johann van Berkel" )]
 public sealed class GlobalArrayNode : ParentNode
 {
 	private const string DefaultArrayName = "MyGlobalArray";

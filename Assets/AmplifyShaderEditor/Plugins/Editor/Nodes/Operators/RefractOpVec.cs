@@ -12,8 +12,10 @@ namespace AmplifyShaderEditor
 		override protected void AddPorts()
 		{
 			base.AddPorts();
-			m_inputPorts[ 0 ].Name = "Incident";
-			m_inputPorts[ 1 ].Name = "Normal";
+			m_inputPorts[ 0 ].ChangeProperties( "Incident", WirePortDataType.FLOAT4, false );
+			m_inputPorts[ 1 ].ChangeProperties( "Normal", WirePortDataType.FLOAT4, false );
+			m_outputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT4, false );
+
 			AddInputPort( WirePortDataType.FLOAT, true, "Eta" );
 			m_textLabelWidth = 67;
 			m_previewShaderGUID = "5ab44ca484bed8b4884b03b1c00fdc3d";

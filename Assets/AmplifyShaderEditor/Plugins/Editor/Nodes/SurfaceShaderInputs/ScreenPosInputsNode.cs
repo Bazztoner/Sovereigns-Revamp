@@ -13,7 +13,6 @@ namespace AmplifyShaderEditor
 	{
 		private const string ProjectStr = "Project";
 		private const string UVInvertHack = "Scale and Offset";
-		private readonly string ProjectionInstruction = "{0}.xyzw /= {0}.w;";
 		private readonly string[] m_outputTypeStr = { "Normalized", "Screen" };
 
 		[SerializeField]
@@ -29,33 +28,16 @@ namespace AmplifyShaderEditor
 			base.CommonInit( uniqueId );
 			m_currentInput = AvailableSurfaceInputs.SCREEN_POS;
 			InitialSetup();
-			m_textLabelWidth = 100;
+			m_textLabelWidth = 65;
 			m_autoWrapProperties = true;
 
+			m_hasLeftDropdown = true;
 			m_previewShaderGUID = "a5e7295278a404175b732f1516fb68a6";
 
 			if( UIUtils.CurrentShaderVersion() <= 2400 )
 				m_outputTypeInt = 1;
-		}
 
-		public override void OnNodeLayout( DrawInfo drawInfo )
-		{
-			base.OnNodeLayout( drawInfo );
-			m_upperLeftWidget.OnNodeLayout( m_globalPosition, drawInfo );
-		}
-
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-			m_upperLeftWidget.DrawGUIControls( drawInfo );
-		}
-
-		public override void OnNodeRepaint( DrawInfo drawInfo )
-		{
-			base.OnNodeRepaint( drawInfo );
-			if( !m_isVisible )
-				return;
-			m_upperLeftWidget.OnNodeRepaint( ContainerGraph.LodLevel );
+			ConfigureHeader();
 		}
 
 		public override void Draw( DrawInfo drawInfo )
@@ -71,7 +53,7 @@ namespace AmplifyShaderEditor
 
 		public override void DrawProperties()
 		{
-			base.DrawProperties();
+			//base.DrawProperties();
 
 			EditorGUI.BeginChangeCheck();
 			m_outputTypeInt = EditorGUILayoutPopup( "Type", m_outputTypeInt, m_outputTypeStr );
@@ -104,34 +86,26 @@ namespace AmplifyShaderEditor
 				return GetOutputVectorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue );
 			}
 
-			base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
+			if( dataCollector.IsFragmentCategory )
+				base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
 
 			string screenPos = string.Empty;
-
 			if( dataCollector.IsTemplate )
 			{
 				screenPos = dataCollector.TemplateDataCollectorInstance.GetScreenPos();
 			}
-			else if( dataCollector.PortCategory == MasterNodePortCategory.Fragment || dataCollector.PortCategory == MasterNodePortCategory.Debug )
+			else
 			{
 				screenPos = GeneratorUtils.GenerateScreenPosition( ref dataCollector, UniqueId, m_currentPrecisionType, false );
 			}
-			else
-			{
-				screenPos = GeneratorUtils.GenerateVertexScreenPosition( ref dataCollector, UniqueId, m_currentPrecisionType, false );
-			}
-
-			string localVarName = screenPos + OutputId;
-			string value = UIUtils.PrecisionWirePortToCgType( m_currentPrecisionType, m_outputPorts[ 0 ].DataType ) + " " + localVarName + " = " + screenPos + ";";
-			dataCollector.AddLocalVariable( UniqueId, value );
 
 			if( m_outputTypeInt == 0 )
 			{
-				dataCollector.AddLocalVariable( UniqueId, string.Format( ProjectionInstruction, localVarName ) );
+				screenPos = GeneratorUtils.GenerateScreenPositionNormalized( ref dataCollector, UniqueId, m_currentPrecisionType, false );
 			}
 
-			m_outputPorts[ 0 ].SetLocalValue( localVarName );
-			return GetOutputVectorItem( 0, outputId, localVarName );
+			m_outputPorts[ 0 ].SetLocalValue( screenPos );
+			return GetOutputVectorItem( 0, outputId, screenPos );
 
 		}
 

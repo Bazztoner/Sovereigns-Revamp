@@ -59,8 +59,18 @@ namespace AmplifyShaderEditor
             AddOutputPort( WirePortDataType.COLOR, Constants.EmptyPortValue );
             m_textLabelWidth = 75;
             m_autoWrapProperties = true;
-            SetAdditonalTitleText( string.Format( Constants.SubTitleTypeFormatStr, m_currentBlendOp ) );
-        }
+			m_hasLeftDropdown = true;
+			SetAdditonalTitleText( string.Format( Constants.SubTitleTypeFormatStr, m_currentBlendOp ) );
+			m_previewShaderGUID = "6d6b3518705b3ba49acdc6e18e480257";
+		}
+
+		public override void SetPreviewInputs()
+		{
+			base.SetPreviewInputs();
+
+			m_previewMaterialPassId = (int) m_currentBlendOp;
+			PreviewMaterial.SetInt( "_Sat", m_saturate ? 1 : 0 );
+		}
 
 		public override void AfterCommonInit()
 		{
@@ -131,37 +141,16 @@ namespace AmplifyShaderEditor
             m_saturate = EditorGUILayoutToggle( SaturateResultStr, m_saturate );
         }
 
-		public override void OnNodeLayout( DrawInfo drawInfo )
-		{
-			base.OnNodeLayout( drawInfo );
-			m_upperLeftWidget.OnNodeLayout( m_globalPosition, drawInfo );
-		}
-		
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-			m_upperLeftWidget.DrawGUIControls( drawInfo );
-		}
-		
-		public override void OnNodeRepaint( DrawInfo drawInfo )
-		{
-			base.OnNodeRepaint( drawInfo );
-			if( !m_isVisible )
-				return;
-			m_upperLeftWidget.OnNodeRepaint( ContainerGraph.LodLevel );
-		}
-
 		public override void Draw( DrawInfo drawInfo )
 		{
 			base.Draw( drawInfo );
-
-			EditorGUI.BeginChangeCheck();
-			m_currentBlendOp = (BlendOps)m_upperLeftWidget.DrawWidget( this, m_currentBlendOp );
-			if( EditorGUI.EndChangeCheck() )
-			{
-				SetAdditonalTitleText( string.Format( Constants.SubTitleTypeFormatStr, m_currentBlendOp ) );
-			}
+			m_upperLeftWidget.DrawWidget<BlendOps>( ref m_currentBlendOp, this, OnWidgetUpdate );
 		}
+
+		private readonly Action<ParentNode> OnWidgetUpdate = ( x ) =>
+		{
+			x.SetAdditonalTitleText( string.Format( Constants.SubTitleTypeFormatStr, ( x as BlendOpsNode ).m_currentBlendOp ) );
+		};
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
         {

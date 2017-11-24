@@ -29,7 +29,7 @@ namespace AmplifyShaderEditor
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
 		{
 			if( m_outputPorts[0].IsLocalValue )
-				return m_outputPorts[0].LocalValue;
+				return GetOutputVectorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue );
 
 			dataCollector.AddToIncludes( UniqueId, Constants.UnityCgLibFuncs );
 			string concatResults = string.Empty;
@@ -53,7 +53,7 @@ namespace AmplifyShaderEditor
 
 			RegisterLocalVariable( 0, finalResult, ref dataCollector , m_localVarName );
 
-			return m_outputPorts[ 0 ].LocalValue;
+			return GetOutputVectorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue );
 		}
 	}
 }

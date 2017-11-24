@@ -9,15 +9,19 @@ namespace AmplifyShaderEditor
 {
 	[Serializable]
 	[NodeAttributes( "Matrix4X4", "Constants And Properties", "Matrix4X4 property" )]
-	public sealed class Matrix4X4Node : PropertyNode
+	public sealed class Matrix4X4Node : MatrixParentNode
 	{
 		[SerializeField]
 		private Matrix4x4 m_defaultValue = Matrix4x4.identity;
 
 		[SerializeField]
 		private Matrix4x4 m_materialValue = Matrix4x4.identity;
-
-
+		
+		private bool m_isEditingFields;
+		[NonSerialized]
+		private Matrix4x4 m_previousValue;
+		private string[,] m_fieldText = new string[ 4, 4 ] { { "0", "0", "0", "0" }, { "0", "0", "0", "0" }, { "0", "0", "0", "0" }, { "0", "0", "0", "0" } };
+		
 		public Matrix4X4Node() : base() { }
 		public Matrix4X4Node( int uniqueId, float x, float y, float width, float height ) : base( uniqueId, x, y, width, height ) { }
 		protected override void CommonInit( int uniqueId )
@@ -25,8 +29,8 @@ namespace AmplifyShaderEditor
 			base.CommonInit( uniqueId );
 			AddOutputPort( WirePortDataType.FLOAT4x4, Constants.EmptyPortValue );
 			m_insideSize.Set( Constants.FLOAT_DRAW_WIDTH_FIELD_SIZE * 4 + Constants.FLOAT_WIDTH_SPACING * 3, Constants.FLOAT_DRAW_HEIGHT_FIELD_SIZE * 4 + Constants.FLOAT_WIDTH_SPACING * 3 + Constants.OUTSIDE_WIRE_MARGIN );
-			m_defaultValue = new Matrix4x4();
-			m_materialValue = new Matrix4x4();
+			//m_defaultValue = new Matrix4x4();
+			//m_materialValue = new Matrix4x4();
 			m_drawPreview = false;
 			m_precisionString = UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, m_outputPorts[ 0 ].DataType );
 		}
@@ -92,6 +96,7 @@ namespace AmplifyShaderEditor
 
 			if ( insideBox )
 			{
+				GUI.FocusControl( null );
 				m_isEditingFields = true;
 			}
 			else if ( m_isEditingFields && !insideBox )
@@ -100,11 +105,6 @@ namespace AmplifyShaderEditor
 				m_isEditingFields = false;
 			}
 		}
-
-		private bool m_isEditingFields;
-		[NonSerialized]
-		private Matrix4x4 m_previousValue;
-		private string[,] m_fieldText = new string[ 4, 4 ] { { "0", "0", "0", "0" }, { "0", "0", "0", "0" }, { "0", "0", "0", "0" }, { "0", "0", "0", "0" } };
 
 		public override void Draw( DrawInfo drawInfo )
 		{
@@ -187,7 +187,7 @@ namespace AmplifyShaderEditor
 		public override void UpdateMaterial( Material mat )
 		{
 			base.UpdateMaterial( mat );
-			if ( UIUtils.IsProperty( m_currentParameterType ) )
+			if ( UIUtils.IsProperty( m_currentParameterType ) && !InsideShaderFunction )
 			{
 				mat.SetMatrix( m_propertyName, m_materialValue );
 			}
@@ -207,8 +207,7 @@ namespace AmplifyShaderEditor
 			if ( UIUtils.IsProperty( m_currentParameterType ) && material.HasProperty( m_propertyName ) )
 				m_materialValue = material.GetMatrix( m_propertyName );
 		}
-
-
+		
 		public override void ReadFromString( ref string[] nodeParams )
 		{
 			base.ReadFromString( ref nodeParams );

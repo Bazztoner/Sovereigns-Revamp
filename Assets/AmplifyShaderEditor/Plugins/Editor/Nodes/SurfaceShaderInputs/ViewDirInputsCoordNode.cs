@@ -18,7 +18,6 @@ namespace AmplifyShaderEditor
 	{
 		private const string SpaceStr = "Space";
 		private const string WorldDirVarStr = "worldViewDir";
-		private const string SubLabelFormat = "Space( {0} )";
 
 		[ SerializeField]
 		private ViewSpace m_viewDirSpace = ViewSpace.World;
@@ -33,51 +32,31 @@ namespace AmplifyShaderEditor
 			m_textLabelWidth = 75;
 			m_autoWrapProperties = true;
 			m_drawPreviewAsSphere = true;
+			m_hasLeftDropdown = true;
 			UpdateTitle();
 			m_previewShaderGUID = "07b57d9823df4bd4d8fe6dcb29fca36a";
 		}
 
 		private void UpdateTitle()
 		{
-			m_additionalContent.text = string.Format( SubLabelFormat, m_viewDirSpace.ToString() );
+			m_additionalContent.text = string.Format( Constants.SubTitleSpaceFormatStr, m_viewDirSpace.ToString() );
 			m_sizeIsDirty = true;
-		}
-
-		
-		public override void OnNodeLayout( DrawInfo drawInfo )
-		{
-			base.OnNodeLayout( drawInfo );
-			m_upperLeftWidget.OnNodeLayout( m_globalPosition, drawInfo );
-		}
-		
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-			m_upperLeftWidget.DrawGUIControls( drawInfo );
-		}
-		
-		public override void OnNodeRepaint( DrawInfo drawInfo )
-		{
-			base.OnNodeRepaint( drawInfo );
-			if( !m_isVisible )
-				return;
-			m_upperLeftWidget.OnNodeRepaint( ContainerGraph.LodLevel );
 		}
 
 		public override void Draw( DrawInfo drawInfo )
 		{
 			base.Draw( drawInfo );
-			EditorGUI.BeginChangeCheck();
-			m_viewDirSpace = (ViewSpace)m_upperLeftWidget.DrawWidget ( this, m_viewDirSpace );
-			if( EditorGUI.EndChangeCheck() )
-			{
-				UpdateTitle();
-			}
+			m_upperLeftWidget.DrawWidget<ViewSpace>( ref m_viewDirSpace, this, OnWidgetUpdate );
 		}
+
+		private readonly Action<ParentNode> OnWidgetUpdate = ( x ) =>
+		{
+			( x as ViewDirInputsCoordNode ).UpdateTitle();
+		};
 
 		public override void DrawProperties()
 		{
-			base.DrawProperties();
+			//base.DrawProperties();
 			EditorGUI.BeginChangeCheck();
 			m_viewDirSpace = ( ViewSpace ) EditorGUILayoutEnumPopup( SpaceStr, m_viewDirSpace );
 			if ( EditorGUI.EndChangeCheck() )
@@ -115,23 +94,8 @@ namespace AmplifyShaderEditor
 
 			if ( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation )
 			{
-				if ( m_viewDirSpace == ViewSpace.World )
-				{
-					string precision = UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT3 );
-					string worldPos = GeneratorUtils.GenerateWorldPosition( ref dataCollector, UniqueId );
-
-					dataCollector.AddLocalVariable( UniqueId, precision + " worldViewDir = normalize( UnityWorldSpaceViewDir( " + worldPos + " ) );" );
-					return GetOutputVectorItem( 0, outputId, "worldViewDir" );
-				}
-				else
-				{
-					string precision = UIUtils.FinalPrecisionWirePortToCgType( m_currentPrecisionType, WirePortDataType.FLOAT3 );
-					string worldPos = GeneratorUtils.GenerateWorldPosition( ref dataCollector, UniqueId );
-					string worldToTangent = GeneratorUtils.GenerateWorldToTangentMatrix( ref dataCollector, UniqueId, m_currentPrecisionType );
-
-					dataCollector.AddLocalVariable( UniqueId, precision + " tangentViewDir = mul( " + worldToTangent + ", normalize( UnityWorldSpaceViewDir( " + worldPos + " ) ) );" );
-					return GetOutputVectorItem( 0, outputId, "tangentViewDir" );
-				}
+				string result = GeneratorUtils.GenerateViewDirection( ref dataCollector, UniqueId, m_viewDirSpace );
+				return GetOutputVectorItem( 0, outputId, result );
 			}
 			else
 			{
@@ -139,9 +103,9 @@ namespace AmplifyShaderEditor
 				{
 					if ( dataCollector.DirtyNormal )
 					{
-						dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_POS ), true );
-						dataCollector.AddToLocalVariables( UniqueId, m_currentPrecisionType, WirePortDataType.FLOAT3, WorldDirVarStr, "normalize( UnityWorldSpaceViewDir( " + Constants.InputVarStr + ".worldPos ) )" );
-						return GetOutputVectorItem( 0, outputId, WorldDirVarStr );
+						dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( PrecisionType.Float, AvailableSurfaceInputs.WORLD_POS ), true );
+						string result = GeneratorUtils.GenerateViewDirection( ref dataCollector, UniqueId );
+						return GetOutputVectorItem( 0, outputId, result );
 					}
 					else
 					{

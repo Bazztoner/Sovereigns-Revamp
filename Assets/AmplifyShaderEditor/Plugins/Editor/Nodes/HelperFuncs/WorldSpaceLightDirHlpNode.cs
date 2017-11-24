@@ -16,6 +16,11 @@ namespace AmplifyShaderEditor
 			m_inputPorts[ 0 ].Visible = false;
 			m_outputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT3, false );
 			m_outputPorts[ 0 ].Name = "XYZ";
+
+			AddOutputPort( WirePortDataType.FLOAT, "X" );
+			AddOutputPort( WirePortDataType.FLOAT, "Y" );
+			AddOutputPort( WirePortDataType.FLOAT, "Z" );
+
 			m_useInternalPortData = false;
 			m_drawPreviewAsSphere = true;
 			m_previewShaderGUID = "2e8dc46eb6fb2124d9f0007caf9567e3";
@@ -23,17 +28,17 @@ namespace AmplifyShaderEditor
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
 		{
-			if ( dataCollector.IsTemplate )
-				return dataCollector.TemplateDataCollectorInstance.GetWorldSpaceLightDir();
+			if( dataCollector.IsTemplate )
+				return GetOutputVectorItem( 0, outputId, dataCollector.TemplateDataCollectorInstance.GetWorldSpaceLightDir() ); ;
 
 			//if ( m_outputPorts[ 0 ].IsLocalValue )
 			//	return m_outputPorts[ 0 ].LocalValue;
 
 			dataCollector.AddToIncludes( UniqueId, Constants.UnityCgLibFuncs );
-			dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_POS ), true );
+			dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( PrecisionType.Float, AvailableSurfaceInputs.WORLD_POS ), true );
 
 			string worldPos = GeneratorUtils.GenerateWorldPosition( ref dataCollector, UniqueId );
-			return GeneratorUtils.GenerateWorldLightDirection( ref dataCollector, UniqueId, m_currentPrecisionType, worldPos );
+			return GetOutputVectorItem( 0, outputId, GeneratorUtils.GenerateWorldLightDirection( ref dataCollector, UniqueId, m_currentPrecisionType, worldPos ));
 
 			//dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_NORMAL ), true );
 

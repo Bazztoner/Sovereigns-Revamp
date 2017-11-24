@@ -1,5 +1,6 @@
 // Amplify Shader Editor - Visual Shader Editing Tool
 // Copyright (c) Amplify Creations, Lda <info@amplify.pt>
+
 using System;
 using UnityEngine;
 using UnityEditor;
@@ -61,7 +62,10 @@ namespace AmplifyShaderEditor
         [SerializeField]
         private string m_vertexDataId = string.Empty;
 
-        [SerializeField]
+		[SerializeField]
+		private bool m_communityTemplate = false;
+
+		[SerializeField]
         private bool m_isValid = true;
 
         public TemplateData(string name)
@@ -69,9 +73,10 @@ namespace AmplifyShaderEditor
             m_name = name;
         }
 
-        public TemplateData(string name, string guid)
+        public TemplateData( string name, string guid)
         {
-            if (!string.IsNullOrEmpty(guid))
+			m_communityTemplate = false;
+			if (!string.IsNullOrEmpty(guid))
             {
                 string datapath = AssetDatabase.GUIDToAssetPath(guid);
                 if ( string.IsNullOrEmpty( datapath ) )
@@ -84,12 +89,12 @@ namespace AmplifyShaderEditor
                 try
                 {
                     body = IOUtils.LoadTextFileFromDisk(datapath);
-                    body = body.Replace("\r\n", "\n");
                 }
                 catch (Exception e)
                 {
                     Debug.LogException(e);
                     m_isValid = false;
+					return;
                 }
 
                 if (!string.IsNullOrEmpty(body))
@@ -101,20 +106,92 @@ namespace AmplifyShaderEditor
             }
         }
 
-        public TemplateData(string name, string guid, string body)
+        public TemplateData( string name, string guid, string body)
         {
+			m_communityTemplate = true;
             if (!string.IsNullOrEmpty(body))
             {
                 LoadTemplateBody(body);
-                m_name = string.IsNullOrEmpty(name) ? m_defaultShaderName : name;
+				m_name = string.IsNullOrEmpty(name) ? m_defaultShaderName : name;
                 m_guid = guid;
             }
         }
 
+		public void Reload()
+		{
+			if( m_vertexData != null )
+			{
+				m_vertexData.Clear();
+			}
+
+			if( m_interpolatorData != null )
+			{
+				m_interpolatorData.Destroy();
+			}
+
+			if( m_availableShaderProperties != null )
+			{
+				m_availableShaderProperties.Clear();
+			}
+
+			if( m_propertyDict != null )
+			{
+				m_propertyDict.Clear();
+			}
+
+			if( m_propertyList != null )
+			{
+				m_propertyList.Clear();
+			}
+
+			if( m_inputDataDict != null )
+			{
+				m_inputDataDict.Clear();
+			}
+
+			if( m_inputDataList != null )
+			{
+				m_inputDataList.Clear();
+			}
+
+			if( m_snippetElementsDict != null )
+			{
+				m_snippetElementsDict.Clear();
+			}
+
+			if( m_snippetElementsList != null )
+			{
+				for( int i = 0; i < m_snippetElementsList.Count; i++ )
+				{
+					GameObject.DestroyImmediate( m_snippetElementsList[ i ] );
+					m_snippetElementsList[ i ] = null;
+				}
+				m_snippetElementsList.Clear();
+			}
+
+			string datapath = AssetDatabase.GUIDToAssetPath( m_guid );
+			string body = string.Empty;
+			try
+			{
+				body = IOUtils.LoadTextFileFromDisk( datapath );
+				body = body.Replace( "\r\n", "\n" );
+			}
+			catch( Exception e )
+			{
+				Debug.LogException( e );
+				m_isValid = false;
+			}
+			LoadTemplateBody( body );
+			if( m_communityTemplate )
+			{
+				m_name = m_defaultShaderName;
+			}
+		}
+
         void LoadTemplateBody(string body)
         {
 
-            m_templateBody = body;
+            m_templateBody = body.Replace( "\r\n", "\n" ); ;
 
             if (m_templateBody.IndexOf(TemplatesManager.TemplateShaderNameBeginTag) < 0)
             {

@@ -1,3 +1,6 @@
+// Amplify Shader Editor - Visual Shader Editing Tool
+// Copyright (c) Amplify Creations, Lda <info@amplify.pt>
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -433,7 +436,10 @@ namespace AmplifyShaderEditor
 			if ( HasInfo( TemplateInfoOnSematics.POSITION, useMasterNodeCategory, customCategory ) )
 			{
 				InterpDataHelper info = GetInfo( TemplateInfoOnSematics.POSITION, useMasterNodeCategory, customCategory );
-				return TemplateHelperFunctions.AutoSwizzleData( info.VarName, info.VarType, type );
+				if( type != info.VarType )
+					return TemplateHelperFunctions.AutoSwizzleData( info.VarName, info.VarType, type );
+				else
+					return info.VarName;
 			}
 			else
 			{
@@ -577,6 +583,12 @@ namespace AmplifyShaderEditor
 			if ( HasCustomInterpolatedData( varName, useMasterNodeCategory, customCategory ) )
 				return varName;
 
+			if( !m_availableVertData.ContainsKey( TemplateInfoOnSematics.POSITION ) )
+			{
+				UIUtils.ShowMessage( "Attempting to access inexisting vertex position to calculate world pos" );
+				return "fixed3(0,0,0)";
+			}
+
 			string vertexPos = m_availableVertData[ TemplateInfoOnSematics.POSITION ].VarName;
 			string worldPosConversion = string.Format( "mul(unity_ObjectToWorld, {0}).xyz", vertexPos );
 
@@ -589,6 +601,12 @@ namespace AmplifyShaderEditor
 			string varName = "clipPos";
 			if ( HasCustomInterpolatedData( varName, useMasterNodeCategory, customCategory ) )
 				return varName;
+
+			if( !m_availableVertData.ContainsKey( TemplateInfoOnSematics.POSITION ) )
+			{
+				UIUtils.ShowMessage( "Attempting to access inexisting vertex position to calculate clip pos" );
+				return "fixed4(0,0,0,0)";
+			}
 
 			string vertexPos = m_availableVertData[ TemplateInfoOnSematics.POSITION ].VarName;
 			string clipSpaceConversion = string.Format( "UnityObjectToClipPos({0})", vertexPos );

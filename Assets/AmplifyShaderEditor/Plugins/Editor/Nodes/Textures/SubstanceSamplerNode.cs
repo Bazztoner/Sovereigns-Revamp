@@ -64,8 +64,39 @@ namespace AmplifyShaderEditor
 			m_customPrefix = "Substance Sample ";
 			m_drawPrecisionUI = false;
 			m_showPreview = true;
+			m_drawPreviewExpander = false;
 			m_selectedLocation = PreviewLocation.TopCenter;
 			m_cacheNodeConnections = new CacheNodeConnections();
+			m_previewShaderGUID = "6f322c1da33f1e744941aafcb0ad1a2d";
+		}
+
+		public override void RenderNodePreview()
+		{
+			if( !m_initialized )
+				return;
+
+			SetPreviewInputs();
+			PreviewMaterial.SetInt( "_CustomUVs", m_inputPorts[ 0 ].IsConnected ? 1 : 0 );
+
+			if( m_proceduralMaterial == null )
+				return;
+
+
+			Texture[] texs = m_proceduralMaterial.GetGeneratedTextures();
+			int count = m_outputPorts.Count;
+			for( int i = 0; i < count; i++ )
+			{
+				RenderTexture temp = RenderTexture.active;
+				RenderTexture.active = m_outputPorts[ i ].OutputPreviewTexture;
+
+				PreviewMaterial.SetTexture( "_GenTex", texs[ i ] );
+
+				if( m_autoNormal && m_textureTypes[ i ] == ProceduralOutputType.Normal )
+					Graphics.Blit( null, m_outputPorts[ i ].OutputPreviewTexture, PreviewMaterial, 1 );
+				else
+					Graphics.Blit( null, m_outputPorts[ i ].OutputPreviewTexture, PreviewMaterial, 0 );
+				RenderTexture.active = temp;
+			}
 		}
 
 		public override void OnOutputPortConnected( int portId, int otherNodeId, int otherPortId )
@@ -551,7 +582,7 @@ namespace AmplifyShaderEditor
 				Texture[] textures = m_proceduralMaterial.GetGeneratedTextures();
 				for ( int i = 0; i < textures.Length; i++ )
 				{
-					if ( mat.HasProperty( textures[ i ].name ) )
+					if ( mat.HasProperty( textures[ i ].name ) && !InsideShaderFunction )
 					{
 						mat.SetTexture( textures[ i ].name, textures[ i ] );
 					}

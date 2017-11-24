@@ -7,15 +7,20 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ChandellierGlass
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: b06ff5d4d77d65d498be0e3e2cdb0bd1, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 1
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
+    - first:
+        name: _Albedo
+      second:
+        m_Texture: {fileID: 2800000, guid: e102fb317b275bf4da059c0ca40e7a76, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - first:
         name: _BumpMap
       second:
@@ -41,6 +46,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _Emission
+      second:
+        m_Texture: {fileID: 2800000, guid: 408723338c78df14b8f0af92f84785ba, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 2800000, guid: 408723338c78df14b8f0af92f84785ba, type: 3}
@@ -59,6 +70,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _MetallicSmoothness
+      second:
+        m_Texture: {fileID: 2800000, guid: 539bf684653fa41458967ee8fb074abf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Normal
+      second:
+        m_Texture: {fileID: 2800000, guid: 70bc9e6fd8bce5c489d99f81103748d3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _OcclusionMap
       second:
         m_Texture: {fileID: 0}
@@ -66,6 +89,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Thickness
+      second:
+        m_Texture: {fileID: 2800000, guid: bacdc944444186647b793ce346628d97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _texcoord
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -114,15 +149,36 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
+        name: _TransAmbient
+      second: 0.321
+    - first:
+        name: _TransDirect
+      second: 0.249
+    - first:
+        name: _TransNormalDistortion
+      second: 0.204
+    - first:
+        name: _TransScattering
+      second: 8.5
+    - first:
+        name: _TransShadow
+      second: 0.23
+    - first:
+        name: _Translucency
+      second: 8.8
+    - first:
         name: _UVSec
       second: 0
     - first:
         name: _ZWrite
       second: 0
+    - first:
+        name: __dirty
+      second: 1
     m_Colors:
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0, g: 0, b: 0, a: 0}

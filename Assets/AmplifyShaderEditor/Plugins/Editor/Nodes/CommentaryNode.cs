@@ -357,7 +357,9 @@ namespace AmplifyShaderEditor
 			// Selection Box
 			if ( m_selected )
 			{
+				GUI.color = Constants.NodeSelectedColor;
 				GUI.Label( m_globalPosition, string.Empty, UIUtils.GetCustomStyle( CustomStyle.NodeWindowOn ) );
+				GUI.color = m_colorBuffer;
 			}
 
 			if ( !string.IsNullOrEmpty( m_titleText ) )
@@ -426,7 +428,7 @@ namespace AmplifyShaderEditor
 				}
 			}
 
-			if ( drawInfo.CurrentEventType == EventType.MouseDown )
+			if ( drawInfo.CurrentEventType == EventType.MouseDown && drawInfo.LeftMouseButtonPressed )
 			{
 				// Left Button
 				if( m_resizeLeftIconCoords.Contains( drawInfo.MousePosition ) && ContainerGraph.ParentWindow.CurrentEvent.modifiers != EventModifiers.Shift )

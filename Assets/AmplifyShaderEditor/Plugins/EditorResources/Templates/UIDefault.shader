@@ -66,7 +66,7 @@ Shader /*ase_name*/"ASETemplateShaders/UIDefault"/*end*/
 				float4 vertex   : POSITION;
 				float4 color    : COLOR;
 				float2 texcoord : TEXCOORD0;
-				/*ase_vdata:p=p.xyz;uv0=tc0.xy;c=c*/
+				/*ase_vdata:p=p;uv0=tc0.xy;c=c*/
 			};
 
 			struct v2f
@@ -119,4 +119,5 @@ Shader /*ase_name*/"ASETemplateShaders/UIDefault"/*end*/
 		ENDCG
 		}
 	}
+	CustomEditor "ASEMaterialInspector"
 }

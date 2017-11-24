@@ -73,6 +73,7 @@ namespace AmplifyShaderEditor
 		{
 			base.OnInputPortDisconnected( portId );
 			UpdateDisconnectedConnection( portId );
+			UpdateConnection( portId );
 			UpdateEmptyInputPorts( true );
 		}
 

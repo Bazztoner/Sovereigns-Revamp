@@ -11,7 +11,8 @@ namespace AmplifyShaderEditor
 		protected override void CommonInit( int uniqueId )
 		{
 			base.CommonInit( uniqueId );
-			m_outputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT, false );
+			m_inputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT4, false );
+			m_inputPorts[ 1 ].ChangeType( WirePortDataType.FLOAT4, false );
 			m_dynamicOutputType = false;
 			m_useInternalPortData = true;
 			m_allowMatrixCheck = true;

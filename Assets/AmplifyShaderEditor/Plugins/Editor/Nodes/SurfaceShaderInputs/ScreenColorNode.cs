@@ -13,7 +13,7 @@ namespace AmplifyShaderEditor
 	public sealed class ScreenColorNode : PropertyNode
 	{
 		private readonly Color ReferenceHeaderColor = new Color( 0.6f, 3.0f, 1.25f, 1.0f );
-		
+
 		private const string SamplerType = "tex2D";
 		private const string GrabTextureDefault = "_GrabTexture";
 		//private const string GrabVarStr = "grabScreenPos";
@@ -21,22 +21,25 @@ namespace AmplifyShaderEditor
 		private const string ScreenPosStr = "screenPos";
 		private const string ScreenColorStr = "screenColor";
 		private readonly string ScreenPosOnFragStr = Constants.InputVarStr + "." + ScreenPosStr;
-		private readonly string ProjectionInstruction = "{0}.w += 0.00000000001;\n\t\t\t{0}.xyzw /= {0}.w;";
+
 		private readonly string[] HackInstruction = {   "#if UNITY_UV_STARTS_AT_TOP",
 														"float scale{0} = -1.0;",
 														"#else",
 														"float scale{0} = 1.0;",
 														"#endif",
 														"float halfPosW{1} = {0}.w * 0.5;",
-														"{0}.y = ( {0}.y - halfPosW{1} ) * _ProjectionParams.x* scale{1} + halfPosW{1};"};
+														"{0}.y = ( {0}.y - halfPosW{1} ) * _ProjectionParams.x* scale{1} + halfPosW{1};",
+														"{0}.w += 0.00000000001;",
+														"{0}.xyzw /= {0}.w;"
+														};
 
 
-		[ SerializeField]
+		[SerializeField]
 		private bool m_isTextureFetched;
 
 		[SerializeField]
 		private string m_textureFetchedValue;
-		
+
 		/////////////////////////////////////////////////////////
 
 		[SerializeField]
@@ -50,7 +53,7 @@ namespace AmplifyShaderEditor
 
 		[SerializeField]
 		private GUIStyle m_referenceIconStyle = null;
-		
+
 		private ScreenColorNode m_referenceNode = null;
 
 		[SerializeField]
@@ -71,12 +74,14 @@ namespace AmplifyShaderEditor
 
 			m_currentParameterType = PropertyType.Global;
 			m_underscoredGlobal = true;
-			//m_useCustomPrefix = true;
+			m_useVarSubtitle = true;
 			m_customPrefix = "Grab Screen ";
 			m_freeType = false;
+			m_drawAttributes = false;
+			m_showTitleWhenNotEditing = false;
 			m_textLabelWidth = 125;
 		}
-		
+
 		protected override void OnUniqueIDAssigned()
 		{
 			base.OnUniqueIDAssigned();
@@ -91,7 +96,7 @@ namespace AmplifyShaderEditor
 
 		protected override void ChangeSizeFinished()
 		{
-			if ( m_referenceType == TexReferenceType.Instance )
+			if( m_referenceType == TexReferenceType.Instance )
 			{
 				m_position.width += 20;
 			}
@@ -100,27 +105,28 @@ namespace AmplifyShaderEditor
 		public override void Draw( DrawInfo drawInfo )
 		{
 			base.Draw( drawInfo );
-			
+
 			CheckReference();
 
-			if ( SoftValidReference )
+			if( SoftValidReference )
 			{
 				m_content.text = m_referenceNode.TitleContent.text + Constants.InstancePostfixStr;
-				m_additionalContent.text = m_referenceNode.AdditonalTitleContent.text;
-				
-				if ( m_referenceIconStyle == null )
+				//m_additionalContent.text = m_referenceNode.AdditonalTitleContent.text;
+				SetAdditonalTitleText( m_referenceNode.AdditonalTitleContent.text );
+
+				if( m_referenceIconStyle == null )
 				{
 					m_referenceIconStyle = UIUtils.GetCustomStyle( CustomStyle.SamplerTextureIcon );
 				}
 
 				Rect iconPos = m_globalPosition;
-				iconPos.width = m_referenceIconStyle.normal.background.width * drawInfo.InvertedZoom;
-				iconPos.height = m_referenceIconStyle.normal.background.height * drawInfo.InvertedZoom;
+				iconPos.width = 19 * drawInfo.InvertedZoom;
+				iconPos.height = 19 * drawInfo.InvertedZoom;
 
 				iconPos.y += 6 * drawInfo.InvertedZoom;
 				iconPos.x += m_globalPosition.width - iconPos.width - 7 * drawInfo.InvertedZoom;
 
-				if ( GUI.Button( iconPos, string.Empty, m_referenceIconStyle ))
+				if( GUI.Button( iconPos, string.Empty, m_referenceIconStyle ) )
 				{
 					UIUtils.FocusOnNode( m_referenceNode, 1, true );
 				}
@@ -129,22 +135,22 @@ namespace AmplifyShaderEditor
 
 		void CheckReference()
 		{
-			if ( m_referenceType != TexReferenceType.Instance )
+			if( m_referenceType != TexReferenceType.Instance )
 			{
 				return;
 			}
 
-			if ( m_referenceArrayId > -1 )
+			if( m_referenceArrayId > -1 )
 			{
 				ParentNode newNode = UIUtils.GetScreenColorNode( m_referenceArrayId );
-				if ( newNode == null || newNode.UniqueId != m_referenceNodeId )
+				if( newNode == null || newNode.UniqueId != m_referenceNodeId )
 				{
 					m_referenceNode = null;
 					int count = UIUtils.GetScreenColorNodeAmount();
-					for ( int i = 0; i < count; i++ )
+					for( int i = 0; i < count; i++ )
 					{
 						ParentNode node = UIUtils.GetScreenColorNode( i );
-						if ( node.UniqueId == m_referenceNodeId )
+						if( node.UniqueId == m_referenceNodeId )
 						{
 							m_referenceNode = node as ScreenColorNode;
 							m_referenceArrayId = i;
@@ -154,7 +160,7 @@ namespace AmplifyShaderEditor
 				}
 			}
 
-			if ( m_referenceNode == null && m_referenceNodeId > -1 )
+			if( m_referenceNode == null && m_referenceNodeId > -1 )
 			{
 				m_referenceNodeId = -1;
 				m_referenceArrayId = -1;
@@ -165,38 +171,42 @@ namespace AmplifyShaderEditor
 		{
 			EditorGUI.BeginChangeCheck();
 			//m_referenceType = ( TexReferenceType ) EditorGUILayout.EnumPopup( Constants.ReferenceTypeStr, m_referenceType );
-			m_referenceType = ( TexReferenceType ) EditorGUILayoutPopup( Constants.ReferenceTypeStr, ( int ) m_referenceType, Constants.ReferenceArrayLabels );
-			if ( EditorGUI.EndChangeCheck() )
+			m_referenceType = (TexReferenceType)EditorGUILayoutPopup( Constants.ReferenceTypeStr, (int)m_referenceType, Constants.ReferenceArrayLabels );
+			if( EditorGUI.EndChangeCheck() )
 			{
 				m_sizeIsDirty = true;
-				if ( m_referenceType == TexReferenceType.Object )
+				if( m_referenceType == TexReferenceType.Object )
 				{
 					UIUtils.RegisterScreenColorNode( this );
 					m_content.text = m_propertyInspectorName;
-					m_additionalContent.text = string.Format( Constants.PropertyValueLabel, GetPropertyValStr() );
+					//SetAdditonalTitleText( string.Format( Constants.SubTitleVarNameFormatStr, GetPropertyValStr() ) );
+					//m_additionalContent.text = string.Format( Constants.PropertyValueLabel, GetPropertyValStr() );
 				}
 				else
 				{
 					UIUtils.UnregisterScreenColorNode( this );
-					if ( SoftValidReference )
+					if( SoftValidReference )
 					{
 						m_content.text = m_referenceNode.TitleContent.text + Constants.InstancePostfixStr;
-						m_additionalContent.text = m_referenceNode.AdditonalTitleContent.text;
+						//m_additionalContent.text = m_referenceNode.AdditonalTitleContent.text;
+						//SetAdditonalTitleText( m_referenceNode.AdditonalTitleContent.text );
 					}
 				}
-					UpdateHeaderColor();
+				UpdateHeaderColor();
 			}
-			
-			if ( m_referenceType == TexReferenceType.Object )
+
+			if( m_referenceType == TexReferenceType.Object )
 			{
 				EditorGUI.BeginChangeCheck();
-				m_useCustomGrab = EditorGUILayoutToggle("Custom Grabpass", m_useCustomGrab );
+				ShowPrecision();
+				m_useCustomGrab = EditorGUILayoutToggle( "Custom Grab Pass", m_useCustomGrab );
 				EditorGUI.BeginDisabledGroup( !m_useCustomGrab );
-				base.DrawMainPropertyBlock();
+				DrawMainPropertyBlockNoPrecision();
 				EditorGUI.EndDisabledGroup();
-				if ( EditorGUI.EndChangeCheck() )
+				
+				if( EditorGUI.EndChangeCheck() )
 				{
-					if ( m_useCustomGrab )
+					if( m_useCustomGrab )
 					{
 						BeginPropertyFromInspectorCheck();
 					}
@@ -206,7 +216,7 @@ namespace AmplifyShaderEditor
 			{
 				string[] arr = UIUtils.ScreenColorNodeArr();
 				bool guiEnabledBuffer = GUI.enabled;
-				if ( arr != null && arr.Length > 0 )
+				if( arr != null && arr.Length > 0 )
 				{
 					GUI.enabled = true;
 				}
@@ -216,7 +226,7 @@ namespace AmplifyShaderEditor
 					GUI.enabled = false;
 				}
 
-				m_referenceArrayId = EditorGUILayoutPopup(  Constants.AvailableReferenceStr, m_referenceArrayId, arr );
+				m_referenceArrayId = EditorGUILayoutPopup( Constants.AvailableReferenceStr, m_referenceArrayId, arr );
 				GUI.enabled = guiEnabledBuffer;
 			}
 		}
@@ -243,21 +253,27 @@ namespace AmplifyShaderEditor
 
 		public override void DrawTitle( Rect titlePos )
 		{
-			if ( m_useCustomGrab || SoftValidReference )
+			if( !m_isEditing && ContainerGraph.LodLevel <= ParentGraph.NodeLOD.LOD3 )
+			{
+				GUI.Label( titlePos, "Grab Screen Color", UIUtils.GetCustomStyle( CustomStyle.NodeTitle ) );
+			}
+
+			if( m_useCustomGrab || SoftValidReference )
 			{
 				base.DrawTitle( titlePos );
+				m_previousAdditonalTitle = m_additionalContent.text;
 			}
-			else 
-			if ( ContainerGraph.LodLevel <= ParentGraph.NodeLOD.LOD3 )
+			else
+			if( ContainerGraph.LodLevel <= ParentGraph.NodeLOD.LOD3 )
 			{
-				SetAdditonalTitleText( string.Format( Constants.PropertyValueLabel, GrabTextureDefault ) );
-				GUI.Label( titlePos, PropertyInspectorName, UIUtils.GetCustomStyle( CustomStyle.NodeTitle ) );
+				SetAdditonalTitleTextOnCallback( GrabTextureDefault, ( instance, newSubTitle ) => instance.AdditonalTitleContent.text = string.Format( Constants.SubTitleVarNameFormatStr, newSubTitle ) );
+				//GUI.Label( titlePos, PropertyInspectorName, UIUtils.GetCustomStyle( CustomStyle.NodeTitle ) );
 			}
 		}
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar )
 		{
-			if ( m_outputPorts[ 0 ].IsLocalValue )
+			if( m_outputPorts[ 0 ].IsLocalValue )
 				return GetOutputColorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue );
 
 			base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
@@ -267,16 +283,16 @@ namespace AmplifyShaderEditor
 
 			OnPropertyNameChanged();
 
-			bool emptyName = string.IsNullOrEmpty( m_propertyInspectorName );
+			bool emptyName = string.IsNullOrEmpty( m_propertyInspectorName ) || propertyName == GrabTextureDefault;
 
-			dataCollector.AddGrabPass( emptyName?string.Empty: propertyName );
+			dataCollector.AddGrabPass( emptyName ? string.Empty : propertyName );
 
 			//if ( !m_inputPorts[ 0 ].IsConnected )
 			//{
 			//	string uvChannelDeclaration = IOUtils.GetUVChannelDeclaration( propertyName, -1, 0 );
 			//	dataCollector.AddToInput( m_uniqueId, uvChannelDeclaration, true );
 			//}
-			string valueName = SetFetchedData( ref dataCollector, ignoreLocalVar);
+			string valueName = SetFetchedData( ref dataCollector, ignoreLocalVar );
 
 			m_outputPorts[ 0 ].SetLocalValue( valueName );
 			return GetOutputColorItem( 0, outputId, valueName );
@@ -287,24 +303,24 @@ namespace AmplifyShaderEditor
 			string propertyName = CurrentPropertyReference;
 
 			bool isProjecting = false;
-			if ( m_inputPorts[ 0 ].DataType == WirePortDataType.FLOAT4 )
+			if( m_inputPorts[ 0 ].DataType == WirePortDataType.FLOAT4 )
 				isProjecting = true;
 
-			if(!m_inputPorts[0].IsConnected)
+			if( !m_inputPorts[ 0 ].IsConnected )
 				isProjecting = true;
 
-			if ( ignoreLocalVar )
+			if( ignoreLocalVar )
 			{
-				string samplerValue = SamplerType + ( isProjecting ? "proj" : "" ) +"( " + propertyName + ", " + GetUVCoords( ref dataCollector, ignoreLocalVar, isProjecting ) + " )";
+				string samplerValue = SamplerType + ( isProjecting ? "proj" : "" ) + "( " + propertyName + ", " + GetUVCoords( ref dataCollector, ignoreLocalVar, isProjecting ) + " )";
 				return samplerValue;
 			}
 
-			if ( m_isTextureFetched )
+			if( m_isTextureFetched )
 				return m_textureFetchedValue;
 
 			string samplerOp = SamplerType + ( isProjecting ? "proj" : "" ) + "( " + propertyName + ", " + GetUVCoords( ref dataCollector, ignoreLocalVar, isProjecting ) + " )";
 
-			dataCollector.AddLocalVariable( UniqueId, UIUtils.PrecisionWirePortToCgType( m_currentPrecisionType, m_outputPorts[ 0 ].DataType ) + " " +ScreenColorStr+OutputId+" = "+ samplerOp+";" );
+			dataCollector.AddLocalVariable( UniqueId, UIUtils.PrecisionWirePortToCgType( m_currentPrecisionType, m_outputPorts[ 0 ].DataType ) + " " + ScreenColorStr + OutputId + " = " + samplerOp + ";" );
 			return ScreenColorStr + OutputId;
 		}
 
@@ -324,10 +340,10 @@ namespace AmplifyShaderEditor
 
 		public string GetUVCoords( ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar, bool isProjecting )
 		{
-			if ( m_inputPorts[ 0 ].IsConnected )
+			if( m_inputPorts[ 0 ].IsConnected )
 			{
 				string result = m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, ( isProjecting ? WirePortDataType.FLOAT4 : WirePortDataType.FLOAT2 ), ignoreLocalVar, true );
-				if ( isProjecting )
+				if( isProjecting )
 					return "UNITY_PROJ_COORD( " + result + " )";
 				else
 					return result;
@@ -336,19 +352,19 @@ namespace AmplifyShaderEditor
 			{
 				string localVarName = string.Empty;
 
-				if ( dataCollector.IsTemplate )
+				if( dataCollector.IsTemplate )
 				{
 					localVarName = dataCollector.TemplateDataCollectorInstance.GetScreenPos();
 				}
 				else
 				{
-				dataCollector.AddToInput( UniqueId, "float4 " + ScreenPosStr, true );
+					dataCollector.AddToInput( UniqueId, "float4 " + ScreenPosStr, true );
 
-				localVarName = ScreenPosStr + OutputId;
-				string value = UIUtils.PrecisionWirePortToCgType( m_currentPrecisionType, m_outputPorts[ 0 ].DataType ) + " " + localVarName + " = " + ScreenPosOnFragStr + ";";
-				dataCollector.AddLocalVariable( UniqueId, value, true );
+					localVarName = ScreenPosStr + OutputId;
+					string value = UIUtils.PrecisionWirePortToCgType( m_currentPrecisionType, m_outputPorts[ 0 ].DataType ) + " " + localVarName + " = " + ScreenPosOnFragStr + ";";
+					dataCollector.AddLocalVariable( UniqueId, value, true );
 				}
-				
+
 				dataCollector.AddLocalVariable( UniqueId, HackInstruction[ 0 ], true );
 				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 1 ], OutputId ), true );
 				dataCollector.AddLocalVariable( UniqueId, HackInstruction[ 2 ], true );
@@ -356,7 +372,8 @@ namespace AmplifyShaderEditor
 				dataCollector.AddLocalVariable( UniqueId, HackInstruction[ 4 ], true );
 				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 5 ], localVarName, OutputId ), true );
 				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 6 ], localVarName, OutputId ), true );
-				dataCollector.AddLocalVariable( UniqueId, string.Format( ProjectionInstruction, localVarName ), true );
+				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 7 ], localVarName ), true );
+				dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 8 ], localVarName ), true );
 				return "UNITY_PROJ_COORD( " + localVarName + " )";
 			}
 		}
@@ -364,20 +381,20 @@ namespace AmplifyShaderEditor
 		public override void Destroy()
 		{
 			base.Destroy();
-			if ( m_referenceType == TexReferenceType.Object )
+			if( m_referenceType == TexReferenceType.Object )
 			{
 				UIUtils.UnregisterScreenColorNode( this );
 			}
 		}
-		
+
 		public bool SoftValidReference
 		{
 			get
 			{
-				if ( m_referenceType == TexReferenceType.Instance && m_referenceArrayId > -1 )
+				if( m_referenceType == TexReferenceType.Instance && m_referenceArrayId > -1 )
 				{
 					m_referenceNode = UIUtils.GetScreenColorNode( m_referenceArrayId );
-					if ( m_referenceNode == null )
+					if( m_referenceNode == null )
 					{
 						m_referenceArrayId = -1;
 						m_referenceWidth = -1;
@@ -398,12 +415,12 @@ namespace AmplifyShaderEditor
 			get
 			{
 				string propertyName = string.Empty;
-				if ( m_referenceType == TexReferenceType.Instance && m_referenceArrayId > -1 )
+				if( m_referenceType == TexReferenceType.Instance && m_referenceArrayId > -1 )
 				{
 					ScreenColorNode node = UIUtils.GetScreenColorNode( m_referenceArrayId );
 					propertyName = ( node != null ) ? node.PropertyName : m_propertyName;
 				}
-				else if ( !m_useCustomGrab )
+				else if( !m_useCustomGrab )
 				{
 					propertyName = GrabTextureDefault;
 				}
@@ -419,10 +436,10 @@ namespace AmplifyShaderEditor
 		public override void ReadFromString( ref string[] nodeParams )
 		{
 			base.ReadFromString( ref nodeParams );
-			if ( UIUtils.CurrentShaderVersion() > 12 )
+			if( UIUtils.CurrentShaderVersion() > 12 )
 			{
-				m_referenceType = ( TexReferenceType ) Enum.Parse( typeof( TexReferenceType ), GetCurrentParam( ref nodeParams ) );
-				if ( UIUtils.CurrentShaderVersion() > 22 )
+				m_referenceType = (TexReferenceType)Enum.Parse( typeof( TexReferenceType ), GetCurrentParam( ref nodeParams ) );
+				if( UIUtils.CurrentShaderVersion() > 22 )
 				{
 					m_referenceNodeId = Convert.ToInt32( GetCurrentParam( ref nodeParams ) );
 				}
@@ -430,8 +447,8 @@ namespace AmplifyShaderEditor
 				{
 					m_referenceArrayId = Convert.ToInt32( GetCurrentParam( ref nodeParams ) );
 				}
-				
-				if ( m_referenceType == TexReferenceType.Instance )
+
+				if( m_referenceType == TexReferenceType.Instance )
 				{
 					UIUtils.UnregisterScreenColorNode( this );
 				}
@@ -442,7 +459,8 @@ namespace AmplifyShaderEditor
 			if( UIUtils.CurrentShaderVersion() > 12101 )
 			{
 				m_useCustomGrab = Convert.ToBoolean( GetCurrentParam( ref nodeParams ) );
-			} else
+			}
+			else
 			{
 				m_useCustomGrab = true;
 			}
@@ -459,9 +477,9 @@ namespace AmplifyShaderEditor
 		public override void RefreshExternalReferences()
 		{
 			base.RefreshExternalReferences();
-			if ( m_referenceType == TexReferenceType.Instance )
+			if( m_referenceType == TexReferenceType.Instance )
 			{
-				if ( UIUtils.CurrentShaderVersion() > 22 )
+				if( UIUtils.CurrentShaderVersion() > 22 )
 				{
 					m_referenceNode = UIUtils.GetNode( m_referenceNodeId ) as ScreenColorNode;
 					m_referenceArrayId = UIUtils.GetScreenColorNodeRegisterId( m_referenceNodeId );
@@ -469,7 +487,7 @@ namespace AmplifyShaderEditor
 				else
 				{
 					m_referenceNode = UIUtils.GetScreenColorNode( m_referenceArrayId );
-					if ( m_referenceNode != null )
+					if( m_referenceNode != null )
 					{
 						m_referenceNodeId = m_referenceNode.UniqueId;
 					}
@@ -481,7 +499,7 @@ namespace AmplifyShaderEditor
 		{
 			get
 			{
-				if ( m_useCustomGrab )
+				if( m_useCustomGrab )
 					return base.PropertyName;
 				else
 					return GrabTextureDefault;
@@ -497,9 +515,9 @@ namespace AmplifyShaderEditor
 
 		public override string GetUniformValue()
 		{
-			if ( SoftValidReference )
+			if( SoftValidReference )
 			{
-				if ( m_referenceNode.IsConnected )
+				if( m_referenceNode.IsConnected )
 					return string.Empty;
 
 				return m_referenceNode.GetUniformValue();
@@ -510,7 +528,7 @@ namespace AmplifyShaderEditor
 
 		public override bool GetUniformData( out string dataType, out string dataName )
 		{
-			if ( SoftValidReference )
+			if( SoftValidReference )
 			{
 				//if ( m_referenceNode.IsConnected )
 				//{
@@ -518,11 +536,11 @@ namespace AmplifyShaderEditor
 				//	dataName = string.Empty;
 				//}
 
-				return m_referenceNode.GetUniformData( out dataType, out  dataName );
+				return m_referenceNode.GetUniformData( out dataType, out dataName );
 			}
 
 			dataType = "sampler2D";
-			dataName  = PropertyName;
+			dataName = PropertyName;
 			return true;
 		}
 	}

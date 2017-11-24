@@ -61,6 +61,8 @@ namespace AmplifyShaderEditor
 		[SerializeField]
 		private int m_orderIndex = -1;
 
+		protected bool m_showTitleWhenNotEditing = true;
+
 		private int m_orderIndexOffset = 0;
 
 		protected bool m_drawAttributes = true;
@@ -70,6 +72,8 @@ namespace AmplifyShaderEditor
 		protected bool m_freeName;
 		protected bool m_freeType;
 		protected bool m_propertyNameIsDirty;
+
+		protected bool m_useVarSubtitle = false;
 
 		protected bool m_propertyFromInspector;
 		protected double m_propertyFromInspectorTimestamp;
@@ -81,7 +85,7 @@ namespace AmplifyShaderEditor
 		protected string m_oldName = string.Empty;
 
 		private bool m_reRegisterName = false;
-
+		protected bool m_allowPropertyDuplicates = false;
 		//protected bool m_useCustomPrefix = false;
 		protected string m_customPrefix = null;
 
@@ -128,6 +132,8 @@ namespace AmplifyShaderEditor
 				if ( PaddingTitleRight == 0 )
 					PaddingTitleRight = Constants.PropertyPickerWidth + Constants.IconsLeftRightMargin;
 			}
+
+			m_hasLeftDropdown = m_freeType;
 		}
 
 		protected void BeginDelayedDirtyProperty()
@@ -166,12 +172,6 @@ namespace AmplifyShaderEditor
 					m_propertyNameIsDirty = true;
 				}
 			}
-		}
-
-		public override void ReleaseUniqueIdData()
-		{
-			UIUtils.ReleaseUniformName( UniqueId, m_oldName );
-			RegisterFirstAvailablePropertyName( false );
 		}
 
 		protected override void OnUniqueIDAssigned()
@@ -263,28 +263,24 @@ namespace AmplifyShaderEditor
 		protected virtual void OnAtrributesChanged() { }
 		void DrawAttributesAddRemoveButtons()
 		{
-			if ( m_availableAttribsArr == null )
+			if( m_availableAttribsArr == null )
 			{
 				InitializeAttribsArray();
 			}
 
-			EditorGUILayout.Separator();
-
 			int attribCount = m_selectedAttribs.Count;
-			if ( attribCount == 0 )
-				m_visibleAttribsFoldout = false;
 			// Add new port
-			if ( GUILayout.Button( string.Empty, UIUtils.PlusStyle, GUILayout.Width( ButtonLayoutWidth ) ) )
+			if( GUILayout.Button( string.Empty, UIUtils.PlusStyle, GUILayout.Width( ButtonLayoutWidth ) ) )
 			{
-				m_selectedAttribs.Add( 0 );
 				m_visibleAttribsFoldout = true;
+				m_selectedAttribs.Add( 0 );
 				OnAtrributesChanged();
 			}
 
 			//Remove port
-			if ( GUILayout.Button( string.Empty, UIUtils.MinusStyle, GUILayout.Width( ButtonLayoutWidth ) ) )
+			if( GUILayout.Button( string.Empty, UIUtils.MinusStyle, GUILayout.Width( ButtonLayoutWidth ) ) )
 			{
-				if ( attribCount > 0 )
+				if( attribCount > 0 )
 				{
 					m_selectedAttribs.RemoveAt( attribCount - 1 );
 					OnAtrributesChanged();
@@ -295,50 +291,53 @@ namespace AmplifyShaderEditor
 		public virtual void DrawAttributes()
 		{
 			int attribCount = m_selectedAttribs.Count;
+			if( attribCount == 0 )
+			{
+				EditorGUILayout.HelpBox( "Your list is Empty!\nUse the plus button to add more.", MessageType.Info );
+			}
+
 			bool actionAllowed = true;
 			int deleteItem = -1;
-			if ( m_visibleAttribsFoldout )
+			
+			for ( int i = 0; i < attribCount; i++ )
 			{
-				for ( int i = 0; i < attribCount; i++ )
+				EditorGUI.BeginChangeCheck();
 				{
-					EditorGUI.BeginChangeCheck();
-					{
-						m_selectedAttribs[ i ] = EditorGUILayoutPopup( m_selectedAttribs[ i ], m_availableAttribsArr );
-					}
-					if ( EditorGUI.EndChangeCheck() )
-					{
-						OnAtrributesChanged();
-					}
-
-					EditorGUILayout.BeginHorizontal();
-					GUILayout.Label( " " );
-					// Add After
-					if ( GUILayout.Button( string.Empty, UIUtils.PlusStyle, GUILayout.Width( ButtonLayoutWidth ) ) )
-					{
-						if ( actionAllowed )
-						{
-							m_selectedAttribs.Insert( i, m_selectedAttribs[ i ] );
-							actionAllowed = false;
-							OnAtrributesChanged();
-						}
-					}
-
-					// Remove Current
-					if ( GUILayout.Button( string.Empty, UIUtils.MinusStyle, GUILayout.Width( ButtonLayoutWidth ) ) )
-					{
-						if ( actionAllowed )
-						{
-							actionAllowed = false;
-							deleteItem = i;
-						}
-					}
-					EditorGUILayout.EndHorizontal();
+					m_selectedAttribs[ i ] = EditorGUILayoutPopup( m_selectedAttribs[ i ], m_availableAttribsArr );
 				}
-				if ( deleteItem > -1 )
+				if ( EditorGUI.EndChangeCheck() )
 				{
-					m_selectedAttribs.RemoveAt( deleteItem );
 					OnAtrributesChanged();
 				}
+
+				EditorGUILayout.BeginHorizontal();
+				GUILayout.Label( " " );
+				// Add After
+				if ( GUILayout.Button( string.Empty, UIUtils.PlusStyle, GUILayout.Width( ButtonLayoutWidth ) ) )
+				{
+					if ( actionAllowed )
+					{
+						m_selectedAttribs.Insert( i, m_selectedAttribs[ i ] );
+						actionAllowed = false;
+						OnAtrributesChanged();
+					}
+				}
+
+				// Remove Current
+				if ( GUILayout.Button( string.Empty, UIUtils.MinusStyle, GUILayout.Width( ButtonLayoutWidth ) ) )
+				{
+					if ( actionAllowed )
+					{
+						actionAllowed = false;
+						deleteItem = i;
+					}
+				}
+				EditorGUILayout.EndHorizontal();
+			}
+			if ( deleteItem > -1 )
+			{
+				m_selectedAttribs.RemoveAt( deleteItem );
+				OnAtrributesChanged();
 			}
 		}
 		public virtual void DrawMainPropertyBlock()
@@ -380,6 +379,51 @@ namespace AmplifyShaderEditor
 						{
 							ShowPropertyInspectorNameGUI();
 							ShowPrecision();
+							ShowDefaults();
+						}
+						break;
+					}
+				}
+			}
+			EditorGUILayout.EndVertical();
+		}
+
+		public void DrawMainPropertyBlockNoPrecision()
+		{
+			EditorGUILayout.BeginVertical();
+			{
+				if( m_freeType )
+				{
+					PropertyType parameterType = (PropertyType)EditorGUILayoutEnumPopup( ParameterTypeStr, m_currentParameterType );
+					if( parameterType != m_currentParameterType )
+					{
+						ChangeParameterType( parameterType );
+						BeginPropertyFromInspectorCheck();
+					}
+				}
+
+				if( m_freeName )
+				{
+					switch( m_currentParameterType )
+					{
+						case PropertyType.Property:
+						case PropertyType.InstancedProperty:
+						{
+							ShowPropertyInspectorNameGUI();
+							ShowPropertyNameGUI( true );
+							ShowToolbar();
+						}
+						break;
+						case PropertyType.Global:
+						{
+							ShowPropertyInspectorNameGUI();
+							ShowPropertyNameGUI( false );
+							ShowDefaults();
+						}
+						break;
+						case PropertyType.Constant:
+						{
+							ShowPropertyInspectorNameGUI();
 							ShowDefaults();
 						}
 						break;
@@ -492,12 +536,12 @@ namespace AmplifyShaderEditor
 			//base.DrawTitle( titlePos );
 		}
 
-		protected bool m_typeEditing;
 		protected bool m_isEditing;
 		protected bool m_stopEditing;
 		protected bool m_startEditing;
 		protected double m_clickTime;
 		protected double m_doubleClickTime = 0.3;
+		private Rect m_titleClickArea;
 
 		public override void Draw( DrawInfo drawInfo )
 		{
@@ -560,14 +604,14 @@ namespace AmplifyShaderEditor
 
 				if ( m_freeType )
 				{
-					if( m_typeEditing )
+					if( m_dropdownEditing )
 					{
-						PropertyType parameterType = ( PropertyType ) EditorGUIEnumPopup( m_typeRect, m_currentParameterType, UIUtils.PropertyPopUp );
+						PropertyType parameterType = ( PropertyType ) EditorGUIEnumPopup( m_dropdownRect, m_currentParameterType, UIUtils.PropertyPopUp );
 						if ( parameterType != m_currentParameterType )
 						{
 							ChangeParameterType( parameterType );
 							BeginPropertyFromInspectorCheck();
-							m_typeEditing = false;
+							m_dropdownEditing = false;
 						}
 					}
 				}
@@ -575,29 +619,10 @@ namespace AmplifyShaderEditor
 
 		}
 
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-
-			if ( drawInfo.CurrentEventType != EventType.MouseDown )
-				return;
-
-			if ( m_typeRect.Contains( drawInfo.MousePosition ) )
-				m_typeEditing = true;
-			else if ( m_typeEditing )
-			{
-				m_typeEditing = false;
-			}
-		}
-
-		private Rect m_typeRect;
-		private Rect m_titleClickArea;
-
 		public override void OnNodeLayout( DrawInfo drawInfo )
 		{
-			base.OnNodeLayout( drawInfo );
-
-			if ( m_reRegisterName )
+			//base.OnNodeLayout( drawInfo );
+			if( m_reRegisterName )
 			{
 				m_reRegisterName = false;
 				UIUtils.RegisterUniformName( UniqueId, m_propertyName );
@@ -612,26 +637,19 @@ namespace AmplifyShaderEditor
 				if ( m_currentParameterType != PropertyType.Constant )
 				{
 					SetTitleText( m_propertyInspectorName );
-					SetAdditonalTitleText( string.Concat( "Value( ", GetPropertyValStr(), " )" ) );
+					SetAdditonalTitleText( string.Format( m_useVarSubtitle ? Constants.SubTitleVarNameFormatStr : Constants.SubTitleValueFormatStr, GetPropertyValStr() ) );
 				}
 				else
 				{
 					SetTitleText( m_propertyInspectorName );
-					SetAdditonalTitleText( string.Concat( "Const( ", GetPropertyValStr(), " )" ) );
+					SetAdditonalTitleText( string.Format( Constants.SubTitleConstFormatStr, GetPropertyValStr() ) );
 				}
-				m_sizeIsDirty = true;
 			}
 
 			CheckPropertyFromInspector();
 
-			if ( m_freeType )
-			{
-				m_typeRect = m_globalPosition;
-				m_typeRect.x = m_typeRect.x + ( Constants.NodeButtonDeltaX - 1 ) * drawInfo.InvertedZoom + 1;
-				m_typeRect.y = m_typeRect.y + Constants.NodeButtonDeltaY * drawInfo.InvertedZoom;
-				m_typeRect.width = Constants.NodeButtonSizeX * drawInfo.InvertedZoom;
-				m_typeRect.height = Constants.NodeButtonSizeY * drawInfo.InvertedZoom;
-			}
+			// RUN LAYOUT CHANGES AFTER TITLES CHANGE
+			base.OnNodeLayout( drawInfo );
 
 			m_titleClickArea = m_titlePos;
 			m_titleClickArea.height = Constants.NODE_HEADER_HEIGHT;
@@ -644,12 +662,8 @@ namespace AmplifyShaderEditor
 			if ( !m_isVisible )
 				return;
 
-			// Type Popup
-			if ( !m_typeEditing && m_freeType && ContainerGraph.LodLevel <= ParentGraph.NodeLOD.LOD4 )
-				GUI.Label( m_typeRect, string.Empty, UIUtils.PropertyPopUp );
-
 			// Fixed Title ( only renders when not editing )
-			if ( !m_isEditing && !m_startEditing && ContainerGraph.LodLevel <= ParentGraph.NodeLOD.LOD3 )
+			if ( m_showTitleWhenNotEditing && !m_isEditing && !m_startEditing && ContainerGraph.LodLevel <= ParentGraph.NodeLOD.LOD3 )
 			{
 				GUI.Label( m_titleClickArea, m_content, UIUtils.GetCustomStyle( CustomStyle.NodeTitle ) );
 			}
@@ -657,6 +671,9 @@ namespace AmplifyShaderEditor
 
 		public void RegisterFirstAvailablePropertyName( bool releaseOldOne )
 		{
+			if( m_lockRegister )
+				return;
+
 			if ( releaseOldOne )
 				UIUtils.ReleaseUniformName( UniqueId, m_oldName );
 
@@ -673,7 +690,7 @@ namespace AmplifyShaderEditor
 			if ( m_propertyName.Equals( propertyName ) )
 				return;
 
-			if ( UIUtils.IsUniformNameAvailable( propertyName ) )
+			if ( UIUtils.IsUniformNameAvailable( propertyName ) || m_allowPropertyDuplicates )
 			{
 				if ( releaseOldOne )
 					UIUtils.ReleaseUniformName( UniqueId, m_oldName );
@@ -886,6 +903,8 @@ namespace AmplifyShaderEditor
 					{
 						m_selectedAttribs.Add( IdForAttrib( GetCurrentParam( ref nodeParams ) ) );
 					}
+
+					m_visibleAttribsFoldout = true;
 				}
 				InitializeAttribsArray();
 			}
@@ -898,8 +917,11 @@ namespace AmplifyShaderEditor
 			m_propertyNameIsDirty = true;
 			m_reRegisterName = false;
 
-			UIUtils.ReleaseUniformName( UniqueId, m_oldName );
-			UIUtils.RegisterUniformName( UniqueId, m_propertyName );
+			if( !m_lockRegister )
+			{
+				UIUtils.ReleaseUniformName( UniqueId, m_oldName );
+				UIUtils.RegisterUniformName( UniqueId, m_propertyName );
+			}
 			m_oldName = m_propertyName;
 		}
 
@@ -928,7 +950,7 @@ namespace AmplifyShaderEditor
 		}
 		public string PropertyData { get { return ( m_currentParameterType == PropertyType.InstancedProperty ) ? m_outputPorts[ 0 ].LocalValue : m_propertyName; } }
 		public virtual string PropertyName { get { return m_propertyName; } }
-		public string PropertyInspectorName { get { return m_propertyInspectorName; } }
+		public virtual string PropertyInspectorName { get { return m_propertyInspectorName; } }
 		public bool FreeType { get { return m_freeType; } set { m_freeType = value; } }
 		public bool ReRegisterName { get { return m_reRegisterName; } set { m_reRegisterName = value; } }
 		public string CustomPrefix { get { return m_customPrefix; } set { m_customPrefix = value; } }

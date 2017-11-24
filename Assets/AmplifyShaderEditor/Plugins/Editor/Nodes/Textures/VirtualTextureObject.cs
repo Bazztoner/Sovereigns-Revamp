@@ -31,8 +31,8 @@ namespace AmplifyShaderEditor
 	}
 
 	[Serializable]
-	[NodeAttributes( "Virtual Texture Object", "Textures", "Represents a Virtual Texture Asset", null, KeyCode.None, true, false, null, null, false, null, 1 )]
-	public class VirtualTexturePropertyNode : TexturePropertyNode
+	[NodeAttributes( "Virtual Texture Object", "Textures", "Represents a Virtual Texture Asset", SortOrderPriority = 1 )]
+	public class VirtualTextureObject : TexturePropertyNode
 	{
 		protected const string VirtualPresetStr = "Layout Preset";
 		protected const string VirtualChannelStr = "Virtual Layer";

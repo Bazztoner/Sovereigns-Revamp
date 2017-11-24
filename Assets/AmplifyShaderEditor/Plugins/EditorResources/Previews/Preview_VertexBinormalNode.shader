@@ -1,4 +1,4 @@
-﻿Shader "Hidden/VertexBinormalNode"
+Shader "Hidden/VertexBinormalNode"
 {
 	SubShader
 	{

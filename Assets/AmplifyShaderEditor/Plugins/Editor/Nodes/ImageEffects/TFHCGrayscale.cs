@@ -11,7 +11,7 @@ using System;
 namespace AmplifyShaderEditor
 {
 	[Serializable]
-	[NodeAttributes( "Grayscale", "Image Effects", "Convert image colors to grayscale", null, KeyCode.None, true, false, null, null, true )]
+	[NodeAttributes( "Grayscale", "Image Effects", "Convert image colors to grayscale", null, KeyCode.None, true, false, null, null, "The Four Headed Cat - @fourheadedcat" )]
 	public sealed class TFHCGrayscale : ParentNode
 	{
 		private const string GrayscaleStyleStr = "Grayscale Style";
@@ -27,10 +27,11 @@ namespace AmplifyShaderEditor
 		protected override void CommonInit( int uniqueId )
 		{
 			base.CommonInit( uniqueId );
-			AddInputPort( WirePortDataType.FLOAT3, false, "In" );
-			AddOutputPort( WirePortDataType.FLOAT, "Out" );
+			AddInputPort( WirePortDataType.FLOAT3, false, "RGB" );
+			AddOutputPort( WirePortDataType.FLOAT, Constants.EmptyPortValue );
 			m_textLabelWidth = 120;
 			m_useInternalPortData = true;
+			m_hasLeftDropdown = true;
 			m_autoWrapProperties = true;
 			SetAdditonalTitleText( string.Format( Constants.SubTitleTypeFormatStr, m_GrayscaleStyleValues[ m_grayscaleStyle ] ) );
 		}
@@ -50,26 +51,6 @@ namespace AmplifyShaderEditor
 		{
 			base.Destroy();
 			m_upperLeftWidget = null;
-		}
-
-		public override void OnNodeLayout( DrawInfo drawInfo )
-		{
-			base.OnNodeLayout( drawInfo );
-			m_upperLeftWidget.OnNodeLayout( m_globalPosition, drawInfo );
-		}
-
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-			m_upperLeftWidget.DrawGUIControls( drawInfo );
-		}
-
-		public override void OnNodeRepaint( DrawInfo drawInfo )
-		{
-			base.OnNodeRepaint( drawInfo );
-			if( !m_isVisible )
-				return;
-			m_upperLeftWidget.OnNodeRepaint( ContainerGraph.LodLevel );
 		}
 
 		public override void Draw( DrawInfo drawInfo )

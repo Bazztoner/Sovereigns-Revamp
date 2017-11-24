@@ -114,7 +114,7 @@ namespace AmplifyShaderEditor
 		[SerializeField]
 		public NodeAvailability m_currentCanvasMode = NodeAvailability.SurfaceShader;
 
-		private List<ParentNode> m_visibleNodes = new List<ParentNode>();
+		//private List<ParentNode> m_visibleNodes = new List<ParentNode>();
 
 		private List<ParentNode> m_nodePreviewList = new List<ParentNode>();
 
@@ -486,35 +486,35 @@ namespace AmplifyShaderEditor
 			m_nodeGrid.RemoveNodeFromGrid( node, true );
 			m_nodeGrid.AddNodeToGrid( node );
 
-			if( testOnlySelected )
-			{
-				for( int i = m_visibleNodes.Count - 1; i > -1; i-- )
-				{
-					if( node.UniqueId != m_visibleNodes[ i ].UniqueId )
-					{
-						switch( interactionMode )
-						{
-							case InteractionMode.Target:
-							{
-								node.OnNodeInteraction( m_visibleNodes[ i ] );
-							}
-							break;
-							case InteractionMode.Other:
-							{
-								m_visibleNodes[ i ].OnNodeInteraction( node );
-							}
-							break;
-							case InteractionMode.Both:
-							{
-								node.OnNodeInteraction( m_visibleNodes[ i ] );
-								m_visibleNodes[ i ].OnNodeInteraction( node );
-							}
-							break;
-						}
-					}
-				}
-			}
-			else
+			//if( testOnlySelected )
+			//{
+			//	for( int i = m_visibleNodes.Count - 1; i > -1; i-- )
+			//	{
+			//		if( node.UniqueId != m_visibleNodes[ i ].UniqueId )
+			//		{
+			//			switch( interactionMode )
+			//			{
+			//				case InteractionMode.Target:
+			//				{
+			//					node.OnNodeInteraction( m_visibleNodes[ i ] );
+			//				}
+			//				break;
+			//				case InteractionMode.Other:
+			//				{
+			//					m_visibleNodes[ i ].OnNodeInteraction( node );
+			//				}
+			//				break;
+			//				case InteractionMode.Both:
+			//				{
+			//					node.OnNodeInteraction( m_visibleNodes[ i ] );
+			//					m_visibleNodes[ i ].OnNodeInteraction( node );
+			//				}
+			//				break;
+			//			}
+			//		}
+			//	}
+			//}
+			//else
 			{
 				for( int i = m_nodes.Count - 1; i > -1; i-- )
 				{
@@ -852,7 +852,7 @@ namespace AmplifyShaderEditor
 				}
 			}
 
-			m_visibleNodes.Clear();
+			//m_visibleNodes.Clear();
 			//int nullCount = 0;
 			m_hasUnConnectedNodes = false;
 			bool repaint = false;
@@ -885,8 +885,8 @@ namespace AmplifyShaderEditor
 					repaintMaterialInspector = true;
 				}
 
-				if( node.IsVisible )
-					m_visibleNodes.Add( node );
+				//if( node.IsVisible )
+				//	m_visibleNodes.Add( node );
 
 				IsDirty = ( m_isDirty || node.IsDirty );
 				SaveIsDirty = ( m_saveIsDirty || node.SaveIsDirty );
@@ -940,12 +940,13 @@ namespace AmplifyShaderEditor
 			// Draw Tooltip
 			if( drawInfo.CurrentEventType == EventType.Repaint || drawInfo.CurrentEventType == EventType.mouseDown )
 			{
-				int visibleCount = m_visibleNodes.Count;
-				for( int i = visibleCount - 1; i >= 0; i-- )
+				nodeCount = m_nodes.Count;
+				for( int i = nodeCount - 1; i >= 0; i-- )
 				{
-					if( !m_visibleNodes[ i ].IsMoving )
+					node = m_nodes[ i ];
+					if( node.IsVisible && !node.IsMoving )
 					{
-						bool showing = m_visibleNodes[ i ].ShowTooltip( drawInfo );
+						bool showing = node.ShowTooltip( drawInfo );
 						if( showing )
 							break;
 					}
@@ -1070,7 +1071,7 @@ namespace AmplifyShaderEditor
 									if( isVisible )
 									{
 
-										Rect bezierBB = DrawBezier( drawInfo.InvertedZoom, startPos, endPos, inputPort.DataType, outputPort.DataType, reference.WireStatus, wireTex, node, outputNode );
+										Rect bezierBB = DrawBezier( drawInfo.InvertedZoom, startPos, endPos, inputPort.DataType, outputPort.DataType, node.GetInputPortVisualDataTypeByArrayIdx( inputPortIdx ), outputNode.GetOutputPortVisualDataTypeById( reference.PortId ), reference.WireStatus, wireTex, node, outputNode );
 										bezierBB.x -= Constants.OUTSIDE_WIRE_MARGIN;
 										bezierBB.y -= Constants.OUTSIDE_WIRE_MARGIN;
 
@@ -1125,7 +1126,7 @@ namespace AmplifyShaderEditor
 					}
 
 					Vector3 startPos = new Vector3( inputPort.Position.x, inputPort.Position.y );
-					DrawBezier( drawInfo.InvertedZoom, endPos, startPos, inputPort.DataType, inputPort.DataType, WireStatus.Default, wireTex );
+					DrawBezier( drawInfo.InvertedZoom, endPos, startPos, inputPort.DataType, inputPort.DataType, inputPort.DataType, inputPort.DataType, WireStatus.Default, wireTex );
 				}
 
 				if( m_parentWindow.WireReferenceUtils.OutputPortReference.IsValid )
@@ -1142,22 +1143,20 @@ namespace AmplifyShaderEditor
 						endPos = contextPaletteActive ? contextPalettePos : new Vector3( Event.current.mousePosition.x, Event.current.mousePosition.y );
 					}
 					Vector3 startPos = new Vector3( outputPort.Position.x, outputPort.Position.y );
-					DrawBezier( drawInfo.InvertedZoom, startPos, endPos, outputPort.DataType, outputPort.DataType, WireStatus.Default, wireTex );
+					DrawBezier( drawInfo.InvertedZoom, startPos, endPos, outputPort.DataType, outputPort.DataType, outputPort.DataType, outputPort.DataType, WireStatus.Default, wireTex );
 				}
 			}
 			//Handles.EndGUI();
 		}
 
-		Rect DrawBezier( float invertedZoom, Vector3 startPos, Vector3 endPos, WirePortDataType inputDataType, WirePortDataType outputDataType, WireStatus wireStatus, Texture2D wireTex, ParentNode inputNode = null, ParentNode outputNode = null )
+		Rect DrawBezier( float invertedZoom, Vector3 startPos, Vector3 endPos, WirePortDataType inputDataType, WirePortDataType outputDataType, WirePortDataType inputVisualDataType, WirePortDataType outputVisualDataType, WireStatus wireStatus, Texture2D wireTex, ParentNode inputNode = null, ParentNode outputNode = null )
 		{
 			startPos += UIUtils.ScaledPortsDelta;
 			endPos += UIUtils.ScaledPortsDelta;
 
-			float wiresThickness =/* drawInfo.InvertedZoom * */Constants.WIRE_WIDTH;
-
 			// Calculate the 4 points for bezier taking into account wire nodes and their automatic tangents
 			float mag = ( endPos - startPos ).magnitude;
-			float resizedMag = Mathf.Min( mag, Constants.HORIZONTAL_TANGENT_SIZE * invertedZoom );
+			float resizedMag = Mathf.Min( mag * 0.66f, Constants.HORIZONTAL_TANGENT_SIZE * invertedZoom );
 
 			Vector3 startTangent = new Vector3( startPos.x + resizedMag, startPos.y );
 			Vector3 endTangent = new Vector3( endPos.x - resizedMag, endPos.y );
@@ -1172,12 +1171,12 @@ namespace AmplifyShaderEditor
 			//Rect box1 = new Rect( new Vector2( startTangent.x, startTangent.y ), new Vector2( 10, 10 ) );
 			//box1.x -= box1.width * 0.5f;
 			//box1.y -= box1.height * 0.5f;
-			//GUI.Box( box1, string.Empty, UIUtils.CurrentWindow.CustomStylesInstance.Box );
+			//GUI.Label( box1, string.Empty, UIUtils.Box );
 
 			//Rect box2 = new Rect( new Vector2( endTangent.x, endTangent.y ), new Vector2( 10, 10 ) );
 			//box2.x -= box2.width * 0.5f;
 			//box2.y -= box2.height * 0.5f;
-			//GUI.Box( box2, string.Empty, UIUtils.CurrentWindow.CustomStylesInstance.Box );
+			//GUI.Label( box2, string.Empty, UIUtils.Box );
 
 			//m_auxRect.Set( 0, 0, UIUtils.CurrentWindow.position.width, UIUtils.CurrentWindow.position.height );
 			//GLDraw.BeginGroup( m_auxRect );
@@ -1190,7 +1189,12 @@ namespace AmplifyShaderEditor
 			{
 				GLDraw.MultiLine = true;
 				Shader.SetGlobalFloat( "_InvertedZoom", invertedZoom );
-				switch( outputDataType )
+				
+				WirePortDataType smallest = ( (int)outputDataType < (int)inputDataType ? outputDataType : inputDataType );
+				smallest = ( (int)smallest < (int)outputVisualDataType ? smallest : outputVisualDataType );
+				smallest = ( (int)smallest < (int)inputVisualDataType ? smallest : inputVisualDataType );
+
+				switch( smallest )
 				{
 					case WirePortDataType.FLOAT2: ty = 2; break;
 					case WirePortDataType.FLOAT3: ty = 3; break;
@@ -1202,12 +1206,12 @@ namespace AmplifyShaderEditor
 					break;
 					default: ty = 1; break;
 				}
-				wireThickness = Mathf.Lerp( wiresThickness * ( ty * invertedZoom * -0.05f + 0.15f ), wiresThickness * ( ty * invertedZoom * 0.175f + 0.3f ), invertedZoom + 0.4f );
+				wireThickness = Mathf.Lerp( Constants.WIRE_WIDTH * ( ty * invertedZoom * -0.05f + 0.15f ), Constants.WIRE_WIDTH * ( ty * invertedZoom * 0.175f + 0.3f ), invertedZoom + 0.4f );
 			}
 			else
 			{
 				GLDraw.MultiLine = false;
-				wireThickness = Mathf.Lerp( wiresThickness * ( invertedZoom * -0.05f + 0.15f ), wiresThickness * ( invertedZoom * 0.175f + 0.3f ), invertedZoom + 0.4f );
+				wireThickness = Mathf.Lerp( Constants.WIRE_WIDTH * ( invertedZoom * -0.05f + 0.15f ), Constants.WIRE_WIDTH * ( invertedZoom * 0.175f + 0.3f ), invertedZoom + 0.4f );
 			}
 
 			Rect boundBox = new Rect();
@@ -1218,7 +1222,7 @@ namespace AmplifyShaderEditor
 				segments = ( int ) ( invertedZoom * 14.28f * 11 );
 
 			if( ParentWindow.Options.ColoredPorts && wireStatus != WireStatus.Highlighted )
-				boundBox = GLDraw.DrawBezier( startPos, startTangent, endPos, endTangent, UIUtils.GetColorForDataType( outputDataType, false, false ), UIUtils.GetColorForDataType( inputDataType, false, false ), wireThickness, segments, ty );
+				boundBox = GLDraw.DrawBezier( startPos, startTangent, endPos, endTangent, UIUtils.GetColorForDataType( outputVisualDataType, false, false ), UIUtils.GetColorForDataType( inputVisualDataType, false, false ), wireThickness, segments, ty );
 			else
 				boundBox = GLDraw.DrawBezier( startPos, startTangent, endPos, endTangent, UIUtils.GetColorFromWireStatus( wireStatus ), wireThickness, segments, ty );
 			//GLDraw.EndGroup();
@@ -1303,6 +1307,7 @@ namespace AmplifyShaderEditor
 					m_selectedNodes[ i ].Move( delta, snap );
 				}
 			}
+
 			IsDirty = true;
 		}
 
@@ -2266,6 +2271,15 @@ namespace AmplifyShaderEditor
 
 		public void ResetNodesLocalVariables( ParentNode node )
 		{
+			if( node is GetLocalVarNode )
+			{
+				GetLocalVarNode localVarNode = node as GetLocalVarNode;
+				if( localVarNode.CurrentSelected != null )
+				{
+					node = localVarNode.CurrentSelected;
+				}
+			}
+
 			node.Reset();
 			node.ResetOutputLocals();
 			int count = node.InputPorts.Count;
@@ -2280,6 +2294,15 @@ namespace AmplifyShaderEditor
 
 		public void ResetNodesLocalVariablesIfNot( ParentNode node, MasterNodePortCategory category )
 		{
+			if( node is GetLocalVarNode )
+			{
+				GetLocalVarNode localVarNode = node as GetLocalVarNode;
+				if( localVarNode.CurrentSelected != null )
+				{
+					node = localVarNode.CurrentSelected;
+				}
+			}
+
 			node.Reset();
 			node.ResetOutputLocalsIfNot( category );
 			int count = node.InputPorts.Count;
@@ -2401,7 +2424,7 @@ namespace AmplifyShaderEditor
 			if( newNode )
 			{
 				newNode.ContainerGraph = this;
-				newNode.CommonInit( shaderFunction );
+				newNode.CommonInit( shaderFunction, nodeId );
 				newNode.UniqueId = nodeId;
 				AddNode( newNode, nodeId < 0, addLast, registerUndo );
 			}
@@ -2670,7 +2693,7 @@ namespace AmplifyShaderEditor
 		public StandardSurfaceOutputNode CurrentStandardSurface { get { return GetNode( m_masterNodeId ) as StandardSurfaceOutputNode; } }
 		public List<ParentNode> AllNodes { get { return m_nodes; } }
 		public int NodeCount { get { return m_nodes.Count; } }
-		public List<ParentNode> VisibleNodes { get { return m_visibleNodes; } }
+		//public List<ParentNode> VisibleNodes { get { return m_visibleNodes; } }
 
 		public int NodeClicked
 		{

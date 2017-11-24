@@ -67,7 +67,7 @@ namespace AmplifyShaderEditor
 	{
 		private const string BlendModesRGBStr = "Blend RGB";
 		private const string BlendModesAlphaStr = "Blend Alpha";
-		
+
 		private const string BlendOpsRGBStr = "Blend Op RGB";
 		private const string BlendOpsAlphaStr = "Blend Op Alpha";
 
@@ -120,30 +120,30 @@ namespace AmplifyShaderEditor
 		private bool m_blendOpEnabled = false;
 
 		[SerializeField]
-		private AvailableBlendOps m_blendOpRGB = AvailableBlendOps.Add;
+		private AvailableBlendOps m_blendOpRGB = AvailableBlendOps.OFF;
 
 		[SerializeField]
-		private AvailableBlendOps m_blendOpAlpha = AvailableBlendOps.Add;
+		private AvailableBlendOps m_blendOpAlpha = AvailableBlendOps.OFF;
 
 		public BlendOpsHelper()
 		{
 			m_commonBlendTypesArr = new string[ m_commonBlendTypes.Count ];
-			for ( int i = 0; i < m_commonBlendTypesArr.Length; i++ )
+			for( int i = 0; i < m_commonBlendTypesArr.Length; i++ )
 			{
 				m_commonBlendTypesArr[ i ] = m_commonBlendTypes[ i ].Name;
 			}
 		}
 
-		public void Draw( UndoParentNode owner, bool customBlendAvailable)
+		public void Draw( UndoParentNode owner, bool customBlendAvailable )
 		{
 			m_enabled = customBlendAvailable;
 
 			// RGB
 			EditorGUI.BeginChangeCheck();
 			m_currentIndex = owner.EditorGUILayoutPopup( BlendModesRGBStr, m_currentIndex, m_commonBlendTypesArr );
-			if ( EditorGUI.EndChangeCheck() )
+			if( EditorGUI.EndChangeCheck() )
 			{
-				if ( m_currentIndex > 1 )
+				if( m_currentIndex > 1 )
 				{
 					m_sourceFactorRGB = m_commonBlendTypes[ m_currentIndex ].SourceFactor;
 					m_destFactorRGB = m_commonBlendTypes[ m_currentIndex ].DestFactor;
@@ -156,22 +156,22 @@ namespace AmplifyShaderEditor
 			EditorGUIUtility.labelWidth = 40;
 
 			EditorGUILayout.BeginHorizontal();
-			m_sourceFactorRGB = ( AvailableBlendFactor )owner.EditorGUILayoutEnumPopup( SourceFactorStr, m_sourceFactorRGB );
+			m_sourceFactorRGB = (AvailableBlendFactor)owner.EditorGUILayoutEnumPopup( SourceFactorStr, m_sourceFactorRGB );
 			EditorGUI.indentLevel--;
 			EditorGUIUtility.labelWidth = 25;
-			m_destFactorRGB = ( AvailableBlendFactor ) owner.EditorGUILayoutEnumPopup( DstFactorStr, m_destFactorRGB );
+			m_destFactorRGB = (AvailableBlendFactor)owner.EditorGUILayoutEnumPopup( DstFactorStr, m_destFactorRGB );
 			EditorGUI.indentLevel++;
 			EditorGUILayout.EndHorizontal();
 
 			EditorGUIUtility.labelWidth = cached;
-			if ( EditorGUI.EndChangeCheck() )
+			if( EditorGUI.EndChangeCheck() )
 			{
 				CheckRGBIndex();
 			}
 
 			EditorGUI.BeginChangeCheck();
-			m_blendOpRGB = ( AvailableBlendOps )owner.EditorGUILayoutEnumPopup( BlendOpsRGBStr, m_blendOpRGB );
-			if ( EditorGUI.EndChangeCheck() )
+			m_blendOpRGB = (AvailableBlendOps)owner.EditorGUILayoutEnumPopup( BlendOpsRGBStr, m_blendOpRGB );
+			if( EditorGUI.EndChangeCheck() )
 			{
 				m_blendOpEnabled = m_blendOpRGB != AvailableBlendOps.OFF;
 			}
@@ -190,35 +190,35 @@ namespace AmplifyShaderEditor
 			//EditorGUI.BeginDisabledGroup( m_currentAlphaIndex == 0 );
 			EditorGUI.BeginChangeCheck();
 			m_currentAlphaIndex = owner.EditorGUILayoutPopup( BlendModesAlphaStr, m_currentAlphaIndex, m_commonBlendTypesArr );
-			if ( EditorGUI.EndChangeCheck() )
+			if( EditorGUI.EndChangeCheck() )
 			{
-				if ( m_currentAlphaIndex > 0 )
+				if( m_currentAlphaIndex > 0 )
 				{
 					m_sourceFactorAlpha = m_commonBlendTypes[ m_currentAlphaIndex ].SourceFactor;
 					m_destFactorAlpha = m_commonBlendTypes[ m_currentAlphaIndex ].DestFactor;
 				}
 			}
 			//EditorGUI.EndDisabledGroup();
-			EditorGUI.BeginDisabledGroup(m_currentAlphaIndex == 0);
+			EditorGUI.BeginDisabledGroup( m_currentAlphaIndex == 0 );
 			//EditorGUI.BeginDisabledGroup( m_currentAlphaIndex == 0 );
 
 			EditorGUI.BeginChangeCheck();
 			cached = EditorGUIUtility.labelWidth;
 			EditorGUIUtility.labelWidth = 40;
 			EditorGUILayout.BeginHorizontal();
-			m_sourceFactorAlpha = ( AvailableBlendFactor )owner.EditorGUILayoutEnumPopup( SourceFactorStr, m_sourceFactorAlpha );
+			m_sourceFactorAlpha = (AvailableBlendFactor)owner.EditorGUILayoutEnumPopup( SourceFactorStr, m_sourceFactorAlpha );
 			EditorGUI.indentLevel--;
 			EditorGUIUtility.labelWidth = 25;
-			m_destFactorAlpha = ( AvailableBlendFactor ) owner.EditorGUILayoutEnumPopup( DstFactorStr, m_destFactorAlpha );
+			m_destFactorAlpha = (AvailableBlendFactor)owner.EditorGUILayoutEnumPopup( DstFactorStr, m_destFactorAlpha );
 			EditorGUI.indentLevel++;
 			EditorGUILayout.EndHorizontal();
 			EditorGUIUtility.labelWidth = cached;
 
-			if ( EditorGUI.EndChangeCheck() )
+			if( EditorGUI.EndChangeCheck() )
 			{
 				CheckAlphaIndex();
 			}
-			m_blendOpAlpha = ( AvailableBlendOps ) owner.EditorGUILayoutEnumPopup( BlendOpsAlphaStr, m_blendOpAlpha );
+			m_blendOpAlpha = (AvailableBlendOps)owner.EditorGUILayoutEnumPopup( BlendOpsAlphaStr, m_blendOpAlpha );
 			EditorGUI.EndDisabledGroup();
 			EditorGUILayout.Separator();
 		}
@@ -227,9 +227,9 @@ namespace AmplifyShaderEditor
 		{
 			int count = m_commonBlendTypes.Count;
 			m_currentIndex = 1;
-			for ( int i = 1; i < count; i++ )
+			for( int i = 1; i < count; i++ )
 			{
-				if ( m_commonBlendTypes[ i ].SourceFactor == m_sourceFactorRGB && m_commonBlendTypes[ i ].DestFactor == m_destFactorRGB )
+				if( m_commonBlendTypes[ i ].SourceFactor == m_sourceFactorRGB && m_commonBlendTypes[ i ].DestFactor == m_destFactorRGB )
 				{
 					m_currentIndex = i;
 					return;
@@ -242,34 +242,34 @@ namespace AmplifyShaderEditor
 		{
 			int count = m_commonBlendTypes.Count;
 			m_currentAlphaIndex = 1;
-			for ( int i = 1; i < count; i++ )
+			for( int i = 1; i < count; i++ )
 			{
-				if ( m_commonBlendTypes[ i ].SourceFactor == m_sourceFactorAlpha && m_commonBlendTypes[ i ].DestFactor == m_destFactorAlpha )
+				if( m_commonBlendTypes[ i ].SourceFactor == m_sourceFactorAlpha && m_commonBlendTypes[ i ].DestFactor == m_destFactorAlpha )
 				{
 					m_currentAlphaIndex = i;
-					if ( m_currentAlphaIndex > 0 && m_currentIndex == 0 )
+					if( m_currentAlphaIndex > 0 && m_currentIndex == 0 )
 						m_currentIndex = 1;
 					return;
 				}
 			}
 
-			if ( m_currentAlphaIndex > 0 && m_currentIndex == 0 )
+			if( m_currentAlphaIndex > 0 && m_currentIndex == 0 )
 				m_currentIndex = 1;
 		}
 
 		public void ReadFromString( ref uint index, ref string[] nodeParams )
 		{
 			m_currentIndex = Convert.ToInt32( nodeParams[ index++ ] );
-			m_sourceFactorRGB = ( AvailableBlendFactor ) Enum.Parse( typeof( AvailableBlendFactor ), nodeParams[ index++ ] );
-			m_destFactorRGB = ( AvailableBlendFactor ) Enum.Parse( typeof( AvailableBlendFactor ), nodeParams[ index++ ] );
+			m_sourceFactorRGB = (AvailableBlendFactor)Enum.Parse( typeof( AvailableBlendFactor ), nodeParams[ index++ ] );
+			m_destFactorRGB = (AvailableBlendFactor)Enum.Parse( typeof( AvailableBlendFactor ), nodeParams[ index++ ] );
 
 			m_currentAlphaIndex = Convert.ToInt32( nodeParams[ index++ ] );
-			m_sourceFactorAlpha = ( AvailableBlendFactor ) Enum.Parse( typeof( AvailableBlendFactor ), nodeParams[ index++ ] );
-			m_destFactorAlpha = ( AvailableBlendFactor ) Enum.Parse( typeof( AvailableBlendFactor ), nodeParams[ index++ ] );
+			m_sourceFactorAlpha = (AvailableBlendFactor)Enum.Parse( typeof( AvailableBlendFactor ), nodeParams[ index++ ] );
+			m_destFactorAlpha = (AvailableBlendFactor)Enum.Parse( typeof( AvailableBlendFactor ), nodeParams[ index++ ] );
 
-			m_blendOpRGB = ( AvailableBlendOps ) Enum.Parse( typeof( AvailableBlendOps ), nodeParams[ index++ ] );
-			m_blendOpAlpha = ( AvailableBlendOps ) Enum.Parse( typeof( AvailableBlendOps ), nodeParams[ index++ ] );
-			m_enabled = (m_currentIndex > 0 || m_currentAlphaIndex > 0);
+			m_blendOpRGB = (AvailableBlendOps)Enum.Parse( typeof( AvailableBlendOps ), nodeParams[ index++ ] );
+			m_blendOpAlpha = (AvailableBlendOps)Enum.Parse( typeof( AvailableBlendOps ), nodeParams[ index++ ] );
+			m_enabled = ( m_currentIndex > 0 || m_currentAlphaIndex > 0 );
 			m_blendOpEnabled = ( m_blendOpRGB != AvailableBlendOps.OFF );
 		}
 
@@ -288,11 +288,32 @@ namespace AmplifyShaderEditor
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_blendOpAlpha );
 		}
 
+		public void SetBlendOpsFromBlendMode( AlphaMode mode )
+		{
+			switch( mode )
+			{
+				case AlphaMode.Transparent:
+				m_currentIndex = 2;
+				m_sourceFactorRGB = m_commonBlendTypes[ m_currentIndex ].SourceFactor;
+				m_destFactorRGB = m_commonBlendTypes[ m_currentIndex ].DestFactor;
+				break;
+				case AlphaMode.Masked:
+				case AlphaMode.Translucent:
+				m_currentIndex = 0;
+				break;
+				case AlphaMode.Premultiply:
+				m_currentIndex = 3;
+				m_sourceFactorRGB = m_commonBlendTypes[ m_currentIndex ].SourceFactor;
+				m_destFactorRGB = m_commonBlendTypes[ m_currentIndex ].DestFactor;
+				break;
+			}
+		}
+
 		public string CreateBlendOps()
 		{
 
 			string result = "\t\t" + CurrentBlendFactor + "\n";
-			if ( m_blendOpEnabled )
+			if( m_blendOpEnabled )
 			{
 				result += "\t\t" + CurrentBlendOp + "\n";
 			}
@@ -301,13 +322,13 @@ namespace AmplifyShaderEditor
 
 		public string CurrentBlendFactorSingle { get { return string.Format( SingleBlendFactorStr, m_sourceFactorRGB, m_destFactorRGB ); } }
 		//public string CurrentBlendFactorSingleAlpha { get { return string.Format(SeparateBlendFactorStr, m_sourceFactorRGB, m_destFactorRGB, m_sourceFactorAlpha, m_destFactorAlpha); } }
-		public string CurrentBlendFactorSeparate { get { return string.Format( SeparateBlendFactorStr, (m_currentIndex > 0 ? m_sourceFactorRGB : AvailableBlendFactor.One), (m_currentIndex > 0 ? m_destFactorRGB: AvailableBlendFactor.Zero), m_sourceFactorAlpha, m_destFactorAlpha ); } }
+		public string CurrentBlendFactorSeparate { get { return string.Format( SeparateBlendFactorStr, ( m_currentIndex > 0 ? m_sourceFactorRGB : AvailableBlendFactor.One ), ( m_currentIndex > 0 ? m_destFactorRGB : AvailableBlendFactor.Zero ), m_sourceFactorAlpha, m_destFactorAlpha ); } }
 		public string CurrentBlendFactor { get { return ( ( m_currentAlphaIndex > 0 ) ? CurrentBlendFactorSeparate : CurrentBlendFactorSingle ); } }
 
 		public string CurrentBlendOpSingle { get { return string.Format( SingleBlendOpStr, m_blendOpRGB ); } }
-		public string CurrentBlendOpSeparate { get { return string.Format( SeparateBlendOpStr, (m_currentIndex > 0 ? m_blendOpRGB : AvailableBlendOps.Add), m_blendOpAlpha ); } }
+		public string CurrentBlendOpSeparate { get { return string.Format( SeparateBlendOpStr, ( m_currentIndex > 0 ? m_blendOpRGB : AvailableBlendOps.Add ), m_blendOpAlpha ); } }
 		public string CurrentBlendOp { get { return ( ( m_currentAlphaIndex > 0 && m_blendOpAlpha != AvailableBlendOps.OFF ) ? CurrentBlendOpSeparate : CurrentBlendOpSingle ); } }
 
-		public bool Active { get { return m_enabled && ( m_currentIndex > 0 || m_currentAlphaIndex > 0); } }
+		public bool Active { get { return m_enabled && ( m_currentIndex > 0 || m_currentAlphaIndex > 0 ); } }
 	}
 }

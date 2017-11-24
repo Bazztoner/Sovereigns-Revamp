@@ -20,10 +20,7 @@ namespace AmplifyShaderEditor
 														"float scale{0} = 1.0;",
 														"#endif",
 														"float halfPosW{1} = {0}.w * 0.5;",
-														"{0}.y = ( {0}.y - halfPosW{1} ) * _ProjectionParams.x* scale{1} + halfPosW{1};",
-														"#ifdef UNITY_SINGLE_PASS_STEREO",
-														"{0}.xy = TransformStereoScreenSpaceTex({0}.xy, {0}.w);",
-														"#endif"};
+														"{0}.y = ( {0}.y - halfPosW{1} ) * _ProjectionParams.x* scale{1} + halfPosW{1};"};
 
 
 		private readonly string ScreenPosOnVert00Str = "{0} = ComputeScreenPos( mul( UNITY_MATRIX_MVP, {1}.vertex));";
@@ -40,6 +37,7 @@ namespace AmplifyShaderEditor
 			base.CommonInit( uniqueId );
 			AddOutputVectorPorts( WirePortDataType.FLOAT4, "XYZW" );
 			m_autoWrapProperties = true;
+			m_hasLeftDropdown = true;
 			m_textLabelWidth = 65;
 			ConfigureHeader();
 		}
@@ -62,26 +60,6 @@ namespace AmplifyShaderEditor
 			m_upperLeftWidget = null;
 		}
 		
-		public override void OnNodeLayout( DrawInfo drawInfo )
-		{
-			base.OnNodeLayout( drawInfo );
-			m_upperLeftWidget.OnNodeLayout( m_globalPosition, drawInfo );
-		}
-
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-			m_upperLeftWidget.DrawGUIControls( drawInfo );
-		}
-
-		public override void OnNodeRepaint( DrawInfo drawInfo )
-		{
-			base.OnNodeRepaint( drawInfo );
-			if( !m_isVisible )
-				return;
-			m_upperLeftWidget.OnNodeRepaint( ContainerGraph.LodLevel );
-		}
-
 		public override void Draw( DrawInfo drawInfo )
 		{
 			base.Draw( drawInfo );
@@ -130,7 +108,7 @@ namespace AmplifyShaderEditor
 			}
 			else
 			{
-				string screenPos = dataCollector.IsTemplate ? dataCollector.TemplateDataCollectorInstance.GetScreenPos() : GeneratorUtils.GenerateVertexScreenPosition( ref dataCollector, UniqueId, m_currentPrecisionType, false );
+				string screenPos = dataCollector.IsTemplate ? dataCollector.TemplateDataCollectorInstance.GetScreenPos() : GeneratorUtils.GenerateVertexScreenPosition( ref dataCollector, UniqueId, m_currentPrecisionType );
 				localVarName = screenPos + OutputId;
 				string localVarDecl = UIUtils.PrecisionWirePortToCgType( m_currentPrecisionType, m_outputPorts[ 0 ].DataType ) + " " + localVarName;
 				string value = string.Format( ScreenPosOnVert00Str, localVarDecl, dataCollector.IsTemplate ? dataCollector.TemplateDataCollectorInstance.CurrentTemplateData.VertexFunctionData.InVarName : Constants.VertexShaderInputStr );
@@ -145,16 +123,12 @@ namespace AmplifyShaderEditor
 			dataCollector.AddLocalVariable( UniqueId, HackInstruction[ 4 ], true );
 			dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 5 ], localVarName, OutputId ), true );
 			dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 6 ], localVarName, OutputId ), true );
-			dataCollector.AddLocalVariable( UniqueId, HackInstruction[ 7 ], true );
-			dataCollector.AddLocalVariable( UniqueId, string.Format( HackInstruction[ 8 ], localVarName, OutputId ), true );
-			dataCollector.AddLocalVariable( UniqueId, HackInstruction[ 9 ], true );
 			if ( m_outputTypeInt == 0 )
 			{
 				dataCollector.AddLocalVariable( UniqueId, string.Format( ProjectionInstruction, localVarName ) );
 			}
 
 			m_outputPorts[ 0 ].SetLocalValue( localVarName );
-			//RegisterLocalVariable(outputId, localVarName ,ref dataCollector)
 			return GetOutputColorItem( 0, outputId, localVarName );
 		}
 

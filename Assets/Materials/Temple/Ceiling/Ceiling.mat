@@ -52,6 +52,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _Lightmap0_comp_light
+      second:
+        m_Texture: {fileID: 2800000, guid: a8f31183a8bd011458f8ccac2fba0e47, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _LightmapA
       second:
         m_Texture: {fileID: 2800000, guid: a8f31183a8bd011458f8ccac2fba0e47, type: 3}
@@ -100,6 +106,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _TextureSample0
+      second:
+        m_Texture: {fileID: 2800000, guid: 2d62c56df0d6af747a53d1be2637c673, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _texcoord
       second:
         m_Texture: {fileID: 0}
@@ -134,6 +146,9 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
+        name: _LightIntensity
+      second: 9.2
+    - first:
         name: _Metallic
       second: 0
     - first:
@@ -166,6 +181,9 @@ Material:
     - first:
         name: _alphaLerp
       second: 0
+    - first:
+        name: _lerpAlpha
+      second: 0.1
     m_Colors:
     - first:
         name: _Color

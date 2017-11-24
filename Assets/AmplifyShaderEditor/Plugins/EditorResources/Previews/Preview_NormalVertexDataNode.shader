@@ -1,4 +1,4 @@
-﻿Shader "Hidden/NormalVertexDataNode"
+Shader "Hidden/NormalVertexDataNode"
 {
 	SubShader
 	{

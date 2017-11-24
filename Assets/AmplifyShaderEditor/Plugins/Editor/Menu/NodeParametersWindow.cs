@@ -378,9 +378,31 @@ namespace AmplifyShaderEditor
 			}
 		}
 
+		public void ForceReordering()
+		{
+			List<ParentNode> nodes = UIUtils.PropertyNodesList();
+			ReorderList( ref nodes );
+			//RecursiveLog();
+		}
+
+		private void RecursiveLog()
+		{
+			List<ParentNode> nodes = UIUtils.PropertyNodesList();
+			nodes.Sort( ( x, y ) => { return ( x as PropertyNode ).OrderIndex.CompareTo( ( y as PropertyNode ).OrderIndex ); } );
+			for( int i = 0; i < nodes.Count; i++ )
+			{
+				if( ( nodes[ i ] is ReordenatorNode ) )
+					( nodes[ i ] as ReordenatorNode ).RecursiveLog();
+				else
+					Debug.Log( ( nodes[ i ] as PropertyNode ).OrderIndex + " " + ( nodes[ i ] as PropertyNode ).PropertyName );
+			}
+		}
+
+
 		private void ReorderList( ref List<ParentNode> nodes )
 		{
-			for ( int i = 0; i < nodes.Count; i++ )
+			// clear lock list before reordering because of multiple sf being used
+			for( int i = 0; i < nodes.Count; i++ )
 			{
 				ReordenatorNode rnode = nodes[ i ] as ReordenatorNode;
 				if ( rnode != null )
@@ -388,7 +410,6 @@ namespace AmplifyShaderEditor
 			}
 
 			int propoffset = 0;
-			//int renodeoffset = 0;
 			int count = 0;
 			for ( int i = 0; i < m_propertyReordableNodes.Count; i++ )
 			{
@@ -397,23 +418,27 @@ namespace AmplifyShaderEditor
 				{
 					if ( !renode.IsInside )
 					{
-						m_propertyReordableNodes[ i ].OrderIndex = count + propoffset;// - renodeoffset;
+						m_propertyReordableNodes[ i ].OrderIndex = count + propoffset;
 
 						if ( renode.PropertyListCount > 0 )
 						{
 							propoffset += renode.RecursiveCount();
-						}
 
-						for ( int j = 0; j < nodes.Count; j++ )
-						{
-							ReordenatorNode pnode = ( nodes[ j ] as ReordenatorNode );
-							if ( pnode != null && pnode.PropertyName.Equals( renode.PropertyName ) )
+							// the same reordenator can exist multiple times, apply ordering to all of them
+							for( int j = 0; j < nodes.Count; j++ )
 							{
-								pnode.OrderIndex = renode.RawOrderIndex;
-								pnode.RecursiveSetOrderOffset( renode.RawOrderIndex, true );
+								ReordenatorNode pnode = ( nodes[ j ] as ReordenatorNode );
+								if ( pnode != null && pnode.PropertyName.Equals( renode.PropertyName ) )
+								{
+									pnode.OrderIndex = renode.RawOrderIndex;
+									pnode.RecursiveSetOrderOffset( renode.RawOrderIndex, true );
+								}
 							}
 						}
-						count++;
+						else
+						{
+							count++;
+						}
 					}
 					else
 					{
@@ -422,7 +447,7 @@ namespace AmplifyShaderEditor
 				}
 				else
 				{
-					m_propertyReordableNodes[ i ].OrderIndex = count + propoffset;// - renodeoffset;
+					m_propertyReordableNodes[ i ].OrderIndex = count + propoffset;
 					count++;
 				}
 			}

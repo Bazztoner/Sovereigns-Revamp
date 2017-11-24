@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEditor;
 
 using System;
+using System.Collections.Generic;
 namespace AmplifyShaderEditor
 {
 	[Serializable]
-	[NodeAttributes( "Triplanar Sampler", "Textures", "Triplanar Mapping" )]
+	[NodeAttributes( "Triplanar Sample", "Textures", "Triplanar Mapping" )]
 	public sealed class TriplanarNode : ParentNode
 	{
 		[SerializeField]
@@ -59,98 +60,78 @@ namespace AmplifyShaderEditor
 		private bool m_midTextureFoldout = true;
 		private bool m_botTextureFoldout = true;
 
-		private string m_functionNormalCall = "TriplanarNormal( {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} )";
-		private string m_functionNormalHeader = "inline float3 TriplanarNormal( sampler2D topBumpMap, sampler2D midBumpMap, sampler2D botBumpMap, float3 worldPos, float3 worldNormal, float falloff, float tilling, float vertex )";
-		private string[] m_functionNormalBody = {
+		private string m_functionCall = "TriplanarSampling{0}( {1} )";
+		private string m_functionHeader = "inline {0} TriplanarSampling{1}( sampler2D topTexMap, {2}float3 worldPos, float3 worldNormal, float falloff, float tilling )";
+
+		private List<string> m_functionSamplingBodyProj = new List<string>() {
 			"float3 projNormal = ( pow( abs( worldNormal ), falloff ) );",
 			"projNormal /= projNormal.x + projNormal.y + projNormal.z;",
-			"float3 nsign = sign(worldNormal);",
-			"half3 xNorm; half3 yNorm; half3 zNorm;",
-			"if(vertex == 1){",
-			"xNorm = UnpackNormal( tex2Dlod( topBumpMap, float4((tilling * worldPos.zy * float2( nsign.x, 1.0 )).xy,0,0) ) );",
-			"yNorm = UnpackNormal( tex2Dlod( topBumpMap, float4((tilling * worldPos.zx).xy,0,0) ) );",
-			"zNorm = UnpackNormal( tex2Dlod( topBumpMap, float4((tilling * worldPos.xy * float2( -nsign.z, 1.0 )).xy,0,0) ) );",
-			"} else {",
-			"xNorm = UnpackNormal( tex2D( topBumpMap, tilling * worldPos.zy * float2( nsign.x, 1.0 ) ) );",
-			"yNorm = UnpackNormal( tex2D( topBumpMap, tilling * worldPos.zx ) );",
-			"zNorm = UnpackNormal( tex2D( topBumpMap, tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ) );",
-			"}",
-			"xNorm = normalize( half3( xNorm.xy * float2( nsign.x, 1.0 ) + worldNormal.zy, worldNormal.x ) );",
-			"yNorm = normalize( half3( yNorm.xy + worldNormal.zx, worldNormal.y));",
-			"zNorm = normalize( half3( zNorm.xy * float2( -nsign.z, 1.0 ) + worldNormal.xy, worldNormal.z ) );",
-			"xNorm = xNorm.zyx;",
-			"yNorm = yNorm.yzx;",
-			"zNorm = zNorm.xyz;",
+			"float3 nsign = sign( worldNormal );"
+		};
+
+		private List<string> m_functionSamplingBodyNegProj = new List<string>() {
+			"float negProjNormalY = max( 0, projNormal.y * -nsign.y );",
+			"projNormal.y = max( 0, projNormal.y * nsign.y );"
+		};
+
+		// Sphere sampling
+		private List<string> m_functionSamplingBodySampSphere = new List<string>() { 
+			"half4 xNorm; half4 yNorm; half4 zNorm;",
+			"xNorm = ( tex2D( topTexMap, tilling * worldPos.zy * float2( nsign.x, 1.0 ) ) );",
+			"yNorm = ( tex2D( topTexMap, tilling * worldPos.xz * float2( nsign.y, 1.0 ) ) );",
+			"zNorm = ( tex2D( topTexMap, tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ) );"
+		};
+
+		// Sphere vertex sampling
+		private List<string> m_functionSamplingBodySampSphereVertex = new List<string>() {
+			"half4 xNorm; half4 yNorm; half4 zNorm;",
+			"xNorm = ( tex2Dlod( topTexMap, float4( ( tilling * worldPos.zy * float2( nsign.x, 1.0 ) ).xy, 0, 0 ) ) );",
+			"yNorm = ( tex2Dlod( topTexMap, float4( ( tilling * worldPos.xz * float2( nsign.y, 1.0 ) ).xy, 0, 0 ) ) );",
+			"zNorm = ( tex2Dlod( topTexMap, float4( ( tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ).xy, 0, 0 ) ) );"
+		};
+
+		// Cylinder sampling
+		private List<string> m_functionSamplingBodySampCylinder = new List<string>() {
+			"half4 xNorm; half4 yNorm; half4 yNormN; half4 zNorm;",
+			"xNorm = ( tex2D( midTexMap, tilling * worldPos.zy * float2( nsign.x, 1.0 ) ) );",
+			"yNorm = ( tex2D( topTexMap, tilling * worldPos.xz * float2( nsign.y, 1.0 ) ) );",
+			"yNormN = ( tex2D( botTexMap, tilling * worldPos.xz * float2( nsign.y, 1.0 ) ) );",
+			"zNorm = ( tex2D( midTexMap, tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ) );"
+		};
+
+		// Cylinder vertex sampling
+		private List<string> m_functionSamplingBodySampCylinderVertex = new List<string>() {
+			"half4 xNorm; half4 yNorm; half4 yNormN; half4 zNorm;",
+			"xNorm = ( tex2Dlod( midTexMap, float4( ( tilling * worldPos.zy * float2( nsign.x, 1.0 ) ).xy, 0, 0 ) ) );",
+			"yNorm = ( tex2Dlod( topTexMap, float4( ( tilling * worldPos.xz * float2( nsign.y, 1.0 ) ).xy, 0, 0 ) ) );",
+			"yNormN = ( tex2Dlod( botTexMap, float4( ( tilling * worldPos.xz * float2( nsign.y, 1.0 ) ).xy, 0, 0 ) ) );",
+			"zNorm = ( tex2Dlod( midTexMap, float4( ( tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ).xy, 0, 0 ) ) );"
+		};
+
+		private List<string> m_functionSamplingBodySignsSphere = new List<string>() {
+			"xNorm.xyz = half3( UnpackNormal( xNorm ).xy * float2( nsign.x, 1.0 ) + worldNormal.zy, worldNormal.x ).zyx;",
+			"yNorm.xyz = half3( UnpackNormal( yNorm ).xy * float2( nsign.y, 1.0 ) + worldNormal.xz, worldNormal.y ).xzy;",
+			"zNorm.xyz = half3( UnpackNormal( zNorm ).xy * float2( -nsign.z, 1.0 ) + worldNormal.xy, worldNormal.z ).xyz;"
+		};
+
+		private List<string> m_functionSamplingBodySignsCylinder = new List<string>() {
+			"yNormN.xyz = half3( UnpackNormal( yNormN ).xy * float2( nsign.y, 1.0 ) + worldNormal.xz, worldNormal.y ).xzy;"
+		};
+
+		private List<string> m_functionSamplingBodyReturnSphereNormalize = new List<string>() {
+			"return normalize( xNorm.xyz * projNormal.x + yNorm.xyz * projNormal.y + zNorm.xyz * projNormal.z );"
+		};
+
+		private List<string> m_functionSamplingBodyReturnCylinderNormalize = new List<string>() {
+			"return normalize( xNorm.xyz * projNormal.x + yNorm.xyz * projNormal.y + yNormN.xyz * negProjNormalY + zNorm.xyz * projNormal.z );"
+		};
+
+		private List<string> m_functionSamplingBodyReturnSphere = new List<string>() {
 			"return xNorm * projNormal.x + yNorm * projNormal.y + zNorm * projNormal.z;"
 		};
-		private string[] m_functionNormalBodyTMB = {
-			"float3 projNormal = ( pow( abs( worldNormal ), falloff ) );",
-			"projNormal /= projNormal.x + projNormal.y + projNormal.z;",
-			"float3 nsign = sign(worldNormal);",
-			"float negProjNormalY = max( 0, projNormal.y * -nsign.y );",
-			"projNormal.y = max( 0, projNormal.y * nsign.y );",
-			"half3 xNorm; half3 yNorm; half3 yNormN; half3 zNorm;",
-			"if(vertex == 1){",
-			"xNorm = UnpackNormal( tex2Dlod( midBumpMap, float4((tilling * worldPos.zy * float2( nsign.x, 1.0 )).xy,0,0) ) );",
-			"yNorm = UnpackNormal( tex2Dlod( topBumpMap, float4((tilling * worldPos.zx).xy,0,0) ) );",
-			"yNormN = UnpackNormal( tex2Dlod( botBumpMap, float4((tilling * worldPos.zx).xy,0,0) ) );",
-			"zNorm = UnpackNormal( tex2Dlod( midBumpMap, float4((tilling * worldPos.xy * float2( -nsign.z, 1.0 )).xy,0,0) ) );",
-			"} else {",
-			"xNorm = UnpackNormal( tex2D( midBumpMap, tilling * worldPos.zy * float2( nsign.x, 1.0 ) ) );",
-			"yNorm = UnpackNormal( tex2D( topBumpMap, tilling * worldPos.zx ) );",
-			"yNormN = UnpackNormal( tex2D( botBumpMap, tilling * worldPos.zx ) );",
-			"zNorm = UnpackNormal( tex2D( midBumpMap, tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ) );",
-			"}",
-			"xNorm = normalize( half3( xNorm.xy * float2( nsign.x, 1.0 ) + worldNormal.zy, worldNormal.x ) );",
-			"yNorm = normalize( half3( yNorm.xy + worldNormal.zx, worldNormal.y));",
-			"yNormN = normalize( half3( yNormN.xy + worldNormal.zx, worldNormal.y));",
-			"zNorm = normalize( half3( zNorm.xy * float2( -nsign.z, 1.0 ) + worldNormal.xy, worldNormal.z ) );",
-			"xNorm = xNorm.zyx;",
-			"yNorm = yNorm.yzx;",
-			"yNormN = yNormN.yzx;",
-			"zNorm = zNorm.xyz;",
+
+		private List<string> m_functionSamplingBodyReturnCylinder = new List<string>() {
 			"return xNorm * projNormal.x + yNorm * projNormal.y + yNormN * negProjNormalY + zNorm * projNormal.z;"
-		};
-
-
-		private string m_functionSamplingCall = "TriplanarSampling( {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7} )";
-		private string m_functionSamplingHeader = "inline float4 TriplanarSampling( sampler2D topTexMap, sampler2D midTexMap, sampler2D botTexMap, float3 worldPos, float3 worldNormal, float falloff, float tilling, float vertex )";
-		private string[] m_functionSamplingBody = {
-			"float3 projNormal = ( pow( abs( worldNormal ), falloff ) );",
-			"projNormal /= projNormal.x + projNormal.y + projNormal.z;",
-			"float3 nsign = sign( worldNormal );",
-			"half4 xNorm; half4 yNorm; half4 zNorm;",
-			"if(vertex == 1){",
-			"xNorm = ( tex2Dlod( topTexMap, float4((tilling * worldPos.zy * float2( nsign.x, 1.0 )).xy,0,0) ) );",
-			"yNorm = ( tex2Dlod( topTexMap, float4((tilling * worldPos.zx).xy,0,0) ) );",
-			"zNorm = ( tex2Dlod( topTexMap, float4((tilling * worldPos.xy * float2( -nsign.z, 1.0 )).xy,0,0) ) );",
-			"} else {",
-			"xNorm = ( tex2D( topTexMap, tilling * worldPos.zy * float2( nsign.x, 1.0 ) ) );",
-			"yNorm = ( tex2D( topTexMap, tilling * worldPos.zx ) );",
-			"zNorm = ( tex2D( topTexMap, tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ) );",
-			"}",
-			"return xNorm* projNormal.x + yNorm* projNormal.y + zNorm* projNormal.z;"
-		};
-
-		private string[] m_functionSamplingBodyTMB = {
-			"float3 projNormal = ( pow( abs( worldNormal ), falloff ) );",
-			"projNormal /= projNormal.x + projNormal.y + projNormal.z;",
-			"float3 nsign = sign( worldNormal );",
-			"float negProjNormalY = max( 0, projNormal.y * -nsign.y );",
-			"projNormal.y = max( 0, projNormal.y * nsign.y );",
-			"half4 xNorm; half4 yNorm; half4 yNormN; half4 zNorm;",
-			"if(vertex == 1){",
-			"xNorm = ( tex2Dlod( midTexMap, float4((tilling * worldPos.zy * float2( nsign.x, 1.0 )).xy,0,0) ) );",
-			"yNorm = ( tex2Dlod( topTexMap, float4((tilling * worldPos.zx).xy,0,0) ) );",
-			"yNormN = ( tex2Dlod( botTexMap, float4((tilling * worldPos.zx).xy,0,0) ) );",
-			"zNorm = ( tex2Dlod( midTexMap, float4((tilling * worldPos.xy * float2( -nsign.z, 1.0 )).xy,0,0) ) );",
-			"} else {",
-			"xNorm = ( tex2D( midTexMap, tilling * worldPos.zy * float2( nsign.x, 1.0 ) ) );",
-			"yNorm = ( tex2D( topTexMap, tilling * worldPos.zx ) );",
-			"yNormN = ( tex2D( botTexMap, tilling * worldPos.zx ) );",
-			"zNorm = ( tex2D( midTexMap, tilling * worldPos.xy * float2( -nsign.z, 1.0 ) ) );",
-			"}",
-			"return xNorm* projNormal.x + yNorm* projNormal.y + yNormN * negProjNormalY + zNorm* projNormal.z;"
 		};
 
 		protected override void CommonInit( int uniqueId )
@@ -537,8 +518,6 @@ namespace AmplifyShaderEditor
 
 		public override void OnNodeLayout( DrawInfo drawInfo )
 		{
-			base.OnNodeLayout( drawInfo );
-
 			if ( m_topTexture.ReRegisterName )
 			{
 				m_topTexture.ReRegisterName = false;
@@ -568,6 +547,8 @@ namespace AmplifyShaderEditor
 				m_botTexture.CheckDelayedDirtyProperty();
 				m_botTexture.CheckPropertyFromInspector();
 			}
+
+			base.OnNodeLayout( drawInfo );
 
 			m_allPicker = m_previewRect;
 			m_allPicker.x -= 43 * drawInfo.InvertedZoom;
@@ -928,87 +909,130 @@ namespace AmplifyShaderEditor
 				}
 			}
 
-			dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_POS ), true );
-			dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_NORMAL ), true );
+			if( !isVertex )
+			{
+				dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( PrecisionType.Float, AvailableSurfaceInputs.WORLD_POS ), true );
+				dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_NORMAL ), true );
+				dataCollector.AddToInput( UniqueId, Constants.InternalData, false );
+				dataCollector.ForceNormal = true;
+			}
+
 			string tilling = m_inputPorts[ 3 ].GeneratePortInstructions( ref dataCollector );
 			string falloff = m_inputPorts[ 4 ].GeneratePortInstructions( ref dataCollector );
-			dataCollector.ForceNormal = true;
 
-			dataCollector.AddToInput( UniqueId, Constants.InternalData, false );
+			string samplingTriplanar = string.Empty;
+			string headerID = string.Empty;
+			string header = string.Empty;
+			string callHeader = string.Empty;
+			string extraTextures = string.Empty;
+			string extraArguments = string.Empty;
+			List<string> triplanarBody = new List<string>();
 
-			if ( m_normalCorrection )
+			triplanarBody.AddRange( m_functionSamplingBodyProj );
+			if( m_selectedTriplanarType == TriplanarType.Spherical )
 			{
-				string worldToTangent = GeneratorUtils.GenerateWorldToTangentMatrix( ref dataCollector, UniqueId, m_currentPrecisionType );
-
-				string pos = GeneratorUtils.GenerateWorldPosition( ref dataCollector, UniqueId );
-				string norm = GeneratorUtils.GenerateWorldNormal( ref dataCollector, UniqueId );
-				if ( m_selectedTriplanarSpace == TriplanarSpace.Object )
+				headerID += "S";
+				if( isVertex )
 				{
+					headerID += "V";
+					triplanarBody.AddRange( m_functionSamplingBodySampSphereVertex );
+				}
+				else
+				{
+					headerID += "F";
+					triplanarBody.AddRange( m_functionSamplingBodySampSphere );
+				}
 
+				if( m_normalCorrection )
+				{
+					headerID += "N";
+					triplanarBody.AddRange( m_functionSamplingBodySignsSphere );
+					triplanarBody.AddRange( m_functionSamplingBodyReturnSphereNormalize );
+				}
+				else
+				{
+					triplanarBody.AddRange( m_functionSamplingBodyReturnSphere );
+				}
+			}
+			else
+			{
+				headerID += "C";
+				extraTextures = "sampler2D midTexMap, sampler2D botTexMap, ";
+				extraArguments = ", {5}, {6}";
+				triplanarBody.AddRange( m_functionSamplingBodyNegProj );
+				if( isVertex )
+				{
+					headerID += "V";
+					triplanarBody.AddRange( m_functionSamplingBodySampCylinderVertex );
+				}
+				else
+				{
+					headerID += "F";
+					triplanarBody.AddRange( m_functionSamplingBodySampCylinder );
+				}
+
+				if( m_normalCorrection )
+				{
+					headerID += "N";
+					triplanarBody.AddRange( m_functionSamplingBodySignsSphere );
+					triplanarBody.AddRange( m_functionSamplingBodySignsCylinder );
+					triplanarBody.AddRange( m_functionSamplingBodyReturnCylinderNormalize );
+				} else
+				{
+					triplanarBody.AddRange( m_functionSamplingBodyReturnCylinder );
+				}
+			}
+
+			string type = UIUtils.WirePortToCgType( m_outputPorts[ 0 ].DataType );
+			header = string.Format( m_functionHeader, type, headerID, extraTextures );
+			callHeader = string.Format( m_functionCall, headerID, "{0}, {1}, {2}, {3}, {4}"+ extraArguments );
+
+			IOUtils.AddFunctionHeader( ref samplingTriplanar, header );
+			foreach( string line in triplanarBody )
+				IOUtils.AddFunctionLine( ref samplingTriplanar, line );
+			IOUtils.CloseFunctionBody( ref samplingTriplanar );
+
+			string pos = GeneratorUtils.GenerateWorldPosition( ref dataCollector, UniqueId );
+			string norm = GeneratorUtils.GenerateWorldNormal( ref dataCollector, UniqueId );
+			string worldToTangent = string.Empty;
+			if( m_normalCorrection )
+				worldToTangent = GeneratorUtils.GenerateWorldToTangentMatrix( ref dataCollector, UniqueId, m_currentPrecisionType );
+
+			if( m_selectedTriplanarSpace == TriplanarSpace.Object )
+			{
+				if( m_normalCorrection )
+				{
 					dataCollector.AddLocalVariable( UniqueId, "float3 localTangent = mul( unity_WorldToObject, float4( " + GeneratorUtils.WorldTangentStr + ", 0 ) );" );
 					dataCollector.AddLocalVariable( UniqueId, "float3 localBitangent = mul( unity_WorldToObject, float4( " + GeneratorUtils.WorldBitangentStr + ", 0 ) );" );
-					dataCollector.AddLocalVariable( UniqueId, "float3 localNormal = mul( unity_WorldToObject, float4( "+ GeneratorUtils.WorldNormalStr + ", 0 ) );" );
+					dataCollector.AddLocalVariable( UniqueId, "float3 localNormal = mul( unity_WorldToObject, float4( " + GeneratorUtils.WorldNormalStr + ", 0 ) );" );
 					norm = "localNormal";
 					dataCollector.AddLocalVariable( UniqueId, "float3x3 objectToTangent = float3x3(localTangent, localBitangent, localNormal);" );
 					dataCollector.AddLocalVariable( UniqueId, "float3 localPos = mul( unity_WorldToObject, float4( " + pos + ", 1 ) );" );
 					pos = "localPos";
 					worldToTangent = "objectToTangent";
 				}
-
-				string normalTriplanar = string.Empty;
-				IOUtils.AddFunctionHeader( ref normalTriplanar, m_functionNormalHeader );
-				if ( m_selectedTriplanarType == TriplanarType.Spherical )
-				{
-					for ( int i = 0; i < m_functionNormalBody.Length; i++ )
-					{
-						IOUtils.AddFunctionLine( ref normalTriplanar, m_functionNormalBody[ i ] );
-					}
-				}
 				else
-				{
-					for ( int i = 0; i < m_functionNormalBodyTMB.Length; i++ )
-					{
-						IOUtils.AddFunctionLine( ref normalTriplanar, m_functionNormalBodyTMB[ i ] );
-					}
-				}
-				IOUtils.CloseFunctionBody( ref normalTriplanar );
-
-				string call = dataCollector.AddFunctions( m_functionNormalCall, normalTriplanar, texTop, texMid, texBot, pos, norm, falloff, tilling, ( isVertex ? "1" : "0" ) );
-				dataCollector.AddToLocalVariables( dataCollector.PortCategory, UniqueId, "float3 worldTriplanarNormal" + OutputId + " = " + call + ";" );
-				dataCollector.AddToLocalVariables( dataCollector.PortCategory, UniqueId, "float3 tanTriplanarNormal" + OutputId + " = mul( " + worldToTangent + ", worldTriplanarNormal" + OutputId + " );" );
-				return GetOutputVectorItem( 0, outputId, "tanTriplanarNormal" + OutputId );
-			} else
-			{
-				string samplingTriplanar = string.Empty;
-				IOUtils.AddFunctionHeader( ref samplingTriplanar, m_functionSamplingHeader );
-				if(m_selectedTriplanarType == TriplanarType.Spherical )
-				{
-					for ( int i = 0; i < m_functionSamplingBody.Length; i++ )
-					{
-						IOUtils.AddFunctionLine( ref samplingTriplanar, m_functionSamplingBody[ i ] );
-					}
-				}
-				else
-				{
-					for ( int i = 0; i < m_functionSamplingBodyTMB.Length; i++ )
-					{
-						IOUtils.AddFunctionLine( ref samplingTriplanar, m_functionSamplingBodyTMB[ i ] );
-					}
-				}
-				IOUtils.CloseFunctionBody( ref samplingTriplanar );
-
-				string pos = GeneratorUtils.GenerateWorldPosition( ref dataCollector, UniqueId );
-				string norm = GeneratorUtils.GenerateWorldNormal( ref dataCollector, UniqueId );
-				if (m_selectedTriplanarSpace == TriplanarSpace.Object )
 				{
 					dataCollector.AddToLocalVariables( dataCollector.PortCategory, UniqueId, "float3 localPos = mul( unity_WorldToObject, float4( " + pos + ", 1 ) );" );
 					pos = "localPos";
 					dataCollector.AddToLocalVariables( dataCollector.PortCategory, UniqueId, "float3 localNormal = mul( unity_WorldToObject, float4( " + norm + ", 0 ) );" );
 					norm = "localNormal";
 				}
+			}
 
-				string call = dataCollector.AddFunctions( m_functionSamplingCall, samplingTriplanar, texTop, texMid, texBot, pos, norm, falloff, tilling, ( isVertex ? "1" : "0") );
-				dataCollector.AddToLocalVariables( dataCollector.PortCategory, UniqueId, "float4 triplanar" + OutputId + " = " + call + ";" );
+			string call = string.Empty;
+			if( m_selectedTriplanarType == TriplanarType.Spherical )
+				call = dataCollector.AddFunctions( callHeader, samplingTriplanar, texTop, pos, norm, falloff, tilling );
+			else
+				call = dataCollector.AddFunctions( callHeader, samplingTriplanar, texTop, texMid, texBot, pos, norm, falloff, tilling );
+			dataCollector.AddToLocalVariables( dataCollector.PortCategory, UniqueId, type + " triplanar" + OutputId + " = " + call + ";" );
+			if( m_normalCorrection )
+			{
+				dataCollector.AddToLocalVariables( dataCollector.PortCategory, UniqueId, "float3 tanTriplanarNormal" + OutputId + " = mul( " + worldToTangent + ", triplanar" + OutputId + " );" );
+				return GetOutputVectorItem( 0, outputId, "tanTriplanarNormal" + OutputId );
+			}
+			else
+			{
 				return GetOutputVectorItem( 0, outputId, "triplanar" + OutputId );
 			}
 		}
@@ -1017,19 +1041,19 @@ namespace AmplifyShaderEditor
 		{
 			base.UpdateMaterial( mat );
 			m_topTexture.OnPropertyNameChanged();
-			if ( mat.HasProperty( m_topTexture.PropertyName ) )
+			if ( mat.HasProperty( m_topTexture.PropertyName ) && !InsideShaderFunction )
 			{
 				mat.SetTexture( m_topTexture.PropertyName, m_topTexture.MaterialValue );
 			}
 
 			m_midTexture.OnPropertyNameChanged();
-			if ( mat.HasProperty( m_midTexture.PropertyName ) )
+			if ( mat.HasProperty( m_midTexture.PropertyName ) && !InsideShaderFunction )
 			{
 				mat.SetTexture( m_midTexture.PropertyName, m_midTexture.MaterialValue );
 			}
 
 			m_botTexture.OnPropertyNameChanged();
-			if ( mat.HasProperty( m_botTexture.PropertyName ) )
+			if ( mat.HasProperty( m_botTexture.PropertyName ) && !InsideShaderFunction )
 			{
 				mat.SetTexture( m_botTexture.PropertyName, m_botTexture.MaterialValue );
 			}

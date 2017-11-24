@@ -8,7 +8,7 @@ using System;
 namespace AmplifyShaderEditor
 {
 	[Serializable]
-	[NodeAttributes( "Keyword Switch", "Logical Operators", "Attributes a value according to the existance of a selected keyword" )]
+	[NodeAttributes( "Keyword Switch", "Logical Operators", "Attributes a value according to the existance of a selected keyword", Deprecated = true, DeprecatedAlternativeType = typeof(StaticSwitch), DeprecatedAlternative = "Static Switch" )]
 	public sealed class KeywordSwitchNode : ParentNode
 	{
 		private const string KeywordStr = "Keyword";

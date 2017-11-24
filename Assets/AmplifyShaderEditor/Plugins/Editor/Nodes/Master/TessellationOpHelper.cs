@@ -93,7 +93,7 @@ namespace AmplifyShaderEditor
 		//private bool m_expanded = false;
 
 		[SerializeField]
-		private int m_tessType = 0;
+		private int m_tessType = 2;
 
 		[SerializeField]
 		private float m_tessMinDistance = 10f;
@@ -102,7 +102,7 @@ namespace AmplifyShaderEditor
 		private float m_tessMaxDistance = 25f;
 
 		[SerializeField]
-		private float m_tessFactor = 4f;
+		private float m_tessFactor = 15f;
 
 		[SerializeField]
 		private float m_phongStrength = 0.5f;

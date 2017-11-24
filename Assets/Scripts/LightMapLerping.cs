@@ -14,6 +14,6 @@ public class LightMapLerping : MonoBehaviour
 
     void Update ()
     {
-        mat.SetFloat("_alphaLerp", curve.Evaluate(Time.time));
+        mat.SetFloat("_alphaLerp", curve.Evaluate(Time.realtimeSinceStartup));
 	}
 }

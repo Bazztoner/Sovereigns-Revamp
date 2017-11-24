@@ -1,8 +1,5 @@
 // Amplify Shader Editor - Visual Shader Editing Tool
 // Copyright (c) Amplify Creations, Lda <info@amplify.pt>
-
-using UnityEngine;
-using UnityEditor;
 using System;
 
 namespace AmplifyShaderEditor
@@ -15,7 +12,7 @@ namespace AmplifyShaderEditor
 		protected override void CommonInit( int uniqueId )
 		{
 			base.CommonInit( uniqueId );
-			AddInputPort( WirePortDataType.FLOAT, false, "Value" );
+			AddInputPort( WirePortDataType.FLOAT, false, Constants.EmptyPortValue );
 			AddInputPort( WirePortDataType.FLOAT, false, "Scale" );
 			m_inputPorts[ 1 ].FloatInternalData = 1;
 			AddInputPort( WirePortDataType.FLOAT, false, "Offset" );

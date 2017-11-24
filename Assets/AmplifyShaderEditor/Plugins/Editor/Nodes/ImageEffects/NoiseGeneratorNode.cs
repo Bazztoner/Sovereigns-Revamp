@@ -118,6 +118,7 @@ namespace AmplifyShaderEditor
 			AddOutputPort( WirePortDataType.FLOAT, Constants.EmptyPortValue );
 			m_useInternalPortData = true;
 			m_autoWrapProperties = true;
+			m_hasLeftDropdown = true;
 			SetAdditonalTitleText( string.Format( Constants.SubTitleTypeFormatStr, m_type ) );
 		}
 
@@ -138,36 +139,16 @@ namespace AmplifyShaderEditor
 			m_upperLeftWidget = null;
 		}
 
-		public override void OnNodeLayout( DrawInfo drawInfo )
-		{
-			base.OnNodeLayout( drawInfo );
-			m_upperLeftWidget.OnNodeLayout( m_globalPosition, drawInfo );
-		}
-
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-			m_upperLeftWidget.DrawGUIControls( drawInfo );
-		}
-
-		public override void OnNodeRepaint( DrawInfo drawInfo )
-		{
-			base.OnNodeRepaint( drawInfo );
-			if( !m_isVisible )
-				return;
-			m_upperLeftWidget.OnNodeRepaint( ContainerGraph.LodLevel );
-		}
-
 		public override void Draw( DrawInfo drawInfo )
 		{
 			base.Draw( drawInfo );
-			EditorGUI.BeginChangeCheck();
-			m_type = (NoiseGeneratorType)m_upperLeftWidget.DrawWidget( this, m_type );
-			if( EditorGUI.EndChangeCheck() )
-			{
-				ConfigurePorts();
-			}
+			m_upperLeftWidget.DrawWidget<NoiseGeneratorType>( ref m_type, this, OnWidgetUpdate );
 		}
+
+		private readonly Action<ParentNode> OnWidgetUpdate = ( x ) =>
+		{
+			( x as NoiseGeneratorNode ).ConfigurePorts();
+		};
 
 		public override void DrawProperties()
 		{
@@ -178,10 +159,10 @@ namespace AmplifyShaderEditor
 			{
 				ConfigurePorts();
 			}
-			EditorGUILayout.HelpBox( "Node still under construction. Use with caution", MessageType.Info );
+			//EditorGUILayout.HelpBox( "Node still under construction. Use with caution", MessageType.Info );
 		}
 
-		void ConfigurePorts()
+		private void ConfigurePorts()
 		{
 			SetAdditonalTitleText( string.Format( Constants.SubTitleTypeFormatStr, m_type ) );
 

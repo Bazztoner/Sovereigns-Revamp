@@ -48,7 +48,7 @@ Material:
     - first:
         name: _InnerWalls_InnerWalls_AlbedoTransparency
       second:
-        m_Texture: {fileID: 2800000, guid: cf859906a97326b4eb57e915f33c0726, type: 3}
+        m_Texture: {fileID: 2800000, guid: 66cce75444326f64dae1cb555010a0f9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -60,13 +60,13 @@ Material:
     - first:
         name: _InnerWalls_InnerWalls_MetallicSmoothness
       second:
-        m_Texture: {fileID: 2800000, guid: 9078082a7bfd4764e8f0ad84ca1ef995, type: 3}
+        m_Texture: {fileID: 2800000, guid: 35532cab9a4ea914386431f3104ff54b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _InnerWalls_InnerWalls_Normal
       second:
-        m_Texture: {fileID: 2800000, guid: c2257df1b34d9fc49b1bff334775e5e4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1c0d7912b5d8a0d478b6f129c4288a84, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -123,7 +123,7 @@ Material:
       second: 1
     - first:
         name: _Intensity
-      second: 0.35
+      second: 0.1
     - first:
         name: _Metallic
       second: 0
@@ -147,7 +147,7 @@ Material:
       second: 1
     - first:
         name: _SubDivisions
-      second: 30
+      second: 50
     - first:
         name: _TessPhongStrength
       second: 1

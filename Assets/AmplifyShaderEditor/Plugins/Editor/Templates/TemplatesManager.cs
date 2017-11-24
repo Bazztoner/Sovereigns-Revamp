@@ -172,65 +172,77 @@ namespace AmplifyShaderEditor
 
 		public static void Init()
 		{
-			m_availableTemplates = new Dictionary<string, TemplateData>();
-			m_sortedTemplates = new List<TemplateData>();
-
-			// Post-Process
+			if( !Initialized )
 			{
-				TemplateData postProcess = new TemplateData( "Post Process", "c71b220b631b6344493ea3cf87110c93" );
-				if ( postProcess.IsValid )
-					AddTemplate( postProcess );
-			}
+				m_availableTemplates = new Dictionary<string, TemplateData>();
+				m_sortedTemplates = new List<TemplateData>();
 
-			// Default Unlit
-			{
-				TemplateData defaultUnlit = new TemplateData( "Default Unlit", "6e114a916ca3e4b4bb51972669d463bf" );
-				if ( defaultUnlit.IsValid ) 
-					AddTemplate( defaultUnlit );
-			}
-
-			// UI
-			{
-				TemplateData defaultUI = new TemplateData( "Default UI", "5056123faa0c79b47ab6ad7e8bf059a4" );
-				if( defaultUI.IsValid )
-					AddTemplate( defaultUI );
-			}
-
-			// Sprites
-			{
-				TemplateData defaultSprites = new TemplateData( "Default Sprites", "0f8ba0101102bb14ebf021ddadce9b49" );
-				if ( defaultSprites.IsValid )
-					AddTemplate( defaultSprites );
-			}
-
-			// Particles
-			{
-				TemplateData particlesAlphaBlended = new TemplateData( "Particles Alpha Blended", "0b6a9f8b4f707c74ca64c0be8e590de0" );
-				if ( particlesAlphaBlended.IsValid )
-					AddTemplate( particlesAlphaBlended );
-			}
-
-
-			// Search for other possible templates on the project
-			string[] allShaders = AssetDatabase.FindAssets( "t:shader" );
-			for ( int i = 0; i < allShaders.Length; i++ )
-			{
-				if ( !m_availableTemplates.ContainsKey( allShaders[ i ] ) )
+				// Post-Process
 				{
-					CheckAndLoadTemplate( allShaders[ i ] );
+					TemplateData postProcess = new TemplateData( "Post Process", "c71b220b631b6344493ea3cf87110c93" );
+					if( postProcess.IsValid )
+						AddTemplate( postProcess );
 				}
-			}
 
-			// TODO: Sort list alphabeticaly 
-			AvailableTemplateNames = new string[ m_sortedTemplates.Count + 1 ];
-			AvailableTemplateNames[ 0 ] = "Custom";
-			for ( int i = 0; i < m_sortedTemplates.Count; i++ )
-			{
-				m_sortedTemplates[ i ].OrderId = i;
-				AvailableTemplateNames[ i + 1 ] = m_sortedTemplates[ i ].Name;
+				// Default Unlit
+				{
+					TemplateData defaultUnlit = new TemplateData( "Default Unlit", "6e114a916ca3e4b4bb51972669d463bf" );
+					if( defaultUnlit.IsValid )
+						AddTemplate( defaultUnlit );
+				}
+
+				// UI
+				{
+					TemplateData defaultUI = new TemplateData( "Default UI", "5056123faa0c79b47ab6ad7e8bf059a4" );
+					if( defaultUI.IsValid )
+						AddTemplate( defaultUI );
+				}
+
+				// Sprites
+				{
+					TemplateData defaultSprites = new TemplateData( "Default Sprites", "0f8ba0101102bb14ebf021ddadce9b49" );
+					if( defaultSprites.IsValid )
+						AddTemplate( defaultSprites );
+				}
+
+				// Particles
+				{
+					TemplateData particlesAlphaBlended = new TemplateData( "Particles Alpha Blended", "0b6a9f8b4f707c74ca64c0be8e590de0" );
+					if( particlesAlphaBlended.IsValid )
+						AddTemplate( particlesAlphaBlended );
+				}
+
+				// Particles Cutout
+				//{
+				//	TemplateData particlesCutout = new TemplateData( "Particles Cutout", "9dc0487e4f202ba49bbef443f0ddf5ca" );
+				//	if( particlesCutout.IsValid )
+				//		AddTemplate( particlesCutout );
+				//}
+
+
+				// Search for other possible templates on the project
+				string[] allShaders = AssetDatabase.FindAssets( "t:shader" );
+				for( int i = 0; i < allShaders.Length; i++ )
+				{
+					if( !m_availableTemplates.ContainsKey( allShaders[ i ] ) )
+					{
+						CheckAndLoadTemplate( allShaders[ i ] );
+					}
+				}
+
+				// TODO: Sort list alphabeticaly 
+				AvailableTemplateNames = new string[ m_sortedTemplates.Count + 1 ];
+				AvailableTemplateNames[ 0 ] = "Custom";
+				for( int i = 0; i < m_sortedTemplates.Count; i++ )
+				{
+					m_sortedTemplates[ i ].OrderId = i;
+					AvailableTemplateNames[ i + 1 ] = m_sortedTemplates[ i ].Name;
+				}
+				Initialized = true;
 			}
-            Initialized = true;
         }
+
+
 
 		public static void CreateTemplateMenuItems()
 		{
@@ -317,6 +329,7 @@ namespace AmplifyShaderEditor
 				m_availableTemplates = null;
 			}
 			AvailableTemplateNames = null;
+			Initialized = false;
 		}
 
 		public static TemplateData GetTemplate( int id )
@@ -344,6 +357,28 @@ namespace AmplifyShaderEditor
 			return null;
 		}
 
+		public static TemplateData GetTemplateByName( string name )
+		{
+			if( m_availableTemplates == null && m_sortedTemplates != null )
+			{
+				m_availableTemplates = new Dictionary<string, TemplateData>();
+				for( int i = 0; i < m_sortedTemplates.Count; i++ )
+				{
+					m_availableTemplates.Add( m_sortedTemplates[ i ].GUID, m_sortedTemplates[ i ] );
+				}
+			}
+
+			foreach( KeyValuePair<string, TemplateData> kvp in m_availableTemplates )
+			{
+				if( kvp.Value.DefaultShaderName.Equals( name ) )
+				{
+					return kvp.Value;
+				}
+			}
+				
+			return null;
+		}
+
 		public static TemplateData CheckAndLoadTemplate( string guid )
 		{
 			TemplateData templateData = GetTemplate( guid );
@@ -365,15 +400,15 @@ namespace AmplifyShaderEditor
 			return null;
 		}
 
-		public static TemplateData LoadAndCacheTemplate( string guid )
-		{
-			TemplateData templateData = new TemplateData( string.Empty, guid );
-			if ( templateData.IsValid )
-			{
-				AddTemplate( templateData );
-			}
-			return templateData;
-		}
+		//public static TemplateData LoadAndCacheTemplate( string guid )
+		//{
+		//	TemplateData templateData = new TemplateData( string.Empty, guid );
+		//	if ( templateData.IsValid )
+		//	{
+		//		AddTemplate( templateData );
+		//	}
+		//	return templateData;
+		//}
 
 		public static int TemplateCount { get { return m_sortedTemplates.Count; } }
 	}

@@ -13,7 +13,7 @@ namespace AmplifyShaderEditor
 		protected override void CommonInit( int uniqueId )
 		{
 			base.CommonInit( uniqueId );
-			AddInputPort( WirePortDataType.FLOAT, false, "Value" );
+			AddInputPort( WirePortDataType.FLOAT, false, Constants.EmptyPortValue );
 			AddInputPort( WirePortDataType.FLOAT, false, "Min" );
 			AddInputPort( WirePortDataType.FLOAT, false, "Max" );
 			AddOutputPort( WirePortDataType.FLOAT, Constants.EmptyPortValue );

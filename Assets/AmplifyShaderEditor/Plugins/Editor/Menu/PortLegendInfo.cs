@@ -290,7 +290,7 @@ namespace AmplifyShaderEditor
 			AmplifyShaderEditorWindow window = UIUtils.CurrentWindow;
 			if ( window != null )
 			{
-				if ( m_nodesShortcuts == null )
+				if ( m_nodesShortcuts == null || m_nodesShortcuts.Count == 0 )
 				{
 					m_nodesShortcuts = window.ShortcutManagerInstance.AvailableNodesShortcutsList;
 				}
@@ -448,8 +448,11 @@ namespace AmplifyShaderEditor
 				m_nodeDescriptionsInfo = null;
 			}
 
-			m_compatibleAssetsInfo.Clear();
-			m_compatibleAssetsInfo = null;
+			if( m_compatibleAssetsInfo != null )
+			{
+				m_compatibleAssetsInfo.Clear();
+				m_compatibleAssetsInfo = null;
+			}
 		}
 	}
 }

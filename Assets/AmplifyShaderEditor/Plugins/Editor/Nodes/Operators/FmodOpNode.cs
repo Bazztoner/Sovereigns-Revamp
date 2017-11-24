@@ -21,6 +21,14 @@ namespace AmplifyShaderEditor
 				return m_outputPorts[ 0 ].LocalValue;
 
 			base.BuildResults( outputId,  ref dataCollector, ignoreLocalvar );
+			if( m_inputPorts[ 0 ].DataType == WirePortDataType.INT )
+				m_inputA = "(float)" + m_inputA;
+
+
+			if( m_inputPorts[ 1 ].DataType == WirePortDataType.INT )
+				m_inputB = "(float)" + m_inputB;
+
+
 			string result = "fmod( " + m_inputA + " , " + m_inputB + " )";
 			return CreateOutputLocalVariable( 0, result, ref dataCollector );
 		}

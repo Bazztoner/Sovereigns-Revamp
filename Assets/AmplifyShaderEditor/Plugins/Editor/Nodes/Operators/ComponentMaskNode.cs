@@ -275,7 +275,8 @@ namespace AmplifyShaderEditor
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar )
 		{
-			if ( m_outputPorts[ 0 ].IsLocalValue )
+
+			if( m_outputPorts[ 0 ].IsLocalValue )
 				return m_outputPorts[ 0 ].LocalValue;
 
 			string value = m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, m_inputPorts[ 0 ].DataType, ignoreLocalVar );
@@ -314,7 +315,7 @@ namespace AmplifyShaderEditor
 
 			if ( count > 0 )
 			{
-				value += ".";
+				value = string.Format("({0}).",value);
 				for ( int i = 0; i < count; i++ )
 				{
 					if ( m_selection[ i ] )
@@ -324,9 +325,7 @@ namespace AmplifyShaderEditor
 				}
 			}
 
-			RegisterLocalVariable( outputId, value, ref dataCollector, OutputLocalVarName+OutputId );
-
-			return m_outputPorts[0].LocalValue;
+			return CreateOutputLocalVariable( 0, value, ref dataCollector );
 		}
 
 		public string GetComponentForPosition( int i )

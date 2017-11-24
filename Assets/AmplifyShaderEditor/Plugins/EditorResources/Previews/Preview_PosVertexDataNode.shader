@@ -1,4 +1,4 @@
-﻿Shader "Hidden/PosVertexDataNode"
+Shader "Hidden/PosVertexDataNode"
 {
 	SubShader
 	{

@@ -126,7 +126,7 @@ namespace AmplifyShaderEditor
 
 		void UpdatePorts()
 		{
-			if ( m_inputReferenceNode != null )
+			if ( m_inputReferenceNode != null || m_texPort.IsConnected )
 			{
 				m_tilingPort.Locked = true;
 				m_offsetPort.Locked = true;
@@ -374,18 +374,20 @@ namespace AmplifyShaderEditor
 
 			bool isVertex = ( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation );
 
-			if ( m_texPort.IsConnected )
-				m_texPort.GeneratePortInstructions( ref dataCollector );
+			string portProperty = string.Empty;
+			if( m_texPort.IsConnected )
+				portProperty = m_texPort.GenerateShaderForOutput( ref dataCollector, m_texPort.DataType, ignoreLocalVar );
 
 			if( m_referenceArrayId > -1 )
 			{
 				TexturePropertyNode temp = UIUtils.GetTexturePropertyNode( m_referenceArrayId );
-				if ( temp != null )
+				if( temp != null )
 				{
-					temp.BaseGenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
+					portProperty = temp.BaseGenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
 				}
 			}
-//TEMPLATES
+
+			//TEMPLATES
 			if ( dataCollector.MasterNodeCategory == AvailableShaderTypes.Template )
 			{
 				if ( m_outputPorts[ 0 ].IsLocalValue )
@@ -403,25 +405,55 @@ namespace AmplifyShaderEditor
 					//uvName = ( dataCollector.IsFragmentCategory ? Constants.InputVarStr : Constants.VertexShaderInputStr ) + "." + uvName;
 				}
 				string currPropertyName = GetValidPropertyName();
+				if( !string.IsNullOrEmpty( portProperty ) && portProperty != "0.0" )
+				{
+					currPropertyName = portProperty;
+				}
 				if ( !string.IsNullOrEmpty( currPropertyName ) )
 				{
 					string finalTexCoordName = "uv" + currPropertyName;
 					string dummyPropertyTexcoords = currPropertyName + "_ST";
 					dataCollector.AddToUniforms(  UniqueId, "float4", dummyPropertyTexcoords );
-					RegisterLocalVariable( 0, string.Format( Constants.TilingOffsetFormat, uvName, dummyPropertyTexcoords+".xy", dummyPropertyTexcoords+".zw" ), ref dataCollector, finalTexCoordName );
+
+					if( m_texcoordSize > 2 )
+					{
+						dataCollector.AddLocalVariable( UniqueId, m_currentPrecisionType, m_outputPorts[ 0 ].DataType, finalTexCoordName, uvName );
+						dataCollector.AddLocalVariable( UniqueId, finalTexCoordName + ".xy", string.Format( Constants.TilingOffsetFormat, uvName+".xy", dummyPropertyTexcoords + ".xy", dummyPropertyTexcoords + ".zw" )+";" );
+						m_outputPorts[ 0 ].SetLocalValue( finalTexCoordName );
+					} else
+					{
+						RegisterLocalVariable( 0, string.Format( Constants.TilingOffsetFormat, uvName, dummyPropertyTexcoords + ".xy", dummyPropertyTexcoords + ".zw" ), ref dataCollector, finalTexCoordName );
+					}
+					//RegisterLocalVariable( 0, string.Format( Constants.TilingOffsetFormat, uvName, dummyPropertyTexcoords+".xy", dummyPropertyTexcoords+".zw" ), ref dataCollector, finalTexCoordName );
 				}
 				else
 				{
 					string finalTexCoordName = "uv" + OutputId;
 					string tiling = m_tilingPort.GeneratePortInstructions( ref dataCollector );
 					string offset = m_offsetPort.GeneratePortInstructions( ref dataCollector );
-					RegisterLocalVariable( 0, string.Format( Constants.TilingOffsetFormat, uvName, tiling, offset ), ref dataCollector, finalTexCoordName );
+
+					if( m_texcoordSize > 2 )
+					{
+						dataCollector.AddLocalVariable( UniqueId, m_currentPrecisionType, m_outputPorts[ 0 ].DataType, finalTexCoordName, uvName );
+						dataCollector.AddLocalVariable( UniqueId, finalTexCoordName + ".xy", string.Format( Constants.TilingOffsetFormat, uvName + ".xy", tiling, offset ) + ";" );
+						m_outputPorts[ 0 ].SetLocalValue( finalTexCoordName );
+					}
+					else
+					{
+						RegisterLocalVariable( 0, string.Format( Constants.TilingOffsetFormat, uvName, tiling, offset ), ref dataCollector, finalTexCoordName );
+					}
+					//RegisterLocalVariable( 0, string.Format( Constants.TilingOffsetFormat, uvName, tiling, offset ), ref dataCollector, finalTexCoordName );
 				}
 				return GetOutputVectorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue );
 			}
 
 			//SURFACE
 			string propertyName = GetValidPropertyName();
+			if( !string.IsNullOrEmpty( portProperty ) && portProperty != "0.0" )
+			{
+				propertyName = portProperty;
+			}
+
 			if ( !string.IsNullOrEmpty( propertyName ) /*m_referenceArrayId > -1*/ )
 			{
 				//m_referenceNode = UIUtils.GetTexturePropertyNode( m_referenceArrayId );

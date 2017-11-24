@@ -21,12 +21,13 @@ namespace AmplifyShaderEditor
 		Texture2D,
 		Texture3D,
 		Cube,
-		Texture2DArray
+		Texture2DArray,
+		ProceduralTexture
 	}
 
 	public enum AutoCastType
 	{
-		Auto,
+		Auto = 0,
 		LockedToTexture1D,
 		LockedToTexture2D,
 		LockedToTexture3D,
@@ -36,7 +37,7 @@ namespace AmplifyShaderEditor
 
 
 	[Serializable]
-	[NodeAttributes( "Texture Object", "Textures", "Represents a Texture Asset. Can be used in samplers <b>Tex</b> inputs or shader function inputs to reuse the same texture multiple times.", null, KeyCode.None, true, false, null, null, false, null, 1 )]
+	[NodeAttributes( "Texture Object", "Textures", "Represents a Texture Asset. Can be used in samplers <b>Tex</b> inputs or shader function inputs to reuse the same texture multiple times.", SortOrderPriority = 1 )]
 	public class TexturePropertyNode : PropertyNode
 	{
 		protected readonly string[] AvailablePropertyTypeLabels = { PropertyType.Property.ToString(), PropertyType.Global.ToString() };
@@ -45,7 +46,7 @@ namespace AmplifyShaderEditor
 		protected const int OriginalFontSizeUpper = 9;
 		protected const int OriginalFontSizeLower = 9;
 
-		protected const string DefaultTextureStr = "Default value";
+		protected const string DefaultTextureStr = "Default Texture";
 		protected const string AutoCastModeStr = "Auto-Cast Mode";
 
 		protected const string AutoUnpackNormalsStr = "Normal";
@@ -90,7 +91,13 @@ namespace AmplifyShaderEditor
 
 		protected int m_cachedSamplerId = -1;
 		protected int m_cachedSamplerIdArray = -1;
+		protected int m_cachedSamplerIdCube = -1;
+		protected int m_cachedSamplerId3D = -1;
 		protected int m_defaultId = -1;
+		protected int m_typeId = -1;
+
+		private TextureType m_previousType = TextureType.Texture2D;
+		private string m_labelText = "None (Texture2D)";
 
 		public TexturePropertyNode() : base() { }
 		public TexturePropertyNode( int uniqueId, float x, float y, float width, float height ) : base( uniqueId, x, y, width, height ) { }
@@ -99,7 +106,7 @@ namespace AmplifyShaderEditor
 			base.CommonInit( uniqueId );
 			m_defaultTextureValue = TexturePropertyValues.white;
 			m_insideSize.Set( PreviewSizeX, PreviewSizeY + 5 );
-			AddOutputPort( WirePortDataType.SAMPLER2D, Constants.EmptyPortValue );
+			AddOutputPort( WirePortDataType.SAMPLER2D, "Tex" );
 			m_outputPorts[ 0 ].CreatePortRestrictions( WirePortDataType.SAMPLER1D, WirePortDataType.SAMPLER2D, WirePortDataType.SAMPLER3D, WirePortDataType.SAMPLERCUBE, WirePortDataType.OBJECT );
 			m_currentParameterType = PropertyType.Property;
 			m_customPrefix = "Texture ";
@@ -133,22 +140,46 @@ namespace AmplifyShaderEditor
 				if( m_defaultId == -1 )
 					m_defaultId = Shader.PropertyToID( "_Default" );
 
-				if( Value is Texture2DArray )
+				if( m_typeId == -1 )
+					m_typeId = Shader.PropertyToID( "_Type" );
+
+				PreviewMaterial.SetInt( m_defaultId, 0);
+
+				if( Value is Cubemap )
 				{
+					PreviewMaterial.SetInt( m_typeId, 3 );
+
+					if( m_cachedSamplerIdCube == -1 )
+						m_cachedSamplerIdCube = Shader.PropertyToID( "_Cube" );
+
+					PreviewMaterial.SetTexture( m_cachedSamplerIdCube, Value as Cubemap );
+				}
+				else if( Value is Texture2DArray )
+				{
+					PreviewMaterial.SetInt( m_typeId, 4 );
+
 					if( m_cachedSamplerIdArray == -1 )
 						m_cachedSamplerIdArray = Shader.PropertyToID( "_Array" );
 
-					PreviewMaterial.SetInt( m_defaultId, 5 );
 					PreviewMaterial.SetTexture( m_cachedSamplerIdArray, Value as Texture2DArray );
+				}
+				else if( Value is Texture3D )
+				{
+					PreviewMaterial.SetInt( m_typeId, 2 );
+
+					if( m_cachedSamplerId3D == -1 )
+						m_cachedSamplerId3D = Shader.PropertyToID( "_Sampler3D" );
+
+					PreviewMaterial.SetTexture( m_cachedSamplerId3D, Value as Texture3D );
 				}
 				else
 				{
+					PreviewMaterial.SetInt( m_typeId, 1 );
+
 					if( m_cachedSamplerId == -1 )
 						m_cachedSamplerId = Shader.PropertyToID( "_Sampler" );
 
-					PreviewMaterial.SetInt( m_defaultId, 0 );
-					if( !( Value is Texture3D || Value is Cubemap ) )
-						PreviewMaterial.SetTexture( m_cachedSamplerId, Value );
+					PreviewMaterial.SetTexture( m_cachedSamplerId, Value );
 				}
 			}
 		}
@@ -227,6 +258,11 @@ namespace AmplifyShaderEditor
 				case TextureType.Cube:
 				{
 					m_textureType = typeof( Cubemap );
+				}
+				break;
+				case TextureType.ProceduralTexture:
+				{
+					m_textureType = typeof( ProceduralTexture );
 				}
 				break;
 			}
@@ -359,6 +395,7 @@ namespace AmplifyShaderEditor
 				case TextureType.Texture1D:
 				m_outputPorts[ 0 ].ChangeType( WirePortDataType.SAMPLER1D, false );
 				break;
+				case TextureType.ProceduralTexture:
 				case TextureType.Texture2D:
 				m_outputPorts[ 0 ].ChangeType( WirePortDataType.SAMPLER2D, false );
 				break;
@@ -429,6 +466,10 @@ namespace AmplifyShaderEditor
 			else if( ( texture as Cubemap ) != null )
 			{
 				ConfigTextureData( TextureType.Cube );
+			}
+			else if( ( texture as ProceduralTexture ) != null )
+			{
+				ConfigTextureData( TextureType.ProceduralTexture );
 			}
 		}
 
@@ -541,8 +582,7 @@ namespace AmplifyShaderEditor
 				DrawTexturePicker( drawInfo );
 		}
 
-		private TextureType m_previousType = TextureType.Texture2D;
-		private string m_labelText = "None (Texture2D)";
+		
 
 		protected void DrawTexturePicker( DrawInfo drawInfo )
 		{
@@ -616,7 +656,7 @@ namespace AmplifyShaderEditor
 		public override void UpdateMaterial( Material mat )
 		{
 			base.UpdateMaterial( mat );
-			if( UIUtils.IsProperty( m_currentParameterType ) )
+			if( UIUtils.IsProperty( m_currentParameterType ) && !InsideShaderFunction )
 			{
 				OnPropertyNameChanged();
 				if( mat.HasProperty( PropertyName ) )
@@ -727,6 +767,7 @@ namespace AmplifyShaderEditor
 				{
 					return PropertyAttributes + GetTexture1DPropertyValue();
 				}
+				case TextureType.ProceduralTexture:
 				case TextureType.Texture2D:
 				{
 					return PropertyAttributes + GetTexture2DPropertyValue();
@@ -755,6 +796,7 @@ namespace AmplifyShaderEditor
 				{
 					return GetTexture1DUniformValue();
 				}
+				case TextureType.ProceduralTexture:
 				case TextureType.Texture2D:
 				{
 					return GetTexture2DUniformValue();
@@ -859,6 +901,11 @@ namespace AmplifyShaderEditor
 		{
 			get { return m_defaultTextureValue; }
 			set { m_defaultTextureValue = value; }
+		}
+
+		public AutoCastType AutocastMode
+		{
+			get { return m_autocastMode; }
 		}
 	}
 }

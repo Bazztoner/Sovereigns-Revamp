@@ -48,8 +48,10 @@ namespace AmplifyShaderEditor
 			return lines[ lines.Length - 1 ];
 		}
 
-		public void CommonInit( AmplifyShaderFunction function )
+		public void CommonInit( AmplifyShaderFunction function, int uniqueId )
 		{
+			SetBaseUniqueId(uniqueId);
+
 			if ( function == null )
 				return;
 
@@ -80,7 +82,6 @@ namespace AmplifyShaderEditor
 
 			for ( int i = 0; i < m_functionGraph.AllNodes.Count; i++ )
 			{
-				//Debug.Log( m_functionGraph.AllNodes[ i ].GetType()+" "+ m_functionGraph.AllNodes[ i ].IsConnected );
 				if ( m_functionGraph.AllNodes[ i ].GetType() == typeof( FunctionInput ) )
 				{
 					m_allFunctionInputs.Add( m_functionGraph.AllNodes[ i ] as FunctionInput );
@@ -116,13 +117,13 @@ namespace AmplifyShaderEditor
 			if ( /*hasConnectedProperties*/propertyList.Count > 0 )
 			{
 				m_reordenator = ScriptableObject.CreateInstance<ReordenatorNode>();
-				m_reordenator.Init( "_" + Function.FunctionName, Function.FunctionName, propertyList );
+				m_reordenator.Init( "_" + Function.FunctionName, Function.FunctionName, propertyList, false );
 				m_reordenator.OrderIndex = m_orderIndex;
 				m_reordenator.HeaderTitle = Function.FunctionName;
 				m_reordenator.IsInside = inside;
 			}
 
-			if ( m_reordenator != null )
+			if( m_reordenator != null )
 			{
 				cachedGraph = ContainerGraph.ParentWindow.CustomGraph;
 				ContainerGraph.ParentWindow.CustomGraph = null;
@@ -131,6 +132,8 @@ namespace AmplifyShaderEditor
 			}
 
 			m_textLabelWidth = 100;
+
+			UIUtils.RegisterFunctionNode( this );
 		}
 
 		public void PortSwitchRestriction( WirePort port )
@@ -178,7 +181,7 @@ namespace AmplifyShaderEditor
 		{
 			base.SetupFromCastObject( obj );
 			AmplifyShaderFunction function = obj as AmplifyShaderFunction;
-			CommonInit( function );
+			CommonInit( function, UniqueId );
 		}
 
 		public override void OnInputPortConnected( int portId, int otherNodeId, int otherPortId, bool activateNode = true )
@@ -232,7 +235,7 @@ namespace AmplifyShaderEditor
 
 		private void DrawDescription()
 		{
-			EditorGUILayout.HelpBox( "Description:\n" + Function.Description, MessageType.None );
+			EditorGUILayout.HelpBox( Function.Description, MessageType.Info );
 		}
 
 		public override void Destroy()
@@ -241,12 +244,13 @@ namespace AmplifyShaderEditor
 
 			if ( m_reordenator != null )
 			{
-				m_reordenator.Destroy();
-				m_reordenator = null;
 				ParentGraph cachedGraph = ContainerGraph.ParentWindow.CustomGraph;
 				ContainerGraph.ParentWindow.CustomGraph = null;
 				UIUtils.UnregisterPropertyNode( m_reordenator );
 				ContainerGraph.ParentWindow.CustomGraph = cachedGraph;
+
+				m_reordenator.Destroy();
+				m_reordenator = null;
 			}
 
 			UIUtils.UnregisterFunctionNode( this );
@@ -272,22 +276,29 @@ namespace AmplifyShaderEditor
 
 		public override void Draw( DrawInfo drawInfo )
 		{
-			base.Draw( drawInfo );
-
-			if ( ContainerGraph.ParentWindow.CheckFunctions && m_function != null )
+			if( ContainerGraph.ParentWindow.CheckFunctions && m_function != null )
 			{
 				string newCheckSum = LastLine( m_function.FunctionInfo );
-				if ( !m_functionCheckSum.Equals( newCheckSum ) )
+				if( !m_functionCheckSum.Equals( newCheckSum ) )
 				{
 					m_functionCheckSum = newCheckSum;
 					ContainerGraph.OnDuplicateEvent += DuplicateMe;
 				}
 			}
+
+			base.Draw( drawInfo );
 		}
 
 		public void DuplicateMe()
 		{
+			ParentGraph cachedGraph = ContainerGraph.ParentWindow.CustomGraph;
+			ContainerGraph.ParentWindow.CustomGraph = null;
+			ContainerGraph.ParentWindow.CurrentGraph.CurrentStandardSurface.InvalidateMaterialPropertyCount();
+			ContainerGraph.ParentWindow.CustomGraph = cachedGraph;
+
 			ParentNode newNode = ContainerGraph.CreateNode( m_function, false, Vec2Position );
+			if( ( newNode as FunctionNode ).m_reordenator && m_reordenator )
+				( newNode as FunctionNode ).m_reordenator.OrderIndex = m_reordenator.OrderIndex;
 			for ( int i = 0; i < m_outputPorts.Count; i++ )
 			{
 				if ( m_outputPorts[ i ].IsConnected )
@@ -327,6 +338,9 @@ namespace AmplifyShaderEditor
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
 		{
+			if( m_outputPorts[ outputId ].IsLocalValue )
+				return m_outputPorts[ outputId ].LocalValue;
+
 			ParentGraph cachedGraph = ContainerGraph.ParentWindow.CustomGraph;
 			m_outsideGraph = cachedGraph;
 			ContainerGraph.ParentWindow.CustomGraph = m_functionGraph;
@@ -351,7 +365,13 @@ namespace AmplifyShaderEditor
 			}
 
 			ContainerGraph.ParentWindow.CustomGraph = cachedGraph;
-			return result;
+
+			if( m_outputPorts[ outputId ].ConnectionCount > 1 )
+				RegisterLocalVariable( outputId, result, ref dataCollector );
+			else
+				m_outputPorts[ outputId ].SetLocalValue( result, dataCollector.PortCategory );
+
+			return m_outputPorts[ outputId ].LocalValue;
 		}
 
 		private string FunctionNodeOnPortGeneration( ref MasterNodeDataCollector dataCollector, int index, ParentGraph graph )
@@ -393,7 +413,7 @@ namespace AmplifyShaderEditor
 				AmplifyShaderFunction loaded = AssetDatabase.LoadAssetAtPath<AmplifyShaderFunction>( AssetDatabase.GUIDToAssetPath( guids[ 0 ] ) );
 				if ( loaded != null )
 				{
-					CommonInit( loaded );
+					CommonInit( loaded, UniqueId );
 				}
 				else
 				{

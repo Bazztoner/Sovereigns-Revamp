@@ -6,7 +6,7 @@ using System;
 namespace AmplifyShaderEditor
 {
 	[Serializable]
-	[NodeAttributes( "Function Input", "Functions", "Function Input", NodeAvailabilityFlags = ( int ) NodeAvailability.ShaderFunction )]
+	[NodeAttributes( "Function Input", "Functions", "Function Input adds an input port to the shader function", NodeAvailabilityFlags = ( int ) NodeAvailability.ShaderFunction )]
 	public sealed class FunctionInput : ParentNode
 	{
 		private const string InputTypeStr = "Input Type";
@@ -44,7 +44,7 @@ namespace AmplifyShaderEditor
 		{
 			base.CommonInit( uniqueId );
 			AddInputPort( WirePortDataType.FLOAT, false, Constants.EmptyPortValue );
-			m_inputPorts[ 0 ].Visible = false;
+			//m_inputPorts[ 0 ].Visible = false;
 			AddOutputPort( WirePortDataType.FLOAT, Constants.EmptyPortValue );
 			m_autoWrapProperties = true;
 			m_textLabelWidth = 100;
@@ -65,6 +65,50 @@ namespace AmplifyShaderEditor
 			base.Destroy();
 			OnPortGeneration = null;
 			UIUtils.UnregisterFunctionInputNode( this );
+		}
+
+		public override void OnInputPortConnected( int portId, int otherNodeId, int otherPortId, bool activateNode = true )
+		{
+			base.OnInputPortConnected( portId, otherNodeId, otherPortId, activateNode );
+			if( AutoCast )
+			{
+				m_inputPorts[ 0 ].MatchPortToConnection();
+				SetIntTypeFromPort();
+				UpdatePorts();
+				SetAdditonalTitleText( "( " + m_inputValueTypes[ m_selectedInputTypeInt ] + " )" );
+			}
+		}
+
+		public override void OnConnectedOutputNodeChanges( int portId, int otherNodeId, int otherPortId, string name, WirePortDataType type )
+		{
+			base.OnConnectedOutputNodeChanges( portId, otherNodeId, otherPortId, name, type );
+			if( AutoCast )
+			{
+				m_inputPorts[ 0 ].MatchPortToConnection();
+				SetIntTypeFromPort();
+				UpdatePorts();
+				SetAdditonalTitleText( "( " + m_inputValueTypes[ m_selectedInputTypeInt ] + " )" );
+			}
+		}
+
+		public void SetIntTypeFromPort()
+		{
+			switch( m_inputPorts[ 0 ].DataType )
+			{
+				case WirePortDataType.INT: m_selectedInputTypeInt = 0; break;
+				default:
+				case WirePortDataType.FLOAT: m_selectedInputTypeInt = 1; break;
+				case WirePortDataType.FLOAT2: m_selectedInputTypeInt = 2; break;
+				case WirePortDataType.FLOAT3: m_selectedInputTypeInt = 3; break;
+				case WirePortDataType.FLOAT4: m_selectedInputTypeInt = 4; break;
+				case WirePortDataType.COLOR: m_selectedInputTypeInt = 5; break;
+				case WirePortDataType.FLOAT3x3: m_selectedInputTypeInt = 6; break;
+				case WirePortDataType.FLOAT4x4: m_selectedInputTypeInt = 7; break;
+				case WirePortDataType.SAMPLER1D: m_selectedInputTypeInt = 8; break;
+				case WirePortDataType.SAMPLER2D: m_selectedInputTypeInt = 9; break;
+				case WirePortDataType.SAMPLER3D: m_selectedInputTypeInt = 10; break;
+				case WirePortDataType.SAMPLERCUBE: m_selectedInputTypeInt = 11; break;
+			}
 		}
 
 		public override void DrawProperties()
@@ -89,7 +133,7 @@ namespace AmplifyShaderEditor
 			m_autoCast = EditorGUILayoutToggle( "Auto Cast", m_autoCast );
 
 			EditorGUILayout.Separator();
-			if ( m_inputPorts[ 0 ].ValidInternalData )
+			if ( !m_inputPorts[ 0 ].IsConnected && m_inputPorts[ 0 ].ValidInternalData )
 			{
 				m_inputPorts[ 0 ].ShowInternalData( this, true, "Default Value" );
 			}
@@ -100,6 +144,26 @@ namespace AmplifyShaderEditor
 
 		void UpdatePorts()
 		{
+			//switch( m_inputPorts[ 0 ].DataType )
+			//{
+			//	case WirePortDataType.INT: m_selectedInputTypeInt = 0; break;
+			//	default:
+			//	case WirePortDataType.FLOAT: m_selectedInputTypeInt = 1; break;
+			//	case WirePortDataType.FLOAT2: m_selectedInputTypeInt = 2; break;
+			//	case WirePortDataType.FLOAT3: m_selectedInputTypeInt = 3; break;
+
+			//	//case 2: m_selectedInputType = WirePortDataType.FLOAT2; break;
+			//	//case 3: m_selectedInputType = WirePortDataType.FLOAT3; break;
+			//	//case 4: m_selectedInputType = WirePortDataType.FLOAT4; break;
+			//	//case 5: m_selectedInputType = WirePortDataType.COLOR; break;
+			//	//case 6: m_selectedInputType = WirePortDataType.FLOAT3x3; break;
+			//	//case 7: m_selectedInputType = WirePortDataType.FLOAT4x4; break;
+			//	//case 8: m_selectedInputType = WirePortDataType.SAMPLER1D; break;
+			//	//case 9: m_selectedInputType = WirePortDataType.SAMPLER2D; break;
+			//	//case 10: m_selectedInputType = WirePortDataType.SAMPLER3D; break;
+			//	//case 11: m_selectedInputType = WirePortDataType.SAMPLERCUBE; break;
+			//}
+
 			switch ( m_selectedInputTypeInt )
 			{
 				case 0: m_selectedInputType = WirePortDataType.INT; break;
@@ -173,10 +237,21 @@ namespace AmplifyShaderEditor
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
 		{
+			if( m_outputPorts[ outputId ].IsLocalValue )
+				return m_outputPorts[ outputId ].LocalValue;
+
+			string result = string.Empty;
 			if ( OnPortGeneration != null )
-				return OnPortGeneration( ref dataCollector, m_orderIndex, ContainerGraph.ParentWindow.CustomGraph );
+				result = OnPortGeneration( ref dataCollector, m_orderIndex, ContainerGraph.ParentWindow.CustomGraph );
 			else
-				return m_inputPorts[ 0 ].GeneratePortInstructions( ref dataCollector );
+				result = m_inputPorts[ 0 ].GeneratePortInstructions( ref dataCollector );
+
+			if( m_outputPorts[ outputId ].ConnectionCount > 1 )
+				RegisterLocalVariable( outputId, result, ref dataCollector );
+			else
+				m_outputPorts[ outputId ].SetLocalValue( result, dataCollector.PortCategory );
+
+			return m_outputPorts[ outputId ].LocalValue;
 		}
 
 		public override void WriteToString( ref string nodeInfo, ref string connectionsInfo )

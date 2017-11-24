@@ -11,8 +11,8 @@ using System;
 namespace AmplifyShaderEditor
 {
 	[Serializable]
-	[NodeAttributes( "Pixelate UV", "UV Coordinates", "Pixelate Texture Modifying UV.", null, KeyCode.None, true, false, null, null, true )]
-	public sealed class TFHCPixelateUV : ParentNode
+	[NodeAttributes( "Pixelate UV", "UV Coordinates", "Pixelate Texture Modifying UV.", null, KeyCode.None, true, false, null, null, "The Four Headed Cat - @fourheadedcat" )]
+	public sealed class TFHCPixelate : ParentNode
 	{
 		protected override void CommonInit( int uniqueId )
 		{

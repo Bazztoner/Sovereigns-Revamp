@@ -51,7 +51,7 @@ Shader /*ase_name*/ "ASETemplateShaders/PostProcess" /*end*/
 			v2f_img_custom vert_img_custom ( appdata_img_custom v /*ase_vert_input*/ )
 			{
 				v2f_img_custom o;
-
+				/*ase_vert_code:v=appdata_img_custom;o=v2f_img_custom*/
 				o.pos = mul ( UNITY_MATRIX_MVP, v.vertex );
 				o.uv = float4( v.texcoord.xy, 1, 1 );
 
@@ -76,7 +76,7 @@ Shader /*ase_name*/ "ASETemplateShaders/PostProcess" /*end*/
 					half2 uv = i.uv2;
 					half2 stereoUV = i.stereoUV2;
 				#else
-					half2 uv = input.uv;
+					half2 uv = i.uv;
 					half2 stereoUV = i.stereoUV;
 				#endif	
 				
@@ -92,4 +92,5 @@ Shader /*ase_name*/ "ASETemplateShaders/PostProcess" /*end*/
 			ENDCG 
 		}
 	}
+	CustomEditor "ASEMaterialInspector"
 }

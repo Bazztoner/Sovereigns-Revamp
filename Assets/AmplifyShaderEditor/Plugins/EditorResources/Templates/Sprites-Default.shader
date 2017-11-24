@@ -35,13 +35,14 @@ Shader /*ase_name*/"Sprites Default"/*end*/
 			#pragma multi_compile _ PIXELSNAP_ON
 			#pragma multi_compile _ ETC1_EXTERNAL_ALPHA
 			#include "UnityCG.cginc"
-			
+			/*ase_pragma*/
+
 			struct appdata_t
 			{
 				float4 vertex   : POSITION;
 				float4 color    : COLOR;
 				float2 texcoord : TEXCOORD0;
-				/*ase_vdata:p=p.xyz;uv0=tc0.xy;c=c*/
+				/*ase_vdata:p=p;uv0=tc0.xy;c=c*/
 			};
 
 			struct v2f
@@ -95,4 +96,5 @@ Shader /*ase_name*/"Sprites Default"/*end*/
 		ENDCG
 		}
 	}
+	CustomEditor "ASEMaterialInspector"
 }

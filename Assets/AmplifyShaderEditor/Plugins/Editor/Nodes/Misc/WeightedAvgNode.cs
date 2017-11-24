@@ -33,6 +33,15 @@ namespace AmplifyShaderEditor
 			AddInputPort( WirePortDataType.FLOAT, false, AmountsStr[ 3 ] );
 			AddOutputPort( WirePortDataType.FLOAT, Constants.EmptyPortValue );
 
+			for( int i = 0; i < m_inputPorts.Count; i++ )
+			{
+				m_inputPorts[ i ].AddPortForbiddenTypes(	WirePortDataType.FLOAT3x3,
+															WirePortDataType.FLOAT4x4,
+															WirePortDataType.SAMPLER1D,
+															WirePortDataType.SAMPLER2D,
+															WirePortDataType.SAMPLER3D,
+															WirePortDataType.SAMPLERCUBE );
+			}
 			UpdateConnection( 0 );
 			m_useInternalPortData = true;
 		}
@@ -67,11 +76,11 @@ namespace AmplifyShaderEditor
 
 		protected void UpdateConnection( int portId )
 		{
-			if( m_inputPorts[ portId ].IsConnected )
-				m_inputPorts[ portId ].MatchPortToConnection();
-
 			if ( portId == 0 )
 			{
+				if( m_inputPorts[ portId ].IsConnected )
+					m_inputPorts[ portId ].MatchPortToConnection();
+
 				switch ( m_inputPorts[ 0 ].DataType )
 				{
 					case WirePortDataType.INT:
@@ -109,10 +118,12 @@ namespace AmplifyShaderEditor
 					break;
 				}
 			}
-			else
-			{
-				SetMainOutputType();
-			}
+			//else
+			//{
+			//	SetMainOutputType();
+			//}
+
+			SetMainOutputType();
 			m_sizeIsDirty = true;
 		}
 
@@ -124,11 +135,20 @@ namespace AmplifyShaderEditor
 			{
 				if ( m_inputPorts[ i ].Visible )
 				{
-					if ( m_mainDataType != m_inputPorts[ i ].DataType &&
-							UIUtils.GetPriority( m_inputPorts[ i ].DataType ) > UIUtils.GetPriority( m_mainDataType ) )
+					WirePortDataType portType = m_inputPorts[ i ].IsConnected ? m_inputPorts[ i ].ConnectionType() : WirePortDataType.FLOAT;
+					if ( m_mainDataType != portType &&
+							UIUtils.GetPriority( portType ) > UIUtils.GetPriority( m_mainDataType ) )
 					{
-						m_mainDataType = m_inputPorts[ i ].DataType;
+						m_mainDataType = portType;
 					}
+				}
+			}
+			
+			for( int i = 1; i < count; i++ )
+			{
+				if( m_inputPorts[ i ].Visible )
+				{
+					m_inputPorts[ i ].ChangeType( m_mainDataType, false );
 				}
 			}
 
@@ -142,7 +162,7 @@ namespace AmplifyShaderEditor
 			{
 				if ( m_inputPorts[ i ].Visible )
 				{
-					m_inputData[ i ] = m_inputPorts[ i ].GenerateShaderForOutput( ref dataCollector, m_mainDataType, ignoreLocalvar, true );
+					m_inputData[ i ] = m_inputPorts[ i ].GeneratePortInstructions( ref dataCollector );
 				}
 			}
 		}

@@ -1,8 +1,11 @@
+// Amplify Shader Editor - Visual Shader Editing Tool
+// Copyright (c) Amplify Creations, Lda <info@amplify.pt>
+
 using UnityEditor;
 
 namespace AmplifyShaderEditor
 {
-	public class TemplatePostProcessor : AssetPostprocessor
+	public sealed class TemplatePostProcessor : AssetPostprocessor
 	{
 		static void OnPostprocessAllAssets( string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths )
 		{
@@ -16,7 +19,12 @@ namespace AmplifyShaderEditor
 				if ( TemplateHelperFunctions.CheckIfTemplate( importedAssets[ i ] ) )
 				{
 					markForRefresh = true;
-					break;
+					string guid = AssetDatabase.AssetPathToGUID( importedAssets[ i ] );
+					TemplateData templateData = TemplatesManager.GetTemplate( guid );
+					if( templateData != null )
+					{
+						templateData.Reload();
+					}
 				}
 			}
 

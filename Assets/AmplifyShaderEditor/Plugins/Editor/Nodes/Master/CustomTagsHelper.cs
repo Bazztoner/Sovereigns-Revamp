@@ -85,6 +85,12 @@ namespace AmplifyShaderEditor
 		{
 			EditorGUILayout.Separator();
 			int itemCount = m_availableTags.Count;
+
+			if( itemCount == 0 )
+			{
+				EditorGUILayout.HelpBox( "Your list is Empty!\nUse the plus button to add one.", MessageType.Info );
+			}
+
 			int markedToDelete = -1;
 			float originalLabelWidth = EditorGUIUtility.labelWidth;
 			for ( int i = 0; i < itemCount; i++ )
@@ -163,8 +169,9 @@ namespace AmplifyShaderEditor
 
 		public string GenerateCustomTags()
 		{
-			string result = string.Empty;
 			int tagsCount = m_availableTags.Count;
+			string result = tagsCount == 0 ? string.Empty:" ";
+			
 			for ( int i = 0; i < tagsCount; i++ )
 			{
 				if ( m_availableTags[ i ].IsValid )

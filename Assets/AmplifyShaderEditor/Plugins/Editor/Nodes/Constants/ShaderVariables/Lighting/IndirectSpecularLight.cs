@@ -90,16 +90,42 @@ namespace AmplifyShaderEditor
 			}
 			else
 			{
+				if( dataCollector.IsFragmentCategory )
+					dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_NORMAL ), true );
+
 				normal = GeneratorUtils.GenerateWorldNormal( ref dataCollector, UniqueId );
-				dataCollector.AddToInput( UniqueId, UIUtils.GetInputDeclarationFromType( m_currentPrecisionType, AvailableSurfaceInputs.WORLD_NORMAL ), true );
 			}
 
 			string roughness = m_inputPorts[ 1 ].GeneratePortInstructions( ref dataCollector );
 			string occlusion = m_inputPorts[ 2 ].GeneratePortInstructions( ref dataCollector );
+			string viewDir = "data.worldViewDir";
+
+			if(dataCollector.PortCategory==MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation )
+			{
+				string worldPos = GeneratorUtils.GenerateWorldPosition( ref dataCollector, UniqueId );
+				viewDir = GeneratorUtils.GenerateViewDirection( ref dataCollector, UniqueId );
+
+				dataCollector.AddLocalVariable( UniqueId, "UnityGIInput data;" );
+				dataCollector.AddLocalVariable( UniqueId, "UNITY_INITIALIZE_OUTPUT( UnityGIInput, data );" );
+				dataCollector.AddLocalVariable( UniqueId, "data.worldPos = "+ worldPos + ";" );
+				dataCollector.AddLocalVariable( UniqueId, "data.worldViewDir = "+ viewDir + ";" );
+				dataCollector.AddLocalVariable( UniqueId, "data.probeHDR[0] = unity_SpecCube0_HDR;" );
+				dataCollector.AddLocalVariable( UniqueId, "data.probeHDR[1] = unity_SpecCube1_HDR;" );
+				dataCollector.AddLocalVariable( UniqueId, "#if UNITY_SPECCUBE_BLENDING || UNITY_SPECCUBE_BOX_PROJECTION //specdataif0" );
+				dataCollector.AddLocalVariable( UniqueId, "data.boxMin[0] = unity_SpecCube0_BoxMin;" );
+				dataCollector.AddLocalVariable( UniqueId, "#endif //specdataif0" );
+				dataCollector.AddLocalVariable( UniqueId, "#if UNITY_SPECCUBE_BOX_PROJECTION //specdataif1" );
+				dataCollector.AddLocalVariable( UniqueId, "data.boxMax[0] = unity_SpecCube0_BoxMax;" );
+				dataCollector.AddLocalVariable( UniqueId, "data.probePosition[0] = unity_SpecCube0_ProbePosition;" );
+				dataCollector.AddLocalVariable( UniqueId, "data.boxMax[1] = unity_SpecCube1_BoxMax;" );
+				dataCollector.AddLocalVariable( UniqueId, "data.boxMin[1] = unity_SpecCube1_BoxMin;" );
+				dataCollector.AddLocalVariable( UniqueId, "data.probePosition[1] = unity_SpecCube1_ProbePosition;" );
+				dataCollector.AddLocalVariable( UniqueId, "#endif //specdataif1" );
+			}
 
 			dataCollector.AddLocalVariable( UniqueId, "Unity_GlossyEnvironmentData g" + OutputId + ";" );
 			dataCollector.AddLocalVariable( UniqueId, "g" + OutputId + ".roughness = " + roughness + ";" );
-			dataCollector.AddLocalVariable( UniqueId, "g" + OutputId + ".reflUVW = reflect( -data.worldViewDir, " + normal + " );" );
+			dataCollector.AddLocalVariable( UniqueId, "g" + OutputId + ".reflUVW = reflect( -"+ viewDir + ", " + normal + " );" );
 			dataCollector.AddLocalVariable( UniqueId, m_currentPrecisionType, WirePortDataType.FLOAT3, "indirectSpecular" + OutputId, "UnityGI_IndirectSpecular( data, " + occlusion + ", " + normal + ", g" + OutputId + " )" );
 
 			return "indirectSpecular" + OutputId;

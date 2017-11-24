@@ -1,6 +1,8 @@
 // Amplify Shader Editor - Visual Shader Editing Tool
 // Copyright (c) Amplify Creations, Lda <info@amplify.pt>
 
+using UnityEngine;
+
 namespace AmplifyShaderEditor
 {
 	[System.Serializable]
@@ -12,7 +14,24 @@ namespace AmplifyShaderEditor
 		{
 			base.CommonInit( uniqueId );
 			ChangeOutputProperties( 0, "RGBA", WirePortDataType.COLOR );
+			AddOutputPort( WirePortDataType.FLOAT3, "Color" );
+			AddOutputPort( WirePortDataType.FLOAT, "Intensity" );
 			m_previewShaderGUID = "43f5d3c033eb5044e9aeb40241358349";
+		}
+
+		public override void RenderNodePreview()
+		{
+			if( !m_initialized )
+				return;
+
+			int count = m_outputPorts.Count;
+			for( int i = 0; i < count; i++ )
+			{
+				RenderTexture temp = RenderTexture.active;
+				RenderTexture.active = m_outputPorts[ i ].OutputPreviewTexture;
+				Graphics.Blit( null, m_outputPorts[ i ].OutputPreviewTexture, PreviewMaterial, i );
+				RenderTexture.active = temp;
+			}
 		}
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalvar )
@@ -21,7 +40,15 @@ namespace AmplifyShaderEditor
 				dataCollector.AddToIncludes( -1, Constants.UnityLightingLib );
 
 			base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalvar );
-			return m_lightColorValue;
+
+			switch( outputId )
+			{
+				default:
+				case 0:	return m_lightColorValue;
+				case 1: return m_lightColorValue+".rgb";
+				case 2: return m_lightColorValue+".a";
+
+			}
 		}
 	}
 }

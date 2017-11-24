@@ -23,6 +23,7 @@ namespace AmplifyShaderEditor
 			AddInputPort( WirePortDataType.FLOAT4, false, "Pos" );
 			AddOutputPort( WirePortDataType.FLOAT, "Depth" );
 			m_autoWrapProperties = true;
+			m_hasLeftDropdown = true;
 			SetAdditonalTitleText( string.Format( Constants.SubTitleSpaceFormatStr, m_viewSpaceStr[ m_viewSpaceInt ] ) );
 		}
 
@@ -41,26 +42,6 @@ namespace AmplifyShaderEditor
 		{
 			base.Destroy();
 			m_upperLeftWidget = null;
-		}
-
-		public override void OnNodeLayout( DrawInfo drawInfo )
-		{
-			base.OnNodeLayout( drawInfo );
-			m_upperLeftWidget.OnNodeLayout( m_globalPosition, drawInfo );
-		}
-
-		public override void DrawGUIControls( DrawInfo drawInfo )
-		{
-			base.DrawGUIControls( drawInfo );
-			m_upperLeftWidget.DrawGUIControls( drawInfo );
-		}
-
-		public override void OnNodeRepaint( DrawInfo drawInfo )
-		{
-			base.OnNodeRepaint( drawInfo );
-			if( !m_isVisible )
-				return;
-			m_upperLeftWidget.OnNodeRepaint( ContainerGraph.LodLevel );
 		}
 
 		public override void Draw( DrawInfo drawInfo )
@@ -93,21 +74,25 @@ namespace AmplifyShaderEditor
 				return "0";
 			}
 
+			if( m_outputPorts[ 0 ].IsLocalValue )
+				return GetOutputColorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue );
+
 			dataCollector.AddToIncludes( UniqueId, Constants.UnityCgLibFuncs );
 			dataCollector.AddToUniforms( UniqueId, "uniform sampler2D _CameraDepthTexture;" );
+
 			string screenPos = string.Empty;
 			if ( m_inputPorts[ 0 ].IsConnected )
 				screenPos = m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT4, false );
 			else
 				screenPos = GeneratorUtils.GenerateScreenPosition( ref dataCollector, UniqueId, m_currentPrecisionType, true );
-			//string screenPos = m_inputPorts[ 0 ].GenerateShaderForOutput( ref dataCollector, WirePortDataType.FLOAT4, false );
 
 			string viewSpace = m_viewSpaceInt == 0 ? "Eye" : "01";
 			string screenDepthInstruction = "Linear" + viewSpace + "Depth(UNITY_SAMPLE_DEPTH(tex2Dproj(_CameraDepthTexture,UNITY_PROJ_COORD(" + screenPos + "))))";
 
 			dataCollector.AddToLocalVariables( UniqueId, m_currentPrecisionType, WirePortDataType.FLOAT, m_vertexNameStr[ m_viewSpaceInt ] + OutputId, screenDepthInstruction );
 
-			return m_vertexNameStr[ m_viewSpaceInt ] + OutputId;
+			m_outputPorts[ 0 ].SetLocalValue( m_vertexNameStr[ m_viewSpaceInt ] + OutputId );
+			return GetOutputColorItem( 0, outputId, m_vertexNameStr[ m_viewSpaceInt ] + OutputId );
 		}
 
 		public override void ReadFromString( ref string[] nodeParams )

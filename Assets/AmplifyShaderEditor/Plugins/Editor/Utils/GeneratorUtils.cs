@@ -8,6 +8,8 @@ namespace AmplifyShaderEditor
 		public const string ObjectScaleStr = "ase_objectScale";
 		public const string ScreenDepthStr = "ase_screenDepth";
 		public const string ViewPositionStr = "ase_viewPos";
+		public const string WorldViewDirectionStr = "ase_worldViewDir";
+		public const string TangentViewDirectionStr = "ase_tanViewDir";
 		public const string ClipPositionStr = "ase_clipPos";
 		public const string VertexPosition3Str = "ase_vertex3Pos";
 		public const string VertexPosition4Str = "ase_vertex4Pos";
@@ -16,10 +18,12 @@ namespace AmplifyShaderEditor
 		public const string VertexTangentSignStr = "ase_vertexTangentSign";
 		public const string VertexBitangentStr = "ase_vertexBitangent";
 		public const string ScreenPositionStr = "ase_screenPos";
+		public const string ScreenPositionNormalizedStr = "ase_screenPosNorm";
 		public const string WorldPositionStr = "ase_worldPos";
 		public const string WorldLightDirStr = "ase_worldlightDir";
 		public const string ObjectLightDirStr = "ase_objectlightDir";
 		public const string WorldNormalStr = "ase_worldNormal";
+		public const string WorldReflectionStr = "ase_worldReflection";
 		public const string WorldTangentStr = "ase_worldTangent";
 		public const string WorldBitangentStr = "ase_worldBitangent";
 		public const string WorldToTangentStr = "ase_worldToTangent";
@@ -30,7 +34,7 @@ namespace AmplifyShaderEditor
 		static public string GenerateObjectScale( ref MasterNodeDataCollector dataCollector, int uniqueId )
 		{
 			//string value= "1/float3( length( unity_WorldToObject[ 0 ].xyz ), length( unity_WorldToObject[ 1 ].xyz ), length( unity_WorldToObject[ 2 ].xyz ) );";
-			string value = "float3( length( unity_ObjectToWorld[ 0 ].xyz ), length( unity_ObjectToWorld[ 1 ].xyz ), length( unity_ObjectToWorld[ 2 ].xyz ) );";
+			string value = "float3( length( unity_ObjectToWorld[ 0 ].xyz ), length( unity_ObjectToWorld[ 1 ].xyz ), length( unity_ObjectToWorld[ 2 ].xyz ) )";
 			dataCollector.AddLocalVariable( uniqueId, PrecisionType.Float, WirePortDataType.FLOAT3, ObjectScaleStr, value );
 			return ObjectScaleStr;
 		}
@@ -44,11 +48,31 @@ namespace AmplifyShaderEditor
 			string result = Constants.InputVarStr + ".worldPos";
 
 			if( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation )
-				result = "mul(unity_ObjectToWorld, " + Constants.VertexShaderInputStr + ".vertex)";
+				result = "mul( unity_ObjectToWorld, " + Constants.VertexShaderInputStr + ".vertex )";
 
 			dataCollector.AddToLocalVariables( dataCollector.PortCategory, uniqueId, string.Format( Float3Format, WorldPositionStr, result ) );
 
 			return WorldPositionStr;
+		}
+
+		// WORLD REFLECTION
+		static public string GenerateWorldReflection( ref MasterNodeDataCollector dataCollector, int uniqueId )
+		{
+			if( dataCollector.IsTemplate )
+				return dataCollector.TemplateDataCollectorInstance.GetWorldNormal();
+
+			string precisionType = UIUtils.PrecisionWirePortToCgType( UIUtils.CurrentWindow.CurrentGraph.CurrentPrecision, WirePortDataType.FLOAT3 );
+			string result = string.Empty;
+			if( !dataCollector.DirtyNormal )
+				result = "normalize( " + Constants.InputVarStr + ".worldRefl )";
+			else
+				result = "WorldReflectionVector( " + Constants.InputVarStr + ", " + precisionType + "( 0, 0, 1 ) )";
+
+			if( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation )
+				result = "UnityObjectToWorldNormal( " + Constants.VertexShaderInputStr + ".normal )";
+
+			dataCollector.AddToLocalVariables( dataCollector.PortCategory, uniqueId, string.Concat( precisionType, " ", WorldReflectionStr, " = ", result, ";" ) );
+			return WorldReflectionStr;
 		}
 
 		// WORLD NORMAL
@@ -57,16 +81,17 @@ namespace AmplifyShaderEditor
 			if( dataCollector.IsTemplate )
 				return dataCollector.TemplateDataCollectorInstance.GetWorldNormal();
 
+			string precisionType = UIUtils.PrecisionWirePortToCgType( UIUtils.CurrentWindow.CurrentGraph.CurrentPrecision, WirePortDataType.FLOAT3 );
 			string result = string.Empty;
 			if( !dataCollector.DirtyNormal )
 				result = Constants.InputVarStr + ".worldNormal";
 			else
-				result = "WorldNormalVector( " + Constants.InputVarStr + ", float3( 0, 0, 1 ) )";
+				result = "WorldNormalVector( " + Constants.InputVarStr + ", " + precisionType + "( 0, 0, 1 ) )";
 
 			if( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation )
 				result = "UnityObjectToWorldNormal( " + Constants.VertexShaderInputStr + ".normal )";
 
-			dataCollector.AddToLocalVariables( dataCollector.PortCategory, uniqueId, string.Format( Float3Format, WorldNormalStr, result ) );
+			dataCollector.AddToLocalVariables( dataCollector.PortCategory, uniqueId, string.Concat( precisionType, " ", WorldNormalStr, " = ", result, ";" ) );
 			return WorldNormalStr;
 		}
 
@@ -76,12 +101,13 @@ namespace AmplifyShaderEditor
 			if( dataCollector.IsTemplate )
 				return dataCollector.TemplateDataCollectorInstance.GetWorldTangent();
 
-			string result = "WorldNormalVector( " + Constants.InputVarStr + ", float3( 1, 0, 0 ) )";
+			string precisionType = UIUtils.PrecisionWirePortToCgType( UIUtils.CurrentWindow.CurrentGraph.CurrentPrecision, WirePortDataType.FLOAT3 );
+			string result = "WorldNormalVector( " + Constants.InputVarStr + ", "+ precisionType + "( 1, 0, 0 ) )";
 
 			if( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation )
 				result = "UnityObjectToWorldDir( " + Constants.VertexShaderInputStr + ".tangent.xyz )";
 
-			dataCollector.AddToLocalVariables( dataCollector.PortCategory, uniqueId, string.Format( Float3Format, WorldTangentStr, result ) );
+			dataCollector.AddToLocalVariables( dataCollector.PortCategory, uniqueId, string.Concat( precisionType, " ", WorldTangentStr, " = ", result, ";" ) );
 			return WorldTangentStr;
 		}
 
@@ -91,7 +117,8 @@ namespace AmplifyShaderEditor
 			if( dataCollector.IsTemplate )
 				return dataCollector.TemplateDataCollectorInstance.GetWorldBinormal();
 
-			string result = "WorldNormalVector( " + Constants.InputVarStr + ", float3( 0, 1, 0 ) )";
+			string precisionType = UIUtils.PrecisionWirePortToCgType( UIUtils.CurrentWindow.CurrentGraph.CurrentPrecision, WirePortDataType.FLOAT3 );
+			string result = "WorldNormalVector( " + Constants.InputVarStr + ", "+ precisionType + "( 0, 1, 0 ) )";
 
 			if( dataCollector.PortCategory == MasterNodePortCategory.Vertex || dataCollector.PortCategory == MasterNodePortCategory.Tessellation )
 			{
@@ -101,7 +128,7 @@ namespace AmplifyShaderEditor
 				result = "cross( " + worldNormal + ", " + worldTangent + " ) * tangentSign";
 			}
 
-			dataCollector.AddToLocalVariables( dataCollector.PortCategory, uniqueId, string.Format( Float3Format, WorldBitangentStr, result ) );
+			dataCollector.AddToLocalVariables( dataCollector.PortCategory, uniqueId, string.Concat( precisionType, " ", WorldBitangentStr, " = ", result, ";" ) );
 			return WorldBitangentStr;
 		}
 
@@ -112,7 +139,7 @@ namespace AmplifyShaderEditor
 			string worldTangent = GenerateWorldTangent( ref dataCollector, uniqueId );
 			string worldBitangent = GenerateWorldBitangent( ref dataCollector, uniqueId );
 
-			dataCollector.AddToLocalVariables( dataCollector.PortCategory, uniqueId, precision, WirePortDataType.FLOAT3x3, WorldToTangentStr, "float3x3(" + worldTangent + ", " + worldBitangent + ", " + worldNormal + ")" );
+			dataCollector.AddLocalVariable( uniqueId, precision, WirePortDataType.FLOAT3x3, WorldToTangentStr, "float3x3( " + worldTangent + ", " + worldBitangent + ", " + worldNormal + " )" );
 			return WorldToTangentStr;
 		}
 
@@ -172,9 +199,23 @@ namespace AmplifyShaderEditor
 			return result;
 		}
 
+		// SCREEN POSITION NORMALIZED
+		static public string GenerateScreenPositionNormalized( ref MasterNodeDataCollector dataCollector, int uniqueId, PrecisionType precision, bool addInput = true )
+		{
+			string stringPosVar = GenerateScreenPosition( ref dataCollector, uniqueId, precision, addInput );
+
+			dataCollector.AddLocalVariable( uniqueId, string.Format( "float4 {0} = {1} / {1}.w;", ScreenPositionNormalizedStr, stringPosVar ) );
+			dataCollector.AddLocalVariable( uniqueId, ScreenPositionNormalizedStr + ".z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? " + ScreenPositionNormalizedStr + ".z : " + ScreenPositionNormalizedStr + ".z * 0.5 + 0.5;" );
+
+			return ScreenPositionNormalizedStr;
+		}
+
 		// SCREEN POSITION
 		static public string GenerateScreenPosition( ref MasterNodeDataCollector dataCollector, int uniqueId, PrecisionType precision, bool addInput = true )
 		{
+			if( !dataCollector.IsFragmentCategory )
+				return GenerateVertexScreenPosition( ref dataCollector, uniqueId, precision );
+
 			if( dataCollector.IsTemplate )
 				return dataCollector.TemplateDataCollectorInstance.GetScreenPos();
 
@@ -188,20 +229,18 @@ namespace AmplifyShaderEditor
 		}
 
 		// SCREEN POSITION ON VERT
-		static public string GenerateVertexScreenPosition( ref MasterNodeDataCollector dataCollector, int uniqueId, PrecisionType precision, bool normalize )
+		static public string GenerateVertexScreenPosition( ref MasterNodeDataCollector dataCollector, int uniqueId, PrecisionType precision )
 		{
 			if( dataCollector.IsTemplate )
 				return dataCollector.TemplateDataCollectorInstance.GetScreenPos();
 
 			string value = string.Format( "ComputeScreenPos( UnityObjectToClipPos( {0}.vertex ) )", Constants.VertexShaderInputStr );
 			dataCollector.AddToVertexLocalVariables( uniqueId, precision, WirePortDataType.FLOAT4, ScreenPositionStr, value );
-			if( normalize )
-				dataCollector.AddToVertexLocalVariables( uniqueId, string.Format( "{0} /= {0}.w", ScreenPositionStr ) );
 			return ScreenPositionStr;
 		}
 
 		// VERTEX POSITION
-		static public string GenerateVertexPosition( ref MasterNodeDataCollector dataCollector, int uniqueId, PrecisionType precision, WirePortDataType size )
+		static public string GenerateVertexPosition( ref MasterNodeDataCollector dataCollector, int uniqueId, WirePortDataType size )
 		{
 			string value = Constants.VertexShaderInputStr + ".vertex";
 			if( size == WirePortDataType.FLOAT3 )
@@ -209,7 +248,7 @@ namespace AmplifyShaderEditor
 
 			if( dataCollector.PortCategory == MasterNodePortCategory.Fragment || dataCollector.PortCategory == MasterNodePortCategory.Debug )
 			{
-				dataCollector.AddToInput( uniqueId, UIUtils.GetInputDeclarationFromType( precision, AvailableSurfaceInputs.WORLD_POS ), true );
+				dataCollector.AddToInput( uniqueId, UIUtils.GetInputDeclarationFromType( PrecisionType.Float, AvailableSurfaceInputs.WORLD_POS ), true );
 				dataCollector.AddToIncludes( uniqueId, Constants.UnityShaderVariables );
 
 				value = "mul( unity_WorldToObject, float4( " + Constants.InputVarStr + ".worldPos , 1 ) )";
@@ -218,7 +257,7 @@ namespace AmplifyShaderEditor
 			if( size == WirePortDataType.FLOAT3 )
 				varName = VertexPosition3Str;
 
-			dataCollector.AddLocalVariable( uniqueId, precision, size, varName, value );
+			dataCollector.AddLocalVariable( uniqueId, PrecisionType.Float, size, varName, value );
 			return varName;
 		}
 
@@ -258,7 +297,7 @@ namespace AmplifyShaderEditor
 		static public string GenerateVertexTangentSign( ref MasterNodeDataCollector dataCollector, int uniqueId, PrecisionType precision )
 		{
 			string value = Constants.VertexShaderInputStr + ".tangent.w";
-			if( dataCollector.PortCategory == MasterNodePortCategory.Fragment || dataCollector.PortCategory == MasterNodePortCategory.Debug )
+			if( dataCollector.IsFragmentCategory )
 			{
 				//GenerateWorldTangent( ref dataCollector, uniqueId );
 				dataCollector.AddToInput( uniqueId, "fixed " + VertexTangentSignStr, true );
@@ -293,7 +332,7 @@ namespace AmplifyShaderEditor
 		// VERTEX POSITION ON FRAG
 		static public string GenerateVertexPositionOnFrag( ref MasterNodeDataCollector dataCollector, int uniqueId, PrecisionType precision )
 		{
-			dataCollector.AddToInput( uniqueId, UIUtils.GetInputDeclarationFromType( precision, AvailableSurfaceInputs.WORLD_POS ), true );
+			dataCollector.AddToInput( uniqueId, UIUtils.GetInputDeclarationFromType( PrecisionType.Float, AvailableSurfaceInputs.WORLD_POS ), true );
 			dataCollector.AddToIncludes( uniqueId, Constants.UnityShaderVariables );
 
 			string value = "mul( unity_WorldToObject, float4( " + Constants.InputVarStr + ".worldPos , 1 ) )";
@@ -312,6 +351,28 @@ namespace AmplifyShaderEditor
 			string value = string.Format( "ComputeScreenPos( UnityObjectToClipPos( {0} ) )", vertexName );
 			dataCollector.AddToLocalVariables( uniqueId, precision, WirePortDataType.FLOAT4, ClipPositionStr, value );
 			return ClipPositionStr;
+		}
+
+		// VIEW DIRECTION
+		static public string GenerateViewDirection( ref MasterNodeDataCollector dataCollector, int uniqueId, ViewSpace space = ViewSpace.World )
+		{
+			if( dataCollector.IsTemplate )
+				UnityEngine.Debug.LogWarning( "View Dir not implemented on Templates" );
+
+			PrecisionType precision = UIUtils.CurrentWindow.CurrentGraph.CurrentPrecision;
+			string worldPos = GenerateWorldPosition( ref dataCollector, uniqueId );
+			dataCollector.AddLocalVariable( uniqueId, precision, WirePortDataType.FLOAT3, WorldViewDirectionStr, "normalize( UnityWorldSpaceViewDir( " + worldPos + " ) )" );
+
+			if( space == ViewSpace.Tangent )
+			{
+				string worldToTangent = GenerateWorldToTangentMatrix( ref dataCollector, uniqueId, precision );
+				dataCollector.AddLocalVariable( uniqueId, precision, WirePortDataType.FLOAT3, TangentViewDirectionStr, "mul( " + worldToTangent + ", " + WorldViewDirectionStr + " )" );
+				return TangentViewDirectionStr;
+			}
+			else
+			{
+				return WorldViewDirectionStr;
+			}
 		}
 
 		// VIEW POS
