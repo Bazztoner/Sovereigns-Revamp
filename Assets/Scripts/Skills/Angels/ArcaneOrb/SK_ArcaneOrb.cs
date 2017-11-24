@@ -100,12 +100,15 @@ public class SK_ArcaneOrb : ISpell
 
     public Vector3 GetLaunchDirection()
     {
-        Vector3 targetPoint = Vector3.zero;
+        return _char.Enemy.position - _char.transform.position;
+
+        /*Vector3 targetPoint = Vector3.zero;
 
         if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out _rch, 200f))
             targetPoint = _rch.point;
 
         return targetPoint != Vector3.zero ? (targetPoint - _char.transform.parent.TransformPoint(_char.transform.localPosition)).normalized : _char.transform.parent.forward;
+        */
     }
 
     void OnDummyDestruction(object[] paramsContainer)

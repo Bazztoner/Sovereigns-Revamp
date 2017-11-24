@@ -613,8 +613,8 @@ ModelImporter:
     - serializedVersion: 16
       name: D_Block_Idle
       takeName: Take 001
-      firstFrame: 127
-      lastFrame: 184
+      firstFrame: 471
+      lastFrame: 529
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1581,8 +1581,8 @@ ModelImporter:
     - serializedVersion: 16
       name: D_Block up_Idle
       takeName: Take 001
-      firstFrame: 321
-      lastFrame: 378
+      firstFrame: 530
+      lastFrame: 588
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

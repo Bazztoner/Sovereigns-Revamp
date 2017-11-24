@@ -326,7 +326,7 @@ InputManager:
     axis: 6
     joyNum: 0
   - serializedVersion: 3
-    m_Name: RT/LT
+    m_Name: LT
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -339,7 +339,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 2
+    axis: 8
     joyNum: 0
   - serializedVersion: 3
     m_Name: CameraHorizontalGamepad
@@ -372,4 +372,20 @@ InputManager:
     invert: 0
     type: 2
     axis: 4
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: RT
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 9
     joyNum: 0

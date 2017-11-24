@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SMB_HorizontalAttack : StateMachineBehaviour {
+public class SMB_HorizontalAttack : StateMachineBehaviour
+{
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //This is received by the SwordScript
-        EventManager.DispatchEvent("NormalSlash", animator.gameObject.name);
-        EventManager.DispatchEvent("HorizontalAttack", new object[] { animator.gameObject.name});
+        EventManager.DispatchEvent("HorizontalAttack", new object[] { animator.gameObject.name });
     }
 }
