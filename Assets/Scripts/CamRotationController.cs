@@ -168,6 +168,62 @@ public class CamRotationController : MonoBehaviour
         EventManager.AddEventListener("StunShake", OnStun);
         EventManager.AddEventListener("StopStunCamera", OnStopStun);
         EventManager.AddEventListener("StartBlinkFeedback", OnActivateBlink);
+        EventManager.AddEventListener("ToxicDamageParticle", OnToxicDamage);
+    }
+
+    void OnToxicDamage(object[] paramsContainer)
+    {
+        if (_owner == (string)paramsContainer[0])
+        {
+            var duration = 3;
+            var profile = GetCamera.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour>();
+            var postProcess = Resources.Load("PostProcess/ToxinePostProcess") as UnityEngine.PostProcessing.PostProcessingProfile;
+            profile.profile = postProcess;
+            StartToxine(postProcess, duration);
+        }
+    }
+
+    void StartToxine(UnityEngine.PostProcessing.PostProcessingProfile postProcess, float maxTime)
+    {
+        StartCoroutine(PingPongFloat(postProcess.vignette.settings.intensity, 0, 1, maxTime));
+    }
+
+    IEnumerator LerpFloat(float value, float startValue, float endValue, float maxTime)
+    {
+        var i = 0f;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / maxTime;
+            value = Mathf.Lerp(startValue, endValue, i);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator PingPongFloat(float value, float startValue, float endValue, float maxTime)
+    {
+        var i = 0f;
+        var timeFrame = maxTime / 2;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / timeFrame;
+            value = Mathf.Lerp(startValue, endValue, i);
+            yield return new WaitForEndOfFrame();
+        }
+
+        i = 0;
+
+        while (i <= 1)
+        {
+            i += Time.deltaTime / timeFrame;
+            value = Mathf.Lerp(endValue, startValue, i);
+            yield return new WaitForEndOfFrame();
+        }
+
+        var profile = GetCamera.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour>();
+        var postProcess = Resources.Load("PostProcess/DefaultPostProcess") as UnityEngine.PostProcessing.PostProcessingProfile;
+        profile.profile = postProcess;
     }
 
     void OnTransitionSmoothUpdate(object[] paramsContainer)

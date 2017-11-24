@@ -82,6 +82,8 @@ public class PlayerSkills : Photon.MonoBehaviour
         _movementSkill.Init(GetComponent<PlayerMovement>());
 
         _skillPos = transform.Find("SpellPos");
+
+        EventManager.DispatchEvent("UISpellChanged", new object[] { _actualSkillType, gameObject.name });
     }
 
     private void AddEvents()

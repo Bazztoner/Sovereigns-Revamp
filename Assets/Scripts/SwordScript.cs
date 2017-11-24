@@ -38,7 +38,7 @@ public class SwordScript : MonoBehaviour
 
     void OnActivateCollider(object[] paramsContainer)
     {
-        if ((string)paramsContainer[0] == gameObject.name)
+        if ((SwordScript)paramsContainer[0] == this/*(string)paramsContainer[0] == gameObject.name*/)
         {
             _isActive = true;
         }
@@ -60,14 +60,14 @@ public class SwordScript : MonoBehaviour
     {
         if (GameManager.screenDivided)
         {
-            if (this.transform.GetComponentInParent<PlayerInput>().gameObject.name == (string)paramsContainer[0] && !_isDetecting)
+            if (this.transform.GetComponentInParent<PlayerInput>().gameObject.name == (string)paramsContainer[0] && !_isDetecting && _isActive)
             {
                 _isDetecting = true;
                 _appliedDamage = (int)paramsContainer[1];
                 ActivateTrail(true);
             }
         }
-        else if (!_isDetecting)
+        else if (!_isDetecting && _isActive)
         {
             _isDetecting = true;
             _appliedDamage = (int)paramsContainer[1];
@@ -80,8 +80,8 @@ public class SwordScript : MonoBehaviour
         _isDetecting = false;
         _isHorizontal = false;
         _isVertical = false;
-        _appliedDamage = 0;
         ActivateTrail(false);
+        _appliedDamage = 0;
     }
 
     private void OnHorizontalAttack(params object[] paramsContainer)
@@ -170,7 +170,7 @@ public class SwordScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (_isDetecting && other.gameObject.layer == _hitBoxLayer)
+        if (_isDetecting && other.gameObject.layer == _hitBoxLayer && _isActive)
         {
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;

@@ -1,53 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerColliders : MonoBehaviour
 {
     public List<Collider> allColliders;
-    Collider _actualCol;
+    protected Collider _actualCol;
 
-    enum AttackTypes
-    {
-        NORMAL_SLASH,
-        NORMAL_SHIELD,
-        BIG_SLASH,
-        BIG_SHIELD,
-        Count
-    }
-
-    void Start()
+    protected void Start()
     {
         GetColliders();
         AddColliderHandlerEvents();
     }
 
-    void GetColliders()
+    protected virtual void GetColliders()
     {
-        allColliders = new List<Collider>();
 
-        if (gameObject.name == "Player1")
-        {
-            allColliders.Add(FindCollider(transform, "SwordCollider", "Sword"));
-            allColliders.Add(FindCollider(transform, "ShieldCollider", "Shield"));
-            allColliders.Add(FindCollider(transform, "BigSwordCollider", "Sword"));
-            allColliders.Add(FindCollider(transform, "BigShieldCollider", "Shield"));
-        }
-        else
-        {
-            allColliders.Add(FindCollider(transform, "ClawsCollider", "LeftPalm"));
-            allColliders.Add(FindCollider(transform, "ClawsCollider", "RightPalm"));
-            allColliders.Add(FindCollider(transform, "ClawsCollider", "LeftPalm"));
-            allColliders.Add(FindCollider(transform, "ClawsCollider", "RightPalm"));
-        }
-        
     }
 
-
-    Collider FindCollider(Transform prnt, string colliderName, string parentName)
+    Transform FindATransform(Transform parent, string name)
     {
-        var col = prnt.FindChild(colliderName);
-        
+        var childs = parent.GetComponentsInChildren<Transform>().Where(x => x != parent);
+
+        foreach (Transform child in childs)
+        {
+            if (child.name == name) return child;
+        }
+
+        return null;
+    }
+
+    protected virtual Collider FindCollider(Transform prnt, string colliderName, string parentName)
+    {
+        var parent = FindATransform(prnt, parentName);
+
+        var col = FindATransform(parent, colliderName);
+
         if (col == null)
         {
             Transform toEmparent = null;
@@ -62,7 +51,7 @@ public class PlayerColliders : MonoBehaviour
             }
 
             if (toEmparent == null) return null;
-            
+
             var load = GameObject.Instantiate(Resources.Load("New Colliders/" + colliderName) as GameObject, toEmparent, false);
             load.gameObject.name = colliderName;
 
@@ -73,68 +62,22 @@ public class PlayerColliders : MonoBehaviour
         else return col.GetComponent<Collider>();
     }
 
-    void AddColliderHandlerEvents()
+    protected virtual void AddColliderHandlerEvents()
     {
-        EventManager.AddEventListener("NormalSlash", OnNormalSlash);
-        EventManager.AddEventListener("BigSlash", OnBigSlash);
-        EventManager.AddEventListener("NormalShield", OnNormalShield);
-        EventManager.AddEventListener("BigShield", OnBigShield);
+       
     }
 
-    void OnNormalSlash(params object[] paramsContainer)
+    void ColliderActivation(int id)
     {
-        if (GameManager.screenDivided)
-        {
-            if (gameObject.name == (string)paramsContainer[0])
-            {
-                var id = (int)AttackTypes.NORMAL_SLASH;
-                ManageColliders(id);
-            }
-        }
+
     }
 
-    void OnBigSlash(params object[] paramsContainer)
+    protected virtual void ManageColliders(int id)
     {
-        if (GameManager.screenDivided)
-        {
-            if (gameObject.name == (string)paramsContainer[0])
-            {
-                var id = (int)AttackTypes.BIG_SLASH;
-                ManageColliders(id);
-            }
-        }
-    }
-
-    void OnNormalShield(params object[] paramsContainer)
-    {
-        if (GameManager.screenDivided)
-        {
-            if (gameObject.name == (string)paramsContainer[0])
-            {
-                var id = (int)AttackTypes.NORMAL_SHIELD;
-                ManageColliders(id);
-            }
-        }
-    }
-
-    void OnBigShield(params object[] paramsContainer)
-    {
-        if (GameManager.screenDivided)
-        {
-            if (gameObject.name == (string)paramsContainer[0])
-            {
-                var id = (int)AttackTypes.BIG_SHIELD;
-                ManageColliders(id);
-            }
-        }
-    }
-
-    void ManageColliders(int id)
-    {
-        /*_actualCol = allColliders[id];
-        var colName = _actualCol.gameObject.name;
-        EventManager.DispatchEvent("ActivateCollider", colName);*/
         _actualCol = allColliders[id];
+        var script = _actualCol.GetComponent<SwordScript>();
+        EventManager.DispatchEvent("ActivateCollider", script);
+        /*_actualCol = allColliders[id];
         _actualCol.enabled = true;
         foreach (var col in allColliders)
         {
@@ -142,6 +85,6 @@ public class PlayerColliders : MonoBehaviour
             {
                 col.enabled = false;
             }
-        }
+        }*/
     }
 }

@@ -236,7 +236,9 @@
     <Compile Include="Assets\Scripts\LightMapLerping.cs" />
     <Compile Include="Assets\Scripts\Loading.cs" />
     <Compile Include="Assets\Scripts\ParticleManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerControllers\AngelAttackColliders.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\AnimationController.cs" />
+    <Compile Include="Assets\Scripts\PlayerControllers\DemonAttackColliders.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerBlinkSpots.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerColliders.cs" />
     <Compile Include="Assets\Scripts\PlayerControllers\PlayerCombat.cs" />
@@ -275,6 +277,13 @@
     <Compile Include="Assets\Scripts\Sound\PlayerSoundControl.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\SpawnSpot.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\AngelAttacks\SMB_BigShield.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\AngelAttacks\SMB_BigSlash.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\AngelAttacks\SMB_NormalShield.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\AngelAttacks\SMB_NormalSlash.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\DemonAttacks\SMB_DualClawAttack.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\DemonAttacks\SMB_LeftClawAttack.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\DemonAttacks\SMB_RightClawAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\IdleStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollStateBehaviour.cs" />
