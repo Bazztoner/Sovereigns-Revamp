@@ -30,7 +30,6 @@ public class HUDController : Photon.MonoBehaviour
     public float comboLifeTime = 1f;
 
     private float _imgTime = 3f;
-    private float _smooth = 0.1f;
     private bool _gameInCourse = false;
     private Vector3 _v3Lock;
     private Vector2 _barLocalPos;
@@ -53,6 +52,11 @@ public class HUDController : Photon.MonoBehaviour
         GetEverything();
         AddEvents();
         DeactivateImages();
+    }
+
+    void Update()
+    {
+        //FollowTarget();
     }
 
     void LateUpdate()
@@ -232,14 +236,21 @@ public class HUDController : Photon.MonoBehaviour
     private void FollowTarget()
     {
         if (lockOnImage.gameObject.activeInHierarchy && GameManager.screenDivided)
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, _cam.WorldToScreenPoint(_lockTarget.position), _cam, out _localPos);
+        {
+            var screenPoint = RectTransformUtility.WorldToScreenPoint(this.GetComponent<Canvas>().worldCamera, _lockTarget.position);
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(this.GetComponent<RectTransform>(),
+                                                                    screenPoint,
+                                                                    this.GetComponent<Canvas>().worldCamera,
+                                                                    out _localPos);
+        }
         else if (lockOnImage.gameObject.activeInHierarchy && !GameManager.screenDivided)
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, _cam.WorldToScreenPoint(_lockTarget.position), null, out _localPos);
-
-        _v3Lock = new Vector3(_localPos.x, _localPos.y, 0f);
+        
+        _v3Lock = new Vector3(_localPos.x - 20f, _localPos.y - 20f, 0f);
 
         if (lockOnImage.gameObject.activeInHierarchy && _localPos != null && lockOnImage.rectTransform.localPosition != _v3Lock)
-            lockOnImage.rectTransform.localPosition = Vector3.Lerp(lockOnImage.rectTransform.localPosition, _v3Lock, _smooth);
+              lockOnImage.rectTransform.localPosition = Vector3.Lerp(lockOnImage.rectTransform.localPosition, _v3Lock, this.GetComponent<Canvas>().worldCamera.GetComponentInParent<CamRotationController>().smoothPercentage);
     }
 
     private void OnPlayerDeath(params object[] paramsContainer)

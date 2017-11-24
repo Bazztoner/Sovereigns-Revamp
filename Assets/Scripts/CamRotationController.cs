@@ -345,11 +345,13 @@ public class CamRotationController : MonoBehaviour
         if (!_lockOn && Vector3.Distance(_character.position, Enemy.position) <= lockOnDistance && !checkVision)
         {
             _lockOn = true;
+            smoothCamera = false;
             EventManager.DispatchEvent("LockOnActivated", new object[] { _character.gameObject.name, _lockOn, _lockPosition, GetCamera });
         }
         else if (_lockOn)
         {
             _lockOn = false;
+            smoothCamera = true;
             EventManager.DispatchEvent("LockOnActivated", new object[] { _character.gameObject.name, _lockOn });
         }
     }
@@ -365,13 +367,17 @@ public class CamRotationController : MonoBehaviour
 
     private void LockOn()
     {
-        _fixedCharPos = Enemy.position + _correctionVector;
+        _fixedCharPos = Enemy.Find("LockOnPosition").position + _correctionVector;
         var direction = (_fixedCharPos - transform.position).normalized;
 
         direction = new Vector3(direction.x, 0f, direction.z);
 
         if (transform.forward != direction)
-            transform.forward = Vector3.Lerp(transform.forward, direction, smoothPercentage);
+        {
+            if (smoothCamera) transform.forward = Vector3.Lerp(transform.forward, direction, smoothPercentage);
+            else transform.forward = direction;
+        }
+            
         CheckDistance();
     }
     #endregion

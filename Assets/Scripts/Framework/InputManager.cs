@@ -162,7 +162,7 @@ public class InputManager : MonoBehaviour {
 
     public bool GetJoystickBlocking()
     {
-        return (Input.GetAxis("RT/LT") > 0);
+        return (Input.GetAxis("LT") > 0);
     }
 
     public bool GetJoystickDodge()
@@ -177,7 +177,7 @@ public class InputManager : MonoBehaviour {
 
     public bool GetJoystickMovementSkill()
     {
-        return (Input.GetAxis("RT/LT") < 0);
+        return (Input.GetAxis("RT") > 0);
     }
 
     public bool GetJoystickClassSkill()

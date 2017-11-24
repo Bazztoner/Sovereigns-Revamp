@@ -333,7 +333,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
     #endregion
-
+    
     void BlockEnable()
     {
         _canBlock = true;
