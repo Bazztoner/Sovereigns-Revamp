@@ -38,7 +38,7 @@ public class SwordScript : MonoBehaviour
 
     void OnActivateCollider(object[] paramsContainer)
     {
-        if ((SwordScript)paramsContainer[0] == this/*(string)paramsContainer[0] == gameObject.name*/)
+        if ((SwordScript)paramsContainer[0] == this)
         {
             _isActive = true;
         }
@@ -55,7 +55,10 @@ public class SwordScript : MonoBehaviour
         EventManager.AddEventListener("ParryAttack", OnParryAttack);
         EventManager.AddEventListener("GuardBreakAttack", OnGuardBreakAttack);
     }
-
+    
+    //Recive el evento que dispara el PlayerCombat desde el OnAttackEnter, y setea el daño que debe causar en el siguiente golpe que conecte, y activa el _isDetecting para saber que tiene
+    //que empezar a detectar daño.
+    //IVAN: aca vas a tener que hacer el cambio para cuando mandes el string, deberias chequear si el paramsContainer tiene longitud de 2 o 3, si es 3 viene el string que mandas vos.
     void OnAttackEnter(params object[] paramsContainer)
     {
         if (GameManager.screenDivided)
@@ -66,12 +69,6 @@ public class SwordScript : MonoBehaviour
                 _appliedDamage = (int)paramsContainer[1];
                 ActivateTrail(true);
             }
-        }
-        else if (!_isDetecting && _isActive)
-        {
-            _isDetecting = true;
-            _appliedDamage = (int)paramsContainer[1];
-            ActivateTrail(true);
         }
     }
 

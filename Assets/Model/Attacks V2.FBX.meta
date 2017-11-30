@@ -325,15 +325,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.35319158
-        functionName: OnAttackExit
+      - time: 0.27017552
+        functionName: OnSwordSoundStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.27017552
-        functionName: OnSwordSoundStart
+      - time: 0.28640348
+        functionName: OnAttackEnter
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 16
+        messageOptions: 0
+      - time: 0.35319158
+        functionName: OnAttackExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -705,6 +712,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.24465562
+        functionName: OnAttackEnter
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 16
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -998,6 +1012,13 @@ ModelImporter:
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
+        messageOptions: 0
+      - time: 0.36342052
+        functionName: OnAttackEnter
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 6
         messageOptions: 0
       transformMask:
       - path: 
@@ -1293,6 +1314,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.27315915
+        functionName: OnAttackEnter
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 16
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1586,6 +1614,13 @@ ModelImporter:
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
+        messageOptions: 0
+      - time: 0.25178155
+        functionName: OnAttackEnter
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 6
         messageOptions: 0
       transformMask:
       - path: 
@@ -1881,6 +1916,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.13539147
+        functionName: OnAttackEnter
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 6
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -2175,6 +2217,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.38479856
+        functionName: OnAttackEnter
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 6
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -2468,6 +2517,13 @@ ModelImporter:
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
+        messageOptions: 0
+      - time: 0.3467933
+        functionName: OnAttackEnter
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 16
         messageOptions: 0
       transformMask:
       - path: 

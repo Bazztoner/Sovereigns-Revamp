@@ -93,6 +93,18 @@ public class PlayerCombat : Photon.MonoBehaviour
         }
     }
 
+    //Resive el animation event de los ataques, y trae por parametro el daño que hace, el cual esta configurado desde las animaciones mismas.
+    private void OnAttackEnter(int dmg)
+    {
+        EventManager.DispatchEvent("AttackEnter", new object[] { this.gameObject.name, dmg });
+    }
+
+    //Sobrecarga del mismo evento, por si se manda un string diciendo si el ataque fue con la izquierda o con la derecha.
+    private void OnAttackEnter(int dmg, string param)
+    {
+        EventManager.DispatchEvent("AttackEnter", new object[] { this.gameObject.name, dmg, param });
+    }
+
     private void OnAttackExit()
     {
         EventManager.DispatchEvent("AttackExit");
