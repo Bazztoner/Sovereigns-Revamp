@@ -67,24 +67,10 @@ public class PlayerColliders : MonoBehaviour
        
     }
 
-    void ColliderActivation(int id)
+    protected virtual void ManageColliders(int id, bool activate)
     {
-
-    }
-
-    protected virtual void ManageColliders(int id)
-    {
-        _actualCol = allColliders[id];
-        var script = _actualCol.GetComponent<SwordScript>();
-        EventManager.DispatchEvent("ActivateCollider", script);
-        /*_actualCol = allColliders[id];
-        _actualCol.enabled = true;
-        foreach (var col in allColliders)
-        {
-            if (col != _actualCol)
-            {
-                col.enabled = false;
-            }
-        }*/
+        if(activate) _actualCol = allColliders[id];
+        var script = allColliders[id].GetComponent<SwordScript>();
+        EventManager.DispatchEvent("ActivateCollider", new object[] { script, activate });
     }
 }

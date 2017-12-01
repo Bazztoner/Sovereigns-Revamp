@@ -93,17 +93,20 @@ public class PlayerCombat : Photon.MonoBehaviour
         }
     }
 
+    //HATES TEAR
+    private void OnAttackEnter(string param)
+    {
+        ///Recibe el evento del AnimEvent. Esto selecciona qué collider va a utilizar.
+        print("param " + param);
+        EventManager.DispatchEvent(param, gameObject.name);
+    }
+
     //Resive el animation event de los ataques, y trae por parametro el daño que hace, el cual esta configurado desde las animaciones mismas.
     private void OnAttackEnter(int dmg)
     {
         EventManager.DispatchEvent("AttackEnter", new object[] { this.gameObject.name, dmg });
     }
-
-    //Sobrecarga del mismo evento, por si se manda un string diciendo si el ataque fue con la izquierda o con la derecha.
-    private void OnAttackEnter(int dmg, string param)
-    {
-        EventManager.DispatchEvent("AttackEnter", new object[] { this.gameObject.name, dmg, param });
-    }
+    
 
     private void OnAttackExit()
     {
