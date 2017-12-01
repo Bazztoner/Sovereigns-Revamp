@@ -181,10 +181,24 @@ public class PlayerMovement : Photon.MonoBehaviour {
             var dir = (_enemy.position - cam.position).normalized;
             var ang = Vector3.Angle(cam.forward, dir);
 
-            return (Vector3.Distance(this.transform.position, _enemy.position) > 10f && ang <= 20) ? true : false;
+            return (Vector3.Distance(this.transform.position, _enemy.position) > 10 && ang <= 20) ? true : false;
         }
 
         return false;
+    }
+
+    public float DistanceToEnemy(Transform cam)
+    {
+        if (_enemy == null) _enemy = GetEnemy();
+
+        if (_enemy != null)
+        {
+            var dir = (_enemy.position - cam.position).normalized;
+            var ang = Vector3.Angle(cam.forward, dir);
+
+            return Vector3.Distance(this.transform.position, _enemy.position);
+        }
+        else return float.MaxValue;
     }
 
     private Transform GetEnemy()

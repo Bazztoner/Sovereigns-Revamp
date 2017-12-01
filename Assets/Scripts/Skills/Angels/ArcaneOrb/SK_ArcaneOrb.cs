@@ -22,11 +22,21 @@ public class SK_ArcaneOrb : ISpell
 
     bool _hasOrb;
 
-    int _orbCreationManaCost = 50;
+    int _orbCreationManaCost = 30;
     int _launchManaCost = 0;
 
     float _orbCreationCooldown = .1f;
     float _launchCooldown = 2f;
+
+    public bool CanBeUsed(float mana)
+    {
+        return manaCost < mana && !inSpellCooldown;
+    }
+
+    public bool CanBeUsed(float mana, float distance)
+    {
+        return manaCost < mana && !inSpellCooldown;
+    }
 
     public void Init()
     {

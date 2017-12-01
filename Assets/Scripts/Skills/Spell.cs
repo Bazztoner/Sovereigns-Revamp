@@ -22,6 +22,9 @@ public interface ISpell
     void ExitFromCooldown();
 
     int GetManaCost();
+
+    bool CanBeUsed(float mana);
+    bool CanBeUsed(float mana, float distance);
 }
 
 /// <summary>

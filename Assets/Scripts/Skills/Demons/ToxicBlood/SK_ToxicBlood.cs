@@ -18,7 +18,17 @@ public class SK_ToxicBlood : ISpell
     float _castTime = 0;
     float _cooldown = 7;
     public bool inSpellCooldown;
-    public int manaCost = 100;
+    public int manaCost = 75;
+
+    public bool CanBeUsed(float mana)
+    {
+        return manaCost < mana && !inSpellCooldown;
+    }
+
+    public bool CanBeUsed(float mana, float distance)
+    {
+        return manaCost < mana && !inSpellCooldown;
+    }
 
     public void Init()
     {

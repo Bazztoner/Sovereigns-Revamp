@@ -55,8 +55,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         _environmentalSkill = new AtractiveTelekinesis();
         _environmentalSkill.Init();
-        StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)_environmentalSkill));
-        StartCoroutine(UpdateSkillsState());
+       
 
         if (gameObject.name == "Player1" || gameObject.name == "Player3")
         {
@@ -84,6 +83,9 @@ public class PlayerSkills : Photon.MonoBehaviour
         _skillPos = transform.Find("SpellPos");
 
         EventManager.DispatchEvent("UISpellChanged", new object[] { _actualSkillType, gameObject.name });
+
+        StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)_environmentalSkill));
+        StartCoroutine(UpdateSkillsState());
     }
 
     private void AddEvents()
@@ -215,8 +217,11 @@ public class PlayerSkills : Photon.MonoBehaviour
         {
             for (int i = 0; i < skills.Length; i++)
             {
-                var hasMana = _environmentalSkill.GetManaCost() < mana;
-                EventManager.DispatchEvent("UIUpdateSkillState", new object[] { hasMana, i, gameObject.name });
+                if (skills[i] != null)
+                {
+                    var canBeUsed = skills[i].CanBeUsed(mana, GetComponent<PlayerMovement>().DistanceToEnemy(GetComponent<PlayerInput>().GetCamera.transform));
+                    EventManager.DispatchEvent("UIUpdateSkillState", new object[] { canBeUsed, i, gameObject.name });
+                }
             }
             yield return new WaitForEndOfFrame();
         }
@@ -227,7 +232,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         while (true)
         {
             if (_actualSkillType == HUDController.Spells.Environmental)
-                ActivateDestructibleProyections(spell.showProjections(GetActualMana()));
+                ActivateDestructibleProyections(spell.CanBeUsed(GetActualMana()));
             else ActivateDestructibleProyections(false);
             yield return new WaitForEndOfFrame();
         }
