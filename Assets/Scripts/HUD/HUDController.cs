@@ -91,7 +91,7 @@ public class HUDController : Photon.MonoBehaviour
         if (this.gameObject.name == "HUD1" && sender == "Player1" || this.gameObject.name == "HUD2" && sender == "Player2")
         {
             var newColor = icons[i].color;
-            newColor = hasMana ? Color.white : Color.blue;
+            newColor = hasMana ? Color.white : Color.cyan;
             icons[i].color = newColor;
         }
     }

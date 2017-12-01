@@ -14,8 +14,19 @@ public class Blink : ISpell
     float _castTime;
     float _cooldown;
 
-    public bool _inSpellCooldown;
-    int manaCost;
+    public bool inSpellCooldown;
+    int _manaCost;
+    float _minDistance;
+
+    public bool CanBeUsed(float mana)
+    {
+        return _manaCost < mana && !inSpellCooldown;
+    }
+
+    public bool CanBeUsed(float mana, float distance)
+    {
+        return _manaCost < mana && !inSpellCooldown && distance > _minDistance;
+    }
 
     public void Init()
     {
@@ -24,7 +35,8 @@ public class Blink : ISpell
         _castTime = 0f;
         _cooldown = 1f;
 
-        manaCost = 10;
+        _manaCost = 10;
+        _minDistance = 10;
     }
 
     public void Init(PlayerMovement character)
@@ -51,7 +63,7 @@ public class Blink : ISpell
             var fTemp = _enemy.position - _me.transform.position;
             _me.transform.forward = new Vector3(fTemp.x, _me.transform.forward.y, _me.transform.forward.z);
 
-            EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, _me.gameObject.name });
+            EventManager.DispatchEvent("SpellCasted", new object[] { _manaCost, _me.gameObject.name });
         }
         else
         {
@@ -92,20 +104,20 @@ public class Blink : ISpell
 
     public int GetManaCost()
     {
-        return manaCost;
+        return _manaCost;
     }
 
     public void EnterInCooldown()
     {
-        _inSpellCooldown = true;
+        inSpellCooldown = true;
     }
     public void ExitFromCooldown()
     {
-        _inSpellCooldown = false;
+        inSpellCooldown = false;
     }
     public bool IsInCooldown()
     {
-        return _inSpellCooldown;
+        return inSpellCooldown;
     }
 
     public float CooldownTime()

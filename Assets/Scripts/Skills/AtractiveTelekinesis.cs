@@ -16,7 +16,7 @@ public class AtractiveTelekinesis : ISpell
     float _castTime;
     float _cooldown;
 
-    public bool _inSpellCooldown;
+    public bool inSpellCooldown;
     int manaCost;
 
     float _radialRange;
@@ -45,12 +45,17 @@ public class AtractiveTelekinesis : ISpell
         _hasObject = false;
         _pulled = false;
 
-        manaCost = 150;
+        manaCost = 125;
     }
 
-    public bool showProjections(float mana)
+    public bool CanBeUsed(float mana)
     {
-        return manaCost < mana && !_inSpellCooldown;
+        return manaCost < mana && !inSpellCooldown;
+    }
+
+    public bool CanBeUsed(float mana, float distance)
+    {
+        return manaCost < mana && !inSpellCooldown;
     }
 
     public void Init(PlayerMovement character)
@@ -133,15 +138,15 @@ public class AtractiveTelekinesis : ISpell
 
     public void EnterInCooldown()
     {
-        _inSpellCooldown = true;
+        inSpellCooldown = true;
     }
     public void ExitFromCooldown()
     {
-        _inSpellCooldown = false;
+        inSpellCooldown = false;
     }
     public bool IsInCooldown()
     {
-        return _inSpellCooldown;
+        return inSpellCooldown;
     }
 
     public float CooldownTime()

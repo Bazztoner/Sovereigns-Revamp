@@ -18,8 +18,18 @@ public class SK_DoubleEdgedScales : ISpell
     float _castTime = 1;
     float _cooldown = 8;
     public bool inSpellCooldown;
-    public int manaCost = 135;
+    public int manaCost = 55;
     float _unableToBlockTime = 4f;
+
+    public bool CanBeUsed(float mana)
+    {
+        return manaCost < mana && !inSpellCooldown;
+    }
+
+    public bool CanBeUsed(float mana, float distance)
+    {
+        return manaCost < mana && !inSpellCooldown;
+    }
 
     public void Init()
     {
