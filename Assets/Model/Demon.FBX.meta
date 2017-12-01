@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: 8e90d14cc9e713e45ba08ba3d7222cc4
+timeCreated: 1512101443
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: CATRigLArmLeftIndex1
+    100002: CATRigLArmLeftIndex2
+    100004: CATRigLArmLeftIndex3
+    100006: CATRigLArmLeftMiddle1
+    100008: CATRigLArmLeftMiddle2
+    100010: CATRigLArmLeftMiddle3
+    100012: CATRigLArmLeftRing1
+    100014: CATRigLArmLeftRing2
+    100016: CATRigLArmLeftRing3
+    100018: CATRigLArmLeftThumb1
+    100020: CATRigLArmLeftThumb2
+    100022: CATRigLArmLeftThumb3
+    100024: CATRigLLegAnkle
+    100026: CATRigLLegRightPhalanges1
+    100028: CATRigLLegRightPhalanges2
+    100030: CATRigLoinCloth1
+    100032: CATRigLoinCloth2
+    100034: CATRigLoinCloth3
+    100036: CATRigRArmRightIndex1
+    100038: CATRigRArmRightIndex2
+    100040: CATRigRArmRightIndex3
+    100042: CATRigRArmRightMiddle1
+    100044: CATRigRArmRightMiddle2
+    100046: CATRigRArmRightMiddle3
+    100048: CATRigRArmRightRing1
+    100050: CATRigRArmRightRing2
+    100052: CATRigRArmRightRing3
+    100054: CATRigRArmRightThumb1
+    100056: CATRigRArmRightThumb2
+    100058: CATRigRArmRightThumb3
+    100060: CATRigRLegRightPhalanges1
+    100062: CATRigRLegRightPhalanges2
+    100064: CATRigTail1
+    100066: CATRigTail2
+    100068: CATRigTail3
+    100070: CATRigTail4
+    100072: CATRigTail5
+    100074: CATRigTail6
+    100076: CATRigTail7
+    100078: //RootNode
+    100080: DemonArmor
+    100082: DemonBody
+    100084: HeadHub
+    100086: Jaw
+    100088: JawJoint
+    100090: LeftArm
+    100092: LeftCollarbone
+    100094: LeftForeArm
+    100096: LeftLeg
+    100098: LeftPalm
+    100100: LeftShin
+    100102: NecklaceBase
+    100104: NecklaceTip
+    100106: NeckSpine1
+    100108: NeckSpine2
+    100110: NeckSpine3
+    100112: PelvisHub
+    100114: RightAnkle
+    100116: RightArm
+    100118: RightCollarbone
+    100120: RightForeArm
+    100122: RightLeg
+    100124: RightPalm
+    100126: RightShin
+    100128: Spine1
+    100130: Spine2
+    100132: Spine3
+    100134: Spine4
+    100136: Spine5
+    100138: TorsoHub
+    400000: CATRigLArmLeftIndex1
+    400002: CATRigLArmLeftIndex2
+    400004: CATRigLArmLeftIndex3
+    400006: CATRigLArmLeftMiddle1
+    400008: CATRigLArmLeftMiddle2
+    400010: CATRigLArmLeftMiddle3
+    400012: CATRigLArmLeftRing1
+    400014: CATRigLArmLeftRing2
+    400016: CATRigLArmLeftRing3
+    400018: CATRigLArmLeftThumb1
+    400020: CATRigLArmLeftThumb2
+    400022: CATRigLArmLeftThumb3
+    400024: CATRigLLegAnkle
+    400026: CATRigLLegRightPhalanges1
+    400028: CATRigLLegRightPhalanges2
+    400030: CATRigLoinCloth1
+    400032: CATRigLoinCloth2
+    400034: CATRigLoinCloth3
+    400036: CATRigRArmRightIndex1
+    400038: CATRigRArmRightIndex2
+    400040: CATRigRArmRightIndex3
+    400042: CATRigRArmRightMiddle1
+    400044: CATRigRArmRightMiddle2
+    400046: CATRigRArmRightMiddle3
+    400048: CATRigRArmRightRing1
+    400050: CATRigRArmRightRing2
+    400052: CATRigRArmRightRing3
+    400054: CATRigRArmRightThumb1
+    400056: CATRigRArmRightThumb2
+    400058: CATRigRArmRightThumb3
+    400060: CATRigRLegRightPhalanges1
+    400062: CATRigRLegRightPhalanges2
+    400064: CATRigTail1
+    400066: CATRigTail2
+    400068: CATRigTail3
+    400070: CATRigTail4
+    400072: CATRigTail5
+    400074: CATRigTail6
+    400076: CATRigTail7
+    400078: //RootNode
+    400080: DemonArmor
+    400082: DemonBody
+    400084: HeadHub
+    400086: Jaw
+    400088: JawJoint
+    400090: LeftArm
+    400092: LeftCollarbone
+    400094: LeftForeArm
+    400096: LeftLeg
+    400098: LeftPalm
+    400100: LeftShin
+    400102: NecklaceBase
+    400104: NecklaceTip
+    400106: NeckSpine1
+    400108: NeckSpine2
+    400110: NeckSpine3
+    400112: PelvisHub
+    400114: RightAnkle
+    400116: RightArm
+    400118: RightCollarbone
+    400120: RightForeArm
+    400122: RightLeg
+    400124: RightPalm
+    400126: RightShin
+    400128: Spine1
+    400130: Spine2
+    400132: Spine3
+    400134: Spine4
+    400136: Spine5
+    400138: TorsoHub
+    4300000: DemonBody
+    4300002: DemonArmor
+    9500000: //RootNode
+    13700000: DemonArmor
+    13700002: DemonBody
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

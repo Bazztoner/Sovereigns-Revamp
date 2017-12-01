@@ -54,7 +54,7 @@ Material:
     - first:
         name: _InnerWalls_InnerWalls_AlbedoTransparency_DISP
       second:
-        m_Texture: {fileID: 2800000, guid: 445bec721d6e76d4d9cf55c05a0dbaf8, type: 3}
+        m_Texture: {fileID: 2800000, guid: bdcedd6c149b3b34ca09383a710cf402, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:

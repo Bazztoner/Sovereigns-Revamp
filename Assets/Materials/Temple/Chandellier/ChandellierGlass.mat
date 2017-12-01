@@ -153,19 +153,19 @@ Material:
       second: 0.321
     - first:
         name: _TransDirect
-      second: 0.249
+      second: 0.309
     - first:
         name: _TransNormalDistortion
-      second: 0.204
+      second: 0.305
     - first:
         name: _TransScattering
-      second: 8.5
+      second: 16.9
     - first:
         name: _TransShadow
-      second: 0.23
+      second: 0.459
     - first:
         name: _Translucency
-      second: 8.8
+      second: 10.8
     - first:
         name: _UVSec
       second: 0
@@ -174,7 +174,7 @@ Material:
       second: 0
     - first:
         name: __dirty
-      second: 1
+      second: 0
     m_Colors:
     - first:
         name: _Color
