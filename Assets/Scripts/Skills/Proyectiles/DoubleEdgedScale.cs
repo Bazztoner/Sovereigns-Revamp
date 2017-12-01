@@ -14,7 +14,7 @@ public class DoubleEdgedScale : MonoBehaviour
     public void Init(Transform parent, string owner)
     {
         transform.parent = parent;
-        transform.localPosition = new Vector3(0, -1.6f, 0);
+        transform.localPosition = new Vector3(0, 0, 0);
         transform.forward = transform.parent.forward;
         _owner = owner;
     }
