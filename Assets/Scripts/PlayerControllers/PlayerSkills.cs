@@ -135,6 +135,16 @@ public class PlayerSkills : Photon.MonoBehaviour
         ActivateSkill(_movementSkill, HUDController.Spells.Mobility, null);
     }
 
+    IEnumerator CastToxicBlood(float time, ISpell spell, HUDController.Spells pickType, Transform skillPos)
+    {
+        EventManager.DispatchEvent("ToxicBloodCasted", new object[] { gameObject.name });
+        var w = new WaitForSeconds(time);
+        yield return w;
+        spell.UseSpell(skillPos);
+        EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
+        EventManager.DispatchEvent("ToxicBloodStopCasted", new object[] { gameObject.name });
+    }
+
     /// <summary>Decides if it needs to wait or not to launch an spell</summary>
     private void ActivateSkill(ISpell spell, HUDController.Spells pickType, Transform skillPos)
     {
@@ -144,8 +154,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         {
             if (canCast)
             {
-                spell.UseSpell(skillPos);
-                EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
+                StartCoroutine(CastToxicBlood(0.25F, spell, pickType, skillPos));
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }
@@ -184,6 +193,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     /// <summary>Waits a certain time to launch the spell</summary>
     IEnumerator CastSpell(float time, ISpell spell, HUDController.Spells pickType, Transform skillPos)
     {
+        EventManager.DispatchEvent("DoubleEdgedScaleCasted", new object[] { gameObject.name });
         var vTemp = new Vector3(transform.position.x, transform.position.y + 0.66f, transform.position.z);
         EventManager.DispatchEvent("SpellBeingCasted", new object[] { vTemp, this.GetComponent<PlayerParticles>() });
 
@@ -195,8 +205,8 @@ public class PlayerSkills : Photon.MonoBehaviour
         _universalSkill.UseSpell(skillPos);
         isChannelingSpell = false;
 
-
         EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
+        EventManager.DispatchEvent("DoubleEdgedScaleStopCasted", new object[] { gameObject.name });
         StartCoroutine(SpellCooldown(spell, pickType));
     }
 

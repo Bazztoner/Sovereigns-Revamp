@@ -39,7 +39,7 @@ public class DemonAttackColliders : PlayerColliders
                 for (int i = 0; i < allColliders.Count; i++)
                 {
                     if (i == id) ManageColliders(id, true);
-                    else ManageColliders(id, false);
+                    else ManageColliders(id, true);
                 }
                 
             }
@@ -56,7 +56,7 @@ public class DemonAttackColliders : PlayerColliders
                 for (int i = 0; i < allColliders.Count; i++)
                 {
                     if (i == id) ManageColliders(id, true);
-                    else ManageColliders(id, false);
+                    else ManageColliders(id, true);
                 }
             }
         }
@@ -72,7 +72,7 @@ public class DemonAttackColliders : PlayerColliders
                 for (int i = 0; i < allColliders.Count; i++)
                 {
                     if (i == id) ManageColliders(id, true);
-                    else ManageColliders(id, false);
+                    else ManageColliders(id, true);
                 }
             }
         }

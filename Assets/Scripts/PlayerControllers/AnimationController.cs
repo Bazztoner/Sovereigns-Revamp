@@ -22,12 +22,48 @@ public class AnimationController : MonoBehaviour
         EventManager.AddEventListener("Blocking", OnBlocking);
         EventManager.AddEventListener("X", OnX);
         EventManager.AddEventListener("Y", OnY);
+        EventManager.AddEventListener("DoubleEdgedScaleCasted", OnDoubleEdged);
+        EventManager.AddEventListener("ToxicBloodCasted", OnEscupidaSexual);
+        EventManager.AddEventListener("DoubleEdgedScaleStopCasted", OnDoubleEdgedStop);
+        EventManager.AddEventListener("ToxicBloodStopCasted", OnEscupidaSexualStop);
         EventManager.AddEventListener("IsDead", OnIsDead);
         EventManager.AddEventListener("IsDamaged", OnIsDamaged);
         EventManager.AddEventListener("GuardBreak", OnGuardBreak);
         EventManager.AddEventListener("StunParticle", OnStun);
         EventManager.AddEventListener("StopStun", OnStopStun);
         EventManager.AddEventListener("RestartRound", OnRestartRound);
+    }
+
+    void OnDoubleEdged(object[] paramsContainer)
+    {
+        if (gameObject.name == (string)paramsContainer[0])
+        {
+            _anim.SetBool("skillScaleLaunch", true);
+        }
+    }
+
+    void OnEscupidaSexual(object[] paramsContainer)
+    {
+        if (gameObject.name == (string)paramsContainer[0])
+        {
+            _anim.SetBool("skillSpit", true);
+        }
+    }
+
+    void OnDoubleEdgedStop(object[] paramsContainer)
+    {
+        if (gameObject.name == (string)paramsContainer[0])
+        {
+            _anim.SetBool("skillScaleLaunch", false);
+        }
+    }
+
+    void OnEscupidaSexualStop(object[] paramsContainer)
+    {
+        if (gameObject.name == (string)paramsContainer[0])
+        {
+            _anim.SetBool("skillSpit", false);
+        }
     }
 
     //For the fucking block+Y
