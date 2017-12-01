@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(PhotonView))]
 public class GameManager : Photon.MonoBehaviour
 {
-
     private bool _isGameStarted = false;
     private int _round;
     private int _maxRound = 3;

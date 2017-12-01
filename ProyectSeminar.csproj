@@ -226,6 +226,7 @@
     <Compile Include="Assets\Scripts\HUD\ConectionButton.cs" />
     <Compile Include="Assets\Scripts\HUD\FloatingLifeBar.cs" />
     <Compile Include="Assets\Scripts\HUD\HUDController.cs" />
+    <Compile Include="Assets\Scripts\HUD\Menu.cs" />
     <Compile Include="Assets\Scripts\HitBoxScript.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\LevelTransition.cs" />
     <Compile Include="Assets\Scripts\LevelTransitions\Subdivisions.cs" />

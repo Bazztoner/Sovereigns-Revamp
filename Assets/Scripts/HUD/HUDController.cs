@@ -57,6 +57,7 @@ public class HUDController : Photon.MonoBehaviour
         GetEverything();
         AddEvents();
         DeactivateImages();
+        Invoke("OnDividedScreen", 2f);
     }
 
     void LateUpdate()

@@ -196,15 +196,15 @@ public class SwordScript : MonoBehaviour
                 if (CheckIfFrontal(other))
                 {
                     if (_isHorizontal) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "MeleeHorizontal", myName);
-                    else if (_isVertical) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "MeleeVertical", myName);
+                    else if (_isVertical) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage / 3, "MeleeVertical", myName);
                     else if (_isParry) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "ParryAttack", myName);
-                    else if (_isGuardBreak) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "GuardBreakAttack", myName);
+                    else if (_isGuardBreak) other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage / 3, "GuardBreakAttack", myName);
                 }
                 else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee", this.GetComponentInParent<PlayerInput>().gameObject.name);
 
                 //Esto es algo parecido a lo que hace con el daño. Lo que hace es que si el multiplicador esta en 15 por ejemplo, 
                 //lo que va a ganar de mana es igual al daño que recibio multiplicado por 2.5
-                other.gameObject.GetComponentInParent<PlayerStats>().RegainMana(damage * mult);
+                other.gameObject.GetComponentInParent<PlayerStats>().RegainMana(damage / 2 * mult);
             }
             else if (other.gameObject.GetComponentInParent<Enemy>() != null)
             {
@@ -222,7 +222,7 @@ public class SwordScript : MonoBehaviour
 
     void ActivateTrail(bool activate)
     {
-        _trail.gameObject.SetActive(activate);
+        //_trail.gameObject.SetActive(activate);
     }
 
     void GetTrail(bool isActiveFromStart)
