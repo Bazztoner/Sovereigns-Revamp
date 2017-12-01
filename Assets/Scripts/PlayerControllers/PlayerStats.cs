@@ -284,12 +284,11 @@ public class PlayerStats : Photon.MonoBehaviour
 
         var ssCont = GameObject.Find("SpawnSpots");
 
-        transform.position = gameObject.name == "Player1" ? ssCont.transform.Find("SpawnSpotP1").transform.position : ssCont.transform.Find("SpawnSpotP2").transform.position;
-        transform.forward = gameObject.name == "Player1" ? ssCont.transform.Find("SpawnSpotP1").transform.forward : ssCont.transform.Find("SpawnSpotP2").transform.forward;
-
-
         isDead = false;
 
+        transform.position = gameObject.name == "Player1" ? ssCont.transform.Find("SpawnSpotP1").transform.position : ssCont.transform.Find("SpawnSpotP2").transform.position;
+        transform.forward = gameObject.name == "Player1" ? ssCont.transform.Find("SpawnSpotP1").transform.forward : ssCont.transform.Find("SpawnSpotP2").transform.forward;
+        
         if (!(bool)paramsContainer[0])
         {
             _gameInCourse = true;

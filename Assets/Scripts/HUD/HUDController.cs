@@ -42,6 +42,11 @@ public class HUDController : Photon.MonoBehaviour
     Text comboText;
     byte comboMeter;
 
+    public int Combo
+    {
+        get { return (int)comboMeter; }
+    }
+
     List<Text[]> allCooldowns = new List<Text[]>();
 
     public enum Spells { Environmental, Class, Universal, Mobility, Passive, Count };
@@ -52,11 +57,6 @@ public class HUDController : Photon.MonoBehaviour
         GetEverything();
         AddEvents();
         DeactivateImages();
-    }
-
-    void Update()
-    {
-        //FollowTarget();
     }
 
     void LateUpdate()

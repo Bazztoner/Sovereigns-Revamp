@@ -172,6 +172,13 @@ public class SwordScript : MonoBehaviour
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;
             var myName = this.GetComponentInParent<PlayerInput>().gameObject.name;
+            var combo = this.GetComponentInParent<PlayerStats>().gameObject.name == "Player1" ? GameObject.Find("HUD1").GetComponent<HUDController>().Combo : 
+                                                                                                GameObject.Find("HUD2").GetComponent<HUDController>().Combo;
+
+            float mult = (combo / 10f + 1f);
+
+            //Aplica al daño el multiplicador del combo. Ej: si el combo esta en 7, entonces 7 dividido 10 mas 1 da 1.7, y ese valor lo multiplica al daño.
+            damage *= mult;
 
             _isDetecting = false;
             _appliedDamage = 0;
@@ -191,7 +198,9 @@ public class SwordScript : MonoBehaviour
                 }
                 else other.gameObject.GetComponentInParent<PlayerStats>().TakeDamage(damage, "Melee", this.GetComponentInParent<PlayerInput>().gameObject.name);
 
-                this.GetComponentInParent<PlayerStats>().RegainMana(damage * 0.6f);
+                //Esto es algo parecido a lo que hace con el daño. Lo que hace es que si el multiplicador esta en 15 por ejemplo, 
+                //lo que va a ganar de mana es igual al daño que recibio multiplicado por 2.5
+                other.gameObject.GetComponentInParent<PlayerStats>().RegainMana(damage * mult);
             }
             else if (other.gameObject.GetComponentInParent<Enemy>() != null)
             {

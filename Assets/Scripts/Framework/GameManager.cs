@@ -35,7 +35,7 @@ public class GameManager : Photon.MonoBehaviour
         _player1Score = 0;
         _player2Score = 0;
         time = _maxTime;
-        InvokeRepeating("DiscountTime", 1f, 1f);
+        //InvokeRepeating("DiscountTime", 1f, 1f);
         if (!GameManager.screenDivided) photonView.RPC("StartGame", PhotonTargets.All);
         else
         {
