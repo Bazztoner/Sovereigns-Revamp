@@ -216,7 +216,7 @@ ModelImporter:
       events:
       - time: 0.31591454
         functionName: OnAttackEnter
-        data: 
+        data: '"RightClaw"'
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 16
