@@ -36,7 +36,12 @@ public class DemonAttackColliders : PlayerColliders
             if (gameObject.name == (string)paramsContainer[0])
             {
                 var id = (int)AttackTypes.LEFT_CLAW;
-                ManageColliders(id);
+                for (int i = 0; i < allColliders.Count; i++)
+                {
+                    if (i == id) ManageColliders(id, true);
+                    else ManageColliders(id, false);
+                }
+                
             }
         }
     }
@@ -48,7 +53,11 @@ public class DemonAttackColliders : PlayerColliders
             if (gameObject.name == (string)paramsContainer[0])
             {
                 var id = (int)AttackTypes.RIGHT_CLAW;
-                ManageColliders(id);
+                for (int i = 0; i < allColliders.Count; i++)
+                {
+                    if (i == id) ManageColliders(id, true);
+                    else ManageColliders(id, false);
+                }
             }
         }
     }
@@ -60,7 +69,11 @@ public class DemonAttackColliders : PlayerColliders
             if (gameObject.name == (string)paramsContainer[0])
             {
                 var id = (int)AttackTypes.DUAL_CLAW;
-                ManageColliders(id);
+                for (int i = 0; i < allColliders.Count; i++)
+                {
+                    if (i == id) ManageColliders(id, true);
+                    else ManageColliders(id, false);
+                }
             }
         }
     }

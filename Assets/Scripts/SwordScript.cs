@@ -15,7 +15,7 @@ public class SwordScript : MonoBehaviour
     bool _isParry = false;
     bool _isGuardBreak = false;
     TrailRenderer _trail;
-    bool _isActive = false;
+    bool _isActive;
 
     void Start()
     {
@@ -29,6 +29,11 @@ public class SwordScript : MonoBehaviour
         AddAttackTypeEvents();
     }
 
+    private void Update()
+    {
+       if(_isActive) print("Activate " + _isActive.ToString() + " " + gameObject.name);
+    }
+
     void AddAttackEvents()
     {
         EventManager.AddEventListener("ActivateCollider", OnActivateCollider);
@@ -40,11 +45,10 @@ public class SwordScript : MonoBehaviour
     {
         if ((SwordScript)paramsContainer[0] == this)
         {
-            _isActive = true;
-        }
-        else
-        {
-            _isActive = false;
+            var activate = (bool)paramsContainer[1];
+            _isActive = activate;
+            ActivateTrail(_isActive);
+            print("Activate " + gameObject.name + activate.ToString());
         }
     }
 

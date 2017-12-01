@@ -216,7 +216,7 @@ ModelImporter:
       events:
       - time: 0.31591454
         functionName: OnAttackEnter
-        data: '"RightClaw"'
+        data: RightClawAttack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 16
@@ -251,7 +251,7 @@ ModelImporter:
       events:
       - time: 0.13301666
         functionName: OnAttackEnter
-        data: 
+        data: LeftClawAttack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 16
@@ -286,7 +286,7 @@ ModelImporter:
       events:
       - time: 0.25178134
         functionName: OnAttackEnter
-        data: 
+        data: DualClawAttack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 16
@@ -321,7 +321,7 @@ ModelImporter:
       events:
       - time: 0.21377656
         functionName: OnAttackEnter
-        data: 
+        data: RightClawAttack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 6
@@ -356,7 +356,7 @@ ModelImporter:
       events:
       - time: 0.29928756
         functionName: OnAttackEnter
-        data: 
+        data: LeftClawAttack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 6
@@ -391,7 +391,7 @@ ModelImporter:
       events:
       - time: 0.14251766
         functionName: OnAttackEnter
-        data: 
+        data: LeftClawAttack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 6
@@ -425,8 +425,8 @@ ModelImporter:
       curves: []
       events:
       - time: 0.5178148
-        functionName: OnAt5tackEnter
-        data: 
+        functionName: OnAttackEnter
+        data: DualClawAttack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 16

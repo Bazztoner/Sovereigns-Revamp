@@ -38,7 +38,11 @@ public class AngelAttackColliders : PlayerColliders
             if (gameObject.name == (string)paramsContainer[0])
             {
                 var id = (int)AttackTypes.NORMAL_SLASH;
-                ManageColliders(id);
+                for (int i = 0; i < allColliders.Count; i++)
+                {
+                    if (i == id) ManageColliders(id, true);
+                    else ManageColliders(id, false);
+                }
             }
         }
     }
@@ -50,7 +54,11 @@ public class AngelAttackColliders : PlayerColliders
             if (gameObject.name == (string)paramsContainer[0])
             {
                 var id = (int)AttackTypes.BIG_SLASH;
-                ManageColliders(id);
+                for (int i = 0; i < allColliders.Count; i++)
+                {
+                    if (i == id) ManageColliders(id, true);
+                    else ManageColliders(id, false);
+                }
             }
         }
     }
@@ -62,7 +70,11 @@ public class AngelAttackColliders : PlayerColliders
             if (gameObject.name == (string)paramsContainer[0])
             {
                 var id = (int)AttackTypes.NORMAL_SHIELD;
-                ManageColliders(id);
+                for (int i = 0; i < allColliders.Count; i++)
+                {
+                    if (i == id) ManageColliders(id, true);
+                    else ManageColliders(id, false);
+                }
             }
         }
     }
@@ -74,7 +86,11 @@ public class AngelAttackColliders : PlayerColliders
             if (gameObject.name == (string)paramsContainer[0])
             {
                 var id = (int)AttackTypes.BIG_SHIELD;
-                ManageColliders(id);
+                for (int i = 0; i < allColliders.Count; i++)
+                {
+                    if (i == id) ManageColliders(id, true);
+                    else ManageColliders(id, false);
+                }
             }
         }
     }
