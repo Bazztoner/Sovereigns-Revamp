@@ -136,7 +136,7 @@ public class GameManager : Photon.MonoBehaviour
         EventManager.DispatchEvent("SetRoundText", new object[] { _round });
         time = _maxTime;
         _isGameStarted = true;
-        InvokeRepeating("DiscountTime", 1f, 1f);
+        //InvokeRepeating("DiscountTime", 1f, 1f);
     }
 
     private void EndMatch()
