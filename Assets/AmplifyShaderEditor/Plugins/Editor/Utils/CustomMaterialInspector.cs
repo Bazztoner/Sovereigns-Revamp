@@ -378,7 +378,7 @@ internal class ASEMaterialInspector : ShaderGUI
 		if( m_previewRenderUtility == null )
 		{
 			m_previewRenderUtility = new PreviewRenderUtility();
-			m_previewRenderUtility.m_CameraFieldOfView = 30f;
+			m_previewRenderUtility.cameraFieldOfView = 30f;
 		}
 
 		if( m_previewGUIType == null )

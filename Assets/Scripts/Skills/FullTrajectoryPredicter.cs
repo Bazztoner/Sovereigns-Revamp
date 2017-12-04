@@ -150,7 +150,7 @@ public class FullTrajectoryPredicter : MonoBehaviour
 
         // At the end, apply our simulations to the LineRenderer
 
-        ln.numPositions = segmentCount;
+        ln.positionCount = segmentCount;
 
         for (int i = 0; i < segmentCount; i++)
             ln.SetPosition(i, segments[i]);

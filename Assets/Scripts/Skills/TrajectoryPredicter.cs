@@ -140,7 +140,7 @@ public class TrajectoryPredicter : MonoBehaviour
         if (!hasCollision) _actualSegCount = segmentCount;
         // At the end, apply our simulations to the LineRenderer
 
-        ln.numPositions = _actualSegCount;
+        ln.positionCount = _actualSegCount;
 
         for (int i = 0; i < _actualSegCount; i++)
         {

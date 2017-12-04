@@ -237,7 +237,7 @@ public class PlayerParticles : Photon.MonoBehaviour
 
     public ParticleSystem ParticleDestroyer(string name)
     {
-        var p = _skillPos.FindChild(name).GetComponent<ParticleSystem>();
+        var p = _skillPos.Find(name).GetComponent<ParticleSystem>();
         p.Stop();
 
         Destroy(p.gameObject, 3f);

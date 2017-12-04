@@ -97,8 +97,8 @@ public class CamRotationController : MonoBehaviour
     {
         _cam = GetComponentInChildren<Camera>();
 
-        var temp1 = _cam.transform.FindChild("SubCam1");
-        var temp2 = _cam.transform.FindChild("SubCam2");
+        var temp1 = _cam.transform.Find("SubCam1");
+        var temp2 = _cam.transform.Find("SubCam2");
 
         var temp = temp1 != null ? temp1 : temp2;
 

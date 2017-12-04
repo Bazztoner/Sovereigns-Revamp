@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
 
     public ParticleSystem ParticleDestroyer(string name)
     {
-        var p = transform.FindChild(name).GetComponent<ParticleSystem>();
+        var p = transform.Find(name).GetComponent<ParticleSystem>();
         p.Stop();
 
         Destroy(p.gameObject, 3f);

@@ -227,7 +227,7 @@ public class SwordScript : MonoBehaviour
 
     void GetTrail(bool isActiveFromStart)
     {
-        var trailContainer = GetComponentInParent<PlayerInput>().transform.FindChild("SwordTrail");
+        var trailContainer = GetComponentInParent<PlayerInput>().transform.Find("SwordTrail");
         if (trailContainer == null)
         {
             var tempTrail = GameObject.Instantiate(Resources.Load("SwordTrail") as GameObject, transform.parent.parent);

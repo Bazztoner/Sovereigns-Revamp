@@ -355,7 +355,7 @@ public class HUDController : Photon.MonoBehaviour
             }
         }
 
-        comboText = transform.FindChild("Combometer").GetComponent<Text>();
+        comboText = transform.Find("Combometer").GetComponent<Text>();
 
         if (this.gameObject.name == "HUD1")
             _enemyBarPos = GameObject.Find("Player2").transform.Find("LifeBarPos");
