@@ -55,9 +55,9 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         _environmentalSkill = new AtractiveTelekinesis();
         _environmentalSkill.Init();
-       
 
-        if (gameObject.name == "Player1" || gameObject.name == "Player3")
+
+        if (gameObject.name == "Player1")
         {
             _classSkill = new SK_ArcaneOrb();
             _classSkill.Init(GetComponent<PlayerMovement>());
@@ -76,13 +76,18 @@ public class PlayerSkills : Photon.MonoBehaviour
             _universalSkill = new SK_DoubleEdgedScales();
             _universalSkill.Init(GetComponent<PlayerMovement>());
         }
+        else
+        {
+            _universalSkill = new SK_HolyVigorization();
+            _universalSkill.Init(GetComponent<PlayerMovement>());
+        }
 
         _movementSkill = new Blink();
         _movementSkill.Init(GetComponent<PlayerMovement>());
 
         _skillPos = transform.Find("SpellPos");
 
-        EventManager.DispatchEvent("UISpellChanged", new object[] { _actualSkillType, gameObject.name });
+        EventManager.DispatchEvent(UIEvents.SpellChanged, new object[] { _actualSkillType, gameObject.name });
 
         StartCoroutine(PutAtractiveVisible((AtractiveTelekinesis)_environmentalSkill));
         StartCoroutine(UpdateSkillsState());
@@ -90,10 +95,8 @@ public class PlayerSkills : Photon.MonoBehaviour
 
     private void AddEvents()
     {
-        EventManager.AddEventListener("ObjectPulled", OnObjectPulled);
-        EventManager.AddEventListener("ObjectPulling", OnObjectPulling);
-        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
+        EventManager.AddEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
     }
     #endregion
 
@@ -109,7 +112,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         _actualSkill = _environmentalSkill;
         _actualSkillType = HUDController.Spells.Environmental;
-        EventManager.DispatchEvent("UISpellChanged", new object[] { _actualSkillType, gameObject.name });
+        EventManager.DispatchEvent(UIEvents.SpellChanged, new object[] { _actualSkillType, gameObject.name });
     }
 
     /// <summary>Activates the gravitational skill</summary>
@@ -117,7 +120,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         _actualSkill = _classSkill;
         _actualSkillType = HUDController.Spells.Class;
-        EventManager.DispatchEvent("UISpellChanged", new object[] { _actualSkillType, gameObject.name });
+        EventManager.DispatchEvent(UIEvents.SpellChanged, new object[] { _actualSkillType, gameObject.name });
     }
 
     /// <summary>Activates the repulsive skill</summary>
@@ -125,7 +128,7 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         _actualSkill = _universalSkill;
         _actualSkillType = HUDController.Spells.Universal;
-        EventManager.DispatchEvent("UISpellChanged", new object[] { _actualSkillType, gameObject.name });
+        EventManager.DispatchEvent(UIEvents.SpellChanged, new object[] { _actualSkillType, gameObject.name });
     }
 
     /// <summary>Activates the blink skill</summary>
@@ -137,12 +140,12 @@ public class PlayerSkills : Photon.MonoBehaviour
 
     IEnumerator CastToxicBlood(float time, ISpell spell, HUDController.Spells pickType, Transform skillPos)
     {
-        EventManager.DispatchEvent("ToxicBloodCasted", new object[] { gameObject.name });
+        EventManager.DispatchEvent(SkillEvents.ToxicBloodCasted, new object[] { gameObject.name });
         var w = new WaitForSeconds(time);
         yield return w;
         spell.UseSpell(skillPos);
-        EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
-        EventManager.DispatchEvent("ToxicBloodStopCasted", new object[] { gameObject.name });
+        EventManager.DispatchEvent(SkillEvents.SpellCooldown, new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
+        EventManager.DispatchEvent(SkillEvents.ToxicBloodStopCasted, new object[] { gameObject.name });
     }
 
     /// <summary>Decides if it needs to wait or not to launch an spell</summary>
@@ -182,7 +185,7 @@ public class PlayerSkills : Photon.MonoBehaviour
                     _spellsWithPhases[spell] = 0;
                 }
                 spell.UseSpell(skillPos);
-                EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
+                EventManager.DispatchEvent(SkillEvents.SpellCooldown, new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }
@@ -193,9 +196,12 @@ public class PlayerSkills : Photon.MonoBehaviour
     /// <summary>Waits a certain time to launch the spell</summary>
     IEnumerator CastSpell(float time, ISpell spell, HUDController.Spells pickType, Transform skillPos)
     {
-        EventManager.DispatchEvent("DoubleEdgedScaleCasted", new object[] { gameObject.name });
-        var vTemp = new Vector3(transform.position.x, transform.position.y + 0.66f, transform.position.z);
-        EventManager.DispatchEvent("SpellBeingCasted", new object[] { vTemp, this.GetComponent<PlayerParticles>() });
+        if (pickType == HUDController.Spells.Class)
+        {
+            EventManager.DispatchEvent(SkillEvents.DoubleEdgedScalesCasted, new object[] { gameObject.name });
+            var vTemp = new Vector3(transform.position.x, transform.position.y + 0.66f, transform.position.z);
+            EventManager.DispatchEvent(SkillEvents.SpellBeingCasted, new object[] { vTemp, this.GetComponent<PlayerParticles>() });
+        }
 
         isChannelingSpell = true;
 
@@ -205,8 +211,16 @@ public class PlayerSkills : Photon.MonoBehaviour
         _universalSkill.UseSpell(skillPos);
         isChannelingSpell = false;
 
-        EventManager.DispatchEvent("SpellCooldown", new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
-        EventManager.DispatchEvent("DoubleEdgedScaleStopCasted", new object[] { gameObject.name });
+        EventManager.DispatchEvent(SkillEvents.SpellCooldown, new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
+
+        if (pickType == HUDController.Spells.Class)
+        {
+            EventManager.DispatchEvent(SkillEvents.DoubleEdgedScaleStopCasted, new object[] { gameObject.name });
+        }
+        else
+        {
+            //EventManager.DispatchEvent(SkillEvents.HolyVigorizationEnded, new object[] { gameObject.name });
+        }
         StartCoroutine(SpellCooldown(spell, pickType));
     }
 
@@ -230,7 +244,7 @@ public class PlayerSkills : Photon.MonoBehaviour
                 if (skills[i] != null)
                 {
                     var canBeUsed = skills[i].CanBeUsed(mana, GetComponent<PlayerMovement>().DistanceToEnemy(GetComponent<PlayerInput>().GetCamera.transform));
-                    EventManager.DispatchEvent("UIUpdateSkillState", new object[] { canBeUsed, i, gameObject.name });
+                    EventManager.DispatchEvent(UIEvents.UpdateSkillState, new object[] { canBeUsed, i, gameObject.name });
                 }
             }
             yield return new WaitForEndOfFrame();
@@ -250,7 +264,7 @@ public class PlayerSkills : Photon.MonoBehaviour
 
     void ActivateDestructibleProyections(bool activate)
     {
-        EventManager.DispatchEvent("ChangeStateDestuctibleProjections", new object[] { activate, gameObject.name });
+        EventManager.DispatchEvent(SkillEvents.ChangeStateDestuctibleProjections, new object[] { activate, gameObject.name });
     }
     #endregion
 
@@ -275,26 +289,9 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         if ((bool)paramsContainer[0])
         {
-            EventManager.RemoveEventListener("ObjectPulled", OnObjectPulled);
-            EventManager.RemoveEventListener("ObjectPulling", OnObjectPulling);
-            EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
-            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+            EventManager.RemoveEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
+            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
         }
     }
-    #endregion
-
-    #region Telekinetic Physics
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == Utilities.IntLayers.TELEKINESISOBJECT)
-            collision.gameObject.GetComponent<TelekineticObject>().ChangeState(PhotonNetwork.player.NickName);
-    }
-
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.layer == Utilities.IntLayers.TELEKINESISOBJECT)
-            collision.gameObject.GetComponent<TelekineticObject>().ChangeState(PhotonNetwork.player.NickName);
-    }
-
     #endregion
 }

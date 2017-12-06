@@ -16,7 +16,7 @@ public class DMM_ArcaneOrb : MonoBehaviour
         transform.forward = parent.forward;
         _owner = owner;
 
-        EventManager.AddEventListener("ArcaneOrbDestroyedByLifeTime", OnOrbDestruction);
+        EventManager.AddEventListener(SkillEvents.ArcaneOrbDestroyedByLifeTime, OnOrbDestruction);
     }
 
     public void Execute()
@@ -66,7 +66,7 @@ public class DMM_ArcaneOrb : MonoBehaviour
         {
             _aiming = false;
             _orb = null;
-            EventManager.DispatchEvent("ArcaneDummyDestroyedByLifeTime", new object[] { this });
+            EventManager.DispatchEvent(SkillEvents.ArcaneDummyDestroyedByLifeTime, new object[] { this });
             Destroy(gameObject);
         }
     }

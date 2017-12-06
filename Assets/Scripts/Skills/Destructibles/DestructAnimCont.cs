@@ -11,13 +11,7 @@ public class DestructAnimCont : MonoBehaviour
     void Start()
     {
         _an = GetComponent<Animation>();
-        var activateObjects = transform.GetComponentsInChildren<TelekineticObject>();
         _an.clip.frameRate = 90;
-
-        foreach (var obj in activateObjects)
-        {
-            obj.ActivateFromDestruction();
-        }
     }
 
     void Update()
@@ -32,17 +26,6 @@ public class DestructAnimCont : MonoBehaviour
         {
             boundingBox.gameObject.SetActive(false);
         }
-        
-        var activateObjects = transform.GetComponentsInChildren<TelekineticObject>();
-
-        foreach (var obj in activateObjects)
-        {
-            var objTrns = obj.transform.position;
-            obj.transform.SetParent(GameObject.Find("TelekinesisObjects").transform);
-            obj.transform.localPosition = transform.InverseTransformPoint(objTrns);
-            obj.transform.position = objTrns;
-            obj.DeactivateFromDestruction();
-        }
 
         hasFinishedAnimation = true;
         StartCoroutine(CleanDebris());
@@ -52,7 +35,6 @@ public class DestructAnimCont : MonoBehaviour
     {
         var debrisList = transform.GetComponentsInChildren<Transform>()
                          .Where(x => x.gameObject != this.gameObject)
-                         .Where(x => x.GetComponent<TelekineticObject>() == null)
                          .Where(x => x.GetComponent<Debris>() == null);
 
         if (!debrisList.Any()) yield break;

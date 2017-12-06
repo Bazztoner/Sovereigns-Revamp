@@ -13,7 +13,6 @@ public class DestructibleObject : Photon.MonoBehaviour
 {
     public int life;
     public float damage;
-    public Zone zone;
 
     [HideInInspector]
     public string nickName;
@@ -35,24 +34,15 @@ public class DestructibleObject : Photon.MonoBehaviour
         allObjs.Add(this);
         isAlive = true;
 
-        if (gameObject.name == "Column" || gameObject.name == "Chandelier")
-        {
-            zone = GameObject.FindObjectsOfType<Zone>().Where(x => x.name == "MainHall").FirstOrDefault();
-        }
-        else if (gameObject.name == "Vitraux")
-        {
-            zone = GameObject.FindObjectsOfType<Zone>().Where(x => x.name == "Altar").FirstOrDefault();
-        }
-
-        EventManager.AddEventListener("DividedScreen", OnDividedScreen);
-        EventManager.AddEventListener("EndMatch", OnEndMatch);
+        EventManager.AddEventListener(GameEvents.DividedScreen, OnDividedScreen);
+        EventManager.AddEventListener(GameEvents.EndMatch, OnEndMatch);
 
     }
 
     void OnEndMatch(object[] paramsContainer)
     {
-        EventManager.RemoveEventListener("DividedScreen", OnDividedScreen);
-        EventManager.RemoveEventListener("EndMatch", OnEndMatch);
+        EventManager.RemoveEventListener(GameEvents.DividedScreen, OnDividedScreen);
+        EventManager.RemoveEventListener(GameEvents.EndMatch, OnEndMatch);
     }
 
     void OnDividedScreen(object[] paramsContainer)
@@ -89,8 +79,6 @@ public class DestructibleObject : Photon.MonoBehaviour
     {
         defaultObject.SetActive(false);
         destroyedObject.SetActive(true);
-
-        //MARTINNOTEMEENOJES();
 
         if (destructibleType == DestructibleType.DESTRUCTIBLE) GetComponentInChildren<Collider>().isTrigger = true;
         else if (destructibleType == DestructibleType.TRANSITION)

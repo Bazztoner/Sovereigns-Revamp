@@ -12,7 +12,7 @@ public class FloatingLifeBar : MonoBehaviour
     void Start()
     {
         Initialize();
-        EventManager.AddEventListener("LifeUpdate", OnLifeUpdate);
+        EventManager.AddEventListener(CharacterEvents.LifeUpdate, OnLifeUpdate);
     }
     
     void LateUpdate()
@@ -32,7 +32,7 @@ public class FloatingLifeBar : MonoBehaviour
         if(GameManager.screenDivided)
             _name = this.GetComponentInParent<PlayerInput>().gameObject.name;
         else
-            _name = this.GetComponentInParent<Enemy>().gameObject.name;
+            _name = this.GetComponentInParent<PlayerInput>().gameObject.name;
 
         _fill = this.transform.Find("Fill").GetComponent<Image>();
 

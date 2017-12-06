@@ -6,27 +6,27 @@ public class ConectionButton : MonoBehaviour {
     
 	void Start ()
     {
-        EventManager.AddEventListener("DoConnect", Deactivate);
-        EventManager.AddEventListener("DoDummyTest", Deactivate);
-        EventManager.AddEventListener("DoNotConnect", Deactivate);
-        EventManager.AddEventListener("DividedScreen", DeactivateOnSplit);
+        EventManager.AddEventListener(GameEvents.DoConnect, Deactivate);
+        EventManager.AddEventListener(GameEvents.DoDummyTest, Deactivate);
+        EventManager.AddEventListener(GameEvents.DoNotConnect, Deactivate);
+        EventManager.AddEventListener(GameEvents.DividedScreen, DeactivateOnSplit);
 	}
 
     private void Deactivate(params object[] paramsContainer)
     {
-        EventManager.RemoveEventListener("DoConnect", Deactivate);
-        EventManager.RemoveEventListener("DoDummyTest", Deactivate);
-        EventManager.RemoveEventListener("DoNotConnect", Deactivate);
-        EventManager.RemoveEventListener("DividedScreen", DeactivateOnSplit);
+        EventManager.RemoveEventListener(GameEvents.DoConnect, Deactivate);
+        EventManager.RemoveEventListener(GameEvents.DoDummyTest, Deactivate);
+        EventManager.RemoveEventListener(GameEvents.DoNotConnect, Deactivate);
+        EventManager.RemoveEventListener(GameEvents.DividedScreen, DeactivateOnSplit);
 
         this.gameObject.SetActive(false);
     }
 
     private void DeactivateOnSplit(params object[] paramsContainer)
     {
-        EventManager.RemoveEventListener("DoConnect", Deactivate);
-        EventManager.RemoveEventListener("DoDummyTest", Deactivate);
-        EventManager.RemoveEventListener("DoNotConnect", Deactivate);
-        EventManager.RemoveEventListener("DividedScreen", DeactivateOnSplit);
+        EventManager.RemoveEventListener(GameEvents.DoConnect, Deactivate);
+        EventManager.RemoveEventListener(GameEvents.DoDummyTest, Deactivate);
+        EventManager.RemoveEventListener(GameEvents.DoNotConnect, Deactivate);
+        EventManager.RemoveEventListener(GameEvents.DividedScreen, DeactivateOnSplit);
     }
 }

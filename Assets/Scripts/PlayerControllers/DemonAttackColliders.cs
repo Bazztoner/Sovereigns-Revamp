@@ -24,9 +24,9 @@ public class DemonAttackColliders : PlayerColliders
 
     protected override void AddColliderHandlerEvents()
     {
-        EventManager.AddEventListener("LeftClawAttack", OnLeftClawAttack);
-        EventManager.AddEventListener("RightClawAttack", OnRightClawAttack);
-        EventManager.AddEventListener("DualClawAttack", OnDualClawAttack);
+        EventManager.AddEventListener(PlayerColliderEvents.LeftClawAttack, OnLeftClawAttack);
+        EventManager.AddEventListener(PlayerColliderEvents.RightClawAttack, OnRightClawAttack);
+        EventManager.AddEventListener(PlayerColliderEvents.DualClawAttack, OnDualClawAttack);
     }
 
     void OnLeftClawAttack(params object[] paramsContainer)

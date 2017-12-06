@@ -7,7 +7,7 @@ public class SMB_LeftClawAttack : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //This is received by the SwordScript
-        EventManager.DispatchEvent("LeftClawAttack", animator.gameObject.name);
+        EventManager.DispatchEvent(PlayerColliderEvents.LeftClawAttack, animator.gameObject.name);
     }
 }
 

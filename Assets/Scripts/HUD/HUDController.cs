@@ -68,19 +68,18 @@ public class HUDController : Photon.MonoBehaviour
 
     void AddEvents()
     {
-        EventManager.AddEventListener("LifeUpdate", ApplyHPChanges);
-        EventManager.AddEventListener("ManaUpdate", ApplyManaChanges);
-        EventManager.AddEventListener("SpellCooldown", OnSpellCooldown);
-        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamaged);
-        EventManager.AddEventListener("GameFinished", OnGameFinished);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
-        EventManager.AddEventListener("LockOnActivated", OnLockOnActivated);
-        EventManager.AddEventListener("SetRoundText", OnSetRoundText);
-        EventManager.AddEventListener("EndOfMatch", OnEndOfMatch);
-        EventManager.AddEventListener("PlayerDeath", OnPlayerDeath);
-        EventManager.AddEventListener("UpdateComboMeter", OnCombo);
-        EventManager.AddEventListener("UISpellChanged", OnSpellChanged);
-        EventManager.AddEventListener("UIUpdateSkillState", OnUpdateSkillState);
+        EventManager.AddEventListener(CharacterEvents.LifeUpdate, ApplyHPChanges);
+        EventManager.AddEventListener(CharacterEvents.ManaUpdate, ApplyManaChanges);
+        EventManager.AddEventListener(SkillEvents.SpellCooldown, OnSpellCooldown);
+        EventManager.AddEventListener(GameEvents.GameFinished, OnGameFinished);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
+        EventManager.AddEventListener(CameraEvents.LockOnActivated, OnLockOnActivated);
+        EventManager.AddEventListener(UIEvents.SetRoundText, OnSetRoundText);
+        EventManager.AddEventListener(GameEvents.EndOfMatch, OnEndOfMatch);
+        EventManager.AddEventListener(CharacterEvents.PlayerDeath, OnPlayerDeath);
+        EventManager.AddEventListener(UIEvents.UpdateComboMeter, OnCombo);
+        EventManager.AddEventListener(UIEvents.SpellChanged, OnSpellChanged);
+        EventManager.AddEventListener(UIEvents.UpdateSkillState, OnUpdateSkillState);
     }
 
     void OnUpdateSkillState(object[] paramsContainer)
@@ -124,7 +123,6 @@ public class HUDController : Photon.MonoBehaviour
                     frames[i].color = newColor;
                 }
             }
-            EventManager.DispatchEvent("ActivateParticleSpellChanged", new object[] { (string)paramsContainer[1], pos });
         }
     }
 
@@ -263,22 +261,22 @@ public class HUDController : Photon.MonoBehaviour
 
     public void OnOnlineMode()
     {
-        EventManager.DispatchEvent("DoConnect", new object[] { true });
+        EventManager.DispatchEvent(GameEvents.DoConnect, new object[] { true });
     }
 
     public void OnOfflineMode()
     {
-        EventManager.DispatchEvent("DoNotConnect", new object[] { true });
+        EventManager.DispatchEvent(GameEvents.DoNotConnect, new object[] { true });
     }
 
     public void OnDummyTestMode()
     {
-        EventManager.DispatchEvent("DoDummyTest", new object[] { true });
+        EventManager.DispatchEvent(GameEvents.DoDummyTest, new object[] { true });
     }
 
     public void OnDividedScreen()
     {
-        EventManager.DispatchEvent("DividedScreen", new object[] { true });
+        EventManager.DispatchEvent(GameEvents.DividedScreen, new object[] { true });
         GameManager.screenDivided = true;
     }
 
@@ -511,15 +509,14 @@ public class HUDController : Photon.MonoBehaviour
 
         if ((bool)paramsContainer[0])
         {
-            EventManager.RemoveEventListener("LifeUpdate", ApplyHPChanges);
-            EventManager.RemoveEventListener("ManaUpdate", ApplyManaChanges);
-            EventManager.RemoveEventListener("SpellCooldown", OnSpellCooldown);
-            EventManager.RemoveEventListener("EnemyDamaged", OnEnemyDamaged);
-            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
-            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
-            EventManager.RemoveEventListener("LockOnActivated", OnLockOnActivated);
-            EventManager.RemoveEventListener("SetRoundText", OnSetRoundText);
-            EventManager.RemoveEventListener("EndOfMatch", OnEndOfMatch);
+            EventManager.RemoveEventListener(CharacterEvents.LifeUpdate, ApplyHPChanges);
+            EventManager.RemoveEventListener(CharacterEvents.ManaUpdate, ApplyManaChanges);
+            EventManager.RemoveEventListener(SkillEvents.SpellCooldown, OnSpellCooldown);
+            EventManager.RemoveEventListener(GameEvents.GameFinished, OnGameFinished);
+            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
+            EventManager.RemoveEventListener(CameraEvents.LockOnActivated, OnLockOnActivated);
+            EventManager.RemoveEventListener(UIEvents.SetRoundText, OnSetRoundText);
+            EventManager.RemoveEventListener(GameEvents.EndOfMatch, OnEndOfMatch);
         }
     }
 

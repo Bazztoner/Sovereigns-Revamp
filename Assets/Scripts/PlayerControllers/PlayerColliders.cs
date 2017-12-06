@@ -71,6 +71,6 @@ public class PlayerColliders : MonoBehaviour
     {
         if(activate) _actualCol = allColliders[id];
         var script = allColliders[id].GetComponent<SwordScript>();
-        EventManager.DispatchEvent("ActivateCollider", new object[] { script, activate });
+        EventManager.DispatchEvent(PlayerColliderEvents.ActivateCollider, new object[] { script, activate });
     }
 }

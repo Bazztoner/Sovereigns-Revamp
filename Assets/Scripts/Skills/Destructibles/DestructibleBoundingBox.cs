@@ -14,7 +14,6 @@ public class DestructibleBoundingBox : MonoBehaviour
         {
             //Hacer eventos para enviar daño, no manosear TakeDamage
             var dmg = transform.GetComponentInParent<DestructibleObject>().damage;
-            c.GetComponent<Enemy>().TakeDamage(dmg, "Destructible");
             gameObject.SetActive(false);
         }
         else if (c.gameObject.layer == 13)

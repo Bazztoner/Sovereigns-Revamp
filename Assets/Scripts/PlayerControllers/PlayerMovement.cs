@@ -46,22 +46,20 @@ public class PlayerMovement : Photon.MonoBehaviour {
 
     private void AddEvents()
     {
-        //EventManager.AddEventListener("Attack", OnAttack);
-        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
-        EventManager.AddEventListener("RollExit", OnRollExit);
-        EventManager.AddEventListener("DoKnockBack", OnDoKnockBack);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
+        EventManager.AddEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
+        EventManager.AddEventListener(AnimationEvents.RollExit, OnRollExit);
+        EventManager.AddEventListener(CharacterEvents.DoKnockBack, OnDoKnockBack);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
     }
 
     private void OnRestartRound(params object[] paramsContainer)
     {
         if ((bool)paramsContainer[0])
         {
-            //EventManager.RemoveEventListener("Attack", OnAttack);
-            EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
-            EventManager.RemoveEventListener("RollExit", OnRollExit);
-            EventManager.RemoveEventListener("DoKnockBack", OnDoKnockBack);
-            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+            EventManager.RemoveEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
+            EventManager.RemoveEventListener(AnimationEvents.RollExit, OnRollExit);
+            EventManager.RemoveEventListener(CharacterEvents.DoKnockBack, OnDoKnockBack);
+            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
         }
     }
     #endregion
@@ -100,7 +98,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     {
         isRolling = true;
         if (direction != Vector3.zero) transform.forward = new Vector3(transform.TransformDirection(direction).x, 0f, transform.TransformDirection(direction).z);
-        EventManager.DispatchEvent("RollingAnimation", new object[] { this.gameObject.name, isRolling });
+        EventManager.DispatchEvent(AnimationEvents.RollingAnimation, new object[] { this.gameObject.name, isRolling });
         if (!PhotonNetwork.offlineMode) photonView.RPC("SetRollingOn", PhotonTargets.All);
     }
 
@@ -129,20 +127,19 @@ public class PlayerMovement : Photon.MonoBehaviour {
         if (isRunning)
         {
             yMovement = direction.z * 2;
-            EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, true });
+            EventManager.DispatchEvent(ParticleEvents.ActivateRunParticle, new object[] { this.gameObject.name, true });
         }
         else
         {
             yMovement = direction.z;
-            EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, false });
+            EventManager.DispatchEvent(ParticleEvents.ActivateRunParticle, new object[] { this.gameObject.name, false });
         }
 
-        EventManager.DispatchEvent("RunningAnimations", new object[] { this.gameObject.name, xMovement, yMovement });
+        EventManager.DispatchEvent(AnimationEvents.RunningAnimations, new object[] { this.gameObject.name, xMovement, yMovement });
     }
 
     private void DoKnockBack()
     {
-        //EventManager.DispatchEvent("GuardBreak", new object[] { gameObject.name });
         _rigid.AddForce(Enemy.forward * _knockBackForce * Time.deltaTime, ForceMode.Impulse);
     }
     #endregion

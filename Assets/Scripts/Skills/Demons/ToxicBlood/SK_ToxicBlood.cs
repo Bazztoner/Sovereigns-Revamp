@@ -5,7 +5,6 @@ using System.Linq;
 
 public class SK_ToxicBlood : ISpell
 {
-    public const string spellName = "ToxicBlood";
     CastType _castType;
 
     LayerMask _layerMask;
@@ -79,7 +78,7 @@ public class SK_ToxicBlood : ISpell
 
         _dummy.Execute(GetLaunchDirection());
 
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, _owner });
+        EventManager.DispatchEvent(SkillEvents.SpellCasted, new object[] { manaCost, _owner });
     }
 
     public Vector3 GetLaunchDirection()

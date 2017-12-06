@@ -161,14 +161,13 @@ public class CamRotationController : MonoBehaviour
 
     private void AddEvents()
     {
-        EventManager.AddEventListener("ChangeStateDestuctibleProjections", ActivateProjections);
-        EventManager.AddEventListener("GameFinished", OnGameFinished);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
-        EventManager.AddEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
-        EventManager.AddEventListener("StunShake", OnStun);
-        EventManager.AddEventListener("StopStunCamera", OnStopStun);
-        EventManager.AddEventListener("StartBlinkFeedback", OnActivateBlink);
-        EventManager.AddEventListener("ToxicDamageParticle", OnToxicDamage);
+        EventManager.AddEventListener(SkillEvents.ChangeStateDestuctibleProjections, ActivateProjections);
+        EventManager.AddEventListener(GameEvents.GameFinished, OnGameFinished);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
+        EventManager.AddEventListener(CameraEvents.StunShake, OnStun);
+        EventManager.AddEventListener(CameraEvents.StopStunCamera, OnStopStun);
+        EventManager.AddEventListener(CameraEvents.StartBlinkFeedback, OnActivateBlink);
+        EventManager.AddEventListener(ParticleEvents.ToxicDamageParticle, OnToxicDamage);
     }
 
     void OnToxicDamage(object[] paramsContainer)
@@ -245,13 +244,7 @@ public class CamRotationController : MonoBehaviour
         }
         else
         {
-            var enems = GameObject.FindObjectsOfType<Enemy>();
-
-            foreach (var enem in enems)
-            {
-                if (enem.transform != _character)
-                    return enem.transform;
-            }
+            return null;
         }
 
         return null;
@@ -274,7 +267,7 @@ public class CamRotationController : MonoBehaviour
         var sender = (string)paramsContainer[1];
         var activate = (bool)paramsContainer[0];
 
-        if (_owner == sender /*&& showProjections != activate*/)
+        if (_owner == sender)
         {
             showProjections = activate;
         }
@@ -293,12 +286,12 @@ public class CamRotationController : MonoBehaviour
 
         if ((bool)paramsContainer[0])
         {
-            EventManager.RemoveEventListener("ChangeStateDestuctibleProjections", ActivateProjections);
-            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
-            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
-            EventManager.RemoveEventListener("TransitionSmoothCameraUpdate", OnTransitionSmoothUpdate);
-            EventManager.RemoveEventListener("StunShake", OnStun);
-            EventManager.RemoveEventListener("StopStunCamera", OnStopStun);
+            EventManager.RemoveEventListener(SkillEvents.ChangeStateDestuctibleProjections, ActivateProjections);
+            EventManager.RemoveEventListener(GameEvents.GameFinished, OnGameFinished);
+            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
+            EventManager.RemoveEventListener(CameraEvents.StunShake, OnStun);
+            EventManager.RemoveEventListener(CameraEvents.StopStunCamera, OnStopStun);
+            EventManager.RemoveEventListener(CameraEvents.StartBlinkFeedback, OnActivateBlink);
 
         }
     }
@@ -402,13 +395,13 @@ public class CamRotationController : MonoBehaviour
         {
             _lockOn = true;
             smoothCamera = false;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { _character.gameObject.name, _lockOn, _lockPosition, GetCamera });
+            EventManager.DispatchEvent(CameraEvents.LockOnActivated, new object[] { _character.gameObject.name, _lockOn, _lockPosition, GetCamera });
         }
         else if (_lockOn)
         {
             _lockOn = false;
             smoothCamera = true;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { _character.gameObject.name, _lockOn });
+            EventManager.DispatchEvent(CameraEvents.LockOnActivated, new object[] { _character.gameObject.name, _lockOn });
         }
     }
 
@@ -417,7 +410,7 @@ public class CamRotationController : MonoBehaviour
         if (Vector3.Distance(_character.position, Enemy.position) > lockOnDistance)
         {
             _lockOn = false;
-            EventManager.DispatchEvent("LockOnActivated", new object[] { _character.gameObject.name, _lockOn });
+            EventManager.DispatchEvent(CameraEvents.LockOnActivated, new object[] { _character.gameObject.name, _lockOn });
         }
     }
 
@@ -476,7 +469,6 @@ public class CamRotationController : MonoBehaviour
             {
                 List<DestructibleObject> inRangeObj = dstruc.Where(x => x != null
                                                                  && x.isAlive
-                                                                 && x.zone == TransitionManager.instance.currentZone
                                                                  && Vector3.Distance(x.transform.position, transform.position) <= destructibleDistance
                                                                  && x.destructibleType != DestructibleType.TRANSITION
                                                                  /*&& x.GetComponentInChildren<Renderer>().isVisible*/)
@@ -592,235 +584,7 @@ public class CamRotationController : MonoBehaviour
     }
     #endregion
 
-    #region Transition
-    /// <summary>
-    /// 0 - Is Start?
-    /// </summary>
-    /// <param name="paramsContainer"></param>
-    void OnTransitionCameraUpdate(object[] paramsContainer)
-    {
-        /*var start = (bool)paramsContainer[0];
-
-        Camera subCam;
-        Vector2 originalPosCam1 = GetCamera.rect.position;
-        Vector2 originalPosCam2;
-
-        var lerpTime = .2f;
-
-        if (_proyectionLayer == Utilities.IntLayers.VISIBLETOP1)
-        {
-            subCam = GetCamera.transform.FindChild("SubCam1").GetComponent<Camera>();
-            originalPosCam2 = subCam.rect.position;
-
-            if (start)
-            {
-                _offset = new Vector2(-.5f, 1f);
-
-                StartCoroutine(LerpRect(GetCamera, originalPosCam1, _offset, lerpTime));
-                StartCoroutine(LerpRect(subCam, originalPosCam2, _offset, lerpTime));
-            }
-            else
-            {
-                _offset = new Vector2(0f, 1f);
-
-                StartCoroutine(LerpRect(GetCamera, _offset, originalPosCam1, lerpTime));
-                StartCoroutine(LerpRect(subCam, _offset, originalPosCam2, lerpTime));
-            }
-        }
-        else
-        {
-            subCam = GetCamera.transform.FindChild("SubCam2").GetComponent<Camera>();
-            originalPosCam2 = subCam.rect.position;
-
-            if (start)
-            {
-                _offset = new Vector2(1f, 0f);
-
-                StartCoroutine(LerpRect(GetCamera, originalPosCam1, _offset, lerpTime));
-                StartCoroutine(LerpRect(subCam, originalPosCam2, _offset, lerpTime));
-            }
-            else
-            {
-                _offset = new Vector2(.5f, 0f);
-
-                StartCoroutine(LerpRect(GetCamera, _offset, originalPosCam1, lerpTime));
-                StartCoroutine(LerpRect(subCam, _offset, originalPosCam2, lerpTime));
-            }
-
-        }
-        */
-        /*StartCoroutine(TransitionCameraUpdate(GetCamera, .5f));
-        StartCoroutine(TransitionCameraUpdate(subCam, .5f));*/
-    }
-
-    /// Camera's offset in screen coordinates (animate this using your favourite method). 
-    /// Zero means no effect. Axes may be swapped from what you expect. 
-    /// Experiment with values between -1 and 1. public Vector2 offset;
-
-    void MoveCameraRect(Camera cam)
-    {
-        var r = new Rect(0f, 0f, 1f, 1f);
-        var alignFactor = Vector2.one;
-
-        if (_offset.y >= 0f)
-        {
-            // Sliding down
-            r.height = 1f - _offset.y;
-            alignFactor.y = 1f;
-        }
-        else
-        {
-            // Sliding up
-            r.y = -_offset.y;
-            r.height = 1f + _offset.y;
-            alignFactor.y = -1f;
-        }
-
-        if (_offset.x >= 0f)
-        {
-            // Sliding right
-            r.width = 1f - _offset.x;
-            alignFactor.x = 1f;
-        }
-        else
-        {
-            // Sliding left
-            r.x = -_offset.x;
-            r.width = 1f + _offset.x;
-            alignFactor.x = -1f;
-        }
-
-        // Avoid division by zero
-        if (r.width == 0f)
-        {
-            r.width = 0.001f;
-        }
-        if (r.height == 0f)
-        {
-            r.height = 0.001f;
-        }
-
-        // Set the camera's render rectangle to r, but use the normal projection matrix
-        // This works around Unity modifying the projection matrix to correct for the aspect ratio
-        // (which is normally desirable behaviour, but interferes with this effect)
-        cam.rect = new Rect(0, 0, 1, 1);
-        cam.ResetProjectionMatrix();
-        var m = cam.projectionMatrix;
-        cam.rect = r;
-
-        // The above has caused the scene render to be squashed into the rectangle r.
-        // Apply a scale factor to un-squash it.
-        // The translation factor aligns the top of the scene to the top of the view
-        // (without this, the view is of the middle of the scene)
-        var m2 = Matrix4x4.TRS(
-            new Vector3(alignFactor.x * (-1 / r.width + 1), alignFactor.y * (-1 / r.height + 1), 0),
-            Quaternion.identity,
-            new Vector3(1 / r.width, 1 / r.height, 1));
-
-        cam.projectionMatrix = m2 * m;
-    }
-
-    void MoveCameraRect(Camera cam, Vector2 offst)
-    {
-        var r = new Rect(0f, 0f, 1f, .5f);
-        var alignFactor = Vector2.one;
-
-        if (offst.y >= 0f)
-        {
-            // Sliding down
-            r.height = 1f - offst.y;
-            alignFactor.y = 1f;
-        }
-        else
-        {
-            // Sliding up
-            r.y = -offst.y;
-            r.height = 1f + offst.y;
-            alignFactor.y = -1f;
-        }
-
-        if (offst.x >= 0f)
-        {
-            // Sliding right
-            r.width = 1f - offst.x;
-            alignFactor.x = 1f;
-        }
-        else
-        {
-            // Sliding left
-            r.x = -offst.x;
-            r.width = 1f + offst.x;
-            alignFactor.x = -1f;
-        }
-
-        // Avoid division by zero
-        if (r.width == 0f)
-        {
-            r.width = 0.001f;
-        }
-        if (r.height == 0f)
-        {
-            r.height = 0.001f;
-        }
-
-        // Set the camera's render rectangle to r, but use the normal projection matrix
-        // This works around Unity modifying the projection matrix to correct for the aspect ratio
-        // (which is normally desirable behaviour, but interferes with this effect)
-        cam.rect = new Rect(0, 0, 1f, .5f);
-        //cam.ResetProjectionMatrix();
-        //var m = cam.projectionMatrix;
-        cam.rect = r;
-
-        // The above has caused the scene render to be squashed into the rectangle r.
-        // Apply a scale factor to un-squash it.
-        // The translation factor aligns the top of the scene to the top of the view
-        // (without this, the view is of the middle of the scene)
-        /*var m2 = Matrix4x4.TRS(
-            new Vector3(alignFactor.x * (-1f / r.width + .5f), alignFactor.y * (-1f / r.height + 1f), 0),
-            Quaternion.identity,
-            new Vector3(1f / r.width, 1.5f / r.height, 1f));
-
-        cam.projectionMatrix = m2 * m;*/
-    }
-
-    #endregion
-
     #region Coroutines
-    IEnumerator LerpRectPosition(Camera cam, float maxTime)
-    {
-        var i = 0f;
-
-        while (i <= 1)
-        {
-            i += Time.deltaTime / maxTime;
-            MoveCameraRect(cam);
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    IEnumerator LerpCameraRect(Camera cam, float maxTime)
-    {
-        var i = 0f;
-
-        while (i <= 1)
-        {
-            i += Time.deltaTime / maxTime;
-            MoveCameraRect(cam);
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    IEnumerator TransitionCameraUpdate(Camera cam, float maxTime)
-    {
-        var i = 0f;
-        while (i <= 1)
-        {
-            i += Time.deltaTime / maxTime;
-            var offst = Vector2.Lerp(_offset, new Vector2(-_offset.x, 0), i);
-            MoveCameraRect(cam, offst);
-            yield return new WaitForEndOfFrame();
-        }
-    }
 
     IEnumerator LerpCameraFOV(float startValue, float endValue, float maxTime)
     {

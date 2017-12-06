@@ -7,33 +7,33 @@ public class PlayerSoundControl : MonoBehaviour
 {
     void Start()
     {
-        EventManager.AddEventListener("CharacterDamaged", OnDamaged);
-        EventManager.AddEventListener("Stun", OnStun);
-        EventManager.AddEventListener("PlayerDeath", OnAngelDeath);
+        EventManager.AddEventListener(CharacterEvents.CharacterDamaged, OnDamaged);
+        EventManager.AddEventListener(CharacterEvents.Stun, OnStun);
+        EventManager.AddEventListener(CharacterEvents.PlayerDeath, OnPlayerDeath);
     }
     
     void OnSwordSoundStart()
     {
-        EventManager.DispatchEvent("Sword Sound");
+        EventManager.DispatchEvent(SoundEvents.SwordSound);
     }
 
     void OnShieldBashSound()
     {
-        EventManager.DispatchEvent("Shield Bash Sound");
+        EventManager.DispatchEvent(SoundEvents.ShieldBashSound);
     }
 
     void OnDamaged(params object[] info)
     {
-        EventManager.DispatchEvent("Angel Damaged");
+        EventManager.DispatchEvent(SoundEvents.PlayerDamaged);
     }
 
     void OnStun(params object[] info)
     {
-        EventManager.DispatchEvent("Stun Sound");
+        EventManager.DispatchEvent(SoundEvents.StunSound);
     }
 
-    void OnAngelDeath(object[] paramsContainer)
+    void OnPlayerDeath(object[] paramsContainer)
     {
-        EventManager.DispatchEvent("Angel Death");
+        EventManager.DispatchEvent(SoundEvents.PlayerDeath);
     }
 }

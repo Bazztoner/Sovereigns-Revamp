@@ -8,6 +8,6 @@ public class StunStateBehaviour : StateMachineBehaviour
     {
         animator.SetBool("isStunned", false);
         animator.SetFloat("stunSpeed", 1);
-        EventManager.DispatchEvent("StopStun", new object[] { animator.gameObject.name });
+        EventManager.DispatchEvent(AnimationEvents.StopStun, new object[] { animator.gameObject.name });
     }
 }

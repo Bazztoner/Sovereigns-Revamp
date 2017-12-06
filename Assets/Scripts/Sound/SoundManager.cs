@@ -17,12 +17,12 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        EventManager.AddEventListener("Sword Sound", OnSwordAttack);
-        EventManager.AddEventListener("Shield Bash Sound", OnShieldBash);
-        EventManager.AddEventListener("Angel Block Sound", OnAngelBlock);
-        EventManager.AddEventListener("Stun Sound", OnStun);
-        EventManager.AddEventListener("Angel Damaged", OnAngelDamaged);
-        EventManager.AddEventListener("Angel Death", OnAngelDeath);
+        EventManager.AddEventListener(SoundEvents.SwordSound, OnSwordAttack);
+        EventManager.AddEventListener(SoundEvents.ShieldBashSound, OnShieldBash);
+        EventManager.AddEventListener(SoundEvents.BlockSound, OnAngelBlock);
+        EventManager.AddEventListener(SoundEvents.StunSound, OnStun);
+        EventManager.AddEventListener(SoundEvents.PlayerDamaged, OnPlayerDamaged);
+        EventManager.AddEventListener(SoundEvents.PlayerDeath, OnPlayerDeath);
     }
 
     void OnSwordAttack(params object[] info)
@@ -45,12 +45,12 @@ public class SoundManager : MonoBehaviour
         PlaySound(stun);
     }
 
-    void OnAngelDamaged(params object[] info)
+    void OnPlayerDamaged(params object[] info)
     {
         PlaySound(angelDamage, Random.Range(0.95f, 1.1f));
     }
 
-    void OnAngelDeath(params object[] info)
+    void OnPlayerDeath(params object[] info)
     {
         PlaySound(angelDeath);
     }

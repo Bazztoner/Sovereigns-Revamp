@@ -17,21 +17,21 @@ public class AnimationController : MonoBehaviour
 
     private void AddEvents()
     {
-        EventManager.AddEventListener("RunningAnimations", OnRunningAnimations);
-        EventManager.AddEventListener("RollingAnimation", OnRollingAnimation);
-        EventManager.AddEventListener("Blocking", OnBlocking);
-        EventManager.AddEventListener("X", OnX);
-        EventManager.AddEventListener("Y", OnY);
-        EventManager.AddEventListener("DoubleEdgedScaleCasted", OnDoubleEdged);
-        EventManager.AddEventListener("ToxicBloodCasted", OnEscupidaSexual);
-        EventManager.AddEventListener("DoubleEdgedScaleStopCasted", OnDoubleEdgedStop);
-        EventManager.AddEventListener("ToxicBloodStopCasted", OnEscupidaSexualStop);
-        EventManager.AddEventListener("IsDead", OnIsDead);
-        EventManager.AddEventListener("IsDamaged", OnIsDamaged);
-        EventManager.AddEventListener("GuardBreak", OnGuardBreak);
-        EventManager.AddEventListener("StunParticle", OnStun);
-        EventManager.AddEventListener("StopStun", OnStopStun);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
+        EventManager.AddEventListener(AnimationEvents.RunningAnimations, OnRunningAnimations);
+        EventManager.AddEventListener(AnimationEvents.RollingAnimation, OnRollingAnimation);
+        EventManager.AddEventListener(AnimationEvents.Blocking, OnBlocking);
+        EventManager.AddEventListener(AnimationEvents.X, OnX);
+        EventManager.AddEventListener(AnimationEvents.Y, OnY);
+        EventManager.AddEventListener(SkillEvents.DoubleEdgedScalesCasted, OnDoubleEdged);
+        EventManager.AddEventListener(SkillEvents.ToxicBloodCasted, OnToxicBloodCasted);
+        EventManager.AddEventListener(SkillEvents.DoubleEdgedScaleStopCasted, OnDoubleEdgedStop);
+        EventManager.AddEventListener(SkillEvents.ToxicBloodStopCasted, OnToxicBloodEnded);
+        EventManager.AddEventListener(CharacterEvents.IsDead, OnIsDead);
+        EventManager.AddEventListener(CharacterEvents.IsDamaged, OnIsDamaged);
+        EventManager.AddEventListener(CharacterEvents.GuardBreak, OnGuardBreak);
+        EventManager.AddEventListener(ParticleEvents.StunParticle, OnStun);
+        EventManager.AddEventListener(AnimationEvents.StopStun, OnStopStun);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
     }
 
     void OnDoubleEdged(object[] paramsContainer)
@@ -42,7 +42,7 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    void OnEscupidaSexual(object[] paramsContainer)
+    void OnToxicBloodCasted(object[] paramsContainer)
     {
         if (gameObject.name == (string)paramsContainer[0])
         {
@@ -58,7 +58,7 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    void OnEscupidaSexualStop(object[] paramsContainer)
+    void OnToxicBloodEnded(object[] paramsContainer)
     {
         if (gameObject.name == (string)paramsContainer[0])
         {
@@ -69,7 +69,7 @@ public class AnimationController : MonoBehaviour
     //For the fucking block+Y
     void OnAttackEnter()
     {
-        EventManager.DispatchEvent("AttackEnter", new object[] { gameObject.name, GetComponent<PlayerCombat>().heavyAttackDamage });
+        EventManager.DispatchEvent(AnimationEvents.AttackEnter, new object[] { gameObject.name, GetComponent<PlayerCombat>().heavyAttackDamage });
     }
 
     void OnStun(object[] paramsContainer)
@@ -191,16 +191,16 @@ public class AnimationController : MonoBehaviour
 
         if ((bool)paramsContainer[0])
         {
-            EventManager.RemoveEventListener("RunningAnimations", OnRunningAnimations);
-            EventManager.RemoveEventListener("RollingAnimation", OnRollingAnimation);
-            EventManager.RemoveEventListener("Blocking", OnBlocking);
-            EventManager.RemoveEventListener("X", OnX);
-            EventManager.RemoveEventListener("Y", OnY);
-            EventManager.RemoveEventListener("IsDead", OnIsDead);
-            EventManager.RemoveEventListener("IsDamaged", OnIsDamaged);
-            EventManager.RemoveEventListener("GuardBreak", OnGuardBreak);
-            EventManager.RemoveEventListener("StunParticle", OnStun);
-            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+            EventManager.RemoveEventListener(AnimationEvents.RunningAnimations, OnRunningAnimations);
+            EventManager.RemoveEventListener(AnimationEvents.RollingAnimation, OnRollingAnimation);
+            EventManager.RemoveEventListener(AnimationEvents.Blocking, OnBlocking);
+            EventManager.RemoveEventListener(AnimationEvents.X, OnX);
+            EventManager.RemoveEventListener(AnimationEvents.Y, OnY);
+            EventManager.RemoveEventListener(CharacterEvents.IsDead, OnIsDead);
+            EventManager.RemoveEventListener(CharacterEvents.IsDamaged, OnIsDamaged);
+            EventManager.RemoveEventListener(CharacterEvents.GuardBreak, OnGuardBreak);
+            EventManager.RemoveEventListener(ParticleEvents.StunParticle, OnStun);
+            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
         }
     }
 }

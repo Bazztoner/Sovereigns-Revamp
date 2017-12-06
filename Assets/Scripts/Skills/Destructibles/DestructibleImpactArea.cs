@@ -14,8 +14,8 @@ public class DestructibleImpactArea : MonoBehaviour
 
     void Start()
     {
-        EventManager.AddEventListener("GameStarted", OnBeginGame);
-        EventManager.AddEventListener("EndMatch", OnEndMatch);
+        EventManager.AddEventListener(GameEvents.GameStarted, OnBeginGame);
+        EventManager.AddEventListener(GameEvents.EndMatch, OnEndMatch);
     }
 
     void OnBeginGame(object[] paramsContainer)
@@ -30,8 +30,8 @@ public class DestructibleImpactArea : MonoBehaviour
 
     void OnEndMatch(object[] paramsContainer)
     {
-        EventManager.RemoveEventListener("BeginGame", OnBeginGame);
-        EventManager.RemoveEventListener("EndMatch", OnEndMatch);
+        EventManager.RemoveEventListener(GameEvents.GameStarted, OnBeginGame);
+        EventManager.RemoveEventListener(GameEvents.EndMatch, OnEndMatch);
     }
 
     void FindCamera()

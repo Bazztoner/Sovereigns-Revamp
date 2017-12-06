@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerParticles : Photon.MonoBehaviour
 {
-
     private Transform _skillPos;
     GameObject _runParticle;
     GameObject _blinkTrail;
@@ -40,15 +39,14 @@ public class PlayerParticles : Photon.MonoBehaviour
 
     void AddEvents()
     {
-        EventManager.AddEventListener("ActivateRunParticle", OnActivateRunning);
-        EventManager.AddEventListener("GameFinished", OnGameFinished);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
-        //EventManager.AddEventListener("ActivateBlinkTrail", OnActivateBlink);
+        EventManager.AddEventListener(ParticleEvents.ActivateRunParticle, OnActivateRunning);
+        EventManager.AddEventListener(GameEvents.GameFinished, OnGameFinished);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
     }
 
     void OnGameFinished(object[] paramsContainer)
     {
-        EventManager.RemoveEventListener("ActivateRunParticle", OnActivateRunning);
+        EventManager.RemoveEventListener(ParticleEvents.ActivateRunParticle, OnActivateRunning);
         _blinkTrail.SetActive(false);
         _runParticle.SetActive(false);
     }
@@ -57,9 +55,9 @@ public class PlayerParticles : Photon.MonoBehaviour
     {
         if ((bool)paramsContainer[0])
         {
-            EventManager.RemoveEventListener("ActivateRunParticle", OnActivateRunning);
-            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
-            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+            EventManager.RemoveEventListener(ParticleEvents.ActivateRunParticle, OnActivateRunning);
+            EventManager.RemoveEventListener(GameEvents.GameFinished, OnGameFinished);
+            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
         }
     }
 

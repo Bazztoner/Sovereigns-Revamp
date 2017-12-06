@@ -95,7 +95,7 @@ public class AtractiveTelekinesis : ISpell
         _target = null;
         _hasObject = false;
 
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
+        EventManager.DispatchEvent(SkillEvents.SpellCasted, new object[] { manaCost });
     }
 
     void PullObject(Transform me)
@@ -108,7 +108,7 @@ public class AtractiveTelekinesis : ISpell
         _target = null;
         _hasObject = false;
 
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, me.GetComponentInParent<PlayerInput>().gameObject.name });
+        EventManager.DispatchEvent(SkillEvents.SpellCasted, new object[] { manaCost, me.GetComponentInParent<PlayerInput>().gameObject.name });
     }
 
     void PullObject()
@@ -122,7 +122,7 @@ public class AtractiveTelekinesis : ISpell
         _target = null;
         _hasObject = false;
 
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost });
+        EventManager.DispatchEvent(SkillEvents.SpellCasted, new object[] { manaCost });
     }
 
     #region "Getters"
