@@ -25,10 +25,10 @@ public class AngelAttackColliders : PlayerColliders
 
     protected override void AddColliderHandlerEvents()
     {
-        EventManager.AddEventListener("NormalSlash", OnNormalSlash);
-        EventManager.AddEventListener("BigSlash", OnBigSlash);
-        EventManager.AddEventListener("NormalShield", OnNormalShield);
-        EventManager.AddEventListener("BigShield", OnBigShield);
+        EventManager.AddEventListener(PlayerColliderEvents.NormalSlash, OnNormalSlash);
+        EventManager.AddEventListener(PlayerColliderEvents.BigSlash, OnBigSlash);
+        EventManager.AddEventListener(PlayerColliderEvents.NormalShield, OnNormalShield);
+        EventManager.AddEventListener(PlayerColliderEvents.BigShield, OnBigShield);
     }
 
     void OnNormalSlash(params object[] paramsContainer)

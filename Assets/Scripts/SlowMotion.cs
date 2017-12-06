@@ -10,8 +10,7 @@ public class SlowMotion : MonoBehaviour
 
     void Start()
     {
-        EventManager.AddEventListener("CharacterDamaged", Activate);
-        EventManager.AddEventListener("DummyDamaged", Activate);
+        EventManager.AddEventListener(CharacterEvents.CharacterDamaged, Activate);
     }
 
     public static void DestroyInstance()

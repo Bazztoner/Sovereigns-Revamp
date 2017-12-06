@@ -5,7 +5,6 @@ using System.Linq;
 
 public class SK_ArcaneOrb : ISpell
 {
-    public const string spellName = "ArcaneOrb";
     CastType _castType;
 
     LayerMask _layerMask;
@@ -50,7 +49,7 @@ public class SK_ArcaneOrb : ISpell
         _cooldown = _orbCreationCooldown;
 
         manaCost = _orbCreationManaCost;
-        EventManager.AddEventListener("ArcaneDummyDestroyedByLifeTime", OnDummyDestruction);
+        EventManager.AddEventListener(SkillEvents.ArcaneDummyDestroyedByLifeTime, OnDummyDestruction);
     }
 
     public void Init(PlayerMovement character)
@@ -93,7 +92,7 @@ public class SK_ArcaneOrb : ISpell
 
         _dummy.Execute(GetLaunchDirection());
 
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, _owner });
+        EventManager.DispatchEvent(SkillEvents.SpellCasted, new object[] { manaCost, _owner });
 
         if (!_hasOrb)
         {

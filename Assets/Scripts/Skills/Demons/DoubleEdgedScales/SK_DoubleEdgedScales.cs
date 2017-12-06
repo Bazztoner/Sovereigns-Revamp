@@ -5,7 +5,6 @@ using System.Linq;
 
 public class SK_DoubleEdgedScales : ISpell
 {
-    public const string spellName = "DoubleEdgedScales";
     CastType _castType;
 
     LayerMask _layerMask;
@@ -80,8 +79,8 @@ public class SK_DoubleEdgedScales : ISpell
 
         _dummy.Execute();
 
-        EventManager.DispatchEvent("SpellCasted", new object[] { manaCost, _owner });
-        EventManager.DispatchEvent("DoubleEdgedScalesCasted", new object[] { _owner, _unableToBlockTime});
+        EventManager.DispatchEvent(SkillEvents.SpellCasted, new object[] { manaCost, _owner });
+        EventManager.DispatchEvent(SkillEvents.DoubleEdgedScalesCasted, new object[] { _owner, _unableToBlockTime});
     }
 
     public Vector3 GetLaunchDirection()

@@ -11,15 +11,15 @@ public class NetworkManager : MonoBehaviour {
 	void Start ()
     {
         _spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
-        EventManager.AddEventListener("DoConnect", OnDoConnect);
-        EventManager.AddEventListener("DoNotConnect", OnDoNotConnect);
-        EventManager.AddEventListener("DoDummyTest", OnDoNotConnect);
-        EventManager.AddEventListener("DividedScreen", OnDoNotConnect);
+        EventManager.AddEventListener(GameEvents.DoConnect, OnDoConnect);
+        EventManager.AddEventListener(GameEvents.DoNotConnect, OnDoNotConnect);
+        EventManager.AddEventListener(GameEvents.DoDummyTest, OnDoNotConnect);
+        EventManager.AddEventListener(GameEvents.DividedScreen, OnDoNotConnect);
     }
 
     private void OnDoConnect(params object[] paramsContainer)
     {
-        offlineMode = false;
+        offlineMode = true;
         Connect();
     }
 
@@ -39,7 +39,7 @@ public class NetworkManager : MonoBehaviour {
         else
         {
             PhotonNetwork.offlineMode = true;
-            EventManager.DispatchEvent("BeginGame");
+            EventManager.DispatchEvent(GameEvents.BeginGame);
         }
     }
 
@@ -76,7 +76,7 @@ public class NetworkManager : MonoBehaviour {
         if (PhotonNetwork.room.PlayerCount == 2)
         {
             SpawnPlayer();
-            EventManager.DispatchEvent("GameStarted");
+            EventManager.DispatchEvent(GameEvents.GameStarted);
         } 
     }
 

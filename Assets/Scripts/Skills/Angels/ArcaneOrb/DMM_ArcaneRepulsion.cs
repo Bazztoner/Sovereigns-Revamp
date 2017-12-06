@@ -31,6 +31,6 @@ public class DMM_ArcaneRepulsion : MonoBehaviour
             target.GetComponent<PlayerStats>().TakeDamage(_damage, "Spell", caster);
         }
 
-        EventManager.DispatchEvent("RepulsiveTelekinesisCasted", new object[] { skillPos.position, skillPos.GetComponentInParent<PlayerParticles>() });
+        EventManager.DispatchEvent(SkillEvents.RepulsiveTelekinesisCasted, new object[] { skillPos.position, skillPos.GetComponentInParent<PlayerParticles>() });
     }
 }

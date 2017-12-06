@@ -14,10 +14,8 @@ public class DestructiblePopupGraphic : MonoBehaviour
 
     void Start()
     {
-        EventManager.AddEventListener("GameStarted", OnBeginGame);
-        EventManager.AddEventListener("EndMatch", OnEndMatch);
-        EventManager.AddEventListener("TransitionActivation", OnTransitionActivation);
-
+        EventManager.AddEventListener(GameEvents.GameStarted, OnBeginGame);
+        EventManager.AddEventListener(GameEvents.EndMatch, OnEndMatch);
     }
 
     void OnBeginGame(object[] paramsContainer)
@@ -32,8 +30,8 @@ public class DestructiblePopupGraphic : MonoBehaviour
 
     void OnEndMatch(object[] paramsContainer)
     {
-        EventManager.RemoveEventListener("BeginGame", OnBeginGame);
-        EventManager.RemoveEventListener("EndMatch", OnEndMatch);
+        EventManager.RemoveEventListener(GameEvents.BeginGame, OnBeginGame);
+        EventManager.RemoveEventListener(GameEvents.EndMatch, OnEndMatch);
     }
 
     void GetValues()

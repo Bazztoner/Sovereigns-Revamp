@@ -25,8 +25,8 @@ public class DividedScreen : MonoBehaviour {
         _player1 = transform.Find("Player1");
         _player2 = transform.Find("Player2");
 
-        EventManager.AddEventListener("DividedScreen", OnDividedScreen);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
+        EventManager.AddEventListener(GameEvents.DividedScreen, OnDividedScreen);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
 	}
 
     private void OnDividedScreen(params object[] paramsContainer)
@@ -42,7 +42,7 @@ public class DividedScreen : MonoBehaviour {
 
         SetPlayerStartingColors();
 
-        EventManager.DispatchEvent("GameStarted");
+        EventManager.DispatchEvent(GameEvents.GameStarted);
     }
 
     void SetPlayerStartingColors()

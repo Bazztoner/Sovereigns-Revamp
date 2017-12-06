@@ -22,16 +22,13 @@ public class ParticleManager : MonoBehaviour
 
     void Start()
     {
-        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
-        EventManager.AddEventListener("StunParticle", OnStunParticle);
-        EventManager.AddEventListener("GuardBreakParticle", OnGuardBreakParticle);
-        EventManager.AddEventListener("BlockParticle", OnBlockParticle);
-        EventManager.AddEventListener("ToxicDamageParticle", OnToxicDamageParticle);
-        EventManager.AddEventListener("EnemyDamaged", OnEnemyDamage);
-        EventManager.AddEventListener("TelekinesisObjectPulled", OnObjectPulled);
-        EventManager.AddEventListener("SpellBeingCasted", OnSpellBeingCasted);
-        EventManager.AddEventListener("ActivateParticleSpellChanged", OnSpellChanged);
-        EventManager.AddEventListener("RepulsiveTelekinesisCasted", OnRepulsiveTelekinesisCasted);
+        EventManager.AddEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
+        EventManager.AddEventListener(ParticleEvents.StunParticle, OnStunParticle);
+        EventManager.AddEventListener(ParticleEvents.GuardBreakParticle, OnGuardBreakParticle);
+        EventManager.AddEventListener(ParticleEvents.BlockParticle, OnBlockParticle);
+        EventManager.AddEventListener(ParticleEvents.ToxicDamageParticle, OnToxicDamageParticle);
+        EventManager.AddEventListener(SkillEvents.SpellBeingCasted, OnSpellBeingCasted);
+        EventManager.AddEventListener(SkillEvents.RepulsiveTelekinesisCasted, OnRepulsiveTelekinesisCasted);
     }
 
     void OnSpellChanged(object[] paramsContainer)
@@ -188,33 +185,6 @@ public class ParticleManager : MonoBehaviour
 
         if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Blood", pos);
         else caster.ParticleCaller(parts[(int)ParticleID.PlayerEntityDamage].gameObject, pos);
-    }
-
-    void OnEnemyDamage(object[] paramsContainer)
-    {
-        var caster = (Enemy)paramsContainer[1];
-        var tempPos = (Vector3)paramsContainer[0];
-        var pos = new Vector3(tempPos.x, tempPos.y + 0.66f, tempPos.z);
-
-        caster.ParticleCaller(parts[(int)ParticleID.PlayerEntityDamage].gameObject, pos);
-    }
-
-    void OnObjectPulled(object[] paramsContainer)
-    {
-        var caster = (PlayerParticles)paramsContainer[1];
-        var tempPos = (Transform)paramsContainer[0];
-
-        var inst = caster.ParticleCaller(parts[(int)ParticleID.MagicAura].gameObject, tempPos);
-
-        inst.transform.localPosition = Vector3.zero;
-        inst.name = parts[(int)ParticleID.MagicAura].gameObject.name;
-    }
-
-    void OnObjectLaunched(object[] paramsContainer)
-    {
-        var caster = (PlayerParticles)paramsContainer[1];
-
-        var obj = caster.ParticleDestroyer(parts[(int)ParticleID.MagicAura].gameObject.name);
     }
 }
 

@@ -56,18 +56,17 @@ public class Blink : ISpell
 
         if (to != default(Transform))
         {
-            EventManager.DispatchEvent("ActivateBlinkTrail", new object[] { _me.gameObject.name });
-            EventManager.DispatchEvent("StartBlinkFeedback", new object[] { _me.GetComponent<PlayerInput>().GetCamera });
+            EventManager.DispatchEvent(CameraEvents.StartBlinkFeedback, new object[] { _me.GetComponent<PlayerInput>().GetCamera });
 
             _me.transform.position = to.position;
             var fTemp = _enemy.position - _me.transform.position;
             _me.transform.forward = new Vector3(fTemp.x, _me.transform.forward.y, _me.transform.forward.z);
 
-            EventManager.DispatchEvent("SpellCasted", new object[] { _manaCost, _me.gameObject.name });
+            EventManager.DispatchEvent(SkillEvents.SpellCasted, new object[] { _manaCost, _me.gameObject.name });
         }
         else
         {
-            EventManager.DispatchEvent("SpellCasted", new object[] { 0, _me.gameObject.name });
+            EventManager.DispatchEvent(SkillEvents.SpellCasted, new object[] { 0, _me.gameObject.name });
         }
        
     }

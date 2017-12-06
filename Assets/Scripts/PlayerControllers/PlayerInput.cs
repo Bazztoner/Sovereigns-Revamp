@@ -46,14 +46,13 @@ public class PlayerInput : MonoBehaviour
     {
         LockCursor();
         Initialize();
-        EventManager.AddEventListener("GameFinished", OnGameFinished);
-        EventManager.AddEventListener("TransitionBlockInputs", OnTransition);
-        EventManager.AddEventListener("Stun", OnStun);
-        EventManager.AddEventListener("StopStun", OnStopStun);
-        EventManager.AddEventListener("GuardBreak", OnGuardBreak);
-        EventManager.AddEventListener("DoubleEdgedScalesCasted", OnDoubleEdgedScalesCasted);
-        EventManager.AddEventListener("SpecialAttack", OnSpecialAttack);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
+        EventManager.AddEventListener(GameEvents.GameFinished, OnGameFinished);
+        EventManager.AddEventListener(CharacterEvents.Stun, OnStun);
+        EventManager.AddEventListener(AnimationEvents.StopStun, OnStopStun);
+        EventManager.AddEventListener(CharacterEvents.GuardBreak, OnGuardBreak);
+        EventManager.AddEventListener(SkillEvents.DoubleEdgedScalesCasted, OnDoubleEdgedScalesCasted);
+        EventManager.AddEventListener(AnimationEvents.SpecialAttack, OnSpecialAttack);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
     }
 
     void Update()
@@ -147,13 +146,12 @@ public class PlayerInput : MonoBehaviour
 
         if ((bool)paramsContainer[0])
         {
-            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
-            EventManager.RemoveEventListener("TransitionBlockInputs", OnTransition);
-            EventManager.RemoveEventListener("Stun", OnStun);
-            EventManager.RemoveEventListener("StopStun", OnStopStun);
-            EventManager.RemoveEventListener("GuardBreak", OnGuardBreak);
-            EventManager.RemoveEventListener("SpecialAttack", OnSpecialAttack);
-            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+            EventManager.RemoveEventListener(GameEvents.GameFinished, OnGameFinished);
+            EventManager.RemoveEventListener(CharacterEvents.Stun, OnStun);
+            EventManager.RemoveEventListener(AnimationEvents.StopStun, OnStopStun);
+            EventManager.RemoveEventListener(CharacterEvents.GuardBreak, OnGuardBreak);
+            EventManager.RemoveEventListener(AnimationEvents.SpecialAttack, OnSpecialAttack);
+            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
         }
         else FindCamera();
     }
@@ -274,8 +272,8 @@ public class PlayerInput : MonoBehaviour
                     _ps.EnvironmentalSkill();
                 else if (InputManager.instance.GetClassSkill())
                     _ps.ClassSkill();
-                /*else if (!_ps.isPulling && InputManager.instance.GetUniversalSkill())
-                 _ps.UniversalSkill();*/
+                else if (InputManager.instance.GetUniversalSkill())
+                 _ps.UniversalSkill();
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetMovementSkill())
                     _ps.MovementSkill(_pst.mana);
                 else if (InputManager.instance.GetUseSkill())
@@ -295,7 +293,7 @@ public class PlayerInput : MonoBehaviour
     {
         if ((string)paramsContainer[0] == this.gameObject.name)
         {
-            EventManager.DispatchEvent("GuardBreakParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
+            EventManager.DispatchEvent(ParticleEvents.GuardBreakParticle, new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
 
             _canBlock = false;
             Invoke("BlockEnable", (float)paramsContainer[1]);
@@ -314,8 +312,8 @@ public class PlayerInput : MonoBehaviour
     {
         if ((string)paramsContainer[0] != this.gameObject.name)
         {
-            EventManager.DispatchEvent("StunParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
-            EventManager.DispatchEvent("StunShake", new object[] { GetCamera.transform, (float)paramsContainer[1], _canBlock });
+            EventManager.DispatchEvent(ParticleEvents.StunParticle, new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
+            EventManager.DispatchEvent(CameraEvents.StunShake, new object[] { GetCamera.transform, (float)paramsContainer[1], _canBlock });
 
             _isStun = true;
             Invoke("StopStun", (float)paramsContainer[1]);
@@ -326,7 +324,7 @@ public class PlayerInput : MonoBehaviour
     {
         if ((string)paramsContainer[0] != this.gameObject.name)
         {
-            EventManager.DispatchEvent("GuardBreakParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
+            EventManager.DispatchEvent(ParticleEvents.GuardBreakParticle, new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), (float)paramsContainer[1] });
 
             _canBlock = false;
             Invoke("BlockEnable", (float)paramsContainer[1]);
@@ -374,7 +372,7 @@ public class PlayerInput : MonoBehaviour
 
     private void StopStun()
     {
-        EventManager.DispatchEvent("StopStunCamera", new object[] { gameObject.name, GetCamera.transform });
+        EventManager.DispatchEvent(CameraEvents.StopStunCamera, new object[] { gameObject.name, GetCamera.transform });
     }
     #endregion
 }

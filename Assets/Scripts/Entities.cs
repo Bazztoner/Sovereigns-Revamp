@@ -9,10 +9,10 @@ public class Entities : MonoBehaviour {
 
 	void Start ()
     {
-        EventManager.AddEventListener("DoConnect", OnDoConnect);
-        EventManager.AddEventListener("DoNotConnect", OnDoNotConnect);
-        EventManager.AddEventListener("DoDummyTest", OnDoDummyTest);
-        EventManager.AddEventListener("DividedScreen", OnDoConnect);
+        EventManager.AddEventListener(GameEvents.DoConnect, OnDoConnect);
+        EventManager.AddEventListener(GameEvents.DoNotConnect, OnDoNotConnect);
+        EventManager.AddEventListener(GameEvents.DoDummyTest, OnDoDummyTest);
+        EventManager.AddEventListener(GameEvents.DividedScreen, OnDoConnect);
 	}
 
     private void OnDoConnect(params object[] paramsContainer)

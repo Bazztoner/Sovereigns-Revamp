@@ -19,18 +19,18 @@ public class PlayerCombat : Photon.MonoBehaviour
 
     void Start()
     {
-        EventManager.AddEventListener("IdleEnter", OnIdleEnter);
-        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
+        EventManager.AddEventListener(AnimationEvents.IdleEnter, OnIdleEnter);
+        EventManager.AddEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
     }
 
     private void OnRestartRound(params object[] paramsContainer)
     {
         if ((bool)paramsContainer[0])
         {
-            EventManager.RemoveEventListener("IdleEnter", OnIdleEnter);
-            EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
-            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+            EventManager.RemoveEventListener(AnimationEvents.IdleEnter, OnIdleEnter);
+            EventManager.RemoveEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
+            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
         }
     }
 
@@ -40,7 +40,7 @@ public class PlayerCombat : Photon.MonoBehaviour
     {
         isAttacking = true;
 
-        EventManager.DispatchEvent("X", new object[] { this.gameObject.name, true });
+        EventManager.DispatchEvent(AnimationEvents.X, new object[] { this.gameObject.name, true });
 
         SetAttack();
 
@@ -52,7 +52,7 @@ public class PlayerCombat : Photon.MonoBehaviour
     {
         isAttacking = true;
 
-        EventManager.DispatchEvent("Y", new object[] { this.gameObject.name, true });
+        EventManager.DispatchEvent(AnimationEvents.Y, new object[] { this.gameObject.name, true });
 
         SetAttack();
 
@@ -63,8 +63,8 @@ public class PlayerCombat : Photon.MonoBehaviour
     private void SetAttack()
     {
         isBlocking = false;
-        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking, isBlockingUp });
-        EventManager.DispatchEvent("ActivateRunParticle", new object[] { this.gameObject.name, false });
+        EventManager.DispatchEvent(AnimationEvents.Blocking, new object[] { this.gameObject.name, isBlocking, isBlockingUp });
+        EventManager.DispatchEvent(ParticleEvents.ActivateRunParticle, new object[] { this.gameObject.name, false });
     }
 
     /// <summary>Makes the character block up or mid</summary>
@@ -72,14 +72,14 @@ public class PlayerCombat : Photon.MonoBehaviour
     {
         isBlocking = true;
         isBlockingUp = blockUp;
-        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking, blockUp });
+        EventManager.DispatchEvent(AnimationEvents.Blocking, new object[] { this.gameObject.name, isBlocking, blockUp });
     }
 
     /// <summary>Makes the character stop blocking</summary>
     public void StopBlock()
     {
         isBlocking = false;
-        EventManager.DispatchEvent("Blocking", new object[] { this.gameObject.name, isBlocking, false });
+        EventManager.DispatchEvent(AnimationEvents.Blocking, new object[] { this.gameObject.name, isBlocking, false });
     }
     #endregion
 
@@ -89,7 +89,7 @@ public class PlayerCombat : Photon.MonoBehaviour
         if (this.gameObject.name == (string)paramsContainer[0])
         {
             isAttacking = false;
-            EventManager.DispatchEvent("AttackExit");
+            EventManager.DispatchEvent(AnimationEvents.AttackExit);
         }
     }
 
@@ -97,20 +97,19 @@ public class PlayerCombat : Photon.MonoBehaviour
     private void OnAttackEnter(string param)
     {
         ///Recibe el evento del AnimEvent. Esto selecciona qué collider va a utilizar.
-        print("param " + param);
         EventManager.DispatchEvent(param, gameObject.name);
     }
 
     //Resive el animation event de los ataques, y trae por parametro el daño que hace, el cual esta configurado desde las animaciones mismas.
     private void OnAttackEnter(int dmg)
     {
-        EventManager.DispatchEvent("AttackEnter", new object[] { this.gameObject.name, dmg });
+        EventManager.DispatchEvent(AnimationEvents.AttackEnter, new object[] { this.gameObject.name, dmg });
     }
     
 
     private void OnAttackExit()
     {
-        EventManager.DispatchEvent("AttackExit");
+        EventManager.DispatchEvent(AnimationEvents.AttackExit);
     }
 
     private void OnCharacterDamaged(params object[] paramsContainer)

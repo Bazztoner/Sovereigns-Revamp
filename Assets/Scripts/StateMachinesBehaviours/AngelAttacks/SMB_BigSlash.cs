@@ -7,6 +7,6 @@ public class SMB_BigSlash : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //This is received by the SwordScript
-        EventManager.DispatchEvent("BigSlash", animator.gameObject.name);
+        EventManager.DispatchEvent(PlayerColliderEvents.BigSlash, animator.gameObject.name);
     }
 }

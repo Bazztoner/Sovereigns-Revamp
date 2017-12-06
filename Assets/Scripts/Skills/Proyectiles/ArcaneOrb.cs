@@ -52,7 +52,7 @@ public class ArcaneOrb : MonoBehaviour
 
     void DeathTimer()
     {
-        EventManager.DispatchEvent("ArcaneOrbDestroyedByLifeTime", new object[] { this });
+        EventManager.DispatchEvent(SkillEvents.ArcaneOrbDestroyedByLifeTime, new object[] { this });
         ApplyAreaOfEffect();
         CancelInvoke();
         Destroy(gameObject);
@@ -83,7 +83,6 @@ public class ArcaneOrb : MonoBehaviour
                     if (comp != null) comp.TakeDamage(damage, "Spell", _owner);
                     ApplyAreaOfEffect();
                     CancelInvoke();
-                    print(col.transform.name);
                     Destroy(gameObject);
                 }
             }

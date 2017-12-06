@@ -14,11 +14,11 @@ public class RollBehaviour : StateMachineBehaviour {
         
         if (PhotonNetwork.offlineMode)
         {
-            EventManager.DispatchEvent("RollExit", new object[] { animator.gameObject.name });
+            EventManager.DispatchEvent(AnimationEvents.RollExit, new object[] { animator.gameObject.name });
         }
         else if (animator.gameObject.GetComponent<PlayerInput>().enabled)
         {
-            EventManager.DispatchEvent("RollExit", new object[] { animator.gameObject.name });
+            EventManager.DispatchEvent(AnimationEvents.RollExit, new object[] { animator.gameObject.name });
         }
     }
 }

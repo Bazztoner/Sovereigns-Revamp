@@ -23,8 +23,8 @@ public class GameManager : Photon.MonoBehaviour
     void Start()
     {
         _maxTime = time;
-        EventManager.AddEventListener("GameStarted", OnGameStarted);
-        EventManager.AddEventListener("PlayerDeath", OnPlayerDied);
+        EventManager.AddEventListener(GameEvents.GameStarted, OnGameStarted);
+        EventManager.AddEventListener(CharacterEvents.PlayerDeath, OnPlayerDied);
     }
 
     private void OnGameStarted(params object[] paramsContainer)
@@ -34,7 +34,6 @@ public class GameManager : Photon.MonoBehaviour
         _player1Score = 0;
         _player2Score = 0;
         time = _maxTime;
-        //InvokeRepeating("DiscountTime", 1f, 1f);
         if (!GameManager.screenDivided) photonView.RPC("StartGame", PhotonTargets.All);
         else
         {
@@ -57,8 +56,6 @@ public class GameManager : Photon.MonoBehaviour
     private void OnPlayerDied(params object[] paramsContainer)
     {
         var message = (string)paramsContainer[0] + " has lost the match";
-        //if (!PhotonNetwork.offlineMode) photonView.RPC("RpcEndGame", PhotonTargets.All, message, (string)paramsContainer[0]);
-        //else if (GameManager.screenDivided) EndGame((string)paramsContainer[0]);
         if (GameManager.screenDivided) EndGame((string)paramsContainer[0]);
     }
 
@@ -88,7 +85,7 @@ public class GameManager : Photon.MonoBehaviour
             _isGameStarted = false;
             CancelInvoke();
             print(message);
-            EventManager.DispatchEvent("GameFinished", new object[] { player });
+            EventManager.DispatchEvent(GameEvents.GameFinished, new object[] { player });
         }
     }
 
@@ -119,34 +116,31 @@ public class GameManager : Photon.MonoBehaviour
 
         if (_round >= _maxRound || ((_player1Score >= (_maxRound / 2) + 1) || (_player2Score >= (_maxRound / 2) + 1)))
         {
-            EventManager.DispatchEvent("EndOfMatch", new object[] { _player1Score, _player2Score });
+            EventManager.DispatchEvent(GameEvents.EndOfMatch, new object[] { _player1Score, _player2Score });
             Invoke("EndMatch", _restartTime);
         }
         else
         {
-            EventManager.DispatchEvent("GameFinished", new object[] { player });
+            EventManager.DispatchEvent(GameEvents.GameFinished, new object[] { player });
             Invoke("RestartRound", _restartTime);
         }
     }
 
     private void RestartRound()
     {
-        EventManager.DispatchEvent("RestartRound", new object[] { false });
-        EventManager.DispatchEvent("SetRoundText", new object[] { _round });
+        EventManager.DispatchEvent(GameEvents.RestartRound, new object[] { false });
+        EventManager.DispatchEvent(UIEvents.SetRoundText, new object[] { _round });
         time = _maxTime;
         _isGameStarted = true;
-        //InvokeRepeating("DiscountTime", 1f, 1f);
     }
 
     private void EndMatch()
     {
-        EventManager.DispatchEvent("EndMatch");
+        EventManager.DispatchEvent(GameEvents.EndMatch);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
         DestructibleObject.DeleteAllObjs();
-        TransitionManager.DeleteInstance();
-        TelekineticObject.DeleteAllObjs();
         ParticleManager.DestroyInstance();
         SlowMotion.DestroyInstance();
         EventManager.ClearAllEvents();

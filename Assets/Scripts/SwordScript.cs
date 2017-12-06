@@ -29,16 +29,11 @@ public class SwordScript : MonoBehaviour
         AddAttackTypeEvents();
     }
 
-    private void Update()
-    {
-       if(_isActive) print("Activate " + _isActive.ToString() + " " + gameObject.name);
-    }
-
     void AddAttackEvents()
     {
-        EventManager.AddEventListener("ActivateCollider", OnActivateCollider);
-        EventManager.AddEventListener("AttackEnter", OnAttackEnter);
-        EventManager.AddEventListener("AttackExit", OnAttackExit);
+        EventManager.AddEventListener(PlayerColliderEvents.ActivateCollider, OnActivateCollider);
+        EventManager.AddEventListener(AnimationEvents.AttackEnter, OnAttackEnter);
+        EventManager.AddEventListener(AnimationEvents.AttackExit, OnAttackExit);
     }
 
     void OnActivateCollider(object[] paramsContainer)
@@ -48,16 +43,15 @@ public class SwordScript : MonoBehaviour
             var activate = (bool)paramsContainer[1];
             _isActive = activate;
             ActivateTrail(_isActive);
-            print("Activate " + gameObject.name + activate.ToString());
         }
     }
 
     void AddAttackTypeEvents()
     {
-        EventManager.AddEventListener("HorizontalAttack", OnHorizontalAttack);
-        EventManager.AddEventListener("VerticalAttack", OnVerticalAttack);
-        EventManager.AddEventListener("ParryAttack", OnParryAttack);
-        EventManager.AddEventListener("GuardBreakAttack", OnGuardBreakAttack);
+        EventManager.AddEventListener(AnimationEvents.HorizontalAttack, OnHorizontalAttack);
+        EventManager.AddEventListener(AnimationEvents.VerticalAttack, OnVerticalAttack);
+        EventManager.AddEventListener(AnimationEvents.ParryAttack, OnParryAttack);
+        EventManager.AddEventListener(AnimationEvents.GuardBreakAttack, OnGuardBreakAttack);
     }
     
     //Recive el evento que dispara el PlayerCombat desde el OnAttackEnter, y setea el daño que debe causar en el siguiente golpe que conecte, y activa el _isDetecting para saber que tiene
@@ -205,10 +199,6 @@ public class SwordScript : MonoBehaviour
                 //Esto es algo parecido a lo que hace con el daño. Lo que hace es que si el multiplicador esta en 15 por ejemplo, 
                 //lo que va a ganar de mana es igual al daño que recibio multiplicado por 2.5
                 other.gameObject.GetComponentInParent<PlayerStats>().RegainMana(damage / 2 * mult);
-            }
-            else if (other.gameObject.GetComponentInParent<Enemy>() != null)
-            {
-                other.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage, "Melee");
             }
         }
     }

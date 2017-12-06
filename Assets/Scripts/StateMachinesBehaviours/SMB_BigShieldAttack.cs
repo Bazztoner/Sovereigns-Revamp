@@ -8,13 +8,13 @@ public class SMB_BigShieldAttack : StateMachineBehaviour
     {
         //This is received by the PlayerStats.
         animator.SetBool("isBlocking", false);
-        EventManager.DispatchEvent("SpecialAttack", new object[] { animator.gameObject.name, false });
-        EventManager.DispatchEvent("ParryAttack", new object[] { animator.gameObject.name });
+        EventManager.DispatchEvent(AnimationEvents.SpecialAttack, new object[] { animator.gameObject.name, false });
+        EventManager.DispatchEvent(AnimationEvents.ParryAttack, new object[] { animator.gameObject.name });
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //This is received by the PlayerStats.
-        EventManager.DispatchEvent("SpecialAttack", new object[] { animator.gameObject.name, true });
+        EventManager.DispatchEvent(AnimationEvents.SpecialAttack, new object[] { animator.gameObject.name, true });
     }
 }

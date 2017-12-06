@@ -6,6 +6,6 @@ public class IdleStateBehaviour : StateMachineBehaviour {
     
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        EventManager.DispatchEvent("IdleEnter", new object[] { animator.gameObject.name });
+        EventManager.DispatchEvent(AnimationEvents.IdleEnter, new object[] { animator.gameObject.name });
     }
 }

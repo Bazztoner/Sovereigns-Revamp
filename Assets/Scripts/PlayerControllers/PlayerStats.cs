@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerStats : Photon.MonoBehaviour
 {
-
     private bool _gameInCourse;
     private bool _isBlocking = false;
     private bool _isBlockingUp = false;
@@ -15,6 +14,8 @@ public class PlayerStats : Photon.MonoBehaviour
     private float _perfectBlockPerc = 10f;
     private float _imperfectBlockPerc = 45f;
     private float _stunTime = 1.2f;
+    float _attackSpeed;
+    float _amplifiedDamagePercentage = 1;
 
     [HideInInspector]
     public bool isDamaged = false;
@@ -43,8 +44,8 @@ public class PlayerStats : Photon.MonoBehaviour
             {
                 hp = 0;
                 CancelInvoke();
-                if (!PhotonNetwork.offlineMode && !isDead) EventManager.DispatchEvent("PlayerDeath", new object[] { PhotonNetwork.player.NickName });
-                else if (GameManager.screenDivided && !isDead) EventManager.DispatchEvent("PlayerDeath", new object[] { this.gameObject.name });
+                if (!PhotonNetwork.offlineMode && !isDead) EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { PhotonNetwork.player.NickName });
+                else if (GameManager.screenDivided && !isDead) EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { this.gameObject.name });
                 isDead = true;
             }
             else hp = value;
@@ -67,8 +68,10 @@ public class PlayerStats : Photon.MonoBehaviour
     {
         AddEvents();
         _gameInCourse = true;
-        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, Mana / maxMana, this.gameObject.name });
+        EventManager.DispatchEvent(CharacterEvents.ManaUpdate, new object[] { Mana, Mana / maxMana, this.gameObject.name });
         //InvokeRepeating("Regenerate", _regenMult, _regenMult);
+
+        var _attackSpeed = GetComponent<Animator>().GetFloat("attackSpeed");
     }
 
     #region Initialization
@@ -86,20 +89,21 @@ public class PlayerStats : Photon.MonoBehaviour
 
     private void AddEvents()
     {
-        EventManager.AddEventListener("SpellCasted", OnSpellCasted);
-        EventManager.AddEventListener("GameFinished", OnGameFinished);
-        EventManager.AddEventListener("Blocking", OnBlocking);
-        EventManager.AddEventListener("PlayerDeath", OnPlayerDeath);
-        EventManager.AddEventListener("CharacterDamaged", OnCharacterDamaged);
-        EventManager.AddEventListener("DamageExit", OnDamageExit);
-        EventManager.AddEventListener("KnockBackEnter", OnKnockBackEnter);
-        EventManager.AddEventListener("KnockBackExit", OnKnockBackExit);
-        EventManager.AddEventListener("SpecialAttack", OnSpecialAttackUpdate);
-        EventManager.AddEventListener("RestartRound", OnRestartRound);
-        //EventManager.AddEventListener("StunAttackEnter", OnStunAttackEnter);
-        //EventManager.AddEventListener("StunAttackExit", OnStunAttackExit);
+        EventManager.AddEventListener(SkillEvents.SpellCasted, OnSpellCasted);
+        EventManager.AddEventListener(GameEvents.GameFinished, OnGameFinished);
+        EventManager.AddEventListener(AnimationEvents.Blocking, OnBlocking);
+        EventManager.AddEventListener(CharacterEvents.PlayerDeath, OnPlayerDeath);
+        EventManager.AddEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
+        EventManager.AddEventListener(AnimationEvents.DamageExit, OnDamageExit);
+        EventManager.AddEventListener(AnimationEvents.KnockBackEnter, OnKnockBackEnter);
+        EventManager.AddEventListener(AnimationEvents.KnockBackExit, OnKnockBackExit);
+        EventManager.AddEventListener(AnimationEvents.SpecialAttack, OnSpecialAttackUpdate);
+        EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
+        EventManager.AddEventListener(SkillEvents.HolyVigorizationCasted, OnHolyVigorizationCasted);
+        EventManager.AddEventListener(SkillEvents.HolyVigorizationEnded, OnHolyVigorizationEnded);
     }
 
+    
     public void ApplyPlayerStartingColor(AngelArmorColor color)
     {
         color.transform.SetParent(transform);
@@ -113,14 +117,14 @@ public class PlayerStats : Photon.MonoBehaviour
     {
         Mana -= cost;
         float fill = Mana / maxMana;
-        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
+        EventManager.DispatchEvent(CharacterEvents.ManaUpdate, new object[] { Mana, fill, this.gameObject.name });
     }
 
     public void RegainMana(float regained)
     {
         Mana += regained;
         float fill = Mana / maxMana;
-        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, fill, this.gameObject.name });
+        EventManager.DispatchEvent(CharacterEvents.ManaUpdate, new object[] { Mana, fill, this.gameObject.name });
     }
 
     void LoseHP(float damage, string attackType, string attackerName)
@@ -136,20 +140,20 @@ public class PlayerStats : Photon.MonoBehaviour
         {
             if (_isBlockingUp)
             {
-                dmg = (_imperfectBlockPerc * damage) / 100;
-                EventManager.DispatchEvent("BlockSound");
-                if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+                dmg = (_imperfectBlockPerc * damage * _amplifiedDamagePercentage) / 100;
+                EventManager.DispatchEvent(SoundEvents.BlockSound);
+                if (_isKnockBackAttack) EventManager.DispatchEvent(CharacterEvents.DoKnockBack, new object[] { this.gameObject.name });
                 blockPhase = 2;
             }
             else if (_isBlocking)
             {
-                dmg = (_perfectBlockPerc * damage) / 100;
-                EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+                dmg = (_perfectBlockPerc * damage * _amplifiedDamagePercentage) / 100;
+                EventManager.DispatchEvent(CharacterEvents.Stun, new object[] { this.gameObject.name, _stunTime });
                 blockPhase = 2;
             }
             else
             {
-                dmg = damage;
+                dmg = damage * _amplifiedDamagePercentage;
                 blockPhase = 0;
             }
         }
@@ -157,37 +161,37 @@ public class PlayerStats : Photon.MonoBehaviour
         {
             if (_isBlockingUp)
             {
-                dmg = (_perfectBlockPerc * damage) / 100;
-                EventManager.DispatchEvent("Stun", new object[] { this.gameObject.name, _stunTime });
+                dmg = (_perfectBlockPerc * damage * _amplifiedDamagePercentage) / 100;
+                EventManager.DispatchEvent(CharacterEvents.Stun, new object[] { this.gameObject.name, _stunTime });
                 blockPhase = 2;
             }
             else if (_isBlocking)
             {
-                dmg = (_imperfectBlockPerc * damage) / 100;
-                EventManager.DispatchEvent("BlockSound");
-                if (_isKnockBackAttack) EventManager.DispatchEvent("DoKnockBack", new object[] { this.gameObject.name });
+                dmg = (_imperfectBlockPerc * damage * _amplifiedDamagePercentage) / 100;
+                EventManager.DispatchEvent(SoundEvents.BlockSound);
+                if (_isKnockBackAttack) EventManager.DispatchEvent(CharacterEvents.DoKnockBack, new object[] { this.gameObject.name });
                 blockPhase = 2;
             }
             else
             {
-                dmg = damage;
+                dmg = damage * _amplifiedDamagePercentage;
                 blockPhase = 0;
             }
         }
         else if (attackType == "ParryAttack")
         {
-            if (GetComponent<PlayerCombat>().isAttacking) EventManager.DispatchEvent("Stun", new object[] { attackerName, _stunTime });
-            dmg = 10;
+            if (GetComponent<PlayerCombat>().isAttacking) EventManager.DispatchEvent(CharacterEvents.Stun, new object[] { attackerName, _stunTime });
+            dmg = 10 * _amplifiedDamagePercentage;
             blockPhase = 0;
         }
         else if (attackType == "GuardBreakAttack")
         {
             if (_isBlocking || _isBlockingUp)
             {
-                EventManager.DispatchEvent("GuardBreak", new object[] { attackerName, _stunTime * 2 });
-                EventManager.DispatchEvent("Stun", new object[] { attackerName, _stunTime });
+                EventManager.DispatchEvent(CharacterEvents.GuardBreak, new object[] { attackerName, _stunTime * 2 });
+                EventManager.DispatchEvent(CharacterEvents.Stun, new object[] { attackerName, _stunTime });
             }
-            dmg = damage * 1.6f;
+            dmg = damage * 1.6f * _amplifiedDamagePercentage;
             blockPhase = 0;
         }
         else if (attackType == "Spell")
@@ -208,19 +212,19 @@ public class PlayerStats : Photon.MonoBehaviour
 
         if (blockPhase == 0)
         {
-            EventManager.DispatchEvent("CharacterDamaged", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType, uncancelableAttack });
-            EventManager.DispatchEvent("UpdateComboMeter", new object[] { this.gameObject.name });
+            EventManager.DispatchEvent(CharacterEvents.CharacterDamaged, new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>(), attackType, uncancelableAttack });
+            EventManager.DispatchEvent(UIEvents.UpdateComboMeter, new object[] { this.gameObject.name });
         }
         else if (blockPhase == 1)
         {
-            EventManager.DispatchEvent("ToxicDamageParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
-            EventManager.DispatchEvent("UpdateComboMeter", new object[] { this.gameObject.name });
+            EventManager.DispatchEvent(ParticleEvents.ToxicDamageParticle, new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
+            EventManager.DispatchEvent(UIEvents.UpdateComboMeter, new object[] { this.gameObject.name });
         }
-        else EventManager.DispatchEvent("BlockParticle", new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
+        else EventManager.DispatchEvent(ParticleEvents.BlockParticle, new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
 
         float fill = (Hp - dmg) / maxHp;
         if (fill < 0) fill = 0;
-        EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, (dmg > Hp ? 0 : Hp - dmg), fill });
+        EventManager.DispatchEvent(CharacterEvents.LifeUpdate, new object[] { this.gameObject.name, (dmg > Hp ? 0 : Hp - dmg), fill });
         Hp = dmg >= Hp ? 0 : Hp - dmg;
 
         GetComponent<PlayerInput>().GetCamera.ShakeCamera(1f, .3f);
@@ -229,7 +233,7 @@ public class PlayerStats : Photon.MonoBehaviour
     {
         Hp += regained;
         float fill = Hp / maxHp;
-        EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, fill });
+        EventManager.DispatchEvent(CharacterEvents.LifeUpdate, new object[] { this.gameObject.name, Hp, fill });
     }
 
     public void TakeDamage(float damage, string attackType, string attackerName)
@@ -262,6 +266,26 @@ public class PlayerStats : Photon.MonoBehaviour
         }
     }
 
+    IEnumerator HolyVigorizationDuration(float duration, float amplifyDamageIncrement, float atkSpeedIncrement)
+    {
+        var oldIncomingDamagePercentage = _amplifiedDamagePercentage;
+        var oldAtkSpeed = _attackSpeed;
+
+        _amplifiedDamagePercentage = amplifyDamageIncrement;
+        _attackSpeed = atkSpeedIncrement;
+
+        GetComponent<Animator>().SetFloat("attackSpeed", _attackSpeed);
+
+        yield return new WaitForSeconds(duration);
+
+        _amplifiedDamagePercentage = oldIncomingDamagePercentage;
+        _attackSpeed = oldAtkSpeed;
+
+        GetComponent<Animator>().SetFloat("attackSpeed", _attackSpeed);
+
+        EventManager.DispatchEvent(SkillEvents.HolyVigorizationEnded, gameObject.name);
+    }
+
     private void Regenerate()
     {
         if (hp < maxHp || mana < maxMana)
@@ -279,8 +303,8 @@ public class PlayerStats : Photon.MonoBehaviour
         Mana = 0;
         var hpFill = Hp / maxHp;
         var manaFill = Mana / maxMana;
-        EventManager.DispatchEvent("LifeUpdate", new object[] { this.gameObject.name, Hp, hpFill });
-        EventManager.DispatchEvent("ManaUpdate", new object[] { Mana, manaFill, this.gameObject.name });
+        EventManager.DispatchEvent(CharacterEvents.LifeUpdate, new object[] { this.gameObject.name, Hp, hpFill });
+        EventManager.DispatchEvent(CharacterEvents.ManaUpdate, new object[] { Mana, manaFill, this.gameObject.name });
 
         var ssCont = GameObject.Find("SpawnSpots");
 
@@ -292,19 +316,18 @@ public class PlayerStats : Photon.MonoBehaviour
         if (!(bool)paramsContainer[0])
         {
             _gameInCourse = true;
-            //InvokeRepeating("Regenerate", _regenMult, _regenMult);
         }
         else
         {
-            EventManager.RemoveEventListener("SpellCasted", OnSpellCasted);
-            EventManager.RemoveEventListener("GameFinished", OnGameFinished);
-            EventManager.RemoveEventListener("Blocking", OnBlocking);
-            EventManager.RemoveEventListener("PlayerDeath", OnPlayerDeath);
-            EventManager.RemoveEventListener("CharacterDamaged", OnCharacterDamaged);
-            EventManager.RemoveEventListener("KnockBackEnter", OnKnockBackEnter);
-            EventManager.RemoveEventListener("KnockBackExit", OnKnockBackExit);
-            EventManager.RemoveEventListener("SpecialAttack", OnSpecialAttackUpdate);
-            EventManager.RemoveEventListener("RestartRound", OnRestartRound);
+            EventManager.RemoveEventListener(SkillEvents.SpellCasted, OnSpellCasted);
+            EventManager.RemoveEventListener(GameEvents.GameFinished, OnGameFinished);
+            EventManager.RemoveEventListener(AnimationEvents.Blocking, OnBlocking);
+            EventManager.RemoveEventListener(CharacterEvents.PlayerDeath, OnPlayerDeath);
+            EventManager.RemoveEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
+            EventManager.RemoveEventListener(AnimationEvents.KnockBackEnter, OnKnockBackEnter);
+            EventManager.RemoveEventListener(AnimationEvents.KnockBackExit, OnKnockBackExit);
+            EventManager.RemoveEventListener(AnimationEvents.SpecialAttack, OnSpecialAttackUpdate);
+            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
 
             this.gameObject.SetActive(false);
         }
@@ -337,7 +360,7 @@ public class PlayerStats : Photon.MonoBehaviour
         if (this.gameObject.name == (string)paramsContainer[0])
         {
             CancelInvoke();
-            EventManager.DispatchEvent("IsDead", new object[] { this.gameObject.name, true });
+            EventManager.DispatchEvent(CharacterEvents.IsDead, new object[] { this.gameObject.name, true });
         }
 
         if (!PhotonNetwork.offlineMode) photonView.RPC("SetDeathOn", PhotonTargets.All);
@@ -360,7 +383,7 @@ public class PlayerStats : Photon.MonoBehaviour
             isDamaged = !(bool)paramsContainer[4];
             _isBlocking = false;
             _isBlockingUp = false;
-            EventManager.DispatchEvent("IsDamaged", new object[] { this.gameObject.name, isDamaged });
+            EventManager.DispatchEvent(CharacterEvents.IsDamaged, new object[] { this.gameObject.name, isDamaged });
 
             if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOn", PhotonTargets.All);
         }
@@ -371,7 +394,7 @@ public class PlayerStats : Photon.MonoBehaviour
         if (this.gameObject.name == (string)paramasContainer[0])
         {
             isDamaged = false;
-            EventManager.DispatchEvent("IsDamaged", new object[] { this.gameObject.name, isDamaged });
+            EventManager.DispatchEvent(CharacterEvents.IsDamaged, new object[] { this.gameObject.name, isDamaged });
 
             if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOff", PhotonTargets.All);
         }
@@ -410,5 +433,28 @@ public class PlayerStats : Photon.MonoBehaviour
             uncancelableAttack = activate;
         }
     }
+
+    void OnHolyVigorizationEnded(object[] paramsContainer)
+    {
+        var sender = (string)paramsContainer[0];
+        if (sender == gameObject.name)
+        {
+
+        }
+    }
+
+    void OnHolyVigorizationCasted(object[] paramsContainer)
+    {
+        var sender = (string)paramsContainer[0];
+        if (sender == gameObject.name)
+        {
+            var duration = (float)paramsContainer[1];
+            var amplifyDamageIncrement = (float)paramsContainer[2];
+            var attackSpeedIncrement = (float)paramsContainer[3];
+
+            StartCoroutine(HolyVigorizationDuration(duration, amplifyDamageIncrement, attackSpeedIncrement));
+        }
+    }
+
     #endregion
 }
