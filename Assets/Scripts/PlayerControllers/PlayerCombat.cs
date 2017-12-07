@@ -105,7 +105,7 @@ public class PlayerCombat : Photon.MonoBehaviour
     {
         EventManager.DispatchEvent(AnimationEvents.AttackEnter, new object[] { this.gameObject.name, dmg });
     }
-    
+
 
     private void OnAttackExit()
     {

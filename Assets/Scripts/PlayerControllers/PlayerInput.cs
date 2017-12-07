@@ -273,7 +273,7 @@ public class PlayerInput : MonoBehaviour
                 else if (InputManager.instance.GetClassSkill())
                     _ps.ClassSkill();
                 else if (InputManager.instance.GetUniversalSkill())
-                 _ps.UniversalSkill();
+                    _ps.UniversalSkill();
                 else if (_pm.CheckEnemyDistance(_cam) && InputManager.instance.GetMovementSkill())
                     _ps.MovementSkill(_pst.mana);
                 else if (InputManager.instance.GetUseSkill())
@@ -331,7 +331,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
     #endregion
-    
+
     void BlockEnable()
     {
         _canBlock = true;

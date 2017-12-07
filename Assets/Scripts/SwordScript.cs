@@ -53,7 +53,7 @@ public class SwordScript : MonoBehaviour
         EventManager.AddEventListener(AnimationEvents.ParryAttack, OnParryAttack);
         EventManager.AddEventListener(AnimationEvents.GuardBreakAttack, OnGuardBreakAttack);
     }
-    
+
     //Recive el evento que dispara el PlayerCombat desde el OnAttackEnter, y setea el daño que debe causar en el siguiente golpe que conecte, y activa el _isDetecting para saber que tiene
     //que empezar a detectar daño.
     //IVAN: aca vas a tener que hacer el cambio para cuando mandes el string, deberias chequear si el paramsContainer tiene longitud de 2 o 3, si es 3 viene el string que mandas vos.
@@ -170,7 +170,7 @@ public class SwordScript : MonoBehaviour
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;
             var myName = this.GetComponentInParent<PlayerInput>().gameObject.name;
-            var combo = this.GetComponentInParent<PlayerStats>().gameObject.name == "Player1" ? GameObject.Find("HUD1").GetComponent<HUDController>().Combo : 
+            var combo = this.GetComponentInParent<PlayerStats>().gameObject.name == "Player1" ? GameObject.Find("HUD1").GetComponent<HUDController>().Combo :
                                                                                                 GameObject.Find("HUD2").GetComponent<HUDController>().Combo;
 
             float mult = (combo / 10f + 1f);

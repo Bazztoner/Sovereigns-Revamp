@@ -22,7 +22,7 @@ public class AnimationController : MonoBehaviour
         EventManager.AddEventListener(AnimationEvents.Blocking, OnBlocking);
         EventManager.AddEventListener(AnimationEvents.X, OnX);
         EventManager.AddEventListener(AnimationEvents.Y, OnY);
-        EventManager.AddEventListener(SkillEvents.DoubleEdgedScalesCasted, OnDoubleEdged);
+        EventManager.AddEventListener(SkillEvents.StartCastDoubleEdgedScales, OnDoubleEdged);
         EventManager.AddEventListener(SkillEvents.ToxicBloodCasted, OnToxicBloodCasted);
         EventManager.AddEventListener(SkillEvents.DoubleEdgedScaleStopCasted, OnDoubleEdgedStop);
         EventManager.AddEventListener(SkillEvents.ToxicBloodStopCasted, OnToxicBloodEnded);
@@ -66,7 +66,7 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    //For the fucking block+Y
+    //Block+Y workaround
     void OnAttackEnter()
     {
         EventManager.DispatchEvent(AnimationEvents.AttackEnter, new object[] { gameObject.name, GetComponent<PlayerCombat>().heavyAttackDamage });
