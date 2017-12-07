@@ -24,16 +24,26 @@ public class PlayerSoundControl : MonoBehaviour
 
     void OnDamaged(params object[] info)
     {
-        EventManager.DispatchEvent(SoundEvents.PlayerDamaged);
+        if (gameObject.name == (string)info[0])
+        {
+            if(gameObject.name == "Player2")EventManager.DispatchEvent(SoundEvents.DemonDamaged);
+            else EventManager.DispatchEvent(SoundEvents.AngelDamaged);
+        }
     }
 
     void OnStun(params object[] info)
     {
-        EventManager.DispatchEvent(SoundEvents.StunSound);
+        if (gameObject.name == (string)info[0])
+        {
+            EventManager.DispatchEvent(SoundEvents.Parry);
+        }
     }
 
     void OnPlayerDeath(object[] paramsContainer)
     {
-        EventManager.DispatchEvent(SoundEvents.PlayerDeath);
+        if (gameObject.name == (string)paramsContainer[0])
+        {
+            EventManager.DispatchEvent(SoundEvents.PlayerDeath);
+        }
     }
 }
