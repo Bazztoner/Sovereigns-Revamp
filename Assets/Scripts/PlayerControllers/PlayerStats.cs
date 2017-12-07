@@ -276,14 +276,14 @@ public class PlayerStats : Photon.MonoBehaviour
         _amplifiedDamagePercentage = amplifyDamageIncrement;
         _attackSpeed = atkSpeedIncrement;
 
-        GetComponent<Animator>().SetFloat("attackSpeed", _attackSpeed);
+        GetComponent<Animator>().SetBool("berserkOn", true);
 
         yield return new WaitForSeconds(duration);
 
         _amplifiedDamagePercentage = oldIncomingDamagePercentage;
         _attackSpeed = oldAtkSpeed;
 
-        GetComponent<Animator>().SetFloat("attackSpeed", _attackSpeed);
+        GetComponent<Animator>().SetBool("berserkOn", false);
 
         EventManager.DispatchEvent(SkillEvents.HolyVigorizationEnded, gameObject.name);
     }
