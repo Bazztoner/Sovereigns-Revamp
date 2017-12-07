@@ -454,6 +454,8 @@ public class PlayerStats : Photon.MonoBehaviour
             var amplifyDamageIncrement = (float)paramsContainer[2];
             var attackSpeedIncrement = (float)paramsContainer[3];
 
+            GetComponent<Animator>().SetBool("berserkActivate", false);
+
             StartCoroutine(HolyVigorizationDuration(duration, amplifyDamageIncrement, attackSpeedIncrement));
         }
     }

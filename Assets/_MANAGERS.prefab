@@ -110,8 +110,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114711653018883064
@@ -133,9 +133,14 @@ MonoBehaviour:
   - {fileID: 1120365202450402, guid: 026936ec0258cf8428a6a7fad3a20a3b, type: 2}
   - {fileID: 1816757123228790, guid: 7b6521eedecffc74d99655b0582a141a, type: 2}
   - {fileID: 1656164371474488, guid: fb45f7c91cc26074192d467688efe01a, type: 2}
-  - {fileID: 1793471279076866, guid: fe34fa469cfccde4d82ad825cb9221f2, type: 2}
+  - {fileID: 1673160063197644, guid: 9bbf123b655c019449fabed40205f55c, type: 2}
   - {fileID: 1081145926378438, guid: 18754fd028aecab499d8dc321dac6d53, type: 2}
   - {fileID: 1208222479426192, guid: 96ee9f0887772ca4aa7e21770b0bdae9, type: 2}
+  - {fileID: 1793471279076866, guid: fe34fa469cfccde4d82ad825cb9221f2, type: 2}
+  - {fileID: 1678334908373024, guid: 21c886eb956edfa479120f35eab91d03, type: 2}
+  - {fileID: 1380289216363958, guid: 3ed1a50226b363244b44827cd2e99902, type: 2}
+  - {fileID: 1915768382059912, guid: f24eebc3893513045b3e3c57063467a2, type: 2}
+  - {fileID: 1045644588213336, guid: 5e27937e239ef874fbc576f637bbbfa8, type: 2}
 --- !u!114 &114821155174297310
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db193461dae1ba41b7f0984fa815862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 96
+  damage: 70
   throwForce: 1000
   _rb: {fileID: 0}
 --- !u!136 &136190217063157536

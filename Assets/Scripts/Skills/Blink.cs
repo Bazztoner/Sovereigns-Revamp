@@ -57,6 +57,7 @@ public class Blink : ISpell
         if (to != default(Transform))
         {
             EventManager.DispatchEvent(CameraEvents.StartBlinkFeedback, new object[] { _me.GetComponent<PlayerInput>().GetCamera });
+            EventManager.DispatchEvent(SkillEvents.BlinkCasted, new object[] { _me.transform.position, _me.GetComponent<PlayerParticles>() });
 
             _me.transform.position = to.position;
             var fTemp = _enemy.position - _me.transform.position;

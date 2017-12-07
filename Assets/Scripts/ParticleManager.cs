@@ -29,6 +29,7 @@ public class ParticleManager : MonoBehaviour
         EventManager.AddEventListener(ParticleEvents.ToxicDamageParticle, OnToxicDamageParticle);
         EventManager.AddEventListener(ParticleEvents.ToxicSpitParticle, OnToxicSpitParticle);
         EventManager.AddEventListener(SkillEvents.SpellBeingCasted, OnSpellBeingCasted);
+        EventManager.AddEventListener(SkillEvents.BlinkCasted, OnBlinkCasted);
         EventManager.AddEventListener(SkillEvents.ApplyShockwave, OnShockwaveApplied);
     }
 
@@ -173,11 +174,27 @@ public class ParticleManager : MonoBehaviour
     void OnSpellBeingCasted(object[] paramsContainer)
     {
         var caster = (PlayerParticles)paramsContainer[1];
+        var sender = caster.gameObject.name;
         var tempPos = (Vector3)paramsContainer[0];
         var pos = new Vector3(tempPos.x, tempPos.y - 1, tempPos.z);
 
+        var particleID = sender == "Player1" ? ParticleID.BerserkCharge : ParticleID.ScalesCharge;
+
         if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Charge", pos);
-        else caster.ParticleCaller(parts[(int)ParticleID.ChargeShockwave].gameObject, pos);
+        else caster.ParticleCaller(parts[(int)particleID].gameObject, pos);
+    }
+
+    void OnBlinkCasted(object[] paramsContainer)
+    {
+        var caster = (PlayerParticles)paramsContainer[1];
+        var sender = caster.gameObject.name;
+        var pos = (Vector3)paramsContainer[0];
+        //var pos = new Vector3(tempPos.x, tempPos.y - 1, tempPos.z);
+
+        var particleID = sender == "Player1" ? ParticleID.AngelBlink : ParticleID.DemonBlink;
+
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Blink", pos);
+        else caster.ParticleCaller(parts[(int)particleID].gameObject, pos);
     }
 
     void OnShockwaveApplied(object[] paramsContainer)
@@ -212,5 +229,10 @@ public enum ParticleID
     ToxineDamage,
     SpellChangeParticle,
     ToxicSpit,
+    ToxineBubbles,
+    ScalesCharge,
+    BerserkCharge,
+    AngelBlink,
+    DemonBlink,
     Count
 }

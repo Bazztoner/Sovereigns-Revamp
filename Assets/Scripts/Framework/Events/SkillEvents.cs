@@ -10,9 +10,20 @@ public class SkillEvents
     public const string ToxicBloodCasted = "ToxicBloodCasted";
 
     /// <summary>
+    /// 0 - Position (Vector3)
+    /// 1 - SenderParticles (PlayerParticles)
+    /// </summary>
+    public const string BlinkCasted = "BlinkCasted";
+
+    /// <summary>
     /// 0 - Sender (string)
     /// </summary>
     public const string StartCastDoubleEdgedScales = "StartCastDoubleEdgedScales";
+
+    /// <summary>
+    /// 0 - Sender (string)
+    /// </summary>
+    public const string StartCastHolyVigorization = "StartCastHolyVigorization";
 
     /// <summary>
     /// 0 - Sender (string)
