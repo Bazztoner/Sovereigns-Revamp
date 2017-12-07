@@ -20,6 +20,7 @@ public class PlayerCombat : Photon.MonoBehaviour
     void Start()
     {
         EventManager.AddEventListener(AnimationEvents.IdleEnter, OnIdleEnter);
+        EventManager.AddEventListener(AnimationEvents.AnimationAttackExit, OnAnimationAttackExit);
         EventManager.AddEventListener(CharacterEvents.CharacterDamaged, OnCharacterDamaged);
         EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
     }
@@ -43,8 +44,6 @@ public class PlayerCombat : Photon.MonoBehaviour
         EventManager.DispatchEvent(AnimationEvents.X, new object[] { this.gameObject.name, true });
 
         SetAttack();
-
-        if (!PhotonNetwork.offlineMode) photonView.RPC("SetX", PhotonTargets.All);
     }
 
     /// <summary>Makes a heavy attack</summary>
@@ -55,8 +54,6 @@ public class PlayerCombat : Photon.MonoBehaviour
         EventManager.DispatchEvent(AnimationEvents.Y, new object[] { this.gameObject.name, true });
 
         SetAttack();
-
-        if (!PhotonNetwork.offlineMode) photonView.RPC("SetY", PhotonTargets.All);
     }
 
     /// <summary>Informs that an attack is being made to cancel other animations</summary>
@@ -110,6 +107,12 @@ public class PlayerCombat : Photon.MonoBehaviour
     private void OnAttackExit()
     {
         EventManager.DispatchEvent(AnimationEvents.AttackExit);
+    }
+
+    private void OnAnimationAttackExit(params object[] paramsContainer)
+    {
+        if (this.gameObject.name == (string)paramsContainer[0])
+            isAttacking = false;
     }
 
     private void OnCharacterDamaged(params object[] paramsContainer)

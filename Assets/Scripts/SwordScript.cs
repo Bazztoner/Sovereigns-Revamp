@@ -16,6 +16,7 @@ public class SwordScript : MonoBehaviour
     bool _isGuardBreak = false;
     TrailRenderer _trail;
     bool _isActive;
+    bool _firstHit = false;
 
     void Start()
     {
@@ -165,8 +166,9 @@ public class SwordScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (_isDetecting && other.gameObject.layer == _hitBoxLayer && _isActive)
+        if (_isDetecting && other.gameObject.layer == _hitBoxLayer && _isActive)// && !_firstHit)
         {
+            _firstHit = true;
             var dmgMult = other.transform.GetComponent<HitBoxScript>();
             float damage = dmgMult != null ? dmgMult.damageMult * _appliedDamage : _appliedDamage;
             var myName = this.GetComponentInParent<PlayerInput>().gameObject.name;
@@ -201,6 +203,11 @@ public class SwordScript : MonoBehaviour
                 other.gameObject.GetComponentInParent<PlayerStats>().RegainMana(damage / 2 * mult);
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _firstHit = false;
     }
 
     private bool CheckIfFrontal(Collider other)

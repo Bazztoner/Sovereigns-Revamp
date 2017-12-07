@@ -11,7 +11,7 @@ public class PlayerSoundControl : MonoBehaviour
         EventManager.AddEventListener(CharacterEvents.Stun, OnStun);
         EventManager.AddEventListener(CharacterEvents.PlayerDeath, OnPlayerDeath);
     }
-    
+
     void OnSwordSoundStart()
     {
         EventManager.DispatchEvent(SoundEvents.SwordSound);
@@ -26,7 +26,7 @@ public class PlayerSoundControl : MonoBehaviour
     {
         if (gameObject.name == (string)info[0])
         {
-            if(gameObject.name == "Player2")EventManager.DispatchEvent(SoundEvents.DemonDamaged);
+            if (gameObject.name == "Player2") EventManager.DispatchEvent(SoundEvents.DemonDamaged);
             else EventManager.DispatchEvent(SoundEvents.AngelDamaged);
         }
     }
@@ -43,7 +43,7 @@ public class PlayerSoundControl : MonoBehaviour
     {
         if (gameObject.name == (string)paramsContainer[0])
         {
-            EventManager.DispatchEvent(SoundEvents.PlayerDeath);
+            EventManager.DispatchEvent(SoundEvents.PlayerDeathSound);
         }
     }
 }

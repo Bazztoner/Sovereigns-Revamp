@@ -248,5 +248,5 @@ MonoBehaviour:
   parry: {fileID: 8300000, guid: 3398e5c980b42a24bbedea8d320662e7, type: 3}
   angelDamaged: {fileID: 8300000, guid: 63da9f67658d1bc4b84a9aab269a64fc, type: 3}
   demonDamaged: {fileID: 8300000, guid: 85d93ece00f16d54f819c50e63182270, type: 3}
-  angelDeath: {fileID: 8300000, guid: 38d2b166eef90a84ab4da175f0116034, type: 3}
+  angelDeath: {fileID: 8300000, guid: 87bbf2d24e39b6546bfaf923ac8070ad, type: 3}
   audioSource: {fileID: 0}

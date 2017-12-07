@@ -28,11 +28,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD:Assets/Prefabs/Resources/MagicAura.prefab
 --- !u!4 &4402502544460758
-=======
---- !u!4 &4763307186397096
->>>>>>> Arreglado bug de que AtractiveTelekinesis no funcionaba.:Assets/Prefabs/Resources/Particles/DemonBlinkParticle.prefab
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -99,7 +95,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 1113918129
@@ -109,13 +105,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-<<<<<<< HEAD:Assets/Prefabs/Resources/MagicAura.prefab
       scalar: 2
       minScalar: 0
-=======
-      scalar: 0.2
-      minScalar: 5
->>>>>>> Arreglado bug de que AtractiveTelekinesis no funcionaba.:Assets/Prefabs/Resources/Particles/DemonBlinkParticle.prefab
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -260,11 +251,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       scalar: 1
-<<<<<<< HEAD:Assets/Prefabs/Resources/MagicAura.prefab
       minScalar: 0
-=======
-      minScalar: 1
->>>>>>> Arreglado bug de que AtractiveTelekinesis no funcionaba.:Assets/Prefabs/Resources/Particles/DemonBlinkParticle.prefab
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -709,7 +696,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2

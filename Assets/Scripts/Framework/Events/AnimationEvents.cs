@@ -34,6 +34,11 @@ public class AnimationEvents
     /// 1 - Activate (bool)
     /// </summary>
     public const string X = "X";
+    /// <summary>
+    /// Dispatched on the state exit of every attack, to know when it's allow to move again.
+    /// 0 - Sender (string)
+    /// </summary>
+    public const string AnimationAttackExit = "AnimationAttackExit";
 
     /// <summary>
     /// 0 - Sender (string)

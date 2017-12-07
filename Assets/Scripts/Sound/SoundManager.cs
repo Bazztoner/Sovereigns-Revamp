@@ -25,7 +25,8 @@ public class SoundManager : MonoBehaviour
         EventManager.AddEventListener(SoundEvents.Parry, OnStun);
         EventManager.AddEventListener(SoundEvents.AngelDamaged, OnAngelDamaged);
         EventManager.AddEventListener(SoundEvents.DemonDamaged, OnDemonDamaged);
-        EventManager.AddEventListener(SoundEvents.PlayerDeath, OnPlayerDeath);
+        EventManager.AddEventListener(SoundEvents.PlayerDeathSound, OnPlayerDeath);
+        EventManager.AddEventListener(SoundEvents.AngelBlock, OnAngelBlock);
     }
 
     void OnDemonDamaged(object[] paramsContainer)

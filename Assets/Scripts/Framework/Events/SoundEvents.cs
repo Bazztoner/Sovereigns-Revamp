@@ -10,5 +10,5 @@ public class SoundEvents
     public const string AngelDamaged = "AngelDamaged";
     public const string DemonDamaged = "DemonDamaged";
     public const string Parry = "Parry";
-    public const string PlayerDeath = "PlayerDeath";
+    public const string PlayerDeathSound = "PlayerDeathSound";
 }

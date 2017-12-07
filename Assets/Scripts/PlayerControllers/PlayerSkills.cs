@@ -157,20 +157,11 @@ public class PlayerSkills : Photon.MonoBehaviour
         {
             if (canCast)
             {
-<<<<<<< HEAD
-                StartCoroutine(CastToxicBlood(0.25f, spell, pickType, skillPos));
-=======
-                if (spell == _movementSkill)
-                {
-                    spell.UseSpell(skillPos);
-                    
-                }
-                else if (spell == _environmentalSkill)
+                if (spell == _movementSkill || spell == _environmentalSkill)
                 {
                     spell.UseSpell(skillPos);
                 }
                 else StartCoroutine(CastToxicBlood(0.25f, spell, pickType, skillPos));
->>>>>>> Arreglado bug de que AtractiveTelekinesis no funcionaba.
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }
@@ -211,8 +202,16 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         if (pickType == HUDController.Spells.Universal)
         {
-            EventManager.DispatchEvent(SkillEvents.StartCastDoubleEdgedScales, gameObject.name);
+            if (gameObject.name == "Player2")
+            {
+                EventManager.DispatchEvent(SkillEvents.StartCastDoubleEdgedScales, gameObject.name);
+            }
+            else
+            {
+                EventManager.DispatchEvent(SkillEvents.StartCastHolyVigorization, gameObject.name);
+            }
             var vTemp = new Vector3(transform.position.x, transform.position.y + 0.66f, transform.position.z);
+
             EventManager.DispatchEvent(SkillEvents.SpellBeingCasted, new object[] { vTemp, this.GetComponent<PlayerParticles>() });
         }
 
