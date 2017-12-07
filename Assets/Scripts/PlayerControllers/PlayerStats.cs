@@ -44,8 +44,10 @@ public class PlayerStats : Photon.MonoBehaviour
             {
                 hp = 0;
                 CancelInvoke();
-                if (!PhotonNetwork.offlineMode && !isDead) EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { PhotonNetwork.player.NickName });
-                else if (GameManager.screenDivided && !isDead) EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { this.gameObject.name });
+                if (!PhotonNetwork.offlineMode && !isDead)
+                { EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { PhotonNetwork.player.NickName }); }
+                else if (GameManager.screenDivided && !isDead)
+                { EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { this.gameObject.name }); }
                 isDead = true;
             }
             else hp = value;
@@ -274,14 +276,14 @@ public class PlayerStats : Photon.MonoBehaviour
         _amplifiedDamagePercentage = amplifyDamageIncrement;
         _attackSpeed = atkSpeedIncrement;
 
-        GetComponent<Animator>().SetFloat("attackSpeed", _attackSpeed);
+        GetComponent<Animator>().SetBool("berserkOn", true);
 
         yield return new WaitForSeconds(duration);
 
         _amplifiedDamagePercentage = oldIncomingDamagePercentage;
         _attackSpeed = oldAtkSpeed;
 
-        GetComponent<Animator>().SetFloat("attackSpeed", _attackSpeed);
+        GetComponent<Animator>().SetBool("berserkOn", false);
 
         EventManager.DispatchEvent(SkillEvents.HolyVigorizationEnded, gameObject.name);
     }

@@ -21,8 +21,8 @@ public class SoundManager : MonoBehaviour
         EventManager.AddEventListener(SoundEvents.ShieldBashSound, OnShieldBash);
         EventManager.AddEventListener(SoundEvents.BlockSound, OnAngelBlock);
         EventManager.AddEventListener(SoundEvents.StunSound, OnStun);
-        EventManager.AddEventListener(SoundEvents.PlayerDamaged, OnPlayerDamaged);
-        EventManager.AddEventListener(SoundEvents.PlayerDeath, OnPlayerDeath);
+        EventManager.AddEventListener(SoundEvents.PlayerDamagedSound, OnPlayerDamaged);
+        EventManager.AddEventListener(SoundEvents.PlayerDeathSound, OnPlayerDeath);
     }
 
     void OnSwordAttack(params object[] info)

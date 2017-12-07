@@ -77,13 +77,20 @@ public class SK_ToxicBlood : ISpell
         RelocateDummy(skillPos);
 
         _dummy.Execute(GetLaunchDirection());
+        DoFeedback();
 
         EventManager.DispatchEvent(SkillEvents.SpellCasted, new object[] { manaCost, _owner });
     }
 
+    public void DoFeedback()
+    {
+        EventManager.DispatchEvent(ParticleEvents.ToxicSpitParticle, new object[] { _owner, _dummy.transform.position, _char.GetComponent<PlayerParticles>() });
+    }
+
     public Vector3 GetLaunchDirection()
     {
-        return _char.Enemy.position - _char.transform.position;
+        var dir = Vector3.Angle(_char.transform.forward, _char.Enemy.position) < 15 ? _char.Enemy.position - _char.transform.position : _char.transform.forward;
+        return dir.normalized;
     }
 
     #region Getters
