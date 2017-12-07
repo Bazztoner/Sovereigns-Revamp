@@ -157,14 +157,11 @@ public class PlayerSkills : Photon.MonoBehaviour
         {
             if (canCast)
             {
-                if (spell != _movementSkill)
-                {
-                    StartCoroutine(CastToxicBlood(0.25f, spell, pickType, skillPos));
-                }
-                else
+                if (spell == _movementSkill || spell == _environmentalSkill)
                 {
                     spell.UseSpell(skillPos);
                 }
+                else StartCoroutine(CastToxicBlood(0.25f, spell, pickType, skillPos));
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }

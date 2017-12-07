@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SoundEvents
 {
-    public const string BlockSound = "BlockSound";
+    public const string AngelBlock = "AngelBlock";
     public const string SwordSound = "SwordSound";
     public const string ShieldBashSound = "ShieldBashSound";
-    public const string PlayerDamagedSound = "PlayerDamagedSound";
-    public const string StunSound = "StunSound";
+    public const string AngelDamaged = "AngelDamaged";
+    public const string DemonDamaged = "DemonDamaged";
+    public const string Parry = "Parry";
     public const string PlayerDeathSound = "PlayerDeathSound";
 }

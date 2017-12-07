@@ -143,7 +143,7 @@ public class PlayerStats : Photon.MonoBehaviour
             if (_isBlockingUp)
             {
                 dmg = (_imperfectBlockPerc * damage * _amplifiedDamagePercentage) / 100;
-                EventManager.DispatchEvent(SoundEvents.BlockSound);
+                EventManager.DispatchEvent(SoundEvents.AngelBlock);
                 if (_isKnockBackAttack) EventManager.DispatchEvent(CharacterEvents.DoKnockBack, new object[] { this.gameObject.name });
                 blockPhase = 2;
             }
@@ -170,7 +170,7 @@ public class PlayerStats : Photon.MonoBehaviour
             else if (_isBlocking)
             {
                 dmg = (_imperfectBlockPerc * damage * _amplifiedDamagePercentage) / 100;
-                EventManager.DispatchEvent(SoundEvents.BlockSound);
+                EventManager.DispatchEvent(SoundEvents.AngelBlock);
                 if (_isKnockBackAttack) EventManager.DispatchEvent(CharacterEvents.DoKnockBack, new object[] { this.gameObject.name });
                 blockPhase = 2;
             }

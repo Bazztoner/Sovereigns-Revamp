@@ -191,10 +191,14 @@ public class ParticleManager : MonoBehaviour
         var pos = (Vector3)paramsContainer[0];
         //var pos = new Vector3(tempPos.x, tempPos.y - 1, tempPos.z);
 
-        var particleID = sender == "Player1" ? ParticleID.AngelBlink : ParticleID.DemonBlink;
+        var partID = sender == "Player1" ? ParticleID.AngelBlink : ParticleID.DemonBlink;
 
         if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Blink", pos);
-        else caster.ParticleCaller(parts[(int)particleID].gameObject, pos);
+        else
+        {
+            caster.ParticleCaller(parts[(int)partID].gameObject, caster.transform);
+            caster.ParticleCaller(parts[(int)ParticleID.ResidualBlink].gameObject, pos);
+        }
     }
 
     void OnShockwaveApplied(object[] paramsContainer)
@@ -234,5 +238,6 @@ public enum ParticleID
     BerserkCharge,
     AngelBlink,
     DemonBlink,
+    ResidualBlink,
     Count
 }

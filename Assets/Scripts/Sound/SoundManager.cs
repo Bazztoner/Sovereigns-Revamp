@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +9,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip angelAttack;
     public AudioClip angelShieldBash;
     public AudioClip angelBlock;
-    public AudioClip stun;
-    public AudioClip angelDamage;
+    public AudioClip parry;
+    public AudioClip angelDamaged;
+    public AudioClip demonDamaged;
     public AudioClip angelDeath;
 
     public AudioSource audioSource;
@@ -19,35 +21,42 @@ public class SoundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         EventManager.AddEventListener(SoundEvents.SwordSound, OnSwordAttack);
         EventManager.AddEventListener(SoundEvents.ShieldBashSound, OnShieldBash);
-        EventManager.AddEventListener(SoundEvents.BlockSound, OnAngelBlock);
-        EventManager.AddEventListener(SoundEvents.StunSound, OnStun);
-        EventManager.AddEventListener(SoundEvents.PlayerDamagedSound, OnPlayerDamaged);
+        EventManager.AddEventListener(SoundEvents.AngelBlock, OnAngelBlock);
+        EventManager.AddEventListener(SoundEvents.Parry, OnStun);
+        EventManager.AddEventListener(SoundEvents.AngelDamaged, OnAngelDamaged);
+        EventManager.AddEventListener(SoundEvents.DemonDamaged, OnDemonDamaged);
         EventManager.AddEventListener(SoundEvents.PlayerDeathSound, OnPlayerDeath);
+        EventManager.AddEventListener(SoundEvents.AngelBlock, OnAngelBlock);
+    }
+
+    void OnDemonDamaged(object[] paramsContainer)
+    {
+        PlaySound(demonDamaged, UnityEngine.Random.Range(0.8f, 1.2f));
     }
 
     void OnSwordAttack(params object[] info)
     {
-        PlaySound(angelAttack, Random.Range(0.8f, 1.2f));
+        PlaySound(angelAttack, UnityEngine.Random.Range(0.8f, 1.2f));
     }
 
     void OnShieldBash(params object[] info)
     {
-        PlaySound(angelShieldBash, Random.Range(0.9f, 1.1f));
+        PlaySound(angelShieldBash, UnityEngine.Random.Range(0.9f, 1.1f));
     }
 
     void OnAngelBlock(params object[] info)
     {
-        PlaySound(angelBlock, Random.Range(0.9f, 1.1f));
+        PlaySound(angelBlock, UnityEngine.Random.Range(0.9f, 1.1f));
     }
 
     void OnStun(params object[] info)
     {
-        PlaySound(stun);
+        PlaySound(parry, 0.85f);
     }
 
-    void OnPlayerDamaged(params object[] info)
+    void OnAngelDamaged(params object[] info)
     {
-        PlaySound(angelDamage, Random.Range(0.95f, 1.1f));
+        PlaySound(angelDamaged, UnityEngine.Random.Range(0.95f, 1.1f));
     }
 
     void OnPlayerDeath(params object[] info)
