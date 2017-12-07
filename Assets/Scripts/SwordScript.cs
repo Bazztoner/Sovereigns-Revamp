@@ -219,7 +219,7 @@ public class SwordScript : MonoBehaviour
 
     void ActivateTrail(bool activate)
     {
-        //_trail.gameObject.SetActive(activate);
+        _trail.gameObject.SetActive(activate);
     }
 
     void GetTrail(bool isActiveFromStart)

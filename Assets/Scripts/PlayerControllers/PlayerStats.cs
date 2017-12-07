@@ -220,7 +220,7 @@ public class PlayerStats : Photon.MonoBehaviour
         else if (blockPhase == 1)
         {
             EventManager.DispatchEvent(ParticleEvents.ToxicDamageParticle, new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
-            EventManager.DispatchEvent(UIEvents.UpdateComboMeter, new object[] { this.gameObject.name });
+            //EventManager.DispatchEvent(UIEvents.UpdateComboMeter, new object[] { this.gameObject.name });
         }
         else EventManager.DispatchEvent(ParticleEvents.BlockParticle, new object[] { this.gameObject.name, transform.position, this.GetComponent<PlayerParticles>() });
 
@@ -277,6 +277,8 @@ public class PlayerStats : Photon.MonoBehaviour
         _attackSpeed = atkSpeedIncrement;
 
         GetComponent<Animator>().SetBool("berserkOn", true);
+        transform.Find("angelBerserk").gameObject.SetActive(true);
+
 
         yield return new WaitForSeconds(duration);
 
@@ -286,6 +288,8 @@ public class PlayerStats : Photon.MonoBehaviour
         GetComponent<Animator>().SetBool("berserkOn", false);
 
         EventManager.DispatchEvent(SkillEvents.HolyVigorizationEnded, gameObject.name);
+        transform.Find("angelBerserk").gameObject.SetActive(false);
+
     }
 
     private void Regenerate()
