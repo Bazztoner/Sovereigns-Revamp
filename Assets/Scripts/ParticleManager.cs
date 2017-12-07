@@ -27,8 +27,10 @@ public class ParticleManager : MonoBehaviour
         EventManager.AddEventListener(ParticleEvents.GuardBreakParticle, OnGuardBreakParticle);
         EventManager.AddEventListener(ParticleEvents.BlockParticle, OnBlockParticle);
         EventManager.AddEventListener(ParticleEvents.ToxicDamageParticle, OnToxicDamageParticle);
+        EventManager.AddEventListener(ParticleEvents.ToxicSpitParticle, OnToxicSpitParticle);
         EventManager.AddEventListener(SkillEvents.SpellBeingCasted, OnSpellBeingCasted);
-        EventManager.AddEventListener(SkillEvents.RepulsiveTelekinesisCasted, OnRepulsiveTelekinesisCasted);
+        EventManager.AddEventListener(SkillEvents.BlinkCasted, OnBlinkCasted);
+        EventManager.AddEventListener(SkillEvents.ApplyShockwave, OnShockwaveApplied);
     }
 
     void OnSpellChanged(object[] paramsContainer)
@@ -158,17 +160,44 @@ public class ParticleManager : MonoBehaviour
         else caster.ParticleCaller(parts[(int)ParticleID.ToxineDamage].gameObject, pos);
     }
 
+    void OnToxicSpitParticle(object[] paramsContainer)
+    {
+        var caster = (PlayerParticles)paramsContainer[2];
+        var tempPos = (Vector3)paramsContainer[1];
+        var pos = new Vector3(tempPos.x, tempPos.y + 0.66f, tempPos.z);
+
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "ToxicSpit", pos);
+        else caster.ParticleCaller(parts[(int)ParticleID.ToxicSpit].gameObject, pos, caster.transform.forward);
+    }
+
+
     void OnSpellBeingCasted(object[] paramsContainer)
     {
         var caster = (PlayerParticles)paramsContainer[1];
+        var sender = caster.gameObject.name;
         var tempPos = (Vector3)paramsContainer[0];
         var pos = new Vector3(tempPos.x, tempPos.y - 1, tempPos.z);
 
+        var particleID = sender == "Player1" ? ParticleID.BerserkCharge : ParticleID.ScalesCharge;
+
         if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Charge", pos);
-        else caster.ParticleCaller(parts[(int)ParticleID.ChargeShockwave].gameObject, pos);
+        else caster.ParticleCaller(parts[(int)particleID].gameObject, pos);
     }
 
-    void OnRepulsiveTelekinesisCasted(object[] paramsContainer)
+    void OnBlinkCasted(object[] paramsContainer)
+    {
+        var caster = (PlayerParticles)paramsContainer[1];
+        var sender = caster.gameObject.name;
+        var pos = (Vector3)paramsContainer[0];
+        //var pos = new Vector3(tempPos.x, tempPos.y - 1, tempPos.z);
+
+        var particleID = sender == "Player1" ? ParticleID.AngelBlink : ParticleID.DemonBlink;
+
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Blink", pos);
+        else caster.ParticleCaller(parts[(int)particleID].gameObject, pos);
+    }
+
+    void OnShockwaveApplied(object[] paramsContainer)
     {
         var caster = (PlayerParticles)paramsContainer[1];
         var pos = (Vector3)paramsContainer[0];
@@ -199,5 +228,11 @@ public enum ParticleID
     GuardBreakGraphic,
     ToxineDamage,
     SpellChangeParticle,
+    ToxicSpit,
+    ToxineBubbles,
+    ScalesCharge,
+    BerserkCharge,
+    AngelBlink,
+    DemonBlink,
     Count
 }

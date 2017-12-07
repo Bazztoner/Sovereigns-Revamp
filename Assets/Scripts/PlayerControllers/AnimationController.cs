@@ -23,6 +23,7 @@ public class AnimationController : MonoBehaviour
         EventManager.AddEventListener(AnimationEvents.X, OnX);
         EventManager.AddEventListener(AnimationEvents.Y, OnY);
         EventManager.AddEventListener(SkillEvents.StartCastDoubleEdgedScales, OnDoubleEdged);
+        EventManager.AddEventListener(SkillEvents.StartCastHolyVigorization, OnStartBerserk);
         EventManager.AddEventListener(SkillEvents.ToxicBloodCasted, OnToxicBloodCasted);
         EventManager.AddEventListener(SkillEvents.DoubleEdgedScaleStopCasted, OnDoubleEdgedStop);
         EventManager.AddEventListener(SkillEvents.ToxicBloodStopCasted, OnToxicBloodEnded);
@@ -32,6 +33,14 @@ public class AnimationController : MonoBehaviour
         EventManager.AddEventListener(ParticleEvents.StunParticle, OnStun);
         EventManager.AddEventListener(AnimationEvents.StopStun, OnStopStun);
         EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
+    }
+
+    void OnStartBerserk(object[] paramsContainer)
+    {
+        if (gameObject.name == (string)paramsContainer[0])
+        {
+            _anim.SetBool("berserkActivate", true);
+        }
     }
 
     void OnDoubleEdged(object[] paramsContainer)

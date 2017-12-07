@@ -157,7 +157,14 @@ public class PlayerSkills : Photon.MonoBehaviour
         {
             if (canCast)
             {
-                StartCoroutine(CastToxicBlood(0.25f, spell, pickType, skillPos));
+                if (spell != _movementSkill)
+                {
+                    StartCoroutine(CastToxicBlood(0.25f, spell, pickType, skillPos));
+                }
+                else
+                {
+                    spell.UseSpell(skillPos);
+                }
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }
@@ -198,8 +205,16 @@ public class PlayerSkills : Photon.MonoBehaviour
     {
         if (pickType == HUDController.Spells.Universal)
         {
-            EventManager.DispatchEvent(SkillEvents.StartCastDoubleEdgedScales, gameObject.name);
+            if (gameObject.name == "Player2")
+            {
+                EventManager.DispatchEvent(SkillEvents.StartCastDoubleEdgedScales, gameObject.name);
+            }
+            else
+            {
+                EventManager.DispatchEvent(SkillEvents.StartCastHolyVigorization, gameObject.name);
+            }
             var vTemp = new Vector3(transform.position.x, transform.position.y + 0.66f, transform.position.z);
+
             EventManager.DispatchEvent(SkillEvents.SpellBeingCasted, new object[] { vTemp, this.GetComponent<PlayerParticles>() });
         }
 

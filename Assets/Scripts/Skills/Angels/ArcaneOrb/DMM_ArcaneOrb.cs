@@ -49,6 +49,7 @@ public class DMM_ArcaneOrb : MonoBehaviour
         if (_orb == null) return;
         _aiming = false;
         _orb.Launch(transform.forward);
+        _orb.transform.SetParent(null);
         _orb = null;
     }
 
@@ -57,6 +58,7 @@ public class DMM_ArcaneOrb : MonoBehaviour
         if (_orb == null) return;
         _aiming = false;
         _orb.Launch(dir);
+        _orb.transform.SetParent(null);
         _orb = null;
     }
 
