@@ -102,6 +102,6 @@ public class NetworkManager : MonoBehaviour {
 
     private void OnGUI()
     {
-        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+        //GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
     }
 }

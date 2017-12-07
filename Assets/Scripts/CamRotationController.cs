@@ -389,9 +389,12 @@ public class CamRotationController : MonoBehaviour
         var dist = lockOnDistance - Vector3.Distance(transform.TransformPoint(_cam.transform.localPosition), _character.position);
         _fixedCharPos = _character.position + _correctionVector;
 
-        var checkVision = Physics.Raycast(_fixedCharPos, dir, dist, _enemyMask) && Physics.Raycast(transform.TransformPoint(_cam.transform.localPosition), dir2, lockOnDistance, _enemyMask);
+        //Triplique la distancia del raycast teniendo en referencia la distancia de condicion que teniamos antes, porque la verdad no se cuanta distancia ponerle para este escenario.
+        var checkVision = Physics.Raycast(_fixedCharPos, dir, dist, _enemyMask) && Physics.Raycast(transform.TransformPoint(_cam.transform.localPosition), dir2, lockOnDistance * 3, _enemyMask);
 
-        if (!_lockOn && Vector3.Distance(_character.position, Enemy.position) <= lockOnDistance && !checkVision)
+        //Vector3.Distance(_character.position, Enemy.position) <= lockOnDistance
+        //Esa es la condición de distancia, la dejo aca por si decidimos volver a activarla.
+        if (!_lockOn && !checkVision)
         {
             _lockOn = true;
             smoothCamera = false;
@@ -426,8 +429,9 @@ public class CamRotationController : MonoBehaviour
             if (smoothCamera) transform.forward = Vector3.Lerp(transform.forward, direction, smoothPercentage);
             else transform.forward = direction;
         }
-            
-        CheckDistance();
+          
+        //Quito la llamada a este método para que no se desactive el lock on si se aleja demasiado.
+        //CheckDistance();
     }
     #endregion
 
