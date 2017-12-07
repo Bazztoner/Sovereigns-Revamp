@@ -426,6 +426,7 @@
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\RollStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_BigShieldAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_Damage.cs" />
+    <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_DemonSkills.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_GuardBreakAttack.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_GuardBreakEnter.cs" />
     <Compile Include="Assets\Scripts\StateMachinesBehaviours\SMB_HorizontalAttack.cs" />
