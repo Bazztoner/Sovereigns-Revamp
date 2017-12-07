@@ -157,7 +157,20 @@ public class PlayerSkills : Photon.MonoBehaviour
         {
             if (canCast)
             {
+<<<<<<< HEAD
                 StartCoroutine(CastToxicBlood(0.25f, spell, pickType, skillPos));
+=======
+                if (spell == _movementSkill)
+                {
+                    spell.UseSpell(skillPos);
+                    
+                }
+                else if (spell == _environmentalSkill)
+                {
+                    spell.UseSpell(skillPos);
+                }
+                else StartCoroutine(CastToxicBlood(0.25f, spell, pickType, skillPos));
+>>>>>>> Arreglado bug de que AtractiveTelekinesis no funcionaba.
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }

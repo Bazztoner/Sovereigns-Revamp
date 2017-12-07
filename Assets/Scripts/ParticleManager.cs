@@ -165,7 +165,28 @@ public class ParticleManager : MonoBehaviour
         var pos = new Vector3(tempPos.x, tempPos.y - 1, tempPos.z);
 
         if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Charge", pos);
+<<<<<<< HEAD
         else caster.ParticleCaller(parts[(int)ParticleID.ChargeShockwave].gameObject, pos);
+=======
+        else caster.ParticleCaller(parts[(int)particleID].gameObject, pos);
+    }
+
+    void OnBlinkCasted(object[] paramsContainer)
+    {
+        var caster = (PlayerParticles)paramsContainer[1];
+        var sender = caster.gameObject.name;
+        var pos = (Vector3)paramsContainer[0];
+        //var pos = new Vector3(tempPos.x, tempPos.y - 1, tempPos.z);
+
+        var partID = sender == "Player1" ? ParticleID.AngelBlink : ParticleID.DemonBlink;
+
+        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Blink", pos);
+        else
+        {
+            caster.ParticleCaller(parts[(int)partID].gameObject, caster.transform);
+            caster.ParticleCaller(parts[(int)ParticleID.ResidualBlink].gameObject, pos);
+        }
+>>>>>>> Arreglado bug de que AtractiveTelekinesis no funcionaba.
     }
 
     void OnRepulsiveTelekinesisCasted(object[] paramsContainer)
@@ -199,5 +220,15 @@ public enum ParticleID
     GuardBreakGraphic,
     ToxineDamage,
     SpellChangeParticle,
+<<<<<<< HEAD
+=======
+    ToxicSpit,
+    ToxineBubbles,
+    ScalesCharge,
+    BerserkCharge,
+    AngelBlink,
+    DemonBlink,
+    ResidualBlink,
+>>>>>>> Arreglado bug de que AtractiveTelekinesis no funcionaba.
     Count
 }

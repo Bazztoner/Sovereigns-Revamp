@@ -28,6 +28,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD:Assets/Prefabs/ToxineBubbles.prefab
 --- !u!1 &1793471279076866
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +45,9 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4179162316957036
+=======
+--- !u!4 &4381651919285878
+>>>>>>> Arreglado bug de que AtractiveTelekinesis no funcionaba.:Assets/Prefabs/Resources/Particles/AngelBlinkParticle.prefab
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -136,9 +140,15 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/ToxineBubbles.prefab
       minMaxState: 3
       scalar: 1.2
       minScalar: 0.5
+=======
+      minMaxState: 0
+      scalar: 0.2
+      minScalar: 5
+>>>>>>> Arreglado bug de que AtractiveTelekinesis no funcionaba.:Assets/Prefabs/Resources/Particles/AngelBlinkParticle.prefab
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -731,7 +741,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 10
       minScalar: 0
       maxCurve:
         serializedVersion: 2
