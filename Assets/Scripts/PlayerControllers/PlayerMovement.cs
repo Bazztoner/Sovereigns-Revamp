@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : Photon.MonoBehaviour {
-
+public class PlayerMovement : Photon.MonoBehaviour
+{
     #region Variables
     private Rigidbody _rigid;
     private Transform _enemy;
@@ -23,7 +23,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     public bool sprintAvailable;
     [HideInInspector]
     public bool isRolling;
-    
+
     public Transform Enemy { get { return _enemy != null ? _enemy : GetEnemy(); } }
     #endregion
 
@@ -90,7 +90,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     /// <summary>Sets the rotation of the character using the camera</summary>
     public void Rotate(Vector3 direction, Transform cam)
     {
-        if(direction != Vector3.zero && !isRolling) transform.forward = new Vector3(cam.forward.x, 0, cam.forward.z);
+        if (direction != Vector3.zero && !isRolling) transform.forward = new Vector3(cam.forward.x, 0, cam.forward.z);
     }
 
     /// <summary>Makes the character roll</summary>
@@ -118,7 +118,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
         sprintAvailable = true;
         speed = _originalWalkSpeed;
     }
-    
+
     /// <summary>Sets variables used by the animator</summary>
     private void SetMovementStats(Vector3 direction)
     {
@@ -171,7 +171,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
     #region Enemy Reference
     public bool CheckEnemyDistance(Transform cam)
     {
-        if (_enemy == null)  _enemy = GetEnemy();
+        if (_enemy == null) _enemy = GetEnemy();
 
         if (_enemy != null)
         {
@@ -207,7 +207,7 @@ public class PlayerMovement : Photon.MonoBehaviour {
             if (enem.transform != this.transform)
                 return enem.transform;
         }
-        
+
         return null;
     }
     #endregion

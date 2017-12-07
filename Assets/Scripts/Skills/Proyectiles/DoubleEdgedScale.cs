@@ -49,7 +49,6 @@ public class DoubleEdgedScale : MonoBehaviour
             if (compName != _owner)
             {
                 if (comp != null) comp.TakeDamage(damage, "Spell", _owner);
-                print(col.transform.name);
                 Destroy(gameObject);
             }
         }

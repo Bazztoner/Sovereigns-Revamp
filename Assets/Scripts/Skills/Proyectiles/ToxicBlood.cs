@@ -57,7 +57,6 @@ public class ToxicBlood : MonoBehaviour
             if (compName != _owner)
             {
                 if (comp != null) comp.TakeDamage(damage, "Spell", _owner, duration, tickCoeficient);
-                print(col.transform.name);
                 Destroy(gameObject);
             }
         }

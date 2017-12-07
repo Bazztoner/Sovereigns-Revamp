@@ -55,7 +55,7 @@ public class GameManager : Photon.MonoBehaviour
 
     private void OnPlayerDied(params object[] paramsContainer)
     {
-        var message = (string)paramsContainer[0] + " has lost the match";
+        //var message = (string)paramsContainer[0] + " has lost the match";
         if (GameManager.screenDivided) EndGame((string)paramsContainer[0]);
     }
 
