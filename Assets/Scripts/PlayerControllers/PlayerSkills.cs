@@ -157,7 +157,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         {
             if (canCast)
             {
-                StartCoroutine(CastToxicBlood(0.25F, spell, pickType, skillPos));
+                StartCoroutine(CastToxicBlood(0.25f, spell, pickType, skillPos));
                 StartCoroutine(SpellCooldown(spell, pickType));
             }
         }
@@ -196,9 +196,9 @@ public class PlayerSkills : Photon.MonoBehaviour
     /// <summary>Waits a certain time to launch the spell</summary>
     IEnumerator CastSpell(float time, ISpell spell, HUDController.Spells pickType, Transform skillPos)
     {
-        if (pickType == HUDController.Spells.Class)
+        if (pickType == HUDController.Spells.Universal)
         {
-            EventManager.DispatchEvent(SkillEvents.DoubleEdgedScalesCasted, new object[] { gameObject.name });
+            EventManager.DispatchEvent(SkillEvents.StartCastDoubleEdgedScales, gameObject.name);
             var vTemp = new Vector3(transform.position.x, transform.position.y + 0.66f, transform.position.z);
             EventManager.DispatchEvent(SkillEvents.SpellBeingCasted, new object[] { vTemp, this.GetComponent<PlayerParticles>() });
         }
@@ -208,7 +208,7 @@ public class PlayerSkills : Photon.MonoBehaviour
         var w = new WaitForSeconds(time);
         yield return w;
 
-        _universalSkill.UseSpell(skillPos);
+        spell.UseSpell(skillPos);
         isChannelingSpell = false;
 
         EventManager.DispatchEvent(SkillEvents.SpellCooldown, new object[] { spell.CooldownTime(), pickType, this.gameObject.name });
@@ -253,7 +253,7 @@ public class PlayerSkills : Photon.MonoBehaviour
 
     IEnumerator PutAtractiveVisible(AtractiveTelekinesis spell)
     {
-        while (true)
+        while ("Nisman" != "Se suicidó")
         {
             if (_actualSkillType == HUDController.Spells.Environmental)
                 ActivateDestructibleProyections(spell.CanBeUsed(GetActualMana()));

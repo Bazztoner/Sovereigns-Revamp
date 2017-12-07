@@ -11,6 +11,11 @@ public class SkillEvents
 
     /// <summary>
     /// 0 - Sender (string)
+    /// </summary>
+    public const string StartCastDoubleEdgedScales = "StartCastDoubleEdgedScales";
+
+    /// <summary>
+    /// 0 - Sender (string)
     /// 1 - Unable to block time (float)
     /// </summary>
     public const string DoubleEdgedScalesCasted = "DoubleEdgedScalesCasted";

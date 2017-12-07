@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class DividedScreen : MonoBehaviour {
-
+public class DividedScreen : MonoBehaviour
+{
     private Transform _cam1;
     private Transform _cam2;
     private Transform _hud1;
@@ -14,7 +14,7 @@ public class DividedScreen : MonoBehaviour {
     private GameObject _mainCam;
     private GameObject _mainHud;
 
-	void Start ()
+    void Start()
     {
         _cam1 = transform.Find("CameraPlayer1");
         _cam2 = transform.Find("CameraPlayer2");
@@ -27,7 +27,7 @@ public class DividedScreen : MonoBehaviour {
 
         EventManager.AddEventListener(GameEvents.DividedScreen, OnDividedScreen);
         EventManager.AddEventListener(GameEvents.RestartRound, OnRestartRound);
-	}
+    }
 
     private void OnDividedScreen(params object[] paramsContainer)
     {
@@ -40,7 +40,7 @@ public class DividedScreen : MonoBehaviour {
         _player1.gameObject.SetActive(true);
         _player2.gameObject.SetActive(true);
 
-        SetPlayerStartingColors();
+        //SetPlayerStartingColors();
 
         EventManager.DispatchEvent(GameEvents.GameStarted);
     }
@@ -51,9 +51,12 @@ public class DividedScreen : MonoBehaviour {
         var rnd1 = Random.Range(0, colors.Count);
         int rnd2;
 
-        do { rnd2 = Random.Range(0, colors.Count);
-        } while (rnd2 == rnd1);
-        
+        do
+        {
+            rnd2 = Random.Range(0, colors.Count);
+        }
+        while (rnd2 == rnd1);
+
         _player1.GetComponent<PlayerStats>().ApplyPlayerStartingColor(colors[rnd1]);
         _player2.GetComponent<PlayerStats>().ApplyPlayerStartingColor(colors[rnd2]);
     }

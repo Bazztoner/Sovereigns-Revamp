@@ -103,7 +103,7 @@ public class PlayerStats : Photon.MonoBehaviour
         EventManager.AddEventListener(SkillEvents.HolyVigorizationEnded, OnHolyVigorizationEnded);
     }
 
-    
+
     public void ApplyPlayerStartingColor(AngelArmorColor color)
     {
         color.transform.SetParent(transform);
@@ -312,7 +312,7 @@ public class PlayerStats : Photon.MonoBehaviour
 
         transform.position = gameObject.name == "Player1" ? ssCont.transform.Find("SpawnSpotP1").transform.position : ssCont.transform.Find("SpawnSpotP2").transform.position;
         transform.forward = gameObject.name == "Player1" ? ssCont.transform.Find("SpawnSpotP1").transform.forward : ssCont.transform.Find("SpawnSpotP2").transform.forward;
-        
+
         if (!(bool)paramsContainer[0])
         {
             _gameInCourse = true;
