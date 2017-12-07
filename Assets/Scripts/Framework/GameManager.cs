@@ -34,12 +34,8 @@ public class GameManager : Photon.MonoBehaviour
         _player1Score = 0;
         _player2Score = 0;
         time = _maxTime;
-        if (!GameManager.screenDivided) photonView.RPC("StartGame", PhotonTargets.All);
-        else
-        {
-            if (_p1 == null) _p1 = GameObject.Find("Player1").GetComponent<PlayerStats>();
-            if (_p2 == null) _p2 = GameObject.Find("Player2").GetComponent<PlayerStats>();
-        }
+        if (_p1 == null) _p1 = GameObject.Find("Player1").GetComponent<PlayerStats>();
+        if (_p2 == null) _p2 = GameObject.Find("Player2").GetComponent<PlayerStats>();
     }
 
     private void Update()

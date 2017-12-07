@@ -236,7 +236,8 @@ public class HUDController : Photon.MonoBehaviour
     {
         if (lockOnImage.gameObject.activeInHierarchy && GameManager.screenDivided)
         {
-            var screenPoint = RectTransformUtility.WorldToScreenPoint(this.GetComponent<Canvas>().worldCamera, _lockTarget.position);
+            var cam = this.gameObject.name == "HUD1" ? GameObject.Find("Cam1").GetComponent<Camera>() : GameObject.Find("Cam2").GetComponent<Camera>();
+            var screenPoint = RectTransformUtility.WorldToScreenPoint(cam, _lockTarget.position);
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(this.GetComponent<RectTransform>(),
                                                                     screenPoint,
@@ -246,10 +247,10 @@ public class HUDController : Photon.MonoBehaviour
         else if (lockOnImage.gameObject.activeInHierarchy && !GameManager.screenDivided)
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, _cam.WorldToScreenPoint(_lockTarget.position), null, out _localPos);
         
-        _v3Lock = new Vector3(_localPos.x - 20f, _localPos.y - 20f, 0f);
+        _v3Lock = _localPos;
 
         if (lockOnImage.gameObject.activeInHierarchy && _localPos != null && lockOnImage.rectTransform.localPosition != _v3Lock)
-              lockOnImage.rectTransform.localPosition = Vector3.Lerp(lockOnImage.rectTransform.localPosition, _v3Lock, this.GetComponent<Canvas>().worldCamera.GetComponentInParent<CamRotationController>().smoothPercentage);
+            lockOnImage.rectTransform.localPosition = Vector3.Lerp(lockOnImage.rectTransform.localPosition, _v3Lock, this.GetComponent<Canvas>().worldCamera.GetComponentInParent<CamRotationController>().smoothPercentage);
     }
 
     private void OnPlayerDeath(params object[] paramsContainer)
@@ -376,9 +377,10 @@ public class HUDController : Photon.MonoBehaviour
             if (angle <= this.GetComponent<Canvas>().worldCamera.fieldOfView)
             {
                 enemyBar.gameObject.SetActive(true);
+                var cam = this.gameObject.name == "HUD1" ? GameObject.Find("Cam1").GetComponent<Camera>() : GameObject.Find("Cam2").GetComponent<Camera>();
 
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(this.GetComponent<RectTransform>(),
-                                      RectTransformUtility.WorldToScreenPoint(this.GetComponent<Canvas>().worldCamera, _enemyBarPos.position),
+                                      RectTransformUtility.WorldToScreenPoint(cam, _enemyBarPos.position),
                                       this.GetComponent<Canvas>().worldCamera,
                                       out _barLocalPos);
 
