@@ -72,7 +72,7 @@ public class SkillEvents
     /// 0 - Position (Vector3)
     /// 1 - SenderParticles (PlayerParticles)
     /// </summary>
-    public const string RepulsiveTelekinesisCasted = "RepulsiveTelekinesisCasted";
+    public const string ApplyShockwave = "RepulsiveTelekinesisCasted";
 
     /// <summary>
     /// 0 - Dummy (DMM_ArcaneOrb)

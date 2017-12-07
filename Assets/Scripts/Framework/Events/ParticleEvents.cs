@@ -38,5 +38,12 @@ public class ParticleEvents
     /// 1 - Sender position (Vector3)
     /// 2 - Sender particles (PlayerParticles)
     /// </summary>
+    public const string ToxicSpitParticle = "ToxicSpitParticle";
+
+    /// <summary>
+    /// 0 - Sender (string)
+    /// 1 - Sender position (Vector3)
+    /// 2 - Sender particles (PlayerParticles)
+    /// </summary>
     public const string BlockParticle = "BlockParticle";
 }

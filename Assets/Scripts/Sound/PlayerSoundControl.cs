@@ -24,7 +24,7 @@ public class PlayerSoundControl : MonoBehaviour
 
     void OnDamaged(params object[] info)
     {
-        EventManager.DispatchEvent(SoundEvents.PlayerDamaged);
+        EventManager.DispatchEvent(SoundEvents.PlayerDamagedSound);
     }
 
     void OnStun(params object[] info)
@@ -34,6 +34,6 @@ public class PlayerSoundControl : MonoBehaviour
 
     void OnPlayerDeath(object[] paramsContainer)
     {
-        EventManager.DispatchEvent(SoundEvents.PlayerDeath);
+        EventManager.DispatchEvent(SoundEvents.PlayerDeathSound);
     }
 }

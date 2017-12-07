@@ -44,8 +44,10 @@ public class PlayerStats : Photon.MonoBehaviour
             {
                 hp = 0;
                 CancelInvoke();
-                if (!PhotonNetwork.offlineMode && !isDead) EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { PhotonNetwork.player.NickName });
-                else if (GameManager.screenDivided && !isDead) EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { this.gameObject.name });
+                if (!PhotonNetwork.offlineMode && !isDead)
+                { EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { PhotonNetwork.player.NickName }); }
+                else if (GameManager.screenDivided && !isDead)
+                { EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { this.gameObject.name }); }
                 isDead = true;
             }
             else hp = value;
