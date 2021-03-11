@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : Photon.MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     private Rigidbody _rigid;
@@ -99,7 +99,6 @@ public class PlayerMovement : Photon.MonoBehaviour
         isRolling = true;
         if (direction != Vector3.zero) transform.forward = new Vector3(transform.TransformDirection(direction).x, 0f, transform.TransformDirection(direction).z);
         EventManager.DispatchEvent(AnimationEvents.RollingAnimation, new object[] { this.gameObject.name, isRolling });
-        if (!PhotonNetwork.offlineMode) photonView.RPC("SetRollingOn", PhotonTargets.All);
     }
 
     /// <summary>Makes the character run</summary>
@@ -200,7 +199,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 
     private Transform GetEnemy()
     {
-        var enems = GameObject.FindObjectsOfType<NetworkCharacter>();
+        var enems = GameObject.FindObjectsOfType<PlayerInput>();
 
         foreach (var enem in enems)
         {

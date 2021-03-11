@@ -8,12 +8,7 @@ public class StateVarUnable : StateMachineBehaviour
     {
         if(!animatorStateInfo.IsName("2Block+Y"))
         {
-            if (PhotonNetwork.offlineMode)
-            {
-                if (animator.GetBool("X")) EventManager.DispatchEvent(AnimationEvents.AttackEnter, new object[] { animator.gameObject.name, animator.gameObject.GetComponent<PlayerCombat>().lightAttackDamage });
-                else if (animator.GetBool("Y")) EventManager.DispatchEvent(AnimationEvents.AttackEnter, new object[] { animator.gameObject.name, animator.gameObject.GetComponent<PlayerCombat>().heavyAttackDamage });
-            }
-            else if(animator.gameObject.GetComponent<PlayerInput>().enabled)
+             if(animator.gameObject.GetComponent<PlayerInput>().enabled)
             {
                 if (animator.GetBool("X")) EventManager.DispatchEvent(AnimationEvents.AttackEnter, new object[] { animator.gameObject.name, animator.gameObject.GetComponent<PlayerCombat>().lightAttackDamage });
                 else if (animator.GetBool("Y")) EventManager.DispatchEvent(AnimationEvents.AttackEnter, new object[] { animator.gameObject.name, animator.gameObject.GetComponent<PlayerCombat>().heavyAttackDamage });

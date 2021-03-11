@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerParticles : Photon.MonoBehaviour
+public class PlayerParticles : MonoBehaviour
 {
     private Transform _skillPos;
     GameObject _runParticle;
@@ -100,7 +100,6 @@ public class PlayerParticles : Photon.MonoBehaviour
 
     #region Particles
     #region RPC
-    [PunRPC]
     public GameObject RpcParticleCaller(string part, Vector3 pos)
     {
         var parts = Resources.Load(part, typeof(GameObject)) as GameObject;
@@ -109,7 +108,6 @@ public class PlayerParticles : Photon.MonoBehaviour
         return inst;
     }
 
-    [PunRPC]
     public GameObject RpcParticleCaller(string part, Vector3 pos, float lifeTime)
     {
         var parts = Resources.Load(part, typeof(GameObject)) as GameObject;

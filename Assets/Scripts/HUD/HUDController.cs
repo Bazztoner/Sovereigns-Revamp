@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System;
 
-public class HUDController : Photon.MonoBehaviour
+public class HUDController : MonoBehaviour
 {
     #region Variables
     public GameObject gui;
@@ -108,7 +108,7 @@ public class HUDController : Photon.MonoBehaviour
 
         if (this.gameObject.name == "HUD1" && (string)paramsContainer[1] == "Player1" || this.gameObject.name == "HUD2" && (string)paramsContainer[1] == "Player2")
         {
-            for (int i = 0; i < frames.Length -1; i++)
+            for (int i = 0; i < frames.Length - 1; i++)
             {
                 if (i != (int)type && frames[i] != null)
                 {
@@ -246,7 +246,7 @@ public class HUDController : Photon.MonoBehaviour
         }
         else if (lockOnImage.gameObject.activeInHierarchy && !GameManager.screenDivided)
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, _cam.WorldToScreenPoint(_lockTarget.position), null, out _localPos);
-        
+
         _v3Lock = _localPos;
 
         if (lockOnImage.gameObject.activeInHierarchy && _localPos != null && lockOnImage.rectTransform.localPosition != _v3Lock)
@@ -425,7 +425,6 @@ public class HUDController : Photon.MonoBehaviour
         else
         {
             hp.fillAmount = (float)paramsContainer[2];
-            if (!PhotonNetwork.offlineMode) photonView.RPC("NotifyLife", PhotonTargets.All, hp.fillAmount, PhotonNetwork.player.NickName);
         }
     }
 
@@ -457,161 +456,96 @@ public class HUDController : Photon.MonoBehaviour
         if ((string)paramsContainer[0] == "") timeOut.enabled = true;
         else
         {
-            if (!PhotonNetwork.offlineMode)
-            {
-                if ((string)paramsContainer[0] == PhotonNetwork.player.NickName) youLose.enabled = true;
-                else youWin.enabled = true;
-            }
-            else if (GameManager.screenDivided)
-            {
-                if (this.gameObject.name == "HUD1")
-                {
-                    if ((string)paramsContainer[0] == "Player1") youLose.enabled = true;
-                    else youWin.enabled = true;
-                }
-                else if (this.gameObject.name == "HUD2")
-                {
-                    if ((string)paramsContainer[0] == "Player2") youLose.enabled = true;
-                    else youWin.enabled = true;
-                }
-            }
-        }
-        if (this.gameObject.name != "HUD")
-        {
-            if (youWin.enabled) StartCoroutine(RemoveImage(youWin, _imgTime));
-            else if (youLose.enabled) StartCoroutine(RemoveImage(youLose, _imgTime));
-            else if (timeOut.enabled) StartCoroutine(RemoveImage(timeOut, _imgTime));
-        }
-    }
-
-    private void OnEndOfMatch(params object[] paramsContainer)
-    {
-        if (this.gameObject.name != "HUD")
-        {
-            var p1 = (int)paramsContainer[0];
-            var p2 = (int)paramsContainer[1];
-
-            if (p1 == p2) tie.enabled = true;
-            else if (p1 > p2)
-            {
-                if (this.gameObject.name == "HUD1") victory.enabled = true;
-                else if (this.gameObject.name == "HUD2") defeat.enabled = true;
-            }
-            else
-            {
-                if (this.gameObject.name == "HUD2") victory.enabled = true;
-                else if (this.gameObject.name == "HUD1") defeat.enabled = true;
-            }
-        }
-    }
-
-    private void OnRestartRound(params object[] paramsContainer)
-    {
-        damageText.text = "";
-
-        if ((bool)paramsContainer[0])
-        {
-            EventManager.RemoveEventListener(CharacterEvents.LifeUpdate, ApplyHPChanges);
-            EventManager.RemoveEventListener(CharacterEvents.ManaUpdate, ApplyManaChanges);
-            EventManager.RemoveEventListener(SkillEvents.SpellCooldown, OnSpellCooldown);
-            EventManager.RemoveEventListener(GameEvents.GameFinished, OnGameFinished);
-            EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
-            EventManager.RemoveEventListener(CameraEvents.LockOnActivated, OnLockOnActivated);
-            EventManager.RemoveEventListener(UIEvents.SetRoundText, OnSetRoundText);
-            EventManager.RemoveEventListener(GameEvents.EndOfMatch, OnEndOfMatch);
-        }
-    }
-
-    private void OnSetRoundText(params object[] paramsContainer)
-    {
-        if (this.gameObject.name != "HUD")
-        {
-            roundTexts[(int)paramsContainer[0]].enabled = true;
-            StartCoroutine(RemoveImage(roundTexts[(int)paramsContainer[0]], _imgTime));
-        }
-    }
-
-    #region Cooldown
-    public void OnSpellCooldown(params object[] paramsContainer)
-    {
-        if (GameManager.screenDivided)
-        {
             if (this.gameObject.name == "HUD1")
             {
-                if ((string)paramsContainer[2] == "Player1")
-                {
-                    StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1], this.gameObject.name));
-                }
+                if ((string)paramsContainer[0] == "Player1") youLose.enabled = true;
+                else youWin.enabled = true;
             }
             else if (this.gameObject.name == "HUD2")
             {
-                if ((string)paramsContainer[2] == "Player2")
-                {
-                    StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1], this.gameObject.name));
-                }
+                if ((string)paramsContainer[0] == "Player2") youLose.enabled = true;
+                else youWin.enabled = true;
             }
-        }
-        else StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1]));
-    }
-
-    IEnumerator ApplyCooldown(float cooldown, Spells spell)
-    {
-        for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
-        {
-            allCooldowns[(int)spell][j].text = cooldown < 1 ? "1" : Mathf.Floor(cooldown).ToString();
-        }
-
-        StartCoroutine(FillImageCooldown(cooldown, spells[(int)spell]));
-
-        float cd = cooldown;
-
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            cd--;
-
-            if (cd > 0)
+            if (this.gameObject.name != "HUD")
             {
-                for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
-                {
-                    allCooldowns[(int)spell][j].text = cd < 1 ? "1" : Mathf.Floor(cd).ToString();
-                }
-            }
-            else
-            {
-                spells[(int)spell].fillAmount = 0;
-
-                for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
-                {
-                    allCooldowns[(int)spell][j].text = "";
-                }
-
-                yield break;
+                if (youWin.enabled) StartCoroutine(RemoveImage(youWin, _imgTime));
+                else if (youLose.enabled) StartCoroutine(RemoveImage(youLose, _imgTime));
+                else if (timeOut.enabled) StartCoroutine(RemoveImage(timeOut, _imgTime));
             }
         }
     }
 
-    IEnumerator FillImageCooldown(float cooldown, Image image)
-    {
-        var cd = cooldown;
-        while (cd > 0)
+        private void OnEndOfMatch(params object[] paramsContainer)
         {
-            cd -= Time.deltaTime;
-            image.fillAmount = cd / cooldown;
-            yield return new WaitForEndOfFrame();
+            if (this.gameObject.name != "HUD")
+            {
+                var p1 = (int)paramsContainer[0];
+                var p2 = (int)paramsContainer[1];
+
+                if (p1 == p2) tie.enabled = true;
+                else if (p1 > p2)
+                {
+                    if (this.gameObject.name == "HUD1") victory.enabled = true;
+                    else if (this.gameObject.name == "HUD2") defeat.enabled = true;
+                }
+                else
+                {
+                    if (this.gameObject.name == "HUD2") victory.enabled = true;
+                    else if (this.gameObject.name == "HUD1") defeat.enabled = true;
+                }
+            }
         }
-    }
 
-    IEnumerator RemoveImage(Image img, float time)
-    {
-        yield return new WaitForSeconds(time);
-        img.enabled = false;
-    }
+        private void OnRestartRound(params object[] paramsContainer)
+        {
+            damageText.text = "";
 
-    #region SplitScreen KORRUPTINES
-    IEnumerator ApplyCooldown(float cooldown, Spells spell, string hudName)
-    {
-        if (this.gameObject.name == hudName)
+            if ((bool)paramsContainer[0])
+            {
+                EventManager.RemoveEventListener(CharacterEvents.LifeUpdate, ApplyHPChanges);
+                EventManager.RemoveEventListener(CharacterEvents.ManaUpdate, ApplyManaChanges);
+                EventManager.RemoveEventListener(SkillEvents.SpellCooldown, OnSpellCooldown);
+                EventManager.RemoveEventListener(GameEvents.GameFinished, OnGameFinished);
+                EventManager.RemoveEventListener(GameEvents.RestartRound, OnRestartRound);
+                EventManager.RemoveEventListener(CameraEvents.LockOnActivated, OnLockOnActivated);
+                EventManager.RemoveEventListener(UIEvents.SetRoundText, OnSetRoundText);
+                EventManager.RemoveEventListener(GameEvents.EndOfMatch, OnEndOfMatch);
+            }
+        }
+
+        private void OnSetRoundText(params object[] paramsContainer)
+        {
+            if (this.gameObject.name != "HUD")
+            {
+                roundTexts[(int)paramsContainer[0]].enabled = true;
+                StartCoroutine(RemoveImage(roundTexts[(int)paramsContainer[0]], _imgTime));
+            }
+        }
+
+        #region Cooldown
+        public void OnSpellCooldown(params object[] paramsContainer)
+        {
+            if (GameManager.screenDivided)
+            {
+                if (this.gameObject.name == "HUD1")
+                {
+                    if ((string)paramsContainer[2] == "Player1")
+                    {
+                        StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1], this.gameObject.name));
+                    }
+                }
+                else if (this.gameObject.name == "HUD2")
+                {
+                    if ((string)paramsContainer[2] == "Player2")
+                    {
+                        StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1], this.gameObject.name));
+                    }
+                }
+            }
+            else StartCoroutine(ApplyCooldown((float)paramsContainer[0], (Spells)paramsContainer[1]));
+        }
+
+        IEnumerator ApplyCooldown(float cooldown, Spells spell)
         {
             for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
             {
@@ -647,11 +581,8 @@ public class HUDController : Photon.MonoBehaviour
                 }
             }
         }
-    }
 
-    IEnumerator FillImageCooldown(float cooldown, Image image, string hudName)
-    {
-        if (this.gameObject.name == hudName)
+        IEnumerator FillImageCooldown(float cooldown, Image image)
         {
             var cd = cooldown;
             while (cd > 0)
@@ -661,7 +592,67 @@ public class HUDController : Photon.MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        IEnumerator RemoveImage(Image img, float time)
+        {
+            yield return new WaitForSeconds(time);
+            img.enabled = false;
+        }
+
+        #region SplitScreen KORRUPTINES
+        IEnumerator ApplyCooldown(float cooldown, Spells spell, string hudName)
+        {
+            if (this.gameObject.name == hudName)
+            {
+                for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
+                {
+                    allCooldowns[(int)spell][j].text = cooldown < 1 ? "1" : Mathf.Floor(cooldown).ToString();
+                }
+
+                StartCoroutine(FillImageCooldown(cooldown, spells[(int)spell]));
+
+                float cd = cooldown;
+
+                while (true)
+                {
+                    yield return new WaitForSeconds(1);
+                    cd--;
+
+                    if (cd > 0)
+                    {
+                        for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
+                        {
+                            allCooldowns[(int)spell][j].text = cd < 1 ? "1" : Mathf.Floor(cd).ToString();
+                        }
+                    }
+                    else
+                    {
+                        spells[(int)spell].fillAmount = 0;
+
+                        for (int j = 0; j < allCooldowns[(int)spell].Length; j++)
+                        {
+                            allCooldowns[(int)spell][j].text = "";
+                        }
+
+                        yield break;
+                    }
+                }
+            }
+        }
+
+        IEnumerator FillImageCooldown(float cooldown, Image image, string hudName)
+        {
+            if (this.gameObject.name == hudName)
+            {
+                var cd = cooldown;
+                while (cd > 0)
+                {
+                    cd -= Time.deltaTime;
+                    image.fillAmount = cd / cooldown;
+                    yield return new WaitForEndOfFrame();
+                }
+            }
+        }
+        #endregion
+        #endregion
     }
-    #endregion
-    #endregion
-}

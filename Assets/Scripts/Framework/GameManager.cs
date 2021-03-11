@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(PhotonView))]
-public class GameManager : Photon.MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     private bool _isGameStarted = false;
     private int _round;
@@ -60,20 +59,14 @@ public class GameManager : Photon.MonoBehaviour
         time--;
         if (time == 0)
         {
-            if (GameManager.screenDivided)
                 EndGame("");
-            else
-                photonView.RPC("RpcEndGame", PhotonTargets.All, "Time Out", "");
         }
     }
 
-    [PunRPC]
     public void StartGame()
     {
         _isGameStarted = true;
     }
-
-    [PunRPC]
     public void RpcEndGame(string message, string player)
     {
         if (_isGameStarted)

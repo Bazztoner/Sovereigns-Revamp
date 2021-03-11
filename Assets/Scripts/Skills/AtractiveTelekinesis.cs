@@ -89,9 +89,6 @@ public class AtractiveTelekinesis : ISpell
 
     void PullObject(CamRotationController cam)
     {
-        if (PhotonNetwork.offlineMode) _target.DestroyObject(cam.transform.forward, cam.AngleVision);
-        else _target.photonView.RPC("RpcDestroy", PhotonTargets.All, cam.transform.forward, cam.AngleVision, PhotonNetwork.player.NickName);
-
         _target = null;
         _hasObject = false;
 
@@ -102,8 +99,6 @@ public class AtractiveTelekinesis : ISpell
     {
         var camContainter = me.GetComponentInParent<PlayerInput>().GetCamera;
         _target = camContainter.CurrentTarget;
-        if (PhotonNetwork.offlineMode) _target.DestroyObject(camContainter.transform.forward, camContainter.AngleVision);
-        else _target.photonView.RPC("RpcDestroy", PhotonTargets.All, camContainter.transform.forward, camContainter.AngleVision, PhotonNetwork.player.NickName);
 
         _target = null;
         _hasObject = false;
@@ -115,9 +110,6 @@ public class AtractiveTelekinesis : ISpell
     {
         var cam = GameObject.FindObjectOfType<CamRotationController>();
         _target = cam.CurrentTarget;
-
-        if (PhotonNetwork.offlineMode) _target.DestroyObject(cam.transform.forward, cam.AngleVision);
-        else _target.photonView.RPC("RpcDestroy", PhotonTargets.All, cam.transform.forward, cam.AngleVision, PhotonNetwork.player.NickName);
 
         _target = null;
         _hasObject = false;

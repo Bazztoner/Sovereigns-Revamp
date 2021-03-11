@@ -39,9 +39,7 @@ public class ParticleManager : MonoBehaviour
         var prnt = (RectTransform)paramsContainer[1];
 
         var caster = GameObject.Find(sender).GetComponent<PlayerParticles>();
-
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "SpellChangeParticle", prnt, 1.1f);
-        else caster.ParticleCaller(parts[(int)ParticleID.SpellChangeParticle].gameObject, prnt, 1.1f, true);
+        caster.ParticleCaller(parts[(int)ParticleID.SpellChangeParticle].gameObject, prnt, 1.1f, true);
     }
 
     public static void DestroyInstance()
@@ -76,9 +74,7 @@ public class ParticleManager : MonoBehaviour
         }
 
         var nupoz = new Vector3(parent.transform.position.x, parent.transform.position.y + 1, parent.transform.position.z);
-
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "StunGraphic", parent, stunTime);
-        else caster.ParticleCaller(parts[(int)ParticleID.StunGraphic].gameObject, parent, stunTime, true);
+        caster.ParticleCaller(parts[(int)ParticleID.StunGraphic].gameObject, parent, stunTime, true);
     }
 
     /// <summary>
@@ -105,8 +101,7 @@ public class ParticleManager : MonoBehaviour
                 if (child.name == "LeftPalm" || child.name == "RightPalm")
                 {
                     parent = child;
-                    if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "GuardBreakGraphic", parent, breakTime);
-                    else caster.ParticleCaller(parts[(int)ParticleID.GuardBreakGraphic].gameObject, parent, breakTime, true);
+                    caster.ParticleCaller(parts[(int)ParticleID.GuardBreakGraphic].gameObject, parent, breakTime, true);
                 }
             }
             else
@@ -114,8 +109,7 @@ public class ParticleManager : MonoBehaviour
                 if (child.name == "Shield")
                 {
                     parent = child;
-                    if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "GuardBreakGraphic", parent, breakTime);
-                    else caster.ParticleCaller(parts[(int)ParticleID.GuardBreakGraphic].gameObject, parent, breakTime, true);
+                    caster.ParticleCaller(parts[(int)ParticleID.GuardBreakGraphic].gameObject, parent, breakTime, true);
                     break;
                 }
             }
@@ -146,8 +140,7 @@ public class ParticleManager : MonoBehaviour
             }
         }
 
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "BlockingSparks", pos, caster.transform.forward);
-        else caster.ParticleCaller(parts[(int)ParticleID.BlockingSparks].gameObject, pos, caster.transform.forward);
+        caster.ParticleCaller(parts[(int)ParticleID.BlockingSparks].gameObject, pos, caster.transform.forward);
     }
 
     void OnToxicDamageParticle(object[] paramsContainer)
@@ -156,8 +149,7 @@ public class ParticleManager : MonoBehaviour
         var tempPos = (Vector3)paramsContainer[1];
         var pos = new Vector3(tempPos.x, tempPos.y + 0.66f, tempPos.z);
 
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Toxine", pos);
-        else caster.ParticleCaller(parts[(int)ParticleID.ToxineDamage].gameObject, pos);
+        caster.ParticleCaller(parts[(int)ParticleID.ToxineDamage].gameObject, pos);
     }
 
     void OnToxicSpitParticle(object[] paramsContainer)
@@ -166,8 +158,7 @@ public class ParticleManager : MonoBehaviour
         var tempPos = (Vector3)paramsContainer[1];
         var pos = new Vector3(tempPos.x, tempPos.y + 0.66f, tempPos.z);
 
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "ToxicSpit", pos);
-        else caster.ParticleCaller(parts[(int)ParticleID.ToxicSpit].gameObject, pos, caster.transform.forward);
+        caster.ParticleCaller(parts[(int)ParticleID.ToxicSpit].gameObject, pos, caster.transform.forward);
     }
 
 
@@ -180,8 +171,7 @@ public class ParticleManager : MonoBehaviour
 
         var particleID = sender == "Player1" ? ParticleID.BerserkCharge : ParticleID.ScalesCharge;
 
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Charge", pos);
-        else caster.ParticleCaller(parts[(int)particleID].gameObject, pos);
+       caster.ParticleCaller(parts[(int)particleID].gameObject, pos);
     }
 
     void OnBlinkCasted(object[] paramsContainer)
@@ -193,12 +183,8 @@ public class ParticleManager : MonoBehaviour
 
         var partID = sender == "Player1" ? ParticleID.AngelBlink : ParticleID.DemonBlink;
 
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Blink", pos);
-        else
-        {
             caster.ParticleCaller(parts[(int)partID].gameObject, caster.transform);
             caster.ParticleCaller(parts[(int)ParticleID.ResidualBlink].gameObject, pos);
-        }
     }
 
     void OnShockwaveApplied(object[] paramsContainer)
@@ -206,8 +192,7 @@ public class ParticleManager : MonoBehaviour
         var caster = (PlayerParticles)paramsContainer[1];
         var pos = (Vector3)paramsContainer[0];
 
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "ShockWave", pos);
-        else caster.ParticleCaller(parts[(int)ParticleID.LaunchShockwave].gameObject, pos);
+        caster.ParticleCaller(parts[(int)ParticleID.LaunchShockwave].gameObject, pos);
     }
 
     void OnCharacterDamaged(object[] paramsContainer)
@@ -216,8 +201,7 @@ public class ParticleManager : MonoBehaviour
         var tempPos = (Vector3)paramsContainer[1];
         var pos = new Vector3(tempPos.x, tempPos.y + 0.66f, tempPos.z);
 
-        if (!PhotonNetwork.offlineMode) caster.photonView.RPC("RpcParticleCaller", PhotonTargets.All, "Blood", pos);
-        else caster.ParticleCaller(parts[(int)ParticleID.PlayerEntityDamage].gameObject, pos);
+        caster.ParticleCaller(parts[(int)ParticleID.PlayerEntityDamage].gameObject, pos);
     }
 }
 

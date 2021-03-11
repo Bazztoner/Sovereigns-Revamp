@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : Photon.MonoBehaviour
+public class PlayerCombat : MonoBehaviour
 {
 
     #region Variables

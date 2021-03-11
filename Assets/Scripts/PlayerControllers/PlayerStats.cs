@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : Photon.MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     private bool _gameInCourse;
     private bool _isBlocking = false;
@@ -44,10 +44,7 @@ public class PlayerStats : Photon.MonoBehaviour
             {
                 hp = 0;
                 CancelInvoke();
-                if (!PhotonNetwork.offlineMode && !isDead)
-                { EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { PhotonNetwork.player.NickName }); }
-                else if (GameManager.screenDivided && !isDead)
-                { EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { this.gameObject.name }); }
+                if (!isDead) EventManager.DispatchEvent(CharacterEvents.PlayerDeath, new object[] { this.gameObject.name });
                 isDead = true;
             }
             else hp = value;
@@ -368,8 +365,6 @@ public class PlayerStats : Photon.MonoBehaviour
             CancelInvoke();
             EventManager.DispatchEvent(CharacterEvents.IsDead, new object[] { this.gameObject.name, true });
         }
-
-        if (!PhotonNetwork.offlineMode) photonView.RPC("SetDeathOn", PhotonTargets.All);
     }
 
     //Agregada comprobación para hacer ataques imbloqueables
@@ -390,8 +385,6 @@ public class PlayerStats : Photon.MonoBehaviour
             _isBlocking = false;
             _isBlockingUp = false;
             EventManager.DispatchEvent(CharacterEvents.IsDamaged, new object[] { this.gameObject.name, isDamaged });
-
-            if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOn", PhotonTargets.All);
         }
     }
 
@@ -401,8 +394,6 @@ public class PlayerStats : Photon.MonoBehaviour
         {
             isDamaged = false;
             EventManager.DispatchEvent(CharacterEvents.IsDamaged, new object[] { this.gameObject.name, isDamaged });
-
-            if (!PhotonNetwork.offlineMode) photonView.RPC("SetDamageOff", PhotonTargets.All);
         }
     }
 

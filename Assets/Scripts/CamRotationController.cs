@@ -114,7 +114,7 @@ public class CamRotationController : MonoBehaviour
                 | 1 << Utilities.IntLayers.VISIBLETOBOTH
                 | 1 << LayerMask.NameToLayer("WeaponCollider")
                  );
-        _enemyMask = PhotonNetwork.offlineMode ? 0 << LayerMask.NameToLayer("Enemy") : 0 << LayerMask.NameToLayer("Player");
+        _enemyMask = 0 << LayerMask.NameToLayer("Enemy");
         _correctionVector = new Vector3(0f, 1f, 0f);
         lockOnDistance = lockOnDistance == 0f ? 10f : lockOnDistance;
 
@@ -175,17 +175,17 @@ public class CamRotationController : MonoBehaviour
         if (_owner == (string)paramsContainer[0])
         {
             var duration = 3;
-            var profile = GetCamera.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour>();
+            /*var profile = GetCamera.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour>();
             var postProcess = Resources.Load("PostProcess/ToxinePostProcess") as UnityEngine.PostProcessing.PostProcessingProfile;
             profile.profile = postProcess;
-            StartToxine(postProcess, duration);
+            StartToxine(postProcess, duration);*/
         }
     }
 
-    void StartToxine(UnityEngine.PostProcessing.PostProcessingProfile postProcess, float maxTime)
+    /*void StartToxine(UnityEngine.PostProcessing.PostProcessingProfile postProcess, float maxTime)
     {
         StartCoroutine(PingPongFloat(postProcess.vignette.settings.intensity, 0, 1, maxTime));
-    }
+    }*/
 
     IEnumerator LerpFloat(float value, float startValue, float endValue, float maxTime)
     {
@@ -219,10 +219,6 @@ public class CamRotationController : MonoBehaviour
             value = Mathf.Lerp(endValue, startValue, i);
             yield return new WaitForEndOfFrame();
         }
-
-        var profile = GetCamera.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour>();
-        var postProcess = Resources.Load("PostProcess/DefaultPostProcess") as UnityEngine.PostProcessing.PostProcessingProfile;
-        profile.profile = postProcess;
     }
 
     void OnTransitionSmoothUpdate(object[] paramsContainer)
@@ -232,7 +228,7 @@ public class CamRotationController : MonoBehaviour
 
     private Transform GetEnemy()
     {
-        if (GameManager.screenDivided || !PhotonNetwork.offlineMode)
+        if (GameManager.screenDivided)
         {
             var enems = GameObject.FindObjectsOfType<PlayerInput>();
 

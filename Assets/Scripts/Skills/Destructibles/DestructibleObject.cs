@@ -9,7 +9,7 @@ using UnityEngine;
 /// Solo puede ser interactuado por AtractiveTelekinesis
 /// "Publicar un internet - Fabián Valladares"
 /// </summary>
-public class DestructibleObject : Photon.MonoBehaviour
+public class DestructibleObject : MonoBehaviour
 {
     public int life;
     public float damage;
@@ -149,7 +149,6 @@ public class DestructibleObject : Photon.MonoBehaviour
         if (wf != null) wf.SetVisible(false);
     }
 
-    [PunRPC]
     public void RpcDestroy(Vector3 rot, float angle, string caster)
     {
         DestroyObject(rot, angle, caster);
