@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AF8D4B4F-527B-A693-F351-580257B56C0A}</ProjectGuid>
+    <ProjectGuid>{5B0C4C0E-5CDD-FBB6-98B4-F424A5CC4021}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -483,19 +483,19 @@
       <HintPath>C:/PhoenixDevelopment/Engines/Unity/2019.4.20f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Assets/Plugins/Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/PhoenixDevelopment/Engines/Unity/2019.4.20f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -843,81 +843,81 @@
       <HintPath>C:/PhoenixDevelopment/Engines/Unity/2019.4.20f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Monetization">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{71707A54-F961-61F9-27B2-E33CD7DB84B7}</Project>
+      <Project>{4CBBA10F-0E83-0039-A792-095DF72A8485}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
   </ItemGroup>

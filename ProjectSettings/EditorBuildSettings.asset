@@ -5,17 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scene/Game.unity
-  - enabled: 0
-    path: Assets/Scene/Network.unity
-  - enabled: 0
-    path: Assets/Scene/NetworkTest.unity
-  - enabled: 0
-    path: Assets/Scene/HeavenTempleTest.unity
   - enabled: 1
     path: Assets/Scene/Menu.unity
+    guid: 8ab22ecb07aa4504e98fe28e27298248
   - enabled: 1
     path: Assets/Scene/TransitionsTest.unity
+    guid: 40889d6ec029c774b8013679e7e746b5
   - enabled: 1
     path: Assets/Scene/Loading.unity
+    guid: 7a96187fa4eabd247a4dd2ee7900d7b7
+  m_configObjects: {}
