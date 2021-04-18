@@ -1,309 +1,868 @@
 fileFormatVersion: 2
 guid: aad8e2a402bcbc648a292954fc7abe22
-timeCreated: 1506032038
-licenseType: Free
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Angel Lowpoly
-    100002: //RootNode
-    100004: Base Human
-    100006: Base HumanHub001
-    100008: Base HumanHub001Bone001
-    100010: Base HumanHub001Bone001Bone001
-    100012: Base HumanHub001Bone001Bone001Bone001
-    100014: Base HumanHub001Bone001Bone001Bone001Bone001
-    100016: Base HumanHub001Bone001Bone001Bone001Bone003
-    100018: Base HumanHub001Bone001Bone001Bone001Bone004
-    100020: Base HumanHub001Bone001Bone001Bone003
-    100022: Base HumanHub001Bone001Bone001Bone004
-    100024: Base HumanHub001Bone001Bone003
-    100026: Base HumanHub001Bone001Bone004
-    100028: Base HumanHub001Bone003
-    100030: Base HumanHub001Bone004
-    100032: Base HumanHub001Bone005
-    100034: Base HumanHub001Bone006
-    100036: Base HumanHub002
-    100038: Base HumanHub003
-    100040: Base HumanLArm1
-    100042: Base HumanLArm2
-    100044: Base HumanLArmCollarbone
-    100046: Base HumanLArmDigit11
-    100048: Base HumanLArmDigit12
-    100050: Base HumanLArmDigit21
-    100052: Base HumanLArmDigit22
-    100054: Base HumanLArmDigit23
-    100056: Base HumanLArmDigit31
-    100058: Base HumanLArmDigit32
-    100060: Base HumanLArmDigit33
-    100062: Base HumanLArmDigit41
-    100064: Base HumanLArmDigit42
-    100066: Base HumanLArmDigit43
-    100068: Base HumanLArmDigit51
-    100070: Base HumanLArmDigit52
-    100072: Base HumanLArmDigit53
-    100074: Base HumanLArmPalm
-    100076: Base HumanLLeg1
-    100078: Base HumanLLeg2
-    100080: Base HumanLLegAnkle
-    100082: Base HumanLLegDigit11
-    100084: Base HumanPalmBone001
-    100086: Base HumanPalmBone002
-    100088: Base HumanRArm1
-    100090: Base HumanRArm2
-    100092: Base HumanRArmCollarbone
-    100094: Base HumanRArmDigit11
-    100096: Base HumanRArmDigit12
-    100098: Base HumanRArmDigit21
-    100100: Base HumanRArmDigit22
-    100102: Base HumanRArmDigit23
-    100104: Base HumanRArmDigit31
-    100106: Base HumanRArmDigit32
-    100108: Base HumanRArmDigit33
-    100110: Base HumanRArmDigit41
-    100112: Base HumanRArmDigit42
-    100114: Base HumanRArmDigit43
-    100116: Base HumanRArmDigit51
-    100118: Base HumanRArmDigit52
-    100120: Base HumanRArmDigit53
-    100122: Base HumanRArmPalm
-    100124: Base HumanRLeg1
-    100126: Base HumanRLeg2
-    100128: Base HumanRLegAnkle
-    100130: Base HumanRLegDigit11
-    100132: Base HumanSpine1
-    100134: Base HumanSpine1 1
-    100136: Base HumanSpine2
-    100138: Base HumanSpine2 1
-    100140: Base HumanSpine3
-    100142: Base HumanSpine4
-    100144: Base HumanSpine5
-    100146: ChestPlate
-    100148: Helmet
-    100150: Left Arm
-    100152: Left Arm 1
-    100154: Left Boot
-    100156: Left Glove
-    100158: Left PreArm
-    100160: Left Shin
-    100162: Left UpLeg
-    100164: LS
-    100166: LSP
-    100168: Right Boot
-    100170: Right Glove
-    100172: Right PreArm
-    100174: Right Shin
-    100176: Right UpLeg
-    100178: RS
-    100180: RSP
-    100182: Shield
-    100184: Sword
-    100186: Waist
-    100188: Waistcoat
-    100190: Wing
-    100192: Wing_Spades
-    400000: Angel Lowpoly
-    400002: //RootNode
-    400004: Base Human
-    400006: Base HumanHub001
-    400008: Base HumanHub001Bone001
-    400010: Base HumanHub001Bone001Bone001
-    400012: Base HumanHub001Bone001Bone001Bone001
-    400014: Base HumanHub001Bone001Bone001Bone001Bone001
-    400016: Base HumanHub001Bone001Bone001Bone001Bone003
-    400018: Base HumanHub001Bone001Bone001Bone001Bone004
-    400020: Base HumanHub001Bone001Bone001Bone003
-    400022: Base HumanHub001Bone001Bone001Bone004
-    400024: Base HumanHub001Bone001Bone003
-    400026: Base HumanHub001Bone001Bone004
-    400028: Base HumanHub001Bone003
-    400030: Base HumanHub001Bone004
-    400032: Base HumanHub001Bone005
-    400034: Base HumanHub001Bone006
-    400036: Base HumanHub002
-    400038: Base HumanHub003
-    400040: Base HumanLArm1
-    400042: Base HumanLArm2
-    400044: Base HumanLArmCollarbone
-    400046: Base HumanLArmDigit11
-    400048: Base HumanLArmDigit12
-    400050: Base HumanLArmDigit21
-    400052: Base HumanLArmDigit22
-    400054: Base HumanLArmDigit23
-    400056: Base HumanLArmDigit31
-    400058: Base HumanLArmDigit32
-    400060: Base HumanLArmDigit33
-    400062: Base HumanLArmDigit41
-    400064: Base HumanLArmDigit42
-    400066: Base HumanLArmDigit43
-    400068: Base HumanLArmDigit51
-    400070: Base HumanLArmDigit52
-    400072: Base HumanLArmDigit53
-    400074: Base HumanLArmPalm
-    400076: Base HumanLLeg1
-    400078: Base HumanLLeg2
-    400080: Base HumanLLegAnkle
-    400082: Base HumanLLegDigit11
-    400084: Base HumanPalmBone001
-    400086: Base HumanPalmBone002
-    400088: Base HumanRArm1
-    400090: Base HumanRArm2
-    400092: Base HumanRArmCollarbone
-    400094: Base HumanRArmDigit11
-    400096: Base HumanRArmDigit12
-    400098: Base HumanRArmDigit21
-    400100: Base HumanRArmDigit22
-    400102: Base HumanRArmDigit23
-    400104: Base HumanRArmDigit31
-    400106: Base HumanRArmDigit32
-    400108: Base HumanRArmDigit33
-    400110: Base HumanRArmDigit41
-    400112: Base HumanRArmDigit42
-    400114: Base HumanRArmDigit43
-    400116: Base HumanRArmDigit51
-    400118: Base HumanRArmDigit52
-    400120: Base HumanRArmDigit53
-    400122: Base HumanRArmPalm
-    400124: Base HumanRLeg1
-    400126: Base HumanRLeg2
-    400128: Base HumanRLegAnkle
-    400130: Base HumanRLegDigit11
-    400132: Base HumanSpine1
-    400134: Base HumanSpine1 1
-    400136: Base HumanSpine2
-    400138: Base HumanSpine2 1
-    400140: Base HumanSpine3
-    400142: Base HumanSpine4
-    400144: Base HumanSpine5
-    400146: ChestPlate
-    400148: Helmet
-    400150: Left Arm
-    400152: Left Arm 1
-    400154: Left Boot
-    400156: Left Glove
-    400158: Left PreArm
-    400160: Left Shin
-    400162: Left UpLeg
-    400164: LS
-    400166: LSP
-    400168: Right Boot
-    400170: Right Glove
-    400172: Right PreArm
-    400174: Right Shin
-    400176: Right UpLeg
-    400178: RS
-    400180: RSP
-    400182: Shield
-    400184: Sword
-    400186: Waist
-    400188: Waistcoat
-    400190: Wing
-    400192: Wing_Spades
-    2300000: Helmet
-    2300002: Left Arm
-    2300004: Left Arm 1
-    2300006: Left PreArm
-    2300008: Left Shin
-    2300010: Left UpLeg
-    2300012: LS
-    2300014: LSP
-    2300016: Right PreArm
-    2300018: Right Shin
-    2300020: Right UpLeg
-    2300022: RS
-    2300024: RSP
-    2300026: Shield
-    2300028: Sword
-    2300030: Waist
-    2300032: Wing
-    2300034: Wing_Spades
-    3300000: Helmet
-    3300002: Left Arm
-    3300004: Left Arm 1
-    3300006: Left PreArm
-    3300008: Left Shin
-    3300010: Left UpLeg
-    3300012: LS
-    3300014: LSP
-    3300016: Right PreArm
-    3300018: Right Shin
-    3300020: Right UpLeg
-    3300022: RS
-    3300024: RSP
-    3300026: Shield
-    3300028: Sword
-    3300030: Waist
-    3300032: Wing
-    3300034: Wing_Spades
-    4300000: Left Shin
-    4300002: Left UpLeg
-    4300004: Right Shin
-    4300006: Right UpLeg
-    4300008: Helmet
-    4300010: Shield
-    4300012: Left Arm
-    4300014: Left PreArm
-    4300016: LSP
-    4300018: LS
-    4300020: Sword
-    4300022: Left Arm
-    4300024: Right PreArm
-    4300026: RSP
-    4300028: RS
-    4300030: Wing
-    4300032: Wing_Spades
-    4300034: Waist
-    4300036: Angel Lowpoly
-    4300038: Left Glove
-    4300040: Right Boot
-    4300042: Left Boot
-    4300044: Waistcoat
-    4300046: Right Glove
-    4300048: ChestPlate
-    7400000: 2Y
-    7400002: 2YY
-    7400004: 2YYX
-    7400006: 2YYY
-    7400008: 2X
-    7400010: 2XX
-    7400012: 2XXX
-    7400014: 2XXY
-    7400016: 2Block+X
-    7400018: 2YX
-    7400020: 2Block+Y
-    7400022: Stun
-    9500000: //RootNode
-    13700000: Angel Lowpoly
-    13700002: ChestPlate
-    13700004: Left Boot
-    13700006: Left Glove
-    13700008: Right Boot
-    13700010: Right Glove
-    13700012: Waistcoat
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Angel Lowpoly
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: Base Human
+  - first:
+      1: 100006
+    second: Base HumanHub001
+  - first:
+      1: 100008
+    second: Base HumanHub001Bone001
+  - first:
+      1: 100010
+    second: Base HumanHub001Bone001Bone001
+  - first:
+      1: 100012
+    second: Base HumanHub001Bone001Bone001Bone001
+  - first:
+      1: 100014
+    second: Base HumanHub001Bone001Bone001Bone001Bone001
+  - first:
+      1: 100016
+    second: Base HumanHub001Bone001Bone001Bone001Bone003
+  - first:
+      1: 100018
+    second: Base HumanHub001Bone001Bone001Bone001Bone004
+  - first:
+      1: 100020
+    second: Base HumanHub001Bone001Bone001Bone003
+  - first:
+      1: 100022
+    second: Base HumanHub001Bone001Bone001Bone004
+  - first:
+      1: 100024
+    second: Base HumanHub001Bone001Bone003
+  - first:
+      1: 100026
+    second: Base HumanHub001Bone001Bone004
+  - first:
+      1: 100028
+    second: Base HumanHub001Bone003
+  - first:
+      1: 100030
+    second: Base HumanHub001Bone004
+  - first:
+      1: 100032
+    second: Base HumanHub001Bone005
+  - first:
+      1: 100034
+    second: Base HumanHub001Bone006
+  - first:
+      1: 100036
+    second: Base HumanHub002
+  - first:
+      1: 100038
+    second: Base HumanHub003
+  - first:
+      1: 100040
+    second: Base HumanLArm1
+  - first:
+      1: 100042
+    second: Base HumanLArm2
+  - first:
+      1: 100044
+    second: Base HumanLArmCollarbone
+  - first:
+      1: 100046
+    second: Base HumanLArmDigit11
+  - first:
+      1: 100048
+    second: Base HumanLArmDigit12
+  - first:
+      1: 100050
+    second: Base HumanLArmDigit21
+  - first:
+      1: 100052
+    second: Base HumanLArmDigit22
+  - first:
+      1: 100054
+    second: Base HumanLArmDigit23
+  - first:
+      1: 100056
+    second: Base HumanLArmDigit31
+  - first:
+      1: 100058
+    second: Base HumanLArmDigit32
+  - first:
+      1: 100060
+    second: Base HumanLArmDigit33
+  - first:
+      1: 100062
+    second: Base HumanLArmDigit41
+  - first:
+      1: 100064
+    second: Base HumanLArmDigit42
+  - first:
+      1: 100066
+    second: Base HumanLArmDigit43
+  - first:
+      1: 100068
+    second: Base HumanLArmDigit51
+  - first:
+      1: 100070
+    second: Base HumanLArmDigit52
+  - first:
+      1: 100072
+    second: Base HumanLArmDigit53
+  - first:
+      1: 100074
+    second: Base HumanLArmPalm
+  - first:
+      1: 100076
+    second: Base HumanLLeg1
+  - first:
+      1: 100078
+    second: Base HumanLLeg2
+  - first:
+      1: 100080
+    second: Base HumanLLegAnkle
+  - first:
+      1: 100082
+    second: Base HumanLLegDigit11
+  - first:
+      1: 100084
+    second: Base HumanPalmBone001
+  - first:
+      1: 100086
+    second: Base HumanPalmBone002
+  - first:
+      1: 100088
+    second: Base HumanRArm1
+  - first:
+      1: 100090
+    second: Base HumanRArm2
+  - first:
+      1: 100092
+    second: Base HumanRArmCollarbone
+  - first:
+      1: 100094
+    second: Base HumanRArmDigit11
+  - first:
+      1: 100096
+    second: Base HumanRArmDigit12
+  - first:
+      1: 100098
+    second: Base HumanRArmDigit21
+  - first:
+      1: 100100
+    second: Base HumanRArmDigit22
+  - first:
+      1: 100102
+    second: Base HumanRArmDigit23
+  - first:
+      1: 100104
+    second: Base HumanRArmDigit31
+  - first:
+      1: 100106
+    second: Base HumanRArmDigit32
+  - first:
+      1: 100108
+    second: Base HumanRArmDigit33
+  - first:
+      1: 100110
+    second: Base HumanRArmDigit41
+  - first:
+      1: 100112
+    second: Base HumanRArmDigit42
+  - first:
+      1: 100114
+    second: Base HumanRArmDigit43
+  - first:
+      1: 100116
+    second: Base HumanRArmDigit51
+  - first:
+      1: 100118
+    second: Base HumanRArmDigit52
+  - first:
+      1: 100120
+    second: Base HumanRArmDigit53
+  - first:
+      1: 100122
+    second: Base HumanRArmPalm
+  - first:
+      1: 100124
+    second: Base HumanRLeg1
+  - first:
+      1: 100126
+    second: Base HumanRLeg2
+  - first:
+      1: 100128
+    second: Base HumanRLegAnkle
+  - first:
+      1: 100130
+    second: Base HumanRLegDigit11
+  - first:
+      1: 100132
+    second: Base HumanSpine1
+  - first:
+      1: 100134
+    second: Base HumanSpine1 1
+  - first:
+      1: 100136
+    second: Base HumanSpine2
+  - first:
+      1: 100138
+    second: Base HumanSpine2 1
+  - first:
+      1: 100140
+    second: Base HumanSpine3
+  - first:
+      1: 100142
+    second: Base HumanSpine4
+  - first:
+      1: 100144
+    second: Base HumanSpine5
+  - first:
+      1: 100146
+    second: ChestPlate
+  - first:
+      1: 100148
+    second: Helmet
+  - first:
+      1: 100150
+    second: Left Arm
+  - first:
+      1: 100152
+    second: Left Arm 1
+  - first:
+      1: 100154
+    second: Left Boot
+  - first:
+      1: 100156
+    second: Left Glove
+  - first:
+      1: 100158
+    second: Left PreArm
+  - first:
+      1: 100160
+    second: Left Shin
+  - first:
+      1: 100162
+    second: Left UpLeg
+  - first:
+      1: 100164
+    second: LS
+  - first:
+      1: 100166
+    second: LSP
+  - first:
+      1: 100168
+    second: Right Boot
+  - first:
+      1: 100170
+    second: Right Glove
+  - first:
+      1: 100172
+    second: Right PreArm
+  - first:
+      1: 100174
+    second: Right Shin
+  - first:
+      1: 100176
+    second: Right UpLeg
+  - first:
+      1: 100178
+    second: RS
+  - first:
+      1: 100180
+    second: RSP
+  - first:
+      1: 100182
+    second: Shield
+  - first:
+      1: 100184
+    second: Sword
+  - first:
+      1: 100186
+    second: Waist
+  - first:
+      1: 100188
+    second: Waistcoat
+  - first:
+      1: 100190
+    second: Wing
+  - first:
+      1: 100192
+    second: Wing_Spades
+  - first:
+      4: 400000
+    second: Angel Lowpoly
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: Base Human
+  - first:
+      4: 400006
+    second: Base HumanHub001
+  - first:
+      4: 400008
+    second: Base HumanHub001Bone001
+  - first:
+      4: 400010
+    second: Base HumanHub001Bone001Bone001
+  - first:
+      4: 400012
+    second: Base HumanHub001Bone001Bone001Bone001
+  - first:
+      4: 400014
+    second: Base HumanHub001Bone001Bone001Bone001Bone001
+  - first:
+      4: 400016
+    second: Base HumanHub001Bone001Bone001Bone001Bone003
+  - first:
+      4: 400018
+    second: Base HumanHub001Bone001Bone001Bone001Bone004
+  - first:
+      4: 400020
+    second: Base HumanHub001Bone001Bone001Bone003
+  - first:
+      4: 400022
+    second: Base HumanHub001Bone001Bone001Bone004
+  - first:
+      4: 400024
+    second: Base HumanHub001Bone001Bone003
+  - first:
+      4: 400026
+    second: Base HumanHub001Bone001Bone004
+  - first:
+      4: 400028
+    second: Base HumanHub001Bone003
+  - first:
+      4: 400030
+    second: Base HumanHub001Bone004
+  - first:
+      4: 400032
+    second: Base HumanHub001Bone005
+  - first:
+      4: 400034
+    second: Base HumanHub001Bone006
+  - first:
+      4: 400036
+    second: Base HumanHub002
+  - first:
+      4: 400038
+    second: Base HumanHub003
+  - first:
+      4: 400040
+    second: Base HumanLArm1
+  - first:
+      4: 400042
+    second: Base HumanLArm2
+  - first:
+      4: 400044
+    second: Base HumanLArmCollarbone
+  - first:
+      4: 400046
+    second: Base HumanLArmDigit11
+  - first:
+      4: 400048
+    second: Base HumanLArmDigit12
+  - first:
+      4: 400050
+    second: Base HumanLArmDigit21
+  - first:
+      4: 400052
+    second: Base HumanLArmDigit22
+  - first:
+      4: 400054
+    second: Base HumanLArmDigit23
+  - first:
+      4: 400056
+    second: Base HumanLArmDigit31
+  - first:
+      4: 400058
+    second: Base HumanLArmDigit32
+  - first:
+      4: 400060
+    second: Base HumanLArmDigit33
+  - first:
+      4: 400062
+    second: Base HumanLArmDigit41
+  - first:
+      4: 400064
+    second: Base HumanLArmDigit42
+  - first:
+      4: 400066
+    second: Base HumanLArmDigit43
+  - first:
+      4: 400068
+    second: Base HumanLArmDigit51
+  - first:
+      4: 400070
+    second: Base HumanLArmDigit52
+  - first:
+      4: 400072
+    second: Base HumanLArmDigit53
+  - first:
+      4: 400074
+    second: Base HumanLArmPalm
+  - first:
+      4: 400076
+    second: Base HumanLLeg1
+  - first:
+      4: 400078
+    second: Base HumanLLeg2
+  - first:
+      4: 400080
+    second: Base HumanLLegAnkle
+  - first:
+      4: 400082
+    second: Base HumanLLegDigit11
+  - first:
+      4: 400084
+    second: Base HumanPalmBone001
+  - first:
+      4: 400086
+    second: Base HumanPalmBone002
+  - first:
+      4: 400088
+    second: Base HumanRArm1
+  - first:
+      4: 400090
+    second: Base HumanRArm2
+  - first:
+      4: 400092
+    second: Base HumanRArmCollarbone
+  - first:
+      4: 400094
+    second: Base HumanRArmDigit11
+  - first:
+      4: 400096
+    second: Base HumanRArmDigit12
+  - first:
+      4: 400098
+    second: Base HumanRArmDigit21
+  - first:
+      4: 400100
+    second: Base HumanRArmDigit22
+  - first:
+      4: 400102
+    second: Base HumanRArmDigit23
+  - first:
+      4: 400104
+    second: Base HumanRArmDigit31
+  - first:
+      4: 400106
+    second: Base HumanRArmDigit32
+  - first:
+      4: 400108
+    second: Base HumanRArmDigit33
+  - first:
+      4: 400110
+    second: Base HumanRArmDigit41
+  - first:
+      4: 400112
+    second: Base HumanRArmDigit42
+  - first:
+      4: 400114
+    second: Base HumanRArmDigit43
+  - first:
+      4: 400116
+    second: Base HumanRArmDigit51
+  - first:
+      4: 400118
+    second: Base HumanRArmDigit52
+  - first:
+      4: 400120
+    second: Base HumanRArmDigit53
+  - first:
+      4: 400122
+    second: Base HumanRArmPalm
+  - first:
+      4: 400124
+    second: Base HumanRLeg1
+  - first:
+      4: 400126
+    second: Base HumanRLeg2
+  - first:
+      4: 400128
+    second: Base HumanRLegAnkle
+  - first:
+      4: 400130
+    second: Base HumanRLegDigit11
+  - first:
+      4: 400132
+    second: Base HumanSpine1
+  - first:
+      4: 400134
+    second: Base HumanSpine1 1
+  - first:
+      4: 400136
+    second: Base HumanSpine2
+  - first:
+      4: 400138
+    second: Base HumanSpine2 1
+  - first:
+      4: 400140
+    second: Base HumanSpine3
+  - first:
+      4: 400142
+    second: Base HumanSpine4
+  - first:
+      4: 400144
+    second: Base HumanSpine5
+  - first:
+      4: 400146
+    second: ChestPlate
+  - first:
+      4: 400148
+    second: Helmet
+  - first:
+      4: 400150
+    second: Left Arm
+  - first:
+      4: 400152
+    second: Left Arm 1
+  - first:
+      4: 400154
+    second: Left Boot
+  - first:
+      4: 400156
+    second: Left Glove
+  - first:
+      4: 400158
+    second: Left PreArm
+  - first:
+      4: 400160
+    second: Left Shin
+  - first:
+      4: 400162
+    second: Left UpLeg
+  - first:
+      4: 400164
+    second: LS
+  - first:
+      4: 400166
+    second: LSP
+  - first:
+      4: 400168
+    second: Right Boot
+  - first:
+      4: 400170
+    second: Right Glove
+  - first:
+      4: 400172
+    second: Right PreArm
+  - first:
+      4: 400174
+    second: Right Shin
+  - first:
+      4: 400176
+    second: Right UpLeg
+  - first:
+      4: 400178
+    second: RS
+  - first:
+      4: 400180
+    second: RSP
+  - first:
+      4: 400182
+    second: Shield
+  - first:
+      4: 400184
+    second: Sword
+  - first:
+      4: 400186
+    second: Waist
+  - first:
+      4: 400188
+    second: Waistcoat
+  - first:
+      4: 400190
+    second: Wing
+  - first:
+      4: 400192
+    second: Wing_Spades
+  - first:
+      23: 2300000
+    second: Helmet
+  - first:
+      23: 2300002
+    second: Left Arm
+  - first:
+      23: 2300004
+    second: Left Arm 1
+  - first:
+      23: 2300006
+    second: Left PreArm
+  - first:
+      23: 2300008
+    second: Left Shin
+  - first:
+      23: 2300010
+    second: Left UpLeg
+  - first:
+      23: 2300012
+    second: LS
+  - first:
+      23: 2300014
+    second: LSP
+  - first:
+      23: 2300016
+    second: Right PreArm
+  - first:
+      23: 2300018
+    second: Right Shin
+  - first:
+      23: 2300020
+    second: Right UpLeg
+  - first:
+      23: 2300022
+    second: RS
+  - first:
+      23: 2300024
+    second: RSP
+  - first:
+      23: 2300026
+    second: Shield
+  - first:
+      23: 2300028
+    second: Sword
+  - first:
+      23: 2300030
+    second: Waist
+  - first:
+      23: 2300032
+    second: Wing
+  - first:
+      23: 2300034
+    second: Wing_Spades
+  - first:
+      33: 3300000
+    second: Helmet
+  - first:
+      33: 3300002
+    second: Left Arm
+  - first:
+      33: 3300004
+    second: Left Arm 1
+  - first:
+      33: 3300006
+    second: Left PreArm
+  - first:
+      33: 3300008
+    second: Left Shin
+  - first:
+      33: 3300010
+    second: Left UpLeg
+  - first:
+      33: 3300012
+    second: LS
+  - first:
+      33: 3300014
+    second: LSP
+  - first:
+      33: 3300016
+    second: Right PreArm
+  - first:
+      33: 3300018
+    second: Right Shin
+  - first:
+      33: 3300020
+    second: Right UpLeg
+  - first:
+      33: 3300022
+    second: RS
+  - first:
+      33: 3300024
+    second: RSP
+  - first:
+      33: 3300026
+    second: Shield
+  - first:
+      33: 3300028
+    second: Sword
+  - first:
+      33: 3300030
+    second: Waist
+  - first:
+      33: 3300032
+    second: Wing
+  - first:
+      33: 3300034
+    second: Wing_Spades
+  - first:
+      43: 4300000
+    second: Left Shin
+  - first:
+      43: 4300002
+    second: Left UpLeg
+  - first:
+      43: 4300004
+    second: Right Shin
+  - first:
+      43: 4300006
+    second: Right UpLeg
+  - first:
+      43: 4300008
+    second: Helmet
+  - first:
+      43: 4300010
+    second: Shield
+  - first:
+      43: 4300012
+    second: Left Arm
+  - first:
+      43: 4300014
+    second: Left PreArm
+  - first:
+      43: 4300016
+    second: LSP
+  - first:
+      43: 4300018
+    second: LS
+  - first:
+      43: 4300020
+    second: Sword
+  - first:
+      43: 4300022
+    second: Left Arm
+  - first:
+      43: 4300024
+    second: Right PreArm
+  - first:
+      43: 4300026
+    second: RSP
+  - first:
+      43: 4300028
+    second: RS
+  - first:
+      43: 4300030
+    second: Wing
+  - first:
+      43: 4300032
+    second: Wing_Spades
+  - first:
+      43: 4300034
+    second: Waist
+  - first:
+      43: 4300036
+    second: Angel Lowpoly
+  - first:
+      43: 4300038
+    second: Left Glove
+  - first:
+      43: 4300040
+    second: Right Boot
+  - first:
+      43: 4300042
+    second: Left Boot
+  - first:
+      43: 4300044
+    second: Waistcoat
+  - first:
+      43: 4300046
+    second: Right Glove
+  - first:
+      43: 4300048
+    second: ChestPlate
+  - first:
+      74: 7400000
+    second: 2Y
+  - first:
+      74: 7400002
+    second: 2YY
+  - first:
+      74: 7400004
+    second: 2YYX
+  - first:
+      74: 7400006
+    second: 2YYY
+  - first:
+      74: 7400008
+    second: 2X
+  - first:
+      74: 7400010
+    second: 2XX
+  - first:
+      74: 7400012
+    second: 2XXX
+  - first:
+      74: 7400014
+    second: 2XXY
+  - first:
+      74: 7400016
+    second: 2Block+X
+  - first:
+      74: 7400018
+    second: 2YX
+  - first:
+      74: 7400020
+    second: 2Block+Y
+  - first:
+      74: 7400022
+    second: Stun
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Angel Lowpoly
+  - first:
+      137: 13700002
+    second: ChestPlate
+  - first:
+      137: 13700004
+    second: Left Boot
+  - first:
+      137: 13700006
+    second: Left Glove
+  - first:
+      137: 13700008
+    second: Right Boot
+  - first:
+      137: 13700010
+    second: Right Glove
+  - first:
+      137: 13700012
+    second: Waistcoat
+  - first:
+      74: 6165949786218970784
+    second: FullSequence
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: 2Y
       takeName: Take 001
+      internalID: 0
       firstFrame: 135
       lastFrame: 168
       wrapMode: 0
@@ -677,6 +1236,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2YY
       takeName: Take 001
+      internalID: 0
       firstFrame: 169
       lastFrame: 202
       wrapMode: 0
@@ -978,6 +1538,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2YYX
       takeName: Take 001
+      internalID: 0
       firstFrame: 203
       lastFrame: 234
       wrapMode: 0
@@ -1279,6 +1840,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2YYY
       takeName: Take 001
+      internalID: 0
       firstFrame: 235
       lastFrame: 274
       wrapMode: 0
@@ -1580,6 +2142,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2X
       takeName: Take 001
+      internalID: 0
       firstFrame: 275
       lastFrame: 300
       wrapMode: 0
@@ -1881,6 +2444,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2XX
       takeName: Take 001
+      internalID: 0
       firstFrame: 327
       lastFrame: 345
       wrapMode: 0
@@ -2182,6 +2746,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2XXX
       takeName: Take 001
+      internalID: 0
       firstFrame: 346
       lastFrame: 377
       wrapMode: 0
@@ -2483,6 +3048,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2XXY
       takeName: Take 001
+      internalID: 0
       firstFrame: 378
       lastFrame: 415
       wrapMode: 0
@@ -2784,6 +3350,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2YX
       takeName: Take 001
+      internalID: 0
       firstFrame: 301
       lastFrame: 326
       wrapMode: 0
@@ -3085,6 +3652,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2Block+X
       takeName: Take 001
+      internalID: 0
       firstFrame: 416
       lastFrame: 446
       wrapMode: 0
@@ -3386,6 +3954,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 2Block+Y
       takeName: Take 001
+      internalID: 0
       firstFrame: 447
       lastFrame: 493
       wrapMode: 0
@@ -3687,6 +4256,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Stun
       takeName: Take 001
+      internalID: 0
       firstFrame: 494
       lastFrame: 534
       wrapMode: 0
@@ -3964,19 +4534,311 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 135
+    - serializedVersion: 16
+      name: FullSequence
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 135
+      lastFrame: 493
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Base Human
+        weight: 1
+      - path: Base HumanHub001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone001/Base HumanHub001Bone001Bone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone001/Base HumanHub001Bone001Bone001/Base
+          HumanHub001Bone001Bone001Bone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone001/Base HumanHub001Bone001Bone001/Base
+          HumanHub001Bone001Bone001Bone001/Base HumanHub001Bone001Bone001Bone001Bone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone003
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone003/Base HumanHub001Bone001Bone003
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone003/Base HumanHub001Bone001Bone003/Base
+          HumanHub001Bone001Bone001Bone003
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone003/Base HumanHub001Bone001Bone003/Base
+          HumanHub001Bone001Bone001Bone003/Base HumanHub001Bone001Bone001Bone001Bone003
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone004
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone004/Base HumanHub001Bone001Bone004
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone004/Base HumanHub001Bone001Bone004/Base
+          HumanHub001Bone001Bone001Bone004
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone004/Base HumanHub001Bone001Bone004/Base
+          HumanHub001Bone001Bone001Bone004/Base HumanHub001Bone001Bone001Bone001Bone004
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone005
+        weight: 1
+      - path: Base HumanHub001/Base HumanHub001Bone006
+        weight: 1
+      - path: Base HumanHub001/Base HumanLLeg1
+        weight: 1
+      - path: Base HumanHub001/Base HumanLLeg1/Base HumanLLeg2
+        weight: 1
+      - path: Base HumanHub001/Base HumanLLeg1/Base HumanLLeg2/Base HumanLLegAnkle
+        weight: 1
+      - path: Base HumanHub001/Base HumanLLeg1/Base HumanLLeg2/Base HumanLLegAnkle/Base
+          HumanLLegDigit11
+        weight: 1
+      - path: Base HumanHub001/Base HumanRLeg1
+        weight: 1
+      - path: Base HumanHub001/Base HumanRLeg1/Base HumanRLeg2
+        weight: 1
+      - path: Base HumanHub001/Base HumanRLeg1/Base HumanRLeg2/Base HumanRLegAnkle
+        weight: 1
+      - path: Base HumanHub001/Base HumanRLeg1/Base HumanRLeg2/Base HumanRLegAnkle/Base
+          HumanRLegDigit11
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit11
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit11/Base
+          HumanLArmDigit12
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit21
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit21/Base
+          HumanLArmDigit22
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit21/Base
+          HumanLArmDigit22/Base HumanLArmDigit23
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit31
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit31/Base
+          HumanLArmDigit32
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit31/Base
+          HumanLArmDigit32/Base HumanLArmDigit33
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit41
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit41/Base
+          HumanLArmDigit42
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit41/Base
+          HumanLArmDigit42/Base HumanLArmDigit43
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit51
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit51/Base
+          HumanLArmDigit52
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanLArmDigit51/Base
+          HumanLArmDigit52/Base HumanLArmDigit53
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanLArmCollarbone/Base
+          HumanLArm1/Base HumanLArm2/Base HumanLArmPalm/Base HumanPalmBone002
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanPalmBone001
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit11
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit11/Base
+          HumanRArmDigit12
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit21
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit21/Base
+          HumanRArmDigit22
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit21/Base
+          HumanRArmDigit22/Base HumanRArmDigit23
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit31
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit31/Base
+          HumanRArmDigit32
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit31/Base
+          HumanRArmDigit32/Base HumanRArmDigit33
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit41
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit41/Base
+          HumanRArmDigit42
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit41/Base
+          HumanRArmDigit42/Base HumanRArmDigit43
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit51
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit51/Base
+          HumanRArmDigit52
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanRArmCollarbone/Base
+          HumanRArm1/Base HumanRArm2/Base HumanRArmPalm/Base HumanRArmDigit51/Base
+          HumanRArmDigit52/Base HumanRArmDigit53
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1/Base HumanSpine2
+          1
+        weight: 1
+      - path: Base HumanHub001/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+          HumanSpine4/Base HumanSpine5/Base HumanHub002/Base HumanSpine1 1/Base HumanSpine2
+          1/Base HumanHub003
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 135
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -3986,10 +4848,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -3999,14 +4865,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: Base HumanHub001
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
