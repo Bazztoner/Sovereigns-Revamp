@@ -636,6 +636,9 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Formats.Fbx.Editor">
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.Formats.Fbx.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -666,11 +669,17 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Autodesk.Fbx.Editor">
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Autodesk.Fbx.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Fbx">
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Autodesk.Fbx.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
@@ -689,6 +698,9 @@
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Formats.Fbx.Runtime">
+      <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/Unity.Formats.Fbx.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>H:/PhoenixDevelopment/Bazztoner's dreams/Proyects/Sovereigns-Revamp/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
