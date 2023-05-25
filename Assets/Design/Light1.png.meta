@@ -138,7 +138,7 @@ TextureImporter:
       213: 21300088
     second: Light1_44
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -158,6 +158,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -166,9 +168,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -189,10 +191,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -232,6 +238,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1200,6 +1218,52 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Light1_19: 21300038
+      Light1_37: 21300074
+      Light1_15: 21300030
+      Light1_23: 21300046
+      Light1_35: 21300070
+      Light1_22: 21300044
+      Light1_7: 21300014
+      Light1_1: 21300002
+      Light1_28: 21300056
+      Light1_4: 21300008
+      Light1_3: 21300006
+      Light1_18: 21300036
+      Light1_5: 21300010
+      Light1_17: 21300034
+      Light1_33: 21300066
+      Light1_31: 21300062
+      Light1_27: 21300054
+      Light1_12: 21300024
+      Light1_21: 21300042
+      Light1_34: 21300068
+      Light1_26: 21300052
+      Light1_14: 21300028
+      Light1_0: 21300000
+      Light1_32: 21300064
+      Light1_10: 21300020
+      Light1_42: 21300084
+      Light1_39: 21300078
+      Light1_24: 21300048
+      Light1_20: 21300040
+      Light1_11: 21300022
+      Light1_2: 21300004
+      Light1_9: 21300018
+      Light1_16: 21300032
+      Light1_6: 21300012
+      Light1_30: 21300060
+      Light1_8: 21300016
+      Light1_29: 21300058
+      Light1_25: 21300050
+      Light1_36: 21300072
+      Light1_40: 21300080
+      Light1_41: 21300082
+      Light1_43: 21300086
+      Light1_44: 21300088
+      Light1_13: 21300026
+      Light1_38: 21300076
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
